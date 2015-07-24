@@ -1,0 +1,666 @@
+Version 2.24.2    05 Jan 2015
+
+	* Add optional size-limit configuration for amazons3 extension.
+
+Version 2.24.1    07 Oct 2014
+
+	* Implement a new tool called cback-amazons3-sync.
+	* Add support for missing --diagnostics flag in cback-span script.
+
+Version 2.23.3    03 Oct 2014
+
+	* Add new extension amazons3 as an optional replacement for the store action.
+	* Update user manual and INSTALL to clarify a few of the dependencies.
+	* Fix encryption unit test that started failing due to my new GPG key.
+
+Version 2.22.0    09 May 2013
+
+	* Add eject-related kludges to work around observed behavior.
+	* New config option eject_delay, to slow down open/close
+	* Unlock tray with 'eject -i off' to handle potential problems
+
+Version 2.21.1    21 Mar 2013
+
+	* Apply patches provided by Jan Medlock as Debian bugs.
+	* Fix typo in manpage (showed -s instead of -D)
+	* Support output from latest /usr/bin/split (' vs. `)
+
+Version 2.21.0    12 Oct 2011
+
+	* Update CREDITS file to consistently credit all contributers.
+	* Minor tweaks based on PyLint analysis (mostly config changes).
+	* Make ISO image unit tests more robust in writersutiltests.py.
+	  - Handle failures with unmount (wait 1 second and try again)
+	  - Programmatically disable (and re-enable) the GNOME auto-mounter 
+	* Implement configurable recursion for collect action.
+	  - Update collect.py to handle recursion (patch by Zoran Bosnjak)
+	  - Add new configuration item CollectDir.recursionLevel
+	  - Update user manual to discuss new functionality
+
+Version 2.20.1    19 Oct 2010
+
+	* Fix minor formatting issues in manpages, pointed out by Debian lintian.
+	* Changes required to make code compatible with Python 2.7
+	  - StreamHandler no longer accepts strm= argument (closes: #3079930)
+	  - Modify logfile os.fdopen() to be explicit about read/write mode
+	  - Fix tests that extract a tarfile twice (exposed by new error behavior)
+
+Version 2.20.0    07 Jul 2010
+
+	* This is a cleanup release with no functional changes.
+	* Switch to minimum Python version of 2.5 (everyone should have it now).
+	  - Make cback script more robust in the case of a bad interpreter version
+	  - Change file headers, comments, manual, etc. to reference Python 2.5
+	  - Convert to use @staticmethod rather than x = staticmethod(x)
+	  - Change interpreter checks in test.py, cli.py and span.py
+	  - Remove Python 2.3-compatible versions of util.nullDevice() and util.Pipe
+	* Configure pylint and execute it against the entire codebase.
+	  - Fix a variety of minor warnings and suggestions from pylint
+	  - Move unit tests into testcase folder to avoid test.py naming conflict
+	* Remove "Translate [x:y] into [a:b]" debug message for uid/gid translation.
+	* Refactor out util.isRunningAsRoot() to replace scattered os.getuid() calls.
+	* Remove boilerplate comments "As with all of the ... " in config code.
+	* Refactor checkUnique() and parseCommaSeparatedString() from config to util.
+	* Add note in manual about intermittent problems with DVD writer soft links.
+
+Version 2.19.6    22 May 2010
+
+	* Work around strange stderr file descriptor bugs discovered on Cygwin.
+	* Tweak expected results for tests that fail on Cygwin with Python 2.5.x.
+	* Set up command overrides properly so full test suite works on Debian.
+	* Add refresh_media_delay configuration option and related functionality.
+
+Version 2.19.5    10 Jan 2010
+
+	* Add customization support, so Debian can use wodim and genisoimage.
+	* SF bug #2929447 - fix cback-span to only ask for media when needed
+	* SF bug #2929446 - add retry logic for writes in cback-span
+
+Version 2.19.4    16 Aug 2009
+
+	* Add support for the Python 2.6 interpreter.
+		- Use hashlib instead of deprecated sha module when available
+		- Use set type rather than deprecated sets.Set when available
+		- Use tarfile.format rather than deprecated tarfile.posix when available
+		- Fix testGenerateTarfile_002() so expectations match Python 2.6 results
+
+Version 2.19.3    29 Mar 2009
+
+	* Fix minor epydoc typos, mostly in @sort directives.
+	* Removed support for user manual PDF format (see doc/pdf).
+
+Version 2.19.2    08 Dec 2008
+
+	* Fix cback-span problem when writing store indicators.
+
+Version 2.19.1    15 Nov 2008
+
+	* Fix bug when logging strange filenames.
+
+Version 2.19.0		05 Oct 2008
+
+	* Fix a few typos in the CREDITS file.
+	* Update README to properly reference SourceForge site.
+	* Add <ignore_failures> option to peer configuration.
+
+Version 2.18.0		05 May 2008
+
+	* Add the ability to dereference links when following them.
+	  - Add util.dereferenceLink() function
+	  - Add dereference flag to FilesystemList.addDirContents()
+	  - Add CollectDir.dereference attribute
+	  - Modify collect action to obey CollectDir.dereference
+	  - Update user manual to discuss new attribute
+
+Version 2.17.1		26 Apr 2008
+
+	* Updated copyright statement slightly.
+	* Updated user manual.
+	  - Brought copyright notices up-to-date
+	  - Fixed various URLs that didn't reference SourceForge
+	* Fixed problem with link_depth (closes: #1930729).
+	  - Can't add links directly, they're implicitly added later by tar
+	  - Changed FilesystemList to use includePath=false for recursive links
+
+Version 2.17.0		20 Mar 2008
+
+	* Change suggested execution index for Capacity extension in manual.
+	* Provide support for application-wide diagnostic reporting.
+	  - Add util.Diagnostics class to encapsulate information
+	  - Log diagnostics when Cedar Backup first starts
+	  - Print diagnostics when running unit tests
+	  - Add a new --diagnostics command-line option
+	* Clean up filesystem code that deals with file age, and improve unit tests.
+	  - Some platforms apparently cannot set file ages precisely
+	  - Change calculateFileAge() to use floats throughout, which is safer
+	  - Change removeYoungFiles() to explicitly check on whole days
+	  - Put a 1-second fudge factor into unit tests when setting file ages
+	* Fix some unit test failures discovered on Windows XP.
+	  - Fix utiltests.TestFunctions.testNullDevice_001()
+	  - Fix filesystemtests.TestBackupFileList.testGenerateFitted_004() 
+	  - Fix typo in filesystemtests.TestFilesystemList.testRemoveLinks_002()
+
+Version 2.16.0		18 Mar 2008
+
+	* Make name attribute optional in RemotePeer constructor.
+	* Add support for collecting soft links (closes: #1854631).
+	  - Add linkDepth parameter to FilesystemList.addDirContents()
+	  - Add CollectDir.linkDepth attribute
+	  - Modify collect action to obey CollectDir.linkDepth
+	  - Update user manual to discuss new attribute
+	  - Document "link farm" option for collect configuration
+	* Implement a capacity-checking extension (closes: #1915496).
+	  - Add new extension in CedarBackup2/extend/capacity.py
+	  - Refactor ByteQuantity out of split.py and into config.py
+	  - Add total capacity and utilization to MediaCapacity classes
+	  - Update user manual to discuss new extension
+
+Version 2.15.3		16 Mar 2008
+
+	* Fix testEncodePath_009() to be aware of "UTF-8" encoding.
+	* Fix typos in the PostgreSQL extension section of the manual.
+	* Improve logging when stage action fails (closes: #1854635).
+	* Fix stage action so it works for local users (closes: #1854634).
+
+Version 2.15.2		07 Feb 2008
+
+	* Updated copyright statements now that code changed in year 2008.
+	* Fix two unit test failures when using Python 2.5 (SF #1861878).
+	  - Add new function testtutil.hexFloatLiteralAllowed()
+	  - Fix splittests.TestByteQuantity.testConstructor_004() for 0xAC
+	  - Fix configtests.TestBlankBehavior.testConstructor_006() for 0xAC
+
+Version 2.15.1		19 Dec 2007
+
+	* Improve error reporting for managed client action failures.
+	* Make sure that managed client failure does not kill entire backup.
+	* Add appendix "Securing Password-less SSH Connection" to user manual.
+
+Version 2.15.0		18 Dec 2007
+
+	* Minor documentation tweaks discovered during 3.0 development.
+	* Add support for a new managed backup feature.
+	  - Add a new <peers> configuration section (PeersConfig) 
+	  - Change peers configuration in <stage> to just override <peers>
+	  - Modify stage process to take peers list from peers section (if available)
+	  - Add new configuration in options and remote peers to support remote shells
+	  - Update user manual to discuss managed backup concept and configuration
+	  - Add executeRemoteCommand() and executeManagedAction() on peer.RemotePeer
+
+Version 2.14.0		19 Sep 2007
+
+	* Deal properly with programs that localize their output.
+	   - Create new util.sanitizeEnvironment() function to set $LANG=C
+	   - Call new sanitizeEnvironment() function inside util.executeCommand()
+	   - Change extend/split._splitFile() to be more verbose about problems
+	   - Update Extension Architecture Interface to mandate $LANG=C
+	   - Add split unit tests to catch any locale-related regressions
+	   - Thanks to Lukasz Nowak for initial debugging in split extension
+
+Version 2.13.2		10 Jul 2007
+
+	* Tweak some docstring markup to work with Epydoc beta 1.
+	* Apply documentation patch from Lukasz K. Nowak.
+	  - Document that mysql extension can back up remote databases
+	  - Fix typos in extend/sysinfo.py
+	* Clean up some configuration error messages to be clearer.
+	  - Make sure that reported errors always include enough information
+	  - Add a prefix argument to some of the specialized lists in util.py
+	* Catch invalid regular expressions in config and filesystem code.
+	  - Add new util.RegexList list to contain only valid regexes
+	  - Use RegexList in config.ConfigDir and config.CollectConfig 
+	  - Use RegexList in subversion.RepositoryDir and mbox.MboxDir
+	  - Throw ValueError on bad regex in FilesystemList remove() methods
+	  - Use RegexList in FilesystemList for all lists of patterns
+
+Version 2.13.1		29 Mar 2007
+
+	* Fix ongoing problems re-initializing previously-written DVDs 
+	  - Even with -Z, growisofs sometimes wouldn't overwrite DVDs
+	  - It turns out that this ONLY happens from cron, not from a terminal
+	  - The solution is to use the undocumented option -use-the-force-luke=tty
+	  - Also corrected dvdwriter to use option "-dry-run" not "--dry-run"
+
+Version 2.13.0		25 Mar 2007
+
+	* Change writeIndicator() to raise exception on failure (closes #53).
+	* Change buildNormalizedPath() for leading "." so files won't be hidden
+	* Remove bogus usage of tempfile.NamedTemporaryFile in remote peer.
+	* Refactored some common action code into CedarBackup2.actions.util.
+	* Add unit tests for a variety of basic utility functions (closes: #45).
+	  - Error-handling was improved in some utility methods
+	  - Fundamentally, behavior should be unchanged
+	* Reimplement DVD capacity calculation (initial code from Dmitry Rutsky).
+	  - This is now done using a growisofs dry run, without -Z
+	  - The old dvd+rw-mediainfo method was unreliable on some systems
+	  - Error-handling behavior on CdWriter was also tweaked for consistency
+	* Add code to check media before writing to it (closes: #5).
+	  - Create new check_media store configuration option
+	  - Implement new initialize action to initialize rewritable media
+	  - Media is initialized by writing an initial session with media label
+	  - The store action now always writes a media label as well
+	  - Update user manual to discuss the new behavior
+	  - Add unit tests for new configuration
+	* Implement an optimized media blanking strategy (closes: #48).
+	  - When used, Cedar Backup will only blank media when it runs out of space
+	  - Initial implementation and manual text provided by Dmitry Rutsky
+	  - Add new blanking_behavior store configuration options
+	  - Update user manual to document options and discuss usage
+	  - Add unit tests for new configuration
+
+Version 2.12.1		26 Feb 2007
+	
+	* Fix typo in new split section in the user manual.
+	* Fix incorrect call to new writeIndicatorFile() function in stage action.
+	* Add notes in manual on how to find gpg and split commands.
+
+Version 2.12.0		23 Feb 2007
+
+	* Fix some encrypt unit tests related to config validation
+	* Make util.PathResolverSingleton a new-style class (i.e. inherit from object)
+	* Modify util.changeOwnership() to be a no-op for None user or group
+	* Created new split extension to split large staged files.
+	  - Refactored common action utility code into actions/util.py.
+	  - Update standard actions, cback-span, and encrypt to use refactored code
+	  - Updated user manual to document the new extension and restore process.
+
+Version 2.11.0		21 Feb 2007
+
+	* Fix log message about SCSI id in writers/dvdwriter.py.
+	* Remove TODO from public distribution (use Bugzilla instead).
+	* Minor changes to mbox functionality (refactoring, test cleanup).
+	* Fix bug in knapsack implementation, masked by poor test suite.
+	* Fix filesystem unit tests that had typos in them and wouldn't work
+	* Reorg user manual to move command-line tools to own chapter (closes: #33)
+	* Add validation for duplicate peer and extension names (closes: #37, #38).
+	* Implement new cback-span command-line tool (closes: #51).
+	  - Create new util/cback-span script and CedarBackup2.tools package
+	  - Implement guts of script in CedarBackup2/tools/span.py
+	  - Add new BackupFileList.generateSpan() method and tests
+	  - Refactor other util and filesystem code to make things work
+	  - Add new section in user manual to discuss new command
+	* Rework validation requiring least one item to collect (closes: #34).
+	  - This is no longer a validation error at the configuration level
+	  - Instead, the collect action itself will enforce the rule when it is run
+	* Support a <no_eject> flag in store configuration (closes: #39).
+	  - Change StoreConfig, CdWriter and DvdWriter to accept new flag
+	  - Update user manual to document new flag, along with warnings about it
+	* Support repository directories in Subversion extension (closes: #46).
+	  - Add <repository_dir> configuration modeled after <mbox_dir>
+	  - Make <type> configuration value optional and for reference only
+	  - Refactor code and deprecate BDBRepository and FSFSRepository
+	  - Update user manual to reflect new functionality
+
+Version 2.10.1		30 Jan 2007
+
+	* Fix a few places that still referred only to CD/CD-RW.
+	* Fix typo in definition of actions.constants.DIGEST_EXTENSION.
+
+Version 2.10.0		30 Jan 2007
+
+	* Add support for DVD writers and DVD+R/DVD+RW media.
+	  - Create new writers.dvdwriter module and DvdWriter class
+	  - Support 'dvdwriter' device type, and 'dvd+r' and 'dvd+rw' media types
+	  - Rework user manual to properly discuss both CDs and DVDs
+	* Support encrypted staging directories (closes: #33).
+	  - Create new 'encrypt' extension and associated unit tests
+	  - Document new extension in user manual
+	* Support new action ordering mechanism for extensions.
+	  - Extensions can now specify dependencies rather than indexes
+	  - Rewrote cli._ActionSet class to use DirectedGraph for dependencies
+	  - This functionality is not yet "official"; that will happen later
+	* Refactor and clean up code that implements standard actions.
+	  - Split action.py into various other files in the actions package
+	  - Move a few of the more generic utility functions into util.py
+	  - Preserve public interface via imports in otherwise empty action.py
+	  - Change various files to import from the new module locations
+	* Revise and simplify the implied "image writer" interface in CdWriter.
+	  - Add the new initializeImage() and addImageEntry() methods
+	  - Interface is now initializeImage(), addImageEntry() and writeImage()
+	  - Rework actions.store.writeImage() to use new writer interface
+	* Refactor CD writer functionality and clean up code.
+	  - Create new writers package to hold all image writers
+	  - Move image.py into writers/util.py package
+	  - Move most of writer.py into writers/cdwriter.py
+	  - Move writer.py validate functions into writers/util.py
+	  - Move writertests.py into cdwritertests.py
+	  - Move imagetests.py into writersutiltests.py
+	  - Preserve public interface via imports in otherwise empty files
+	  - Change various files to import from the new module locations
+	* More general code cleanup and minor enhancements.
+	  - Modify util/test.py to accept named tests on command line
+	  - Fix rebuild action to look at store config instead of stage.
+	  - Clean up xmlutil imports in mbox and subversion extensions
+	  - Copy Mac OS X (darwin) errors from store action into rebuild action
+	  - Check arguments to validateScsiId better (no None path allowed now)
+	  - Rename variables in config.py to be more consistent with each other 
+	  - Add new excludeBasenamePatterns flag to FilesystemList
+	  - Add new addSelf flag to FilesystemList.addDirContents()
+	  - Create new RegexMatchList class in util.py, and add tests
+	  - Create new DirectedGraph class in util.py, and add tests
+	  - Create new sortDict() function in util.py, and add tests
+	* Create unit tests for functionality that was not explictly tested before.
+	  - ActionHook, PreActionHook, PostActionHook, CommandOverride (config.py)
+	  - AbsolutePathList, ObjectTypeList, RestrictedContentList (util.py)
+
+Version 2.9.0	18 Dec 2006
+	
+	* Change mbox extension to use ISO-8601 date format when calling grepmail.
+	* Fix error-handling in generateTarfile() when target dir is missing.
+	* Tweak pycheckrc to find fewer expected errors (from standard library).
+	* Fix Debian bug #403546 by supporting more CD writer configurations.
+	  - Be looser with SCSI "methods" allowed in valid SCSI id (update regex)
+	  - Make <store> config section's <target_scsi_id> parameter optional
+	  - Change CdWriter to support "hardware id" as either SCSI id or device
+	  - Implement cdrecord commands in terms of hardware id instead of SCSI id
+	  - Add documentation in writer.py to discuss how we talk to hardware
+	  - Rework user manual's discussion of how to configure SCSI devices
+	* Update Cedar Backup user manual.
+	  - Re-order setup procedures to modify cron at end (Debian #403662)
+	  - Fix minor typos and misspellings (Debian #403448 among others)
+	  - Add discussion about proper ordering of extension actions
+
+Version 2.8.1	04 Sep 2006
+
+	* Changes to fix, update and properly build Cedar Backup manual
+	  - Change DocBook XSL configuration to use "current" stylesheet
+	  - Tweak manual-generation rules to work around XSL toolchain issues
+	  - Document where to find grepmail utility in Appendix B
+	  - Create missing documentation for mbox exclusions configuration
+	  - Bumped copyright dates to show "(c) 2005-2006" where needed
+	  - Made minor changes to some sections based on proofreading
+
+Version 2.8.0	24 Jun 2006
+	
+	* Remove outdated comment in xmlutil.py about dependency on PyXML.
+	* Tweak wording in doc/docbook.txt to make it clearer.
+	* Consistently rework "project description" everywhere.
+	* Fix some simple typos in various comments and documentation.
+	* Added recursive flag (default True) to FilesystemList.addDirContents().
+	* Added flat flag (default False) to BackupFileList.generateTarfile().
+	* Created mbox extension in CedarBackup2.extend.mbox (closes: #31).
+	  - Updated user manual to document the new extension and restore process.
+	* Added PostgreSQL extension in CedarBackup2.extend.postgresql (closes: #32).
+	  - This code was contributed by user Antoine Beaupre ("The Anarcat").
+	  - I tweaked it slightly, added configuration tests, and updated the manual.
+	  - I have no PostgreSQL databases on which to test the functionality.
+	* Made most unit tests run properly on Windows platform, just for fun.
+	* Re-implement Pipe class (under executeCommand) for Python 2.4+
+	  - After Python 2.4, cross-platform subprocess.Popen class is available
+	  - Added some new regression tests for executeCommand to stress new Pipe
+	* Switch to newer version of Docbook XSL stylesheet (1.68.1)
+	  - The old stylesheet isn't easily available any more (gone from sf.net)
+	  - Unfortunately, the PDF output changed somewhat with the new version
+	* Add support for collecting individual files (closes: #30).
+	  - Create new config.CollectFile class for use by other classes
+	  - Update config.CollectConfig class to contain a list of collect files
+	  - Update config.Config class to parse and emit collect file data
+	  - Modified collect process in action.py to handle collect files
+	  - Updated user manual to discuss new <file> configuraton 
+
+Version 2.7.2	22 Dec 2005
+
+	* Remove some bogus writer tests that depended on an arbitrary SCSI device.
+
+Version 2.7.1	13 Dec 2005
+
+	* Tweak the CREDITS file to fix a few typos.
+	* Remove completed tasks in TODO file and reorganize it slightly.
+	* Get rid of sys.exit() calls in util/test.py in favor of simple returns.
+	* Fix implementation of BackupFileList.removeUnchanged(captureDigest=True).
+	  - Since version 2.7.0, digest only included backed-up (unchanged) files
+	  - This release fixes code so digest is captured for all files in the list
+	  - Fixed captureDigest test cases, which were testing for wrong results
+	* Make some more updates to the user manual based on further proof-reading.
+	  - Rework description of "midnight boundary" warning slightly in basic.xml
+	  - Change "Which Linux Distribution?" to "Which Platform?" in config.xml
+	  - Fix a few typos and misspellings in basic.xml
+
+Version 2.7.0	30 Oct 2005
+
+	* Cleanup some maintainer-only (non-distributed) Makefile rules.
+	* Make changes to standardize file headers with other Cedar Solutions code.
+	* Add debug statements to filesystem code (huge increase in debug log size).
+	* Standardize some config variable names ("parentNode" instead of "parent").
+	* Fix util/test.py to return proper (non-zero) return status upon failure.
+	* No longer attempt to change ownership of files when not running as root.
+	* Remove regression test for bug #25 (testAddFile_036) 'cause it's not portable.
+	* Modify use of user/password in MySQL extension (suggested by Matthias Urlichs).
+	  - Make user and password values optional in Cedar Backup configuration
+	  - Add a few regression tests to make sure configuration changes work
+	  - Add warning when user or password value(s) are visible in process listing
+	  - Document use of /root/.my.cnf or ~/.my.cnf in source code and user manual
+	  - Rework discussion of command line, file permissions, etc. in user manual
+	* Optimize incremental backup, and hopefully speed it up a bit (closes: #29).
+	  - Change BackupFileList.removeUnchanged() to accept a captureDigest flag
+	  - This avoids need to call both generateDigestMap() and removeUnchanged()
+	  - Note that interface to removeUnchanged was modified, but not broken
+	* Add support for pre- and post-action command hooks (closes: #27).
+	  - Added <pre_action_hook> and <post_action_hook> sections within <options>
+	  - Updated user manual documentation for options configuration section
+	  - Create new config.PreActionHook and PostActionHook classes to hold hooks
+	  - Added new hooks list field on config.OptionsConfig class
+	  - Update ActionSet and ActionItem in cli to handle and execute hooks
+	* Rework and abstract XML functionality, plus remove dependency on PyXML.
+	  - Refactor general XML utility code out of config.py into xmlutil.py
+	  - Create new isElement() function to eliminate need for Node references
+	  - Create new createInputDom(), createOutputDom() and serializeDom() functions
+	  - Use minidom XML parser rather than PyExpat.reader (much faster)
+	  - Hack together xmlutil.Serializer based on xml.dom.ext.PrettyPrint
+	  - Remove references to PyXML in manual's depends.xml and install.xml files
+	  - Add notes about PyXML code sourced from Fourthought, Inc. in CREDITS
+	  - Rework mysql and subversion unit tests in terms of new functions
+
+Version 2.6.1	27 Sep 2005
+
+	* Fix broken call to node.hasChildNodes (no parens) in config.py.
+	* Make "pre-existing collect indicator" error more obvious (closes: #26).
+	* Avoid failures for UTF-8 filenames on certain filesystems (closes: #25).
+	* Fix FilesystemList to encode excludeList items, preventing UTF-8 failures.
+
+Version 2.6.0	12 Sep 2005
+
+	* Remove bogus check for remote collect directory on master (closes: #18).
+	* Fix testEncodePath_009 test failure on UTF-8 filesystems (closes: #19).
+	* Fixed several unit tests related to the CollectConfig class (all typos).
+	* Fix filesystem and action code to properly handle path "/" (closes: #24).
+	* Add extension configuration to cback.conf.sample, to clarify things.
+	* Place starting and ending revision numbers into Subversion dump filenames.
+	* Implement resolver mechanism to support paths to commands (closes: #22).
+	  - Added <override> section within <options> configuration
+	  - Create new config.CommandOverride class to hold overrides
+	  - Added new overrides field on config.OptionsConfig class
+	  - Create util.PathResolverSingleton class to encapsulate mappings	
+	  - Create util.resolveCommand convenience function for code to call
+	  - Create and call new _setupPathResolver() function in cli code
+	  - Change all _CMD constants to _COMMAND, for consistency
+	* Change Subversion extension to support "fsfs" repositories (closes: #20).
+	  - Accept "FSFS" repository <type> in <subversion> configuration section
+	  - Create new FSFSRepository class to represent an FSFS repository
+	  - Refactor internal code common to both BDB and FSFS repositories
+	  - Add and rework test cases to provide coverage of FSFSRepository
+	* Port to Darwin (Mac OS X) and ensure that all regression tests pass.
+	  - Don't run testAddDirContents_072() for Darwin (tarball's invalid there)
+	  - Write new ISO mount testing methods in terms of Apple's "hdiutil" utility
+	  - Accept Darwin-style SCSI writer devices, i.e. "IOCompactDiscServices"
+	  - Tweak existing SCSI id pattern to allow spaces in a few other places
+	  - Add new regression tests for validateScsiId() utility function
+	  - Add code warnings and documentation in manual and in doc/osx 
+	* Update, clean up and extend Cedar Backup User Manual (closes: #21).
+	  - Work through document and copy-edit it now that it's matured
+	  - Add documentation for new options and subversion config items
+	  - Exorcise references to Linux which assumed it was "the" platform
+	  - Add platform-specific notes for non-Linux platforms (darwin, BSDs)
+	  - Clarify purpose of the 'collect' action on the master
+	  - Clarify how actions (i.e. 'store') are optional
+	  - Clarify that 'all' does not execute extensions
+	  - Add an appendix on restoring backups
+
+Version 2.5.0	12 Jul 2005
+
+	* Update docs to modify use of "secure" (suggested by Lars Wirzenius).
+	* Removed "Not an Official Debian Package" section in software manual.
+	* Reworked Debian install procedure in manual to reference official packages.
+	* Fix manual's build process to create files with mode 664 rather than 755.
+	* Deal better with date boundaries on the store operation (closes: #17).
+	  - Add <warn_midnite> value in <store> configuration
+	  - Add warnMidnite field to the StoreConfig object
+	  - Add warning in store process for crossing midnite boundary
+	  - Change store --full to have more consistent behavior
+	  - Update manual to document changes related to this bug
+
+Version 2.4.2	23 Apr 2005
+
+	* Fix boundaries log message again, properly this time.
+	* Fix a few other log messages that used "," rather than "%".
+
+Version 2.4.1	22 Apr 2005
+
+	* Fix minor typos in user manual and source code documentation.
+	* Properly annotate code implemented based on Python 2.3 source.
+	* Add info within CREDITS about Python 2.3 and Docbook XSL licenses.
+	* Fix logging for boundaries values (can't print None[0], duh).
+
+Version 2.4.0	02 Apr 2005
+
+	* Re-license manual under "GPL with clarifications" to satisfy DFSG.
+	* Rework our unmount solution again to try and fix observed problems.
+	  - Sometimes, unmount seems to "work" but leaves things mounted.
+	  - This might be because some file is not yet completely closed.
+	  - We try to work around this by making repeated unmount attempts.
+	  - This logic is now encapsulated in util.mount() and util.unmount().
+	  - This solution should also be more portable to non-Linux systems.
+
+Version 2.3.1	23 Mar 2005
+
+	* Attempt to deal more gracefully with corrupted media.
+	* Unmount media using -l ("lazy unmount") in consistency check.
+	* Be more verbose about media errors during consistency check.
+
+Version 2.3.0	10 Mar 2005
+
+	* Make 'extend' package public by listing it in CedarBackup2/__init__.py.
+	* Reimplement digest generation to use incremental method (now ~3x faster).
+	* Tweak manifest to be a little more selective about what's distributed.
+
+Version 2.2.0	09 Mar 2005
+
+	* Fix bug related to execution of commands with huge output.
+	* Create custom class util.Pipe, inheriting from popen2.Popen4.
+	* Re-implement util.executeCommand() in terms of util.Pipe.
+	* Change ownership of sysinfo files to backup user/group after write.
+
+Version 2.1.3	08 Mar 2005
+
+	* In sysinfo extension, explicitly path to /sbin/fdisk command.
+	* Modify behavior and logging when optional sysinfo commands are not found.
+	* Add extra logging around boundaries and capacity calculations in writer.py.
+	* In executeCommand, log command using output logger as well as debug level.
+	* Docs now suggest --output in cron command line to aid problem diagnosis.
+	* Fix bug in capacity calculation, this time for media with a single session.
+	* Validate all capacity code against v1.0 code, making changes as needed.
+	* Re-evaluate all capacity-related regression tests against v1.0 code.
+	* Add new regression tests for capacity bugs which weren't already detected.
+
+Version 2.1.2	07 Mar 2005
+
+	* Fix a few extension error messages with incorrect (missing) arguments.
+	* In sysinfo extension, do not log ls and dpkg output to the debug log.
+	* Fix CdWriter, which reported negative capacity when disc was almost full.
+	* Make displayBytes deal properly with negative values via math.fabs().
+	* Change displayBytes to default to 2 digits after the decimal point.
+
+Version 2.1.1	06 Mar 2005
+
+	* Fix bug in setup.py (need to install extensions properly).
+
+Version 2.1.0	06 Mar 2005
+
+	* Fixed doc/cback.1 .TH line to give proper manpage section.
+	* Updated README to more completely describe what Cedar Backup is.
+	* Fix a few logging statements for the collect action, to be clearer.
+	* Fix regression tests that failed in a Debian pbuilder environment.
+	* Add simple main routine to cli.py, so executing it is the same as cback.
+	* Added optional outputFile and doNotLog parameters to util.executeCommand().
+	* Display byte quantities in sensible units (i.e. bytes, kB, MB) when logged.
+	* Refactored private code into public in action.py and config.py.
+	* Created MySQL extension in CedarBackup2.extend.mysql.
+	* Created sysinfo extension in CedarBackup2.extend.sysinfo.
+	* Created Subversion extension in CedarBackup2.extend.subversion.
+	* Added regression tests as needed for new extension functionality.
+	* Added Chapter 5, Official Extensions in the user manual.
+
+Version 2.0.0	26 Feb 2005
+
+	* Complete ground-up rewrite for 2.0.0 release.
+	* See doc/release.txt for more details about changes.
+
+Version 1.13   25 Jan 2005
+
+	* Fix boundaries calculation when using kernel >= 2.6.8 (closes: #16).
+	* Look for a matching boundaries pattern among all lines, not just the first.
+
+Version 1.12   16 Jan 2005
+
+	* Add support for ATAPI devices, just like ATA (closes: #15).
+	* SCSI id can now be in the form '[ATA:|ATAPI:]scsibus,target,lun'.
+
+Version 1.11	17 Oct 2004
+
+	* Add experimental support for new Linux 2.6 ATA CD devices.
+	* SCSI id can now be in the form '[ATA:]scsibus,target,lun'.
+	* Internally, the SCSI id is now stored as a string, not a list.
+	* Cleaned up 'cdrecord' calls in cdr.py to make them consistent.
+	* Fixed a pile of warnings noticed by the latest pychecker.
+
+Version 1.10	01 Dec 2003
+
+	* Removed extraneous error parameter from cback's version() function.
+	* Changed copyright statement and year; added COPYRIGHT in release.py.
+	* Reworked all file headers to match new Cedar Solutions standard.
+	* Removed __version__ and __date__ values with switch to Subversion.
+	* Convert to tabs in Changelog to make the Vim syntax file happy.
+	* Be more stringent in validating contents of SCSI triplet values.
+	* Fixed bug when using modulo 1 (% 1) in a few places.
+	* Fixed shell-interpolation bug discovered by Rick Low (security hole).
+	* Replace all os.popen() calls with new execute_command() call for safety.
+
+Version 1.9    09 Nov 2002
+
+	* Packaging changes to allow Debian version to be "normal", not Debian-native.
+	* Added CedarBackup/release.py to contain "upstream" release number.
+	* Added -V,--version option to cback script.
+	* Rewrote parts of Makefile to remove most Debian-specific rules.
+	* Changed Makefile and setup.py to get version info from release.py.
+	* The setup.py script now references /usr/bin/env python, not python2.2.
+	* Debian-related changes will now reside exclusively in debian/changelog.
+
+Version 1.8    14 Oct 2002 
+
+	* Fix bug with the way the default mode is displayed in the help screen.
+
+Version 1.7    14 Oct 2002
+
+	* Bug fix.  Upgrade to Python 2.2.2b1 exposed a flaw in my version-check code.
+
+Version 1.6    06 Oct 2002
+
+	* Debian packaging cleanup (should have been a Debian-only release 1.5-2).
+
+Version 1.5    19 Sep 2002
+
+	* Changed cback script to more closely control ownership of logfile.
+
+Version 1.4    10 Sep 2002
+
+	* Various packaging cleanups.
+	* Fixed code that reported negative capacity on a full disc.
+	* Now blank disc ahead of time if it needs to be blanked.
+	* Moved to Python2.2 for cleaner packaging (True, False, etc.)
+
+Version 1.3    20 Aug 2002
+
+	* Initial "public" release.
+
+-----------------------------------------------------------------------------
+vim: set ft=changelog noexpandtab:

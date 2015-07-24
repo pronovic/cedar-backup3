@@ -1,0 +1,110 @@
+# vim: set ft=text132:
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Project  : Cedar Backup, release 2
+# Revision : $Id: TODO 1004 2010-07-07 20:51:16Z pronovic $
+# Purpose  : TODO list for package
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+Editor's note: these are musings on changes that would be worth making
+in Cedar Backup 3.  However, unless I find myself unemployed for a long 
+period of time, they're unlikely to happen.  Cedar Backup 2 is stable 
+and is reasonably easy to maintain given the number of changes that 
+are needed in any given year.  As a result, a major rewrite isn't really 
+worthwhile.
+
+============================
+
+Would be nice if substitute/replace worked in configuration
+files (i.e. set up a $VARIABLE and substitute elsewhere).
+
+Do I want to confine myself to just backwards compatible
+changes?
+
+Can configuration be generalized, or is code the right
+way to do it?
+
+============================
+
+Probably move to Python 3.x for any Cedar Backup 3 rewrite.
+New images for manual (something I have given up on several times)
+Remove action.py
+Use decorator in places like cli._usage() rather than passing in file descriptor?
+Maybe expand the config object that's passed to commands 
+   - Would include: config, config XML, command-line parameters, maybe a reference to path resolver?
+   - (Not sure resolver is worth it -- we already have a utility function to mask it off)
+   - This would get rid of the someone ugly and inconsistent reference to the path resolver
+   - It would make the future of extensions more flexible, since they would just take one object
+   - Maybe we'd even include a parsed XML tree or something, rather than the XML source?
+   - Maybe this is passed to the constructor of the command object or something?
+   - Kind of a pain that extensions need to have their own LocalConfig -- can we get rid of that somehow?
+Should we maybe move configuration parsing into individual commands?
+   - This would make the standard commands more similar to extension
+   - Each command would implement its own validation
+   - Individual command validation might have a different "take" on configuration
+   - Where would we put parsing for common configuration sections?
+How can we make support for configuration more "universal"?
+   - Problem now is that a Config object only knows about some configuration.
+   - Adding extensions doesn't add knowledge of extension configuration.
+   - Would be difficult to write a single application to manage all configuration
+   - We would only be able to read part of a config file -- how would we re-serialize?
+   - Maybe a config parsing method on each command that would be used to make a whole?
+   - This fits OK with the idea that each extension/command would do its own validation
+Config serialization/deserialization should be moved to the object itself (not parent config object)
+Need a common place to store definitions that might be generally useful
+   - Things like "valid cd writer device names" or whatever
+   - Not sure where these things go if they're part of the parsing code for a command
+   - Actually, other more general things like archive/compress modes are more difficult
+Maybe move away from tar, targz, tarbz2 archive modes and standardize on compress modes only?
+Need code to remove boilerplate __cmp__ code, if possible
+Maybe have standard functions we can use for property assignment
+   - Value must not be blank string
+   - Value must be an absolute path
+   - Value must be in a set of other values
+   - Value must integer on some range
+   - Value must be float on some range
+   - Value must match a regular expression
+   - General list assignment handling
+   - List versions of other fancy checks (i.e. abs path or whatever)
+   - Might not really be worth it (really worth sacrificing "local" readability?)
+   - Maybe some of this (and __cmp___) could be done with a superclass?
+If each extension really has its own Config object (?) pull out common parsing code
+Config code is generally readable, might not be worth abstracting it
+   - Not sure that comments are worth it -- they're longer than the method body
+FilesystemList
+   - excludePaths should become excludedPaths (to differentiate from flags)
+   - same goes for other lists and maybe ignoreFile (ignoreFileName?)
+Change name of digest file extension to something other than .sha
+Maybe allow configuration of hashing method (doesn't Python have an easy way to switch now?)
+Rework knapsack algorithms to take a less confusing (nasty) argument that I can remember how to use
+   - In fact, maybe the knapsack algorithms could operate on a filesystem list instead of the the other way around?
+   - or, a knapsack algorithm is some sort of predicate or "filter" on a list ???
+remove image.py
+should common test methods be put into a test case superclass?
+   - here, I'm thinking of the tar stuff, the "raise on assign failure" etc.
+   - maybe looking up resources is something a test class always does?
+   - some goes for tearing down a temp directory or something
+   - or maybe we have a flag (or several different parent classes) that control this behavior?
+isn't buildPath() redundant -- doesn't os.path.join() do this?
+what about captureOutput() -- can this kind of thing be done with a decorator now?
+remove writer.py
+prune IsoImage and CdWriter to include only methods and attributes that we actually use
+Pull out common functionality like openTray() and closeTray() somehow?
+Get rid of specialized Subversion repository configuration (BDBRepository, FSFSRepository, etc.)
+Come up with standard parsing for config items lots of code uses -- exclusions, for example
+Spread out the functionality for the validate action
+Standardize on a way to "merge" several levels of configuration for a parameters that exist on more than one level
+get rid of store.writeImage() -- or rather, rename writeImageBlankSafe to be writeImage
+Come up with a way to better share store and rebuild functionality 
+   - Can one extension class provide more than one command, maybe with two named methods?
+   - Maybe extension configuration in the XML file would just specify the class
+   - We could then ask the class what extensions it provides, what they dependencies are, etc.
+   - This could get a little complicated, so I think that command/extension rearchitecture should come later in the process

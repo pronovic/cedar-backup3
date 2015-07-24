@@ -1,0 +1,6 @@
+#!/bin/sh
+# Script to stop the Mac OS X auto mount daemon so we can use cdrtools.
+# Swiped from online documentation related to X-CD-Roast and reformatted.
+# Note: this daemon was apparently called autodiskmount in OS X 10.3 and prior.
+sudo kill -STOP `ps -ax | grep diskarbitrationd | grep -v grep | sed -e 's/\([^\?]*\).*/\1/' `
+echo "Auto mount process ID `ps -ax | grep diskarbitrationd | grep -v grep | sed -e 's/\([^\?]*\).*/\1/' ` stopped."

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- Document containing only a collect section, containing required and optional fields. -->
+<cb_config>
+   <collect>
+      <collect_dir>/opt/backup/collect</collect_dir>
+      <collect_mode>daily</collect_mode>
+      <archive_mode>targz</archive_mode>
+      <ignore_file>.cbignore</ignore_file>
+      <exclude>
+         <abs_path>/etc/cback.conf</abs_path>
+         <abs_path>/etc/X11</abs_path>
+         <pattern>.*tmp.*</pattern>
+         <pattern>.*\.netscape\/.*</pattern>
+      </exclude>
+      <dir>
+         <abs_path>/root</abs_path>
+         <recursion_level>1</recursion_level>
+      </dir>
+      <dir>
+         <abs_path>/tmp</abs_path>
+         <link_depth>3</link_depth>
+      </dir>
+      <dir>
+         <abs_path>/ken</abs_path>
+         <link_depth>1</link_depth>
+         <dereference>Y</dereference>
+      </dir>
+      <dir>
+         <abs_path>/var/log</abs_path>
+         <mode>incr</mode>                   <!-- deprecated form -->
+      </dir>
+      <dir>
+         <abs_path>/etc</abs_path>
+         <collect_mode>incr</collect_mode>
+         <archive_mode>tar</archive_mode>
+         <ignore_file>.ignore</ignore_file>
+      </dir>
+      <dir>
+         <abs_path>/opt</abs_path>
+         <exclude>
+            <abs_path>/opt/share</abs_path>
+            <rel_path>large</rel_path>       <!-- i.e. /opt/large -->
+            <pattern>.*\.doc\.*</pattern>
+            <rel_path>backup</rel_path>      <!-- i.e. /opt/backup -->
+            <pattern>.*\.xls\.*</pattern>
+            <abs_path>/opt/tmp</abs_path>
+         </exclude>
+      </dir>
+      <file>
+         <abs_path>/home/root/.profile</abs_path>
+      </file>
+      <file>
+         <abs_path>/home/root/.kshrc</abs_path>
+         <mode>weekly</mode>                   <!-- deprecated form -->
+      </file>
+      <file>
+         <abs_path>/home/root/.aliases</abs_path>
+         <collect_mode>daily</collect_mode>
+         <archive_mode>tarbz2</archive_mode>
+      </file>
+   </collect>
+</cb_config>

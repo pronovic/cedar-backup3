@@ -1,0 +1,44 @@
+# vim: set ft=text80:
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Project  : Cedar Backup, release 2
+# Revision : $Id: INSTALL 1069 2014-10-03 14:33:52Z pronovic $
+# Purpose  : INSTALL instructions for package
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+This module is distributed in standard Python distutils form.  Use:
+
+   python setup.py --help 
+
+For more information on how to install it.  You must have a Python
+interpreter version 2.5 or better to use these modules.  Some external
+tools are also required for certain features to work.  See the user 
+manual for more details.
+
+In the simplest case, you will probably just use:
+
+   python setup.py install
+
+to install to your standard Python site-packages directory.  Note that on 
+UNIX systems, you will probably need to do this as root.
+
+The documentation and unit tests provided with this distribution are not
+installed by setup.py.  You may put them wherever you would like.
+
+You may wish to run the unit tests before actually installing anything.
+Run them like so:
+
+   python util/test.py
+
+If any unit test reports a failure on your system, please email me the
+output from the unit test, so I can fix the problem.  Please make sure
+to include the diagnostic information printed out at the beginning of
+the test run.

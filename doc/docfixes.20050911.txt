@@ -1,0 +1,183 @@
+General
+
+      - Add a new section on platform-specific notes (or limitations, or something)
+      - This is where cdrecord documentation about Mac OS devices might go 
+
+      - Add a section (maybe an appendix?) providing some documentation about how to restore backups
+
+Preface 
+
+   - Change "Linux system" to "UNIX or UNIX-like system"
+
+Chapter 1
+
+   What is Cedar Backup?
+
+      - Change "free- and open-source world" to "free software and open source world."
+      - Change paragraph that discusses support on particular platforms (maybe refer to new section?)
+        List that it works on FreeBSD and Mac OS X
+        Indicate that mkisofs and cdrecord are only needed on master nodes,
+        so Cedar Backup is very portable on client nodes
+
+   How to Get Support 
+
+      - Change list of what to provide with bug report to a bullet list or something
+
+   History
+
+      - Weaken the Perl/Python strengths and weaknesses statement
+      - Indicate that there are more than 2000 tests
+
+
+Chapter 2
+
+   - Put a description of the backup process somewhere, and how I use it 
+     (i.e. change disc every week, take it off site, etc.)  This refers
+     to the anarcat request to document that we don't have to write to 
+     disc.  
+
+   - Maybe list that you can use the master as an integration point, or
+     you can treat the master as a client as well and collect and stage on
+     it
+
+   - Maybe be more consistent about master/client relationships
+
+   Cedar Backup Pools
+      
+      - Make note that master acts as a client for certain actions (or something??)
+      - Change paragraph about what Cedar Backup has been designed for - maybe
+        make it more obvious that it is flexible.
+
+   The Collect Action
+   
+      - Note that the master acts like a peer for this step.
+      - Note that this works the same on the master as on the clients,
+        but if you don't want to collect on the master, there's no need
+        to do it (and you don't have to list the master as a local peer).
+      - Note that collect on the master is optional (another Anarcat note)
+
+   The Stage Action
+
+      - Note that one would typically stage the master (as a local peer), but this
+        isn't required.
+
+      - Give a better description of what a local peer is (i.e. the master being
+        treated like a client)
+
+      - Maybe note that you can stop with this stage if you just want a "collector"
+        machine to gather data from other machines.
+
+   The Store Action
+
+      - Note that the store action is technically optional
+      - No need to write to disc
+      - Add note that this is not really supported on Mac OS X - refer to doc in source tree or something
+
+   The All Action
+
+      - Extensions "cannot" be executed as part of the all action.
+
+   Coordination between Master and Clients
+
+      - Unncessary duplication in "some users" phrases
+
+   Media and Device Types
+
+      - Change note about writable DVDs
+      - Change footnote about my backup device
+
+   Extensions
+
+      - Remove "(i.e. "database")"
+      - Change "it is our hope" to something like "Hopefully, "
+
+
+Chapter 3
+
+   Background
+   
+      - Modify statement about non-Linux platforms.
+      - Maybe create and reference a new "platform-specific notes" section
+
+   Installing on a Debian system
+
+      - Modify first paragraph so it's clear that apt-get commands are 
+        same no matter what the source is
+
+   Installing from Source
+
+      - Remove comparison to CPAN package (unneeded)
+      - Add a note about running the regression tests and emailing or filing bug with problems
+
+Chapter 4
+
+   - Maybe build an entire other section talking about SCSI devices and how they're configured
+     platform by platform
+
+   - Make a note somewhere that Cedar Backup is case-sensitive (to a certain extent)
+     on Mac OS X even if the underlying filesystem isn't.
+
+   Sample Configuration File
+
+      - Path to debian sample file name is incorrect - needs to include example directory
+
+   Options Configuration
+
+      - Add information about new overrides section
+
+   Extensions configuration
+
+      - Use a different example that doesn't have "database" in two different places.
+
+   Setting up a Pool of One
+
+      - Modify use of term "Linux SCSI device"
+      - Make note about how this differs on Mac OS X (refer to some other section about limitations)
+      - Maybe build an entire other section talking about SCSI devices
+      - "or to the file owner, if the" -> "or to the file owner (if the"
+      - Make note in cron job section that backups *must* run on the configured starting day of week
+      - Should note that store action is optional (but then you couldn't execute 'all')
+
+   Setting up a Client
+
+      - make some sort of note about how the master treats itself as a client for some actions (like stage for local peer)
+      - Maybe build an entire other section talking about SCSI devices
+      - "or to the file owner, if the" -> "or to the file owner (if the"
+      - Make note in cron job section that backups *must* run on the configured starting day of week
+      - Should note that store action is optional
+
+   Setting up a Master
+   
+      - make some sort of note about how the master treats itself as a client for some actions (like stage for local peer)
+      - Maybe build an entire other section talking about SCSI devices
+      - note that the master does not need to list itself as a peer to be collected (if you have an "integration point")
+      - Make notes about Mac device names (and refer to some other section for limitations)
+      - "or to the file owner, if the" -> "or to the file owner (if the"
+      - Make note in cron job section that backups *must* run on the configured starting day of week
+      - " If you are able to log in successfully" -> "If you are able to log in to each clien successfully" or something
+      - Should note that store action is optional
+
+Chapter 5
+   
+   - Add an intro section that re-describes configuration and where things go, i.e. show a hypothetical configuraiton file
+
+   Subversion Extension
+
+      - Rewrite section about FSFS and BDB (maybe take notes out of extension's epydoc notes)
+      - Add notes about repository <type> field and discussion what values are allowed
+      - DAMN - we really almost want a type at the <subversion> level so that we can set defaults
+        for all of the other repositories.  This is a code change.
+
+Appendix A
+
+   - Use a better example that doesn't have "database" in two places
+   - Document that "public interface" includes only items included
+     in the Epydoc documentation (i.e. constants that are not in
+     Epydoc are not really "public", even if they don't start with _.
+     (Check what I make public to be sure - I'm thinking of _COMMAND)
+
+Appendix B
+
+   - Add dependencies information for Mac OS X?
+   - Add dependencies for FreeBSD or whatever - ports?
+

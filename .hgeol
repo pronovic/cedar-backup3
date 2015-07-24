@@ -1,0 +1,10 @@
+[repository]
+native = CR
+
+[eol]
+only-consistent = False
+fix-trailing-newline = True
+
+[patterns]
+** = native
+

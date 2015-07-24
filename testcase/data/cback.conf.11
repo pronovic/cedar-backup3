@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Document containing only a store section, containing only required fields. -->
+<cb_config>
+   <store>
+      <source_dir>/opt/backup/staging</source_dir>
+      <media_type>cdrw-74</media_type>
+      <target_device>/dev/cdrw</target_device>
+   </store>
+</cb_config>

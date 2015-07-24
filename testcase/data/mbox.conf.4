@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- Document with default modes, several repositories with various overrides and exclusions. -->
+<cb_config>
+   <mbox>
+      <collect_mode>incr</collect_mode>
+      <compress_mode>none</compress_mode>
+      <file>
+         <abs_path>/home/jimbo/mail/cedar-backup-users</abs_path>
+      </file>
+      <file>
+         <abs_path>/home/joebob/mail/cedar-backup-users</abs_path>
+         <collect_mode>daily</collect_mode>
+         <compress_mode>gzip</compress_mode>
+      </file>
+      <dir>
+         <abs_path>/home/frank/mail/cedar-backup-users</abs_path>
+      </dir>
+      <dir>
+         <abs_path>/home/jimbob/mail</abs_path>
+         <compress_mode>bzip2</compress_mode>
+         <exclude>
+            <rel_path>logomachy-devel</rel_path>
+         </exclude>
+      </dir>
+      <dir>
+         <abs_path>/home/billiejoe/mail</abs_path>
+         <collect_mode>weekly</collect_mode>
+         <compress_mode>bzip2</compress_mode>
+         <exclude>
+            <pattern>.*SPAM.*</pattern>
+         </exclude>
+      </dir>
+      <dir>
+         <abs_path>/home/billybob/mail</abs_path>
+         <exclude>
+            <rel_path>debian-devel</rel_path>
+            <rel_path>debian-python</rel_path>
+            <pattern>.*SPAM.*</pattern>
+            <pattern>.*JUNK.*</pattern>
+         </exclude>
+      </dir>
+   </mbox>
+</cb_config>

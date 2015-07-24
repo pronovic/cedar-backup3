@@ -1,0 +1,28 @@
+From: Matthias Urlichs <smurf@smurf.noris.de>
+Subject: MySQL backup
+To: support@cedar-solutions.com
+Date: Sat, 24 Sep 2005 11:17:57 +0200
+X-Bogosity: Ham, tests=bogofilter, spamicity=0.036897, version=0.94.4
+
+[-- Attachment #1 --]
+[-- Type: text/plain, Encoding: quoted-printable, Size: 0.7K --]
+
+Hello,
+
+quick note: you do not need to expose mysql passwords when running
+mysqldump. There is a better solution -- you create an additional mysql
+configuration file (which may include the connection username and
+password), make that readable by root only, and use that in your
+mysqldump invocation.
+
+Debian does the same thing in its standard mysql packaging, to provide a
+safe root-only database shutdown.
+
+For additional security I'd create a new mysql user for that; you can
+restrict that user WRT the databases it sees (and to select-only access
+on them), which is something you shouldn't really do to the database
+root user. ;-)
+
+--
+Matthias Urlichs | {M:U} IT Design @ m-u-it.de | smurf@smurf.noris.de
+

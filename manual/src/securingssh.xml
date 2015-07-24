@@ -1,0 +1,249 @@
+<!--
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Copyright (c) 2007,2010 Kenneth J. Pronovici.
+# All rights reserved.
+#
+# This work is free; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, Version 2,
+# as published by the Free Software Foundation.
+#
+# This work is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Copies of the GNU General Public License are available from
+# the Free Software Foundation website, http://www.gnu.org/.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : O'Reilly DocBook Lite XML DTD
+# Project  : Cedar Backup, release 2
+# Revision : $Id: securingssh.xml 1006 2010-07-07 21:03:57Z pronovic $
+# Purpose  : Cedar Backup Software Manual, securing SSH appendix.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-->
+
+<appendix id="cedar-securingssh">
+
+   <title>Securing Password-less SSH Connections</title>
+
+   <simplesect>
+
+      <para>
+         Cedar Backup relies on password-less public key SSH connections to
+         make various parts of its backup process work.  Password-less
+         <command>scp</command> is used to stage files from remote clients to
+         the master, and password-less <command>ssh</command> is used to
+         execute actions on managed clients.  
+      </para>
+         
+      <para>
+         Normally, it is a good idea to avoid password-less SSH connections in
+         favor of using an SSH agent.  The SSH agent manages your SSH
+         connections so that you don't need to type your passphrase over and
+         over.  You get most of the benefits of a password-less connection
+         without the risk.  Unfortunately, because Cedar Backup has to execute
+         without human involvement (through a cron job), use of an agent really
+         isn't feasable.  We have to rely on true password-less public keys to
+         give the master access to the client peers.
+      </para>
+
+      <para>
+         Traditionally, Cedar Backup has relied on a <quote>segmenting</quote>
+         strategy to minimize the risk.  Although the backup typically runs as
+         root &mdash; so that all parts of the filesystem can be backed up
+         &mdash; we don't use the root user for network connections.  Instead,
+         we use a dedicated backup user on the master to initiate network
+         connections, and dedicated users on each of the remote peers to accept
+         network connections.
+      </para>
+
+      <para>
+         With this strategy in place, an attacker with access to the backup
+         user on the master (or even root access, really) can at best only get
+         access to the backup user on the remote peers.  We still concede a
+         local attack vector, but at least that vector is restricted to an
+         unprivileged user.
+      </para>
+
+      <para>
+         Some Cedar Backup users may not be comfortable with this risk, and
+         others may not be able to implement the segmentation strategy &mdash;
+         they simply may not have a way to create a login which is only used
+         for backups.
+      </para>
+
+      <para>
+         So, what are these users to do?  Fortunately there is a solution.
+         The SSH authorized keys file supports a way to put a <quote>filter</quote>
+         in place on an SSH connection.  This excerpt is from the AUTHORIZED_KEYS FILE FORMAT
+         section of man 8 sshd:
+      </para>
+
+      <screen>
+command="command"
+   Specifies that the command is executed whenever this key is used for
+   authentication.  The command supplied by the user (if any) is ignored.  The
+   command is run on a pty if the client requests a pty; otherwise it is run
+   without a tty.  If an 8-bit clean channel is required, one must not request
+   a pty or should specify no-pty.  A quote may be included in the command by
+   quoting it with a backslash.  This option might be useful to restrict
+   certain public keys to perform just a specific operation.  An example might
+   be a key that permits remote backups but nothing else.  Note that the client
+   may specify TCP and/or X11 forwarding unless they are explicitly prohibited.
+   Note that this option applies to shell, command or subsystem execution.
+      </screen>
+
+      <para>
+         Essentially, this gives us a way to authenticate the commands that are
+         being executed.  We can either accept or reject commands, and we can
+         even provide a readable error message for commands we reject.  The
+         filter is applied on the remote peer, to the key that provides the
+         master access to the remote peer.  
+      </para>
+
+      <para>
+         So, let's imagine that we have two hosts: master
+         <quote>mickey</quote>, and peer <quote>minnie</quote>.  Here is the
+         original <filename>~/.ssh/authorized_keys</filename> file for the
+         backup user on minnie (remember, this is all on one line in the file):
+      </para>
+
+      <screen>
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAxw7EnqVULBFgPcut3WYp3MsSpVB9q9iZ+awek120391k;mm0c221=3=km
+=m=askdalkS82mlF7SusBTcXiCk1BGsg7axZ2sclgK+FfWV1Jm0/I9yo9FtAZ9U+MmpL901231asdkl;ai1-923ma9s=9=
+1-2341=-a0sd=-sa0=1z= backup@mickey
+      </screen>
+
+      <para>
+         This line is the public key that minnie can use to identify the backup
+         user on mickey.  Assuming that there is no passphrase on the private
+         key back on mickey, the backup user on mickey can get direct access to
+         minnie.
+      </para>
+
+      <para>
+         To put the filter in place, we add a command option to the key,
+         like this:
+      </para>
+
+      <screen>
+command="/opt/backup/validate-backup" ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAxw7EnqVULBFgPcut3WYp
+3MsSpVB9q9iZ+awek120391k;mm0c221=3=km=m=askdalkS82mlF7SusBTcXiCk1BGsg7axZ2sclgK+FfWV1Jm0/I9yo9F
+tAZ9U+MmpL901231asdkl;ai1-923ma9s=9=1-2341=-a0sd=-sa0=1z= backup@mickey
+      </screen>
+
+      <para>
+         Basically, the command option says that whenever this key is used
+         to successfully initiate a connection, the
+         <command>/opt/backup/validate-backup</command> command will be run
+         <emphasis>instead of</emphasis> the real command that came over the
+         SSH connection.  Fortunately, the interface gives the command access
+         to certain shell variables that can be used to invoke the original
+         command if you want to.
+      </para>
+
+      <para>
+         A very basic <command>validate-backup</command> script might look
+         something like this:
+      </para>
+
+      <screen>
+#!/bin/bash
+if [[ "${SSH_ORIGINAL_COMMAND}" == "ls -l" ]] ; then
+    ${SSH_ORIGINAL_COMMAND}
+else
+   echo "Security policy does not allow command [${SSH_ORIGINAL_COMMAND}]."
+   exit 1
+fi
+      </screen>
+
+      <para>
+         This script allows exactly <command>ls -l</command> and nothing else.
+         If the user attempts some other command, they get a nice error message
+         telling them that their command has been disallowed.  
+      </para>
+         
+      <para>
+         For remote commands executed over <command>ssh</command>, the original
+         command is exactly what the caller attempted to invoke.  For remote
+         copies, the commands are either <command>scp -f file</command> (copy
+         <emphasis>from</emphasis> the peer to the master) or <command>scp -t
+         file</command> (copy <emphasis>to</emphasis> the peer from the
+         master).  
+      </para>
+         
+      <para>
+         If you want, you can see what command SSH thinks it is executing by
+         using <command>ssh -v</command> or <command>scp -v</command>.  The
+         command will be right at the top, something like this:
+      </para>
+
+      <screen>
+Executing: program /usr/bin/ssh host mickey, user (unspecified), command scp -v -f .profile
+OpenSSH_4.3p2 Debian-9, OpenSSL 0.9.8c 05 Sep 2006
+debug1: Reading configuration data /home/backup/.ssh/config
+debug1: Applying options for daystrom
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Applying options for *
+debug2: ssh_connect: needpriv 0
+      </screen>
+
+      <para>
+         Omit the <command>-v</command> and you have your command: <command>scp
+         -f .profile</command>.
+      </para>
+
+      <para>
+         For a normal, non-managed setup, you need to allow the following
+         commands, where <filename>/path/to/collect/</filename> is replaced
+         with the real path to the collect directory on the remote peer:
+      </para>
+
+      <screen>
+scp -f /path/to/collect/cback.collect
+scp -f /path/to/collect/*
+scp -t /path/to/collect/cback.stage
+      </screen>
+
+      <para>
+         If you are configuring a managed client, then you also need to list
+         the exact command lines that the master will be invoking on the
+         managed client.  You are guaranteed that the master will invoke one
+         action at a time, so if you list two lines per action (full and
+         non-full) you should be fine.  Here's an example for the collect
+         action:
+      </para>
+
+      <screen>
+/usr/bin/cback --full collect
+/usr/bin/cback collect
+      </screen>
+
+      <para>
+         Of course, you would have to list the actual path to the
+         <command>cback</command> executable &mdash; exactly the one listed in
+         the &lt;cback_command&gt; configuration option for your managed peer.
+      </para>
+
+      <para>
+         I hope that there is enough information here for interested users to
+         implement something that makes them comfortable.  I have resisted
+         providing a complete example script, because I think everyone's setup
+         will be different.  However, feel free to write if you are working
+         through this and you have questions.
+      </para>
+
+   </simplesect>
+
+</appendix>
+

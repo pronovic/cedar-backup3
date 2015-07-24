@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- Document containing only a stage section, containing all required and optional fields. -->
+<cb_config>
+   <stage>
+      <staging_dir>/opt/backup/staging</staging_dir>
+      <peer>
+         <name>machine1-1</name>
+         <type>local</type>
+         <collect_dir>/opt/backup/collect</collect_dir>
+      </peer>
+      <peer>
+         <name>machine1-2</name>
+         <type>local</type>
+         <collect_dir>/var/backup</collect_dir>
+      </peer>
+      <peer>
+         <name>machine2</name>
+         <type>remote</type>
+         <collect_dir>/backup/collect</collect_dir>
+         <ignore_failures>all</ignore_failures>
+      </peer>
+      <peer>
+         <name>machine3</name>
+         <type>remote</type>
+         <backup_user>someone</backup_user>
+         <rcp_command>scp -B</rcp_command>
+         <collect_dir>/home/whatever/tmp</collect_dir>
+      </peer>
+   </stage>
+</cb_config>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- Document containing only an options section, containing required and optional fields. -->
+<cb_config>
+   <options>
+      <starting_day>tuesday</starting_day>
+      <working_dir>/opt/backup/tmp</working_dir>
+      <backup_user>backup</backup_user>
+      <backup_group>group</backup_group>
+      <rcp_command>/usr/bin/scp -1 -B</rcp_command>
+      <rsh_command>/usr/bin/ssh</rsh_command>
+      <cback_command>/usr/bin/cback</cback_command>
+      <managed_actions>collect, purge</managed_actions>
+      <override>
+         <command>mkisofs</command>
+         <abs_path>/usr/bin/mkisofs</abs_path>
+      </override>
+      <override>
+         <command>svnlook</command>
+         <abs_path>/svnlook</abs_path>
+      </override>
+      <pre_action_hook>
+         <action>collect</action>
+         <command>ls -l</command>
+      </pre_action_hook>
+      <post_action_hook>
+         <action>stage</action>
+         <command>df -k</command>
+      </post_action_hook>
+   </options>
+</cb_config>

@@ -1,0 +1,1151 @@
+<!-- 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Copyright (c) 2005-2007,2010 Kenneth J. Pronovici.
+# All rights reserved.
+#
+# This work is free; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, Version 2,
+# as published by the Free Software Foundation.
+#
+# This work is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Copies of the GNU General Public License are available from
+# the Free Software Foundation website, http://www.gnu.org/.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : O'Reilly DocBook Lite XML DTD
+# Project  : Cedar Backup, release 2
+# Revision : $Id: commandline.xml 1087 2014-10-08 00:18:15Z pronovic $
+# Purpose  : Cedar Backup software manual, commandline chapter.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-->
+
+<chapter id="cedar-commandline">
+
+   <title>Command Line Tools</title>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-commandline-overview">
+
+      <title>Overview</title>
+
+      <para>
+         Cedar Backup comes with three command-line programs:
+         <command>cback</command>, <command>cback-amazons3-sync</command>, and
+         <command>cback-span</command>.  
+      </para>
+         
+      <para>
+         The <command>cback</command> command is the primary command line
+         interface and the only Cedar Backup program that most users will ever
+         need.  
+      </para>
+
+      <para>
+         The <command>cback-amazons3-sync</command> tool is used for
+         synchronizing entire directories of files up to an Amazon S3 cloud
+         storage bucket, outside of the normal Cedar Backup process. 
+      </para>
+
+      <para>
+         Users who have a <emphasis>lot</emphasis> of data to back up &mdash;
+         more than will fit on a single CD or DVD &mdash; can use the
+         interactive <command>cback-span</command> tool to split their data
+         between multiple discs.
+      </para>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-commandline-cback">
+         
+      <title>The <command>cback</command> command</title>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cback-intro">
+
+         <title>Introduction</title>
+
+         <para>
+            Cedar Backup's primary command-line interface is the
+            <command>cback</command> command.  It controls the entire
+            backup process.  
+         </para>
+
+      </sect2>
+
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cback-syntax">
+
+         <title>Syntax</title>
+
+         <para>
+            The <command>cback</command> command has the following syntax:
+         </para>
+
+         <screen>
+ Usage: cback [switches] action(s)
+
+ The following switches are accepted:
+
+   -h, --help         Display this usage/help listing
+   -V, --version      Display version information
+   -b, --verbose      Print verbose output as well as logging to disk
+   -q, --quiet        Run quietly (display no output to the screen)
+   -c, --config       Path to config file (default: /etc/cback.conf)
+   -f, --full         Perform a full backup, regardless of configuration
+   -M, --managed      Include managed clients when executing actions
+   -N, --managed-only Include ONLY managed clients when executing actions
+   -l, --logfile      Path to logfile (default: /var/log/cback.log)
+   -o, --owner        Logfile ownership, user:group (default: root:adm)
+   -m, --mode         Octal logfile permissions mode (default: 640)
+   -O, --output       Record some sub-command (i.e. cdrecord) output to the log
+   -d, --debug        Write debugging information to the log (implies --output)
+   -s, --stack        Dump a Python stack trace instead of swallowing exceptions
+   -D, --diagnostics  Print runtime diagnostics to the screen and exit
+
+ The following actions may be specified:
+
+   all                Take all normal actions (collect, stage, store, purge)
+   collect            Take the collect action
+   stage              Take the stage action
+   store              Take the store action
+   purge              Take the purge action
+   rebuild            Rebuild "this week's" disc if possible
+   validate           Validate configuration only
+   initialize         Initialize media for use with Cedar Backup
+
+ You may also specify extended actions that have been defined in
+ configuration.
+
+ You must specify at least one action to take.  More than one of
+ the "collect", "stage", "store" or "purge" actions and/or
+ extended actions may be specified in any arbitrary order; they
+ will be executed in a sensible order.  The "all", "rebuild",
+ "validate", and "initialize" actions may not be combined with
+ other actions.
+         </screen>
+
+         <para>
+            Note that the all action <emphasis>only</emphasis> executes the
+            standard four actions.  It never executes any of the configured
+            extensions.  <footnote><para>Some users find this surprising,
+            because extensions are configured with sequence numbers.  I did it
+            this way because I felt that running extensions as part of the all
+            action would sometimes result in <quote>surprising</quote>
+            behavior.  Better to be definitive than confusing.</para></footnote>
+         </para>
+
+      </sect2>
+
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cback-options">
+
+         <title>Switches</title>
+
+         <variablelist>
+
+            <varlistentry>
+               <term><option>-h</option>, <option>--help</option></term>
+               <listitem>
+                  <para>Display usage/help listing.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-V</option>, <option>--version</option></term>
+               <listitem>
+                  <para>Display version information.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-b</option>, <option>--verbose</option></term>
+               <listitem>
+                  <para>
+                     Print verbose output to the screen as well writing to the
+                     logfile.  When this option is enabled, most information
+                     that would normally be written to the logfile will also be
+                     written to the screen.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-q</option>, <option>--quiet</option></term>
+               <listitem>
+                  <para>Run quietly (display no output to the screen).</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-c</option>, <option>--config</option></term>
+               <listitem>
+                  <para>
+                     Specify the path to an alternate configuration file.
+                     The default configuration file is <filename>/etc/cback.conf</filename>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-f</option>, <option>--full</option></term>
+               <listitem>
+                  <para>
+                    Perform a full backup, regardless of configuration.  For
+                    the collect action, this means that any existing
+                    information related to incremental backups will be ignored
+                    and rewritten; for the store action, this means that a new
+                    disc will be started.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-M</option>, <option>--managed</option></term>
+               <listitem>
+                  <para>
+                     Include managed clients when executing actions.  If the
+                     action being executed is listed as a managed action for a
+                     managed client, execute the action on that client after
+                     executing the action locally.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-N</option>, <option>--managed-only</option></term>
+               <listitem>
+                  <para>
+                     Include <emphasis>only</emphasis> managed clients when
+                     executing actions.  If the action being executed is listed
+                     as a managed action for a managed client, execute the action
+                     on that client &mdash; but <emphasis>do not</emphasis>
+                     execute the action locally.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-l</option>, <option>--logfile</option></term>
+               <listitem>
+                  <para>
+                     Specify the path to an alternate logfile.  The default
+                     logfile file is <filename>/var/log/cback.log</filename>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-o</option>, <option>--owner</option></term>
+               <listitem>
+                  <para>
+                    Specify the ownership of the logfile, in the form
+                    <literal>user:group</literal>.  The default ownership is
+                    <literal>root:adm</literal>, to match the Debian standard
+                    for most logfiles. This value will only be used when
+                    creating a new logfile.  If the logfile already exists when
+                    the <command>cback</command> command is executed, it will
+                    retain its existing ownership and mode. Only user and group
+                    names may be used, not numeric uid and gid values.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-m</option>, <option>--mode</option></term>
+               <listitem>
+                  <para>
+                    Specify  the  permissions  for  the logfile, using the
+                    numeric mode as in chmod(1).  The default mode is
+                    <literal>0640</literal> (<literal>-rw-r-----</literal>).
+                    This value will only be used when creating a new logfile.
+                    If the logfile already exists when the
+                    <command>cback</command> command is executed, it will retain
+                    its existing ownership and mode.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-O</option>, <option>--output</option></term>
+               <listitem>
+                  <para>
+                     Record some sub-command output to the logfile.  When this
+                     option is enabled, all output from system commands will be
+                     logged.  This might be useful for debugging or just for
+                     reference.  Cedar Backup uses system commands mostly for
+                     dealing with the CD/DVD recorder and its media.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-d</option>, <option>--debug</option></term>
+               <listitem>
+                  <para>
+                     Write debugging information to the logfile.  This option
+                     produces a high volume of output, and would generally only
+                     be needed when debugging a problem.  This option implies
+                     the <option>--output</option> option, as well.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-s</option>, <option>--stack</option></term>
+               <listitem>
+                  <para>
+                     Dump a Python stack trace instead of swallowing
+                     exceptions.  This forces Cedar Backup to dump the entire
+                     Python stack trace associated with an error, rather than
+                     just propagating last message it received back up to the
+                     user interface.  Under some circumstances, this is useful
+                     information to include along with a bug report.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-D</option>, <option>--diagnostics</option></term>
+               <listitem>
+                  <para>
+                     Display runtime diagnostic information and then exit.
+                     This diagnostic information is often useful when filing a
+                     bug report.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+         </variablelist>
+
+      </sect2>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cback-actions">
+
+         <title>Actions</title>
+
+         <para>
+            You can find more information about the various actions in <xref
+            linkend="cedar-basic-process"/> (in <xref linkend="cedar-basic"/>).
+            In general, you may specify any combination of the
+            <literal>collect</literal>, <literal>stage</literal>,
+            <literal>store</literal> or <literal>purge</literal> actions, and
+            the specified actions will be executed in a sensible order.  Or,
+            you can specify one of the <literal>all</literal>,
+            <literal>rebuild</literal>, <literal>validate</literal>, or
+            <literal>initialize</literal> actions (but these actions may not be
+            combined with other actions).
+         </para>
+         
+         <para>
+            If you have configured any Cedar Backup extensions, then the
+            actions associated with those extensions may also be specified on
+            the command line.  If you specify any other actions along with an
+            extended action, the actions will be executed in a sensible order
+            per configuration.  The <literal>all</literal> action never
+            executes extended actions, however.
+         </para>
+
+      </sect2>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-commandline-sync">
+         
+      <title>The <command>cback-amazons3-sync</command> command</title>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-sync-intro">
+
+         <title>Introduction</title>
+
+         <para>
+            The <command>cback-amazons3-sync</command> tool is used for
+            synchronizing entire directories of files up to an Amazon S3 cloud
+            storage bucket, outside of the normal Cedar Backup process.  
+         </para>
+            
+         <para>
+            This might be a good option for some types of data, as long as you
+            understand the limitations around retrieving previous versions of
+            objects that get modified or deleted as part of a sync.  S3 does
+            support versioning, but it won't be quite as easy to get at those
+            previous versions as with an explicit incremental backup like
+            <command>cback</command> provides.  Cedar Backup does not provide
+            any tooling that would help you retrieve previous versions.
+         </para>
+
+         <para>
+            The underlying functionality relies on the 
+            <ulink url="http://aws.amazon.com/documentation/cli/">AWS CLI</ulink> toolset.
+            Before you use this extension, you need to set up your Amazon S3
+            account and configure AWS CLI as detailed in Amazons's 
+            <ulink url="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html">setup guide</ulink>.
+            The <command>aws</command> command will be executed as the same user that
+            is executing the <command>cback-amazons3-sync</command> command, so
+            make sure you configure it as the proper user.  (This is different
+            than the amazons3 extension, which is designed to execute as root
+            and switches over to the configured backup user to execute AWS CLI
+            commands.)
+         </para>
+
+      </sect2>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-sync-syntax">
+
+         <title>Syntax</title>
+
+         <para>
+            The <command>cback-amazons3-sync</command> command has the following syntax:
+         </para>
+
+         <screen>
+ Usage: cback-amazons3-sync [switches] sourceDir s3bucketUrl
+
+ Cedar Backup Amazon S3 sync tool.
+
+ This Cedar Backup utility synchronizes a local directory to an Amazon S3
+ bucket.  After the sync is complete, a validation step is taken.  An
+ error is reported if the contents of the bucket do not match the
+ source directory, or if the indicated size for any file differs.
+ This tool is a wrapper over the AWS CLI command-line tool.
+
+ The following arguments are required:
+
+   sourceDir            The local source directory on disk (must exist)
+   s3BucketUrl          The URL to the target Amazon S3 bucket
+
+ The following switches are accepted:
+
+   -h, --help           Display this usage/help listing
+   -V, --version        Display version information
+   -b, --verbose        Print verbose output as well as logging to disk
+   -q, --quiet          Run quietly (display no output to the screen)
+   -l, --logfile        Path to logfile (default: /var/log/cback.log)
+   -o, --owner          Logfile ownership, user:group (default: root:adm)
+   -m, --mode           Octal logfile permissions mode (default: 640)
+   -O, --output         Record some sub-command (i.e. aws) output to the log
+   -d, --debug          Write debugging information to the log (implies --output)
+   -s, --stack          Dump Python stack trace instead of swallowing exceptions
+   -D, --diagnostics    Print runtime diagnostics to the screen and exit
+   -v, --verifyOnly     Only verify the S3 bucket contents, do not make changes
+   -w, --ignoreWarnings Ignore warnings about problematic filename encodings
+
+ Typical usage would be something like:
+
+   cback-amazons3-sync /home/myuser s3://example.com-backup/myuser
+
+ This will sync the contents of /home/myuser into the indicated bucket.
+         </screen>
+
+      </sect2>
+
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-sync-options">
+
+         <title>Switches</title>
+
+         <variablelist>
+
+            <varlistentry>
+               <term><option>-h</option>, <option>--help</option></term>
+               <listitem>
+                  <para>Display usage/help listing.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-V</option>, <option>--version</option></term>
+               <listitem>
+                  <para>Display version information.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-b</option>, <option>--verbose</option></term>
+               <listitem>
+                  <para>
+                     Print verbose output to the screen as well writing to the
+                     logfile.  When this option is enabled, most information
+                     that would normally be written to the logfile will also be
+                     written to the screen.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-q</option>, <option>--quiet</option></term>
+               <listitem>
+                  <para>Run quietly (display no output to the screen).</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-l</option>, <option>--logfile</option></term>
+               <listitem>
+                  <para>
+                     Specify the path to an alternate logfile.  The default
+                     logfile file is <filename>/var/log/cback.log</filename>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-o</option>, <option>--owner</option></term>
+               <listitem>
+                  <para>
+                    Specify the ownership of the logfile, in the form
+                    <literal>user:group</literal>.  The default ownership is
+                    <literal>root:adm</literal>, to match the Debian standard
+                    for most logfiles. This value will only be used when
+                    creating a new logfile.  If the logfile already exists when
+                    the <command>cback-amazons3-sync</command> command is
+                    executed, it will retain its existing ownership and mode.
+                    Only user and group names may be used, not numeric uid and
+                    gid values.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-m</option>, <option>--mode</option></term>
+               <listitem>
+                  <para>
+                    Specify  the  permissions  for  the logfile, using the
+                    numeric mode as in chmod(1).  The default mode is
+                    <literal>0640</literal> (<literal>-rw-r-----</literal>).
+                    This value will only be used when creating a new logfile.
+                    If the logfile already exists when the
+                    <command>cback-amazons3-sync</command> command is executed,
+                    it will retain its existing ownership and mode.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-O</option>, <option>--output</option></term>
+               <listitem>
+                  <para>
+                     Record some sub-command output to the logfile.  When this
+                     option is enabled, all output from system commands will be
+                     logged.  This might be useful for debugging or just for
+                     reference.  
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-d</option>, <option>--debug</option></term>
+               <listitem>
+                  <para>
+                     Write debugging information to the logfile.  This option
+                     produces a high volume of output, and would generally only
+                     be needed when debugging a problem.  This option implies
+                     the <option>--output</option> option, as well.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-s</option>, <option>--stack</option></term>
+               <listitem>
+                  <para>
+                     Dump a Python stack trace instead of swallowing
+                     exceptions.  This forces Cedar Backup to dump the entire
+                     Python stack trace associated with an error, rather than
+                     just propagating last message it received back up to the
+                     user interface.  Under some circumstances, this is useful
+                     information to include along with a bug report.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-D</option>, <option>--diagnostics</option></term>
+               <listitem>
+                  <para>
+                     Display runtime diagnostic information and then exit.
+                     This diagnostic information is often useful when filing a
+                     bug report.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-v</option>, <option>--verifyOnly</option></term>
+               <listitem>
+                  <para>
+                     Only verify the S3 bucket contents against the directory
+                     on disk.  Do not make any changes to the S3 bucket or
+                     transfer any files.  This is intended as a quick check
+                     to see whether the sync is up-to-date.
+                  </para>
+                     
+                  <para>
+                     Although no files are transferred, the tool will still
+                     execute the source filename encoding check, discussed
+                     below along with <option>--ignoreWarnings</option>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-w</option>, <option>--ignoreWarnings</option></term>
+               <listitem>
+                  <para>
+                     The AWS CLI S3 sync process is very picky about filename
+                     encoding.  Files that the Linux filesystem handles with no
+                     problems can cause problems in S3 if the filename cannot be
+                     encoded properly in your configured locale.  As of this
+                     writing, filenames like this will cause the sync process
+                     to abort without transferring all files as expected.  
+                  </para>
+
+                  <para>
+                     To avoid confusion, the <command>cback-amazons3-sync</command> 
+                     tries to guess which files in the source directory will
+                     cause problems, and refuses to execute the AWS CLI S3 sync if
+                     any problematic files exist.  If you'd rather proceed
+                     anyway, use <option>--ignoreWarnings</option>.
+                  </para>
+
+                  <para>
+                     If problematic files are found, then you have basically
+                     two options: either correct your locale (i.e. if you have
+                     set <literal>LANG=C</literal>) or rename the file so it
+                     can be encoded properly in your locale. The error messages
+                     will tell you the expected encoding (from your locale) and
+                     the actual detected encoding for the filename.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+         </variablelist>
+
+      </sect2>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-commandline-cbackspan">
+         
+      <title>The <command>cback-span</command> command</title>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cbackspan-intro">
+
+         <title>Introduction</title>
+
+         <para>
+            Cedar Backup was designed &mdash; and is still primarily focused
+            &mdash; around weekly backups to a single CD or DVD.  Most users
+            who back up more data than fits on a single disc seem to stop their
+            backup process at the stage step, using Cedar Backup as an
+            easy way to collect data.  
+         </para>
+
+         <para>
+            However, some users have expressed a need to write these large
+            kinds of backups to disc &mdash; if not every day, then at least
+            occassionally.  The <command>cback-span</command> tool was written
+            to meet those needs.  If you have staged more data than fits on a
+            single CD or DVD, you can use <command>cback-span</command> to
+            split that data between multiple discs.
+         </para>
+
+         <para>
+            <command>cback-span</command> is not a general-purpose
+            disc-splitting tool.  It is a specialized program that requires
+            Cedar Backup configuration to run.  All it can do is read Cedar
+            Backup configuration, find any staging directories that have not
+            yet been written to disc, and split the files in those directories
+            between discs.
+         </para>
+
+         <para>
+            <command>cback-span</command> accepts many of the same command-line
+            options as <command>cback</command>, but <emphasis>must</emphasis>
+            be run interactively.  It cannot be run from cron.  This is
+            intentional.  It is intended to be a useful tool, not a new part of
+            the backup process (that is the purpose of an extension).
+         </para>
+
+         <para>
+            In order to use <command>cback-span</command>, you must configure
+            your backup such that the largest individual backup file can fit on
+            a single disc.  <emphasis>The command will not split a single file
+            onto more than one disc.</emphasis>  All it can do is split large
+            directories onto multiple discs.  Files in those directories will
+            be arbitrarily split up so that space is utilized most efficiently.
+         </para>
+
+      </sect2>
+
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cbackspan-syntax">
+
+         <title>Syntax</title>
+
+         <para>
+            The <command>cback-span</command> command has the following syntax:
+         </para>
+
+         <screen>
+ Usage: cback-span [switches]
+
+ Cedar Backup 'span' tool.
+
+ This Cedar Backup utility spans staged data between multiple discs.
+ It is a utility, not an extension, and requires user interaction.
+
+ The following switches are accepted, mostly to set up underlying
+ Cedar Backup functionality:
+
+   -h, --help     Display this usage/help listing
+   -V, --version  Display version information
+   -b, --verbose  Print verbose output as well as logging to disk
+   -c, --config   Path to config file (default: /etc/cback.conf)
+   -l, --logfile  Path to logfile (default: /var/log/cback.log)
+   -o, --owner    Logfile ownership, user:group (default: root:adm)
+   -m, --mode     Octal logfile permissions mode (default: 640)
+   -O, --output   Record some sub-command (i.e. cdrecord) output to the log
+   -d, --debug    Write debugging information to the log (implies --output)
+   -s, --stack    Dump a Python stack trace instead of swallowing exceptions
+         </screen>
+
+      </sect2>
+
+      <sect2 id="cedar-commandline-cbackspan-options">
+
+         <title>Switches</title>
+
+         <variablelist>
+
+            <varlistentry>
+               <term><option>-h</option>, <option>--help</option></term>
+               <listitem>
+                  <para>Display usage/help listing.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-V</option>, <option>--version</option></term>
+               <listitem>
+                  <para>Display version information.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-b</option>, <option>--verbose</option></term>
+               <listitem>
+                  <para>
+                     Print verbose output to the screen as well writing to the
+                     logfile.  When this option is enabled, most information
+                     that would normally be written to the logfile will also be
+                     written to the screen.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-c</option>, <option>--config</option></term>
+               <listitem>
+                  <para>
+                     Specify the path to an alternate configuration file.
+                     The default configuration file is <filename>/etc/cback.conf</filename>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-l</option>, <option>--logfile</option></term>
+               <listitem>
+                  <para>
+                     Specify the path to an alternate logfile.  The default
+                     logfile file is <filename>/var/log/cback.log</filename>.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-o</option>, <option>--owner</option></term>
+               <listitem>
+                  <para>
+                    Specify the ownership of the logfile, in the form
+                    <literal>user:group</literal>.  The default ownership is
+                    <literal>root:adm</literal>, to match the Debian standard
+                    for most logfiles. This value will only be used when
+                    creating a new logfile.  If the logfile already exists when
+                    the <command>cback</command> command is executed, it will
+                    retain its existing ownership and mode. Only user and group
+                    names may be used, not numeric uid and gid values.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-m</option>, <option>--mode</option></term>
+               <listitem>
+                  <para>
+                    Specify  the  permissions  for  the logfile, using the
+                    numeric mode as in chmod(1).  The default mode is
+                    <literal>0640</literal> (<literal>-rw-r-----</literal>).
+                    This value will only be used when creating a new logfile.
+                    If the logfile already exists when the
+                    <command>cback</command> command is executed, it will retain
+                    its existing ownership and mode.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-O</option>, <option>--output</option></term>
+               <listitem>
+                  <para>
+                     Record some sub-command output to the logfile.  When this
+                     option is enabled, all output from system commands will be
+                     logged.  This might be useful for debugging or just for
+                     reference.  Cedar Backup uses system commands mostly for
+                     dealing with the CD/DVD recorder and its media.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-d</option>, <option>--debug</option></term>
+               <listitem>
+                  <para>
+                     Write debugging information to the logfile.  This option
+                     produces a high volume of output, and would generally only
+                     be needed when debugging a problem.  This option implies
+                     the <option>--output</option> option, as well.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><option>-s</option>, <option>--stack</option></term>
+               <listitem>
+                  <para>
+                     Dump a Python stack trace instead of swallowing
+                     exceptions.  This forces Cedar Backup to dump the entire
+                     Python stack trace associated with an error, rather than
+                     just propagating last message it received back up to the
+                     user interface.  Under some circumstances, this is useful
+                     information to include along with a bug report.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+         </variablelist>
+
+      </sect2>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-commandline-cbackspan-using">
+
+         <title>Using <command>cback-span</command></title>
+
+         <para>
+            As discussed above, the <command>cback-span</command> is an
+            interactive command.  It cannot be run from cron.  
+         </para>
+
+         <para>
+            You can typically use the default answer for most questions.
+            The only two questions that you may not want the default answer
+            for are the fit algorithm and the cushion percentage.  
+         </para>
+
+         <para>
+            The cushion percentage is used by <command>cback-span</command> to
+            determine what capacity to shoot for when splitting up your staging
+            directories.  A 650 MB disc does not fit fully 650 MB of data.
+            It's usually more like 627 MB of data.  The cushion percentage
+            tells <command>cback-span</command> how much overhead to reserve
+            for the filesystem.  The default of 4% is usually OK, but if you
+            have problems you may need to increase it slightly.
+         </para>
+
+         <para>
+            The fit algorithm tells <command>cback-span</command> how it
+            should determine which items should be placed on each disc.  
+            If you don't like the result from one algorithm, you can reject
+            that solution and choose a different algorithm.
+         </para>
+
+         <para>
+            The four available fit algorithms are:
+         </para>
+
+         <variablelist>
+
+            <varlistentry>
+               <term>worst</term>
+               <listitem>
+                  <para>
+                     The <firstterm>worst-fit</firstterm> algorithm.
+                  </para>
+                  <para>
+                     The worst-fit algorithm proceeds through a sorted list
+                     of items (sorted from smallest to largest) until running
+                     out of items or meeting capacity exactly.  If capacity is
+                     exceeded, the item that caused capacity to be exceeded is
+                     thrown away and the next one is tried.  The algorithm
+                     effectively includes the maximum number of items possible
+                     in its search for optimal capacity utilization.  It tends
+                     to be somewhat slower than either the best-fit or
+                     alternate-fit algorithm, probably because on average it
+                     has to look at more items before completing.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term>best</term>
+               <listitem>
+                  <para>
+                     The <firstterm>best-fit</firstterm> algorithm.
+                  </para>
+                  <para>
+                     The best-fit algorithm proceeds through a sorted list of
+                     items (sorted from largest to smallest) until running out
+                     of items or meeting capacity exactly.  If capacity is
+                     exceeded, the item that caused capacity to be exceeded is
+                     thrown away and the next one is tried.  The algorithm
+                     effectively includes the minimum number of items possible
+                     in its search for optimal capacity utilization.  For large
+                     lists of mixed-size items, it's not unusual to see the
+                     algorithm achieve 100% capacity utilization by including
+                     fewer than 1% of the items.  Probably because it often has
+                     to look at fewer of the items before completing, it tends
+                     to be a little faster than the worst-fit or alternate-fit
+                     algorithms.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term>first</term>
+               <listitem>
+                  <para>
+                     The <firstterm>first-fit</firstterm> algorithm. 
+                  </para>
+                  <para>
+                     The first-fit algorithm proceeds through an unsorted list
+                     of items until running out of items or meeting capacity
+                     exactly.  If capacity is exceeded, the item that caused
+                     capacity to be exceeded is thrown away and the next one is
+                     tried.  This algorithm generally performs more poorly than
+                     the other algorithms both in terms of capacity utilization
+                     and item utilization, but can be as much as an order of
+                     magnitude faster on large lists of items because it
+                     doesn't require any sorting.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term>alternate</term>
+               <listitem>
+                  <para>
+                     A hybrid algorithm that I call
+                     <firstterm>alternate-fit</firstterm>.  
+                  </para>
+                  <para>
+                     This algorithm tries to balance small and large items to
+                     achieve better end-of-disk performance.  Instead of just
+                     working one direction through a list, it alternately works
+                     from the start and end of a sorted list (sorted from
+                     smallest to largest), throwing away any item which causes
+                     capacity to be exceeded.  The algorithm tends to be slower
+                     than the best-fit and first-fit algorithms, and slightly
+                     faster than the worst-fit algorithm, probably because of
+                     the number of items it considers on average before
+                     completing.  It often achieves slightly better capacity
+                     utilization than the worst-fit algorithm, while including
+                     slightly fewer items.
+                  </para>
+               </listitem>
+            </varlistentry>
+
+         </variablelist>
+
+      </sect2>
+
+      <sect2 id="cedar-commandline-cbackspan-sample">
+
+         <title>Sample run</title>
+
+         <para>
+            Below is a log showing a sample <command>cback-span</command> run.
+         </para>
+
+         <screen>
+================================================
+           Cedar Backup 'span' tool
+================================================
+
+This the Cedar Backup span tool.  It is used to split up staging
+data when that staging data does not fit onto a single disc.
+
+This utility operates using Cedar Backup configuration.  Configuration
+specifies which staging directory to look at and which writer device
+and media type to use.
+
+Continue? [Y/n]: 
+===
+
+Cedar Backup store configuration looks like this:
+
+   Source Directory...: /tmp/staging
+   Media Type.........: cdrw-74
+   Device Type........: cdwriter
+   Device Path........: /dev/cdrom
+   Device SCSI ID.....: None
+   Drive Speed........: None
+   Check Data Flag....: True
+   No Eject Flag......: False
+
+Is this OK? [Y/n]: 
+===
+
+Please wait, indexing the source directory (this may take a while)...
+===
+
+The following daily staging directories have not yet been written to disc:
+
+   /tmp/staging/2007/02/07
+   /tmp/staging/2007/02/08
+   /tmp/staging/2007/02/09
+   /tmp/staging/2007/02/10
+   /tmp/staging/2007/02/11
+   /tmp/staging/2007/02/12
+   /tmp/staging/2007/02/13
+   /tmp/staging/2007/02/14
+
+The total size of the data in these directories is 1.00 GB.
+
+Continue? [Y/n]: 
+===
+
+Based on configuration, the capacity of your media is 650.00 MB.
+
+Since estimates are not perfect and there is some uncertainly in
+media capacity calculations, it is good to have a "cushion",
+a percentage of capacity to set aside.  The cushion reduces the
+capacity of your media, so a 1.5% cushion leaves 98.5% remaining.
+
+What cushion percentage? [4.00]: 
+===
+
+The real capacity, taking into account the 4.00% cushion, is 627.25 MB.
+It will take at least 2 disc(s) to store your 1.00 GB of data.
+
+Continue? [Y/n]: 
+===
+
+Which algorithm do you want to use to span your data across
+multiple discs?
+
+The following algorithms are available:
+
+   first....: The "first-fit" algorithm
+   best.....: The "best-fit" algorithm
+   worst....: The "worst-fit" algorithm
+   alternate: The "alternate-fit" algorithm
+
+If you don't like the results you will have a chance to try a
+different one later.
+
+Which algorithm? [worst]: 
+===
+
+Please wait, generating file lists (this may take a while)...
+===
+
+Using the "worst-fit" algorithm, Cedar Backup can split your data
+into 2 discs.
+
+Disc 1: 246 files, 615.97 MB, 98.20% utilization
+Disc 2: 8 files, 412.96 MB, 65.84% utilization
+
+Accept this solution? [Y/n]: n
+===
+
+Which algorithm do you want to use to span your data across
+multiple discs?
+
+The following algorithms are available:
+
+   first....: The "first-fit" algorithm
+   best.....: The "best-fit" algorithm
+   worst....: The "worst-fit" algorithm
+   alternate: The "alternate-fit" algorithm
+
+If you don't like the results you will have a chance to try a
+different one later.
+
+Which algorithm? [worst]: alternate
+===
+
+Please wait, generating file lists (this may take a while)...
+===
+
+Using the "alternate-fit" algorithm, Cedar Backup can split your data
+into 2 discs.
+
+Disc 1: 73 files, 627.25 MB, 100.00% utilization
+Disc 2: 181 files, 401.68 MB, 64.04% utilization
+
+Accept this solution? [Y/n]: y
+===
+
+Please place the first disc in your backup device.
+Press return when ready.
+===
+
+Initializing image...
+Writing image to disc...
+         </screen>
+
+      </sect2>
+
+   </sect1>
+
+</chapter>
+

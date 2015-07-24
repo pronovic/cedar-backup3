@@ -1,0 +1,11 @@
+#!/bin/ksh
+# Runs the validating nsgmls processor against the indicated XML file.
+
+# These two lines are always printed, so I try to filter them.
+# nsgmls:/usr/share/xml/declaration/xml.dcl:1:W: SGML declaration was not implied
+# nsgmls:/usr/share/xml/declaration/xml.dcl:31:27:W: characters in the document character set with numbers exceeding 65535 not supported
+
+SOC="/usr/share/xml/declaration/xml.soc"
+DECL="/usr/share/xml/declaration/xml.dcl"
+SP_CHARSET_FIXED=YES SP_ENCODING=XML nsgmls -wxml -m${SOC} -ges ${DECL} $* 2>&1 | grep -v '^nsgmls.*xml\.dcl:1:W:' | grep -v '^nsgmls:.*xml\.dcl:31:27:W:'
+exit 0

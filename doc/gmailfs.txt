@@ -1,0 +1,110 @@
+===========
+Background
+===========
+
+I got a request (SF bug 1930764) to create a "store to another location"
+extension that people could use to write backups using gmailfs rather than
+normal media like CDs or DVDs.  What follows is the research I did to try
+and get gmailfs working on my box running Debian etch.  
+
+Basically, it didn't work -- or at least, it didn't work well enough that I
+would feel comfortable recommending it to Cedar Backup users.  I wanted to
+document this experience here in the codebase, just in case anyone had
+questions.
+
+
+=========================================
+Build and install packages from unstable
+=========================================
+
+Get gmailfs and python-libgmail, which do not need to be built:
+
+   wget http://http.us.debian.org/debian/pool/main/g/gmailfs/gmailfs_0.8-2_all.deb
+   wget http://http.us.debian.org/debian/pool/main/p/python-libgmail/python-libgmail_0.1.8-1_all.deb
+
+Get the source for the other required packages:
+   
+   apt-get source fuse
+   apt-get source python-fuse
+
+Build the fuse packages:
+
+   aptitude install dpatch libselinux1-dev libsepol1-dev
+   dpkg-buildpackage -rfakeroot -i
+
+Build the python-fuse package:
+
+   aptitude cdbs dh-buildinfo python-all python-all-dev
+   dpkg --install libfuse2_2.7.3-4_i386.deb     # just built
+   dpkg --install libfuse-dev_2.7.3-4_i386.deb  # just built
+   dpkg-buildpackage -rfakeroot -i
+
+Install the rest of the packages:
+
+   dpkg --install fuse-utils_2.7.3-4_i386.deb
+   dpkg --install python-fuse_0.2-pre3-5_i386.deb
+   dpkg --install python-libgmail_0.1.8-1_all.deb
+   dpkg --install gmailfs_0.8-2_all.deb
+
+
+=====================
+Mount the filesystem
+=====================
+
+Add fuse to pronovic's groupset:
+
+   usermod -G users,cdrom,floppy,audio,video,scanner,fuse pronovic
+
+You'll probably have to log back in before this takes effect, so make sure that
+fuse is in the active groupset before continuing.
+
+Create the fuse device: 
+
+   mknod -m 666 /dev/fuse c 10 229
+
+Create a mountpoint: 
+
+   mkdir -p ~/tmp/mnt/gmailfs
+
+Mount the filesystem: 
+
+   mount.gmailfs none ~/tmp/mnt/gmailfs -o username=pronovic@gmail.com,fsname=zOlRRa -p
+
+Note that the fsname should be something difficult to guess, because otherwise
+people can send you mail and corrupt your filesystem.  The -p option tells gmail
+to prompt you for the password interactively
+
+Create a subject filter on gmail for subject "__g__zOlRRa__h__".  This way, you
+can auto-archive the messages that comprise your filesystem.  You may also want
+to attach a label to them, so you can find them.  Note that the "zOlRRa" must
+match the fsname you used when mounting the filesystem.
+
+At this point, the new filesystem seems to work like any other filesystem,
+except that it's much slower.  Other things aren't particularly usable -- for
+instance filename completion.  Also, note that every operation you attempt
+shows up as item in your sent mail folder.
+
+I have seen problems doing normal directory operations:
+
+   /home/pronovic/tmp/mnt/gmailfs> ls -l
+   ls: reading directory .: Invalid argument
+   total 0
+
+So, I created a subdirectory called contents.  That seemed to work better initially:
+
+   /home/pronovic/tmp/mnt/gmailfs> mkdir contents
+   /home/pronovic/tmp/mnt/gmailfs> ls -l contents
+   total 0
+
+Eventually, I had problems:
+
+   /home/pronovic/tmp/mnt/gmailfs/contents> cp ~/.profile profile
+   /home/pronovic/tmp/mnt/gmailfs/contents> ls -l
+   ls: reading directory .: Invalid argument
+   total 0
+   /home/pronovic/tmp/mnt/gmailfs/contents> ls -l profile
+   -rw-r--r-- 1 pronovic users 4361 2008-05-06 10:08 profile
+
+This is probably OK, as long as all I want to do is deal with individual files, but
+it makes it kind of difficult to use the filesystem in a general sense.  I think I'm
+going to give up for now.

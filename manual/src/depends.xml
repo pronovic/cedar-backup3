@@ -1,0 +1,663 @@
+<!--
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Copyright (c) 2005-2007,2010,2014 Kenneth J. Pronovici.
+# All rights reserved.
+#
+# This work is free; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, Version 2,
+# as published by the Free Software Foundation.
+#
+# This work is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Copies of the GNU General Public License are available from
+# the Free Software Foundation website, http://www.gnu.org/.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : O'Reilly DocBook Lite XML DTD
+# Project  : Cedar Backup, release 2
+# Revision : $Id: depends.xml 1090 2014-10-08 00:31:04Z pronovic $
+# Purpose  : Cedar Backup Software Manual, dependencies appendix.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-->
+
+<appendix id="cedar-depends">
+
+   <title>Dependencies</title>
+
+   <simplesect>
+
+      <variablelist>
+
+         <varlistentry>
+            <term>Python 2.5 (or later)</term>
+            <listitem>
+
+               <para>
+                  Version 2.5 of the Python interpreter was released on 19 Sep
+                  2006, so virtually any current Linux and BSD distributions should
+                  include it or a later version.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://www.python.org"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/python/python2.5"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=dev-lang;name=python;"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=python"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X (fink)</entry>
+                           <entry><ulink url="http://fink.sourceforge.net/pdb/package.php/python25"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+
+         </varlistentry>
+
+         <varlistentry>
+            <term>RSH Server and Client</term>
+            <listitem>
+
+               <para>
+                  Although Cedar Backup will technically work with any RSH-compatible
+                  server and client pair (such as the classic <quote>rsh</quote> client),
+                  most users should only use an SSH (secure shell) server and client.
+               </para>
+
+               <para>
+                  The defacto standard today is OpenSSH.  Some systems package the server
+                  and the client together, and others package the server and the client
+                  separately.  Note that <firstterm>master</firstterm> nodes need an
+                  SSH client, and <firstterm>client</firstterm> nodes need to run an
+                  SSH server.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://www.openssh.com/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/net/ssh"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=net-misc;name=openssh;"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=openssh"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X</entry>
+                           <entry><emphasis>built-in</emphasis></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find SSH client or server packages for your
+                  system, install from the package source, using the
+                  <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>mkisofs</command></term>
+            <listitem>
+
+               <para>
+                  The <command>mkisofs</command> command is used create ISO filesystem
+                  images that can later be written to backup media.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://freshmeat.net/projects/mkisofs/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/otherosfs/mkisofs"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><para><emphasis>unknown</emphasis></para></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=mkisofs"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X (fink)</entry>
+                           <entry><ulink url="http://fink.sourceforge.net/pdb/package.php/mkisofs"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+               <para>
+                  I have classified Gentoo as <quote>unknown</quote> because I
+                  can't find a specific package for that platform.  I think
+                  that maybe <command>mkisofs</command> is part of the cdrtools
+                  package (see below), but I'm not sure.  Any Gentoo users want
+                  to enlighten me?
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>cdrecord</command></term>
+            <listitem>
+
+               <para>
+                  The <command>cdrecord</command> command is used to write
+                  ISO images to CD media in a backup device.  
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://freshmeat.net/projects/cdrecord/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/otherosfs/cdrecord"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-cdr;name=cdrtools;"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=cdrecord"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X (fink)</entry>
+                           <entry><ulink url="http://fink.sourceforge.net/pdb/search.php?summary=cdrecord"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>dvd+rw-tools</command></term>
+            <listitem>
+
+               <para>
+                  The dvd+rw-tools package provides the
+                  <command>growisofs</command> utility, which is used to write
+                  ISO images to DVD media in a backup device.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://fy.chalmers.se/~appro/linux/DVD+RW/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/utils/dvd+rw-tools"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-cdr;name=dvd%2Brw-tools"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=dvd+rw-tools"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X (fink)</entry>
+                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/dvd+rw-tools"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>eject</command> and <command>volname</command></term>
+            <listitem>
+
+               <para>
+                  The <command>eject</command> command is used to open and
+                  close the tray on a backup device (if the backup device has a
+                  tray).  Sometimes, the tray must be opened and closed in
+                  order to "reset" the device so it notices recent changes to a
+                  disc.  
+               </para>
+
+               <para>
+                  The <command>volname</command> command is used to determine
+                  the volume name of media in a backup device.  
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://sourceforge.net/projects/eject"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/utils/eject"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=sys-apps;name=eject;"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=eject"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X (fink)</entry>
+                           <entry><ulink url="http://fink.sourceforge.net/pdb/package.php/eject"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>mount</command> and <command>umount</command></term>
+            <listitem>
+
+               <para>
+                  The <command>mount</command> and <command>umount</command>
+                  commands are used to mount and unmount CD/DVD media after it has
+                  been written, in order to run a consistency check.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://freshmeat.net/projects/util-linux/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/base/mount"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><para><emphasis>unknown</emphasis></para></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=mount"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X</entry>
+                           <entry><para><emphasis>built-in</emphasis></para></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+               <para>
+                  I have classified Gentoo as <quote>unknown</quote> because I can't 
+                  find a specific package for that platform.  It may just be that
+                  these two utilities are considered standard, and don't have an 
+                  independent package of their own.  Any Gentoo users want to enlighten me?
+               </para>
+
+               <para>
+                  I have classified Mac OS X <quote>built-in</quote> because that operating
+                  system does contain a mount command.  However, it isn't really compatible
+                  with Cedar Backup's idea of mount, and in fact what Cedar Backup needs
+                  is closer to the <command>hdiutil</command> command.  However, there are
+                  other issues related to that command, which is why the store action is
+                  not really supported on Mac OS X.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>grepmail</command></term>
+            <listitem>
+
+               <para>
+                  The <command>grepmail</command> command is used by the mbox
+                  extension to pull out only recent messages from mbox mail
+                  folders. 
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://freshmeat.net/projects/grepmail/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/mail/grepmail"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=net-mail;name=grepmail"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=grepmail"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X</entry>
+                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/grepmail"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>gpg</command></term>
+            <listitem>
+
+               <para>
+                  The <command>gpg</command> command is used by the encrypt
+                  extension to encrypt files.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://freshmeat.net/projects/gnupg/"/></entry>
+                        </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="http://packages.debian.org/stable/utils/gnupg"/></entry>
+                        </row>
+                        <row>
+                           <entry>Gentoo</entry>
+                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-crypt;name=gnupg"/></entry>
+                        </row>
+                        <row>
+                           <entry>RPM</entry>
+                           <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=gnupg"/></entry>
+                        </row>
+                        <row>
+                           <entry>Mac OS X</entry>
+                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/gnupg"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  If you can't find a package for your system, install from the package
+                  source, using the <quote>upstream</quote> link.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>split</command></term>
+            <listitem>
+
+               <para>
+                  The <command>split</command> command is used by the split
+                  extension to split up large files.
+               </para>
+
+               <para>
+                  This command is typically part of the core operating system
+                  install and is not distributed in a separate package.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>AWS CLI</command></term>
+            <listitem>
+
+               <para>
+                  AWS CLI is Amazon's official command-line tool for interacting
+                  with the Amazon Web Services infrastruture.  Cedar Backup uses
+                  AWS CLI to copy backup data up to Amazon S3 cloud storage.
+               </para>
+
+               <para>
+                  After you install AWS CLI, you need to configure your connection
+                  to AWS with an appropriate access id and access key. Amazon provides a good 
+                  <ulink url="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html">setup guide</ulink>.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="http://aws.amazon.com/documentation/cli/"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+               <para>
+                  The initial implementation of the amazons3 extension was written
+                  using AWS CLI 1.4.  As of this writing, not all Linux distributions
+                  include a package for this version.  On these platforms, the
+                  easiest way to install it is via PIP: <code>apt-get install python-pip</code>,
+                  and then <code>pip install awscli</code>.  The Debian package includes
+                  an appropriate dependency starting with the jesse release.
+               </para>
+
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><command>Chardet</command></term>
+            <listitem>
+
+               <para>
+                  The <command>cback-amazons3-sync</command> command relies on the
+                  Chardet python package to check filename encoding.  You only need
+                  this package if you are going to use the sync tool.
+               </para>
+
+               <informaltable>
+                  <tgroup cols="2">
+                     <colspec colnum="1" colwidth="1*"/>
+                     <colspec colnum="2" colwidth="3.5*"/>
+                     <thead>
+                        <row>
+                           <entry>Source</entry>
+                           <entry>URL</entry>
+                        </row>
+                     </thead>
+                     <tbody>
+                        <row>
+                           <entry>upstream</entry>
+                           <entry><ulink url="https://github.com/chardet/chardet"/></entry>
+                        </row>
+                        <row>
+                           <entry>debian</entry>
+                           <entry><ulink url="https://packages.debian.org/stable/python-chardet"/></entry>
+                        </row>
+                     </tbody>
+                  </tgroup>
+               </informaltable>
+
+            </listitem>
+         </varlistentry>
+
+      </variablelist>
+
+   </simplesect>
+
+</appendix>
+

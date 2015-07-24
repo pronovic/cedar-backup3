@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Document containing only a peers section, containing only required fields. -->
+<cb_config>
+   <peers>
+      <peer>
+         <name>machine2</name>
+         <type>remote</type>
+         <collect_dir>/opt/backup/collect</collect_dir>
+      </peer>
+   </peers>
+</cb_config>

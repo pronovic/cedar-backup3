@@ -1,0 +1,302 @@
+<!-- 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Copyright (c) 2005-2007,2010 Kenneth J. Pronovici.
+# All rights reserved.
+#
+# This work is free; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, Version 2,
+# as published by the Free Software Foundation.
+#
+# This work is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Copies of the GNU General Public License are available from
+# the Free Software Foundation website, http://www.gnu.org/.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : O'Reilly DocBook Lite XML DTD
+# Project  : Cedar Backup, release 2
+# Revision : $Id: preface.xml 1006 2010-07-07 21:03:57Z pronovic $
+# Purpose  : Cedar Backup software manual, Preface.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-->
+
+<preface id="cedar-preface">
+
+   <title>Preface</title>
+  
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-preface-purpose">
+
+      <title>Purpose</title>
+
+      <para>
+         This software manual has been written to document the 2.0 series of
+         Cedar Backup, originally released in early 2005.
+      </para>
+
+   </sect1>
+
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-preface-audience">
+
+      <title>Audience</title>
+    
+      <para>
+         This manual has been written for computer-literate administrators who
+         need to use and configure Cedar Backup on their Linux or UNIX-like
+         system.  The examples in this manual assume the reader is relatively
+         comfortable with UNIX and command-line interfaces.
+      </para>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-preface-conventions">
+
+      <title>Conventions Used in This Book</title>
+    
+      <para>
+         This section covers the various conventions used in this manual.
+      </para>
+    
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-preface-conventions-typo">
+
+         <title>Typographic Conventions</title>
+            
+         <variablelist>
+
+            <varlistentry>
+            <term><filename>Term</filename></term>
+               <listitem>
+                  <para>Used for first use of important terms.</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+               <term><command>Command</command></term>
+               <listitem>
+                  <para>Used for commands, command output, and switches</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+            <term><replaceable>Replaceable</replaceable></term>
+               <listitem>
+                  <para>Used for replaceable items in code and text</para>
+               </listitem>
+            </varlistentry>
+
+            <varlistentry>
+            <term><filename>Filenames</filename></term>
+               <listitem>
+                  <para>Used for file and directory names</para>
+               </listitem>
+            </varlistentry>
+
+         </variablelist>
+
+      </sect2>
+
+      <!-- ################################################################# -->
+
+      <sect2 id="cedar-preface-conventions-icons">
+         <title>Icons</title>
+
+         <note>
+            <para>
+               This icon designates a note relating to the surrounding text.
+            </para>
+         </note>
+
+         <tip>
+            <para>
+               This icon designates a helpful tip relating to the surrounding text.
+            </para>
+         </tip>
+
+         <warning>
+            <para>
+               This icon designates a warning relating to the surrounding text.
+            </para>
+         </warning>
+
+      </sect2>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-preface-organization">
+
+      <title>Organization of This Manual</title>
+
+      <variablelist>
+        
+         <varlistentry>
+            <term><xref linkend="cedar-intro"/></term>
+            <listitem>
+               <para>
+                  Provides some background about how Cedar Backup came to be,
+                  its history, some general information about what needs it is
+                  intended to meet, etc.
+               </para>
+            </listitem>
+         </varlistentry>
+        
+         <varlistentry>
+            <term><xref linkend="cedar-basic"/></term>
+            <listitem>
+               <para>
+                  Discusses the basic concepts of a Cedar Backup infrastructure,
+                  and specifies terms used throughout the rest of the manual.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-install"/></term>
+            <listitem>
+               <para>
+                  Explains how to install the Cedar Backup package either from
+                  the Python source distribution or from the Debian package.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-commandline"/></term>
+            <listitem>
+               <para>
+                  Discusses the various Cedar Backup command-line tools,
+                  including the primary <command>cback</command> command.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-config"/></term>
+            <listitem>
+               <para>
+                  Provides detailed information about how to configure Cedar
+                  Backup.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-extensions"/></term>
+            <listitem>
+               <para>
+                  Describes each of the officially-supported Cedar Backup
+                  extensions.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-extenspec"/></term>
+            <listitem>
+               <para>
+                  Specifies the Cedar Backup extension architecture interface,
+                  through which third party developers can write extensions to
+                  Cedar Backup.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-depends"/></term>
+            <listitem>
+               <para>
+                  Provides some additional information about the packages which
+                  Cedar Backup relies on, including information about how to
+                  find documentation and packages on non-Debian systems.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-recovering"/></term>
+            <listitem>
+               <para>
+                  Cedar Backup provides no facility for restoring backups,
+                  assuming the administrator can handle this infrequent task.
+                  This appendix provides some notes for administrators to work
+                  from.
+               </para>
+            </listitem>
+         </varlistentry>
+
+         <varlistentry>
+            <term><xref linkend="cedar-securingssh"/></term>
+            <listitem>
+               <para>
+                  Password-less SSH connections are a necessary evil when
+                  remote backup processes need to execute without human
+                  interaction.  This appendix describes some ways that you can
+                  reduce the risk to your backup pool should your master
+                  machine be compromised.
+               </para>
+            </listitem>
+         </varlistentry>
+
+    </variablelist>
+
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-preface-acknowlege">
+
+      <title>Acknowledgments</title>
+
+      <para>
+         The structure of this manual and some of the basic boilerplate has been
+         taken from the book <ulink url="http://svnbook.red-bean.com/">Version
+         Control with Subversion</ulink>.  Many thanks to the authors (and
+         O'Reilly) for making this excellent reference available under a free
+         and open license.
+      </para>
+
+      <para>
+         There are not very many Cedar Backup users today, but almost all of
+         them have contributed in some way to the documentation in this manual,
+         either by asking questions, making suggestions or finding bugs.  I'm
+         glad to have them as users, and I hope that this new release meets
+         their needs even better than the previous release.
+      </para>
+
+      <para>
+         My wife Julie puts up with a lot.  It's sometimes not easy to live
+         with someone who hacks on open source code in his free time &mdash;
+         even when you're a pretty good engineer yourself, like she is.  First,
+         she managed to live with a dual-boot Debian and Windoze machine; then
+         she managed to get used to IceWM rather than a prettier desktop; and
+         eventually she even managed to cope with <command>vim</command> when
+         she needed to.  Now, even after all that, she has graciously
+         volunteered to edit this manual.  I much appreciate her skill with a
+         red pen.
+      </para>
+
+   </sect1>
+
+</preface>
+

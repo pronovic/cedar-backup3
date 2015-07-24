@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- Document containing only a purge section, containing only required fields. -->
+<cb_config>
+   <purge>
+      <dir>
+         <abs_path>/opt/backup/stage</abs_path>
+         <retain_days>5</retain_days>
+      </dir>
+   </purge>
+</cb_config>

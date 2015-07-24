@@ -1,0 +1,54 @@
+The Cedar Backup Software Manual, found in manual/src, is written in
+DocBook Lite.  All of the docbook functionality used to build the actual
+documentation that I distribute is based around a Debian system (or a
+system with equivalent functionality) as the development system.  
+
+I built the entire docbook infrastructure based on the Subversion book:
+
+   http://svnbook.red-bean.com
+   http://svn.collab.net/repos/svn/branches/1.0.x/doc/book/
+
+Some other links that might be useful to you:
+
+   http://www.sagehill.net/docbookxsl/index.html
+   http://tldp.org/HOWTO/DocBook-Demystification-HOWTO/index.html
+   http://www.vim.org/scripts/script.php?script_id=301
+
+This is the official Docbook XSL documentation.  
+
+   http://wiki.docbook.org/topic/
+   http://wiki.docbook.org/topic/DocBookDocumentation
+   http://wiki.docbook.org/topic/DocBookXslStylesheetDocs
+   http://docbook.sourceforge.net/release/xsl/current/doc/fo/
+
+These official Docbook documentation is where you want to look for
+stylesheet options, etc.  For instance, these are the docs I used when I
+wanted to figure out how to put <sect1> items on new pages in PDF output.
+   
+The following items need to be installed to build the user manual:
+
+   apt-get install docbook-xsl
+   apt-get install xsltproc
+   apt-get install fop
+   apt-get install sp   # for nsgmls
+
+Then, to make images work from within PDF, you need to get the Jimi
+image library:
+
+   get jimi1_0.tar.Z from http://java.sun.com/products/jimi/
+   tar -Zxvf jimi1_0.tar.Z 
+   cp Jimi/examples/AppletDemo/JimiProClasses.jar /usr/share/java/jimi-1.0.jar 
+
+You also need a working XML catalog on your system, because the various
+DTDs and stylesheets depend on that.  There's no point in harcoding paths
+and keeping local copies of things if the catalog can do that for you.
+However, if you don't have a catalog, you can probably force things to
+work.  See notes at the top of the various files in util/docbook.
+
+The util/validate script is a thin wrapper around the nsgmls validating
+parser.  I took the syntax directly from the Subversion book documentation.
+
+   http://svn.collab.net/repos/svn/branches/1.0.x/doc/book/README
+
+You should run 'make validate' against the manual before checking it in.
+

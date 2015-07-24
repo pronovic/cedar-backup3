@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Document containing only a collect section, containing only required fields. -->
+<cb_config>
+   <collect>
+      <collect_dir>/opt/backup/collect</collect_dir>
+      <collect_mode>daily</collect_mode>
+      <archive_mode>tar</archive_mode>
+      <ignore_file>.ignore</ignore_file>
+      <file>
+         <abs_path>/etc</abs_path>
+      </file>
+   </collect>
+</cb_config>

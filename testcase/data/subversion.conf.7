@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- Document with default modes, several repository dirs with various overrides. -->
+<cb_config>
+   <subversion>
+      <collect_mode>daily</collect_mode>
+      <compress_mode>gzip</compress_mode>
+      <repository_dir>
+         <abs_path>/opt/public/svn/one</abs_path>
+      </repository_dir>
+      <repository_dir>
+         <type>BDB</type>
+         <abs_path>/opt/public/svn/two</abs_path>
+         <collect_mode>weekly</collect_mode>
+         <exclude>
+            <rel_path>software</rel_path>
+         </exclude>
+      </repository_dir>
+      <repository_dir>
+         <abs_path>/opt/public/svn/three</abs_path>
+         <compress_mode>bzip2</compress_mode>
+         <exclude>
+            <pattern>.*software.*</pattern>
+         </exclude>
+      </repository_dir>
+      <repository_dir>
+         <type>FSFS</type>
+         <abs_path>/opt/public/svn/four</abs_path>
+         <collect_mode>incr</collect_mode>
+         <compress_mode>bzip2</compress_mode>
+         <exclude>
+            <rel_path>cedar</rel_path>
+            <rel_path>banner</rel_path>
+            <pattern>.*software.*</pattern>
+            <pattern>.*database.*</pattern>
+         </exclude>
+      </repository_dir>
+   </subversion>
+</cb_config>

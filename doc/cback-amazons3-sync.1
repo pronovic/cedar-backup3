@@ -1,0 +1,142 @@
+.\" vim: set ft=nroff .\"
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\" #
+.\" #              C E D A R
+.\" #          S O L U T I O N S       "Software done right."
+.\" #           S O F T W A R E
+.\" #
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\" #
+.\" # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+.\" # Language : nroff
+.\" # Project  : Cedar Backup, release 2
+.\" # Revision : $Id$
+.\" # Purpose  : Manpage for cback-amazons3-sync script
+.\" #
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\"
+.TH cback\-amazons3-sync "1" "Oct 2014" "Cedar Backup" "Kenneth J. Pronovici"
+.SH NAME
+cback\-amazons3-sync \- Synchronize a local directory with an Amazon S3 bucket
+.SH SYNOPSIS
+.B cback\-amazons3-sync
+[\fIswitches\fR]
+sourceDir s3BucketUrl
+.SH DESCRIPTION
+.PP
+This is the Cedar Backup Amazon S3 sync tool.  It synchronizes a local
+directory to an Amazon S3 cloud storage bucket.  After the sync is complete, a
+validation step is taken.  An error is reported if the contents of the bucket
+do not match the source directory, or if the indicated size for any file
+differs.
+.PP
+Generally, one can run the cback\-amazons3-sync command with no special
+switches.  This will start it using the default Cedar Backup log file, etc.
+You only need to use the switches if you need to change the default behavior.
+.SH ARGUMENTS
+.TP
+\fBsourceDir\fR
+The source directory on a local disk.
+.TP
+\fBs3BucketUrl\fR
+The URL specifying the location of the Amazon S3 cloud storage bucket
+to synchronize with, like s3://example.com-backup/subdir.
+.SH SWITCHES
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Display usage/help listing.
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Display version information.
+.TP
+\fB\-b\fR, \fB\-\-verbose\fR
+Print verbose output to the screen as well writing to the logfile. When this
+option is enabled, most information that would normally be written to the
+logfile will also be written to the screen.
+.TP
+\fB\-l\fR, \fB\-\-logfile\fR
+Specify the path to an alternate logfile.  The default logfile file is
+/var/log/cback.log.
+.TP
+\fB\-o\fR, \fB\-\-owner\fR
+Specify the ownership of the logfile, in the form user:group.  The default
+ownership is root:adm, to match the Debian standard for most logfiles.  This
+value will only be used when creating a new logfile.  If the logfile already
+exists when the cback script is executed, it will retain its existing ownership
+and mode.  Only user and group names may be used, not numeric uid and gid
+values.
+.TP
+\fB\-m\fR, \fB\-\-mode\fR
+Specify the permissions for the logfile, using the numeric mode as in chmod(1).
+The default mode is 640 (\-rw\-r\-\-\-\-\-).  This value will only be used when
+creating a new logfile.  If the logfile already exists when the cback script is
+executed, it will retain its existing ownership and mode.
+.TP
+\fB\-O\fR, \fB\-\-output\fR
+Record some sub-command output to the logfile. When this option is enabled, all
+output from system commands will be logged. This might be useful for debugging
+or just for reference. 
+.TP
+\fB\-d\fR, \fB\-\-debug\fR
+Write debugging information to the logfile. This option produces a high volume
+of output, and would generally only be needed when debugging a problem. This
+option implies the \-\-output option, as well.
+.TP
+\fB\-s\fR, \fB\-\-stack\fR
+Dump a Python stack trace instead of swallowing exceptions.  This forces Cedar
+Backup to dump the entire Python stack trace associated with an error, rather
+than just progating last message it received back up to the user interface.
+Under some circumstances, this is useful information to include along with a
+bug report.
+.TP
+\fB\-D\fR, \fB\-\-diagnostics\fR
+Display runtime diagnostic information and then exit.  This diagnostic
+information is often useful when filing a bug report.
+.SH RETURN VALUES
+.PP
+This command returns 0 (zero) upon normal completion, and several other error
+codes related to particular errors. 
+.TP
+\fB1\fR
+The Python interpreter version is < 2.5.
+.TP
+\fB2\fR
+Error processing command\-line arguments.
+.TP
+\fB3\fR
+Error configuring logging.
+.TP
+\fB5\fR
+Backup was interrupted with a CTRL\-C or similar.
+.TP
+\fB6\fR
+Other error during processing.
+.SH NOTES
+.PP
+This tool is a wrapper over the Amazon AWS CLI interface found in the aws(1)
+command.  Specifically, cback\-amazons3\-sync invokes "aws s3 sync" followed by
+"aws s3api list-objects".
+.PP
+Cedar Backup itself is designed to run as root.  However, this command can be
+run safely as any user that is configured to use the Amazon AWS CLI interface.
+The aws(1) command will be executed by the same user which is executing 
+cback\-amazons3\-sync.
+.PP
+You must configure the AWS CLI interface to have a valid connection to Amazon
+S3 infrastructure before using cback\-amazons3\-sync. For more information
+about how to accomplish this, see the Cedar Backup user guide.
+.SH SEE ALSO
+cback(1)
+.SH FILES
+.TP
+\fI/var/log/cback.log\fR - Default log file
+.SH BUGS
+Report bugs to <support@cedar\-solutions.com>.
+.SH AUTHOR
+Written by Kenneth J. Pronovici <pronovic@ieee.org>.
+.SH COPYRIGHT
+Copyright (c) 2014 Kenneth J. Pronovici.
+.br
+This is free software; see the source for copying conditions.  There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.

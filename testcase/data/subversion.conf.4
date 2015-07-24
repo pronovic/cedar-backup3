@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- Document with default modes, several repositories with various overrides. -->
+<cb_config>
+   <subversion>
+      <collect_mode>daily</collect_mode>
+      <compress_mode>gzip</compress_mode>
+      <repository>
+         <abs_path>/opt/public/svn/one</abs_path>
+      </repository>
+      <repository>
+         <type>BDB</type>
+         <abs_path>/opt/public/svn/two</abs_path>
+         <collect_mode>weekly</collect_mode>
+      </repository>
+      <repository>
+         <abs_path>/opt/public/svn/three</abs_path>
+         <compress_mode>bzip2</compress_mode>
+      </repository>
+      <repository>
+         <type>FSFS</type>
+         <abs_path>/opt/public/svn/four</abs_path>
+         <collect_mode>incr</collect_mode>
+         <compress_mode>bzip2</compress_mode>
+      </repository>
+   </subversion>
+</cb_config>

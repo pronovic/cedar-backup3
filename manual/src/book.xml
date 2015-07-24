@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!-- 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Copyright (c) 2005-2008,2010 Kenneth J. Pronovici.
+# All rights reserved.
+#
+# This work is free; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, Version 2,
+# as published by the Free Software Foundation.
+#
+# This work is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Copies of the GNU General Public License are available from
+# the Free Software Foundation website, http://www.gnu.org/.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : O'Reilly DocBook Lite XML DTD
+# Project  : Cedar Backup, release 2
+# Revision : $Id: book.xml 1076 2014-10-03 18:19:36Z pronovic $
+# Purpose  : Cedar Backup software manual, book definition.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+-->
+
+<!DOCTYPE book SYSTEM "../../util/docbook/dblite.dtd"
+[
+<!ENTITY preface     SYSTEM "preface.xml">
+<!ENTITY intro       SYSTEM "intro.xml">
+<!ENTITY basic       SYSTEM "basic.xml">
+<!ENTITY install     SYSTEM "install.xml">
+<!ENTITY commandline SYSTEM "commandline.xml">
+<!ENTITY config      SYSTEM "config.xml">
+<!ENTITY extensions  SYSTEM "extensions.xml">
+<!ENTITY extenspec   SYSTEM "extenspec.xml">
+<!ENTITY depends     SYSTEM "depends.xml">
+<!ENTITY recovering  SYSTEM "recovering.xml">
+<!ENTITY securingssh SYSTEM "securingssh.xml">
+<!ENTITY copyright   SYSTEM "copyright.xml">
+]>
+
+<book id="cedar">
+
+   <title>Cedar Backup Software Manual</title>
+
+   <bookinfo>
+
+      <edition>First</edition>
+      <authorgroup>
+         <author>
+            <firstname>Kenneth J.</firstname>
+            <surname>Pronovici</surname>
+         </author>
+      </authorgroup>
+
+      <editor>
+         <firstname>Juliana E.</firstname>
+         <surname>Pronovici</surname>
+      </editor>
+
+      <copyright>
+         <year>2005-2008,2014</year>
+         <holder>Kenneth J. Pronovici</holder>
+      </copyright>
+
+      <legalnotice>
+         <para>
+            This work is free; you can redistribute it and/or modify it under
+            the terms of the GNU General Public License (the "GPL"), Version 2,
+            as published by the Free Software Foundation.
+         </para>
+
+         <para>
+            For the purposes of the GPL, the "preferred form of modification"
+            for this work is the original Docbook XML text files.  If you
+            choose to distribute this work in a compiled form (i.e. if you
+            distribute HTML, PDF or Postscript documents based on the original
+            Docbook XML text files), you must also consider image files to be
+            "source code" if those images are required in order to construct a
+            complete and readable compiled version of the work.
+         </para>
+
+         <para>
+            This work is distributed in the hope that it will be useful,
+            but WITHOUT ANY WARRANTY; without even the implied warranty of
+            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+         </para>
+
+         <para>
+            Copies of the GNU General Public License are available from
+            the Free Software Foundation website,
+            <systemitem class="url">http://www.gnu.org/</systemitem>.
+            You may also write the Free Software Foundation, Inc., 59 Temple
+            Place, Suite 330, Boston, MA 02111-1307 USA.
+         </para>
+      </legalnotice>
+
+   </bookinfo>
+
+   <!-- External entity references (i.e. chapters and appendices to include) -->
+
+   &preface;
+   &intro;
+   &basic;
+   &install;
+   &commandline;
+   &config;
+   &extensions;
+   &extenspec;
+   &depends;
+   &recovering;
+   &securingssh;
+   &copyright;
+
+</book>

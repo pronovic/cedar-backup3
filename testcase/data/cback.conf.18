@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Document containing only an extensions section, containing all fields, order mode is "index". -->
+<cb_config>
+   <extensions>
+      <order_mode>index</order_mode>
+      <action>
+         <name>example</name>
+         <module>something.whatever</module>
+         <function>example</function>
+         <index>1</index>
+      </action>
+   </extensions>
+</cb_config>

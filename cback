@@ -1,0 +1,35 @@
+#!/usr/bin/python
+# -*- coding: iso-8859-1 -*-
+# vim: set ft=python ts=3 sw=3 expandtab:
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+#              C E D A R
+#          S O L U T I O N S       "Software done right."
+#           S O F T W A R E
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+# Language : Python (>= 2.5)
+# Project  : Cedar Backup, release 2
+# Revision : $Id: cback 998 2010-07-07 19:56:08Z pronovic $
+# Purpose  : Implements Cedar Backup cback script.
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+"""
+Implements Cedar Backup cback script.
+@author: Kenneth J. Pronovici <pronovic@ieee.org>
+"""
+
+try:
+   import sys
+   from CedarBackup2.cli import cli
+except ImportError, e:
+   print "Failed to import Python modules: %s" % e
+   print "Are you running a proper version of Python?"
+   sys.exit(1)
+
+result = cli()
+sys.exit(result)
+

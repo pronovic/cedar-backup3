@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- Document containing only a store section, containing all required and optional fields. -->
+<cb_config>
+   <store>
+      <source_dir>/opt/backup/staging</source_dir>
+      <media_type>cdrw-74</media_type>
+      <device_type>cdwriter</device_type>
+      <target_device>/dev/cdrw</target_device>
+      <target_scsi_id>0,0,0</target_scsi_id>
+      <drive_speed>4</drive_speed>
+      <check_data>Y</check_data>
+      <check_media>Y</check_media>
+      <warn_midnite>Y</warn_midnite>
+      <no_eject>Y</no_eject>
+      <refresh_media_delay>12</refresh_media_delay>
+      <eject_delay>13</eject_delay>
+      <blank_behavior>
+         <mode>weekly</mode>
+         <factor>1.3</factor>
+      </blank_behavior>
+   </store>
+</cb_config>
