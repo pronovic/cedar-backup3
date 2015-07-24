@@ -551,28 +551,3 @@ def availableLocales():
       locales.append(line.rstrip())
    return locales
 
-
-####################################
-# hexFloatLiteralAllowed() function
-####################################
-
-def hexFloatLiteralAllowed():
-   """
-   Indicates whether hex float literals are allowed by the interpreter.
-
-   As far back as 2004, some Python documentation indicated that octal and hex
-   notation applied only to integer literals.  However, prior to Python 2.5, it
-   was legal to construct a float with an argument like 0xAC on some platforms.
-   This check provides a an indication of whether the current interpreter
-   supports that behavior.
-
-   This check exists so that unit tests can continue to test the same thing as
-   always for pre-2.5 interpreters (i.e. making sure backwards compatibility
-   doesn't break) while still continuing to work for later interpreters.
-
-   The returned value is True if hex float literals are allowed, False otherwise.
-   """
-   if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5] and not platformWindows():
-      return True
-   return False
-

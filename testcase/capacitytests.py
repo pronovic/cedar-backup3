@@ -95,7 +95,7 @@ import unittest
 
 # Cedar Backup modules
 from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.testutil import hexFloatLiteralAllowed, findResources, failUnlessAssignRaises
+from CedarBackup3.testutil import findResources, failUnlessAssignRaises
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 from CedarBackup3.extend.capacity import LocalConfig, CapacityConfig, ByteQuantity, PercentageQuantity
 
@@ -195,11 +195,9 @@ class TestPercentageQuantity(unittest.TestCase):
       quantity.quantity = "0.25E2"
       self.failUnlessEqual("0.25E2", quantity.quantity)
       self.failUnlessEqual(0.25e2, quantity.percentage)
-      if hexFloatLiteralAllowed():
-         # Some interpreters allow this, some don't
-         quantity.quantity = "0x0C"
-         self.failUnlessEqual("0x0C", quantity.quantity)
-         self.failUnlessEqual(12.0, quantity.percentage)
+      quantity.quantity = "0x0C"
+      self.failUnlessEqual("0x0C", quantity.quantity)
+      self.failUnlessEqual(12.0, quantity.percentage)
 
    def testConstructor_005(self):
       """

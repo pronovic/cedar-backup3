@@ -101,7 +101,6 @@ Full vs. Reduced Tests
 import unittest
 from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
 from CedarBackup3.testutil import findResources, failUnlessAssignRaises
-from CedarBackup3.testutil import hexFloatLiteralAllowed
 from CedarBackup3.config import ActionHook, PreActionHook, PostActionHook, CommandOverride
 from CedarBackup3.config import ExtendedAction, ActionDependencies, BlankBehavior
 from CedarBackup3.config import CollectFile, CollectDir, PurgeDir, LocalPeer, RemotePeer
@@ -218,11 +217,9 @@ class TestByteQuantity(unittest.TestCase):
       quantity.quantity = "0.25E2"
       self.failUnlessEqual("0.25E2", quantity.quantity)
       self.failUnlessEqual(0.25e2, quantity.bytes)
-      if hexFloatLiteralAllowed():
-         # Some interpreters allow this, some don't
-         quantity.quantity = "0xAC"
-         self.failUnlessEqual("0xAC", quantity.quantity)
-         self.failUnlessEqual(172.0, quantity.bytes)
+      quantity.quantity = "0xAC"
+      self.failUnlessEqual("0xAC", quantity.quantity)
+      self.failUnlessEqual(172.0, quantity.bytes)
 
    def testConstructor_005(self):
       """
@@ -1359,10 +1356,8 @@ class TestBlankBehavior(unittest.TestCase):
       self.failUnlessEqual("1E6", behavior.blankFactor)
       behavior.blankFactor = "0.25E2"
       self.failUnlessEqual("0.25E2", behavior.blankFactor)
-      if hexFloatLiteralAllowed():
-         # Some interpreters allow this, some don't
-         behavior.blankFactor = "0xAC"
-         self.failUnlessEqual("0xAC", behavior.blankFactor)
+      behavior.blankFactor = "0xAC"
+      self.failUnlessEqual("0xAC", behavior.blankFactor)
 
    def testConstructor_007(self):
       """

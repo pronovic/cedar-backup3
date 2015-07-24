@@ -1,6 +1,7 @@
 Version 3.0.0     unreleased
 
 	* Convert to Python 3, using v2.42.2 as the basis for conversion.
+	* Move source tree from Subversion at SourceForge to Mercurial at BitBucket.
 
 Version 2.24.2    05 Jan 2015
 

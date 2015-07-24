@@ -76,7 +76,7 @@ instance passing "config" runs only the tests for config.py.  Any number of
 individual tests may be listed on the command line, and unknown values will
 simply be ignored.
 
-@note: Even if you run this test with the C{python2.5} interpreter, some of the
+@note: Even if you run this test with the C{python3} interpreter, some of the
 individual unit tests require the C{python} interpreter.  In particular, the
 utility tests (in test/utiltests.py) use brief Python script snippets with
 known results to verify the behavior of C{executeCommand}.
@@ -105,14 +105,14 @@ def main():
    @return: Integer 0 upon success, integer 1 upon failure.
    """
 
-   # Check the Python version.  We require 2.5 or greater.
+   # Check the Python version.  We require 3.4 or greater.
    try:
       if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5]:
-         print "Python version 2.5 or greater required, sorry."
+         print "Python version 3.4 or greater required, sorry."
          return 1
    except:
       # sys.version_info isn't available before 2.0
-      print "Python version 2.5 or greater required, sorry."
+      print "Python version 3.4 or greater required, sorry."
       return 1
 
    # Check for the correct CedarBackup3 location and import utilities
