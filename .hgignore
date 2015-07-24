@@ -1,3 +1,10 @@
 syntax: glob
 *.pyc
 .*.swp
+MANIFEST
+build/sdist
+doc/interface
+doc/manual
+manual/src/manual.txt
+manual/src/manual.html
+manual/src/chunk
