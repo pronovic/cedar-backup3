@@ -76,16 +76,6 @@
             on in this chapter.
          </para>
 
-         <para>
-            If you would like to use Cedar Backup on a non-Linux system, you
-            should install the Python source distribution along with all of the
-            indicated dependencies.  Then, please report back to the Cedar
-            Backup Users mailing list <footnote><para>See <quote>SF Mailing Lists</quote> 
-            at <ulink url="http://cedar-backup.sourceforge.net/"/>.</para></footnote>
-            with information about your platform and any problems you
-            encountered.
-         </para>
-
       </sidebar>
 
    </sect1>
@@ -108,9 +98,7 @@
          <quote>etch</quote> release is the first release to contain Cedar
          Backup.) Otherwise, you need to install from the Cedar Solutions APT
          data source.  To do this, add the Cedar Solutions APT data source to
-         your <filename>/etc/apt/sources.list</filename> file.  <footnote><para>See
-         <quote>SF Bug Tracking</quote> at 
-         <ulink url="http://cedar-backup.sourceforge.net/"/>.</para></footnote>
+         your <filename>/etc/apt/sources.list</filename> file.  
       </para>
 
       <para>

@@ -42,8 +42,11 @@
       <title>Purpose</title>
 
       <para>
-         This software manual has been written to document the 2.0 series of
-         Cedar Backup, originally released in early 2005.
+         This software manual has been written to document the 3.0 series of
+         Cedar Backup, originally released in mid-2015.  Most of it also
+         applies to the 2.0 series of Cedar Backup, since the main difference
+         is that the 3.0 series uses the Python 3 interpreter instead of the
+         Python 2 interpreter.
       </para>
 
    </sect1>

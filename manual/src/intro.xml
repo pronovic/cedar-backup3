@@ -77,9 +77,14 @@
       </para>
 
       <para>
+         Alternately, Cedar Backup can write your backups to the Amazon S3 cloud
+         rather than relying on physical media.
+      </para>
+
+      <para>
          Besides offering command-line utilities to manage the backup process,
          Cedar Backup provides a well-organized library of backup-related
-         functionality, written in the Python programming language.
+         functionality, written in the Python 3 programming language.
       </para>
 
       <para>
@@ -91,8 +96,9 @@
          every night, or if you want to back up a few hundred machines.
          However, if you administer a small set machines and you want to run
          daily incremental backups for things like system configuration,
-         current email, small web sites, a CVS or Subversion repository, or a
-         small MySQL database, then Cedar Backup is probably worth your time.
+         current email, small web sites, a Subversion or Mercurial repository,
+         or a small MySQL database, then Cedar Backup is probably worth your
+         time.
       </para>
 
       <para>
@@ -113,6 +119,14 @@
          <xref linkend="cedar-install-source-deps"/>.
       </para>
 
+      <para>
+         CedarBackup2 and CedarBackup3 are functionally equivalent and are
+         compatible with one another.  The main difference is that CedarBackup3
+         is targeted at the Python 3 interpreter, while CedarBackup3 is
+         targeted at the Python 2 interpreter.  It is safe to mix-and-match
+         clients running both versions within the same backup configuration.
+      </para>
+
    </sect1>
 
    <!-- ################################################################# -->
@@ -129,34 +143,24 @@
       </para>
       
       <para>
-         If you experience a problem, your best bet is to write the Cedar
-         Backup Users mailing list.  <footnote><para>See 
-         <quote>SF Mailing Lists</quote> at 
-         <ulink url="http://cedar-backup.sourceforge.net/"/>.</para></footnote>
-         This is a public list for all Cedar Backup users.  If you write to
-         this list, you might get help from me, or from some other user who has
-         experienced the same thing you have.  
+         If you experience a problem, your best bet is to file an issue in
+         the issue tracker at BitBucket.  
+         <footnote><para>See <ulink url="https://bitbucket.org/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
+         When the source code was hosted at SourceForge, there was a mailing
+         list.  However, it was very lightly used in the last years before I
+         abandoned SourceForge, and I have decided not to replace it.  
       </para>
       
-      <para>
-         If you know that the problem you have found constitutes a bug, or
-         if you would like to make an enhancement request, then feel free to
-         file a bug report in the Cedar Solutions Bug Tracking System.  
-         <footnote><para>See <quote>SF Bug Tracking</quote> 
-         at <ulink url="http://cedar-backup.sourceforge.net/"/>.</para></footnote>
-      </para>
-
       <para>
          If you are not comfortable discussing your problem in public or
          listing it in a public database, or if you need to send along
          information that you do not want made public, then you can write
          <email>support@cedar-solutions.com</email>.  That mail will go
-         directly to me or to someone else who can help you.  If you write the
-         support address about a bug, a <quote>scrubbed</quote> bug report will
-         eventually end up in the public bug database anyway, so if at all
-         possible you should use the public reporting mechanisms.  One of the
-         strengths of the open-source software development model is its
-         transparency.
+         directly to me.  If you write the support address about a bug, a
+         <quote>scrubbed</quote> bug report will eventually end up in the
+         public bug database anyway, so if at all possible you should use the
+         public reporting mechanisms.  One of the strengths of the open-source
+         software development model is its transparency.
       </para>
 
       <para>
@@ -250,10 +254,7 @@
          Version 1.0 of <application>Cedar Backup</application> was released in
          June of 2002.  We immediately began using it to back up skyjammer.com
          and cedar-solutions.com, where it proved to be much more stable than
-         the original code.  Since then, we have continued to use Cedar
-         Backup for those sites, and Cedar Backup has picked up a handful of
-         other users who have occasionally reported bugs or requested minor
-         enhancements.  
+         the original code.  
       </para>
 
       <para>
@@ -290,6 +291,13 @@
          that quality is maintained as development continues into the future.
          <footnote><para>Tests are implemented using Python's unit test
          framework.  See <ulink url="http://docs.python.org/lib/module-unittest.html"/>.</para></footnote> 
+      </para>
+
+      <para>
+         The 3.0 release of Cedar Backup is a Python 3 conversion of the 2.0
+         release, with minimal additional functionality.  The conversion from
+         Python 2 to Python 3 started in mid-2015, about 5 years before the
+         anticipated deprecation of Python 2 in 2020.
       </para>
 
    </sect1>

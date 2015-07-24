@@ -32,11 +32,14 @@ Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
 written in the Python 3 programming language.
 
-This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
-conversion of release 2, with minimal additional functionality. 
-
 For more information, see the Cedar Backup web site:
 
    https://bitbucket.org/cedarsolutions/cedar-backup3
 
+This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
+conversion of release 2, with minimal additional functionality. 
+
+CedarBackup2 and CedarBackup3 are functionally equivalent and are
+compatible with one another.  It is safe to mix-and-match clients running
+both versions within the same backup configuration.
 

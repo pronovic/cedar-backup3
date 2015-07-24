@@ -117,10 +117,6 @@
                            <entry><ulink url="http://packages.debian.org/stable/net/ssh"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=net-misc;name=openssh;"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=openssh"/></entry>
                         </row>
@@ -170,16 +166,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/otherosfs/mkisofs"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><para><emphasis>unknown</emphasis></para></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=mkisofs"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X (fink)</entry>
-                           <entry><ulink url="http://fink.sourceforge.net/pdb/package.php/mkisofs"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -188,14 +176,6 @@
                <para>
                   If you can't find a package for your system, install from the package
                   source, using the <quote>upstream</quote> link.
-               </para>
-
-               <para>
-                  I have classified Gentoo as <quote>unknown</quote> because I
-                  can't find a specific package for that platform.  I think
-                  that maybe <command>mkisofs</command> is part of the cdrtools
-                  package (see below), but I'm not sure.  Any Gentoo users want
-                  to enlighten me?
                </para>
 
             </listitem>
@@ -230,16 +210,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/otherosfs/cdrecord"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-cdr;name=cdrtools;"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=cdrecord"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X (fink)</entry>
-                           <entry><ulink url="http://fink.sourceforge.net/pdb/search.php?summary=cdrecord"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -283,16 +255,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/utils/dvd+rw-tools"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-cdr;name=dvd%2Brw-tools"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=dvd+rw-tools"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X (fink)</entry>
-                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/dvd+rw-tools"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -343,16 +307,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/utils/eject"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=sys-apps;name=eject;"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=eject"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X (fink)</entry>
-                           <entry><ulink url="http://fink.sourceforge.net/pdb/package.php/eject"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -396,10 +352,6 @@
                            <entry><ulink url="http://packages.debian.org/stable/base/mount"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><para><emphasis>unknown</emphasis></para></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=mount"/></entry>
                         </row>
@@ -414,22 +366,6 @@
                <para>
                   If you can't find a package for your system, install from the package
                   source, using the <quote>upstream</quote> link.
-               </para>
-
-               <para>
-                  I have classified Gentoo as <quote>unknown</quote> because I can't 
-                  find a specific package for that platform.  It may just be that
-                  these two utilities are considered standard, and don't have an 
-                  independent package of their own.  Any Gentoo users want to enlighten me?
-               </para>
-
-               <para>
-                  I have classified Mac OS X <quote>built-in</quote> because that operating
-                  system does contain a mount command.  However, it isn't really compatible
-                  with Cedar Backup's idea of mount, and in fact what Cedar Backup needs
-                  is closer to the <command>hdiutil</command> command.  However, there are
-                  other issues related to that command, which is why the store action is
-                  not really supported on Mac OS X.
                </para>
 
             </listitem>
@@ -465,16 +401,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/mail/grepmail"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=net-mail;name=grepmail"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=grepmail"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X</entry>
-                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/grepmail"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -517,16 +445,8 @@
                            <entry><ulink url="http://packages.debian.org/stable/utils/gnupg"/></entry>
                         </row>
                         <row>
-                           <entry>Gentoo</entry>
-                           <entry><ulink url="http://packages.gentoo.org/packages/?category=app-crypt;name=gnupg"/></entry>
-                        </row>
-                        <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=gnupg"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X</entry>
-                           <entry><ulink url="http://pdb.finkproject.org/pdb/package.php/gnupg"/></entry>
                         </row>
                      </tbody>
                   </tgroup>
