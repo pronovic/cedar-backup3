@@ -127,7 +127,7 @@ required-attributes=
 no-docstring-rgx=__.*__
 
 # Regular expression which should only match correct module names
-module-rgx=((CedarBackup2)|([a-z][a-z0-9]*))$
+module-rgx=((CedarBackup3)|([a-z][a-z0-9]*))$
 
 # Regular expression which should only match correct module level names
 const-rgx=(([A-Z_][A-Z0-9_]*)|(__.*__))$

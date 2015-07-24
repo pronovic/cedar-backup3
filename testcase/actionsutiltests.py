@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/actions/util.py.
+Unit tests for CedarBackup3/actions/util.py.
 
 Code Coverage
 =============
@@ -76,9 +76,9 @@ Full vs. Reduced Tests
 import os
 import unittest
 import tempfile
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup2.actions.util import findDailyDirs, writeIndicatorFile
-from CedarBackup2.extend.encrypt import ENCRYPT_INDICATOR
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
+from CedarBackup3.actions.util import findDailyDirs, writeIndicatorFile
+from CedarBackup3.extend.encrypt import ENCRYPT_INDICATOR
 
 
 #######################################################################

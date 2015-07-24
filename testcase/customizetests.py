@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/customize.py.
+Unit tests for CedarBackup3/customize.py.
 @author Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
@@ -48,8 +48,8 @@ Unit tests for CedarBackup2/customize.py.
 
 import unittest
 
-from CedarBackup2.customize import PLATFORM, customizeOverrides
-from CedarBackup2.config import Config, OptionsConfig, CommandOverride
+from CedarBackup3.customize import PLATFORM, customizeOverrides
+from CedarBackup3.config import Config, OptionsConfig, CommandOverride
 
 
 

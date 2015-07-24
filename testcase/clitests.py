@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/cli.py.
+Unit tests for CedarBackup3/cli.py.
 
 Code Coverage
 =============
@@ -79,14 +79,14 @@ Full vs. Reduced Tests
 import unittest
 from os.path import isdir, isfile, islink, isabs, exists
 from getopt import GetoptError
-from CedarBackup2.testutil import failUnlessAssignRaises, captureOutput
-from CedarBackup2.config import OptionsConfig, PeersConfig, ExtensionsConfig
-from CedarBackup2.config import LocalPeer, RemotePeer
-from CedarBackup2.config import ExtendedAction, ActionDependencies, PreActionHook, PostActionHook
-from CedarBackup2.cli import _usage, _version, _diagnostics
-from CedarBackup2.cli import Options
-from CedarBackup2.cli import _ActionSet
-from CedarBackup2.action import executeCollect, executeStage, executeStore, executePurge, executeRebuild, executeValidate
+from CedarBackup3.testutil import failUnlessAssignRaises, captureOutput
+from CedarBackup3.config import OptionsConfig, PeersConfig, ExtensionsConfig
+from CedarBackup3.config import LocalPeer, RemotePeer
+from CedarBackup3.config import ExtendedAction, ActionDependencies, PreActionHook, PostActionHook
+from CedarBackup3.cli import _usage, _version, _diagnostics
+from CedarBackup3.cli import Options
+from CedarBackup3.cli import _ActionSet
+from CedarBackup3.action import executeCollect, executeStage, executeStore, executePurge, executeRebuild, executeValidate
 
 
 #######################################################################

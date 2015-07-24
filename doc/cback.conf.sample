@@ -8,37 +8,37 @@
    <extensions>
       <action>
          <name>sysinfo</name>
-         <module>CedarBackup2.extend.sysinfo</module>
+         <module>CedarBackup3.extend.sysinfo</module>
          <function>executeAction</function>
          <index>95</index>
       </action>
       <action>
          <name>mysql</name>
-         <module>CedarBackup2.extend.mysql</module>
+         <module>CedarBackup3.extend.mysql</module>
          <function>executeAction</function>
          <index>96</index>
       </action>
       <action>
          <name>postgresql</name>
-         <module>CedarBackup2.extend.postgresql</module>
+         <module>CedarBackup3.extend.postgresql</module>
          <function>executeAction</function>
          <index>97</index>
       </action>
       <action>
          <name>subversion</name>
-         <module>CedarBackup2.extend.subversion</module>
+         <module>CedarBackup3.extend.subversion</module>
          <function>executeAction</function>
          <index>98</index>
       </action>
       <action>
          <name>mbox</name>
-         <module>CedarBackup2.extend.mbox</module>
+         <module>CedarBackup3.extend.mbox</module>
          <function>executeAction</function>
          <index>99</index>
       </action>
       <action>
          <name>encrypt</name>
-         <module>CedarBackup2.extend.encrypt</module>
+         <module>CedarBackup3.extend.encrypt</module>
          <function>executeAction</function>
          <index>299</index>
       </action>

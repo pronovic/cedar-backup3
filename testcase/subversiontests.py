@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/subversion.py.
+Unit tests for CedarBackup3/extend/subversion.py.
 
 Code Coverage
 =============
@@ -106,10 +106,10 @@ Full vs. Reduced Tests
 import unittest
 
 # Cedar Backup modules
-from CedarBackup2.testutil import findResources, failUnlessAssignRaises
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.subversion import LocalConfig, SubversionConfig
-from CedarBackup2.extend.subversion import Repository, RepositoryDir, BDBRepository, FSFSRepository
+from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.subversion import LocalConfig, SubversionConfig
+from CedarBackup3.extend.subversion import Repository, RepositoryDir, BDBRepository, FSFSRepository
 
 
 #######################################################################

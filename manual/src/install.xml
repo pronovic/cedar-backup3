@@ -120,7 +120,7 @@
 
       <screen>
 $ apt-get update
-$ apt-get install cedar-backup2 cedar-backup2-doc
+$ apt-get install cedar-backup3 cedar-backup3-doc
       </screen>
 
       <para>
@@ -273,12 +273,12 @@ $ apt-get install cedar-backup2 cedar-backup2-doc
          </para>
 
          <screen>
-$ zcat CedarBackup2-2.0.0.tar.gz | tar xvf -
+$ zcat CedarBackup3-2.0.0.tar.gz | tar xvf -
          </screen>
 
          <para>
             This will create a directory called (in this case)
-            <filename>CedarBackup2-2.0.0</filename>.  The version number in the
+            <filename>CedarBackup3-2.0.0</filename>.  The version number in the
             directory will always match the version number in the filename.
          </para>
 
@@ -289,7 +289,7 @@ $ zcat CedarBackup2-2.0.0.tar.gz | tar xvf -
          </para>
 
          <screen>
-$ cd CedarBackup2-2.0.0
+$ cd CedarBackup3-2.0.0
 $ python setup.py install
          </screen>
 

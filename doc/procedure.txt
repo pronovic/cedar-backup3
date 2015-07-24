@@ -2,7 +2,7 @@ Release Procedure
 =================
 
 - Make final update to Changelog
-- Update CedarBackup2/release.py
+- Update CedarBackup3/release.py
 - Check in changes 
 - Run unit tests one last time (make test)
 - Run pylint tests one last time (make check or make allcheck)

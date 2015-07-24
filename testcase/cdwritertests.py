@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/writers/cdwriter.py.
+Unit tests for CedarBackup3/writers/cdwriter.py.
 
 This code was consolidated from writertests.py and imagetests.py at the same
 time cdwriter.py was created.
@@ -101,8 +101,8 @@ Full vs. Reduced Tests
 
 import unittest
 
-from CedarBackup2.writers.cdwriter import MediaDefinition, MediaCapacity, CdWriter
-from CedarBackup2.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80
+from CedarBackup3.writers.cdwriter import MediaDefinition, MediaCapacity, CdWriter
+from CedarBackup3.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80
 
 
 #######################################################################

@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/split.py.
+Unit tests for CedarBackup3/extend/split.py.
 
 Code Coverage
 =============
@@ -105,12 +105,12 @@ import os
 import tempfile
 
 # Cedar Backup modules
-from CedarBackup2.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup2.testutil import failUnlessAssignRaises, availableLocales
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.split import LocalConfig, SplitConfig, ByteQuantity
-from CedarBackup2.extend.split import _splitFile, _splitDailyDir
+from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
+from CedarBackup3.testutil import failUnlessAssignRaises, availableLocales
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.split import LocalConfig, SplitConfig, ByteQuantity
+from CedarBackup3.extend.split import _splitFile, _splitDailyDir
 
 
 #######################################################################

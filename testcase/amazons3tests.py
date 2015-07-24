@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/amazons3.py.
+Unit tests for CedarBackup3/extend/amazons3.py.
 
 Code Coverage
 =============
@@ -87,9 +87,9 @@ Testing XML Extraction
 import unittest
 
 # Cedar Backup modules
-from CedarBackup2.testutil import findResources, failUnlessAssignRaises
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.amazons3 import LocalConfig, AmazonS3Config
+from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
 
 
 #######################################################################

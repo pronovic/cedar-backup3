@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/writers/util.py.
+Unit tests for CedarBackup3/writers/util.py.
 
 Code Coverage
 =============
@@ -95,11 +95,11 @@ import os
 import unittest
 import tempfile
 import time
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup2.testutil import platformMacOsX, platformSupportsLinks
-from CedarBackup2.filesystem import FilesystemList
-from CedarBackup2.writers.util import validateScsiId, validateDriveSpeed, IsoImage
-from CedarBackup2.util import executeCommand
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
+from CedarBackup3.testutil import platformMacOsX, platformSupportsLinks
+from CedarBackup3.filesystem import FilesystemList
+from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed, IsoImage
+from CedarBackup3.util import executeCommand
 
 
 #######################################################################

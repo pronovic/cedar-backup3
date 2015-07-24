@@ -23,7 +23,7 @@
 ########################################################################
 
 from distutils.core import setup
-from CedarBackup2.release import AUTHOR, EMAIL, VERSION, COPYRIGHT, URL
+from CedarBackup3.release import AUTHOR, EMAIL, VERSION, COPYRIGHT, URL
 
 
 ########################################################################
@@ -52,7 +52,7 @@ written in the Python 3 programming language.
 """
 
 setup (
-   name             = 'CedarBackup2',
+   name             = 'CedarBackup3',
    version          = VERSION,
    description      = 'Implements local and remote backups to CD/DVD media.',
    long_description = LONG_DESCRIPTION,
@@ -62,8 +62,8 @@ setup (
    url              = URL,
    license          = "Copyright (c) %s %s.  Licensed under the GNU GPL." % (COPYRIGHT, AUTHOR),
    platforms        = ('Any',),
-   packages         = ['CedarBackup2', 'CedarBackup2.actions', 'CedarBackup2.extend', 
-                       'CedarBackup2.tools', 'CedarBackup2.writers', ],
+   packages         = ['CedarBackup3', 'CedarBackup3.actions', 'CedarBackup3.extend', 
+                       'CedarBackup3.tools', 'CedarBackup3.writers', ],
    scripts          = ['cback', 'util/cback-span', 'util/cback-amazons3-sync', ], 
 )
 

@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/config.py.
+Unit tests for CedarBackup3/config.py.
 
 Code Coverage
 =============
@@ -99,15 +99,15 @@ Full vs. Reduced Tests
 ########################################################################
 
 import unittest
-from CedarBackup2.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup2.testutil import findResources, failUnlessAssignRaises
-from CedarBackup2.testutil import hexFloatLiteralAllowed
-from CedarBackup2.config import ActionHook, PreActionHook, PostActionHook, CommandOverride
-from CedarBackup2.config import ExtendedAction, ActionDependencies, BlankBehavior
-from CedarBackup2.config import CollectFile, CollectDir, PurgeDir, LocalPeer, RemotePeer
-from CedarBackup2.config import ReferenceConfig, ExtensionsConfig, OptionsConfig, PeersConfig
-from CedarBackup2.config import CollectConfig, StageConfig, StoreConfig, PurgeConfig, Config
-from CedarBackup2.config import ByteQuantity
+from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
+from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.testutil import hexFloatLiteralAllowed
+from CedarBackup3.config import ActionHook, PreActionHook, PostActionHook, CommandOverride
+from CedarBackup3.config import ExtendedAction, ActionDependencies, BlankBehavior
+from CedarBackup3.config import CollectFile, CollectDir, PurgeDir, LocalPeer, RemotePeer
+from CedarBackup3.config import ReferenceConfig, ExtensionsConfig, OptionsConfig, PeersConfig
+from CedarBackup3.config import CollectConfig, StageConfig, StoreConfig, PurgeConfig, Config
+from CedarBackup3.config import ByteQuantity
 
 
 #######################################################################
@@ -11249,28 +11249,28 @@ class TestConfig(unittest.TestCase):
       expected.extensions = ExtensionsConfig()
       expected.extensions.orderMode = "dependency"
       expected.extensions.actions = []
-      expected.extensions.actions.append(ExtendedAction("sysinfo", "CedarBackup2.extend.sysinfo", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("sysinfo", "CedarBackup3.extend.sysinfo", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies()))
-      expected.extensions.actions.append(ExtendedAction("mysql", "CedarBackup2.extend.mysql", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("mysql", "CedarBackup3.extend.mysql", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies()))
-      expected.extensions.actions.append(ExtendedAction("postgresql", "CedarBackup2.extend.postgresql", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("postgresql", "CedarBackup3.extend.postgresql", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies(beforeList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("subversion", "CedarBackup2.extend.subversion", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("subversion", "CedarBackup3.extend.subversion", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies(afterList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("mbox", "CedarBackup2.extend.mbox", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("mbox", "CedarBackup3.extend.mbox", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies(beforeList=["one", ], afterList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("encrypt", "CedarBackup2.extend.encrypt", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("encrypt", "CedarBackup3.extend.encrypt", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies(beforeList=["a", "b", "c", "d", ],
                                                                                         afterList=["one", "two", "three",
                                                                                                    "four", "five", "six",
                                                                                                    "seven", "eight", ])))
-      expected.extensions.actions.append(ExtendedAction("amazons3", "CedarBackup2.extend.amazons3", "executeAction", 
+      expected.extensions.actions.append(ExtendedAction("amazons3", "CedarBackup3.extend.amazons3", "executeAction", 
                                                         index=None, 
                                                         dependencies=ActionDependencies()))
       self.failUnlessEqual(expected, config)

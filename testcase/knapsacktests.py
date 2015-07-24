@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/knapsack.py.
+Unit tests for CedarBackup3/knapsack.py.
 
 Code Coverage
 =============
@@ -82,7 +82,7 @@ Full vs. Reduced Tests
 
 # Import standard modules
 import unittest
-from CedarBackup2.knapsack import firstFit, bestFit, worstFit, alternateFit
+from CedarBackup3.knapsack import firstFit, bestFit, worstFit, alternateFit
 
 
 #######################################################################

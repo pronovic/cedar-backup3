@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/filesystem.py.
+Unit tests for CedarBackup3/filesystem.py.
 
 Test Notes
 ==========
@@ -115,11 +115,11 @@ import unittest
 import tempfile
 import tarfile
 
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar, changeFileAge, randomFilename
-from CedarBackup2.testutil import platformMacOsX, platformWindows, platformCygwin
-from CedarBackup2.testutil import platformSupportsLinks, platformRequiresBinaryRead
-from CedarBackup2.testutil import failUnlessAssignRaises
-from CedarBackup2.filesystem import FilesystemList, BackupFileList, PurgeItemList, normalizeDir, compareContents
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, changeFileAge, randomFilename
+from CedarBackup3.testutil import platformMacOsX, platformWindows, platformCygwin
+from CedarBackup3.testutil import platformSupportsLinks, platformRequiresBinaryRead
+from CedarBackup3.testutil import failUnlessAssignRaises
+from CedarBackup3.filesystem import FilesystemList, BackupFileList, PurgeItemList, normalizeDir, compareContents
 
 
 #######################################################################

@@ -22,7 +22,7 @@ Implements Cedar Backup cback-span script.
 """
 
 import sys
-from CedarBackup2.tools.span import cli
+from CedarBackup3.tools.span import cli
 result = cli()
 sys.exit(result)
 

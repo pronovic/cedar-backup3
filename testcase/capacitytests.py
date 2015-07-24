@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/capacity.py.
+Unit tests for CedarBackup3/extend/capacity.py.
 
 Code Coverage
 =============
@@ -94,10 +94,10 @@ Full vs. Reduced Tests
 import unittest
 
 # Cedar Backup modules
-from CedarBackup2.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup2.testutil import hexFloatLiteralAllowed, findResources, failUnlessAssignRaises
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.capacity import LocalConfig, CapacityConfig, ByteQuantity, PercentageQuantity
+from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
+from CedarBackup3.testutil import hexFloatLiteralAllowed, findResources, failUnlessAssignRaises
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.capacity import LocalConfig, CapacityConfig, ByteQuantity, PercentageQuantity
 
 
 #######################################################################

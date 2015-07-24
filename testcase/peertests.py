@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/peer.py.
+Unit tests for CedarBackup3/peer.py.
 
 Code Coverage
 =============
@@ -94,12 +94,12 @@ import os
 import stat
 import unittest
 import tempfile
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup2.testutil import getMaskAsMode, getLogin, runningAsRoot, failUnlessAssignRaises
-from CedarBackup2.testutil import platformSupportsPermissions, platformWindows, platformCygwin
-from CedarBackup2.peer import LocalPeer, RemotePeer
-from CedarBackup2.peer import DEF_RCP_COMMAND, DEF_RSH_COMMAND
-from CedarBackup2.peer import DEF_COLLECT_INDICATOR, DEF_STAGE_INDICATOR
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
+from CedarBackup3.testutil import getMaskAsMode, getLogin, runningAsRoot, failUnlessAssignRaises
+from CedarBackup3.testutil import platformSupportsPermissions, platformWindows, platformCygwin
+from CedarBackup3.peer import LocalPeer, RemotePeer
+from CedarBackup3.peer import DEF_RCP_COMMAND, DEF_RSH_COMMAND
+from CedarBackup3.peer import DEF_COLLECT_INDICATOR, DEF_STAGE_INDICATOR
 
 
 #######################################################################

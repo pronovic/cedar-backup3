@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/writers/dvdwriter.py.
+Unit tests for CedarBackup3/writers/dvdwriter.py.
 
 Code Coverage
 =============
@@ -92,10 +92,10 @@ import os
 import unittest
 import tempfile
 
-from CedarBackup2.writers.dvdwriter import MediaDefinition, MediaCapacity, DvdWriter
-from CedarBackup2.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW
+from CedarBackup3.writers.dvdwriter import MediaDefinition, MediaCapacity, DvdWriter
+from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW
 
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
 
 
 #######################################################################

@@ -10,7 +10,7 @@
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : Make
 # Project  : Cedar Backup, release 3
-# Purpose  : Developer "private" makefile for CedarBackup2 package
+# Purpose  : Developer "private" makefile for CedarBackup3 package
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -21,7 +21,7 @@
 # This file is the one that I will use for my personal development
 # effort.  It has a number of rules in it that no one else will use,
 # and it will not be included in any of the public distributions of
-# CedarBackup2.
+# CedarBackup3.
 
 
 ########################
@@ -41,8 +41,8 @@ SETUP             = $(PYTHON) ./setup.py
 SUDO              = sudo
 TAR               = tar
 VALIDATE          = util/validate
-VERSION           = `cat CedarBackup2/release.py | grep '^VERSION' | awk -F\" '{print $$2}'`
-URL               = `cat CedarBackup2/release.py | grep URL | awk -F\" '{print $$2}'`
+VERSION           = `cat CedarBackup3/release.py | grep '^VERSION' | awk -F\" '{print $$2}'`
+URL               = `cat CedarBackup3/release.py | grep URL | awk -F\" '{print $$2}'`
 
 
 ############
@@ -90,10 +90,10 @@ usertest:
 # a finer-grained level.
 
 check:
-	-@$(PYLINT) --rcfile=pylint-code.rc CedarBackup2
+	-@$(PYLINT) --rcfile=pylint-code.rc CedarBackup3
 
 allcheck:
-	-@$(PYLINT) --rcfile=pylint-code.rc CedarBackup2 util setup.py
+	-@$(PYLINT) --rcfile=pylint-code.rc CedarBackup3 util setup.py
 	-@$(PYLINT) --rcfile=pylint-test.rc testcase
 
 
@@ -113,7 +113,7 @@ doc: interface-doc manual-doc
 interface-doc: interface-html 
 
 interface-html: $(INTERFACE_DIR)
-	@$(EPYDOC) -v --html --name "CedarBackup2" --output $(INTERFACE_DIR) --url $(URL) CedarBackup2/
+	@$(EPYDOC) -v --html --name "CedarBackup3" --output $(INTERFACE_DIR) --url $(URL) CedarBackup3/
 
 manual-doc: $(MANUAL_DIR)
 	@$(CD) $(MANUAL_SRC) && $(MAKE) install
@@ -147,7 +147,7 @@ $(INTERFACE_TEMPDIR):
 # The rules in this section build a Python source distribution, and then
 # also that same source distribution named appropriately for Debian (the
 # Debian packages are maintained via svn-buildpackage as usual).  This
-# keeps cedar-backup2 from being a Debian-native package.
+# keeps cedar-backup3 from being a Debian-native package.
 
 distrib: debdist docdist
 
@@ -157,33 +157,33 @@ distribclean: sdistclean debdistclean
 
 sdist: $(SDIST_DIR) doc
 	@$(SETUP) sdist --dist-dir $(SDIST_DIR)
-	@$(CP) $(SDIST_DIR)/CedarBackup2-$(VERSION).tar.gz ../
+	@$(CP) $(SDIST_DIR)/CedarBackup3-$(VERSION).tar.gz ../
 
 source: $(SDIST_DIR) 
 	@$(SETUP) sdist --dist-dir $(SDIST_DIR)
-	@$(CP) $(SDIST_DIR)/CedarBackup2-$(VERSION).tar.gz ../
+	@$(CP) $(SDIST_DIR)/CedarBackup3-$(VERSION).tar.gz ../
 
 $(SDIST_DIR):
 	@$(MKDIR) -p $(SDIST_DIR)
 
 sdistclean: 
-	@$(RM) -f $(SDIST_DIR)/CedarBackup2-$(VERSION).tar.gz
+	@$(RM) -f $(SDIST_DIR)/CedarBackup3-$(VERSION).tar.gz
 
 debdist: sdist
-	@$(CP) $(SDIST_DIR)/CedarBackup2-$(VERSION).tar.gz $(SDIST_DIR)/cedar-backup2_$(VERSION).orig.tar.gz
-	@$(CP) $(SDIST_DIR)/cedar-backup2_$(VERSION).orig.tar.gz ../
+	@$(CP) $(SDIST_DIR)/CedarBackup3-$(VERSION).tar.gz $(SDIST_DIR)/cedar-backup3_$(VERSION).orig.tar.gz
+	@$(CP) $(SDIST_DIR)/cedar-backup3_$(VERSION).orig.tar.gz ../
 
 debdistclean: 
-	@$(RM) -f $(SDIST_DIR)/cedar-backup2_$(VERSION).orig.tar.gz 
+	@$(RM) -f $(SDIST_DIR)/cedar-backup3_$(VERSION).orig.tar.gz 
 
 # This layout matches the htdocs/docs tree for the website
 htmldocs: docdist
 docdist: doc
-	@$(MKDIR) -p $(DOC_DIR)/tmp/docs/cedar-backup2/
-	@$(MKDIR) -p $(DOC_DIR)/tmp/docs/cedar-backup2/
-	@$(CP) Changelog $(DOC_DIR)/tmp/docs/cedar-backup2/
-	@$(CP) -r $(MANUAL_DIR) $(DOC_DIR)/tmp/docs/cedar-backup2/
-	@$(CP) -r $(INTERFACE_DIR) $(DOC_DIR)/tmp/docs/cedar-backup2/
+	@$(MKDIR) -p $(DOC_DIR)/tmp/docs/cedar-backup3/
+	@$(MKDIR) -p $(DOC_DIR)/tmp/docs/cedar-backup3/
+	@$(CP) Changelog $(DOC_DIR)/tmp/docs/cedar-backup3/
+	@$(CP) -r $(MANUAL_DIR) $(DOC_DIR)/tmp/docs/cedar-backup3/
+	@$(CP) -r $(INTERFACE_DIR) $(DOC_DIR)/tmp/docs/cedar-backup3/
 	@$(CD) $(DOC_DIR)/tmp && $(TAR) -zcvf ../htmldocs.tar.gz docs/
 	@$(MV) $(DOC_DIR)/htmldocs.tar.gz ../
 	@$(RM) -rf $(DOC_DIR)/tmp

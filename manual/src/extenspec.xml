@@ -93,7 +93,7 @@
             <para>
                All logging must take place using the Python logging
                facility.  Flow-of-control logging should happen on the
-               <literal>CedarBackup2.log</literal> topic.  Authors can assume
+               <literal>CedarBackup3.log</literal> topic.  Authors can assume
                that ERROR will always go to the terminal, that INFO and WARN
                will always be logged, and that DEBUG will be ignored unless
                debugging is enabled.
@@ -103,7 +103,7 @@
          <listitem>
             <para>
                Any time an extension invokes a command-line utility, it must be
-               done through the <literal>CedarBackup2.util.executeCommand</literal>
+               done through the <literal>CedarBackup3.util.executeCommand</literal>
                function.  This will help keep Cedar Backup safer from
                format-string attacks, and will make it easier to consistently
                log command-line process output.
@@ -167,9 +167,9 @@
     
       <para>
          Extension functions take three arguments: the path to configuration on
-         disk, a <literal>CedarBackup2.cli.Options</literal> object
+         disk, a <literal>CedarBackup3.cli.Options</literal> object
          representing the command-line options in effect, and a
-         <literal>CedarBackup2.config.Config</literal> object representing
+         <literal>CedarBackup3.config.Config</literal> object representing
          parsed standard configuration.   
       </para>
 
@@ -187,8 +187,8 @@ def function(configPath, options, config):
       </para>
 
       <para>
-         The interface to the <literal>CedarBackup2.cli.Options</literal> and
-         <literal>CedarBackup2.config.Config</literal> classes has been
+         The interface to the <literal>CedarBackup3.cli.Options</literal> and
+         <literal>CedarBackup3.config.Config</literal> classes has been
          thoroughly documented using Epydoc, and the documentation is available
          on the Cedar Backup website.  The interface is guaranteed to change
          only in backwards-compatible ways unless the Cedar Backup major

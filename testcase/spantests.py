@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/tools/span.py.
+Unit tests for CedarBackup3/tools/span.py.
 
 Code Coverage
 =============
@@ -77,9 +77,9 @@ Full vs. Reduced Tests
 ########################################################################
 
 import unittest
-from CedarBackup2.testutil import captureOutput
-from CedarBackup2.tools.span import _usage, _version
-from CedarBackup2.tools.span import Options
+from CedarBackup3.testutil import captureOutput
+from CedarBackup3.tools.span import _usage, _version
+from CedarBackup3.tools.span import Options
 
 
 #######################################################################

@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/encrypt.py.
+Unit tests for CedarBackup3/extend/encrypt.py.
 
 Code Coverage
 =============
@@ -104,11 +104,11 @@ import os
 import tempfile
 
 # Cedar Backup modules
-from CedarBackup2.filesystem import FilesystemList
-from CedarBackup2.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises, platformSupportsLinks
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.encrypt import LocalConfig, EncryptConfig
-from CedarBackup2.extend.encrypt import _encryptFileWithGpg, _encryptFile, _encryptDailyDir
+from CedarBackup3.filesystem import FilesystemList
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises, platformSupportsLinks
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.encrypt import LocalConfig, EncryptConfig
+from CedarBackup3.extend.encrypt import _encryptFileWithGpg, _encryptFile, _encryptDailyDir
 
 
 #######################################################################

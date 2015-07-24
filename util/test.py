@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Run the CedarBackup2 unit tests.
+Run the CedarBackup3 unit tests.
 
 This script runs all of the unit tests at once so we can get one big success or
 failure result, rather than 20 different smaller results that we somehow have
@@ -115,26 +115,26 @@ def main():
       print "Python version 2.5 or greater required, sorry."
       return 1
 
-   # Check for the correct CedarBackup2 location and import utilities
+   # Check for the correct CedarBackup3 location and import utilities
    try:
-      if os.path.exists(os.path.join(".", "CedarBackup2", "filesystem.py")):
+      if os.path.exists(os.path.join(".", "CedarBackup3", "filesystem.py")):
          sys.path.insert(0, ".")
-      elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "CedarBackup2", "filesystem.py")):
+      elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "CedarBackup3", "filesystem.py")):
          sys.path.insert(0, "..")
       else:
-         print "WARNING: CedarBackup2 modules were not found in the expected"
+         print "WARNING: CedarBackup3 modules were not found in the expected"
          print "location.  If the import succeeds, you may be using an"
-         print "unexpected version of CedarBackup2."
+         print "unexpected version of CedarBackup3."
          print ""
-      from CedarBackup2.util import nullDevice, Diagnostics
+      from CedarBackup3.util import nullDevice, Diagnostics
    except ImportError, e:
-      print "Failed to import CedarBackup2 util module: %s" % e
-      print "You must either run the unit tests from the CedarBackup2 source"
+      print "Failed to import CedarBackup3 util module: %s" % e
+      print "You must either run the unit tests from the CedarBackup3 source"
       print "tree, or properly set the PYTHONPATH enviroment variable."
       return 1
 
    # Setup platform-specific command overrides
-   from CedarBackup2.testutil import setupOverrides
+   from CedarBackup3.testutil import setupOverrides
    setupOverrides()
 
    # Import the unit test modules
@@ -144,7 +144,7 @@ def main():
       elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "testcase", "filesystemtests.py")):
          sys.path.insert(0, "..")
       else:
-         print "WARNING: CedarBackup2 unit test modules were not found in"
+         print "WARNING: CedarBackup3 unit test modules were not found in"
          print "the expected location.  If the import succeeds, you may be"
          print "using an unexpected version of the test suite."
          print ""
@@ -170,8 +170,8 @@ def main():
       from testcase import capacitytests
       from testcase import customizetests
    except ImportError, e:
-      print "Failed to import CedarBackup2 unit test module: %s" % e
-      print "You must either run the unit tests from the CedarBackup2 source"
+      print "Failed to import CedarBackup3 unit test module: %s" % e
+      print "You must either run the unit tests from the CedarBackup3 source"
       print "tree, or properly set the PYTHONPATH enviroment variable."
       return 1
 
@@ -179,7 +179,7 @@ def main():
    devnull = nullDevice()
    handler = logging.FileHandler(filename=devnull)
    handler.setLevel(logging.NOTSET)
-   logger = logging.getLogger("CedarBackup2")
+   logger = logging.getLogger("CedarBackup3")
    logger.setLevel(logging.NOTSET)
    logger.addHandler(handler)
 
@@ -202,7 +202,7 @@ def main():
       os.environ["SPLITTESTS_FULL"] = "N"
 
    # Print a starting banner
-   print "\n*** Running CedarBackup2 unit tests."
+   print "\n*** Running CedarBackup3 unit tests."
    if not full:
       print "*** Using reduced feature set suite with minimum system requirements."
 

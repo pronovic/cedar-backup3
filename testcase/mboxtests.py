@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/extend/mbox.py.
+Unit tests for CedarBackup3/extend/mbox.py.
 
 Code Coverage
 =============
@@ -95,9 +95,9 @@ Full vs. Reduced Tests
 import unittest
 
 # Cedar Backup modules
-from CedarBackup2.testutil import findResources, failUnlessAssignRaises
-from CedarBackup2.xmlutil import createOutputDom, serializeDom
-from CedarBackup2.extend.mbox import LocalConfig, MboxConfig, MboxFile, MboxDir
+from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
+from CedarBackup3.extend.mbox import LocalConfig, MboxConfig, MboxFile, MboxDir
 
 
 #######################################################################

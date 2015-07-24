@@ -37,7 +37,7 @@
 ########################################################################
 
 """
-Unit tests for CedarBackup2/tools/amazons3.py.
+Unit tests for CedarBackup3/tools/amazons3.py.
 
 Code Coverage
 =============
@@ -78,9 +78,9 @@ Full vs. Reduced Tests
 
 import unittest
 from getopt import GetoptError
-from CedarBackup2.testutil import failUnlessAssignRaises, captureOutput
-from CedarBackup2.tools.amazons3 import _usage, _version
-from CedarBackup2.tools.amazons3 import Options
+from CedarBackup3.testutil import failUnlessAssignRaises, captureOutput
+from CedarBackup3.tools.amazons3 import _usage, _version
+from CedarBackup3.tools.amazons3 import Options
 
 
 #######################################################################

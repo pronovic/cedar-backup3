@@ -22,7 +22,7 @@ Implements Cedar Backup cback-amazons3-sync script.
 """
 
 import sys
-from CedarBackup2.tools.amazons3 import cli
+from CedarBackup3.tools.amazons3 import cli
 result = cli()
 sys.exit(result)
 

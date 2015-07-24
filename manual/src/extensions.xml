@@ -75,7 +75,7 @@
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;sysinfo&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.sysinfo&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.sysinfo&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;99&lt;/index&gt;
    &lt;/action&gt;
@@ -177,7 +177,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
 &lt;extensions&gt; &lt;action&gt;
    &lt;action&gt;
       &lt;name&gt;amazons3&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.amazons3&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.amazons3&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;201&lt;/index&gt; &lt;!-- just after stage --&gt;
    &lt;/action&gt;
@@ -356,7 +356,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;subversion&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.subversion&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.subversion&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;99&lt;/index&gt;
    &lt;/action&gt;
@@ -778,7 +778,7 @@ host = remote.host
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;mysql&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.mysql&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.mysql&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;99&lt;/index&gt;
    &lt;/action&gt;
@@ -996,7 +996,7 @@ host = remote.host
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;postgresql&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.postgresql&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.postgresql&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;99&lt;/index&gt;
    &lt;/action&gt;
@@ -1178,7 +1178,7 @@ host = remote.host
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;mbox&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.mbox&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.mbox&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;99&lt;/index&gt;
    &lt;/action&gt;
@@ -1599,7 +1599,7 @@ host = remote.host
 &lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;encrypt&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.encrypt&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.encrypt&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;301&lt;/index&gt;
    &lt;/action&gt;
@@ -1708,7 +1708,7 @@ host = remote.host
 &lt;extensions&gt; 
    &lt;action&gt;
       &lt;name&gt;split&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.split&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.split&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;299&lt;/index&gt;
    &lt;/action&gt;
@@ -1815,7 +1815,7 @@ host = remote.host
       <programlisting>
 &lt;extensions&gt; &lt;action&gt;
       &lt;name&gt;capacity&lt;/name&gt;
-      &lt;module&gt;CedarBackup2.extend.capacity&lt;/module&gt;
+      &lt;module&gt;CedarBackup3.extend.capacity&lt;/module&gt;
       &lt;function&gt;executeAction&lt;/function&gt;
       &lt;index&gt;299&lt;/index&gt;
    &lt;/action&gt;

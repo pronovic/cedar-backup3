@@ -162,7 +162,7 @@
             Both the Python source distribution and the Debian package come with a
             sample configuration file.  The Debian package includes a stripped
             config file in <filename>/etc/cback.conf</filename> and a larger
-            sample in <filename>/usr/share/doc/cedar-backup2/examples/cback.conf.sample</filename>.
+            sample in <filename>/usr/share/doc/cedar-backup3/examples/cback.conf.sample</filename>.
          </para>
 
          <para>
@@ -3306,7 +3306,7 @@ cback all
 
             <para>
                On a Debian system, execution of daily backups is controlled by
-               the file <filename>/etc/cron.d/cedar-backup2</filename>.  As
+               the file <filename>/etc/cron.d/cedar-backup3</filename>.  As
                installed, this file contains several different settings, all
                commented out.  Uncomment the <quote>Single machine (pool of
                one)</quote> entry in the file, and change the line so that the
@@ -3701,7 +3701,7 @@ The key fingerprint is:
 
             <para>
                On a Debian system, execution of daily backups is controlled by
-               the file <filename>/etc/cron.d/cedar-backup2</filename>.  As
+               the file <filename>/etc/cron.d/cedar-backup3</filename>.  As
                installed, this file contains several different settings, all
                commented out.  Uncomment the <quote>Client machine</quote>
                entries in the file, and change the lines so that the backup
@@ -4198,7 +4198,7 @@ The key fingerprint is:
 
             <para>
                On a Debian system, execution of daily backups is controlled by
-               the file <filename>/etc/cron.d/cedar-backup2</filename>.  As
+               the file <filename>/etc/cron.d/cedar-backup3</filename>.  As
                installed, this file contains several different settings, all
                commented out.  Uncomment the <quote>Master machine</quote>
                entries in the file, and change the lines so that the backup
