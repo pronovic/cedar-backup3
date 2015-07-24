@@ -217,9 +217,6 @@ class TestByteQuantity(unittest.TestCase):
       quantity.quantity = "0.25E2"
       self.failUnlessEqual("0.25E2", quantity.quantity)
       self.failUnlessEqual(0.25e2, quantity.bytes)
-      quantity.quantity = "0xAC"
-      self.failUnlessEqual("0xAC", quantity.quantity)
-      self.failUnlessEqual(172.0, quantity.bytes)
 
    def testConstructor_005(self):
       """
@@ -1356,8 +1353,6 @@ class TestBlankBehavior(unittest.TestCase):
       self.failUnlessEqual("1E6", behavior.blankFactor)
       behavior.blankFactor = "0.25E2"
       self.failUnlessEqual("0.25E2", behavior.blankFactor)
-      behavior.blankFactor = "0xAC"
-      self.failUnlessEqual("0xAC", behavior.blankFactor)
 
    def testConstructor_007(self):
       """

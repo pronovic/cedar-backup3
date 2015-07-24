@@ -195,9 +195,6 @@ class TestPercentageQuantity(unittest.TestCase):
       quantity.quantity = "0.25E2"
       self.failUnlessEqual("0.25E2", quantity.quantity)
       self.failUnlessEqual(0.25e2, quantity.percentage)
-      quantity.quantity = "0x0C"
-      self.failUnlessEqual("0x0C", quantity.quantity)
-      self.failUnlessEqual(12.0, quantity.percentage)
 
    def testConstructor_005(self):
       """
