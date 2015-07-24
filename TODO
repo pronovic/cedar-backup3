@@ -1,0 +1,6 @@
+update release procedure to match Mercurial and BitBucket
+add trove categories in setup.py
+review all documentation for completeness
+review all URLs in source code and documentation to make sure they still exist
+convert to Python 3 and get all tests working
+change [2, 5] to [3, 4] for Python version check and check for other places
