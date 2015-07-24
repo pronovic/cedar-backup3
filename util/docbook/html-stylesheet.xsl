@@ -9,8 +9,7 @@
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : XSLT
-# Project  : Cedar Backup, release 2
-# Revision : $Id: html-stylesheet.xsl 575 2006-09-04 17:49:19Z pronovic $
+# Project  : Cedar Backup, release 3
 # Purpose  : XSLT stylesheet for HTML Docbook output (single page).
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

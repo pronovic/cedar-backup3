@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2007-2008,2010 Kenneth J. Pronovici.
+# Copyright (c) 2007-2008,2010,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -25,9 +25,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: span.py 1084 2014-10-07 21:52:19Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Spans staged data among multiple discs
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

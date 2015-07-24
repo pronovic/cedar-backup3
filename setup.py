@@ -10,9 +10,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: setup.py 1093 2014-10-08 02:08:39Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Python distutils setup script
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -49,7 +48,7 @@ rather than relying on physical media.
 
 Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
-written in the Python programming language.
+written in the Python 3 programming language.
 """
 
 setup (

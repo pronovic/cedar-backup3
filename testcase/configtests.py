@@ -9,7 +9,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2004-2008,2010,2011 Kenneth J. Pronovici.
+# Copyright (c) 2004-2008,2010,2011,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -26,9 +26,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: configtests.py 1047 2014-10-01 01:44:17Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Tests configuration functionality.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

@@ -10,9 +10,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id$
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Implements Cedar Backup cback-amazons3-sync script.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

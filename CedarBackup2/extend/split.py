@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2007,2010,2013 Kenneth J. Pronovici.
+# Copyright (c) 2007,2010,2013,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -25,9 +25,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
+# Language : Python 3 (>= 3.4.2)
 # Project  : Official Cedar Backup Extensions
-# Revision : $Id: split.py 1028 2013-03-21 14:33:51Z pronovic $
 # Purpose  : Provides an extension to split up large files in staging directories.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

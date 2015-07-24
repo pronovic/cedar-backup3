@@ -8,8 +8,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Project  : Cedar Backup, release 2
-# Revision : $Id$
+# Project  : Cedar Backup, release 3
 # Purpose  : Pylint configuration for most source code.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

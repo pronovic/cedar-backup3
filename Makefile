@@ -9,8 +9,7 @@
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : Make
-# Project  : Cedar Backup, release 2
-# Revision : $Id: Makefile 1005 2010-07-07 21:03:15Z pronovic $
+# Project  : Cedar Backup, release 3
 # Purpose  : Developer "private" makefile for CedarBackup2 package
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -147,7 +146,7 @@ $(INTERFACE_TEMPDIR):
 ################
 # The rules in this section build a Python source distribution, and then
 # also that same source distribution named appropriately for Debian (the
-# Debian packages are maintained via cvs-buildpackage as usual).  This
+# Debian packages are maintained via svn-buildpackage as usual).  This
 # keeps cedar-backup2 from being a Debian-native package.
 
 distrib: debdist docdist
@@ -177,7 +176,7 @@ debdist: sdist
 debdistclean: 
 	@$(RM) -f $(SDIST_DIR)/cedar-backup2_$(VERSION).orig.tar.gz 
 
-# This layout matches the htdocs/docs tree for the SF website
+# This layout matches the htdocs/docs tree for the website
 htmldocs: docdist
 docdist: doc
 	@$(MKDIR) -p $(DOC_DIR)/tmp/docs/cedar-backup2/

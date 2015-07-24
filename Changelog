@@ -1,3 +1,7 @@
+Version 3.0.0     unreleased
+
+	* Convert to Python 3, using v2.42.2 as the basis for conversion.
+
 Version 2.24.2    05 Jan 2015
 
 	* Add optional size-limit configuration for amazons3 extension.

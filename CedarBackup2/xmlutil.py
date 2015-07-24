@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2004-2006,2010 Kenneth J. Pronovici.
+# Copyright (c) 2004-2006,2010,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # Portions Copyright (c) 2000 Fourthought Inc, USA.
@@ -28,9 +28,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: xmlutil.py 1096 2015-01-05 20:24:25Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Provides general XML-related functionality.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

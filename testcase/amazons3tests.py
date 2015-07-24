@@ -26,9 +26,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: amazons3tests.py 1096 2015-01-05 20:24:25Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Tests amazons3 extension functionality.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

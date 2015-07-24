@@ -9,9 +9,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: action.py 1022 2011-10-11 23:27:49Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Provides implementation of various backup-related actions.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

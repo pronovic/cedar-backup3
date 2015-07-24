@@ -9,9 +9,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
-# Project  : Cedar Backup, release 2
-# Revision : $Id: release.py 1099 2015-01-05 20:49:18Z pronovic $
+# Language : Python 3 (>= 3.4.2)
+# Project  : Cedar Backup, release 3
 # Purpose  : Provides location to maintain release information.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

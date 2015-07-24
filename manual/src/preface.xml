@@ -7,7 +7,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2005-2007,2010 Kenneth J. Pronovici.
+# Copyright (c) 2005-2007,2010,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This work is free; you can redistribute it and/or modify it
@@ -25,8 +25,7 @@
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : O'Reilly DocBook Lite XML DTD
-# Project  : Cedar Backup, release 2
-# Revision : $Id: preface.xml 1006 2010-07-07 21:03:57Z pronovic $
+# Project  : Cedar Backup, release 3
 # Purpose  : Cedar Backup software manual, Preface.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

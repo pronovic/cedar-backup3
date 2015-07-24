@@ -29,15 +29,7 @@ The following items need to be installed to build the user manual:
 
    apt-get install docbook-xsl
    apt-get install xsltproc
-   apt-get install fop
    apt-get install sp   # for nsgmls
-
-Then, to make images work from within PDF, you need to get the Jimi
-image library:
-
-   get jimi1_0.tar.Z from http://java.sun.com/products/jimi/
-   tar -Zxvf jimi1_0.tar.Z 
-   cp Jimi/examples/AppletDemo/JimiProClasses.jar /usr/share/java/jimi-1.0.jar 
 
 You also need a working XML catalog on your system, because the various
 DTDs and stylesheets depend on that.  There's no point in harcoding paths

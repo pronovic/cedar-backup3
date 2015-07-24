@@ -5,7 +5,7 @@ Release Procedure
 - Update CedarBackup2/release.py
 - Check in changes 
 - Run unit tests one last time (make test)
-- Run pychecker tests one last time (make check or make allcheck)
+- Run pylint tests one last time (make check or make allcheck)
 - Build the source distributions (make distrib)
 - Run the util/release script for the right version
 

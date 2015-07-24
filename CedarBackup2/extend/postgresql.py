@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2006,2010 Kenneth J. Pronovici.
+# Copyright (c) 2006,2010,2015 Kenneth J. Pronovici.
 # Copyright (c) 2006 Antoine Beaupre.
 # All rights reserved.
 #
@@ -27,9 +27,8 @@
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 #            Antoine Beaupre <anarcat@koumbit.org>
-# Language : Python (>= 2.5)
+# Language : Python 3 (>= 3.4.2)
 # Project  : Official Cedar Backup Extensions
-# Revision : $Id: postgresql.py 1022 2011-10-11 23:27:49Z pronovic $
 # Purpose  : Provides an extension to back up PostgreSQL databases.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

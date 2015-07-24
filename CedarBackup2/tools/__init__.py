@@ -9,9 +9,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
+# Language : Python 3 (>= 3.4.2)
 # Project  : Official Cedar Backup Tools
-# Revision : $Id: __init__.py 1083 2014-10-07 19:17:12Z pronovic $
 # Purpose  : Provides package initialization
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

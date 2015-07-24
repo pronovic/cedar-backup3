@@ -8,8 +8,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Project  : Cedar Backup, release 2
-# Revision : $Id: README 1055 2014-10-01 21:52:29Z pronovic $
+# Project  : Cedar Backup, release 3
 # Purpose  : README for package
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -31,22 +30,13 @@ rather than relying on physical media.
 
 Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
-written in the Python programming language.
+written in the Python 3 programming language.
 
-This is release 2 of the Cedar Backup package.  It represents a complete
-rewrite of the original package.  The new code is cleaner, more compact,
-more focused and also more "pythonic" in its approach (although the coding
-style has arguably been influenced by my experiences with Java over the
-last few years).  There is also now an extensive unit test suite, something
-the first release always lacked.
+This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
+conversion of release 2, with minimal additional functionality. 
 
 For more information, see the Cedar Backup web site:
 
-   http://cedar-backup.sourceforge.net/
+   https://bitbucket.org/cedarsolutions/cedar-backup3
 
-If you regularly use Cedar Backup, you might also want to join the
-low-volume cedar-backup-users mailing list, which you can subscribe to via
-the SourceForge site.  This list is used to announce new releases of Cedar
-Backup, and you can use it to report bugs or to get help using Cedar
-Backup.
 

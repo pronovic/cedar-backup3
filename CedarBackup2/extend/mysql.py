@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2005,2010 Kenneth J. Pronovici.
+# Copyright (c) 2005,2010,2015 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -25,9 +25,8 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python (>= 2.5)
+# Language : Python 3 (>= 3.4.2)
 # Project  : Official Cedar Backup Extensions
-# Revision : $Id: mysql.py 1022 2011-10-11 23:27:49Z pronovic $
 # Purpose  : Provides an extension to back up MySQL databases.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
