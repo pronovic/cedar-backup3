@@ -26,7 +26,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python 3 (>= 3.4.2)
+# Language : Python 3 (>= 3.4)
 # Project  : Cedar Backup, release 3
 # Purpose  : Tests MySQL extension functionality.
 #

@@ -18,7 +18,7 @@ This module is distributed in standard Python distutils form.  Use:
    python setup.py --help 
 
 For more information on how to install it.  You must have a Python
-interpreter version 3.4.2 or better to use these modules.  Some external
+interpreter version 3.4 or better to use these modules.  Some external
 tools are also required for certain features to work.  See the user manual
 for more details.
 

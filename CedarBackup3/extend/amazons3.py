@@ -25,7 +25,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python 3 (>= 3.4.2)
+# Language : Python 3 (>= 3.4)
 # Project  : Official Cedar Backup Extensions
 # Purpose  : "Store" type extension that writes data to Amazon S3.
 #
