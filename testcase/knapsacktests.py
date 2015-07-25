@@ -140,7 +140,7 @@ def buildItemDict(origDict):
    @return: Dictionary suitable for passing to a knapsack function.
    """
    itemDict = { }
-   for key in origDict.keys():
+   for key in list(origDict.keys()):
       itemDict[key] = (key, origDict[key])
    return itemDict
 
@@ -179,7 +179,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 0
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testFirstFit_002(self):
       """
@@ -188,7 +188,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 10000
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testFirstFit_003(self):
       """
@@ -197,17 +197,17 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_04)
       capacity = 0
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_13)
       capacity = 0
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testFirstFit_004(self):
       """
@@ -216,7 +216,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testFirstFit_005(self):
       """
@@ -225,44 +225,44 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 1
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 10
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 100
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 10000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 100000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100000, result[1])
 
    def testFirstFit_006(self):
       """
@@ -271,72 +271,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 2
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 25
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 250
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 2500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 25000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 250000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 2
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 25
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 250
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 2500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
    def testFirstFit_007(self):
       """
@@ -345,72 +345,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 4
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 45
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 450
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 4500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 45000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 450000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 4
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 45
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 450
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 4500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testFirstFit_008(self):
       """
@@ -419,72 +419,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 6
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 65
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 650
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 6500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 65000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 650000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 7
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 65
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 650
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 6500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
    def testFirstFit_009(self):
       """
@@ -494,27 +494,27 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_06)
       capacity = 9
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_07)
       capacity = 99
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_08)
       capacity = 999
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_09)
       capacity = 9999
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_10)
       capacity = 99999
       result = firstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testFirstFit_010(self):
       """
@@ -524,9 +524,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 200
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testFirstFit_011(self):
       """
@@ -536,30 +536,30 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 5
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 50
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 5000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testFirstFit_012(self):
       """
@@ -569,9 +569,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 200
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testFirstFit_013(self):
       """
@@ -581,8 +581,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 50
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testFirstFit_014(self):
       """
@@ -592,26 +592,26 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 3
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_12)
       capacity = 35
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_13)
       capacity = 350
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_14)
       capacity = 3500
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testFirstFit_015(self):
       """
@@ -621,8 +621,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 50
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testFirstFit_016(self):
       """
@@ -631,121 +631,121 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_02)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(0, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(0, result[1])
 
       items = buildItemDict(ITEMS_03)
       capacity = 2000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_04)
       capacity = 2000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_05)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400004, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400004, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400040, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400040, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(404000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(404000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200006, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200006, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200060, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200060, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 1000000
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(206000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(206000, result[1])
 
    def testFirstFit_017(self):
       """
@@ -754,7 +754,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_19)
       capacity = 760
       result = firstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
       # Unfortunately, can't test any more than this, since dict keys come out in random order
 
 
@@ -769,7 +769,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 0
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testBestFit_002(self):
       """
@@ -778,7 +778,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 10000
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testBestFit_003(self):
       """
@@ -787,17 +787,17 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_04)
       capacity = 0
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_13)
       capacity = 0
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testBestFit_004(self):
       """
@@ -806,7 +806,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testBestFit_005(self):
       """
@@ -815,44 +815,44 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 1
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 10
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 100
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 10000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 100000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100000, result[1])
 
    def testBestFit_006(self):
       """
@@ -861,72 +861,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 2
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 25
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 250
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 2500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 25000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 250000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 2
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 25
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 250
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 2500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
    def testBestFit_007(self):
       """
@@ -935,72 +935,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 4
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 45
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 450
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 4500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 45000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 450000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 4
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 45
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 450
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 4500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testBestFit_008(self):
       """
@@ -1009,72 +1009,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 6
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 65
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 650
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 6500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 65000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 650000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 7
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 65
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 650
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 6500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
    def testBestFit_009(self):
       """
@@ -1084,27 +1084,27 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_06)
       capacity = 9
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_07)
       capacity = 99
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_08)
       capacity = 999
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_09)
       capacity = 9999
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_10)
       capacity = 99999
       result = bestFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testBestFit_010(self):
       """
@@ -1114,9 +1114,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 200
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testBestFit_011(self):
       """
@@ -1126,30 +1126,30 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 5
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 50
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 5000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testBestFit_012(self):
       """
@@ -1159,9 +1159,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 200
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testBestFit_013(self):
       """
@@ -1171,8 +1171,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 50
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testBestFit_014(self):
       """
@@ -1182,26 +1182,26 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 3
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_12)
       capacity = 35
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_13)
       capacity = 350
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_14)
       capacity = 3500
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testBestFit_015(self):
       """
@@ -1211,8 +1211,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 50
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testBestFit_016(self):
       """
@@ -1221,121 +1221,121 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_02)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(0, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(0, result[1])
 
       items = buildItemDict(ITEMS_03)
       capacity = 2000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_04)
       capacity = 2000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_05)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400004, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400004, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400040, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400040, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(404000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(404000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200006, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200006, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200060, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200060, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 1000000
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(206000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(206000, result[1])
 
    def testBestFit_017(self):
       """
@@ -1344,14 +1344,14 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_19)
       capacity = 760
       result = bestFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(5, len(result[0]))
-      self.failUnlessEqual(753, result[1])
-      self.failUnless('dir001/file001' in result[0])
-      self.failUnless('dir001/file002' in result[0])
-      self.failUnless('file002' in result[0])
-      self.failUnless('link001' in result[0])
-      self.failUnless('link002' in result[0])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(5, len(result[0]))
+      self.assertEqual(753, result[1])
+      self.assertTrue('dir001/file001' in result[0])
+      self.assertTrue('dir001/file002' in result[0])
+      self.assertTrue('file002' in result[0])
+      self.assertTrue('link001' in result[0])
+      self.assertTrue('link002' in result[0])
 
 
    ################################
@@ -1365,7 +1365,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 0
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testWorstFit_002(self):
       """
@@ -1374,7 +1374,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 10000
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testWorstFit_003(self):
       """
@@ -1383,17 +1383,17 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_04)
       capacity = 0
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_13)
       capacity = 0
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testWorstFit_004(self):
       """
@@ -1402,7 +1402,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testWorstFit_005(self):
       """
@@ -1411,44 +1411,44 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 1
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 10
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 100
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 10000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 100000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100000, result[1])
 
    def testWorstFit_006(self):
       """
@@ -1457,72 +1457,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 2
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 25
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 250
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 2500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 25000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 250000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 2
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 25
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 250
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 2500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
    def testWorstFit_007(self):
       """
@@ -1531,72 +1531,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 4
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 45
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 450
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 4500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 45000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 450000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 4
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 45
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 450
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 4500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testWorstFit_008(self):
       """
@@ -1605,72 +1605,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 6
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 65
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 650
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 6500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 65000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 650000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 7
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 65
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 650
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 6500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
    def testWorstFit_009(self):
       """
@@ -1680,27 +1680,27 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_06)
       capacity = 9
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_07)
       capacity = 99
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_08)
       capacity = 999
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_09)
       capacity = 9999
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_10)
       capacity = 99999
       result = worstFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testWorstFit_010(self):
       """
@@ -1710,9 +1710,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 200
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testWorstFit_011(self):
       """
@@ -1722,30 +1722,30 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 5
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 50
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 5000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testWorstFit_012(self):
       """
@@ -1755,9 +1755,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 200
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testWorstFit_013(self):
       """
@@ -1767,8 +1767,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 50
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testWorstFit_014(self):
       """
@@ -1778,26 +1778,26 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 3
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_12)
       capacity = 35
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_13)
       capacity = 350
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_14)
       capacity = 3500
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testWorstFit_015(self):
       """
@@ -1807,8 +1807,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 50
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testWorstFit_016(self):
       """
@@ -1817,121 +1817,121 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_02)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(0, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(0, result[1])
 
       items = buildItemDict(ITEMS_03)
       capacity = 2000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_04)
       capacity = 2000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_05)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400004, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400004, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400040, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400040, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(404000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(404000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200006, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200006, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200060, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200060, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 1000000
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(206000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(206000, result[1])
 
    def testWorstFit_017(self):
       """
@@ -1940,15 +1940,15 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_19)
       capacity = 760
       result = worstFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(605, result[1])
-      self.failUnless('dir002/file001' in result[0])
-      self.failUnless('dir002/file002' in result[0])
-      self.failUnless('file001' in result[0])
-      self.failUnless('file002' in result[0])
-      self.failUnless('link001' in result[0])
-      self.failUnless('link002' in result[0])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(605, result[1])
+      self.assertTrue('dir002/file001' in result[0])
+      self.assertTrue('dir002/file002' in result[0])
+      self.assertTrue('file001' in result[0])
+      self.assertTrue('file002' in result[0])
+      self.assertTrue('link001' in result[0])
+      self.assertTrue('link002' in result[0])
 
 
    ####################################
@@ -1962,7 +1962,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 0
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testAlternateFit_002(self):
       """
@@ -1971,7 +1971,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_01)
       capacity = 10000
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testAlternateFit_003(self):
       """
@@ -1980,17 +1980,17 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_04)
       capacity = 0
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_13)
       capacity = 0
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testAlternateFit_004(self):
       """
@@ -1999,7 +1999,7 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 0
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testAlternateFit_005(self):
       """
@@ -2008,44 +2008,44 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 1
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 10
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 100
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(1000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(1000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 10000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(10000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(10000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 100000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(1, len(result[0]))
-      self.failUnlessEqual(100000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(1, len(result[0]))
+      self.assertEqual(100000, result[1])
 
    def testAlternateFit_006(self):
       """
@@ -2054,72 +2054,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 2
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 25
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 250
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 2500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 25000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 250000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 2
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 25
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(20, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(20, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 250
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(200, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(200, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 2500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(2, len(result[0]))
-      self.failUnlessEqual(2000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(2, len(result[0]))
+      self.assertEqual(2000, result[1])
 
    def testAlternateFit_007(self):
       """
@@ -2128,72 +2128,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 4
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 45
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 450
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 4500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 45000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 450000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 4
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 45
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 450
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 4500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testAlternateFit_008(self):
       """
@@ -2202,72 +2202,72 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_05)
       capacity = 6
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 65
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 650
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 6500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 65000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 650000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 7
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 65
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(60, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(60, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 650
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 6500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(6000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(6000, result[1])
 
    def testAlternateFit_009(self):
       """
@@ -2277,27 +2277,27 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_06)
       capacity = 9
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_07)
       capacity = 99
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_08)
       capacity = 999
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_09)
       capacity = 9999
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
       items = buildItemDict(ITEMS_10)
       capacity = 99999
       result = alternateFit(items, capacity)
-      self.failUnlessEqual(([], 0), result)
+      self.assertEqual(([], 0), result)
 
    def testAlternateFit_010(self):
       """
@@ -2307,9 +2307,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 200
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testAlternateFit_011(self):
       """
@@ -2319,30 +2319,30 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 5
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 50
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(40, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(40, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 5000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(4000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(4000, result[1])
 
    def testAlternateFit_012(self):
       """
@@ -2352,9 +2352,9 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 200
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(4, len(result[0]))
-      self.failUnlessEqual(111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(4, len(result[0]))
+      self.assertEqual(111, result[1])
 
    def testAlternateFit_013(self):
       """
@@ -2364,8 +2364,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_04)
       capacity = 50
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testAlternateFit_014(self):
       """
@@ -2375,26 +2375,26 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_11)
       capacity = 3
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_12)
       capacity = 35
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_13)
       capacity = 350
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
       items = buildItemDict(ITEMS_14)
       capacity = 3500
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testAlternateFit_015(self):
       """
@@ -2404,8 +2404,8 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_03)
       capacity = 50
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnless(len(result[0]) < 4, "%s < 4" % len(result[0]))
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertTrue(len(result[0]) < 4, "%s < 4" % len(result[0]))
 
    def testAlternateFit_016(self):
       """
@@ -2414,121 +2414,121 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_02)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(0, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(0, result[1])
 
       items = buildItemDict(ITEMS_03)
       capacity = 2000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_04)
       capacity = 2000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(1111111, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(1111111, result[1])
 
       items = buildItemDict(ITEMS_05)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8, result[1])
 
       items = buildItemDict(ITEMS_06)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80, result[1])
 
       items = buildItemDict(ITEMS_07)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800, result[1])
 
       items = buildItemDict(ITEMS_08)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(8000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(8000, result[1])
 
       items = buildItemDict(ITEMS_09)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(80000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(80000, result[1])
 
       items = buildItemDict(ITEMS_10)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(800000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(800000, result[1])
 
       items = buildItemDict(ITEMS_11)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400004, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400004, result[1])
 
       items = buildItemDict(ITEMS_12)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400040, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400040, result[1])
 
       items = buildItemDict(ITEMS_13)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(400400, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(400400, result[1])
 
       items = buildItemDict(ITEMS_14)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(404000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(404000, result[1])
 
       items = buildItemDict(ITEMS_15)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200006, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200006, result[1])
 
       items = buildItemDict(ITEMS_16)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200060, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200060, result[1])
 
       items = buildItemDict(ITEMS_17)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(200600, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(200600, result[1])
 
       items = buildItemDict(ITEMS_18)
       capacity = 1000000
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(8, len(result[0]))
-      self.failUnlessEqual(206000, result[1])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(8, len(result[0]))
+      self.assertEqual(206000, result[1])
 
    def testAlternateFit_017(self):
       """
@@ -2537,15 +2537,15 @@ class TestKnapsack(unittest.TestCase):
       items = buildItemDict(ITEMS_19)
       capacity = 760
       result = alternateFit(items, capacity)
-      self.failUnless(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
-      self.failUnlessEqual(6, len(result[0]))
-      self.failUnlessEqual(719, result[1])
-      self.failUnless('link001' in result[0])
-      self.failUnless('dir001/file002' in result[0])
-      self.failUnless('link002' in result[0])
-      self.failUnless('dir001/file001' in result[0])
-      self.failUnless('dir002/file002' in result[0])
-      self.failUnless('dir002/file001' in result[0])
+      self.assertTrue(result[1] <= capacity, "%s <= %s" % (result[1], capacity))
+      self.assertEqual(6, len(result[0]))
+      self.assertEqual(719, result[1])
+      self.assertTrue('link001' in result[0])
+      self.assertTrue('dir001/file002' in result[0])
+      self.assertTrue('link002' in result[0])
+      self.assertTrue('dir001/file001' in result[0])
+      self.assertTrue('dir002/file002' in result[0])
+      self.assertTrue('dir002/file001' in result[0])
 
 
 #######################################################################

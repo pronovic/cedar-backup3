@@ -169,20 +169,20 @@ class TestBDBRepository(unittest.TestCase):
       Test constructor with no values filled in.
       """
       repository = BDBRepository()
-      self.failUnlessEqual("BDB", repository.repositoryType)
-      self.failUnlessEqual(None, repository.repositoryPath)
-      self.failUnlessEqual(None, repository.collectMode)
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual("BDB", repository.repositoryType)
+      self.assertEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       repository = BDBRepository("/path/to/it", "daily", "gzip")
-      self.failUnlessEqual("BDB", repository.repositoryType)
-      self.failUnlessEqual("/path/to/it", repository.repositoryPath)
-      self.failUnlessEqual("daily", repository.collectMode)
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("BDB", repository.repositoryType)
+      self.assertEqual("/path/to/it", repository.repositoryPath)
+      self.assertEqual("daily", repository.collectMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    # Removed testConstructor_003 after BDBRepository was deprecated
 
@@ -191,116 +191,116 @@ class TestBDBRepository(unittest.TestCase):
       Test assignment of repositoryPath attribute, None value.
       """
       repository = BDBRepository(repositoryPath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", repository.repositoryPath)
+      self.assertEqual("/path/to/something", repository.repositoryPath)
       repository.repositoryPath = None
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_005(self):
       """
       Test assignment of repositoryPath attribute, valid value.
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       repository.repositoryPath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", repository.repositoryPath)
+      self.assertEqual("/path/to/whatever", repository.repositoryPath)
 
    def testConstructor_006(self):
       """
       Test assignment of repositoryPath attribute, invalid value (empty).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_007(self):
       """
       Test assignment of repositoryPath attribute, invalid value (not absolute).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "relative/path")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       repository = BDBRepository(collectMode="daily")
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = None
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       repository.collectMode = "daily"
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = "weekly"
-      self.failUnlessEqual("weekly", repository.collectMode)
+      self.assertEqual("weekly", repository.collectMode)
       repository.collectMode = "incr"
-      self.failUnlessEqual("incr", repository.collectMode)
+      self.assertEqual("incr", repository.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "monthly")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       repository = BDBRepository(compressMode="gzip")
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
       repository.compressMode = None
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       repository.compressMode = "none"
-      self.failUnlessEqual("none", repository.compressMode)
+      self.assertEqual("none", repository.compressMode)
       repository.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", repository.compressMode)
+      self.assertEqual("bzip2", repository.compressMode)
       repository.compressMode = "gzip"
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       repository = BDBRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "compress")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
 
    ############################
@@ -313,13 +313,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository()
       repository2 = BDBRepository()
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_002(self):
       """
@@ -327,13 +327,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository("/path", "daily", "gzip")
       repository2 = BDBRepository("/path", "daily", "gzip")
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_003(self):
       """
@@ -341,13 +341,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository()
       repository2 = BDBRepository(repositoryPath="/zippy")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_004(self):
       """
@@ -355,13 +355,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository("/path", "daily", "gzip")
       repository2 = BDBRepository("/zippy", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_005(self):
       """
@@ -369,13 +369,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository()
       repository2 = BDBRepository(collectMode="incr")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_006(self):
       """
@@ -383,13 +383,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository("/path", "daily", "gzip")
       repository2 = BDBRepository("/path", "incr", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_007(self):
       """
@@ -397,13 +397,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository()
       repository2 = BDBRepository(compressMode="gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_008(self):
       """
@@ -411,13 +411,13 @@ class TestBDBRepository(unittest.TestCase):
       """
       repository1 = BDBRepository("/path", "daily", "bzip2")
       repository2 = BDBRepository("/path", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
 
 ###########################
@@ -464,20 +464,20 @@ class TestFSFSRepository(unittest.TestCase):
       Test constructor with no values filled in.
       """
       repository = FSFSRepository()
-      self.failUnlessEqual("FSFS", repository.repositoryType)
-      self.failUnlessEqual(None, repository.repositoryPath)
-      self.failUnlessEqual(None, repository.collectMode)
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual("FSFS", repository.repositoryType)
+      self.assertEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       repository = FSFSRepository("/path/to/it", "daily", "gzip")
-      self.failUnlessEqual("FSFS", repository.repositoryType)
-      self.failUnlessEqual("/path/to/it", repository.repositoryPath)
-      self.failUnlessEqual("daily", repository.collectMode)
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("FSFS", repository.repositoryType)
+      self.assertEqual("/path/to/it", repository.repositoryPath)
+      self.assertEqual("daily", repository.collectMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    # Removed testConstructor_003 after FSFSRepository was deprecated
 
@@ -486,116 +486,116 @@ class TestFSFSRepository(unittest.TestCase):
       Test assignment of repositoryPath attribute, None value.
       """
       repository = FSFSRepository(repositoryPath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", repository.repositoryPath)
+      self.assertEqual("/path/to/something", repository.repositoryPath)
       repository.repositoryPath = None
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_005(self):
       """
       Test assignment of repositoryPath attribute, valid value.
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       repository.repositoryPath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", repository.repositoryPath)
+      self.assertEqual("/path/to/whatever", repository.repositoryPath)
 
    def testConstructor_006(self):
       """
       Test assignment of repositoryPath attribute, invalid value (empty).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_007(self):
       """
       Test assignment of repositoryPath attribute, invalid value (not absolute).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "relative/path")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       repository = FSFSRepository(collectMode="daily")
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = None
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       repository.collectMode = "daily"
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = "weekly"
-      self.failUnlessEqual("weekly", repository.collectMode)
+      self.assertEqual("weekly", repository.collectMode)
       repository.collectMode = "incr"
-      self.failUnlessEqual("incr", repository.collectMode)
+      self.assertEqual("incr", repository.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "monthly")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       repository = FSFSRepository(compressMode="gzip")
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
       repository.compressMode = None
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       repository.compressMode = "none"
-      self.failUnlessEqual("none", repository.compressMode)
+      self.assertEqual("none", repository.compressMode)
       repository.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", repository.compressMode)
+      self.assertEqual("bzip2", repository.compressMode)
       repository.compressMode = "gzip"
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       repository = FSFSRepository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "compress")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
 
    ############################
@@ -608,13 +608,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository()
       repository2 = FSFSRepository()
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_002(self):
       """
@@ -622,13 +622,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository("/path", "daily", "gzip")
       repository2 = FSFSRepository("/path", "daily", "gzip")
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_003(self):
       """
@@ -636,13 +636,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository()
       repository2 = FSFSRepository(repositoryPath="/zippy")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_004(self):
       """
@@ -650,13 +650,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository("/path", "daily", "gzip")
       repository2 = FSFSRepository("/zippy", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_005(self):
       """
@@ -664,13 +664,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository()
       repository2 = FSFSRepository(collectMode="incr")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_006(self):
       """
@@ -678,13 +678,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository("/path", "daily", "gzip")
       repository2 = FSFSRepository("/path", "incr", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_007(self):
       """
@@ -692,13 +692,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository()
       repository2 = FSFSRepository(compressMode="gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_008(self):
       """
@@ -706,13 +706,13 @@ class TestFSFSRepository(unittest.TestCase):
       """
       repository1 = FSFSRepository("/path", "daily", "bzip2")
       repository2 = FSFSRepository("/path", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
 
 #######################
@@ -754,156 +754,156 @@ class TestRepository(unittest.TestCase):
       Test constructor with no values filled in.
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.repositoryType)
-      self.failUnlessEqual(None, repository.repositoryPath)
-      self.failUnlessEqual(None, repository.collectMode)
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.repositoryType)
+      self.assertEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       repository = Repository("type", "/path/to/it", "daily", "gzip")
-      self.failUnlessEqual("type", repository.repositoryType)
-      self.failUnlessEqual("/path/to/it", repository.repositoryPath)
-      self.failUnlessEqual("daily", repository.collectMode)
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("type", repository.repositoryType)
+      self.assertEqual("/path/to/it", repository.repositoryPath)
+      self.assertEqual("daily", repository.collectMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    def testConstructor_003(self):
       """
       Test assignment of repositoryType attribute, None value.
       """
       repository = Repository(repositoryType="type")
-      self.failUnlessEqual("type", repository.repositoryType)
+      self.assertEqual("type", repository.repositoryType)
       repository.repositoryType = None
-      self.failUnlessEqual(None, repository.repositoryType)
+      self.assertEqual(None, repository.repositoryType)
 
    def testConstructor_004(self):
       """
       Test assignment of repositoryType attribute, non-None value.
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.repositoryType)
+      self.assertEqual(None, repository.repositoryType)
       repository.repositoryType = ""
-      self.failUnlessEqual("", repository.repositoryType)
+      self.assertEqual("", repository.repositoryType)
       repository.repositoryType = "test"
-      self.failUnlessEqual("test", repository.repositoryType)
+      self.assertEqual("test", repository.repositoryType)
 
    def testConstructor_005(self):
       """
       Test assignment of repositoryPath attribute, None value.
       """
       repository = Repository(repositoryPath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", repository.repositoryPath)
+      self.assertEqual("/path/to/something", repository.repositoryPath)
       repository.repositoryPath = None
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_006(self):
       """
       Test assignment of repositoryPath attribute, valid value.
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       repository.repositoryPath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", repository.repositoryPath)
+      self.assertEqual("/path/to/whatever", repository.repositoryPath)
 
    def testConstructor_007(self):
       """
       Test assignment of repositoryPath attribute, invalid value (empty).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_008(self):
       """
       Test assignment of repositoryPath attribute, invalid value (not absolute).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
       self.failUnlessAssignRaises(ValueError, repository, "repositoryPath", "relative/path")
-      self.failUnlessEqual(None, repository.repositoryPath)
+      self.assertEqual(None, repository.repositoryPath)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       repository = Repository(collectMode="daily")
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = None
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       repository.collectMode = "daily"
-      self.failUnlessEqual("daily", repository.collectMode)
+      self.assertEqual("daily", repository.collectMode)
       repository.collectMode = "weekly"
-      self.failUnlessEqual("weekly", repository.collectMode)
+      self.assertEqual("weekly", repository.collectMode)
       repository.collectMode = "incr"
-      self.failUnlessEqual("incr", repository.collectMode)
+      self.assertEqual("incr", repository.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_012(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
       self.failUnlessAssignRaises(ValueError, repository, "collectMode", "monthly")
-      self.failUnlessEqual(None, repository.collectMode)
+      self.assertEqual(None, repository.collectMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       repository = Repository(compressMode="gzip")
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
       repository.compressMode = None
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       repository.compressMode = "none"
-      self.failUnlessEqual("none", repository.compressMode)
+      self.assertEqual("none", repository.compressMode)
       repository.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", repository.compressMode)
+      self.assertEqual("bzip2", repository.compressMode)
       repository.compressMode = "gzip"
-      self.failUnlessEqual("gzip", repository.compressMode)
+      self.assertEqual("gzip", repository.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
    def testConstructor_016(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       repository = Repository()
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
       self.failUnlessAssignRaises(ValueError, repository, "compressMode", "compress")
-      self.failUnlessEqual(None, repository.compressMode)
+      self.assertEqual(None, repository.compressMode)
 
 
    ############################
@@ -916,13 +916,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository()
       repository2 = Repository()
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_002(self):
       """
@@ -930,13 +930,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository("type", "/path", "daily", "gzip")
       repository2 = Repository("type", "/path", "daily", "gzip")
-      self.failUnlessEqual(repository1, repository2)
-      self.failUnless(repository1 == repository2)
-      self.failUnless(not repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(repository1 >= repository2)
-      self.failUnless(not repository1 != repository2)
+      self.assertEqual(repository1, repository2)
+      self.assertTrue(repository1 == repository2)
+      self.assertTrue(not repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(repository1 >= repository2)
+      self.assertTrue(not repository1 != repository2)
 
    def testComparison_003(self):
       """
@@ -944,13 +944,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository()
       repository2 = Repository(repositoryType="type")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_004(self):
       """
@@ -958,13 +958,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository("other", "/path", "daily", "gzip")
       repository2 = Repository("type", "/path", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_004a(self):
       """
@@ -972,13 +972,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository()
       repository2 = Repository(repositoryPath="/zippy")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_005(self):
       """
@@ -986,13 +986,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository("type", "/path", "daily", "gzip")
       repository2 = Repository("type", "/zippy", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_006(self):
       """
@@ -1000,13 +1000,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository()
       repository2 = Repository(collectMode="incr")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_007(self):
       """
@@ -1014,13 +1014,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository("type", "/path", "daily", "gzip")
       repository2 = Repository("type", "/path", "incr", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_008(self):
       """
@@ -1028,13 +1028,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository()
       repository2 = Repository(compressMode="gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
    def testComparison_009(self):
       """
@@ -1042,13 +1042,13 @@ class TestRepository(unittest.TestCase):
       """
       repository1 = Repository("type", "/path", "daily", "bzip2")
       repository2 = Repository("type", "/path", "daily", "gzip")
-      self.failIfEqual(repository1, repository2)
-      self.failUnless(not repository1 == repository2)
-      self.failUnless(repository1 < repository2)
-      self.failUnless(repository1 <= repository2)
-      self.failUnless(not repository1 > repository2)
-      self.failUnless(not repository1 >= repository2)
-      self.failUnless(repository1 != repository2)
+      self.assertNotEqual(repository1, repository2)
+      self.assertTrue(not repository1 == repository2)
+      self.assertTrue(repository1 < repository2)
+      self.assertTrue(repository1 <= repository2)
+      self.assertTrue(not repository1 > repository2)
+      self.assertTrue(not repository1 >= repository2)
+      self.assertTrue(repository1 != repository2)
 
 
 ##########################
@@ -1090,189 +1090,189 @@ class TestRepositoryDir(unittest.TestCase):
       Test constructor with no values filled in.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.repositoryType)
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
-      self.failUnlessEqual(None, repositoryDir.collectMode)
-      self.failUnlessEqual(None, repositoryDir.compressMode)
-      self.failUnlessEqual(None, repositoryDir.relativeExcludePaths)
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.repositoryType)
+      self.assertEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.relativeExcludePaths)
+      self.assertEqual(None, repositoryDir.excludePatterns)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       repositoryDir = RepositoryDir("type", "/path/to/it", "daily", "gzip", [ "whatever", ], [ ".*software.*", ])
-      self.failUnlessEqual("type", repositoryDir.repositoryType)
-      self.failUnlessEqual("/path/to/it", repositoryDir.directoryPath)
-      self.failUnlessEqual("daily", repositoryDir.collectMode)
-      self.failUnlessEqual("gzip", repositoryDir.compressMode)
-      self.failUnlessEqual([ "whatever", ], repositoryDir.relativeExcludePaths)
-      self.failUnlessEqual([ ".*software.*", ], repositoryDir.excludePatterns)
+      self.assertEqual("type", repositoryDir.repositoryType)
+      self.assertEqual("/path/to/it", repositoryDir.directoryPath)
+      self.assertEqual("daily", repositoryDir.collectMode)
+      self.assertEqual("gzip", repositoryDir.compressMode)
+      self.assertEqual([ "whatever", ], repositoryDir.relativeExcludePaths)
+      self.assertEqual([ ".*software.*", ], repositoryDir.excludePatterns)
 
    def testConstructor_003(self):
       """
       Test assignment of repositoryType attribute, None value.
       """
       repositoryDir = RepositoryDir(repositoryType="type")
-      self.failUnlessEqual("type", repositoryDir.repositoryType)
+      self.assertEqual("type", repositoryDir.repositoryType)
       repositoryDir.repositoryType = None
-      self.failUnlessEqual(None, repositoryDir.repositoryType)
+      self.assertEqual(None, repositoryDir.repositoryType)
 
    def testConstructor_004(self):
       """
       Test assignment of repositoryType attribute, non-None value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.repositoryType)
+      self.assertEqual(None, repositoryDir.repositoryType)
       repositoryDir.repositoryType = ""
-      self.failUnlessEqual("", repositoryDir.repositoryType)
+      self.assertEqual("", repositoryDir.repositoryType)
       repositoryDir.repositoryType = "test"
-      self.failUnlessEqual("test", repositoryDir.repositoryType)
+      self.assertEqual("test", repositoryDir.repositoryType)
 
    def testConstructor_005(self):
       """
       Test assignment of directoryPath attribute, None value.
       """
       repositoryDir = RepositoryDir(directoryPath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", repositoryDir.directoryPath)
+      self.assertEqual("/path/to/something", repositoryDir.directoryPath)
       repositoryDir.directoryPath = None
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
 
    def testConstructor_006(self):
       """
       Test assignment of directoryPath attribute, valid value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
       repositoryDir.directoryPath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", repositoryDir.directoryPath)
+      self.assertEqual("/path/to/whatever", repositoryDir.directoryPath)
 
    def testConstructor_007(self):
       """
       Test assignment of directoryPath attribute, invalid value (empty).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "directoryPath", "")
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
 
    def testConstructor_008(self):
       """
       Test assignment of directoryPath attribute, invalid value (not absolute).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "directoryPath", "relative/path")
-      self.failUnlessEqual(None, repositoryDir.directoryPath)
+      self.assertEqual(None, repositoryDir.directoryPath)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       repositoryDir = RepositoryDir(collectMode="daily")
-      self.failUnlessEqual("daily", repositoryDir.collectMode)
+      self.assertEqual("daily", repositoryDir.collectMode)
       repositoryDir.collectMode = None
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
       repositoryDir.collectMode = "daily"
-      self.failUnlessEqual("daily", repositoryDir.collectMode)
+      self.assertEqual("daily", repositoryDir.collectMode)
       repositoryDir.collectMode = "weekly"
-      self.failUnlessEqual("weekly", repositoryDir.collectMode)
+      self.assertEqual("weekly", repositoryDir.collectMode)
       repositoryDir.collectMode = "incr"
-      self.failUnlessEqual("incr", repositoryDir.collectMode)
+      self.assertEqual("incr", repositoryDir.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "collectMode", "")
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
 
    def testConstructor_012(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "collectMode", "monthly")
-      self.failUnlessEqual(None, repositoryDir.collectMode)
+      self.assertEqual(None, repositoryDir.collectMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       repositoryDir = RepositoryDir(compressMode="gzip")
-      self.failUnlessEqual("gzip", repositoryDir.compressMode)
+      self.assertEqual("gzip", repositoryDir.compressMode)
       repositoryDir.compressMode = None
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
       repositoryDir.compressMode = "none"
-      self.failUnlessEqual("none", repositoryDir.compressMode)
+      self.assertEqual("none", repositoryDir.compressMode)
       repositoryDir.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", repositoryDir.compressMode)
+      self.assertEqual("bzip2", repositoryDir.compressMode)
       repositoryDir.compressMode = "gzip"
-      self.failUnlessEqual("gzip", repositoryDir.compressMode)
+      self.assertEqual("gzip", repositoryDir.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "compressMode", "")
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
 
    def testConstructor_016(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "compressMode", "compress")
-      self.failUnlessEqual(None, repositoryDir.compressMode)
+      self.assertEqual(None, repositoryDir.compressMode)
 
    def testConstructor_017(self):
       """
       Test assignment of relativeExcludePaths attribute, None value.
       """
       repositoryDir = RepositoryDir(relativeExcludePaths=[])
-      self.failUnlessEqual([], repositoryDir.relativeExcludePaths)
+      self.assertEqual([], repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths = None
-      self.failUnlessEqual(None, repositoryDir.relativeExcludePaths)
+      self.assertEqual(None, repositoryDir.relativeExcludePaths)
 
    def testConstructor_018(self):
       """
       Test assignment of relativeExcludePaths attribute, [] value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.relativeExcludePaths)
+      self.assertEqual(None, repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths = []
-      self.failUnlessEqual([], repositoryDir.relativeExcludePaths)
+      self.assertEqual([], repositoryDir.relativeExcludePaths)
 
    def testConstructor_019(self):
       """
       Test assignment of relativeExcludePaths attribute, single valid entry.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.relativeExcludePaths)
+      self.assertEqual(None, repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths = ["stuff", ]
-      self.failUnlessEqual(["stuff", ], repositoryDir.relativeExcludePaths)
+      self.assertEqual(["stuff", ], repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths.insert(0, "bogus")
-      self.failUnlessEqual(["bogus", "stuff", ], repositoryDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", ], repositoryDir.relativeExcludePaths)
 
    def testConstructor_020(self):
       """
@@ -1280,69 +1280,69 @@ class TestRepositoryDir(unittest.TestCase):
       entries.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.relativeExcludePaths)
+      self.assertEqual(None, repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths = ["bogus", "stuff", ]
-      self.failUnlessEqual(["bogus", "stuff", ], repositoryDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", ], repositoryDir.relativeExcludePaths)
       repositoryDir.relativeExcludePaths.append("more")
-      self.failUnlessEqual(["bogus", "stuff", "more", ], repositoryDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", "more", ], repositoryDir.relativeExcludePaths)
 
    def testConstructor_021(self):
       """
       Test assignment of excludePatterns attribute, None value.
       """
       repositoryDir = RepositoryDir(excludePatterns=[])
-      self.failUnlessEqual([], repositoryDir.excludePatterns)
+      self.assertEqual([], repositoryDir.excludePatterns)
       repositoryDir.excludePatterns = None
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
 
    def testConstructor_022(self):
       """
       Test assignment of excludePatterns attribute, [] value.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       repositoryDir.excludePatterns = []
-      self.failUnlessEqual([], repositoryDir.excludePatterns)
+      self.assertEqual([], repositoryDir.excludePatterns)
 
    def testConstructor_023(self):
       """
       Test assignment of excludePatterns attribute, single valid entry.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       repositoryDir.excludePatterns = ["valid", ]
-      self.failUnlessEqual(["valid", ], repositoryDir.excludePatterns)
+      self.assertEqual(["valid", ], repositoryDir.excludePatterns)
       repositoryDir.excludePatterns.append("more")
-      self.failUnlessEqual(["valid", "more", ], repositoryDir.excludePatterns)
+      self.assertEqual(["valid", "more", ], repositoryDir.excludePatterns)
 
    def testConstructor_024(self):
       """
       Test assignment of excludePatterns attribute, multiple valid entries.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       repositoryDir.excludePatterns = ["valid", "more", ]
-      self.failUnlessEqual(["valid", "more", ], repositoryDir.excludePatterns)
+      self.assertEqual(["valid", "more", ], repositoryDir.excludePatterns)
       repositoryDir.excludePatterns.insert(1, "bogus")
-      self.failUnlessEqual(["valid", "bogus", "more", ], repositoryDir.excludePatterns)
+      self.assertEqual(["valid", "bogus", "more", ], repositoryDir.excludePatterns)
 
    def testConstructor_025(self):
       """
       Test assignment of excludePatterns attribute, single invalid entry.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "excludePatterns", ["*.jpg", ])
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
 
    def testConstructor_026(self):
       """
       Test assignment of excludePatterns attribute, multiple invalid entries.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "excludePatterns", ["*.jpg", "*" ])
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
 
    def testConstructor_027(self):
       """
@@ -1350,9 +1350,9 @@ class TestRepositoryDir(unittest.TestCase):
       entries.
       """
       repositoryDir = RepositoryDir()
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, repositoryDir, "excludePatterns", ["*.jpg", "valid" ])
-      self.failUnlessEqual(None, repositoryDir.excludePatterns)
+      self.assertEqual(None, repositoryDir.excludePatterns)
 
 
    ############################
@@ -1365,13 +1365,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir()
       repositoryDir2 = RepositoryDir()
-      self.failUnlessEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(repositoryDir1 == repositoryDir2)
-      self.failUnless(not repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(repositoryDir1 >= repositoryDir2)
-      self.failUnless(not repositoryDir1 != repositoryDir2)
+      self.assertEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(repositoryDir1 == repositoryDir2)
+      self.assertTrue(not repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(repositoryDir1 >= repositoryDir2)
+      self.assertTrue(not repositoryDir1 != repositoryDir2)
 
    def testComparison_002(self):
       """
@@ -1379,13 +1379,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir("type", "/path", "daily", "gzip")
       repositoryDir2 = RepositoryDir("type", "/path", "daily", "gzip")
-      self.failUnlessEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(repositoryDir1 == repositoryDir2)
-      self.failUnless(not repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(repositoryDir1 >= repositoryDir2)
-      self.failUnless(not repositoryDir1 != repositoryDir2)
+      self.assertEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(repositoryDir1 == repositoryDir2)
+      self.assertTrue(not repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(repositoryDir1 >= repositoryDir2)
+      self.assertTrue(not repositoryDir1 != repositoryDir2)
 
    def testComparison_003(self):
       """
@@ -1393,13 +1393,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir()
       repositoryDir2 = RepositoryDir(repositoryType="type")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_004(self):
       """
@@ -1407,13 +1407,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir("other", "/path", "daily", "gzip")
       repositoryDir2 = RepositoryDir("type", "/path", "daily", "gzip")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_004a(self):
       """
@@ -1421,13 +1421,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir()
       repositoryDir2 = RepositoryDir(directoryPath="/zippy")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_005(self):
       """
@@ -1435,13 +1435,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir("type", "/path", "daily", "gzip")
       repositoryDir2 = RepositoryDir("type", "/zippy", "daily", "gzip")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_006(self):
       """
@@ -1449,13 +1449,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir()
       repositoryDir2 = RepositoryDir(collectMode="incr")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_007(self):
       """
@@ -1463,13 +1463,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir("type", "/path", "daily", "gzip")
       repositoryDir2 = RepositoryDir("type", "/path", "incr", "gzip")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_008(self):
       """
@@ -1477,13 +1477,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir()
       repositoryDir2 = RepositoryDir(compressMode="gzip")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
    def testComparison_009(self):
       """
@@ -1491,13 +1491,13 @@ class TestRepositoryDir(unittest.TestCase):
       """
       repositoryDir1 = RepositoryDir("type", "/path", "daily", "bzip2")
       repositoryDir2 = RepositoryDir("type", "/path", "daily", "gzip")
-      self.failIfEqual(repositoryDir1, repositoryDir2)
-      self.failUnless(not repositoryDir1 == repositoryDir2)
-      self.failUnless(repositoryDir1 < repositoryDir2)
-      self.failUnless(repositoryDir1 <= repositoryDir2)
-      self.failUnless(not repositoryDir1 > repositoryDir2)
-      self.failUnless(not repositoryDir1 >= repositoryDir2)
-      self.failUnless(repositoryDir1 != repositoryDir2)
+      self.assertNotEqual(repositoryDir1, repositoryDir2)
+      self.assertTrue(not repositoryDir1 == repositoryDir2)
+      self.assertTrue(repositoryDir1 < repositoryDir2)
+      self.assertTrue(repositoryDir1 <= repositoryDir2)
+      self.assertTrue(not repositoryDir1 > repositoryDir2)
+      self.assertTrue(not repositoryDir1 >= repositoryDir2)
+      self.assertTrue(repositoryDir1 != repositoryDir2)
 
 
 #############################
@@ -1539,27 +1539,27 @@ class TestSubversionConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.collectMode)
-      self.failUnlessEqual(None, subversion.compressMode)
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.collectMode)
+      self.assertEqual(None, subversion.compressMode)
+      self.assertEqual(None, subversion.repositories)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values, repositories=None.
       """
       subversion = SubversionConfig("daily", "gzip", None)
-      self.failUnlessEqual("daily", subversion.collectMode)
-      self.failUnlessEqual("gzip", subversion.compressMode)
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual("daily", subversion.collectMode)
+      self.assertEqual("gzip", subversion.compressMode)
+      self.assertEqual(None, subversion.repositories)
 
    def testConstructor_003(self):
       """
       Test constructor with all values filled in, with valid values, no repositories.
       """
       subversion = SubversionConfig("daily", "gzip", [])
-      self.failUnlessEqual("daily", subversion.collectMode)
-      self.failUnlessEqual("gzip", subversion.compressMode)
-      self.failUnlessEqual([], subversion.repositories)
+      self.assertEqual("daily", subversion.collectMode)
+      self.assertEqual("gzip", subversion.compressMode)
+      self.assertEqual([], subversion.repositories)
 
    def testConstructor_004(self):
       """
@@ -1567,9 +1567,9 @@ class TestSubversionConfig(unittest.TestCase):
       """
       repositories = [ Repository(), ]
       subversion = SubversionConfig("daily", "gzip", repositories)
-      self.failUnlessEqual("daily", subversion.collectMode)
-      self.failUnlessEqual("gzip", subversion.compressMode)
-      self.failUnlessEqual(repositories, subversion.repositories)
+      self.assertEqual("daily", subversion.collectMode)
+      self.assertEqual("gzip", subversion.compressMode)
+      self.assertEqual(repositories, subversion.repositories)
 
    def testConstructor_005(self):
       """
@@ -1577,130 +1577,130 @@ class TestSubversionConfig(unittest.TestCase):
       """
       repositories = [ Repository(collectMode="daily"), Repository(collectMode="weekly"), ]
       subversion = SubversionConfig("daily", "gzip", repositories=repositories)
-      self.failUnlessEqual("daily", subversion.collectMode)
-      self.failUnlessEqual("gzip", subversion.compressMode)
-      self.failUnlessEqual(repositories, subversion.repositories)
+      self.assertEqual("daily", subversion.collectMode)
+      self.assertEqual("gzip", subversion.compressMode)
+      self.assertEqual(repositories, subversion.repositories)
 
    def testConstructor_006(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       subversion = SubversionConfig(collectMode="daily")
-      self.failUnlessEqual("daily", subversion.collectMode)
+      self.assertEqual("daily", subversion.collectMode)
       subversion.collectMode = None
-      self.failUnlessEqual(None, subversion.collectMode)
+      self.assertEqual(None, subversion.collectMode)
 
    def testConstructor_007(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.collectMode)
+      self.assertEqual(None, subversion.collectMode)
       subversion.collectMode = "weekly"
-      self.failUnlessEqual("weekly", subversion.collectMode)
+      self.assertEqual("weekly", subversion.collectMode)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.collectMode)
+      self.assertEqual(None, subversion.collectMode)
       self.failUnlessAssignRaises(ValueError, subversion, "collectMode", "")
-      self.failUnlessEqual(None, subversion.collectMode)
+      self.assertEqual(None, subversion.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       subversion = SubversionConfig(compressMode="gzip")
-      self.failUnlessEqual("gzip", subversion.compressMode)
+      self.assertEqual("gzip", subversion.compressMode)
       subversion.compressMode = None
-      self.failUnlessEqual(None, subversion.compressMode)
+      self.assertEqual(None, subversion.compressMode)
 
    def testConstructor_010(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.compressMode)
+      self.assertEqual(None, subversion.compressMode)
       subversion.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", subversion.compressMode)
+      self.assertEqual("bzip2", subversion.compressMode)
 
    def testConstructor_011(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.compressMode)
+      self.assertEqual(None, subversion.compressMode)
       self.failUnlessAssignRaises(ValueError, subversion, "compressMode", "")
-      self.failUnlessEqual(None, subversion.compressMode)
+      self.assertEqual(None, subversion.compressMode)
 
    def testConstructor_012(self):
       """
       Test assignment of repositories attribute, None value.
       """
       subversion = SubversionConfig(repositories=[])
-      self.failUnlessEqual([], subversion.repositories)
+      self.assertEqual([], subversion.repositories)
       subversion.repositories = None
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
 
    def testConstructor_013(self):
       """
       Test assignment of repositories attribute, [] value.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       subversion.repositories = []
-      self.failUnlessEqual([], subversion.repositories)
+      self.assertEqual([], subversion.repositories)
 
    def testConstructor_014(self):
       """
       Test assignment of repositories attribute, single valid entry.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       subversion.repositories = [ Repository(), ]
-      self.failUnlessEqual([ Repository(), ], subversion.repositories)
+      self.assertEqual([ Repository(), ], subversion.repositories)
       subversion.repositories.append(Repository(collectMode="daily"))
-      self.failUnlessEqual([ Repository(), Repository(collectMode="daily"), ], subversion.repositories)
+      self.assertEqual([ Repository(), Repository(collectMode="daily"), ], subversion.repositories)
 
    def testConstructor_015(self):
       """
       Test assignment of repositories attribute, multiple valid entries.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       subversion.repositories = [ Repository(collectMode="daily"), Repository(collectMode="weekly"), ]
-      self.failUnlessEqual([ Repository(collectMode="daily"), Repository(collectMode="weekly"), ], subversion.repositories)
+      self.assertEqual([ Repository(collectMode="daily"), Repository(collectMode="weekly"), ], subversion.repositories)
       subversion.repositories.append(Repository(collectMode="incr"))
-      self.failUnlessEqual([ Repository(collectMode="daily"), Repository(collectMode="weekly"), Repository(collectMode="incr"), ], subversion.repositories)
+      self.assertEqual([ Repository(collectMode="daily"), Repository(collectMode="weekly"), Repository(collectMode="incr"), ], subversion.repositories)
 
    def testConstructor_016(self):
       """
       Test assignment of repositories attribute, single invalid entry (None).
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       self.failUnlessAssignRaises(ValueError, subversion, "repositories", [None, ])
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
 
    def testConstructor_017(self):
       """
       Test assignment of repositories attribute, single invalid entry (wrong type).
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       self.failUnlessAssignRaises(ValueError, subversion, "repositories", [SubversionConfig(), ])
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
 
    def testConstructor_018(self):
       """
       Test assignment of repositories attribute, mixed valid and invalid entries.
       """
       subversion = SubversionConfig()
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
       self.failUnlessAssignRaises(ValueError, subversion, "repositories", [Repository(), SubversionConfig(), ])
-      self.failUnlessEqual(None, subversion.repositories)
+      self.assertEqual(None, subversion.repositories)
 
 
    ############################
@@ -1713,13 +1713,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig()
       subversion2 = SubversionConfig()
-      self.failUnlessEqual(subversion1, subversion2)
-      self.failUnless(subversion1 == subversion2)
-      self.failUnless(not subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(subversion1 >= subversion2)
-      self.failUnless(not subversion1 != subversion2)
+      self.assertEqual(subversion1, subversion2)
+      self.assertTrue(subversion1 == subversion2)
+      self.assertTrue(not subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(subversion1 >= subversion2)
+      self.assertTrue(not subversion1 != subversion2)
 
    def testComparison_002(self):
       """
@@ -1727,13 +1727,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", None)
       subversion2 = SubversionConfig("daily", "gzip", None)
-      self.failUnlessEqual(subversion1, subversion2)
-      self.failUnless(subversion1 == subversion2)
-      self.failUnless(not subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(subversion1 >= subversion2)
-      self.failUnless(not subversion1 != subversion2)
+      self.assertEqual(subversion1, subversion2)
+      self.assertTrue(subversion1 == subversion2)
+      self.assertTrue(not subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(subversion1 >= subversion2)
+      self.assertTrue(not subversion1 != subversion2)
 
    def testComparison_003(self):
       """
@@ -1741,13 +1741,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [])
       subversion2 = SubversionConfig("daily", "gzip", [])
-      self.failUnlessEqual(subversion1, subversion2)
-      self.failUnless(subversion1 == subversion2)
-      self.failUnless(not subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(subversion1 >= subversion2)
-      self.failUnless(not subversion1 != subversion2)
+      self.assertEqual(subversion1, subversion2)
+      self.assertTrue(subversion1 == subversion2)
+      self.assertTrue(not subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(subversion1 >= subversion2)
+      self.assertTrue(not subversion1 != subversion2)
 
    def testComparison_004(self):
       """
@@ -1755,13 +1755,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [ Repository(), ])
       subversion2 = SubversionConfig("daily", "gzip", [ Repository(), ])
-      self.failUnlessEqual(subversion1, subversion2)
-      self.failUnless(subversion1 == subversion2)
-      self.failUnless(not subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(subversion1 >= subversion2)
-      self.failUnless(not subversion1 != subversion2)
+      self.assertEqual(subversion1, subversion2)
+      self.assertTrue(subversion1 == subversion2)
+      self.assertTrue(not subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(subversion1 >= subversion2)
+      self.assertTrue(not subversion1 != subversion2)
 
    def testComparison_005(self):
       """
@@ -1769,13 +1769,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig()
       subversion2 = SubversionConfig(collectMode="daily")
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_006(self):
       """
@@ -1783,13 +1783,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [ Repository(), ])
       subversion2 = SubversionConfig("weekly", "gzip", [ Repository(), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_007(self):
       """
@@ -1797,13 +1797,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig()
       subversion2 = SubversionConfig(compressMode="bzip2")
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_008(self):
       """
@@ -1811,13 +1811,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "bzip2", [ Repository(), ])
       subversion2 = SubversionConfig("daily", "gzip", [ Repository(), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_009(self):
       """
@@ -1825,13 +1825,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig()
       subversion2 = SubversionConfig(repositories=[])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_010(self):
       """
@@ -1839,13 +1839,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig()
       subversion2 = SubversionConfig(repositories=[Repository(), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_011(self):
       """
@@ -1853,13 +1853,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [ ])
       subversion2 = SubversionConfig("daily", "gzip", [ Repository(), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_012(self):
       """
@@ -1867,13 +1867,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [ Repository(), ])
       subversion2 = SubversionConfig("daily", "gzip", [ Repository(), Repository(), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
    def testComparison_013(self):
       """
@@ -1881,13 +1881,13 @@ class TestSubversionConfig(unittest.TestCase):
       """
       subversion1 = SubversionConfig("daily", "gzip", [ Repository(repositoryType="other"), ])
       subversion2 = SubversionConfig("daily", "gzip", [ Repository(repositoryType="type"), ])
-      self.failIfEqual(subversion1, subversion2)
-      self.failUnless(not subversion1 == subversion2)
-      self.failUnless(subversion1 < subversion2)
-      self.failUnless(subversion1 <= subversion2)
-      self.failUnless(not subversion1 > subversion2)
-      self.failUnless(not subversion1 >= subversion2)
-      self.failUnless(subversion1 != subversion2)
+      self.assertNotEqual(subversion1, subversion2)
+      self.assertTrue(not subversion1 == subversion2)
+      self.assertTrue(subversion1 < subversion2)
+      self.assertTrue(subversion1 <= subversion2)
+      self.assertTrue(not subversion1 > subversion2)
+      self.assertTrue(not subversion1 >= subversion2)
+      self.assertTrue(subversion1 != subversion2)
 
 
 ########################
@@ -1905,7 +1905,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -1938,7 +1938,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -1963,14 +1963,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion)
 
    def testConstructor_003(self):
       """
@@ -1978,7 +1978,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["subversion.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -1986,7 +1986,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = None
-      self.failUnlessEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion)
 
    def testConstructor_005(self):
       """
@@ -1994,7 +1994,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig()
-      self.failUnlessEqual(SubversionConfig(), config.subversion)
+      self.assertEqual(SubversionConfig(), config.subversion)
 
    def testConstructor_006(self):
       """
@@ -2014,13 +2014,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -2032,13 +2032,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.subversion = SubversionConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -2047,13 +2047,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.subversion = SubversionConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -2065,13 +2065,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.subversion = SubversionConfig(collectMode="weekly")
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -2084,7 +2084,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -2092,7 +2092,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -2100,7 +2100,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig("weekly", "gzip", None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_004(self):
       """
@@ -2108,7 +2108,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig("weekly", "gzip", [])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_005(self):
       """
@@ -2132,7 +2132,7 @@ class TestLocalConfig(unittest.TestCase):
       config = LocalConfig()
       config.subversion = SubversionConfig()
       config.subversion.repositories = repositories
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_007(self):
       """
@@ -2214,7 +2214,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig("weekly", "gzip", repositoryDirs=None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_014(self):
       """
@@ -2222,7 +2222,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.subversion = SubversionConfig("weekly", "gzip", repositoryDirs=[])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_015(self):
       """
@@ -2246,7 +2246,7 @@ class TestLocalConfig(unittest.TestCase):
       config = LocalConfig()
       config.subversion = SubversionConfig()
       config.subversion.repositoryDirs = repositoryDirs
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_017(self):
       """
@@ -2333,12 +2333,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["subversion.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion)
 
    def testParse_002(self):
       """
@@ -2348,17 +2348,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
 
    def testParse_003(self):
       """
@@ -2368,17 +2368,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual(None, config.subversion.collectMode)
-      self.failUnlessEqual(None, config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion.collectMode)
+      self.assertEqual(None, config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual(None, config.subversion.collectMode)
-      self.failUnlessEqual(None, config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion.collectMode)
+      self.assertEqual(None, config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
 
    def testParse_004(self):
       """
@@ -2393,17 +2393,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(repositories, config.subversion.repositories)
-      self.failUnlessEqual(None, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(repositories, config.subversion.repositories)
+      self.assertEqual(None, config.subversion.repositoryDirs)
 
    def testParse_005(self):
       """
@@ -2413,17 +2413,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.5"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
 
    def testParse_006(self):
       """
@@ -2433,17 +2433,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.6"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual(None, config.subversion.collectMode)
-      self.failUnlessEqual(None, config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion.collectMode)
+      self.assertEqual(None, config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual(None, config.subversion.collectMode)
-      self.failUnlessEqual(None, config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual(None, config.subversion.collectMode)
+      self.assertEqual(None, config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
 
    def testParse_007(self):
       """
@@ -2458,17 +2458,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["subversion.conf.7"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.subversion)
-      self.failUnlessEqual("daily", config.subversion.collectMode)
-      self.failUnlessEqual("gzip", config.subversion.compressMode)
-      self.failUnlessEqual(None, config.subversion.repositories)
-      self.failUnlessEqual(repositoryDirs, config.subversion.repositoryDirs)
+      self.assertNotEqual(None, config.subversion)
+      self.assertEqual("daily", config.subversion.collectMode)
+      self.assertEqual("gzip", config.subversion.compressMode)
+      self.assertEqual(None, config.subversion.repositories)
+      self.assertEqual(repositoryDirs, config.subversion.repositoryDirs)
 
 
    ###################

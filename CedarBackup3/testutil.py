@@ -72,7 +72,7 @@ import random
 import string # pylint: disable=W0402
 import platform
 import logging
-from StringIO import StringIO
+from io import StringIO
 
 from CedarBackup3.util import encodePath, executeCommand
 from CedarBackup3.config import Config, OptionsConfig
@@ -169,7 +169,7 @@ def commandAvailable(command):
    @param command: Commang to search for
    @return: Boolean true/false depending on whether command is available.
    """
-   if os.environ.has_key("PATH"):
+   if "PATH" in os.environ:
       for path in os.environ["PATH"].split(os.sep):
          if os.path.exists(os.path.join(path, command)):
             return True
@@ -283,9 +283,9 @@ def getMaskAsMode():
    A mode is mostly a bitwise inversion of a mask, i.e. mask 002 is mode 775.
    @return: Umask converted to a mode, as an integer.
    """
-   umask = os.umask(0777)
+   umask = os.umask(0o777)
    os.umask(umask)
-   return int(~umask & 0777)  # invert, then use only lower bytes
+   return int(~umask & 0o777)  # invert, then use only lower bytes
 
 
 ######################
@@ -311,7 +311,7 @@ def randomFilename(length, prefix=None, suffix=None):
    @return Random filename.
    """
    characters = [None] * length
-   for i in xrange(length):
+   for i in range(length):
       characters[i] = random.choice(string.ascii_uppercase)
    if prefix is None:
       prefix = ""
@@ -365,10 +365,10 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
    missed = False
    instead = None
    try:
-      exec "obj.%s = value" % prop    # pylint: disable=W0122
+      exec("obj.%s = value" % prop)    # pylint: disable=W0122
       missed = True
    except exception: pass
-   except Exception, e: 
+   except Exception as e: 
       instead = e
    if missed:
       testCase.fail("Expected assignment to raise %s, but got no exception." % (exception.__name__))

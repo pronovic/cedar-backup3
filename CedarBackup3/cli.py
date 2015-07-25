@@ -116,7 +116,7 @@ DATE_FORMAT        = "%Y-%m-%dT%H:%M:%S %Z"
 DEFAULT_CONFIG     = "/etc/cback.conf"
 DEFAULT_LOGFILE    = "/var/log/cback.log"
 DEFAULT_OWNERSHIP  = [ "root", "adm", ]
-DEFAULT_MODE       = 0640
+DEFAULT_MODE       = 0o640
 
 REBUILD_INDEX      = 0        # can't run with anything else, anyway
 VALIDATE_INDEX     = 0        # can't run with anything else, anyway
@@ -186,7 +186,7 @@ def cli():
    @return: Error code as described above.
    """
    try:
-      if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5]:
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
          sys.stderr.write("Python version 3.4 or greater required.\n")
          return 1
    except:
@@ -197,7 +197,7 @@ def cli():
    try:
       options = Options(argumentList=sys.argv[1:])
       logger.info("Specified command-line actions: " % options.actions)
-   except Exception, e:
+   except Exception as e:
       _usage()
       sys.stderr.write(" *** Error: %s\n" % e)
       return 2
@@ -214,7 +214,7 @@ def cli():
 
    try:
       logfile = setupLogging(options)
-   except Exception, e:
+   except Exception as e:
       sys.stderr.write("Error setting up logging: %s\n" % e)
       return 3
 
@@ -247,7 +247,7 @@ def cli():
       setupPathResolver(config)
       actionSet = _ActionSet(options.actions, config.extensions, config.options, 
                              config.peers, executeManaged, executeLocal)
-   except Exception, e:
+   except Exception as e:
       logger.error("Error reading or handling configuration: %s" % e)
       logger.info("Cedar Backup run completed with status 4.")
       return 4
@@ -261,7 +261,7 @@ def cli():
          logger.error("Backup interrupted.")
          logger.info("Cedar Backup run completed with status 5.")
          return 5
-      except Exception, e:
+      except Exception as e:
          logger.error("Error executing backup: %s" % e)
          logger.info("Cedar Backup run completed with status 6.")
          return 6
@@ -469,7 +469,7 @@ class _ManagedActionItem(object):
          logger.debug("Executing managed action [%s] on peer [%s]." % (self.name, peer.name))
          try:
             peer.executeManagedAction(self.name, options.full)
-         except IOError, e:
+         except IOError as e:
             logger.error(e)   # log the message and go on, so we don't kill the backup
 
 
@@ -768,9 +768,9 @@ class _ActionSet(object):
       """
       preHook = None
       postHook = None
-      if preHookDict.has_key(action):
+      if action in preHookDict:
          preHook = preHookDict[action]
-      if postHookDict.has_key(action):
+      if action in postHookDict:
          postHook = postHookDict[action]
       return (preHook, postHook)
 
@@ -1684,7 +1684,7 @@ class Options(object):
             saved = self._actions
             self._actions = []
             self._actions.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._actions = saved
             raise e
 
@@ -1895,43 +1895,43 @@ class Options(object):
       opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
       for o, a in opts:  # push the switches into a hash
          switches[o] = a
-      if switches.has_key("-h") or switches.has_key("--help"):
+      if "-h" in switches or "--help" in switches:
          self.help = True
-      if switches.has_key("-V") or switches.has_key("--version"):
+      if "-V" in switches or "--version" in switches:
          self.version = True
-      if switches.has_key("-b") or switches.has_key("--verbose"):
+      if "-b" in switches or "--verbose" in switches:
          self.verbose = True
-      if switches.has_key("-q") or switches.has_key("--quiet"):
+      if "-q" in switches or "--quiet" in switches:
          self.quiet = True
-      if switches.has_key("-c"):
+      if "-c" in switches:
          self.config = switches["-c"]
-      if switches.has_key("--config"):
+      if "--config" in switches:
          self.config = switches["--config"]
-      if switches.has_key("-f") or switches.has_key("--full"):
+      if "-f" in switches or "--full" in switches:
          self.full = True
-      if switches.has_key("-M") or switches.has_key("--managed"):
+      if "-M" in switches or "--managed" in switches:
          self.managed = True
-      if switches.has_key("-N") or switches.has_key("--managed-only"):
+      if "-N" in switches or "--managed-only" in switches:
          self.managedOnly = True
-      if switches.has_key("-l"):
+      if "-l" in switches:
          self.logfile = switches["-l"]
-      if switches.has_key("--logfile"):
+      if "--logfile" in switches:
          self.logfile = switches["--logfile"]
-      if switches.has_key("-o"):
+      if "-o" in switches:
          self.owner = switches["-o"].split(":", 1)
-      if switches.has_key("--owner"):
+      if "--owner" in switches:
          self.owner = switches["--owner"].split(":", 1)
-      if switches.has_key("-m"):
+      if "-m" in switches:
          self.mode = switches["-m"]
-      if switches.has_key("--mode"):
+      if "--mode" in switches:
          self.mode = switches["--mode"]
-      if switches.has_key("-O") or switches.has_key("--output"):
+      if "-O" in switches or "--output" in switches:
          self.output = True
-      if switches.has_key("-d") or switches.has_key("--debug"):
+      if "-d" in switches or "--debug" in switches:
          self.debug = True
-      if switches.has_key("-s") or switches.has_key("--stack"):
+      if "-s" in switches or "--stack" in switches:
          self.stacktrace = True
-      if switches.has_key("-D") or switches.has_key("--diagnostics"):
+      if "-D" in switches or "--diagnostics" in switches:
          self.diagnostics = True
 
 

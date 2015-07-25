@@ -86,6 +86,7 @@ import string  # pylint: disable=W0402
 from subprocess import Popen, STDOUT, PIPE
 
 from CedarBackup3.release import VERSION, DATE
+import collections
 
 try:
    import pwd
@@ -684,7 +685,7 @@ class DirectedGraph(object):
          startVertex = self._vertices[start]
          finishVertex = self._vertices[finish]
          startVertex.endpoints.append(finishVertex)
-      except KeyError, e:
+      except KeyError as e:
          raise ValueError("Vertex [%s] could not be found." % e)
 
    def topologicalSort(self):
@@ -825,7 +826,7 @@ class PathResolverSingleton(object):
       @return: Resolved path associated with name, or default if name can't be resolved.
       """
       value = default
-      if name in self._mapping.keys():
+      if name in list(self._mapping.keys()):
          value = self._mapping[name]
       logger.debug("Resolved command [%s] to [%s]." % (name, value))
       return value
@@ -837,7 +838,7 @@ class PathResolverSingleton(object):
       @type mapping: Dictionary mapping name to path, both as strings.
       """
       self._mapping = { }
-      for key in mapping.keys():
+      for key in list(mapping.keys()):
          self._mapping[key] = mapping[key]
       
 
@@ -938,7 +939,7 @@ class Diagnostics(object):
       @return: List of strings, not terminated by newlines.
       """
       values = self.getValues()
-      keys = values.keys()
+      keys = list(values.keys())
       keys.sort()
       tmax = Diagnostics._getMaxLength(keys) + 3  # three extra dots in output
       lines = []
@@ -1047,7 +1048,7 @@ def sortDict(d):
    @param d: Dictionary to operate on
    @return: List of dictionary keys sorted in order by dictionary value.
    """
-   items = d.items()
+   items = list(d.items())
    items.sort(lambda x, y: cmp(x[1], y[1]))
    return [key for key, value in items]
 
@@ -1235,7 +1236,7 @@ def getFunctionReference(module, function):
    obj = module
    for part in parts:
       obj = getattr(obj, part) 
-   if not callable(obj):
+   if not isinstance(obj, collections.Callable):
       raise ValueError("Reference to %s.%s is not callable." % (module, function))
    return obj
 
@@ -1264,7 +1265,7 @@ def getUidGid(user, group):
          uid = pwd.getpwnam(user)[2]
          gid = grp.getgrnam(group)[2]
          return (uid, gid)
-      except Exception, e:
+      except Exception as e:
          logger.debug("Error looking up uid and gid for [%s:%s]: %s" % (user, group, e))
          raise ValueError("Unable to lookup up uid and gid for passed in user/group.")
    else:
@@ -1296,7 +1297,7 @@ def changeOwnership(path, user, group):
          try:
             (uid, gid) = getUidGid(user, group)
             os.chown(path, uid, gid)
-         except Exception, e:
+         except Exception as e:
             logger.error("Error changing ownership of [%s]: %s" % (path, e))
 
 
@@ -1339,7 +1340,7 @@ def splitCommandLine(commandLine):
    if commandLine is None:
       raise ValueError("Cannot split command line of None.")
    fields = re.findall('[^ "]+|"[^"]+"', commandLine)
-   fields = map(lambda field: field.replace('"', ''), fields)
+   fields = [field.replace('"', '') for field in fields]
    return fields
 
 
@@ -1494,7 +1495,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
          return (pipe.wait(), output)
       else:
          return (pipe.wait(), None)
-   except OSError, e:
+   except OSError as e:
       try:
          if returnOutput:
             if output != []:
@@ -1761,7 +1762,7 @@ def encodePath(path):
    if path is None:
       return path
    try:
-      if isinstance(path, unicode):
+      if isinstance(path, str):
          encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
          path = path.encode(encoding)
       return path
@@ -1912,9 +1913,9 @@ def sanitizeEnvironment():
    @return: Copy of the sanitized environment.
    """
    for var in LOCALE_VARS:
-      if os.environ.has_key(var):
+      if var in os.environ:
          del os.environ[var]
-   if os.environ.has_key(LANG_VAR):
+   if LANG_VAR in os.environ:
       if os.environ[LANG_VAR] != DEFAULT_LANGUAGE: # no need to reset if it exists (avoid leaks on BSD systems)
          os.environ[LANG_VAR] = DEFAULT_LANGUAGE
    return os.environ.copy()

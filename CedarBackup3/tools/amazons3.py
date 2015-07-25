@@ -768,37 +768,37 @@ class Options(object):
       opts, remaining = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
       for o, a in opts:  # push the switches into a hash
          switches[o] = a
-      if switches.has_key("-h") or switches.has_key("--help"):
+      if "-h" in switches or "--help" in switches:
          self.help = True
-      if switches.has_key("-V") or switches.has_key("--version"):
+      if "-V" in switches or "--version" in switches:
          self.version = True
-      if switches.has_key("-b") or switches.has_key("--verbose"):
+      if "-b" in switches or "--verbose" in switches:
          self.verbose = True
-      if switches.has_key("-q") or switches.has_key("--quiet"):
+      if "-q" in switches or "--quiet" in switches:
          self.quiet = True
-      if switches.has_key("-l"):
+      if "-l" in switches:
          self.logfile = switches["-l"]
-      if switches.has_key("--logfile"):
+      if "--logfile" in switches:
          self.logfile = switches["--logfile"]
-      if switches.has_key("-o"):
+      if "-o" in switches:
          self.owner = switches["-o"].split(":", 1)
-      if switches.has_key("--owner"):
+      if "--owner" in switches:
          self.owner = switches["--owner"].split(":", 1)
-      if switches.has_key("-m"):
+      if "-m" in switches:
          self.mode = switches["-m"]
-      if switches.has_key("--mode"):
+      if "--mode" in switches:
          self.mode = switches["--mode"]
-      if switches.has_key("-O") or switches.has_key("--output"):
+      if "-O" in switches or "--output" in switches:
          self.output = True
-      if switches.has_key("-d") or switches.has_key("--debug"):
+      if "-d" in switches or "--debug" in switches:
          self.debug = True
-      if switches.has_key("-s") or switches.has_key("--stack"):
+      if "-s" in switches or "--stack" in switches:
          self.stacktrace = True
-      if switches.has_key("-D") or switches.has_key("--diagnostics"):
+      if "-D" in switches or "--diagnostics" in switches:
          self.diagnostics = True
-      if switches.has_key("-v") or switches.has_key("--verifyOnly"):
+      if "-v" in switches or "--verifyOnly" in switches:
          self.verifyOnly = True
-      if switches.has_key("-w") or switches.has_key("--ignoreWarnings"):
+      if "-w" in switches or "--ignoreWarnings" in switches:
          self.ignoreWarnings = True
       try:
          (self.sourceDir, self.s3BucketUrl) = remaining
@@ -841,7 +841,7 @@ def cli():
    @return: Error code as described above.
    """
    try:
-      if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5]:
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
          sys.stderr.write("Python version 3.4 or greater required.\n")
          return 1
    except:
@@ -851,7 +851,7 @@ def cli():
 
    try:
       options = Options(argumentList=sys.argv[1:])
-   except Exception, e:
+   except Exception as e:
       _usage()
       sys.stderr.write(" *** Error: %s\n" % e)
       return 2
@@ -868,7 +868,7 @@ def cli():
 
    try:
       logfile = setupLogging(options)
-   except Exception, e:
+   except Exception as e:
       sys.stderr.write("Error setting up logging: %s\n" % e)
       return 3
 
@@ -886,7 +886,7 @@ def cli():
          logger.error("Backup interrupted.")
          logger.info("Cedar Backup Amazon S3 sync run completed with status 5.")
          return 5
-      except Exception, e:
+      except Exception as e:
          logger.error("Error executing backup: %s" % e)
          logger.info("Cedar Backup Amazon S3 sync run completed with status 6.")
          return 6
@@ -1130,14 +1130,14 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
    contents = { }
    for entry in json.loads("".join(data)):
       key = entry["Key"].replace(prefix, "")
-      size = long(entry["Size"])
+      size = int(entry["Size"])
       contents[key] = size
 
    failed = False
    for entry in sourceFiles:
       if os.path.isfile(entry):
          key = entry.replace(sourceDir, "")
-         size = long(os.stat(entry).st_size)
+         size = int(os.stat(entry).st_size)
          if not key in contents:
             logger.error("File was apparently not uploaded: [%s]" % entry)
             failed = True

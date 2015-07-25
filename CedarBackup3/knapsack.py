@@ -116,7 +116,7 @@ def firstFit(items, capacity):
    # Search the list as it stands (arbitrary order)
    used = 0
    remaining = capacity
-   for key in items.keys():
+   for key in list(items.keys()):
       if remaining == 0:
          break
       if remaining - items[key][1] >= 0:
@@ -125,7 +125,7 @@ def firstFit(items, capacity):
          remaining -= items[key][1]
 
    # Return results
-   return (included.keys(), used)
+   return (list(included.keys()), used)
 
 
 #####################
@@ -178,7 +178,7 @@ def bestFit(items, capacity):
    included = { }
 
    # Sort the list from largest to smallest
-   itemlist = items.items()
+   itemlist = list(items.items())
    itemlist.sort(lambda x, y: cmp(y[1][1], x[1][1]))  # sort descending
    keys = []
    for item in itemlist:
@@ -196,7 +196,7 @@ def bestFit(items, capacity):
          remaining -= items[key][1]
 
    # Return the results
-   return (included.keys(), used)
+   return (list(included.keys()), used)
 
 
 ######################
@@ -247,7 +247,7 @@ def worstFit(items, capacity):
    included = { }
 
    # Sort the list from smallest to largest
-   itemlist = items.items()
+   itemlist = list(items.items())
    itemlist.sort(lambda x, y: cmp(x[1][1], y[1][1]))    # sort ascending
    keys = []
    for item in itemlist:
@@ -265,7 +265,7 @@ def worstFit(items, capacity):
          remaining -= items[key][1]
 
    # Return results
-   return (included.keys(), used)
+   return (list(included.keys()), used)
 
 
 ##########################
@@ -318,7 +318,7 @@ def alternateFit(items, capacity):
    included = { }
 
    # Sort the list from smallest to largest
-   itemlist = items.items()
+   itemlist = list(items.items())
    itemlist.sort(lambda x, y: cmp(x[1][1], y[1][1]))    # sort ascending
    keys = []
    for item in itemlist:
@@ -350,5 +350,5 @@ def alternateFit(items, capacity):
          j += 1
 
    # Return results
-   return (included.keys(), used)
+   return (list(included.keys()), used)
 

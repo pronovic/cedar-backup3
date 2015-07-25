@@ -188,3095 +188,3095 @@ class TestOptions(unittest.TestCase):
       Test constructor with no arguments.
       """
       options = Options()
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_002(self):
       """
       Test constructor with validate=False, no other arguments.
       """
       options = Options(validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_003(self):
       """
       Test constructor with argumentList=[], validate=False.
       """
       options = Options(argumentList=[], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_004(self):
       """
       Test constructor with argumentString="", validate=False.
       """
       options = Options(argumentString="", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_005(self):
       """
       Test constructor with argumentList=["--help", ], validate=False.
       """
       options = Options(argumentList=["--help", ], validate=False)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_006(self):
       """
       Test constructor with argumentString="--help", validate=False.
       """
       options = Options(argumentString="--help", validate=False)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_007(self):
       """
       Test constructor with argumentList=["-h", ], validate=False.
       """
       options = Options(argumentList=["-h", ], validate=False)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_008(self):
       """
       Test constructor with argumentString="-h", validate=False.
       """
       options = Options(argumentString="-h", validate=False)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_009(self):
       """
       Test constructor with argumentList=["--version", ], validate=False.
       """
       options = Options(argumentList=["--version", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_010(self):
       """
       Test constructor with argumentString="--version", validate=False.
       """
       options = Options(argumentString="--version", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_011(self):
       """
       Test constructor with argumentList=["-V", ], validate=False.
       """
       options = Options(argumentList=["-V", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_012(self):
       """
       Test constructor with argumentString="-V", validate=False.
       """
       options = Options(argumentString="-V", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_013(self):
       """
       Test constructor with argumentList=["--verbose", ], validate=False.
       """
       options = Options(argumentList=["--verbose", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_014(self):
       """
       Test constructor with argumentString="--verbose", validate=False.
       """
       options = Options(argumentString="--verbose", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_015(self):
       """
       Test constructor with argumentList=["-b", ], validate=False.
       """
       options = Options(argumentList=["-b", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_016(self):
       """
       Test constructor with argumentString="-b", validate=False.
       """
       options = Options(argumentString="-b", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_017(self):
       """
       Test constructor with argumentList=["--quiet", ], validate=False.
       """
       options = Options(argumentList=["--quiet", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(True, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(True, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_018(self):
       """
       Test constructor with argumentString="--quiet", validate=False.
       """
       options = Options(argumentString="--quiet", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(True, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(True, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_019(self):
       """
       Test constructor with argumentList=["-q", ], validate=False.
       """
       options = Options(argumentList=["-q", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(True, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(True, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_020(self):
       """
       Test constructor with argumentString="-q", validate=False.
       """
       options = Options(argumentString="-q", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(True, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(True, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_021(self):
       """
       Test constructor with argumentList=["--config", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--config", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["--config", ], validate=False)
 
    def testConstructor_022(self):
       """
       Test constructor with argumentString="--config", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--config", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="--config", validate=False)
 
    def testConstructor_023(self):
       """
       Test constructor with argumentList=["-c", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-c", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["-c", ], validate=False)
 
    def testConstructor_024(self):
       """
       Test constructor with argumentString="-c", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-c", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="-c", validate=False)
 
    def testConstructor_025(self):
       """
       Test constructor with argumentList=["--config", "something", ], validate=False.
       """
       options = Options(argumentList=["--config", "something", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual("something", options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual("something", options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_026(self):
       """
       Test constructor with argumentString="--config something", validate=False.
       """
       options = Options(argumentString="--config something", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual("something", options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual("something", options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_027(self):
       """
       Test constructor with argumentList=["-c", "something", ], validate=False.
       """
       options = Options(argumentList=["-c", "something", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual("something", options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual("something", options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_028(self):
       """
       Test constructor with argumentString="-c something", validate=False.
       """
       options = Options(argumentString="-c something", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual("something", options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual("something", options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_029(self):
       """
       Test constructor with argumentList=["--full", ], validate=False.
       """
       options = Options(argumentList=["--full", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(True, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(True, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_030(self):
       """
       Test constructor with argumentString="--full", validate=False.
       """
       options = Options(argumentString="--full", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(True, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(True, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_031(self):
       """
       Test constructor with argumentList=["-f", ], validate=False.
       """
       options = Options(argumentList=["-f", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(True, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(True, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_032(self):
       """
       Test constructor with argumentString="-f", validate=False.
       """
       options = Options(argumentString="-f", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(True, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(True, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_033(self):
       """
       Test constructor with argumentList=["--logfile", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--logfile", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["--logfile", ], validate=False)
 
    def testConstructor_034(self):
       """
       Test constructor with argumentString="--logfile", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--logfile", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="--logfile", validate=False)
 
    def testConstructor_035(self):
       """
       Test constructor with argumentList=["-l", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-l", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["-l", ], validate=False)
 
    def testConstructor_036(self):
       """
       Test constructor with argumentString="-l", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-l", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="-l", validate=False)
 
    def testConstructor_037(self):
       """
       Test constructor with argumentList=["--logfile", "something", ], validate=False.
       """
       options = Options(argumentList=["--logfile", "something", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual("something", options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual("something", options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_038(self):
       """
       Test constructor with argumentString="--logfile something", validate=False.
       """
       options = Options(argumentString="--logfile something", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual("something", options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual("something", options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_039(self):
       """
       Test constructor with argumentList=["-l", "something", ], validate=False.
       """
       options = Options(argumentList=["-l", "something", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual("something", options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual("something", options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_040(self):
       """
       Test constructor with argumentString="-l something", validate=False.
       """
       options = Options(argumentString="-l something", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual("something", options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual("something", options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_041(self):
       """
       Test constructor with argumentList=["--owner", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--owner", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["--owner", ], validate=False)
 
    def testConstructor_042(self):
       """
       Test constructor with argumentString="--owner", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--owner", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="--owner", validate=False)
 
    def testConstructor_043(self):
       """
       Test constructor with argumentList=["-o", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-o", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["-o", ], validate=False)
 
    def testConstructor_044(self):
       """
       Test constructor with argumentString="-o", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-o", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="-o", validate=False)
 
    def testConstructor_045(self):
       """
       Test constructor with argumentList=["--owner", "something", ], validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--owner", "something", ], validate=False)
+      self.assertRaises(ValueError, Options, argumentList=["--owner", "something", ], validate=False)
 
    def testConstructor_046(self):
       """
       Test constructor with argumentString="--owner something", validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--owner something", validate=False)
+      self.assertRaises(ValueError, Options, argumentString="--owner something", validate=False)
 
    def testConstructor_047(self):
       """
       Test constructor with argumentList=["-o", "something", ], validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-o", "something", ], validate=False)
+      self.assertRaises(ValueError, Options, argumentList=["-o", "something", ], validate=False)
 
    def testConstructor_048(self):
       """
       Test constructor with argumentString="-o something", validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-o something", validate=False)
+      self.assertRaises(ValueError, Options, argumentString="-o something", validate=False)
 
    def testConstructor_049(self):
       """
       Test constructor with argumentList=["--owner", "a:b", ], validate=False.
       """
       options = Options(argumentList=["--owner", "a:b", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(("a", "b"), options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(("a", "b"), options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_050(self):
       """
       Test constructor with argumentString="--owner a:b", validate=False.
       """
       options = Options(argumentString="--owner a:b", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(("a", "b"), options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(("a", "b"), options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_051(self):
       """
       Test constructor with argumentList=["-o", "a:b", ], validate=False.
       """
       options = Options(argumentList=["-o", "a:b", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(("a", "b"), options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(("a", "b"), options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_052(self):
       """
       Test constructor with argumentString="-o a:b", validate=False.
       """
       options = Options(argumentString="-o a:b", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(("a", "b"), options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(("a", "b"), options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_053(self):
       """
       Test constructor with argumentList=["--mode", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--mode", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["--mode", ], validate=False)
 
    def testConstructor_054(self):
       """
       Test constructor with argumentString="--mode", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--mode", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="--mode", validate=False)
 
    def testConstructor_055(self):
       """
       Test constructor with argumentList=["-m", ], validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-m", ], validate=False)
+      self.assertRaises(GetoptError, Options, argumentList=["-m", ], validate=False)
 
    def testConstructor_056(self):
       """
       Test constructor with argumentString="-m", validate=False.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-m", validate=False)
+      self.assertRaises(GetoptError, Options, argumentString="-m", validate=False)
 
    def testConstructor_057(self):
       """
       Test constructor with argumentList=["--mode", "something", ], validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--mode", "something", ], validate=False)
+      self.assertRaises(ValueError, Options, argumentList=["--mode", "something", ], validate=False)
 
    def testConstructor_058(self):
       """
       Test constructor with argumentString="--mode something", validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--mode something", validate=False)
+      self.assertRaises(ValueError, Options, argumentString="--mode something", validate=False)
 
    def testConstructor_059(self):
       """
       Test constructor with argumentList=["-m", "something", ], validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-m", "something", ], validate=False)
+      self.assertRaises(ValueError, Options, argumentList=["-m", "something", ], validate=False)
 
    def testConstructor_060(self):
       """
       Test constructor with argumentString="-m something", validate=False.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-m something", validate=False)
+      self.assertRaises(ValueError, Options, argumentString="-m something", validate=False)
 
    def testConstructor_061(self):
       """
       Test constructor with argumentList=["--mode", "631", ], validate=False.
       """
       options = Options(argumentList=["--mode", "631", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0631, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o631, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_062(self):
       """
       Test constructor with argumentString="--mode 631", validate=False.
       """
       options = Options(argumentString="--mode 631", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0631, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o631, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_063(self):
       """
       Test constructor with argumentList=["-m", "631", ], validate=False.
       """
       options = Options(argumentList=["-m", "631", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0631, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o631, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_064(self):
       """
       Test constructor with argumentString="-m 631", validate=False.
       """
       options = Options(argumentString="-m 631", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0631, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o631, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_065(self):
       """
       Test constructor with argumentList=["--output", ], validate=False.
       """
       options = Options(argumentList=["--output", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_066(self):
       """
       Test constructor with argumentString="--output", validate=False.
       """
       options = Options(argumentString="--output", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_067(self):
       """
       Test constructor with argumentList=["-O", ], validate=False.
       """
       options = Options(argumentList=["-O", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_068(self):
       """
       Test constructor with argumentString="-O", validate=False.
       """
       options = Options(argumentString="-O", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_069(self):
       """
       Test constructor with argumentList=["--debug", ], validate=False.
       """
       options = Options(argumentList=["--debug", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_070(self):
       """
       Test constructor with argumentString="--debug", validate=False.
       """
       options = Options(argumentString="--debug", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_071(self):
       """
       Test constructor with argumentList=["-d", ], validate=False.
       """
       options = Options(argumentList=["-d", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_072(self):
       """
       Test constructor with argumentString="-d", validate=False.
       """
       options = Options(argumentString="-d", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_073(self):
       """
       Test constructor with argumentList=["--stack", ], validate=False.
       """
       options = Options(argumentList=["--stack", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(True, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(True, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_074(self):
       """
       Test constructor with argumentString="--stack", validate=False.
       """
       options = Options(argumentString="--stack", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(True, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(True, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_075(self):
       """
       Test constructor with argumentList=["-s", ], validate=False.
       """
       options = Options(argumentList=["-s", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(True, options.stacktrace)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(True, options.stacktrace)
+      self.assertEqual([], options.actions)
 
    def testConstructor_076(self):
       """
       Test constructor with argumentString="-s", validate=False.
       """
       options = Options(argumentString="-s", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(True, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(True, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_077(self):
       """
       Test constructor with argumentList=["all", ], validate=False.
       """
       options = Options(argumentList=["all", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["all", ], options.actions)
 
    def testConstructor_078(self):
       """
       Test constructor with argumentString="all", validate=False.
       """
       options = Options(argumentString="all", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["all", ], options.actions)
 
    def testConstructor_079(self):
       """
       Test constructor with argumentList=["collect", ], validate=False.
       """
       options = Options(argumentList=["collect", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", ], options.actions)
 
    def testConstructor_080(self):
       """
       Test constructor with argumentString="collect", validate=False.
       """
       options = Options(argumentString="collect", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", ], options.actions)
 
    def testConstructor_081(self):
       """
       Test constructor with argumentList=["stage", ], validate=False.
       """
       options = Options(argumentList=["stage", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["stage", ], options.actions)
 
    def testConstructor_082(self):
       """
       Test constructor with argumentString="stage", validate=False.
       """
       options = Options(argumentString="stage", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["stage", ], options.actions)
 
    def testConstructor_083(self):
       """
       Test constructor with argumentList=["store", ], validate=False.
       """
       options = Options(argumentList=["store", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["store", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["store", ], options.actions)
 
    def testConstructor_084(self):
       """
       Test constructor with argumentString="store", validate=False.
       """
       options = Options(argumentString="store", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["store", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["store", ], options.actions)
 
    def testConstructor_085(self):
       """
       Test constructor with argumentList=["purge", ], validate=False.
       """
       options = Options(argumentList=["purge", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["purge", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["purge", ], options.actions)
 
    def testConstructor_086(self):
       """
       Test constructor with argumentString="purge", validate=False.
       """
       options = Options(argumentString="purge", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["purge", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["purge", ], options.actions)
 
    def testConstructor_087(self):
       """
       Test constructor with argumentList=["rebuild", ], validate=False.
       """
       options = Options(argumentList=["rebuild", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["rebuild", ], options.actions)
 
    def testConstructor_088(self):
       """
       Test constructor with argumentString="rebuild", validate=False.
       """
       options = Options(argumentString="rebuild", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["rebuild", ], options.actions)
 
    def testConstructor_089(self):
       """
       Test constructor with argumentList=["validate", ], validate=False.
       """
       options = Options(argumentList=["validate", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["validate", ], options.actions)
 
    def testConstructor_090(self):
       """
       Test constructor with argumentString="validate", validate=False.
       """
       options = Options(argumentString="validate", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["validate", ], options.actions)
 
    def testConstructor_091(self):
       """
       Test constructor with argumentList=["collect", "all", ], validate=False.
       """
       options = Options(argumentList=["collect", "all", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "all", ], options.actions)
 
    def testConstructor_092(self):
       """
       Test constructor with argumentString="collect all", validate=False.
       """
       options = Options(argumentString="collect all", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "all", ], options.actions)
 
    def testConstructor_093(self):
       """
       Test constructor with argumentList=["collect", "rebuild", ], validate=False.
       """
       options = Options(argumentList=["collect", "rebuild", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "rebuild", ], options.actions)
 
    def testConstructor_094(self):
       """
       Test constructor with argumentString="collect rebuild", validate=False.
       """
       options = Options(argumentString="collect rebuild", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "rebuild", ], options.actions)
 
    def testConstructor_095(self):
       """
       Test constructor with argumentList=["collect", "validate", ], validate=False.
       """
       options = Options(argumentList=["collect", "validate", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "validate", ], options.actions)
 
    def testConstructor_096(self):
       """
       Test constructor with argumentString="collect validate", validate=False.
       """
       options = Options(argumentString="collect validate", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "validate", ], options.actions)
 
    def testConstructor_097(self):
       """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=False.
       """
       options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0600, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o600, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "stage", ], options.actions)
 
    def testConstructor_098(self):
       """
       Test constructor with argumentString="-d --verbose -O --mode 600 collect stage", validate=False.
       """
       options = Options(argumentString="-d --verbose -O --mode 600 collect stage", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0600, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o600, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "stage", ], options.actions)
 
    def testConstructor_099(self):
       """
       Test constructor with argumentList=[], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=[], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=[], validate=True)
 
    def testConstructor_100(self):
       """
       Test constructor with argumentString="", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="", validate=True)
 
    def testConstructor_101(self):
       """
       Test constructor with argumentList=["--help", ], validate=True.
       """
       options = Options(argumentList=["--help", ], validate=True)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_102(self):
       """
       Test constructor with argumentString="--help", validate=True.
       """
       options = Options(argumentString="--help", validate=True)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_103(self):
       """
       Test constructor with argumentList=["-h", ], validate=True.
       """
       options = Options(argumentList=["-h", ], validate=True)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_104(self):
       """
       Test constructor with argumentString="-h", validate=True.
       """
       options = Options(argumentString="-h", validate=True)
-      self.failUnlessEqual(True, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(True, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_105(self):
       """
       Test constructor with argumentList=["--version", ], validate=True.
       """
       options = Options(argumentList=["--version", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_106(self):
       """
       Test constructor with argumentString="--version", validate=True.
       """
       options = Options(argumentString="--version", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_107(self):
       """
       Test constructor with argumentList=["-V", ], validate=True.
       """
       options = Options(argumentList=["-V", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_108(self):
       """
       Test constructor with argumentString="-V", validate=True.
       """
       options = Options(argumentString="-V", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(True, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(True, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_109(self):
       """
       Test constructor with argumentList=["--verbose", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--verbose", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--verbose", ], validate=True)
 
    def testConstructor_110(self):
       """
       Test constructor with argumentString="--verbose", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--verbose", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--verbose", validate=True)
 
    def testConstructor_111(self):
       """
       Test constructor with argumentList=["-b", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-b", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-b", ], validate=True)
 
    def testConstructor_112(self):
       """
       Test constructor with argumentString="-b", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-b", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-b", validate=True)
 
    def testConstructor_113(self):
       """
       Test constructor with argumentList=["--quiet", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--quiet", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--quiet", ], validate=True)
 
    def testConstructor_114(self):
       """
       Test constructor with argumentString="--quiet", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--quiet", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--quiet", validate=True)
 
    def testConstructor_115(self):
       """
       Test constructor with argumentList=["-q", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-q", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-q", ], validate=True)
 
    def testConstructor_116(self):
       """
       Test constructor with argumentString="-q", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-q", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-q", validate=True)
 
    def testConstructor_117(self):
       """
       Test constructor with argumentList=["--config", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--config", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["--config", ], validate=True)
 
    def testConstructor_118(self):
       """
       Test constructor with argumentString="--config", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--config", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="--config", validate=True)
 
    def testConstructor_119(self):
       """
       Test constructor with argumentList=["-c", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-c", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["-c", ], validate=True)
 
    def testConstructor_120(self):
       """
       Test constructor with argumentString="-c", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-c", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="-c", validate=True)
 
    def testConstructor_121(self):
       """
       Test constructor with argumentList=["--config", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--config", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--config", "something", ], validate=True)
 
    def testConstructor_122(self):
       """
       Test constructor with argumentString="--config something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--config something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--config something", validate=True)
 
    def testConstructor_123(self):
       """
       Test constructor with argumentList=["-c", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-c", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-c", "something", ], validate=True)
 
    def testConstructor_124(self):
       """
       Test constructor with argumentString="-c something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-c something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-c something", validate=True)
 
    def testConstructor_125(self):
       """
       Test constructor with argumentList=["--full", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--full", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--full", ], validate=True)
 
    def testConstructor_126(self):
       """
       Test constructor with argumentString="--full", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--full", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--full", validate=True)
 
    def testConstructor_127(self):
       """
       Test constructor with argumentList=["-f", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-f", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-f", ], validate=True)
 
    def testConstructor_128(self):
       """
       Test constructor with argumentString="-f", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-f", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-f", validate=True)
 
    def testConstructor_129(self):
       """
       Test constructor with argumentList=["--logfile", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--logfile", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["--logfile", ], validate=True)
 
    def testConstructor_130(self):
       """
       Test constructor with argumentString="--logfile", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--logfile", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="--logfile", validate=True)
 
    def testConstructor_131(self):
       """
       Test constructor with argumentList=["-l", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-l", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["-l", ], validate=True)
 
    def testConstructor_132(self):
       """
       Test constructor with argumentString="-l", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-l", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="-l", validate=True)
 
    def testConstructor_133(self):
       """
       Test constructor with argumentList=["--logfile", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--logfile", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--logfile", "something", ], validate=True)
 
    def testConstructor_134(self):
       """
       Test constructor with argumentString="--logfile something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--logfile something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--logfile something", validate=True)
 
    def testConstructor_135(self):
       """
       Test constructor with argumentList=["-l", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-l", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-l", "something", ], validate=True)
 
    def testConstructor_136(self):
       """
       Test constructor with argumentString="-l something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-l something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-l something", validate=True)
 
    def testConstructor_137(self):
       """
       Test constructor with argumentList=["--owner", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--owner", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["--owner", ], validate=True)
 
    def testConstructor_138(self):
       """
       Test constructor with argumentString="--owner", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--owner", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="--owner", validate=True)
 
    def testConstructor_139(self):
       """
       Test constructor with argumentList=["-o", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-o", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["-o", ], validate=True)
 
    def testConstructor_140(self):
       """
       Test constructor with argumentString="-o", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-o", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="-o", validate=True)
 
    def testConstructor_141(self):
       """
       Test constructor with argumentList=["--owner", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--owner", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--owner", "something", ], validate=True)
 
    def testConstructor_142(self):
       """
       Test constructor with argumentString="--owner something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--owner something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--owner something", validate=True)
 
    def testConstructor_143(self):
       """
       Test constructor with argumentList=["-o", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-o", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-o", "something", ], validate=True)
 
    def testConstructor_144(self):
       """
       Test constructor with argumentString="-o something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-o something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-o something", validate=True)
 
    def testConstructor_145(self):
       """
       Test constructor with argumentList=["--owner", "a:b", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--owner", "a:b", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--owner", "a:b", ], validate=True)
 
    def testConstructor_146(self):
       """
       Test constructor with argumentString="--owner a:b", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--owner a:b", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--owner a:b", validate=True)
 
    def testConstructor_147(self):
       """
       Test constructor with argumentList=["-o", "a:b", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-o", "a:b", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-o", "a:b", ], validate=True)
 
    def testConstructor_148(self):
       """
       Test constructor with argumentString="-o a:b", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-o a:b", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-o a:b", validate=True)
 
    def testConstructor_149(self):
       """
       Test constructor with argumentList=["--mode", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["--mode", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["--mode", ], validate=True)
 
    def testConstructor_150(self):
       """
       Test constructor with argumentString="--mode", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="--mode", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="--mode", validate=True)
 
    def testConstructor_151(self):
       """
       Test constructor with argumentList=["-m", ], validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentList=["-m", ], validate=True)
+      self.assertRaises(GetoptError, Options, argumentList=["-m", ], validate=True)
 
    def testConstructor_152(self):
       """
       Test constructor with argumentString="-m", validate=True.
       """
-      self.failUnlessRaises(GetoptError, Options, argumentString="-m", validate=True)
+      self.assertRaises(GetoptError, Options, argumentString="-m", validate=True)
 
    def testConstructor_153(self):
       """
       Test constructor with argumentList=["--mode", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--mode", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--mode", "something", ], validate=True)
 
    def testConstructor_154(self):
       """
       Test constructor with argumentString="--mode something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--mode something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--mode something", validate=True)
 
    def testConstructor_155(self):
       """
       Test constructor with argumentList=["-m", "something", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-m", "something", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-m", "something", ], validate=True)
 
    def testConstructor_156(self):
       """
       Test constructor with argumentString="-m something", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-m something", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-m something", validate=True)
 
    def testConstructor_157(self):
       """
       Test constructor with argumentList=["--mode", "631", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--mode", "631", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--mode", "631", ], validate=True)
 
    def testConstructor_158(self):
       """
       Test constructor with argumentString="--mode 631", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--mode 631", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--mode 631", validate=True)
 
    def testConstructor_159(self):
       """
       Test constructor with argumentList=["-m", "631", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-m", "631", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-m", "631", ], validate=True)
 
    def testConstructor_160(self):
       """
       Test constructor with argumentString="-m 631", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-m 631", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-m 631", validate=True)
 
    def testConstructor_161(self):
       """
       Test constructor with argumentList=["--output", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--output", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--output", ], validate=True)
 
    def testConstructor_162(self):
       """
       Test constructor with argumentString="--output", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--output", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--output", validate=True)
 
    def testConstructor_163(self):
       """
       Test constructor with argumentList=["-O", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-O", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-O", ], validate=True)
 
    def testConstructor_164(self):
       """
       Test constructor with argumentString="-O", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-O", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-O", validate=True)
 
    def testConstructor_165(self):
       """
       Test constructor with argumentList=["--debug", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--debug", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--debug", ], validate=True)
 
    def testConstructor_166(self):
       """
       Test constructor with argumentString="--debug", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--debug", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--debug", validate=True)
 
    def testConstructor_167(self):
       """
       Test constructor with argumentList=["-d", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-d", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-d", ], validate=True)
 
    def testConstructor_168(self):
       """
       Test constructor with argumentString="-d", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-d", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-d", validate=True)
 
    def testConstructor_169(self):
       """
       Test constructor with argumentList=["--stack", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--stack", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--stack", ], validate=True)
 
    def testConstructor_170(self):
       """
       Test constructor with argumentString="--stack", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--stack", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--stack", validate=True)
 
    def testConstructor_171(self):
       """
       Test constructor with argumentList=["-s", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-s", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-s", ], validate=True)
 
    def testConstructor_172(self):
       """
       Test constructor with argumentString="-s", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-s", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-s", validate=True)
 
    def testConstructor_173(self):
       """
       Test constructor with argumentList=["all", ], validate=True.
       """
       options = Options(argumentList=["all", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["all", ], options.actions)
 
    def testConstructor_174(self):
       """
       Test constructor with argumentString="all", validate=True.
       """
       options = Options(argumentString="all", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["all", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["all", ], options.actions)
 
    def testConstructor_175(self):
       """
       Test constructor with argumentList=["collect", ], validate=True.
       """
       options = Options(argumentList=["collect", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", ], options.actions)
 
    def testConstructor_176(self):
       """
       Test constructor with argumentString="collect", validate=True.
       """
       options = Options(argumentString="collect", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", ], options.actions)
 
    def testConstructor_177(self):
       """
       Test constructor with argumentList=["stage", ], validate=True.
       """
       options = Options(argumentList=["stage", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["stage", ], options.actions)
 
    def testConstructor_178(self):
       """
       Test constructor with argumentString="stage", validate=True.
       """
       options = Options(argumentString="stage", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["stage", ], options.actions)
 
    def testConstructor_179(self):
       """
       Test constructor with argumentList=["store", ], validate=True.
       """
       options = Options(argumentList=["store", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["store", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["store", ], options.actions)
 
    def testConstructor_180(self):
       """
       Test constructor with argumentString="store", validate=True.
       """
       options = Options(argumentString="store", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["store", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["store", ], options.actions)
 
    def testConstructor_181(self):
       """
       Test constructor with argumentList=["purge", ], validate=True.
       """
       options = Options(argumentList=["purge", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["purge", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["purge", ], options.actions)
 
    def testConstructor_182(self):
       """
       Test constructor with argumentString="purge", validate=True.
       """
       options = Options(argumentString="purge", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["purge", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["purge", ], options.actions)
 
    def testConstructor_183(self):
       """
       Test constructor with argumentList=["rebuild", ], validate=True.
       """
       options = Options(argumentList=["rebuild", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["rebuild", ], options.actions)
 
    def testConstructor_184(self):
       """
       Test constructor with argumentString="rebuild", validate=True.
       """
       options = Options(argumentString="rebuild", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["rebuild", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["rebuild", ], options.actions)
 
    def testConstructor_185(self):
       """
       Test constructor with argumentList=["validate", ], validate=True.
       """
       options = Options(argumentList=["validate", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["validate", ], options.actions)
 
    def testConstructor_186(self):
       """
       Test constructor with argumentString="validate", validate=True.
       """
       options = Options(argumentString="validate", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["validate", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["validate", ], options.actions)
 
    def testConstructor_187(self):
       """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=True.
       """
       options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0600, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o600, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "stage", ], options.actions)
 
    def testConstructor_188(self):
       """
       Test constructor with argumentString="-d --verbose -O --mode 600 collect stage", validate=True.
       """
       options = Options(argumentString="-d --verbose -O --mode 600 collect stage", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(True, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(0600, options.mode)
-      self.failUnlessEqual(True, options.output)
-      self.failUnlessEqual(True, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual(["collect", "stage", ], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(True, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(0o600, options.mode)
+      self.assertEqual(True, options.output)
+      self.assertEqual(True, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual(["collect", "stage", ], options.actions)
 
    def testConstructor_189(self):
       """
       Test constructor with argumentList=["--managed", ], validate=False.
       """
       options = Options(argumentList=["--managed", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(True, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(True, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_190(self):
       """
       Test constructor with argumentString="--managed", validate=False.
       """
       options = Options(argumentString="--managed", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(True, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(True, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_191(self):
       """
       Test constructor with argumentList=["-M", ], validate=False.
       """
       options = Options(argumentList=["-M", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(True, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(True, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_192(self):
       """
       Test constructor with argumentString="-M", validate=False.
       """
       options = Options(argumentString="-M", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(True, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(True, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_193(self):
       """
       Test constructor with argumentList=["--managed-only", ], validate=False.
       """
       options = Options(argumentList=["--managed-only", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(True, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(True, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_194(self):
       """
       Test constructor with argumentString="--managed-only", validate=False.
       """
       options = Options(argumentString="--managed-only", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(True, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(True, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_195(self):
       """
       Test constructor with argumentList=["-N", ], validate=False.
       """
       options = Options(argumentList=["-N", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(True, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(True, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_196(self):
       """
       Test constructor with argumentString="-N", validate=False.
       """
       options = Options(argumentString="-N", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(True, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(False, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(True, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(False, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_197(self):
       """
       Test constructor with argumentList=["--managed", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--managed", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--managed", ], validate=True)
 
    def testConstructor_198(self):
       """
       Test constructor with argumentString="--managed", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--managed", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--managed", validate=True)
 
    def testConstructor_199(self):
       """
       Test constructor with argumentList=["-M", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-M", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-M", ], validate=True)
 
    def testConstructor_200(self):
       """
       Test constructor with argumentString="-M", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-M", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-M", validate=True)
 
    def testConstructor_201(self):
       """
       Test constructor with argumentList=["--managed-only", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["--managed-only", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["--managed-only", ], validate=True)
 
    def testConstructor_202(self):
       """
       Test constructor with argumentString="--managed-only", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="--managed-only", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="--managed-only", validate=True)
 
    def testConstructor_203(self):
       """
       Test constructor with argumentList=["-N", ], validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentList=["-N", ], validate=True)
+      self.assertRaises(ValueError, Options, argumentList=["-N", ], validate=True)
 
    def testConstructor_204(self):
       """
       Test constructor with argumentString="-N", validate=True.
       """
-      self.failUnlessRaises(ValueError, Options, argumentString="-N", validate=True)
+      self.assertRaises(ValueError, Options, argumentString="-N", validate=True)
 
    def testConstructor_205(self):
       """
       Test constructor with argumentList=["--diagnostics", ], validate=False.
       """
       options = Options(argumentList=["--diagnostics", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_206(self):
       """
       Test constructor with argumentString="--diagnostics", validate=False.
       """
       options = Options(argumentString="--diagnostics", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_207(self):
       """
       Test constructor with argumentList=["-D", ], validate=False.
       """
       options = Options(argumentList=["-D", ], validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_208(self):
       """
       Test constructor with argumentString="-D", validate=False.
       """
       options = Options(argumentString="-D", validate=False)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_209(self):
       """
       Test constructor with argumentList=["--diagnostics", ], validate=True.
       """
       options = Options(argumentList=["--diagnostics", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_210(self):
       """
       Test constructor with argumentString="--diagnostics", validate=True.
       """
       options = Options(argumentString="--diagnostics", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_211(self):
       """
       Test constructor with argumentList=["-D", ], validate=True.
       """
       options = Options(argumentList=["-D", ], validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
    def testConstructor_212(self):
       """
       Test constructor with argumentString="-D", validate=True.
       """
       options = Options(argumentString="-D", validate=True)
-      self.failUnlessEqual(False, options.help)
-      self.failUnlessEqual(False, options.version)
-      self.failUnlessEqual(False, options.verbose)
-      self.failUnlessEqual(False, options.quiet)
-      self.failUnlessEqual(None, options.config)
-      self.failUnlessEqual(False, options.full)
-      self.failUnlessEqual(False, options.managed)
-      self.failUnlessEqual(False, options.managedOnly)
-      self.failUnlessEqual(None, options.logfile)
-      self.failUnlessEqual(None, options.owner)
-      self.failUnlessEqual(None, options.mode)
-      self.failUnlessEqual(False, options.output)
-      self.failUnlessEqual(False, options.debug)
-      self.failUnlessEqual(False, options.stacktrace)
-      self.failUnlessEqual(True, options.diagnostics)
-      self.failUnlessEqual([], options.actions)
+      self.assertEqual(False, options.help)
+      self.assertEqual(False, options.version)
+      self.assertEqual(False, options.verbose)
+      self.assertEqual(False, options.quiet)
+      self.assertEqual(None, options.config)
+      self.assertEqual(False, options.full)
+      self.assertEqual(False, options.managed)
+      self.assertEqual(False, options.managedOnly)
+      self.assertEqual(None, options.logfile)
+      self.assertEqual(None, options.owner)
+      self.assertEqual(None, options.mode)
+      self.assertEqual(False, options.output)
+      self.assertEqual(False, options.debug)
+      self.assertEqual(False, options.stacktrace)
+      self.assertEqual(True, options.diagnostics)
+      self.assertEqual([], options.actions)
 
 
    ############################
@@ -3289,13 +3289,13 @@ class TestOptions(unittest.TestCase):
       """
       options1 = Options()
       options2 = Options()
-      self.failUnlessEqual(options1, options2)
-      self.failUnless(options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(not options1 != options2)
+      self.assertEqual(options1, options2)
+      self.assertTrue(options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(not options1 != options2)
 
    def testComparison_002(self):
       """
@@ -3331,20 +3331,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failUnlessEqual(options1, options2)
-      self.failUnless(options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(not options1 != options2)
+      self.assertEqual(options1, options2)
+      self.assertTrue(options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(not options1 != options2)
 
    def testComparison_003(self):
       """
@@ -3380,20 +3380,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(not options1 <= options2)
-      self.failUnless(options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(not options1 <= options2)
+      self.assertTrue(options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_004(self):
       """
@@ -3429,20 +3429,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_005(self):
       """
@@ -3478,20 +3478,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_006(self):
       """
@@ -3527,20 +3527,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(not options1 <= options2)
-      self.failUnless(options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(not options1 <= options2)
+      self.assertTrue(options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_007(self):
       """
@@ -3576,20 +3576,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(not options1 <= options2)
-      self.failUnless(options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(not options1 <= options2)
+      self.assertTrue(options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_008(self):
       """
@@ -3625,20 +3625,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_009(self):
       """
@@ -3674,20 +3674,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "stuff"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_010(self):
       """
@@ -3723,20 +3723,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("c", "d")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_011(self):
       """
@@ -3755,7 +3755,7 @@ class TestOptions(unittest.TestCase):
       options1.managedOnly = True
       options1.logfile = "logfile"
       options1.owner = ("a", "b")
-      options1.mode = 0600
+      options1.mode = 0o600
       options1.output = True
       options1.debug = True
       options1.stacktrace = False
@@ -3772,20 +3772,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_012(self):
       """
@@ -3821,20 +3821,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_013(self):
       """
@@ -3870,20 +3870,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = False
       options1.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(not options1 < options2)
-      self.failUnless(not options1 <= options2)
-      self.failUnless(options1 > options2)
-      self.failUnless(options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(not options1 < options2)
+      self.assertTrue(not options1 <= options2)
+      self.assertTrue(options1 > options2)
+      self.assertTrue(options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_014(self):
       """
@@ -3919,20 +3919,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = True
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_015(self):
       """
@@ -3968,20 +3968,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_016(self):
       """
@@ -4017,20 +4017,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = False
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
    def testComparison_017(self):
       """
@@ -4049,7 +4049,7 @@ class TestOptions(unittest.TestCase):
       options1.managedOnly = True
       options1.logfile = "logfile"
       options1.owner = ("a", "b")
-      options1.mode = 0631
+      options1.mode = 0o631
       options1.output = True
       options1.debug = True
       options1.stacktrace = False
@@ -4066,20 +4066,20 @@ class TestOptions(unittest.TestCase):
       options2.managedOnly = True
       options2.logfile = "logfile"
       options2.owner = ("a", "b")
-      options2.mode = 0631
+      options2.mode = 0o631
       options2.output = True
       options2.debug = True
       options2.stacktrace = False
       options2.diagnostics = True
       options2.actions = ["collect", ]
 
-      self.failIfEqual(options1, options2)
-      self.failUnless(not options1 == options2)
-      self.failUnless(options1 < options2)
-      self.failUnless(options1 <= options2)
-      self.failUnless(not options1 > options2)
-      self.failUnless(not options1 >= options2)
-      self.failUnless(options1 != options2)
+      self.assertNotEqual(options1, options2)
+      self.assertTrue(not options1 == options2)
+      self.assertTrue(options1 < options2)
+      self.assertTrue(options1 <= options2)
+      self.assertTrue(not options1 > options2)
+      self.assertTrue(not options1 >= options2)
+      self.assertTrue(options1 != options2)
 
 
    ###########################
@@ -4090,105 +4090,105 @@ class TestOptions(unittest.TestCase):
       """Test with no values set, validate=False."""
       options = Options()
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual([], argumentList)
+      self.assertEqual([], argumentList)
 
    def testBuildArgumentList_002(self):
       """Test with help set, validate=False."""
       options = Options()
       options.help = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--help", ], argumentList)
+      self.assertEqual(["--help", ], argumentList)
 
    def testBuildArgumentList_003(self):
       """Test with version set, validate=False."""
       options = Options()
       options.version = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--version", ], argumentList)
+      self.assertEqual(["--version", ], argumentList)
 
    def testBuildArgumentList_004(self):
       """Test with verbose set, validate=False."""
       options = Options()
       options.verbose = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--verbose", ], argumentList)
+      self.assertEqual(["--verbose", ], argumentList)
 
    def testBuildArgumentList_005(self):
       """Test with quiet set, validate=False."""
       options = Options()
       options.quiet = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--quiet", ], argumentList)
+      self.assertEqual(["--quiet", ], argumentList)
 
    def testBuildArgumentList_006(self):
       """Test with config set, validate=False."""
       options = Options()
       options.config = "stuff"
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--config", "stuff", ], argumentList)
+      self.assertEqual(["--config", "stuff", ], argumentList)
 
    def testBuildArgumentList_007(self):
       """Test with full set, validate=False."""
       options = Options()
       options.full = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--full", ], argumentList)
+      self.assertEqual(["--full", ], argumentList)
 
    def testBuildArgumentList_008(self):
       """Test with logfile set, validate=False."""
       options = Options()
       options.logfile = "bogus"
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--logfile", "bogus", ], argumentList)
+      self.assertEqual(["--logfile", "bogus", ], argumentList)
 
    def testBuildArgumentList_009(self):
       """Test with owner set, validate=False."""
       options = Options()
       options.owner = ("ken", "group")
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--owner", "ken:group", ], argumentList)
+      self.assertEqual(["--owner", "ken:group", ], argumentList)
 
    def testBuildArgumentList_010(self):
       """Test with mode set, validate=False."""
       options = Options()
-      options.mode = 0644
+      options.mode = 0o644
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--mode", "644", ], argumentList)
+      self.assertEqual(["--mode", "644", ], argumentList)
 
    def testBuildArgumentList_011(self):
       """Test with output set, validate=False."""
       options = Options()
       options.output = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--output", ], argumentList)
+      self.assertEqual(["--output", ], argumentList)
 
    def testBuildArgumentList_012(self):
       """Test with debug set, validate=False."""
       options = Options()
       options.debug = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--debug", ], argumentList)
+      self.assertEqual(["--debug", ], argumentList)
 
    def testBuildArgumentList_013(self):
       """Test with stacktrace set, validate=False."""
       options = Options()
       options.stacktrace = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--stack", ], argumentList)
+      self.assertEqual(["--stack", ], argumentList)
 
    def testBuildArgumentList_014(self):
       """Test with actions containing one item, validate=False."""
       options = Options()
       options.actions = [ "collect", ]
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["collect", ], argumentList)
+      self.assertEqual(["collect", ], argumentList)
 
    def testBuildArgumentList_015(self):
       """Test with actions containing multiple items, validate=False."""
       options = Options()
       options.actions = [ "collect", "stage", "store", "purge", ]
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["collect", "stage", "store", "purge", ], argumentList)
+      self.assertEqual(["collect", "stage", "store", "purge", ], argumentList)
 
    def testBuildArgumentList_016(self):
       """Test with all values set, actions containing one item, validate=False."""
@@ -4210,7 +4210,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", ]
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
                              "--full", "--managed", "--managed-only", 
                              "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
                              "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
@@ -4235,7 +4235,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
                              "--full", "--managed", "--managed-only", 
                              "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
                              "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
@@ -4243,95 +4243,95 @@ class TestOptions(unittest.TestCase):
    def testBuildArgumentList_018(self):
       """Test with no values set, validate=True."""
       options = Options()
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_019(self):
       """Test with help set, validate=True."""
       options = Options()
       options.help = True
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["--help", ], argumentList)
+      self.assertEqual(["--help", ], argumentList)
 
    def testBuildArgumentList_020(self):
       """Test with version set, validate=True."""
       options = Options()
       options.version = True
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["--version", ], argumentList)
+      self.assertEqual(["--version", ], argumentList)
 
    def testBuildArgumentList_021(self):
       """Test with verbose set, validate=True."""
       options = Options()
       options.verbose = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_022(self):
       """Test with quiet set, validate=True."""
       options = Options()
       options.quiet = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_023(self):
       """Test with config set, validate=True."""
       options = Options()
       options.config = "stuff"
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_024(self):
       """Test with full set, validate=True."""
       options = Options()
       options.full = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_025(self):
       """Test with logfile set, validate=True."""
       options = Options()
       options.logfile = "bogus"
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_026(self):
       """Test with owner set, validate=True."""
       options = Options()
       options.owner = ("ken", "group")
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_027(self):
       """Test with mode set, validate=True."""
       options = Options()
-      options.mode = 0644
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      options.mode = 0o644
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_028(self):
       """Test with output set, validate=True."""
       options = Options()
       options.output = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_029(self):
       """Test with debug set, validate=True."""
       options = Options()
       options.debug = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_030(self):
       """Test with stacktrace set, validate=True."""
       options = Options()
       options.stacktrace = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_031(self):
       """Test with actions containing one item, validate=True."""
       options = Options()
       options.actions = [ "collect", ]
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["collect", ], argumentList)
+      self.assertEqual(["collect", ], argumentList)
 
    def testBuildArgumentList_032(self):
       """Test with actions containing multiple items, validate=True."""
       options = Options()
       options.actions = [ "collect", "stage", "store", "purge", ]
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["collect", "stage", "store", "purge", ], argumentList)
+      self.assertEqual(["collect", "stage", "store", "purge", ], argumentList)
 
    def testBuildArgumentList_033(self):
       """Test with all values set (except managed ones), actions containing one item, validate=True."""
@@ -4351,7 +4351,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", ]
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
                              "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
                              "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
 
@@ -4373,7 +4373,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config", 
                              "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
                              "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
 
@@ -4382,26 +4382,26 @@ class TestOptions(unittest.TestCase):
       options = Options()
       options.managed = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--managed", ], argumentList)
+      self.assertEqual(["--managed", ], argumentList)
 
    def testBuildArgumentList_036(self):
       """Test with managed set, validate=True."""
       options = Options()
       options.managed = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_037(self):
       """Test with managedOnly set, validate=False."""
       options = Options()
       options.managedOnly = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--managed-only", ], argumentList)
+      self.assertEqual(["--managed-only", ], argumentList)
 
    def testBuildArgumentList_038(self):
       """Test with managedOnly set, validate=True."""
       options = Options()
       options.managedOnly = True
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_039(self):
       """Test with all values set, actions containing one item, validate=True."""
@@ -4422,7 +4422,7 @@ class TestOptions(unittest.TestCase):
       options.stacktrace = True
       options.diagnostics = True
       options.actions = ["collect", ]
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_040(self):
       """Test with all values set, actions containing multiple items, validate=True."""
@@ -4443,21 +4443,21 @@ class TestOptions(unittest.TestCase):
       options.stacktrace = True
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
-      self.failUnlessRaises(ValueError, options.buildArgumentList, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentList, validate=True)
 
    def testBuildArgumentList_041(self):
       """Test with diagnostics set, validate=False."""
       options = Options()
       options.diagnostics = True
       argumentList = options.buildArgumentList(validate=False)
-      self.failUnlessEqual(["--diagnostics", ], argumentList)
+      self.assertEqual(["--diagnostics", ], argumentList)
 
    def testBuildArgumentList_042(self):
       """Test with diagnostics set, validate=True."""
       options = Options()
       options.diagnostics = True
       argumentList = options.buildArgumentList(validate=True)
-      self.failUnlessEqual(["--diagnostics", ], argumentList)
+      self.assertEqual(["--diagnostics", ], argumentList)
 
 
    #############################
@@ -4468,105 +4468,105 @@ class TestOptions(unittest.TestCase):
       """Test with no values set, validate=False."""
       options = Options()
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("", argumentString)
+      self.assertEqual("", argumentString)
 
    def testBuildArgumentString_002(self):
       """Test with help set, validate=False."""
       options = Options()
       options.help = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--help ", argumentString)
+      self.assertEqual("--help ", argumentString)
 
    def testBuildArgumentString_003(self):
       """Test with version set, validate=False."""
       options = Options()
       options.version = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--version ", argumentString)
+      self.assertEqual("--version ", argumentString)
 
    def testBuildArgumentString_004(self):
       """Test with verbose set, validate=False."""
       options = Options()
       options.verbose = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--verbose ", argumentString)
+      self.assertEqual("--verbose ", argumentString)
 
    def testBuildArgumentString_005(self):
       """Test with quiet set, validate=False."""
       options = Options()
       options.quiet = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--quiet ", argumentString)
+      self.assertEqual("--quiet ", argumentString)
 
    def testBuildArgumentString_006(self):
       """Test with config set, validate=False."""
       options = Options()
       options.config = "stuff"
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--config "stuff" ', argumentString)
+      self.assertEqual('--config "stuff" ', argumentString)
 
    def testBuildArgumentString_007(self):
       """Test with full set, validate=False."""
       options = Options()
       options.full = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--full ", argumentString)
+      self.assertEqual("--full ", argumentString)
 
    def testBuildArgumentString_008(self):
       """Test with logfile set, validate=False."""
       options = Options()
       options.logfile = "bogus"
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--logfile "bogus" ', argumentString)
+      self.assertEqual('--logfile "bogus" ', argumentString)
 
    def testBuildArgumentString_009(self):
       """Test with owner set, validate=False."""
       options = Options()
       options.owner = ("ken", "group")
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--owner "ken:group" ', argumentString)
+      self.assertEqual('--owner "ken:group" ', argumentString)
 
    def testBuildArgumentString_010(self):
       """Test with mode set, validate=False."""
       options = Options()
-      options.mode = 0644
+      options.mode = 0o644
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--mode 644 ', argumentString)
+      self.assertEqual('--mode 644 ', argumentString)
 
    def testBuildArgumentString_011(self):
       """Test with output set, validate=False."""
       options = Options()
       options.output = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--output ", argumentString)
+      self.assertEqual("--output ", argumentString)
 
    def testBuildArgumentString_012(self):
       """Test with debug set, validate=False."""
       options = Options()
       options.debug = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--debug ", argumentString)
+      self.assertEqual("--debug ", argumentString)
 
    def testBuildArgumentString_013(self):
       """Test with stacktrace set, validate=False."""
       options = Options()
       options.stacktrace = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--stack ", argumentString)
+      self.assertEqual("--stack ", argumentString)
 
    def testBuildArgumentString_014(self):
       """Test with actions containing one item, validate=False."""
       options = Options()
       options.actions = [ "collect", ]
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('"collect" ', argumentString)
+      self.assertEqual('"collect" ', argumentString)
 
    def testBuildArgumentString_015(self):
       """Test with actions containing multiple items, validate=False."""
       options = Options()
       options.actions = [ "collect", "stage", "store", "purge", ]
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('"collect" "stage" "store" "purge" ', argumentString)
+      self.assertEqual('"collect" "stage" "store" "purge" ', argumentString)
 
    def testBuildArgumentString_016(self):
       """Test with all values set, actions containing one item, validate=False."""
@@ -4588,7 +4588,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", ]
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--help --version --verbose --quiet --config "config" --full --managed --managed-only --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" ', argumentString)
+      self.assertEqual('--help --version --verbose --quiet --config "config" --full --managed --managed-only --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" ', argumentString)
 
    def testBuildArgumentString_017(self):
       """Test with all values set, actions containing multiple items, validate=False."""
@@ -4608,100 +4608,100 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" "stage" ', argumentString)
+      self.assertEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" "stage" ', argumentString)
 
    def testBuildArgumentString_018(self):
       """Test with no values set, validate=True."""
       options = Options()
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_019(self):
       """Test with help set, validate=True."""
       options = Options()
       options.help = True
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual("--help ", argumentString)
+      self.assertEqual("--help ", argumentString)
 
    def testBuildArgumentString_020(self):
       """Test with version set, validate=True."""
       options = Options()
       options.version = True
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual("--version ", argumentString)
+      self.assertEqual("--version ", argumentString)
 
    def testBuildArgumentString_021(self):
       """Test with verbose set, validate=True."""
       options = Options()
       options.verbose = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_022(self):
       """Test with quiet set, validate=True."""
       options = Options()
       options.quiet = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_023(self):
       """Test with config set, validate=True."""
       options = Options()
       options.config = "stuff"
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_024(self):
       """Test with full set, validate=True."""
       options = Options()
       options.full = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_025(self):
       """Test with logfile set, validate=True."""
       options = Options()
       options.logfile = "bogus"
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_026(self):
       """Test with owner set, validate=True."""
       options = Options()
       options.owner = ("ken", "group")
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_027(self):
       """Test with mode set, validate=True."""
       options = Options()
-      options.mode = 0644
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      options.mode = 0o644
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_028(self):
       """Test with output set, validate=True."""
       options = Options()
       options.output = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_029(self):
       """Test with debug set, validate=True."""
       options = Options()
       options.debug = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_030(self):
       """Test with stacktrace set, validate=True."""
       options = Options()
       options.stacktrace = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_031(self):
       """Test with actions containing one item, validate=True."""
       options = Options()
       options.actions = [ "collect", ]
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual('"collect" ', argumentString)
+      self.assertEqual('"collect" ', argumentString)
 
    def testBuildArgumentString_032(self):
       """Test with actions containing multiple items, validate=True."""
       options = Options()
       options.actions = [ "collect", "stage", "store", "purge", ]
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual('"collect" "stage" "store" "purge" ', argumentString)
+      self.assertEqual('"collect" "stage" "store" "purge" ', argumentString)
 
    def testBuildArgumentString_033(self):
       """Test with all values set (except managed ones), actions containing one item, validate=True."""
@@ -4721,7 +4721,7 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", ]
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" ', argumentString)
+      self.assertEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" ', argumentString)
 
    def testBuildArgumentString_034(self):
       """Test with all values set (except managed ones), actions containing multiple items, validate=True."""
@@ -4741,33 +4741,33 @@ class TestOptions(unittest.TestCase):
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" "stage" ', argumentString)
+      self.assertEqual('--help --version --verbose --quiet --config "config" --full --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics "collect" "stage" ', argumentString)
 
    def testBuildArgumentString_035(self):
       """Test with managed set, validate=False."""
       options = Options()
       options.managed = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--managed ", argumentString)
+      self.assertEqual("--managed ", argumentString)
 
    def testBuildArgumentString_036(self):
       """Test with managed set, validate=True."""
       options = Options()
       options.managed = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_037(self):
       """Test with full set, validate=False."""
       options = Options()
       options.managedOnly = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--managed-only ", argumentString)
+      self.assertEqual("--managed-only ", argumentString)
 
    def testBuildArgumentString_038(self):
       """Test with managedOnly set, validate=True."""
       options = Options()
       options.managedOnly = True
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_039(self):
       """Test with all values set (except managed ones), actions containing one item, validate=True."""
@@ -4788,7 +4788,7 @@ class TestOptions(unittest.TestCase):
       options.stacktrace = True
       options.diagnostics = True
       options.actions = ["collect", ]
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_040(self):
       """Test with all values set (except managed ones), actions containing multiple items, validate=True."""
@@ -4809,21 +4809,21 @@ class TestOptions(unittest.TestCase):
       options.stacktrace = True
       options.diagnostics = True
       options.actions = ["collect", "stage", ]
-      self.failUnlessRaises(ValueError, options.buildArgumentString, validate=True)
+      self.assertRaises(ValueError, options.buildArgumentString, validate=True)
 
    def testBuildArgumentString_041(self):
       """Test with diagnostics set, validate=False."""
       options = Options()
       options.diagnostics = True
       argumentString = options.buildArgumentString(validate=False)
-      self.failUnlessEqual("--diagnostics ", argumentString)
+      self.assertEqual("--diagnostics ", argumentString)
 
    def testBuildArgumentString_042(self):
       """Test with diagnostics set, validate=True."""
       options = Options()
       options.diagnostics = True
       argumentString = options.buildArgumentString(validate=True)
-      self.failUnlessEqual("--diagnostics ", argumentString)
+      self.assertEqual("--diagnostics ", argumentString)
 
 
 ######################
@@ -4856,7 +4856,7 @@ class TestActionSet(unittest.TestCase):
       actions = None
       extensions = ExtensionsConfig(None, None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_002(self):
       """
@@ -4865,7 +4865,7 @@ class TestActionSet(unittest.TestCase):
       actions = []
       extensions = ExtensionsConfig(None, None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_003(self):
       """
@@ -4874,7 +4874,7 @@ class TestActionSet(unittest.TestCase):
       actions = []
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_004(self):
       """
@@ -4884,13 +4884,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_005(self):
       """
@@ -4900,13 +4900,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testActionSet_006(self):
       """
@@ -4916,13 +4916,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testActionSet_007(self):
       """
@@ -4932,13 +4932,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
 
    def testActionSet_008(self):
       """
@@ -4948,28 +4948,28 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testActionSet_009(self):
       """
@@ -4979,12 +4979,12 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("rebuild", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeRebuild, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("rebuild", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeRebuild, actionSet.actionSet[0].function)
 
    def testActionSet_010(self):
       """
@@ -4994,12 +4994,12 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("validate", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeValidate, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("validate", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeValidate, actionSet.actionSet[0].function)
 
    def testActionSet_011(self):
       """
@@ -5009,17 +5009,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_012(self):
       """
@@ -5029,17 +5029,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testActionSet_013(self):
       """
@@ -5049,17 +5049,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_014(self):
       """
@@ -5069,17 +5069,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_015(self):
       """
@@ -5088,7 +5088,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_016(self):
       """
@@ -5097,7 +5097,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_017(self):
       """
@@ -5106,7 +5106,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_018(self):
       """
@@ -5116,17 +5116,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testActionSet_019(self):
       """
@@ -5136,17 +5136,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testActionSet_020(self):
       """
@@ -5156,17 +5156,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_021(self):
       """
@@ -5176,17 +5176,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_022(self):
       """
@@ -5195,7 +5195,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_023(self):
       """
@@ -5204,7 +5204,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_024(self):
       """
@@ -5213,7 +5213,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_025(self):
       """
@@ -5223,17 +5223,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_026(self):
       """
@@ -5243,17 +5243,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_027(self):
       """
@@ -5263,17 +5263,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_028(self):
       """
@@ -5283,17 +5283,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_029(self):
       """
@@ -5302,7 +5302,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_030(self):
       """
@@ -5311,7 +5311,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_031(self):
       """
@@ -5320,7 +5320,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_032(self):
       """
@@ -5330,17 +5330,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_033(self):
       """
@@ -5350,17 +5350,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_034(self):
       """
@@ -5370,17 +5370,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_035(self):
       """
@@ -5390,17 +5390,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_036(self):
       """
@@ -5409,7 +5409,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_037(self):
       """
@@ -5418,7 +5418,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_038(self):
       """
@@ -5427,7 +5427,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_039(self):
       """
@@ -5436,7 +5436,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "collect", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_040(self):
       """
@@ -5445,7 +5445,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "stage", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_041(self):
       """
@@ -5454,7 +5454,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "store", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_042(self):
       """
@@ -5463,7 +5463,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "purge", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_043(self):
       """
@@ -5472,7 +5472,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_044(self):
       """
@@ -5481,7 +5481,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_045(self):
       """
@@ -5490,7 +5490,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_046(self):
       """
@@ -5499,7 +5499,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "collect", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_047(self):
       """
@@ -5508,7 +5508,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "stage", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_048(self):
       """
@@ -5517,7 +5517,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "store", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_049(self):
       """
@@ -5526,7 +5526,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "purge", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_050(self):
       """
@@ -5535,7 +5535,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_051(self):
       """
@@ -5544,7 +5544,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_052(self):
       """
@@ -5553,7 +5553,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_053(self):
       """
@@ -5562,7 +5562,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "collect", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_054(self):
       """
@@ -5571,7 +5571,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "stage", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_055(self):
       """
@@ -5580,7 +5580,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "store", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_056(self):
       """
@@ -5589,7 +5589,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "purge", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_057(self):
       """
@@ -5598,7 +5598,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_058(self):
       """
@@ -5607,7 +5607,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_059(self):
       """
@@ -5616,7 +5616,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_060(self):
       """
@@ -5625,7 +5625,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_061(self):
       """
@@ -5634,7 +5634,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "collect", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_062(self):
       """
@@ -5643,7 +5643,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "stage", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_063(self):
       """
@@ -5652,7 +5652,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "store", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_064(self):
       """
@@ -5661,7 +5661,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "purge", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_065(self):
       """
@@ -5670,7 +5670,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "all", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_066(self):
       """
@@ -5679,7 +5679,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "rebuild", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_067(self):
       """
@@ -5688,7 +5688,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "validate", ]
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_068(self):
       """
@@ -5698,17 +5698,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_069(self):
       """
@@ -5718,17 +5718,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testActionSet_070(self):
       """
@@ -5738,17 +5738,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_071(self):
       """
@@ -5758,17 +5758,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_072(self):
       """
@@ -5777,7 +5777,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_073(self):
       """
@@ -5786,7 +5786,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_074(self):
       """
@@ -5795,7 +5795,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_075(self):
       """
@@ -5805,17 +5805,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_076(self):
       """
@@ -5825,17 +5825,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testActionSet_077(self):
       """
@@ -5845,17 +5845,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_078(self):
       """
@@ -5865,17 +5865,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_079(self):
       """
@@ -5884,7 +5884,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_080(self):
       """
@@ -5893,7 +5893,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_081(self):
       """
@@ -5902,7 +5902,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 150), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_082(self):
       """
@@ -5912,17 +5912,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(250, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(250, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_083(self):
       """
@@ -5932,17 +5932,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(250, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(250, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_084(self):
       """
@@ -5952,17 +5952,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(250, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(250, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testActionSet_085(self):
       """
@@ -5972,17 +5972,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(250, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(250, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_086(self):
       """
@@ -5991,7 +5991,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_087(self):
       """
@@ -6000,7 +6000,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_088(self):
       """
@@ -6009,7 +6009,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 250), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_089(self):
       """
@@ -6019,17 +6019,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(350, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(350, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_090(self):
       """
@@ -6039,17 +6039,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(350, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(350, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_091(self):
       """
@@ -6059,17 +6059,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(350, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(350, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_092(self):
       """
@@ -6079,17 +6079,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(350, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(350, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testActionSet_093(self):
       """
@@ -6098,7 +6098,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_094(self):
       """
@@ -6107,7 +6107,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_095(self):
       """
@@ -6116,7 +6116,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 350), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_096(self):
       """
@@ -6126,17 +6126,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(450, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(450, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_097(self):
       """
@@ -6146,17 +6146,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(450, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(450, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_098(self):
       """
@@ -6166,17 +6166,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(450, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(450, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_099(self):
       """
@@ -6186,17 +6186,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
-      self.failUnlessEqual(450, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual(450, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_100(self):
       """
@@ -6205,7 +6205,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_101(self):
       """
@@ -6214,7 +6214,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_102(self):
       """
@@ -6223,7 +6223,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "one", ]
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testActionSet_103(self):
       """
@@ -6233,17 +6233,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(450, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(450, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(450, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(450, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testActionSet_104(self):
       """
@@ -6253,27 +6253,27 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testActionSet_105(self):
       """
@@ -6283,27 +6283,27 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testActionSet_106(self):
       """
@@ -6315,52 +6315,52 @@ class TestActionSet(unittest.TestCase):
                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual(150, actionSet.actionSet[2].index)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual(200, actionSet.actionSet[3].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual(250, actionSet.actionSet[4].index)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual(300, actionSet.actionSet[5].index)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual(350, actionSet.actionSet[6].index)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(None, actionSet.actionSet[6].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[6].postHook)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual(400, actionSet.actionSet[7].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual(450, actionSet.actionSet[8].index)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(None, actionSet.actionSet[8].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[8].postHook)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual(150, actionSet.actionSet[2].index)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[3].index)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual(250, actionSet.actionSet[4].index)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual(300, actionSet.actionSet[5].index)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual(350, actionSet.actionSet[6].index)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(None, actionSet.actionSet[6].preHook)
+      self.assertEqual(None, actionSet.actionSet[6].postHook)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual(400, actionSet.actionSet[7].index)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual(450, actionSet.actionSet[8].index)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(None, actionSet.actionSet[8].preHook)
+      self.assertEqual(None, actionSet.actionSet[8].postHook)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testActionSet_107(self):
       """
@@ -6372,52 +6372,52 @@ class TestActionSet(unittest.TestCase):
                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual(150, actionSet.actionSet[2].index)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual(200, actionSet.actionSet[3].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual(250, actionSet.actionSet[4].index)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual(300, actionSet.actionSet[5].index)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual(350, actionSet.actionSet[6].index)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(None, actionSet.actionSet[6].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[6].postHook)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual(400, actionSet.actionSet[7].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual(450, actionSet.actionSet[8].index)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(None, actionSet.actionSet[8].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[8].postHook)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual(150, actionSet.actionSet[2].index)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[3].index)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual(250, actionSet.actionSet[4].index)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual(300, actionSet.actionSet[5].index)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual(350, actionSet.actionSet[6].index)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(None, actionSet.actionSet[6].preHook)
+      self.assertEqual(None, actionSet.actionSet[6].postHook)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual(400, actionSet.actionSet[7].index)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual(450, actionSet.actionSet[8].index)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(None, actionSet.actionSet[8].preHook)
+      self.assertEqual(None, actionSet.actionSet[8].postHook)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testActionSet_108(self):
       """
@@ -6427,12 +6427,12 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_109(self):
       """
@@ -6443,13 +6443,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_110(self):
       """
@@ -6460,13 +6460,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("stage", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_111(self):
       """
@@ -6477,13 +6477,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("stage", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_112(self):
       """
@@ -6494,13 +6494,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_113(self):
       """
@@ -6511,13 +6511,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("collect", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("collect", "something"), actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_114(self):
       """
@@ -6528,13 +6528,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something1"), PostActionHook("collect", "something2") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("collect", "something1"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something2"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("collect", "something1"), actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("collect", "something2"), actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testActionSet_115(self):
       """
@@ -6545,12 +6545,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_116(self):
       """
@@ -6561,12 +6561,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("store", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_117(self):
       """
@@ -6577,12 +6577,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("store", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_118(self):
       """
@@ -6593,12 +6593,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_119(self):
       """
@@ -6609,12 +6609,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_120(self):
       """
@@ -6625,12 +6625,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension2"), PreActionHook("one", "extension1"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension1"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension2"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension1"), actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension2"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testActionSet_121(self):
       """
@@ -6641,17 +6641,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_122(self):
       """
@@ -6662,17 +6662,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("purge", "rm -f"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_123(self):
       """
@@ -6683,17 +6683,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("purge", "rm -f"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_124(self):
       """
@@ -6704,17 +6704,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_125(self):
       """
@@ -6725,17 +6725,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("collect", "something"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something"), actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(PostActionHook("collect", "something"), actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_126(self):
       """
@@ -6746,17 +6746,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_127(self):
       """
@@ -6767,17 +6767,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testActionSet_128(self):
       """
@@ -6788,17 +6788,17 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), PreActionHook("collect", "something"), PostActionHook("stage", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
 
    ############################################
@@ -6812,7 +6812,7 @@ class TestActionSet(unittest.TestCase):
       actions = None
       extensions = ExtensionsConfig(None, "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_002(self):
       """
@@ -6821,7 +6821,7 @@ class TestActionSet(unittest.TestCase):
       actions = []
       extensions = ExtensionsConfig(None, "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_003(self):
       """
@@ -6830,7 +6830,7 @@ class TestActionSet(unittest.TestCase):
       actions = []
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_004(self):
       """
@@ -6840,13 +6840,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_005(self):
       """
@@ -6856,13 +6856,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testDependencyMode_006(self):
       """
@@ -6872,13 +6872,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testDependencyMode_007(self):
       """
@@ -6888,13 +6888,13 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
 
    def testDependencyMode_008(self):
       """
@@ -6904,28 +6904,28 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testDependencyMode_009(self):
       """
@@ -6935,12 +6935,12 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("rebuild", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeRebuild, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("rebuild", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeRebuild, actionSet.actionSet[0].function)
 
    def testDependencyMode_010(self):
       """
@@ -6950,12 +6950,12 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("validate", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeValidate, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("validate", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeValidate, actionSet.actionSet[0].function)
 
    def testDependencyMode_011(self):
       """
@@ -6965,17 +6965,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_012(self):
       """
@@ -6985,17 +6985,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_013(self):
       """
@@ -7005,17 +7005,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_014(self):
       """
@@ -7025,17 +7025,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_015(self):
       """
@@ -7044,7 +7044,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_016(self):
       """
@@ -7053,7 +7053,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_017(self):
       """
@@ -7062,7 +7062,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "collect", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_018(self):
       """
@@ -7072,17 +7072,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_019(self):
       """
@@ -7092,17 +7092,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_020(self):
       """
@@ -7112,17 +7112,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_021(self):
       """
@@ -7132,17 +7132,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_022(self):
       """
@@ -7151,7 +7151,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_023(self):
       """
@@ -7160,7 +7160,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_024(self):
       """
@@ -7169,7 +7169,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "stage", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_025(self):
       """
@@ -7179,17 +7179,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_026(self):
       """
@@ -7199,17 +7199,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_027(self):
       """
@@ -7219,17 +7219,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_028(self):
       """
@@ -7239,17 +7239,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_029(self):
       """
@@ -7258,7 +7258,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_030(self):
       """
@@ -7267,7 +7267,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_031(self):
       """
@@ -7276,7 +7276,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "store", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_032(self):
       """
@@ -7286,17 +7286,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_033(self):
       """
@@ -7306,17 +7306,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_034(self):
       """
@@ -7326,17 +7326,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_035(self):
       """
@@ -7346,17 +7346,17 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_036(self):
       """
@@ -7365,7 +7365,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_037(self):
       """
@@ -7374,7 +7374,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_038(self):
       """
@@ -7383,7 +7383,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "purge", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_039(self):
       """
@@ -7392,7 +7392,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "collect", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_040(self):
       """
@@ -7401,7 +7401,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "stage", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_041(self):
       """
@@ -7410,7 +7410,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "store", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_042(self):
       """
@@ -7419,7 +7419,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "purge", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_043(self):
       """
@@ -7428,7 +7428,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_044(self):
       """
@@ -7437,7 +7437,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_045(self):
       """
@@ -7446,7 +7446,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "all", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_046(self):
       """
@@ -7455,7 +7455,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "collect", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_047(self):
       """
@@ -7464,7 +7464,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "stage", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_048(self):
       """
@@ -7473,7 +7473,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "store", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_049(self):
       """
@@ -7482,7 +7482,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "purge", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_050(self):
       """
@@ -7491,7 +7491,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_051(self):
       """
@@ -7500,7 +7500,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_052(self):
       """
@@ -7509,7 +7509,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "rebuild", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_053(self):
       """
@@ -7518,7 +7518,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "collect", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_054(self):
       """
@@ -7527,7 +7527,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "stage", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_055(self):
       """
@@ -7536,7 +7536,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "store", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_056(self):
       """
@@ -7545,7 +7545,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "purge", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_057(self):
       """
@@ -7554,7 +7554,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_058(self):
       """
@@ -7563,7 +7563,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_059(self):
       """
@@ -7572,7 +7572,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "validate", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_060(self):
       """
@@ -7581,7 +7581,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_061(self):
       """
@@ -7590,7 +7590,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "collect", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_062(self):
       """
@@ -7599,7 +7599,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "stage", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_063(self):
       """
@@ -7608,7 +7608,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "store", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_064(self):
       """
@@ -7617,7 +7617,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "purge", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_065(self):
       """
@@ -7626,7 +7626,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "all", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_066(self):
       """
@@ -7635,7 +7635,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "rebuild", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_067(self):
       """
@@ -7644,7 +7644,7 @@ class TestActionSet(unittest.TestCase):
       actions = [ "bogus", "validate", ]
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_068(self):
       """
@@ -7655,15 +7655,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_069(self):
       """
@@ -7674,15 +7674,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_070(self):
       """
@@ -7693,15 +7693,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_071(self):
       """
@@ -7712,15 +7712,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_072(self):
       """
@@ -7730,7 +7730,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["collect", ], [])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_073(self):
       """
@@ -7740,7 +7740,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["collect", ], None)
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_074(self):
       """
@@ -7750,7 +7750,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["stage", ], [])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_075(self):
       """
@@ -7761,15 +7761,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_076(self):
       """
@@ -7780,15 +7780,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_077(self):
       """
@@ -7799,15 +7799,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_078(self):
       """
@@ -7818,15 +7818,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_079(self):
       """
@@ -7837,15 +7837,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_080(self):
       """
@@ -7856,15 +7856,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_081(self):
       """
@@ -7875,15 +7875,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_082(self):
       """
@@ -7893,7 +7893,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["collect", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_083(self):
       """
@@ -7903,7 +7903,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies([], ["collect", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_084(self):
       """
@@ -7913,7 +7913,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["collect", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_085(self):
       """
@@ -7924,15 +7924,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_086(self):
       """
@@ -7943,15 +7943,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_087(self):
       """
@@ -7962,15 +7962,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_088(self):
       """
@@ -7981,15 +7981,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_089(self):
       """
@@ -8000,15 +8000,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_090(self):
       """
@@ -8019,15 +8019,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_091(self):
       """
@@ -8038,15 +8038,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_092(self):
       """
@@ -8057,15 +8057,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_093(self):
       """
@@ -8075,7 +8075,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["stage", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_094(self):
       """
@@ -8085,7 +8085,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies([], ["stage", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_095(self):
       """
@@ -8095,7 +8095,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["stage", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_096(self):
       """
@@ -8106,15 +8106,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_097(self):
       """
@@ -8125,15 +8125,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testDependencyMode_098(self):
       """
@@ -8144,15 +8144,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testDependencyMode_099(self):
       """
@@ -8163,15 +8163,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testDependencyMode_100(self):
       """
@@ -8182,15 +8182,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_101(self):
       """
@@ -8201,15 +8201,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testDependencyMode_102(self):
       """
@@ -8220,15 +8220,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testDependencyMode_103(self):
       """
@@ -8239,15 +8239,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_104(self):
       """
@@ -8257,7 +8257,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["store", ], [])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_105(self):
       """
@@ -8267,7 +8267,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["store", ], None)
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_106(self):
       """
@@ -8277,7 +8277,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(["store", ], [])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_107(self):
       """
@@ -8288,15 +8288,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_108(self):
       """
@@ -8307,15 +8307,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testDependencyMode_109(self):
       """
@@ -8326,15 +8326,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testDependencyMode_110(self):
       """
@@ -8345,15 +8345,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_111(self):
       """
@@ -8363,7 +8363,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["purge", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_112(self):
       """
@@ -8373,7 +8373,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies([], ["purge", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_113(self):
       """
@@ -8383,7 +8383,7 @@ class TestActionSet(unittest.TestCase):
       dependencies = ActionDependencies(None, ["purge", ])
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_114(self):
       """
@@ -8394,15 +8394,15 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testDependencyMode_115(self):
       """
@@ -8412,27 +8412,27 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testDependencyMode_116(self):
       """
@@ -8442,27 +8442,27 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testDependencyMode_117(self):
       """
@@ -8483,43 +8483,43 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ eaction1, eaction2, eaction3, eaction4, eaction5, ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(None, actionSet.actionSet[6].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[6].postHook)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(None, actionSet.actionSet[8].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[8].postHook)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(None, actionSet.actionSet[6].preHook)
+      self.assertEqual(None, actionSet.actionSet[6].postHook)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(None, actionSet.actionSet[8].preHook)
+      self.assertEqual(None, actionSet.actionSet[8].postHook)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testDependencyMode_118(self):
       """
@@ -8540,43 +8540,43 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ eaction1, eaction2, eaction3, eaction4, eaction5, ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(None, actionSet.actionSet[6].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[6].postHook)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(None, actionSet.actionSet[8].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[8].postHook)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(None, actionSet.actionSet[6].preHook)
+      self.assertEqual(None, actionSet.actionSet[6].postHook)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(None, actionSet.actionSet[8].preHook)
+      self.assertEqual(None, actionSet.actionSet[8].postHook)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testDependencyMode_119(self):
       """
@@ -8587,11 +8587,11 @@ class TestActionSet(unittest.TestCase):
       extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", dependencies=dependencies), ], "dependency")
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_120(self):
       """
@@ -8602,13 +8602,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_121(self):
       """
@@ -8619,12 +8619,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("stage", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_122(self):
       """
@@ -8635,12 +8635,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("stage", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_123(self):
       """
@@ -8651,12 +8651,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_124(self):
       """
@@ -8667,12 +8667,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("collect", "something") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("collect", "something"), actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_125(self):
       """
@@ -8683,12 +8683,12 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something1"), PostActionHook("collect", "something2") ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("collect", "something1"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something2"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("collect", "something1"), actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("collect", "something2"), actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testDependencyMode_126(self):
       """
@@ -8701,11 +8701,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_127(self):
       """
@@ -8718,11 +8718,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("store", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_128(self):
       """
@@ -8735,11 +8735,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("store", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_129(self):
       """
@@ -8752,11 +8752,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_130(self):
       """
@@ -8769,11 +8769,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_131(self):
       """
@@ -8786,11 +8786,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension2"), PreActionHook("one", "extension1"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension1"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension2"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension1"), actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension2"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testDependencyMode_132(self):
       """
@@ -8803,15 +8803,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = []
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_133(self):
       """
@@ -8824,15 +8824,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("purge", "rm -f"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_134(self):
       """
@@ -8845,15 +8845,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("purge", "rm -f"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_135(self):
       """
@@ -8866,15 +8866,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("collect", "something"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_136(self):
       """
@@ -8887,15 +8887,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("collect", "something"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(PostActionHook("collect", "something"), actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(PostActionHook("collect", "something"), actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_137(self):
       """
@@ -8908,15 +8908,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PreActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(PreActionHook("one", "extension"), actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_138(self):
       """
@@ -8929,15 +8929,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_139(self):
       """
@@ -8950,15 +8950,15 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.hooks = [ PostActionHook("one", "extension"), PreActionHook("collect", "something"), PostActionHook("stage", "whatever"), ]
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(PostActionHook("one", "extension"), actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(PreActionHook("collect", "something"), actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testDependencyMode_140(self):
       """
@@ -8978,7 +8978,7 @@ class TestActionSet(unittest.TestCase):
       eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
       extensions = ExtensionsConfig([ eaction1, eaction2, eaction3, eaction4, eaction5, ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
    def testDependencyMode_141(self):
       """
@@ -8998,7 +8998,7 @@ class TestActionSet(unittest.TestCase):
       eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
       extensions = ExtensionsConfig([ eaction1, eaction2, eaction3, eaction4, eaction5, ], "dependency")
       options = OptionsConfig()
-      self.failUnlessRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
+      self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
 
    #########################################
@@ -9015,11 +9015,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testManagedPeer_002(self):
       """
@@ -9031,11 +9031,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testManagedPeer_003(self):
       """
@@ -9047,11 +9047,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testManagedPeer_004(self):
       """
@@ -9063,11 +9063,11 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
 
    def testManagedPeer_005(self):
       """
@@ -9079,20 +9079,20 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testManagedPeer_006(self):
       """
@@ -9104,10 +9104,10 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("rebuild", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeRebuild, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("rebuild", actionSet.actionSet[0].name)
+      self.assertEqual(executeRebuild, actionSet.actionSet[0].function)
 
    def testManagedPeer_007(self):
       """
@@ -9119,10 +9119,10 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("validate", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeValidate, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("validate", actionSet.actionSet[0].name)
+      self.assertEqual(executeValidate, actionSet.actionSet[0].function)
 
    def testManagedPeer_008(self):
       """
@@ -9134,13 +9134,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_009(self):
       """
@@ -9152,13 +9152,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_010(self):
       """
@@ -9170,13 +9170,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testManagedPeer_011(self):
       """
@@ -9188,13 +9188,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_012(self):
       """
@@ -9206,13 +9206,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_013(self):
       """
@@ -9224,13 +9224,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_014(self):
       """
@@ -9242,13 +9242,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testManagedPeer_015(self):
       """
@@ -9260,13 +9260,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testManagedPeer_016(self):
       """
@@ -9278,13 +9278,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_017(self):
       """
@@ -9296,13 +9296,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testManagedPeer_018(self):
       """
@@ -9314,13 +9314,13 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_019(self):
       """
@@ -9332,19 +9332,19 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testManagedPeer_020(self):
       """
@@ -9359,34 +9359,34 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual(150, actionSet.actionSet[2].index)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual(200, actionSet.actionSet[3].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual(250, actionSet.actionSet[4].index)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual(300, actionSet.actionSet[5].index)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual(350, actionSet.actionSet[6].index)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual(400, actionSet.actionSet[7].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual(450, actionSet.actionSet[8].index)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual(150, actionSet.actionSet[2].index)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[3].index)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual(250, actionSet.actionSet[4].index)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual(300, actionSet.actionSet[5].index)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual(350, actionSet.actionSet[6].index)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual(400, actionSet.actionSet[7].index)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual(450, actionSet.actionSet[8].index)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testManagedPeer_021(self):
       """
@@ -9398,10 +9398,10 @@ class TestActionSet(unittest.TestCase):
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testManagedPeer_022(self):
       """
@@ -9414,11 +9414,11 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
    def testManagedPeer_023(self):
       """
@@ -9431,11 +9431,11 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testManagedPeer_024(self):
       """
@@ -9448,11 +9448,11 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testManagedPeer_025(self):
       """
@@ -9465,11 +9465,11 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
 
    def testManagedPeer_026(self):
       """
@@ -9482,20 +9482,20 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testManagedPeer_027(self):
       """
@@ -9508,10 +9508,10 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("rebuild", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeRebuild, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("rebuild", actionSet.actionSet[0].name)
+      self.assertEqual(executeRebuild, actionSet.actionSet[0].function)
 
    def testManagedPeer_028(self):
       """
@@ -9524,10 +9524,10 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("validate", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeValidate, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("validate", actionSet.actionSet[0].name)
+      self.assertEqual(executeValidate, actionSet.actionSet[0].function)
 
    def testManagedPeer_029(self):
       """
@@ -9540,13 +9540,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_030(self):
       """
@@ -9559,13 +9559,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_031(self):
       """
@@ -9578,13 +9578,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testManagedPeer_032(self):
       """
@@ -9597,13 +9597,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_033(self):
       """
@@ -9616,13 +9616,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_034(self):
       """
@@ -9635,13 +9635,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_035(self):
       """
@@ -9654,13 +9654,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
    def testManagedPeer_036(self):
       """
@@ -9673,13 +9673,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
    def testManagedPeer_037(self):
       """
@@ -9692,13 +9692,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_038(self):
       """
@@ -9711,13 +9711,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertEqual(isdir, actionSet.actionSet[1].function)
 
    def testManagedPeer_039(self):
       """
@@ -9730,13 +9730,13 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_040(self):
       """
@@ -9749,19 +9749,19 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[3].function)
+      self.assertTrue(len(actionSet.actionSet) == 4)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertEqual(executePurge, actionSet.actionSet[3].function)
 
    def testManagedPeer_041(self):
       """
@@ -9777,34 +9777,34 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[1].function)
-      self.failUnlessEqual(150, actionSet.actionSet[2].index)
-      self.failUnlessEqual("two", actionSet.actionSet[2].name)
-      self.failUnlessEqual(isfile, actionSet.actionSet[2].function)
-      self.failUnlessEqual(200, actionSet.actionSet[3].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[3].name)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[3].function)
-      self.failUnlessEqual(250, actionSet.actionSet[4].index)
-      self.failUnlessEqual("three", actionSet.actionSet[4].name)
-      self.failUnlessEqual(islink, actionSet.actionSet[4].function)
-      self.failUnlessEqual(300, actionSet.actionSet[5].index)
-      self.failUnlessEqual("store", actionSet.actionSet[5].name)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[5].function)
-      self.failUnlessEqual(350, actionSet.actionSet[6].index)
-      self.failUnlessEqual("four", actionSet.actionSet[6].name)
-      self.failUnlessEqual(isabs, actionSet.actionSet[6].function)
-      self.failUnlessEqual(400, actionSet.actionSet[7].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
-      self.failUnlessEqual(450, actionSet.actionSet[8].index)
-      self.failUnlessEqual("five", actionSet.actionSet[8].name)
-      self.failUnlessEqual(exists, actionSet.actionSet[8].function)
+      self.assertTrue(len(actionSet.actionSet) == 9)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertEqual(executeCollect, actionSet.actionSet[1].function)
+      self.assertEqual(150, actionSet.actionSet[2].index)
+      self.assertEqual("two", actionSet.actionSet[2].name)
+      self.assertEqual(isfile, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[3].index)
+      self.assertEqual("stage", actionSet.actionSet[3].name)
+      self.assertEqual(executeStage, actionSet.actionSet[3].function)
+      self.assertEqual(250, actionSet.actionSet[4].index)
+      self.assertEqual("three", actionSet.actionSet[4].name)
+      self.assertEqual(islink, actionSet.actionSet[4].function)
+      self.assertEqual(300, actionSet.actionSet[5].index)
+      self.assertEqual("store", actionSet.actionSet[5].name)
+      self.assertEqual(executeStore, actionSet.actionSet[5].function)
+      self.assertEqual(350, actionSet.actionSet[6].index)
+      self.assertEqual("four", actionSet.actionSet[6].name)
+      self.assertEqual(isabs, actionSet.actionSet[6].function)
+      self.assertEqual(400, actionSet.actionSet[7].index)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual(450, actionSet.actionSet[8].index)
+      self.assertEqual("five", actionSet.actionSet[8].name)
+      self.assertEqual(exists, actionSet.actionSet[8].function)
 
    def testManagedPeer_042(self):
       """
@@ -9817,10 +9817,10 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
    def testManagedPeer_043(self):
       """
@@ -9833,8 +9833,8 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_044(self):
       """
@@ -9847,8 +9847,8 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_045(self):
       """
@@ -9861,8 +9861,8 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_046(self):
       """
@@ -9875,8 +9875,8 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_047(self):
       """
@@ -9889,8 +9889,8 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_048(self):
       """
@@ -9903,7 +9903,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_049(self):
       """
@@ -9916,7 +9916,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_050(self):
       """
@@ -9929,7 +9929,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_051(self):
       """
@@ -9942,7 +9942,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_052(self):
       """
@@ -9955,7 +9955,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_053(self):
       """
@@ -9968,7 +9968,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_054(self):
       """
@@ -9981,7 +9981,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_055(self):
       """
@@ -9994,7 +9994,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_056(self):
       """
@@ -10007,7 +10007,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_057(self):
       """
@@ -10020,7 +10020,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_058(self):
       """
@@ -10033,7 +10033,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_059(self):
       """
@@ -10046,7 +10046,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_060(self):
       """
@@ -10059,7 +10059,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_061(self):
       """
@@ -10072,7 +10072,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_062(self):
       """
@@ -10088,7 +10088,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_063(self):
       """
@@ -10101,7 +10101,7 @@ class TestActionSet(unittest.TestCase):
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_064(self):
       """
@@ -10116,8 +10116,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_065(self):
       """
@@ -10132,8 +10132,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_066(self):
       """
@@ -10148,8 +10148,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_067(self):
       """
@@ -10164,8 +10164,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_068(self):
       """
@@ -10180,8 +10180,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_069(self):
       """
@@ -10196,7 +10196,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_070(self):
       """
@@ -10211,7 +10211,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_071(self):
       """
@@ -10226,7 +10226,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_072(self):
       """
@@ -10241,7 +10241,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_073(self):
       """
@@ -10256,7 +10256,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_074(self):
       """
@@ -10271,7 +10271,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_075(self):
       """
@@ -10286,7 +10286,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_076(self):
       """
@@ -10301,7 +10301,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_077(self):
       """
@@ -10316,7 +10316,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_078(self):
       """
@@ -10331,7 +10331,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_079(self):
       """
@@ -10346,7 +10346,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_080(self):
       """
@@ -10361,7 +10361,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_081(self):
       """
@@ -10376,7 +10376,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_082(self):
       """
@@ -10391,7 +10391,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_083(self):
       """
@@ -10409,7 +10409,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_084(self):
       """
@@ -10424,7 +10424,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_085(self):
       """
@@ -10439,18 +10439,18 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_086(self):
       """
@@ -10465,8 +10465,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_087(self):
       """
@@ -10481,8 +10481,8 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_088(self):
       """
@@ -10497,18 +10497,18 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_089(self):
       """
@@ -10523,28 +10523,28 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_090(self):
       """
@@ -10559,7 +10559,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_091(self):
       """
@@ -10574,7 +10574,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_092(self):
       """
@@ -10589,17 +10589,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
 
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_093(self):
       """
@@ -10614,17 +10614,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
 
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_094(self):
       """
@@ -10639,27 +10639,27 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_095(self):
       """
@@ -10674,17 +10674,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_096(self):
       """
@@ -10699,7 +10699,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_097(self):
       """
@@ -10714,7 +10714,7 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_098(self):
       """
@@ -10729,17 +10729,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_099(self):
       """
@@ -10754,27 +10754,27 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_100(self):
       """
@@ -10789,17 +10789,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_101(self):
       """
@@ -10814,27 +10814,27 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_102(self):
       """
@@ -10849,17 +10849,17 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_103(self):
       """
@@ -10874,27 +10874,27 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_104(self):
       """
@@ -10912,37 +10912,37 @@ class TestActionSet(unittest.TestCase):
       peers.localPeers = [ LocalPeer("local", "/collect"), ]
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[2].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[2].name)
-      self.failIf(actionSet.actionSet[2].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[2].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[2].index)
+      self.assertEqual("purge", actionSet.actionSet[2].name)
+      self.assertFalse(actionSet.actionSet[2].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[2].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
 
    def testManagedPeer_105(self):
       """
@@ -10958,17 +10958,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_106(self):
       """
@@ -10984,18 +10984,18 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_107(self):
       """
@@ -11011,8 +11011,8 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_108(self):
       """
@@ -11028,8 +11028,8 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_109(self):
       """
@@ -11045,18 +11045,18 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_110(self):
       """
@@ -11072,28 +11072,28 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_111(self):
       """
@@ -11109,7 +11109,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_112(self):
       """
@@ -11125,7 +11125,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_113(self):
       """
@@ -11141,17 +11141,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_114(self):
       """
@@ -11167,17 +11167,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_115(self):
       """
@@ -11193,27 +11193,27 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_116(self):
       """
@@ -11229,17 +11229,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_117(self):
       """
@@ -11255,7 +11255,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_118(self):
       """
@@ -11271,7 +11271,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_119(self):
       """
@@ -11287,17 +11287,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_120(self):
       """
@@ -11313,27 +11313,27 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_121(self):
       """
@@ -11349,17 +11349,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_122(self):
       """
@@ -11375,27 +11375,27 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_123(self):
       """
@@ -11411,17 +11411,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_124(self):
       """
@@ -11437,27 +11437,27 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
    def testManagedPeer_125(self):
       """
@@ -11476,37 +11476,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[2].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[2].name)
-      self.failIf(actionSet.actionSet[2].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[2].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[2].index)
+      self.assertEqual("purge", actionSet.actionSet[2].name)
+      self.assertFalse(actionSet.actionSet[2].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[2].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
 
    def testManagedPeer_126(self):
       """
@@ -11522,17 +11522,17 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=False), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
 
    def testManagedPeer_127(self):
       """
@@ -11548,23 +11548,23 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_128(self):
       """
@@ -11580,8 +11580,8 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_129(self):
       """
@@ -11597,8 +11597,8 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_130(self):
       """
@@ -11614,23 +11614,23 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_131(self):
       """
@@ -11646,37 +11646,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 2)
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 2)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_132(self):
       """
@@ -11692,7 +11692,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_133(self):
       """
@@ -11708,7 +11708,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_134(self):
       """
@@ -11724,22 +11724,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_135(self):
       """
@@ -11755,22 +11755,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_136(self):
       """
@@ -11786,37 +11786,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_137(self):
       """
@@ -11832,22 +11832,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_138(self):
       """
@@ -11863,7 +11863,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_139(self):
       """
@@ -11879,7 +11879,7 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 0)
+      self.assertTrue(len(actionSet.actionSet) == 0)
 
    def testManagedPeer_140(self):
       """
@@ -11895,22 +11895,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_141(self):
       """
@@ -11926,37 +11926,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_142(self):
       """
@@ -11972,22 +11972,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_143(self):
       """
@@ -12003,37 +12003,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_144(self):
       """
@@ -12049,22 +12049,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_145(self):
       """
@@ -12080,37 +12080,37 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_146(self):
       """
@@ -12129,52 +12129,52 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[2].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[2].name)
-      self.failIf(actionSet.actionSet[2].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[2].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[2].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[2].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[2].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[2].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[2].index)
+      self.assertEqual("purge", actionSet.actionSet[2].name)
+      self.assertFalse(actionSet.actionSet[2].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[2].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[2].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[2].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[2].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[2].remotePeers[1].cbackCommand)
 
    def testManagedPeer_147(self):
       """
@@ -12190,22 +12190,22 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, False)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failIf(actionSet.actionSet[0].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[0].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertFalse(actionSet.actionSet[0].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[0].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[0].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[0].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[0].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[0].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[0].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[0].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[0].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[0].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[0].remotePeers[1].cbackCommand)
 
    def testManagedPeer_148(self):
       """
@@ -12221,29 +12221,29 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_149(self):
       """
@@ -12259,14 +12259,14 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
    def testManagedPeer_150(self):
       """
@@ -12282,14 +12282,14 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(300, actionSet.actionSet[0].index)
-      self.failUnlessEqual("store", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[0].function)
+      self.assertEqual(300, actionSet.actionSet[0].index)
+      self.assertEqual("store", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[0].function)
 
    def testManagedPeer_151(self):
       """
@@ -12305,29 +12305,29 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(400, actionSet.actionSet[0].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[0].function)
+      self.assertEqual(400, actionSet.actionSet[0].index)
+      self.assertEqual("purge", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_152(self):
       """
@@ -12343,62 +12343,62 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failIf(actionSet.actionSet is None)
-      self.failUnless(len(actionSet.actionSet) == 6)
+      self.assertFalse(actionSet.actionSet is None)
+      self.assertTrue(len(actionSet.actionSet) == 6)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(200, actionSet.actionSet[2].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[2].index)
+      self.assertEqual("stage", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(300, actionSet.actionSet[3].index)
-      self.failUnlessEqual("store", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[3].function)
+      self.assertEqual(300, actionSet.actionSet[3].index)
+      self.assertEqual("store", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[3].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[4].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[4].function)
+      self.assertEqual(400, actionSet.actionSet[4].index)
+      self.assertEqual("purge", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[4].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[5].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[5].name)
-      self.failIf(actionSet.actionSet[5].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[5].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[5].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[5].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[5].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[5].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[5].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[5].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[5].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[5].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[5].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[5].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[5].index)
+      self.assertEqual("purge", actionSet.actionSet[5].name)
+      self.assertFalse(actionSet.actionSet[5].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[5].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[5].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[5].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[5].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[5].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[5].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[5].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[5].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[5].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[5].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[5].remotePeers[1].cbackCommand)
 
    def testManagedPeer_153(self):
       """
@@ -12414,13 +12414,13 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("rebuild", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeRebuild, actionSet.actionSet[0].function)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("rebuild", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeRebuild, actionSet.actionSet[0].function)
 
    def testManagedPeer_154(self):
       """
@@ -12436,13 +12436,13 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 1)
+      self.assertTrue(len(actionSet.actionSet) == 1)
 
-      self.failUnlessEqual(0, actionSet.actionSet[0].index)
-      self.failUnlessEqual("validate", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeValidate, actionSet.actionSet[0].function)
+      self.assertEqual(0, actionSet.actionSet[0].index)
+      self.assertEqual("validate", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeValidate, actionSet.actionSet[0].function)
 
    def testManagedPeer_155(self):
       """
@@ -12458,34 +12458,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(200, actionSet.actionSet[2].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[2].index)
+      self.assertEqual("stage", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[2].function)
 
    def testManagedPeer_156(self):
       """
@@ -12501,34 +12501,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
 
    def testManagedPeer_157(self):
       """
@@ -12544,49 +12544,49 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
+      self.assertTrue(len(actionSet.actionSet) == 4)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(400, actionSet.actionSet[2].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[2].function)
+      self.assertEqual(400, actionSet.actionSet[2].index)
+      self.assertEqual("purge", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[3].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[3].name)
-      self.failIf(actionSet.actionSet[3].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[3].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[3].index)
+      self.assertEqual("purge", actionSet.actionSet[3].name)
+      self.assertFalse(actionSet.actionSet[3].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[3].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
 
    def testManagedPeer_158(self):
       """
@@ -12602,34 +12602,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(200, actionSet.actionSet[2].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[2].index)
+      self.assertEqual("stage", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[2].function)
 
    def testManagedPeer_159(self):
       """
@@ -12645,19 +12645,19 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(200, actionSet.actionSet[1].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[1].function)
+      self.assertEqual(200, actionSet.actionSet[1].index)
+      self.assertEqual("stage", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
    def testManagedPeer_160(self):
       """
@@ -12673,19 +12673,19 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(300, actionSet.actionSet[1].index)
-      self.failUnlessEqual("store", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[1].function)
+      self.assertEqual(300, actionSet.actionSet[1].index)
+      self.assertEqual("store", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[1].function)
 
    def testManagedPeer_161(self):
       """
@@ -12701,34 +12701,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(200, actionSet.actionSet[0].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[0].function)
+      self.assertEqual(200, actionSet.actionSet[0].index)
+      self.assertEqual("stage", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[1].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[1].name)
-      self.failUnlessEqual(None, actionSet.actionSet[1].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[1].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[1].function)
+      self.assertEqual(400, actionSet.actionSet[1].index)
+      self.assertEqual("purge", actionSet.actionSet[1].name)
+      self.assertEqual(None, actionSet.actionSet[1].preHook)
+      self.assertEqual(None, actionSet.actionSet[1].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[1].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[2].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[2].name)
-      self.failIf(actionSet.actionSet[2].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[2].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[2].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[2].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[2].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[2].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[2].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[2].index)
+      self.assertEqual("purge", actionSet.actionSet[2].name)
+      self.assertFalse(actionSet.actionSet[2].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[2].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[2].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[2].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[2].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[2].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[2].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[2].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[2].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[2].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[2].remotePeers[1].cbackCommand)
 
    def testManagedPeer_162(self):
       """
@@ -12744,49 +12744,49 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
+      self.assertTrue(len(actionSet.actionSet) == 4)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(50, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[2].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[2].function)
+      self.assertEqual(100, actionSet.actionSet[2].index)
+      self.assertEqual("collect", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[3].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[3].name)
-      self.failIf(actionSet.actionSet[3].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[3].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[3].index)
+      self.assertEqual("collect", actionSet.actionSet[3].name)
+      self.assertFalse(actionSet.actionSet[3].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[3].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
 
    def testManagedPeer_163(self):
       """
@@ -12802,34 +12802,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(50, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
 
    def testManagedPeer_164(self):
       """
@@ -12845,49 +12845,49 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 4)
+      self.assertTrue(len(actionSet.actionSet) == 4)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[2].index)
-      self.failUnlessEqual("one", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[2].function)
+      self.assertEqual(150, actionSet.actionSet[2].index)
+      self.assertEqual("one", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(150, actionSet.actionSet[3].index)
-      self.failUnlessEqual("one", actionSet.actionSet[3].name)
-      self.failIf(actionSet.actionSet[3].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[3].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[3].index)
+      self.assertEqual("one", actionSet.actionSet[3].name)
+      self.assertFalse(actionSet.actionSet[3].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[3].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
 
    def testManagedPeer_165(self):
       """
@@ -12903,34 +12903,34 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 3)
+      self.assertTrue(len(actionSet.actionSet) == 3)
 
-      self.failUnlessEqual(150, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(150, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(150, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(150, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(300, actionSet.actionSet[2].index)
-      self.failUnlessEqual("store", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[2].function)
+      self.assertEqual(300, actionSet.actionSet[2].index)
+      self.assertEqual("store", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[2].function)
 
    def testManagedPeer_166(self):
       """
@@ -12946,61 +12946,61 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 6)
+      self.assertTrue(len(actionSet.actionSet) == 6)
 
-      self.failUnlessEqual(100, actionSet.actionSet[0].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[0].function)
+      self.assertEqual(100, actionSet.actionSet[0].index)
+      self.assertEqual("collect", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[1].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[1].index)
+      self.assertEqual("collect", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(200, actionSet.actionSet[2].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[2].function)
+      self.assertEqual(200, actionSet.actionSet[2].index)
+      self.assertEqual("stage", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(300, actionSet.actionSet[3].index)
-      self.failUnlessEqual("store", actionSet.actionSet[3].name)
-      self.failUnlessEqual(None, actionSet.actionSet[3].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[3].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[3].function)
+      self.assertEqual(300, actionSet.actionSet[3].index)
+      self.assertEqual("store", actionSet.actionSet[3].name)
+      self.assertEqual(None, actionSet.actionSet[3].preHook)
+      self.assertEqual(None, actionSet.actionSet[3].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[3].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[4].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[4].function)
+      self.assertEqual(400, actionSet.actionSet[4].index)
+      self.assertEqual("purge", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[4].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[5].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[5].name)
-      self.failIf(actionSet.actionSet[5].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[5].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[5].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[5].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[5].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[5].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[5].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[5].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[5].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[5].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[5].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[5].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[5].index)
+      self.assertEqual("purge", actionSet.actionSet[5].name)
+      self.assertFalse(actionSet.actionSet[5].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[5].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[5].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[5].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[5].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[5].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[5].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[5].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[5].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[5].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[5].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[5].remotePeers[1].cbackCommand)
 
    def testManagedPeer_167(self):
       """
@@ -13019,88 +13019,88 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 9)
+      self.assertTrue(len(actionSet.actionSet) == 9)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[2].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[2].function)
+      self.assertEqual(100, actionSet.actionSet[2].index)
+      self.assertEqual("collect", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[3].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[3].name)
-      self.failIf(actionSet.actionSet[3].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[3].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[3].index)
+      self.assertEqual("collect", actionSet.actionSet[3].name)
+      self.assertFalse(actionSet.actionSet[3].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[3].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[3].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[3].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[3].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[3].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[3].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[3].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[3].remotePeers[1].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[4].index)
-      self.failUnlessEqual("two", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[4].function)
+      self.assertEqual(150, actionSet.actionSet[4].index)
+      self.assertEqual("two", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[4].function)
 
-      self.failUnlessEqual(200, actionSet.actionSet[5].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[5].function)
+      self.assertEqual(200, actionSet.actionSet[5].index)
+      self.assertEqual("stage", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[5].function)
 
-      self.failUnlessEqual(300, actionSet.actionSet[6].index)
-      self.failUnlessEqual("store", actionSet.actionSet[6].name)
-      self.failUnlessEqual(None, actionSet.actionSet[6].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[6].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[6].function)
+      self.assertEqual(300, actionSet.actionSet[6].index)
+      self.assertEqual("store", actionSet.actionSet[6].name)
+      self.assertEqual(None, actionSet.actionSet[6].preHook)
+      self.assertEqual(None, actionSet.actionSet[6].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[6].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[7].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[7].function)
+      self.assertEqual(400, actionSet.actionSet[7].index)
+      self.assertEqual("purge", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[7].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[8].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[8].name)
-      self.failIf(actionSet.actionSet[8].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[8].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[8].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[8].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[8].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[8].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[8].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[8].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[8].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[8].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[8].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[8].remotePeers[1].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[8].index)
+      self.assertEqual("purge", actionSet.actionSet[8].name)
+      self.assertFalse(actionSet.actionSet[8].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[8].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[8].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[8].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[8].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[8].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[8].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[8].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[8].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[8].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[8].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[8].remotePeers[1].cbackCommand)
 
    def testManagedPeer_168(self):
       """
@@ -13116,28 +13116,28 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", "rcp2", "rsh2", "cback2", managed=True), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 2)
+      self.assertTrue(len(actionSet.actionSet) == 2)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(50, actionSet.actionSet[1].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 2)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
-      self.failUnlessEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
-      self.failUnlessEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
-      self.failUnlessEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[1].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 2)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("ruser", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rsh", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual("remote2", actionSet.actionSet[1].remotePeers[1].name)
+      self.assertEqual("ruser2", actionSet.actionSet[1].remotePeers[1].remoteUser)
+      self.assertEqual(None, actionSet.actionSet[1].remotePeers[1].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[1].remotePeers[1].rshCommand)
+      self.assertEqual("cback2", actionSet.actionSet[1].remotePeers[1].cbackCommand)
 
    def testManagedPeer_169(self):
       """
@@ -13157,83 +13157,83 @@ class TestActionSet(unittest.TestCase):
       peers.remotePeers = [ RemotePeer("remote", None, None, None, None, "cback", managed=True),
                             RemotePeer("remote2", None, "ruser2", None, "rsh2", None, managed=True, managedActions=[ "stage", ]), ]
       actionSet = _ActionSet(actions, extensions, options, peers, True, True)
-      self.failUnless(len(actionSet.actionSet) == 10)
+      self.assertTrue(len(actionSet.actionSet) == 10)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[0].name)
-      self.failUnlessEqual(None, actionSet.actionSet[0].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[0].postHook)
-      self.failUnlessEqual(isdir, actionSet.actionSet[0].function)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[0].name)
+      self.assertEqual(None, actionSet.actionSet[0].preHook)
+      self.assertEqual(None, actionSet.actionSet[0].postHook)
+      self.assertEqual(isdir, actionSet.actionSet[0].function)
 
-      self.failUnlessEqual(50, actionSet.actionSet[0].index)
-      self.failUnlessEqual("one", actionSet.actionSet[1].name)
-      self.failIf(actionSet.actionSet[1].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[1].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
-      self.failUnlessEqual("userZ", actionSet.actionSet[1].remotePeers[0].remoteUser)
-      self.failUnlessEqual("userZ", actionSet.actionSet[1].remotePeers[0].localUser)
-      self.failUnlessEqual("rshZ", actionSet.actionSet[1].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
+      self.assertEqual(50, actionSet.actionSet[0].index)
+      self.assertEqual("one", actionSet.actionSet[1].name)
+      self.assertFalse(actionSet.actionSet[1].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[1].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[1].remotePeers[0].name)
+      self.assertEqual("userZ", actionSet.actionSet[1].remotePeers[0].remoteUser)
+      self.assertEqual("userZ", actionSet.actionSet[1].remotePeers[0].localUser)
+      self.assertEqual("rshZ", actionSet.actionSet[1].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[1].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(100, actionSet.actionSet[2].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[2].name)
-      self.failUnlessEqual(None, actionSet.actionSet[2].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[2].postHook)
-      self.failUnlessEqual(executeCollect, actionSet.actionSet[2].function)
+      self.assertEqual(100, actionSet.actionSet[2].index)
+      self.assertEqual("collect", actionSet.actionSet[2].name)
+      self.assertEqual(None, actionSet.actionSet[2].preHook)
+      self.assertEqual(None, actionSet.actionSet[2].postHook)
+      self.assertEqual(executeCollect, actionSet.actionSet[2].function)
 
-      self.failUnlessEqual(100, actionSet.actionSet[3].index)
-      self.failUnlessEqual("collect", actionSet.actionSet[3].name)
-      self.failIf(actionSet.actionSet[3].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[3].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
-      self.failUnlessEqual("userZ", actionSet.actionSet[3].remotePeers[0].remoteUser)
-      self.failUnlessEqual("userZ", actionSet.actionSet[3].remotePeers[0].localUser)
-      self.failUnlessEqual("rshZ", actionSet.actionSet[3].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
+      self.assertEqual(100, actionSet.actionSet[3].index)
+      self.assertEqual("collect", actionSet.actionSet[3].name)
+      self.assertFalse(actionSet.actionSet[3].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[3].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[3].remotePeers[0].name)
+      self.assertEqual("userZ", actionSet.actionSet[3].remotePeers[0].remoteUser)
+      self.assertEqual("userZ", actionSet.actionSet[3].remotePeers[0].localUser)
+      self.assertEqual("rshZ", actionSet.actionSet[3].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[3].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(150, actionSet.actionSet[4].index)
-      self.failUnlessEqual("two", actionSet.actionSet[4].name)
-      self.failUnlessEqual(None, actionSet.actionSet[4].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[4].postHook)
-      self.failUnlessEqual(isfile, actionSet.actionSet[4].function)
+      self.assertEqual(150, actionSet.actionSet[4].index)
+      self.assertEqual("two", actionSet.actionSet[4].name)
+      self.assertEqual(None, actionSet.actionSet[4].preHook)
+      self.assertEqual(None, actionSet.actionSet[4].postHook)
+      self.assertEqual(isfile, actionSet.actionSet[4].function)
 
-      self.failUnlessEqual(200, actionSet.actionSet[5].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[5].name)
-      self.failUnlessEqual(None, actionSet.actionSet[5].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[5].postHook)
-      self.failUnlessEqual(executeStage, actionSet.actionSet[5].function)
+      self.assertEqual(200, actionSet.actionSet[5].index)
+      self.assertEqual("stage", actionSet.actionSet[5].name)
+      self.assertEqual(None, actionSet.actionSet[5].preHook)
+      self.assertEqual(None, actionSet.actionSet[5].postHook)
+      self.assertEqual(executeStage, actionSet.actionSet[5].function)
 
-      self.failUnlessEqual(200, actionSet.actionSet[6].index)
-      self.failUnlessEqual("stage", actionSet.actionSet[6].name)
-      self.failIf(actionSet.actionSet[6].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[6].remotePeers) == 1)
-      self.failUnlessEqual("remote2", actionSet.actionSet[6].remotePeers[0].name)
-      self.failUnlessEqual("ruser2", actionSet.actionSet[6].remotePeers[0].remoteUser)
-      self.failUnlessEqual("userZ", actionSet.actionSet[6].remotePeers[0].localUser)
-      self.failUnlessEqual("rsh2", actionSet.actionSet[6].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cbackZ", actionSet.actionSet[6].remotePeers[0].cbackCommand)
+      self.assertEqual(200, actionSet.actionSet[6].index)
+      self.assertEqual("stage", actionSet.actionSet[6].name)
+      self.assertFalse(actionSet.actionSet[6].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[6].remotePeers) == 1)
+      self.assertEqual("remote2", actionSet.actionSet[6].remotePeers[0].name)
+      self.assertEqual("ruser2", actionSet.actionSet[6].remotePeers[0].remoteUser)
+      self.assertEqual("userZ", actionSet.actionSet[6].remotePeers[0].localUser)
+      self.assertEqual("rsh2", actionSet.actionSet[6].remotePeers[0].rshCommand)
+      self.assertEqual("cbackZ", actionSet.actionSet[6].remotePeers[0].cbackCommand)
 
-      self.failUnlessEqual(300, actionSet.actionSet[7].index)
-      self.failUnlessEqual("store", actionSet.actionSet[7].name)
-      self.failUnlessEqual(None, actionSet.actionSet[7].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[7].postHook)
-      self.failUnlessEqual(executeStore, actionSet.actionSet[7].function)
+      self.assertEqual(300, actionSet.actionSet[7].index)
+      self.assertEqual("store", actionSet.actionSet[7].name)
+      self.assertEqual(None, actionSet.actionSet[7].preHook)
+      self.assertEqual(None, actionSet.actionSet[7].postHook)
+      self.assertEqual(executeStore, actionSet.actionSet[7].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[8].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[8].name)
-      self.failUnlessEqual(None, actionSet.actionSet[8].preHook)
-      self.failUnlessEqual(None, actionSet.actionSet[8].postHook)
-      self.failUnlessEqual(executePurge, actionSet.actionSet[8].function)
+      self.assertEqual(400, actionSet.actionSet[8].index)
+      self.assertEqual("purge", actionSet.actionSet[8].name)
+      self.assertEqual(None, actionSet.actionSet[8].preHook)
+      self.assertEqual(None, actionSet.actionSet[8].postHook)
+      self.assertEqual(executePurge, actionSet.actionSet[8].function)
 
-      self.failUnlessEqual(400, actionSet.actionSet[9].index)
-      self.failUnlessEqual("purge", actionSet.actionSet[9].name)
-      self.failIf(actionSet.actionSet[9].remotePeers is None)
-      self.failUnless(len(actionSet.actionSet[9].remotePeers) == 1)
-      self.failUnlessEqual("remote", actionSet.actionSet[9].remotePeers[0].name)
-      self.failUnlessEqual("userZ", actionSet.actionSet[9].remotePeers[0].remoteUser)
-      self.failUnlessEqual("userZ", actionSet.actionSet[9].remotePeers[0].localUser)
-      self.failUnlessEqual("rshZ", actionSet.actionSet[9].remotePeers[0].rshCommand)
-      self.failUnlessEqual("cback", actionSet.actionSet[9].remotePeers[0].cbackCommand)
+      self.assertEqual(400, actionSet.actionSet[9].index)
+      self.assertEqual("purge", actionSet.actionSet[9].name)
+      self.assertFalse(actionSet.actionSet[9].remotePeers is None)
+      self.assertTrue(len(actionSet.actionSet[9].remotePeers) == 1)
+      self.assertEqual("remote", actionSet.actionSet[9].remotePeers[0].name)
+      self.assertEqual("userZ", actionSet.actionSet[9].remotePeers[0].remoteUser)
+      self.assertEqual("userZ", actionSet.actionSet[9].remotePeers[0].localUser)
+      self.assertEqual("rshZ", actionSet.actionSet[9].remotePeers[0].rshCommand)
+      self.assertEqual("cback", actionSet.actionSet[9].remotePeers[0].cbackCommand)
 
 
 #######################################################################

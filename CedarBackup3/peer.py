@@ -832,7 +832,7 @@ class RemotePeer(object):
                return True
             else:
                return False
-         except Exception, e:
+         except Exception as e:
             logger.info("Failed looking for collect indicator: %s" % e)
             return False
       finally:
@@ -906,7 +906,7 @@ class RemotePeer(object):
       try:
          command = RemotePeer._buildCbackCommand(self.cbackCommand, action, fullBackup)
          self.executeRemoteCommand(command)
-      except IOError, e:
+      except IOError as e:
          logger.info(e)
          raise IOError("Failed to execute action [%s] on managed client [%s]." % (action, self.name))
 

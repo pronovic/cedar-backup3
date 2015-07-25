@@ -151,96 +151,96 @@ class TestPercentageQuantity(unittest.TestCase):
       Test constructor with no values filled in.
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
-      self.failUnlessEqual(0.0, quantity.percentage)
+      self.assertEqual(None, quantity.quantity)
+      self.assertEqual(0.0, quantity.percentage)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values.
       """
       quantity = PercentageQuantity("6")
-      self.failUnlessEqual("6", quantity.quantity)
-      self.failUnlessEqual(6.0, quantity.percentage)
+      self.assertEqual("6", quantity.quantity)
+      self.assertEqual(6.0, quantity.percentage)
 
    def testConstructor_003(self):
       """
       Test assignment of quantity attribute, None value.
       """
       quantity = PercentageQuantity(quantity="1.0")
-      self.failUnlessEqual("1.0", quantity.quantity)
-      self.failUnlessEqual(1.0, quantity.percentage)
+      self.assertEqual("1.0", quantity.quantity)
+      self.assertEqual(1.0, quantity.percentage)
       quantity.quantity = None
-      self.failUnlessEqual(None, quantity.quantity)
-      self.failUnlessEqual(0.0, quantity.percentage)
+      self.assertEqual(None, quantity.quantity)
+      self.assertEqual(0.0, quantity.percentage)
 
    def testConstructor_004(self):
       """
       Test assignment of quantity attribute, valid values.
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
-      self.failUnlessEqual(0.0, quantity.percentage)
+      self.assertEqual(None, quantity.quantity)
+      self.assertEqual(0.0, quantity.percentage)
       quantity.quantity = "1.0"
-      self.failUnlessEqual("1.0", quantity.quantity)
-      self.failUnlessEqual(1.0, quantity.percentage)
+      self.assertEqual("1.0", quantity.quantity)
+      self.assertEqual(1.0, quantity.percentage)
       quantity.quantity = ".1"
-      self.failUnlessEqual(".1", quantity.quantity)
-      self.failUnlessEqual(0.1, quantity.percentage)
+      self.assertEqual(".1", quantity.quantity)
+      self.assertEqual(0.1, quantity.percentage)
       quantity.quantity = "12"
-      self.failUnlessEqual("12", quantity.quantity)
-      self.failUnlessEqual(12.0, quantity.percentage)
+      self.assertEqual("12", quantity.quantity)
+      self.assertEqual(12.0, quantity.percentage)
       quantity.quantity = "0.5"
-      self.failUnlessEqual("0.5", quantity.quantity)
-      self.failUnlessEqual(0.5, quantity.percentage)
+      self.assertEqual("0.5", quantity.quantity)
+      self.assertEqual(0.5, quantity.percentage)
       quantity.quantity = "0.25E2"
-      self.failUnlessEqual("0.25E2", quantity.quantity)
-      self.failUnlessEqual(0.25e2, quantity.percentage)
+      self.assertEqual("0.25E2", quantity.quantity)
+      self.assertEqual(0.25e2, quantity.percentage)
 
    def testConstructor_005(self):
       """
       Test assignment of quantity attribute, invalid value (empty).
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
 
    def testConstructor_006(self):
       """
       Test assignment of quantity attribute, invalid value (not a floating point number).
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "blech")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
 
    def testConstructor_007(self):
       """
       Test assignment of quantity attribute, invalid value (negative number).
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "-3")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "-6.8")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "-0.2")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "-.1")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
 
    def testConstructor_008(self):
       """
       Test assignment of quantity attribute, invalid value (larger than 100%).
       """
       quantity = PercentageQuantity()
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "100.0001")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "101")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
       self.failUnlessAssignRaises(ValueError, quantity, "quantity", "1e6")
-      self.failUnlessEqual(None, quantity.quantity)
+      self.assertEqual(None, quantity.quantity)
 
 
    ############################
@@ -253,13 +253,13 @@ class TestPercentageQuantity(unittest.TestCase):
       """
       quantity1 = PercentageQuantity()
       quantity2 = PercentageQuantity()
-      self.failUnlessEqual(quantity1, quantity2)
-      self.failUnless(quantity1 == quantity2)
-      self.failUnless(not quantity1 < quantity2)
-      self.failUnless(quantity1 <= quantity2)
-      self.failUnless(not quantity1 > quantity2)
-      self.failUnless(quantity1 >= quantity2)
-      self.failUnless(not quantity1 != quantity2)
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
 
    def testComparison_002(self):
       """
@@ -267,13 +267,13 @@ class TestPercentageQuantity(unittest.TestCase):
       """
       quantity1 = PercentageQuantity("12")
       quantity2 = PercentageQuantity("12")
-      self.failUnlessEqual(quantity1, quantity2)
-      self.failUnless(quantity1 == quantity2)
-      self.failUnless(not quantity1 < quantity2)
-      self.failUnless(quantity1 <= quantity2)
-      self.failUnless(not quantity1 > quantity2)
-      self.failUnless(quantity1 >= quantity2)
-      self.failUnless(not quantity1 != quantity2)
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
 
    def testComparison_003(self):
       """
@@ -281,13 +281,13 @@ class TestPercentageQuantity(unittest.TestCase):
       """
       quantity1 = PercentageQuantity()
       quantity2 = PercentageQuantity(quantity="12")
-      self.failIfEqual(quantity1, quantity2)
-      self.failUnless(not quantity1 == quantity2)
-      self.failUnless(quantity1 < quantity2)
-      self.failUnless(quantity1 <= quantity2)
-      self.failUnless(not quantity1 > quantity2)
-      self.failUnless(not quantity1 >= quantity2)
-      self.failUnless(quantity1 != quantity2)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
 
    def testComparison_004(self):
       """
@@ -295,13 +295,13 @@ class TestPercentageQuantity(unittest.TestCase):
       """
       quantity1 = PercentageQuantity("10")
       quantity2 = PercentageQuantity("12")
-      self.failIfEqual(quantity1, quantity2)
-      self.failUnless(not quantity1 == quantity2)
-      self.failUnless(quantity1 < quantity2)
-      self.failUnless(quantity1 <= quantity2)
-      self.failUnless(not quantity1 > quantity2)
-      self.failUnless(not quantity1 >= quantity2)
-      self.failUnless(quantity1 != quantity2)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
 
 
 ##########################
@@ -343,88 +343,88 @@ class TestCapacityConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.maxPercentage)
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.minBytes)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values.
       """
       capacity = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("2.0", UNIT_KBYTES))
-      self.failUnlessEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
-      self.failUnlessEqual(ByteQuantity("2.0", UNIT_KBYTES), capacity.minBytes)
+      self.assertEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
+      self.assertEqual(ByteQuantity("2.0", UNIT_KBYTES), capacity.minBytes)
 
    def testConstructor_003(self):
       """
       Test assignment of maxPercentage attribute, None value.
       """
       capacity = CapacityConfig(maxPercentage=PercentageQuantity("63.2"))
-      self.failUnlessEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
+      self.assertEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
       capacity.maxPercentage = None
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
 
    def testConstructor_004(self):
       """
       Test assignment of maxPercentage attribute, valid value.
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
       capacity.maxPercentage = PercentageQuantity("63.2")
-      self.failUnlessEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
+      self.assertEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
 
    def testConstructor_005(self):
       """
       Test assignment of maxPercentage attribute, invalid value (empty).
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
       self.failUnlessAssignRaises(ValueError, capacity, "maxPercentage", "")
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
 
    def testConstructor_006(self):
       """
       Test assignment of maxPercentage attribute, invalid value (not a PercentageQuantity).
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
       self.failUnlessAssignRaises(ValueError, capacity, "maxPercentage", "1.0 GB")
-      self.failUnlessEqual(None, capacity.maxPercentage)
+      self.assertEqual(None, capacity.maxPercentage)
 
    def testConstructor_007(self):
       """
       Test assignment of minBytes attribute, None value.
       """
       capacity = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_KBYTES))
-      self.failUnlessEqual(ByteQuantity("1.00", UNIT_KBYTES), capacity.minBytes)
+      self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), capacity.minBytes)
       capacity.minBytes = None
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
 
    def testConstructor_008(self):
       """
       Test assignment of minBytes attribute, valid value.
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
       capacity.minBytes = ByteQuantity("1.00", UNIT_KBYTES)
-      self.failUnlessEqual(ByteQuantity("1.00", UNIT_KBYTES), capacity.minBytes)
+      self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), capacity.minBytes)
 
    def testConstructor_009(self):
       """
       Test assignment of minBytes attribute, invalid value (empty).
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
       self.failUnlessAssignRaises(ValueError, capacity, "minBytes", "")
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
 
    def testConstructor_010(self):
       """
       Test assignment of minBytes attribute, invalid value (not a ByteQuantity).
       """
       capacity = CapacityConfig()
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
       self.failUnlessAssignRaises(ValueError, capacity, "minBytes", 12)
-      self.failUnlessEqual(None, capacity.minBytes)
+      self.assertEqual(None, capacity.minBytes)
 
 
    ############################
@@ -437,13 +437,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig()
       capacity2 = CapacityConfig()
-      self.failUnlessEqual(capacity1, capacity2)
-      self.failUnless(capacity1 == capacity2)
-      self.failUnless(not capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(capacity1 >= capacity2)
-      self.failUnless(not capacity1 != capacity2)
+      self.assertEqual(capacity1, capacity2)
+      self.assertTrue(capacity1 == capacity2)
+      self.assertTrue(not capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(capacity1 >= capacity2)
+      self.assertTrue(not capacity1 != capacity2)
 
    def testComparison_002(self):
       """
@@ -451,13 +451,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
       capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failUnlessEqual(capacity1, capacity2)
-      self.failUnless(capacity1 == capacity2)
-      self.failUnless(not capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(capacity1 >= capacity2)
-      self.failUnless(not capacity1 != capacity2)
+      self.assertEqual(capacity1, capacity2)
+      self.assertTrue(capacity1 == capacity2)
+      self.assertTrue(not capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(capacity1 >= capacity2)
+      self.assertTrue(not capacity1 != capacity2)
 
    def testComparison_003(self):
       """
@@ -465,13 +465,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig()
       capacity2 = CapacityConfig(maxPercentage=PercentageQuantity("63.2"))
-      self.failIfEqual(capacity1, capacity2)
-      self.failUnless(not capacity1 == capacity2)
-      self.failUnless(capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(not capacity1 >= capacity2)
-      self.failUnless(capacity1 != capacity2)
+      self.assertNotEqual(capacity1, capacity2)
+      self.assertTrue(not capacity1 == capacity2)
+      self.assertTrue(capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(not capacity1 >= capacity2)
+      self.assertTrue(capacity1 != capacity2)
 
    def testComparison_004(self):
       """
@@ -479,13 +479,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig(PercentageQuantity("15.0"), ByteQuantity("1.00", UNIT_MBYTES))
       capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(capacity1, capacity2)
-      self.failUnless(not capacity1 == capacity2)
-      self.failUnless(capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(not capacity1 >= capacity2)
-      self.failUnless(capacity1 != capacity2)
+      self.assertNotEqual(capacity1, capacity2)
+      self.assertTrue(not capacity1 == capacity2)
+      self.assertTrue(capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(not capacity1 >= capacity2)
+      self.assertTrue(capacity1 != capacity2)
 
    def testComparison_005(self):
       """
@@ -493,13 +493,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig()
       capacity2 = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(capacity1, capacity2)
-      self.failUnless(not capacity1 == capacity2)
-      self.failUnless(capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(not capacity1 >= capacity2)
-      self.failUnless(capacity1 != capacity2)
+      self.assertNotEqual(capacity1, capacity2)
+      self.assertTrue(not capacity1 == capacity2)
+      self.assertTrue(capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(not capacity1 >= capacity2)
+      self.assertTrue(capacity1 != capacity2)
 
    def testComparison_006(self):
       """
@@ -507,13 +507,13 @@ class TestCapacityConfig(unittest.TestCase):
       """
       capacity1 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("0.5", UNIT_MBYTES))
       capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(capacity1, capacity2)
-      self.failUnless(not capacity1 == capacity2)
-      self.failUnless(capacity1 < capacity2)
-      self.failUnless(capacity1 <= capacity2)
-      self.failUnless(not capacity1 > capacity2)
-      self.failUnless(not capacity1 >= capacity2)
-      self.failUnless(capacity1 != capacity2)
+      self.assertNotEqual(capacity1, capacity2)
+      self.assertTrue(not capacity1 == capacity2)
+      self.assertTrue(capacity1 < capacity2)
+      self.assertTrue(capacity1 <= capacity2)
+      self.assertTrue(not capacity1 > capacity2)
+      self.assertTrue(not capacity1 >= capacity2)
+      self.assertTrue(capacity1 != capacity2)
 
 
 ########################
@@ -531,7 +531,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -564,7 +564,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -589,14 +589,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity)
 
    def testConstructor_003(self):
       """
@@ -604,7 +604,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["capacity.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -612,7 +612,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = None
-      self.failUnlessEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity)
 
    def testConstructor_005(self):
       """
@@ -620,7 +620,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = CapacityConfig()
-      self.failUnlessEqual(CapacityConfig(), config.capacity)
+      self.assertEqual(CapacityConfig(), config.capacity)
 
    def testConstructor_006(self):
       """
@@ -640,13 +640,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -658,13 +658,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.capacity = CapacityConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -673,13 +673,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.capacity = CapacityConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -691,13 +691,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.capacity = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_MBYTES))
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -710,7 +710,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -718,7 +718,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = CapacityConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -726,7 +726,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = CapacityConfig(None, None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_004(self):
       """
@@ -734,7 +734,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.capacity = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_005(self):
       """
@@ -765,12 +765,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["capacity.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity)
 
    def testParse_002(self):
       """
@@ -779,13 +779,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["capacity.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(PercentageQuantity("63.2"), config.capacity.maxPercentage)
-      self.failUnlessEqual(None, config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(PercentageQuantity("63.2"), config.capacity.maxPercentage)
+      self.assertEqual(None, config.capacity.minBytes)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(PercentageQuantity("63.2"), config.capacity.maxPercentage)
-      self.failUnlessEqual(None, config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(PercentageQuantity("63.2"), config.capacity.maxPercentage)
+      self.assertEqual(None, config.capacity.minBytes)
 
    def testParse_003(self):
       """
@@ -794,13 +794,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["capacity.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(None, config.capacity.maxPercentage)
-      self.failUnlessEqual(ByteQuantity("18", UNIT_BYTES), config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity.maxPercentage)
+      self.assertEqual(ByteQuantity("18", UNIT_BYTES), config.capacity.minBytes)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(None, config.capacity.maxPercentage)
-      self.failUnlessEqual(ByteQuantity("18", UNIT_BYTES), config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity.maxPercentage)
+      self.assertEqual(ByteQuantity("18", UNIT_BYTES), config.capacity.minBytes)
 
    def testParse_004(self):
       """
@@ -809,13 +809,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["capacity.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(None, config.capacity.maxPercentage)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_KBYTES), config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity.maxPercentage)
+      self.assertEqual(ByteQuantity("1.25", UNIT_KBYTES), config.capacity.minBytes)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.capacity)
-      self.failUnlessEqual(None, config.capacity.maxPercentage)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_KBYTES), config.capacity.minBytes)
+      self.assertNotEqual(None, config.capacity)
+      self.assertEqual(None, config.capacity.maxPercentage)
+      self.assertEqual(ByteQuantity("1.25", UNIT_KBYTES), config.capacity.minBytes)
 
 
    ###################

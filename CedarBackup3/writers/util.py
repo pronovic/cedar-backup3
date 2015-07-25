@@ -514,7 +514,7 @@ class IsoImage(object):
       """
       path = encodePath(path)
       if not override:
-         if path in self.entries.keys():
+         if path in list(self.entries.keys()):
             raise ValueError("Path has already been added to the image.")
       if os.path.islink(path):
          raise ValueError("Path must not be a link.") 
@@ -558,7 +558,7 @@ class IsoImage(object):
       @raise IOError: If there is a problem calling C{mkisofs}.
       @raise ValueError: If there are no filesystem entries in the image
       """
-      if len(self.entries.keys()) == 0:
+      if len(list(self.entries.keys())) == 0:
          raise ValueError("Image does not contain any entries.")
       return self._getEstimatedSize(self.entries)
 
@@ -594,7 +594,7 @@ class IsoImage(object):
       @raise ValueError: If a path cannot be encoded properly.
       """
       imagePath = encodePath(imagePath)
-      if len(self.entries.keys()) == 0:
+      if len(list(self.entries.keys())) == 0:
          raise ValueError("Image does not contain any entries.")
       args = self._buildWriteArgs(self.entries, imagePath)
       command = resolveCommand(MKISOFS_COMMAND)
@@ -623,7 +623,7 @@ class IsoImage(object):
       @return: List of directory locations for use by C{mkisofs}
       """
       dirEntries = []
-      for key in entries.keys():
+      for key in list(entries.keys()):
          if entries[key] is None:
             dirEntries.append(key)
          else:

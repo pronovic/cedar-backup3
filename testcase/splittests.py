@@ -178,88 +178,88 @@ class TestSplitConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.sizeLimit)
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.splitSize)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values.
       """
       split = SplitConfig(ByteQuantity("1.0", UNIT_BYTES), ByteQuantity("2.0", UNIT_KBYTES))
-      self.failUnlessEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("2.0", UNIT_KBYTES), split.splitSize)
+      self.assertEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
+      self.assertEqual(ByteQuantity("2.0", UNIT_KBYTES), split.splitSize)
 
    def testConstructor_003(self):
       """
       Test assignment of sizeLimit attribute, None value.
       """
       split = SplitConfig(sizeLimit=ByteQuantity("1.0", UNIT_BYTES))
-      self.failUnlessEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
+      self.assertEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
       split.sizeLimit = None
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
 
    def testConstructor_004(self):
       """
       Test assignment of sizeLimit attribute, valid value.
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
       split.sizeLimit = ByteQuantity("1.0", UNIT_BYTES)
-      self.failUnlessEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
+      self.assertEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
 
    def testConstructor_005(self):
       """
       Test assignment of sizeLimit attribute, invalid value (empty).
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
       self.failUnlessAssignRaises(ValueError, split, "sizeLimit", "")
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
 
    def testConstructor_006(self):
       """
       Test assignment of sizeLimit attribute, invalid value (not a ByteQuantity).
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
       self.failUnlessAssignRaises(ValueError, split, "sizeLimit", "1.0 GB")
-      self.failUnlessEqual(None, split.sizeLimit)
+      self.assertEqual(None, split.sizeLimit)
 
    def testConstructor_007(self):
       """
       Test assignment of splitSize attribute, None value.
       """
       split = SplitConfig(splitSize=ByteQuantity("1.00", UNIT_KBYTES))
-      self.failUnlessEqual(ByteQuantity("1.00", UNIT_KBYTES), split.splitSize)
+      self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), split.splitSize)
       split.splitSize = None
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
 
    def testConstructor_008(self):
       """
       Test assignment of splitSize attribute, valid value.
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
       split.splitSize = ByteQuantity("1.00", UNIT_KBYTES)
-      self.failUnlessEqual(ByteQuantity("1.00", UNIT_KBYTES), split.splitSize)
+      self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), split.splitSize)
 
    def testConstructor_009(self):
       """
       Test assignment of splitSize attribute, invalid value (empty).
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
       self.failUnlessAssignRaises(ValueError, split, "splitSize", "")
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
 
    def testConstructor_010(self):
       """
       Test assignment of splitSize attribute, invalid value (not a ByteQuantity).
       """
       split = SplitConfig()
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
       self.failUnlessAssignRaises(ValueError, split, "splitSize", 12)
-      self.failUnlessEqual(None, split.splitSize)
+      self.assertEqual(None, split.splitSize)
 
 
    ############################
@@ -272,13 +272,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig()
       split2 = SplitConfig()
-      self.failUnlessEqual(split1, split2)
-      self.failUnless(split1 == split2)
-      self.failUnless(not split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(split1 >= split2)
-      self.failUnless(not split1 != split2)
+      self.assertEqual(split1, split2)
+      self.assertTrue(split1 == split2)
+      self.assertTrue(not split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(split1 >= split2)
+      self.assertTrue(not split1 != split2)
 
    def testComparison_002(self):
       """
@@ -286,13 +286,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
       split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failUnlessEqual(split1, split2)
-      self.failUnless(split1 == split2)
-      self.failUnless(not split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(split1 >= split2)
-      self.failUnless(not split1 != split2)
+      self.assertEqual(split1, split2)
+      self.assertTrue(split1 == split2)
+      self.assertTrue(not split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(split1 >= split2)
+      self.assertTrue(not split1 != split2)
 
    def testComparison_003(self):
       """
@@ -300,13 +300,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig()
       split2 = SplitConfig(sizeLimit=ByteQuantity("99", UNIT_KBYTES))
-      self.failIfEqual(split1, split2)
-      self.failUnless(not split1 == split2)
-      self.failUnless(split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(not split1 >= split2)
-      self.failUnless(split1 != split2)
+      self.assertNotEqual(split1, split2)
+      self.assertTrue(not split1 == split2)
+      self.assertTrue(split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(not split1 >= split2)
+      self.assertTrue(split1 != split2)
 
    def testComparison_004(self):
       """
@@ -314,13 +314,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig(ByteQuantity("99", UNIT_BYTES), ByteQuantity("1.00", UNIT_MBYTES))
       split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(split1, split2)
-      self.failUnless(not split1 == split2)
-      self.failUnless(split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(not split1 >= split2)
-      self.failUnless(split1 != split2)
+      self.assertNotEqual(split1, split2)
+      self.assertTrue(not split1 == split2)
+      self.assertTrue(split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(not split1 >= split2)
+      self.assertTrue(split1 != split2)
 
    def testComparison_005(self):
       """
@@ -328,13 +328,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig()
       split2 = SplitConfig(splitSize=ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(split1, split2)
-      self.failUnless(not split1 == split2)
-      self.failUnless(split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(not split1 >= split2)
-      self.failUnless(split1 != split2)
+      self.assertNotEqual(split1, split2)
+      self.assertTrue(not split1 == split2)
+      self.assertTrue(split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(not split1 >= split2)
+      self.assertTrue(split1 != split2)
 
    def testComparison_006(self):
       """
@@ -342,13 +342,13 @@ class TestSplitConfig(unittest.TestCase):
       """
       split1 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("0.5", UNIT_MBYTES))
       split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
-      self.failIfEqual(split1, split2)
-      self.failUnless(not split1 == split2)
-      self.failUnless(split1 < split2)
-      self.failUnless(split1 <= split2)
-      self.failUnless(not split1 > split2)
-      self.failUnless(not split1 >= split2)
-      self.failUnless(split1 != split2)
+      self.assertNotEqual(split1, split2)
+      self.assertTrue(not split1 == split2)
+      self.assertTrue(split1 < split2)
+      self.assertTrue(split1 <= split2)
+      self.assertTrue(not split1 > split2)
+      self.assertTrue(not split1 >= split2)
+      self.assertTrue(split1 != split2)
 
 
 ########################
@@ -366,7 +366,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -399,7 +399,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -424,14 +424,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.split)
+      self.assertEqual(None, config.split)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.split)
+      self.assertEqual(None, config.split)
 
    def testConstructor_003(self):
       """
@@ -439,7 +439,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["split.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -447,7 +447,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = None
-      self.failUnlessEqual(None, config.split)
+      self.assertEqual(None, config.split)
 
    def testConstructor_005(self):
       """
@@ -455,7 +455,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = SplitConfig()
-      self.failUnlessEqual(SplitConfig(), config.split)
+      self.assertEqual(SplitConfig(), config.split)
 
    def testConstructor_006(self):
       """
@@ -475,13 +475,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -493,13 +493,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.split = SplitConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -508,13 +508,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.split = SplitConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -526,13 +526,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.split = SplitConfig(sizeLimit=ByteQuantity("1.00", UNIT_MBYTES))
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -545,7 +545,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -553,7 +553,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = SplitConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -561,7 +561,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = SplitConfig(None, None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_004(self):
       """
@@ -569,9 +569,9 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.split = SplitConfig(ByteQuantity("1.00", UNIT_MBYTES), None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
       config.split = SplitConfig(None, ByteQuantity("1.00", UNIT_MBYTES))
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_005(self):
       """
@@ -592,12 +592,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["split.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.split)
+      self.assertEqual(None, config.split)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.split)
+      self.assertEqual(None, config.split)
 
    def testParse_002(self):
       """
@@ -606,13 +606,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["split.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("12345", UNIT_BYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("67890.0", UNIT_BYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("12345", UNIT_BYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("67890.0", UNIT_BYTES), config.split.splitSize)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("12345", UNIT_BYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("67890.0", UNIT_BYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("12345", UNIT_BYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("67890.0", UNIT_BYTES), config.split.splitSize)
 
    def testParse_003(self):
       """
@@ -621,13 +621,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["split.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_KBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_KBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_KBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_KBYTES), config.split.splitSize)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_KBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_KBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_KBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_KBYTES), config.split.splitSize)
 
    def testParse_004(self):
       """
@@ -636,13 +636,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["split.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_MBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_MBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_MBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_MBYTES), config.split.splitSize)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_MBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_MBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_MBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_MBYTES), config.split.splitSize)
 
    def testParse_005(self):
       """
@@ -651,13 +651,13 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["split.conf.5"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_GBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_GBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_GBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_GBYTES), config.split.splitSize)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.split)
-      self.failUnlessEqual(ByteQuantity("1.25", UNIT_GBYTES), config.split.sizeLimit)
-      self.failUnlessEqual(ByteQuantity("0.6", UNIT_GBYTES), config.split.splitSize)
+      self.assertNotEqual(None, config.split)
+      self.assertEqual(ByteQuantity("1.25", UNIT_GBYTES), config.split.sizeLimit)
+      self.assertEqual(ByteQuantity("0.6", UNIT_GBYTES), config.split.splitSize)
 
 
    ###################
@@ -726,7 +726,7 @@ class TestFunctions(unittest.TestCase):
       try:
          self.tmpdir = tempfile.mkdtemp()
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -754,12 +754,12 @@ class TestFunctions(unittest.TestCase):
       leftoverBytes = int(float(origSize) % float(splitSize))
       for i in range(0, wholeFiles):
          splitPath = "%s_%05d" % (sourcePath, i)
-         self.failUnless(os.path.exists(splitPath))
-         self.failUnlessEqual(splitSize, os.stat(splitPath).st_size)
+         self.assertTrue(os.path.exists(splitPath))
+         self.assertEqual(splitSize, os.stat(splitPath).st_size)
       if leftoverBytes > 0:
          splitPath = "%s_%05d" % (sourcePath, wholeFiles)
-         self.failUnless(os.path.exists(splitPath))
-         self.failUnlessEqual(leftoverBytes, os.stat(splitPath).st_size) 
+         self.assertTrue(os.path.exists(splitPath))
+         self.assertEqual(leftoverBytes, os.stat(splitPath).st_size) 
 
    def findBadLocale(self):
       """
@@ -788,9 +788,9 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       sourcePath = self.buildPath(["tree21", "2007", "01", "01", INVALID_PATH ])
-      self.failIf(os.path.exists(sourcePath))
+      self.assertFalse(os.path.exists(sourcePath))
       splitSize = ByteQuantity("320", UNIT_BYTES)
-      self.failUnlessRaises(ValueError, _splitFile, sourcePath, splitSize, None, None, removeSource=False)
+      self.assertRaises(ValueError, _splitFile, sourcePath, splitSize, None, None, removeSource=False)
 
    def testSplitFile_002(self):
       """
@@ -798,10 +798,10 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b", ])
-      self.failUnless(os.path.exists(sourcePath))
+      self.assertTrue(os.path.exists(sourcePath))
       splitSize = ByteQuantity("320", UNIT_BYTES)
       _splitFile(sourcePath, splitSize, None, None, removeSource=False)
-      self.failUnless(os.path.exists(sourcePath))
+      self.assertTrue(os.path.exists(sourcePath))
       self.checkSplit(sourcePath, 3200, 320)
 
    def testSplitFile_003(self):
@@ -810,10 +810,10 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b", ])
-      self.failUnless(os.path.exists(sourcePath))
+      self.assertTrue(os.path.exists(sourcePath))
       splitSize = ByteQuantity("320.1", UNIT_BYTES)
       _splitFile(sourcePath, splitSize, None, None, removeSource=False)
-      self.failUnless(os.path.exists(sourcePath))
+      self.assertTrue(os.path.exists(sourcePath))
       self.checkSplit(sourcePath, 3200, 320)
 
    def testSplitFile_004(self):
@@ -822,10 +822,10 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b", ])
-      self.failUnless(os.path.exists(sourcePath))
+      self.assertTrue(os.path.exists(sourcePath))
       splitSize = ByteQuantity("320", UNIT_BYTES)
       _splitFile(sourcePath, splitSize, None, None, removeSource=True)
-      self.failIf(os.path.exists(sourcePath))
+      self.assertFalse(os.path.exists(sourcePath))
       self.checkSplit(sourcePath, 3200, 320)
 
    def testSplitFile_005(self):
@@ -850,10 +850,10 @@ class TestFunctions(unittest.TestCase):
          os.environ["LC_TIME"] = locale
          self.extractTar("tree21")
          sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b", ])
-         self.failUnless(os.path.exists(sourcePath))
+         self.assertTrue(os.path.exists(sourcePath))
          splitSize = ByteQuantity("320", UNIT_BYTES)
          _splitFile(sourcePath, splitSize, None, None, removeSource=True)
-         self.failIf(os.path.exists(sourcePath))
+         self.assertFalse(os.path.exists(sourcePath))
          self.checkSplit(sourcePath, 3200, 320)
 
 
@@ -867,10 +867,10 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", INVALID_PATH, ])
-      self.failIf(os.path.exists(dailyDir))
+      self.assertFalse(os.path.exists(dailyDir))
       sizeLimit = ByteQuantity("1.0", UNIT_MBYTES)
       splitSize = ByteQuantity("100000", UNIT_BYTES)
-      self.failUnlessRaises(ValueError, _splitDailyDir, dailyDir, sizeLimit, splitSize, None, None)
+      self.assertRaises(ValueError, _splitDailyDir, dailyDir, sizeLimit, splitSize, None, None)
 
    def testSplitDailyDir_002(self):
       """
@@ -878,28 +878,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("1.0", UNIT_MBYTES)
       splitSize = ByteQuantity("100000", UNIT_BYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
 
    def testSplitDailyDir_003(self):
       """
@@ -907,28 +907,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("100000", UNIT_BYTES)
       splitSize = ByteQuantity("10", UNIT_KBYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       self.checkSplit(os.path.join(dailyDir, "system1", "file003"), 320000, 10*1024)
       self.checkSplit(os.path.join(dailyDir, "system3", "file003"), 100001, 10*1024)
 
@@ -938,28 +938,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("99999", UNIT_BYTES)
       splitSize = ByteQuantity("5000", UNIT_BYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       self.checkSplit(os.path.join(dailyDir, "system1", "file003"), 320000, 5000)
       self.checkSplit(os.path.join(dailyDir, "system2", "file003"), 100000, 5000)
       self.checkSplit(os.path.join(dailyDir, "system3", "file002"), 100000, 5000)
@@ -971,28 +971,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("10000.0", UNIT_BYTES)
       splitSize = ByteQuantity("2500", UNIT_BYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       self.checkSplit(os.path.join(dailyDir, "system1", "file002"), 32000, 2500)
       self.checkSplit(os.path.join(dailyDir, "system1", "file003"), 320000, 2500)
       self.checkSplit(os.path.join(dailyDir, "system2", "file003"), 100000, 2500)
@@ -1006,28 +1006,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("10000", UNIT_BYTES)
       splitSize = ByteQuantity("1.0", UNIT_KBYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       self.checkSplit(os.path.join(dailyDir, "system1", "file002"), 32000, 1*1024)
       self.checkSplit(os.path.join(dailyDir, "system1", "file003"), 320000, 1*1024)
       self.checkSplit(os.path.join(dailyDir, "system2", "file003"), 100000, 1*1024)
@@ -1041,28 +1041,28 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree21")
       dailyDir = self.buildPath(["tree21", "2007", "01", "01", ])
-      self.failUnless(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       sizeLimit = ByteQuantity("9999", UNIT_BYTES)
       splitSize = ByteQuantity("1000", UNIT_BYTES)
       _splitDailyDir(dailyDir, sizeLimit, splitSize, None, None)
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
-      self.failUnless(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
-      self.failIf(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system1", "file003")))
+      self.assertTrue(os.path.exists(os.path.join(dailyDir, "system2", "file001")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system2", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system2", "file003")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file001")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file002")))
+      self.assertFalse(os.path.exists(os.path.join(dailyDir, "system3", "file003")))
       self.checkSplit(os.path.join(dailyDir, "system1", "file002"), 32000, 1000)
       self.checkSplit(os.path.join(dailyDir, "system1", "file003"), 320000, 1000)
       self.checkSplit(os.path.join(dailyDir, "system2", "file002"), 10000, 1000)

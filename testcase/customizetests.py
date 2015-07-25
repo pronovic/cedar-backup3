@@ -79,10 +79,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "standard":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual(None, options.overrides)
+         self.assertEqual(None, options.overrides)
       config.options = options
       customizeOverrides(config, platform="standard")
-      self.failUnlessEqual(None, options.overrides)
+      self.assertEqual(None, options.overrides)
 
    def testCustomizeOverrides_002(self):
       """
@@ -94,10 +94,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "standard":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/blech"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="standard")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/blech"), ], options.overrides)
 
    def testCustomizeOverrides_003(self):
       """
@@ -109,10 +109,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "standard":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("mkisofs", "/blech"), ], options.overrides)
+         self.assertEqual([ CommandOverride("mkisofs", "/blech"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="standard")
-      self.failUnlessEqual([ CommandOverride("mkisofs", "/blech"), ], options.overrides)
+      self.assertEqual([ CommandOverride("mkisofs", "/blech"), ], options.overrides)
 
    def testCustomizeOverrides_004(self):
       """
@@ -124,10 +124,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "standard":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="standard")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
 
    def testCustomizeOverrides_005(self):
       """
@@ -138,10 +138,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "debian":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="debian")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
 
    def testCustomizeOverrides_006(self):
       """
@@ -153,10 +153,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "debian":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="debian")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/usr/bin/genisoimage"), ], options.overrides)
 
    def testCustomizeOverrides_007(self):
       """
@@ -168,10 +168,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "debian":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/blech"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/blech"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="debian")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/blech"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/usr/bin/wodim"), CommandOverride("mkisofs", "/blech"), ], options.overrides)
 
    def testCustomizeOverrides_008(self):
       """
@@ -183,10 +183,10 @@ class TestFunctions(unittest.TestCase):
       if PLATFORM == "debian":
          config.options = options
          customizeOverrides(config)
-         self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
+         self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
       config.options = options
       customizeOverrides(config, platform="debian")
-      self.failUnlessEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
+      self.assertEqual([ CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"), ], options.overrides)
 
 
 #######################################################################

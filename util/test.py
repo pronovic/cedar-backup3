@@ -107,12 +107,12 @@ def main():
 
    # Check the Python version.  We require 3.4 or greater.
    try:
-      if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5]:
-         print "Python version 3.4 or greater required, sorry."
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
+         print("Python version 3.4 or greater required, sorry.")
          return 1
    except:
       # sys.version_info isn't available before 2.0
-      print "Python version 3.4 or greater required, sorry."
+      print("Python version 3.4 or greater required, sorry.")
       return 1
 
    # Check for the correct CedarBackup3 location and import utilities
@@ -122,15 +122,15 @@ def main():
       elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "CedarBackup3", "filesystem.py")):
          sys.path.insert(0, "..")
       else:
-         print "WARNING: CedarBackup3 modules were not found in the expected"
-         print "location.  If the import succeeds, you may be using an"
-         print "unexpected version of CedarBackup3."
-         print ""
+         print("WARNING: CedarBackup3 modules were not found in the expected")
+         print("location.  If the import succeeds, you may be using an")
+         print("unexpected version of CedarBackup3.")
+         print("")
       from CedarBackup3.util import nullDevice, Diagnostics
-   except ImportError, e:
-      print "Failed to import CedarBackup3 util module: %s" % e
-      print "You must either run the unit tests from the CedarBackup3 source"
-      print "tree, or properly set the PYTHONPATH enviroment variable."
+   except ImportError as e:
+      print(("Failed to import CedarBackup3 util module: %s" % e))
+      print("You must either run the unit tests from the CedarBackup3 source")
+      print("tree, or properly set the PYTHONPATH enviroment variable.")
       return 1
 
    # Setup platform-specific command overrides
@@ -144,10 +144,10 @@ def main():
       elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "testcase", "filesystemtests.py")):
          sys.path.insert(0, "..")
       else:
-         print "WARNING: CedarBackup3 unit test modules were not found in"
-         print "the expected location.  If the import succeeds, you may be"
-         print "using an unexpected version of the test suite."
-         print ""
+         print("WARNING: CedarBackup3 unit test modules were not found in")
+         print("the expected location.  If the import succeeds, you may be")
+         print("using an unexpected version of the test suite.")
+         print("")
       from testcase import utiltests
       from testcase import knapsacktests
       from testcase import filesystemtests
@@ -169,10 +169,10 @@ def main():
       from testcase import synctests
       from testcase import capacitytests
       from testcase import customizetests
-   except ImportError, e:
-      print "Failed to import CedarBackup3 unit test module: %s" % e
-      print "You must either run the unit tests from the CedarBackup3 source"
-      print "tree, or properly set the PYTHONPATH enviroment variable."
+   except ImportError as e:
+      print(("Failed to import CedarBackup3 unit test module: %s" % e))
+      print("You must either run the unit tests from the CedarBackup3 source")
+      print("tree, or properly set the PYTHONPATH enviroment variable.")
       return 1
 
    # Set up logging to discard everything
@@ -202,9 +202,9 @@ def main():
       os.environ["SPLITTESTS_FULL"] = "N"
 
    # Print a starting banner
-   print "\n*** Running CedarBackup3 unit tests."
+   print("\n*** Running CedarBackup3 unit tests.")
    if not full:
-      print "*** Using reduced feature set suite with minimum system requirements."
+      print("*** Using reduced feature set suite with minimum system requirements.")
 
    # Make a list of tests to run
    unittests = { }
@@ -229,17 +229,17 @@ def main():
    if args == [] or "sync" in args: unittests["sync"] = synctests.suite()
    if args == [] or "capacity" in args: unittests["capacity"] = capacitytests.suite()
    if args == [] or "customize" in args: unittests["customize"] = customizetests.suite()
-   if args != []: print "*** Executing specific tests: %s" % unittests.keys()
+   if args != []: print(("*** Executing specific tests: %s" % list(unittests.keys())))
 
    # Print some diagnostic information
-   print ""
+   print("")
    Diagnostics().printDiagnostics(prefix="*** ")
 
    # Create and run the test suite
-   print ""
-   suite = unittest.TestSuite(unittests.values())
+   print("")
+   suite = unittest.TestSuite(list(unittests.values()))
    suiteResult = unittest.TextTestRunner(verbosity=1).run(suite)
-   print ""
+   print("")
    if not suiteResult.wasSuccessful():
       return 1
    else:

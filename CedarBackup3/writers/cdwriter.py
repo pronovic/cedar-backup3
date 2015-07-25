@@ -797,7 +797,7 @@ class CdWriter(object):
       if self._image is None:
          raise ValueError("Must call initializeImage() before using this method.")
       image = IsoImage()
-      for path in self._image.entries.keys():
+      for path in list(self._image.entries.keys()):
          image.addEntry(path, self._image.entries[path], override=False, contentsOnly=True)
       return image.getEstimatedSize()
 
@@ -972,7 +972,7 @@ class CdWriter(object):
       capacity = self.retrieveCapacity(entireDisc=self._image.newDisc)
       image = IsoImage(self.device, capacity.boundaries)
       image.volumeId = self._image.mediaLabel  # may be None, which is also valid
-      for key in self._image.entries.keys():
+      for key in list(self._image.entries.keys()):
          image.addEntry(key, self._image.entries[key], override=False, contentsOnly=True)
       size = image.getEstimatedSize()
       logger.info("Image size will be %s." % displayBytes(size))
@@ -988,7 +988,7 @@ class CdWriter(object):
          image.writeImage(path)
          logger.debug("Completed creating image [%s]." % path)
          return path
-      except Exception, e:
+      except Exception as e:
          if path is not None and os.path.exists(path):
             try: os.unlink(path)
             except: pass

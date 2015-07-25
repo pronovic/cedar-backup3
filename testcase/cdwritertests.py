@@ -139,51 +139,51 @@ class TestMediaDefinition(unittest.TestCase):
       """
       Test the constructor with an invalid media type.
       """
-      self.failUnlessRaises(ValueError, MediaDefinition, 100)
+      self.assertRaises(ValueError, MediaDefinition, 100)
 
    def testConstructor_002(self):
       """
       Test the constructor with the C{MEDIA_CDR_74} media type.
       """
       media = MediaDefinition(MEDIA_CDR_74)
-      self.failUnlessEqual(MEDIA_CDR_74, media.mediaType)
-      self.failUnlessEqual(False, media.rewritable)
-      self.failIfEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
-      self.failIfEqual(0, media.leadIn)           # just care that it's set, not what its value is
-      self.failUnlessEqual(332800, media.capacity)
+      self.assertEqual(MEDIA_CDR_74, media.mediaType)
+      self.assertEqual(False, media.rewritable)
+      self.assertNotEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
+      self.assertNotEqual(0, media.leadIn)           # just care that it's set, not what its value is
+      self.assertEqual(332800, media.capacity)
 
    def testConstructor_003(self):
       """
       Test the constructor with the C{MEDIA_CDRW_74} media type.
       """
       media = MediaDefinition(MEDIA_CDRW_74)
-      self.failUnlessEqual(MEDIA_CDRW_74, media.mediaType)
-      self.failUnlessEqual(True, media.rewritable)
-      self.failIfEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
-      self.failIfEqual(0, media.leadIn)           # just care that it's set, not what its value is
-      self.failUnlessEqual(332800, media.capacity)
+      self.assertEqual(MEDIA_CDRW_74, media.mediaType)
+      self.assertEqual(True, media.rewritable)
+      self.assertNotEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
+      self.assertNotEqual(0, media.leadIn)           # just care that it's set, not what its value is
+      self.assertEqual(332800, media.capacity)
 
    def testConstructor_004(self):
       """
       Test the constructor with the C{MEDIA_CDR_80} media type.
       """
       media = MediaDefinition(MEDIA_CDR_80)
-      self.failUnlessEqual(MEDIA_CDR_80, media.mediaType)
-      self.failUnlessEqual(False, media.rewritable)
-      self.failIfEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
-      self.failIfEqual(0, media.leadIn)           # just care that it's set, not what its value is
-      self.failUnlessEqual(358400, media.capacity)
+      self.assertEqual(MEDIA_CDR_80, media.mediaType)
+      self.assertEqual(False, media.rewritable)
+      self.assertNotEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
+      self.assertNotEqual(0, media.leadIn)           # just care that it's set, not what its value is
+      self.assertEqual(358400, media.capacity)
 
    def testConstructor_005(self):
       """
       Test the constructor with the C{MEDIA_CDRW_80} media type.
       """
       media = MediaDefinition(MEDIA_CDRW_80)
-      self.failUnlessEqual(MEDIA_CDRW_80, media.mediaType)
-      self.failUnlessEqual(True, media.rewritable)
-      self.failIfEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
-      self.failIfEqual(0, media.leadIn)           # just care that it's set, not what its value is
-      self.failUnlessEqual(358400, media.capacity)
+      self.assertEqual(MEDIA_CDRW_80, media.mediaType)
+      self.assertEqual(True, media.rewritable)
+      self.assertNotEqual(0, media.initialLeadIn)    # just care that it's set, not what its value is
+      self.assertNotEqual(0, media.leadIn)           # just care that it's set, not what its value is
+      self.assertEqual(358400, media.capacity)
 
 
 ############################
@@ -199,9 +199,9 @@ class TestMediaCapacity(unittest.TestCase):
       Test the constructor.
       """
       capacity = MediaCapacity(100, 200, (300, 400))
-      self.failUnlessEqual(100, capacity.bytesUsed)
-      self.failUnlessEqual(200, capacity.bytesAvailable)
-      self.failUnlessEqual((300, 400), capacity.boundaries)
+      self.assertEqual(100, capacity.bytesUsed)
+      self.assertEqual(200, capacity.bytesAvailable)
+      self.assertEqual((300, 400), capacity.boundaries)
 
 
 #####################
@@ -234,13 +234,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_002(self):
       """
@@ -249,13 +249,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="ATA:0,0,0", unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("ATA:0,0,0", writer.scsiId)
-      self.failUnlessEqual("ATA:0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("ATA:0,0,0", writer.scsiId)
+      self.assertEqual("ATA:0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_003(self):
       """
@@ -264,13 +264,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="ATAPI:0,0,0", unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("ATAPI:0,0,0", writer.scsiId)
-      self.failUnlessEqual("ATAPI:0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("ATAPI:0,0,0", writer.scsiId)
+      self.assertEqual("ATAPI:0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_004(self):
       """
@@ -278,7 +278,7 @@ class TestCdWriter(unittest.TestCase):
       Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
       C{unittest=False}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=False)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=False)
 
    def testConstructor_005(self):
       """
@@ -286,21 +286,21 @@ class TestCdWriter(unittest.TestCase):
       Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
       C{unittest=True}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=True)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=True)
 
    def testConstructor_006(self):
       """
       Test the constructor with a non-absolute device path.  Use a valid SCSI
       id and defaults for the remaining arguments.  Make sure that C{unittest=False}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=False)
+      self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=False)
 
    def testConstructor_007(self):
       """
       Test the constructor with a non-absolute device path.  Use a valid SCSI
       id and defaults for the remaining arguments.  Make sure that C{unittest=True}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=True)
+      self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=True)
 
    def testConstructor_008(self):
       """
@@ -308,7 +308,7 @@ class TestCdWriter(unittest.TestCase):
       Use a valid SCSI id and defaults for the remaining arguments.  Make sure
       that C{unittest=False}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/bogus", scsiId="0,0,0", unittest=False)
+      self.assertRaises(ValueError, CdWriter, device="/bogus", scsiId="0,0,0", unittest=False)
 
    def testConstructor_009(self):
       """
@@ -317,13 +317,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/bogus", scsiId="0,0,0", unittest=True)
-      self.failUnlessEqual("/bogus", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/bogus", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_010(self):
       """
@@ -331,7 +331,7 @@ class TestCdWriter(unittest.TestCase):
       exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
       sure that C{unittest=False}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=False)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=False)
 
    def testConstructor_011(self):
       """
@@ -339,7 +339,7 @@ class TestCdWriter(unittest.TestCase):
       exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
       sure that C{unittest=True}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=True)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=True)
 
    def testConstructor_012(self):
       """
@@ -348,13 +348,13 @@ class TestCdWriter(unittest.TestCase):
       sure that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=1, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(1, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(1, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_013(self):
       """
@@ -363,13 +363,13 @@ class TestCdWriter(unittest.TestCase):
       sure that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=5, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(5, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(5, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_014(self):
       """
@@ -377,7 +377,7 @@ class TestCdWriter(unittest.TestCase):
       exists.  Use a valid SCSI id and an invalid media type.  Make sure that
       C{unittest=False}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=False)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=False)
 
    def testConstructor_015(self):
       """
@@ -385,7 +385,7 @@ class TestCdWriter(unittest.TestCase):
       exists.  Use a valid SCSI id and an invalid media type.  Make sure that
       C{unittest=True}.
       """
-      self.failUnlessRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=True)
+      self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=True)
 
    def testConstructor_016(self):
       """
@@ -394,13 +394,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_74, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDR_74, writer.media.mediaType)
-      self.failUnlessEqual(False, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDR_74, writer.media.mediaType)
+      self.assertEqual(False, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_017(self):
       """
@@ -409,13 +409,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_74, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_74, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_74, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_018(self):
       """
@@ -424,13 +424,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_80, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDR_80, writer.media.mediaType)
-      self.failUnlessEqual(False, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDR_80, writer.media.mediaType)
+      self.assertEqual(False, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_019(self):
       """
@@ -439,13 +439,13 @@ class TestCdWriter(unittest.TestCase):
       that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_80, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual("0,0,0", writer.scsiId)
-      self.failUnlessEqual("0,0,0", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_80, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual("0,0,0", writer.scsiId)
+      self.assertEqual("0,0,0", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_80, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_020(self):
       """
@@ -454,13 +454,13 @@ class TestCdWriter(unittest.TestCase):
       sure that C{unittest=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual(None, writer.scsiId)
-      self.failUnlessEqual("/dev/null", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_80, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(False, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual(None, writer.scsiId)
+      self.assertEqual("/dev/null", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_80, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(False, writer._noEject)
 
    def testConstructor_021(self):
       """
@@ -469,13 +469,13 @@ class TestCdWriter(unittest.TestCase):
       sure that C{unittest=True}.  Use C{noEject=True}.
       """
       writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, noEject=True, unittest=True)
-      self.failUnlessEqual("/dev/null", writer.device)
-      self.failUnlessEqual(None, writer.scsiId)
-      self.failUnlessEqual("/dev/null", writer.hardwareId)
-      self.failUnlessEqual(None, writer.driveSpeed)
-      self.failUnlessEqual(MEDIA_CDRW_80, writer.media.mediaType)
-      self.failUnlessEqual(True, writer.isRewritable())
-      self.failUnlessEqual(True, writer._noEject)
+      self.assertEqual("/dev/null", writer.device)
+      self.assertEqual(None, writer.scsiId)
+      self.assertEqual("/dev/null", writer.hardwareId)
+      self.assertEqual(None, writer.driveSpeed)
+      self.assertEqual(MEDIA_CDRW_80, writer.media.mediaType)
+      self.assertEqual(True, writer.isRewritable())
+      self.assertEqual(True, writer._noEject)
 
 
    ####################################
@@ -490,9 +490,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_74)
       boundaries = None
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(0, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual(None, capacity.boundaries)
+      self.assertEqual(0, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual(None, capacity.boundaries)
 
    def testCapacity_002(self):
       """
@@ -502,9 +502,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = None
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(0, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual(None, capacity.boundaries)
+      self.assertEqual(0, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual(None, capacity.boundaries)
 
    def testCapacity_003(self):
       """
@@ -514,9 +514,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_80)
       boundaries = None
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(0, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual(None, capacity.boundaries)
+      self.assertEqual(0, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual(None, capacity.boundaries)
 
    def testCapacity_004(self):
       """
@@ -526,9 +526,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_80)
       boundaries = None
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(0, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual(None, capacity.boundaries)
+      self.assertEqual(0, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual(None, capacity.boundaries)
 
    def testCapacity_005(self):
       """
@@ -539,9 +539,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_74)
       boundaries = (0, 1)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 1), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 1), capacity.boundaries)
 
    def testCapacity_006(self):
       """
@@ -552,9 +552,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = (0, 1)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 1), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 1), capacity.boundaries)
 
    def testCapacity_007(self):
       """
@@ -565,9 +565,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_80)
       boundaries = (0, 1)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable) # 700 MB - lead-in - 1 sector
-      self.failUnlessEqual((0, 1), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable) # 700 MB - lead-in - 1 sector
+      self.assertEqual((0, 1), capacity.boundaries)
 
    def testCapacity_008(self):
       """
@@ -578,9 +578,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_80)
       boundaries = (0, 1)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 1), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 1), capacity.boundaries)
 
    def testCapacity_009(self):
       """
@@ -591,9 +591,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_74)
       boundaries = (0, 999)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 999), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 999), capacity.boundaries)
 
    def testCapacity_010(self):
       """
@@ -604,9 +604,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = (0, 999)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 999), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 999), capacity.boundaries)
 
    def testCapacity_011(self):
       """
@@ -617,9 +617,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_80)
       boundaries = (0, 999)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 999), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 999), capacity.boundaries)
 
    def testCapacity_012(self):
       """
@@ -630,9 +630,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_80)
       boundaries = (0, 999)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 999), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 999), capacity.boundaries)
 
    def testCapacity_013(self):
       """
@@ -643,9 +643,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_74)
       boundaries = (500, 1000)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((500, 1000), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((500, 1000), capacity.boundaries)
 
    def testCapacity_014(self):
       """
@@ -656,9 +656,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = (500, 1000)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((500, 1000), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((500, 1000), capacity.boundaries)
 
    def testCapacity_015(self):
       """
@@ -669,9 +669,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDR_80)
       boundaries = (500, 1000)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((500, 1000), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((500, 1000), capacity.boundaries)
 
    def testCapacity_016(self):
       """
@@ -682,9 +682,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_80)
       boundaries = (500, 1000)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)    # 650 MB minus lead-in
-      self.failUnlessEqual((500, 1000), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)    # 650 MB minus lead-in
+      self.assertEqual((500, 1000), capacity.boundaries)
 
    def testCapacity_017(self):
       """
@@ -693,7 +693,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = False
       boundaries = writer._getBoundaries(entireDisc=False, useMulti=True)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_018(self):
       """
@@ -702,7 +702,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = False
       boundaries = writer._getBoundaries(entireDisc=True, useMulti=True)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_019(self):
       """
@@ -711,7 +711,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = False
       boundaries = writer._getBoundaries(entireDisc=False, useMulti=False)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_020(self):
       """
@@ -720,7 +720,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = False
       boundaries = writer._getBoundaries(entireDisc=False, useMulti=False)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_021(self):
       """
@@ -729,7 +729,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = True
       boundaries = writer._getBoundaries(entireDisc=True, useMulti=True)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_022(self):
       """
@@ -738,7 +738,7 @@ class TestCdWriter(unittest.TestCase):
       writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
       writer._deviceSupportsMulti = True
       boundaries = writer._getBoundaries(entireDisc=True, useMulti=False)
-      self.failUnlessEqual(None, boundaries)
+      self.assertEqual(None, boundaries)
 
    def testCapacity_023(self):
       """
@@ -750,9 +750,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = (321342, 330042)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((321342, 330042), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((321342, 330042), capacity.boundaries)
 
    def testCapacity_024(self):
       """
@@ -764,9 +764,9 @@ class TestCdWriter(unittest.TestCase):
       media = MediaDefinition(MEDIA_CDRW_74)
       boundaries = (0, 330042)
       capacity = CdWriter._calculateCapacity(media, boundaries)
-      self.failUnlessEqual(expectedUsed, capacity.bytesUsed)
-      self.failUnlessEqual(expectedAvailable, capacity.bytesAvailable)
-      self.failUnlessEqual((0, 330042), capacity.boundaries)
+      self.assertEqual(expectedUsed, capacity.bytesUsed)
+      self.assertEqual(expectedAvailable, capacity.bytesAvailable)
+      self.assertEqual((0, 330042), capacity.boundaries)
 
 
    #########################################
@@ -778,133 +778,133 @@ class TestCdWriter(unittest.TestCase):
       Test _buildOpenTrayArgs().
       """
       args = CdWriter._buildOpenTrayArgs(device="/dev/stuff")
-      self.failUnlessEqual(["/dev/stuff", ], args)
+      self.assertEqual(["/dev/stuff", ], args)
 
    def testBuildArgs_002(self):
       """
       Test _buildCloseTrayArgs().
       """
       args = CdWriter._buildCloseTrayArgs(device="/dev/stuff")
-      self.failUnlessEqual(["-t", "/dev/stuff", ], args)
+      self.assertEqual(["-t", "/dev/stuff", ], args)
 
    def testBuildArgs_003(self):
       """
       Test _buildPropertiesArgs().
       """
       args = CdWriter._buildPropertiesArgs(hardwareId="0,0,0")
-      self.failUnlessEqual(["-prcap", "dev=0,0,0", ], args)
+      self.assertEqual(["-prcap", "dev=0,0,0", ], args)
 
    def testBuildArgs_004(self):
       """
       Test _buildBoundariesArgs().
       """
       args = CdWriter._buildBoundariesArgs(hardwareId="ATA:0,0,0")
-      self.failUnlessEqual(["-msinfo", "dev=ATA:0,0,0", ], args)
+      self.assertEqual(["-msinfo", "dev=ATA:0,0,0", ], args)
 
    def testBuildArgs_005(self):
       """
       Test _buildBoundariesArgs().
       """
       args = CdWriter._buildBoundariesArgs(hardwareId="ATAPI:0,0,0")
-      self.failUnlessEqual(["-msinfo", "dev=ATAPI:0,0,0", ], args)
+      self.assertEqual(["-msinfo", "dev=ATAPI:0,0,0", ], args)
 
    def testBuildArgs_006(self):
       """
       Test _buildBlankArgs(), default drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="ATA:0,0,0")
-      self.failUnlessEqual(["-v", "blank=fast", "dev=ATA:0,0,0", ], args)
+      self.assertEqual(["-v", "blank=fast", "dev=ATA:0,0,0", ], args)
 
    def testBuildArgs_007(self):
       """
       Test _buildBlankArgs(), default drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="ATAPI:0,0,0")
-      self.failUnlessEqual(["-v", "blank=fast", "dev=ATAPI:0,0,0", ], args)
+      self.assertEqual(["-v", "blank=fast", "dev=ATAPI:0,0,0", ], args)
 
    def testBuildArgs_008(self):
       """
       Test _buildBlankArgs(), with None for drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=None)
-      self.failUnlessEqual(["-v", "blank=fast", "dev=0,0,0", ], args)
+      self.assertEqual(["-v", "blank=fast", "dev=0,0,0", ], args)
 
    def testBuildArgs_009(self):
       """
       Test _buildBlankArgs(), with 1 for drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=1)
-      self.failUnlessEqual(["-v", "blank=fast", "speed=1", "dev=0,0,0", ], args)
+      self.assertEqual(["-v", "blank=fast", "speed=1", "dev=0,0,0", ], args)
 
    def testBuildArgs_010(self):
       """
       Test _buildBlankArgs(), with 5 for drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="ATA:1,2,3", driveSpeed=5)
-      self.failUnlessEqual(["-v", "blank=fast", "speed=5", "dev=ATA:1,2,3", ], args)
+      self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATA:1,2,3", ], args)
 
    def testBuildArgs_011(self):
       """
       Test _buildBlankArgs(), with 5 for drive speed.
       """
       args = CdWriter._buildBlankArgs(hardwareId="ATAPI:1,2,3", driveSpeed=5)
-      self.failUnlessEqual(["-v", "blank=fast", "speed=5", "dev=ATAPI:1,2,3", ], args)
+      self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATAPI:1,2,3", ], args)
 
    def testBuildArgs_012(self):
       """
       Test _buildWriteArgs(), default drive speed and writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever")
-      self.failUnlessEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
 
    def testBuildArgs_013(self):
       """
       Test _buildWriteArgs(), None for drive speed, True for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=None, writeMulti=True)
-      self.failUnlessEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
 
    def testBuildArgs_014(self):
       """
       Test _buildWriteArgs(), None for drive speed, False for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=None, writeMulti=False)
-      self.failUnlessEqual(["-v", "dev=0,0,0", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "dev=0,0,0", "-data", "/whatever" ], args)
 
    def testBuildArgs_015(self):
       """
       Test _buildWriteArgs(), 1 for drive speed, True for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=1, writeMulti=True)
-      self.failUnlessEqual(["-v", "speed=1", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "speed=1", "dev=0,0,0", "-multi", "-data", "/whatever" ], args)
 
    def testBuildArgs_016(self):
       """
       Test _buildWriteArgs(), 5 for drive speed, True for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,1,2", imagePath="/whatever", driveSpeed=5, writeMulti=True)
-      self.failUnlessEqual(["-v", "speed=5", "dev=0,1,2", "-multi", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "speed=5", "dev=0,1,2", "-multi", "-data", "/whatever" ], args)
 
    def testBuildArgs_017(self):
       """
       Test _buildWriteArgs(), 1 for drive speed, False for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/dvl/stuff/whatever/more", driveSpeed=1, writeMulti=False)
-      self.failUnlessEqual(["-v", "speed=1", "dev=0,0,0", "-data", "/dvl/stuff/whatever/more" ], args)
+      self.assertEqual(["-v", "speed=1", "dev=0,0,0", "-data", "/dvl/stuff/whatever/more" ], args)
 
    def testBuildArgs_018(self):
       """
       Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="ATA:1,2,3", imagePath="/whatever", driveSpeed=5, writeMulti=False)
-      self.failUnlessEqual(["-v", "speed=5", "dev=ATA:1,2,3", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "speed=5", "dev=ATA:1,2,3", "-data", "/whatever" ], args)
 
    def testBuildArgs_019(self):
       """
       Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
       """
       args = CdWriter._buildWriteArgs(hardwareId="ATAPI:1,2,3", imagePath="/whatever", driveSpeed=5, writeMulti=False)
-      self.failUnlessEqual(["-v", "speed=5", "dev=ATAPI:1,2,3", "-data", "/whatever" ], args)
+      self.assertEqual(["-v", "speed=5", "dev=ATAPI:1,2,3", "-data", "/whatever" ], args)
 
 
    ##########################################
@@ -917,7 +917,7 @@ class TestCdWriter(unittest.TestCase):
       """
       output = [ "268582,302230\n", ]
       boundaries = CdWriter._parseBoundariesOutput(output)
-      self.failUnlessEqual((268582, 302230), boundaries)
+      self.assertEqual((268582, 302230), boundaries)
 
    def testParseOutput_002(self):
       """
@@ -926,7 +926,7 @@ class TestCdWriter(unittest.TestCase):
       """
       output = [ "   268582 ,  302230    \n", ]
       boundaries = CdWriter._parseBoundariesOutput(output)
-      self.failUnlessEqual((268582, 302230), boundaries)
+      self.assertEqual((268582, 302230), boundaries)
 
    def testParseOutput_003(self):
       """
@@ -935,7 +935,7 @@ class TestCdWriter(unittest.TestCase):
       """
       output = [ "268582,302230\n", "more\n", "bogus\n", "crap\n", "here\n", "to\n", "confuse\n", "things\n", ]
       boundaries = CdWriter._parseBoundariesOutput(output)
-      self.failUnlessEqual((268582, 302230), boundaries)
+      self.assertEqual((268582, 302230), boundaries)
 
    def testParseOutput_004(self):
       """
@@ -943,7 +943,7 @@ class TestCdWriter(unittest.TestCase):
       lots of extra garbage before the first line.
       """
       output = [ "more\n", "bogus\n", "crap\n", "here\n", "to\n", "confuse\n", "things\n", "268582,302230\n", ]
-      self.failUnlessRaises(IOError, CdWriter._parseBoundariesOutput, output)
+      self.assertRaises(IOError, CdWriter._parseBoundariesOutput, output)
 
    def testParseOutput_005(self):
       """
@@ -951,7 +951,7 @@ class TestCdWriter(unittest.TestCase):
       with first value converted to negative.
       """
       output = [ "-268582,302230\n", ]
-      self.failUnlessRaises(IOError, CdWriter._parseBoundariesOutput, output)
+      self.assertRaises(IOError, CdWriter._parseBoundariesOutput, output)
 
    def testParseOutput_006(self):
       """
@@ -959,7 +959,7 @@ class TestCdWriter(unittest.TestCase):
       with second value converted to negative.
       """
       output = [ "268582,-302230\n", ]
-      self.failUnlessRaises(IOError, CdWriter._parseBoundariesOutput, output)
+      self.assertRaises(IOError, CdWriter._parseBoundariesOutput, output)
 
    def testParseOutput_007(self):
       """
@@ -968,7 +968,7 @@ class TestCdWriter(unittest.TestCase):
       """
       output = [ "0,302230\n", ]
       boundaries = CdWriter._parseBoundariesOutput(output)
-      self.failUnlessEqual((0, 302230), boundaries)
+      self.assertEqual((0, 302230), boundaries)
 
    def testParseOutput_008(self):
       """
@@ -977,7 +977,7 @@ class TestCdWriter(unittest.TestCase):
       """
       output = [ "268582,0\n", ]
       boundaries = CdWriter._parseBoundariesOutput(output)
-      self.failUnlessEqual((268582, 0), boundaries)
+      self.assertEqual((268582, 0), boundaries)
 
    def testParseOutput_009(self):
       """
@@ -985,7 +985,7 @@ class TestCdWriter(unittest.TestCase):
       with first value converted to negative and second value converted to zero.
       """
       output = [ "-268582,0\n", ]
-      self.failUnlessRaises(IOError, CdWriter._parseBoundariesOutput, output)
+      self.assertRaises(IOError, CdWriter._parseBoundariesOutput, output)
 
    def testParseOutput_010(self):
       """
@@ -993,7 +993,7 @@ class TestCdWriter(unittest.TestCase):
       with first value converted to zero and second value converted to negative.
       """
       output = [ "0,-302230\n", ]
-      self.failUnlessRaises(IOError, CdWriter._parseBoundariesOutput, output)
+      self.assertRaises(IOError, CdWriter._parseBoundariesOutput, output)
 
    def testParseOutput_011(self):
       """
@@ -1063,13 +1063,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_012(self):
       """
@@ -1136,13 +1136,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_013(self):
       """
@@ -1211,13 +1211,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual(None, deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual(None, deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_014(self):
       """
@@ -1286,13 +1286,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual(None, deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual(None, deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_015(self):
       """
@@ -1361,13 +1361,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual(None, deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual(None, deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_016(self):
       """
@@ -1436,13 +1436,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Current write speed in kB/s: 706\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(None, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(None, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_017(self):
       """
@@ -1511,13 +1511,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(False, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(False, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_018(self):
       """
@@ -1586,13 +1586,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(False, deviceHasTray)
-      self.failUnlessEqual(True, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(False, deviceHasTray)
+      self.assertEqual(True, deviceCanEject)
 
    def testParseOutput_019(self):
       """
@@ -1661,13 +1661,13 @@ class TestCdWriter(unittest.TestCase):
                 '  Buffer size in KB: 4096\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual("Removable CD-ROM", deviceType)
-      self.failUnlessEqual("SONY", deviceVendor)
-      self.failUnlessEqual("CD-RW  CRX140E", deviceId)
-      self.failUnlessEqual(4096.0*1024.0, deviceBufferSize)
-      self.failUnlessEqual(True, deviceSupportsMulti)
-      self.failUnlessEqual(True, deviceHasTray)
-      self.failUnlessEqual(False, deviceCanEject)
+      self.assertEqual("Removable CD-ROM", deviceType)
+      self.assertEqual("SONY", deviceVendor)
+      self.assertEqual("CD-RW  CRX140E", deviceId)
+      self.assertEqual(4096.0*1024.0, deviceBufferSize)
+      self.assertEqual(True, deviceSupportsMulti)
+      self.assertEqual(True, deviceHasTray)
+      self.assertEqual(False, deviceCanEject)
 
    def testParseOutput_020(self):
       """
@@ -1677,13 +1677,13 @@ class TestCdWriter(unittest.TestCase):
       output = [ '\n', '\n', '\n', '\n', '\n',  '\n', '\n', '\n', '\n', '\n',  '\n', '\n', '\n', '\n', '\n', ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual(None, deviceType)
-      self.failUnlessEqual(None, deviceVendor)
-      self.failUnlessEqual(None, deviceId)
-      self.failUnlessEqual(None, deviceBufferSize)
-      self.failUnlessEqual(False, deviceSupportsMulti)
-      self.failUnlessEqual(False, deviceHasTray)
-      self.failUnlessEqual(False, deviceCanEject)
+      self.assertEqual(None, deviceType)
+      self.assertEqual(None, deviceVendor)
+      self.assertEqual(None, deviceId)
+      self.assertEqual(None, deviceBufferSize)
+      self.assertEqual(False, deviceSupportsMulti)
+      self.assertEqual(False, deviceHasTray)
+      self.assertEqual(False, deviceCanEject)
 
    def testParseOutput_021(self):
       """
@@ -1692,13 +1692,13 @@ class TestCdWriter(unittest.TestCase):
       output = [ ]
       (deviceType, deviceVendor, deviceId, deviceBufferSize, 
        deviceSupportsMulti, deviceHasTray, deviceCanEject) = CdWriter._parsePropertiesOutput(output)
-      self.failUnlessEqual(None, deviceType)
-      self.failUnlessEqual(None, deviceVendor)
-      self.failUnlessEqual(None, deviceId)
-      self.failUnlessEqual(None, deviceBufferSize)
-      self.failUnlessEqual(False, deviceSupportsMulti)
-      self.failUnlessEqual(False, deviceHasTray)
-      self.failUnlessEqual(False, deviceCanEject)
+      self.assertEqual(None, deviceType)
+      self.assertEqual(None, deviceVendor)
+      self.assertEqual(None, deviceId)
+      self.assertEqual(None, deviceBufferSize)
+      self.assertEqual(False, deviceSupportsMulti)
+      self.assertEqual(False, deviceHasTray)
+      self.assertEqual(False, deviceCanEject)
 
 #######################################################################
 # Suite definition

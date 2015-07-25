@@ -131,7 +131,7 @@ def executeStage(configPath, options, config):
          count = peer.stagePeer(targetDir=targetDir, ownership=ownership)  # note: utilize effective user's default umask
          logger.info("Staged %d files for peer [%s]." % (count, peer.name))
          peer.writeStageIndicator()
-      except (ValueError, IOError, OSError), e:
+      except (ValueError, IOError, OSError) as e:
          logger.error("Error staging [%s]: %s" % (peer.name, e))
    writeIndicatorFile(dailyDir, STAGE_INDICATOR, config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the 'stage' action successfully.")
@@ -168,7 +168,7 @@ def _createStagingDirs(config, dailyDir, peers):
          os.makedirs(dailyDir)
          for path in [ dailyDir, os.path.join(dailyDir, ".."), os.path.join(dailyDir, "..", ".."), ]:
             changeOwnership(path, config.options.backupUser, config.options.backupGroup)
-      except Exception, e:
+      except Exception as e:
          raise Exception("Unable to create staging directory: %s" % e)
    for peer in peers:
       peerDir = os.path.join(dailyDir, peer.name)
@@ -180,7 +180,7 @@ def _createStagingDirs(config, dailyDir, peers):
             logger.debug("Creating peer staging directory [%s]." % peerDir)
             os.makedirs(peerDir)
             changeOwnership(peerDir, config.options.backupUser, config.options.backupGroup)
-         except Exception, e:
+         except Exception as e:
             raise Exception("Unable to create staging directory: %s" % e)
    return mapping
       

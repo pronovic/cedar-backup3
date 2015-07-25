@@ -202,7 +202,7 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
    mediaLabel = buildMediaLabel()
    writer = createWriter(config)
    writer.initializeImage(True, config.options.workingDir, mediaLabel)  # default value for newDisc
-   for stageDir in stagingDirs.keys():
+   for stageDir in list(stagingDirs.keys()):
       logger.debug("Adding stage directory [%s]." % stageDir)
       dateSuffix = stagingDirs[stageDir]
       writer.addImageEntry(stageDir, dateSuffix)
@@ -268,7 +268,7 @@ def writeStoreIndicator(config, stagingDirs):
    @param config: Config object.
    @param stagingDirs: Dictionary mapping directory path to date suffix.
    """
-   for stagingDir in stagingDirs.keys():
+   for stagingDir in list(stagingDirs.keys()):
       writeIndicatorFile(stagingDir, STORE_INDICATOR, 
                          config.options.backupUser, 
                          config.options.backupGroup)
@@ -308,7 +308,7 @@ def consistencyCheck(config, stagingDirs):
    mountPoint = tempfile.mkdtemp(dir=config.options.workingDir)
    try:
       mount(config.store.devicePath, mountPoint, "iso9660")
-      for stagingDir in stagingDirs.keys():
+      for stagingDir in list(stagingDirs.keys()):
          discDir = os.path.join(mountPoint, stagingDirs[stagingDir])
          logger.debug("Checking [%s] vs. [%s]." % (stagingDir, discDir))
          compareContents(stagingDir, discDir, verbose=True)

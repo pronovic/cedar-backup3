@@ -675,7 +675,7 @@ def _writeToAmazonS3(config, local, stagingDirs):
    @raise ValueError: Under many generic error conditions
    @raise IOError: If there is a problem writing to Amazon S3
    """
-   for stagingDir in stagingDirs.keys():
+   for stagingDir in list(stagingDirs.keys()):
       logger.debug("Storing stage directory to Amazon S3 [%s]." % stagingDir)
       dateSuffix = stagingDirs[stagingDir]
       s3BucketUrl = "s3://%s/%s" % (local.amazons3.s3Bucket, dateSuffix)
@@ -708,7 +708,7 @@ def _writeStoreIndicator(config, stagingDirs):
    @param config: Config object.
    @param stagingDirs: Dictionary mapping directory path to date suffix.
    """
-   for stagingDir in stagingDirs.keys():
+   for stagingDir in list(stagingDirs.keys()):
       writeIndicatorFile(stagingDir, STORE_INDICATOR, 
                          config.options.backupUser, 
                          config.options.backupGroup)
@@ -775,14 +775,14 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
    contents = { }
    for entry in json.loads("".join(data)):
       key = entry["Key"].replace(prefix, "")
-      size = long(entry["Size"])
+      size = int(entry["Size"])
       contents[key] = size
    files = FilesystemList()
    files.addDirContents(stagingDir)
    for entry in files:
       if os.path.isfile(entry):
          key = entry.replace(stagingDir, "")
-         size = long(os.stat(entry).st_size)
+         size = int(os.stat(entry).st_size)
          if not key in contents:
             raise IOError("File was apparently not uploaded: [%s]" % entry)
          else:
@@ -808,7 +808,7 @@ def _encryptStagingDir(config, local, stagingDir, encryptedDir):
    for cleartext in files:
       if os.path.isfile(cleartext):
          encrypted = "%s%s" % (encryptedDir, cleartext.replace(stagingDir, ""))
-         if long(os.stat(cleartext).st_size) == 0:
+         if int(os.stat(cleartext).st_size) == 0:
             open(encrypted, 'a').close() # don't bother encrypting empty files
          else:
             actualCommand = local.amazons3.encryptCommand.replace("${input}", cleartext).replace("${output}", encrypted)

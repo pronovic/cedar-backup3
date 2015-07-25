@@ -10,7 +10,7 @@ where = "both"
 if len(sys.argv) > 1:
    where = sys.argv[1]
 
-for i in xrange(1, 100000+1):
+for i in range(1, 100000+1):
    if where == "both":
       sys.stdout.write("This is line %d.\n" % i)
       sys.stderr.write("This is line %d.\n" % i)

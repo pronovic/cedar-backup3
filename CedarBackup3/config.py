@@ -485,7 +485,7 @@ class ActionDependencies(object):
             saved = self._beforeList
             self._beforeList = RegexMatchList(ACTION_NAME_REGEX, emptyAllowed=False, prefix="Action name")
             self._beforeList.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._beforeList = saved
             raise e
 
@@ -508,7 +508,7 @@ class ActionDependencies(object):
             saved = self._afterList
             self._afterList = RegexMatchList(ACTION_NAME_REGEX, emptyAllowed=False, prefix="Action name")
             self._afterList.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._afterList = saved
             raise e
 
@@ -1571,7 +1571,7 @@ class CollectDir(object):
             saved = self._absoluteExcludePaths
             self._absoluteExcludePaths = AbsolutePathList()
             self._absoluteExcludePaths.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._absoluteExcludePaths = saved
             raise e
 
@@ -1593,7 +1593,7 @@ class CollectDir(object):
             saved = self._relativeExcludePaths
             self._relativeExcludePaths = UnorderedList()
             self._relativeExcludePaths.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._relativeExcludePaths = saved
             raise e
 
@@ -1614,7 +1614,7 @@ class CollectDir(object):
             saved = self._excludePatterns
             self._excludePatterns = RegexList()
             self._excludePatterns.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._excludePatterns = saved
             raise e
 
@@ -2136,7 +2136,7 @@ class RemotePeer(object):
             saved = self._managedActions
             self._managedActions = RegexMatchList(ACTION_NAME_REGEX, emptyAllowed=False, prefix="Action name")
             self._managedActions.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._managedActions = saved
             raise e
 
@@ -2404,7 +2404,7 @@ class ExtensionsConfig(object):
             saved = self._actions
             self._actions = ObjectTypeList(ExtendedAction, "ExtendedAction")
             self._actions.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._actions = saved
             raise e
 
@@ -2733,7 +2733,7 @@ class OptionsConfig(object):
             saved = self._overrides
             self._overrides = ObjectTypeList(CommandOverride, "CommandOverride")
             self._overrides.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._overrides = saved
             raise e
 
@@ -2756,7 +2756,7 @@ class OptionsConfig(object):
             saved = self._hooks
             self._hooks = ObjectTypeList(ActionHook, "ActionHook")
             self._hooks.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._hooks = saved
             raise e
 
@@ -2778,7 +2778,7 @@ class OptionsConfig(object):
             saved = self._managedActions
             self._managedActions = RegexMatchList(ACTION_NAME_REGEX, emptyAllowed=False, prefix="Action name")
             self._managedActions.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._managedActions = saved
             raise e
 
@@ -2894,7 +2894,7 @@ class PeersConfig(object):
             saved = self._localPeers
             self._localPeers = ObjectTypeList(LocalPeer, "LocalPeer")
             self._localPeers.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._localPeers = saved
             raise e
 
@@ -2917,7 +2917,7 @@ class PeersConfig(object):
             saved = self._remotePeers
             self._remotePeers = ObjectTypeList(RemotePeer, "RemotePeer")
             self._remotePeers.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._remotePeers = saved
             raise e
 
@@ -3150,7 +3150,7 @@ class CollectConfig(object):
             saved = self._absoluteExcludePaths
             self._absoluteExcludePaths = AbsolutePathList()
             self._absoluteExcludePaths.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._absoluteExcludePaths = saved
             raise e
 
@@ -3171,7 +3171,7 @@ class CollectConfig(object):
             saved = self._excludePatterns
             self._excludePatterns = RegexList()
             self._excludePatterns.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._excludePatterns = saved
             raise e
 
@@ -3194,7 +3194,7 @@ class CollectConfig(object):
             saved = self._collectFiles
             self._collectFiles = ObjectTypeList(CollectFile, "CollectFile")
             self._collectFiles.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._collectFiles = saved
             raise e
 
@@ -3217,7 +3217,7 @@ class CollectConfig(object):
             saved = self._collectDirs
             self._collectDirs = ObjectTypeList(CollectDir, "CollectDir")
             self._collectDirs.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._collectDirs = saved
             raise e
 
@@ -3352,7 +3352,7 @@ class StageConfig(object):
             saved = self._localPeers
             self._localPeers = ObjectTypeList(LocalPeer, "LocalPeer")
             self._localPeers.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._localPeers = saved
             raise e
 
@@ -3375,7 +3375,7 @@ class StageConfig(object):
             saved = self._remotePeers
             self._remotePeers = ObjectTypeList(RemotePeer, "RemotePeer")
             self._remotePeers.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._remotePeers = saved
             raise e
 
@@ -3887,7 +3887,7 @@ class PurgeConfig(object):
             saved = self._purgeDirs
             self._purgeDirs = ObjectTypeList(PurgeDir, "PurgeDir")
             self._purgeDirs.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._purgeDirs = saved
             raise e
 

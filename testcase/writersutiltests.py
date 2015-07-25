@@ -161,7 +161,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "0,0,0"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_002(self):
       """
@@ -169,7 +169,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = " 0,   0, 0 "
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_003(self):
       """
@@ -177,7 +177,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "ATA:3,2,1"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_004(self):
       """
@@ -185,7 +185,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "ATA: 3, 2,1  "
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_005(self):
       """
@@ -193,7 +193,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "ATAPI:1,2,3"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_006(self):
       """
@@ -201,7 +201,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "  ATAPI:1,   2, 3"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_007(self):
       """
@@ -209,7 +209,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "IOCompactDiscServices"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_008(self):
       """
@@ -217,7 +217,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "IOCompactDiscServices/2"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_009(self):
       """
@@ -225,35 +225,35 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = "IOCompactDiscServices/12"
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
    def testValidateScsiId_010(self):
       """
       Test with an invalid address with a missing field.
       """
       scsiId = "1,2"
-      self.failUnlessRaises(ValueError, validateScsiId, scsiId)
+      self.assertRaises(ValueError, validateScsiId, scsiId)
 
    def testValidateScsiId_011(self):
       """
       Test with an invalid Mac-style address with a backslash.
       """
       scsiId = "IOCompactDiscServices\\3"
-      self.failUnlessRaises(ValueError, validateScsiId, scsiId)
+      self.assertRaises(ValueError, validateScsiId, scsiId)
 
    def testValidateScsiId_012(self):
       """
       Test with an invalid address with an invalid prefix separator.
       """
       scsiId = "ATAPI;1,2,3"
-      self.failUnlessRaises(ValueError, validateScsiId, scsiId)
+      self.assertRaises(ValueError, validateScsiId, scsiId)
 
    def testValidateScsiId_013(self):
       """
       Test with an invalid address with an invalid prefix separator.
       """
       scsiId = "ATA-1,2,3"
-      self.failUnlessRaises(ValueError, validateScsiId, scsiId)
+      self.assertRaises(ValueError, validateScsiId, scsiId)
 
    def testValidateScsiId_014(self):
       """
@@ -261,7 +261,7 @@ class TestFunctions(unittest.TestCase):
       """
       scsiId = None
       result = validateScsiId(scsiId)
-      self.failUnlessEqual(scsiId, result)
+      self.assertEqual(scsiId, result)
 
 
    ############################
@@ -274,19 +274,19 @@ class TestFunctions(unittest.TestCase):
       """
       speed = 1
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, speed)
+      self.assertEqual(result, speed)
       speed = 2
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, speed)
+      self.assertEqual(result, speed)
       speed = 30
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, speed)
+      self.assertEqual(result, speed)
       speed = 2.0
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, speed)
+      self.assertEqual(result, speed)
       speed = 1.3
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, 1)  # truncated
+      self.assertEqual(result, 1)  # truncated
 
    def testValidateDriveSpeed_002(self):
       """
@@ -294,28 +294,28 @@ class TestFunctions(unittest.TestCase):
       """
       speed = None
       result = validateDriveSpeed(speed)
-      self.failUnlessEqual(result, speed)
+      self.assertEqual(result, speed)
 
    def testValidateDriveSpeed_003(self):
       """
       Test for an invalid drive speed (zero)
       """
       speed = 0
-      self.failUnlessRaises(ValueError, validateDriveSpeed, speed)
+      self.assertRaises(ValueError, validateDriveSpeed, speed)
 
    def testValidateDriveSpeed_004(self):
       """
       Test for an invalid drive speed (negative)
       """
       speed = -1
-      self.failUnlessRaises(ValueError, validateDriveSpeed, speed)
+      self.assertRaises(ValueError, validateDriveSpeed, speed)
 
    def testValidateDriveSpeed_005(self):
       """
       Test for an invalid drive speed (not integer)
       """
       speed = "ken"
-      self.failUnlessRaises(ValueError, validateDriveSpeed, speed)
+      self.assertRaises(ValueError, validateDriveSpeed, speed)
 
 
 #####################
@@ -336,7 +336,7 @@ class TestIsoImage(unittest.TestCase):
          self.mounted = False
          self.tmpdir = tempfile.mkdtemp()
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -541,30 +541,30 @@ class TestIsoImage(unittest.TestCase):
       Test the constructor using all default arguments.
       """
       isoImage = IsoImage()
-      self.failUnlessEqual(None, isoImage.device)
-      self.failUnlessEqual(None, isoImage.boundaries)
-      self.failUnlessEqual(None, isoImage.graftPoint)
-      self.failUnlessEqual(True, isoImage.useRockRidge)
-      self.failUnlessEqual(None, isoImage.applicationId)
-      self.failUnlessEqual(None, isoImage.biblioFile)
-      self.failUnlessEqual(None, isoImage.publisherId)
-      self.failUnlessEqual(None, isoImage.preparerId)
-      self.failUnlessEqual(None, isoImage.volumeId)
+      self.assertEqual(None, isoImage.device)
+      self.assertEqual(None, isoImage.boundaries)
+      self.assertEqual(None, isoImage.graftPoint)
+      self.assertEqual(True, isoImage.useRockRidge)
+      self.assertEqual(None, isoImage.applicationId)
+      self.assertEqual(None, isoImage.biblioFile)
+      self.assertEqual(None, isoImage.publisherId)
+      self.assertEqual(None, isoImage.preparerId)
+      self.assertEqual(None, isoImage.volumeId)
 
    def testConstructor_002(self):
       """
       Test the constructor using non-default arguments.
       """
       isoImage = IsoImage("/dev/cdrw", boundaries=(1, 2), graftPoint="/france")
-      self.failUnlessEqual("/dev/cdrw", isoImage.device)
-      self.failUnlessEqual((1, 2), isoImage.boundaries)
-      self.failUnlessEqual("/france", isoImage.graftPoint)
-      self.failUnlessEqual(True, isoImage.useRockRidge)
-      self.failUnlessEqual(None, isoImage.applicationId)
-      self.failUnlessEqual(None, isoImage.biblioFile)
-      self.failUnlessEqual(None, isoImage.publisherId)
-      self.failUnlessEqual(None, isoImage.preparerId)
-      self.failUnlessEqual(None, isoImage.volumeId)
+      self.assertEqual("/dev/cdrw", isoImage.device)
+      self.assertEqual((1, 2), isoImage.boundaries)
+      self.assertEqual("/france", isoImage.graftPoint)
+      self.assertEqual(True, isoImage.useRockRidge)
+      self.assertEqual(None, isoImage.applicationId)
+      self.assertEqual(None, isoImage.biblioFile)
+      self.assertEqual(None, isoImage.publisherId)
+      self.assertEqual(None, isoImage.preparerId)
+      self.assertEqual(None, isoImage.volumeId)
 
 
    ################################
@@ -577,7 +577,7 @@ class TestIsoImage(unittest.TestCase):
       """
       entries = {}
       result = IsoImage._buildDirEntries(entries)
-      self.failUnlessEqual(0, len(result))
+      self.assertEqual(0, len(result))
 
    def testUtilityMethods_002(self):
       """
@@ -588,10 +588,10 @@ class TestIsoImage(unittest.TestCase):
       entries["/four/five/six"] = None
       entries["/seven/eight/nine"] = None
       result = IsoImage._buildDirEntries(entries)
-      self.failUnlessEqual(3, len(result))
-      self.failUnless("/one/two/three" in result)
-      self.failUnless("/four/five/six" in result)
-      self.failUnless("/seven/eight/nine" in result)
+      self.assertEqual(3, len(result))
+      self.assertTrue("/one/two/three" in result)
+      self.assertTrue("/four/five/six" in result)
+      self.assertTrue("/seven/eight/nine" in result)
 
    def testUtilityMethods_003(self):
       """
@@ -602,10 +602,10 @@ class TestIsoImage(unittest.TestCase):
       entries["/four/five/six"] = "backup2"
       entries["/seven/eight/nine"] = "backup3"
       result = IsoImage._buildDirEntries(entries)
-      self.failUnlessEqual(3, len(result))
-      self.failUnless("backup1/=/one/two/three" in result)
-      self.failUnless("backup2/=/four/five/six" in result)
-      self.failUnless("backup3/=/seven/eight/nine" in result)
+      self.assertEqual(3, len(result))
+      self.assertTrue("backup1/=/one/two/three" in result)
+      self.assertTrue("backup2/=/four/five/six" in result)
+      self.assertTrue("backup3/=/seven/eight/nine" in result)
 
    def testUtilityMethods_004(self):
       """
@@ -616,10 +616,10 @@ class TestIsoImage(unittest.TestCase):
       entries["/four/five/six"] = None
       entries["/seven/eight/nine"] = "/backup3"
       result = IsoImage._buildDirEntries(entries)
-      self.failUnlessEqual(3, len(result))
-      self.failUnless("backup1/=/one/two/three" in result)
-      self.failUnless("/four/five/six" in result)
-      self.failUnless("backup3/=/seven/eight/nine" in result)
+      self.assertEqual(3, len(result))
+      self.assertTrue("backup1/=/one/two/three" in result)
+      self.assertTrue("/four/five/six" in result)
+      self.assertTrue("backup3/=/seven/eight/nine" in result)
 
    def testUtilityMethods_005(self):
       """
@@ -627,7 +627,7 @@ class TestIsoImage(unittest.TestCase):
       """
       isoImage = IsoImage()
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(0, len(result))
+      self.assertEqual(0, len(result))
 
    def testUtilityMethods_006(self):
       """
@@ -636,7 +636,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.applicationId = "one"
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(["-A", "one", ], result)
+      self.assertEqual(["-A", "one", ], result)
 
    def testUtilityMethods_007(self):
       """
@@ -645,7 +645,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.biblioFile = "two"
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(["-biblio", "two", ], result)
+      self.assertEqual(["-biblio", "two", ], result)
 
    def testUtilityMethods_008(self):
       """
@@ -654,7 +654,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.publisherId = "three"
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(["-publisher", "three", ], result)
+      self.assertEqual(["-publisher", "three", ], result)
 
    def testUtilityMethods_009(self):
       """
@@ -663,7 +663,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.preparerId = "four"
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(["-p", "four", ], result)
+      self.assertEqual(["-p", "four", ], result)
 
    def testUtilityMethods_010(self):
       """
@@ -672,7 +672,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.volumeId = "five"
       result = isoImage._buildGeneralArgs()
-      self.failUnlessEqual(["-V", "five", ], result)
+      self.assertEqual(["-V", "five", ], result)
 
    def testUtilityMethods_011(self):
       """
@@ -682,7 +682,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage()
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_012(self):
       """
@@ -694,7 +694,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.useRockRidge = True
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_013(self):
       """
@@ -706,7 +706,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.useRockRidge = False
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-print-size", "-graft-points", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_014(self):
       """
@@ -716,7 +716,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage(device=None, boundaries=(1, 2))
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_015(self):
       """
@@ -726,7 +726,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_016(self):
       """
@@ -736,7 +736,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage(device="/dev/cdrw", boundaries=(1, 2))
       result = isoImage._buildSizeArgs(entries)
-      self.failUnlessEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
+      self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
                            result)
 
    def testUtilityMethods_017(self):
@@ -747,7 +747,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage()
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_018(self):
       """
@@ -759,7 +759,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.useRockRidge = True
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_019(self):
       """
@@ -771,7 +771,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_020(self):
       """
@@ -782,7 +782,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage(device=None, boundaries=(3, 4))
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_021(self):
       """
@@ -793,7 +793,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
+      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three", ], result)
 
    def testUtilityMethods_022(self):
       """
@@ -804,7 +804,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage(device="/dev/cdrw", boundaries=(3, 4))
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.failUnlessEqual(["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
+      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
                            result)
 
 
@@ -818,7 +818,7 @@ class TestIsoImage(unittest.TestCase):
       """
       file1 = self.buildPath([ INVALID_FILE, ])
       isoImage = IsoImage()
-      self.failUnlessRaises(ValueError, isoImage.addEntry, file1)
+      self.assertRaises(ValueError, isoImage.addEntry, file1)
 
    def testAddEntry_002(self):
       """
@@ -828,7 +828,7 @@ class TestIsoImage(unittest.TestCase):
          self.extractTar("tree9")
          file1 = self.buildPath([ "tree9", "dir002", "link003", ])
          isoImage = IsoImage()
-         self.failUnlessRaises(ValueError, isoImage.addEntry, file1)
+         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
    def testAddEntry_003(self):
       """
@@ -837,7 +837,7 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "link001", ])
       isoImage = IsoImage()
-      self.failUnlessRaises(ValueError, isoImage.addEntry, file1)
+      self.assertRaises(ValueError, isoImage.addEntry, file1)
 
    def testAddEntry_004(self):
       """
@@ -846,9 +846,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
+      self.assertEqual({ file1:None, }, isoImage.entries)
 
    def testAddEntry_005(self):
       """
@@ -857,9 +857,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1)
-      self.failUnlessEqual({ file1:"whatever", }, isoImage.entries)
+      self.assertEqual({ file1:"whatever", }, isoImage.entries)
 
    def testAddEntry_006(self):
       """
@@ -868,9 +868,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="stuff")
-      self.failUnlessEqual({ file1:"stuff", }, isoImage.entries)
+      self.assertEqual({ file1:"stuff", }, isoImage.entries)
 
    def testAddEntry_007(self):
       """
@@ -879,9 +879,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="stuff")
-      self.failUnlessEqual({ file1:"stuff", }, isoImage.entries)
+      self.assertEqual({ file1:"stuff", }, isoImage.entries)
 
    def testAddEntry_008(self):
       """
@@ -892,9 +892,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint=None)
-      self.failUnlessEqual({ file1:"whatever", }, isoImage.entries)
+      self.assertEqual({ file1:"whatever", }, isoImage.entries)
 
    def testAddEntry_009(self):
       """
@@ -903,9 +903,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1)
-      self.failUnlessEqual({ dir1:os.path.basename(dir1), }, isoImage.entries)
+      self.assertEqual({ dir1:os.path.basename(dir1), }, isoImage.entries)
 
    def testAddEntry_010(self):
       """
@@ -914,9 +914,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage(graftPoint="p")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1)
-      self.failUnlessEqual({ dir1:os.path.join("p", "tree9") }, isoImage.entries)
+      self.assertEqual({ dir1:os.path.join("p", "tree9") }, isoImage.entries)
 
    def testAddEntry_011(self):
       """
@@ -925,9 +925,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, graftPoint="s")
-      self.failUnlessEqual({ dir1:os.path.join("s", "tree9"), }, isoImage.entries)
+      self.assertEqual({ dir1:os.path.join("s", "tree9"), }, isoImage.entries)
 
    def testAddEntry_012(self):
       """
@@ -936,9 +936,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, contentsOnly=True)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
+      self.assertEqual({ file1:None, }, isoImage.entries)
 
    def testAddEntry_013(self):
       """
@@ -948,9 +948,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, contentsOnly=True)
-      self.failUnlessEqual({ file1:"whatever", }, isoImage.entries)
+      self.assertEqual({ file1:"whatever", }, isoImage.entries)
 
    def testAddEntry_014(self):
       """
@@ -960,9 +960,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
-      self.failUnlessEqual({ file1:"stuff", }, isoImage.entries)
+      self.assertEqual({ file1:"stuff", }, isoImage.entries)
 
    def testAddEntry_015(self):
       """
@@ -972,9 +972,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
-      self.failUnlessEqual({ file1:"stuff", }, isoImage.entries)
+      self.assertEqual({ file1:"stuff", }, isoImage.entries)
 
    def testAddEntry_016(self):
       """
@@ -985,9 +985,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint=None, contentsOnly=True)
-      self.failUnlessEqual({ file1:"whatever", }, isoImage.entries)
+      self.assertEqual({ file1:"whatever", }, isoImage.entries)
 
    def testAddEntry_017(self):
       """
@@ -996,9 +996,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, contentsOnly=True)
-      self.failUnlessEqual({ dir1:None, }, isoImage.entries)
+      self.assertEqual({ dir1:None, }, isoImage.entries)
 
    def testAddEntry_018(self):
       """
@@ -1008,9 +1008,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage(graftPoint="p")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, contentsOnly=True)
-      self.failUnlessEqual({ dir1:"p" }, isoImage.entries)
+      self.assertEqual({ dir1:"p" }, isoImage.entries)
 
    def testAddEntry_019(self):
       """
@@ -1020,9 +1020,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-      self.failUnlessEqual({ dir1:"s", }, isoImage.entries)
+      self.assertEqual({ dir1:"s", }, isoImage.entries)
 
    def testAddEntry_020(self):
       """
@@ -1032,9 +1032,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage(graftPoint="p")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-      self.failUnlessEqual({ dir1:"s", }, isoImage.entries)
+      self.assertEqual({ dir1:"s", }, isoImage.entries)
 
    def testAddEntry_021(self):
       """
@@ -1044,9 +1044,9 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       dir1 = self.buildPath([ "tree9" ])
       isoImage = IsoImage(graftPoint="p")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-      self.failUnlessEqual({ dir1:"s", }, isoImage.entries)
+      self.assertEqual({ dir1:"s", }, isoImage.entries)
 
    def testAddEntry_022(self):
       """
@@ -1055,11 +1055,11 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
-      self.failUnlessRaises(ValueError, isoImage.addEntry, file1, override=False)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
+      self.assertEqual({ file1:None, }, isoImage.entries)
+      self.assertRaises(ValueError, isoImage.addEntry, file1, override=False)
+      self.assertEqual({ file1:None, }, isoImage.entries)
 
    def testAddEntry_023(self):
       """
@@ -1068,11 +1068,11 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage()
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
+      self.assertEqual({ file1:None, }, isoImage.entries)
       isoImage.addEntry(file1, override=True)
-      self.failUnlessEqual({ file1:None, }, isoImage.entries)
+      self.assertEqual({ file1:None, }, isoImage.entries)
 
    def testAddEntry_024(self):
       """
@@ -1081,11 +1081,11 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="one")
-      self.failUnlessEqual({ file1:"one", }, isoImage.entries)
-      self.failUnlessRaises(ValueError, isoImage.addEntry, file1, graftPoint="two", override=False)
-      self.failUnlessEqual({ file1:"one", }, isoImage.entries)
+      self.assertEqual({ file1:"one", }, isoImage.entries)
+      self.assertRaises(ValueError, isoImage.addEntry, file1, graftPoint="two", override=False)
+      self.assertEqual({ file1:"one", }, isoImage.entries)
 
    def testAddEntry_025(self):
       """
@@ -1094,11 +1094,11 @@ class TestIsoImage(unittest.TestCase):
       self.extractTar("tree9")
       file1 = self.buildPath([ "tree9", "file001", ])
       isoImage = IsoImage(graftPoint="whatever")
-      self.failUnlessEqual({}, isoImage.entries)
+      self.assertEqual({}, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="one")
-      self.failUnlessEqual({ file1:"one", }, isoImage.entries)
+      self.assertEqual({ file1:"one", }, isoImage.entries)
       isoImage.addEntry(file1, graftPoint="two", override=True)
-      self.failUnlessEqual({ file1:"two", }, isoImage.entries)
+      self.assertEqual({ file1:"two", }, isoImage.entries)
 
 
    ##########################
@@ -1111,7 +1111,7 @@ class TestIsoImage(unittest.TestCase):
       """
       self.extractTar("tree9")
       isoImage = IsoImage()
-      self.failUnlessRaises(ValueError, isoImage.getEstimatedSize)
+      self.assertRaises(ValueError, isoImage.getEstimatedSize)
 
    def testGetEstimatedSize_002(self):
       """
@@ -1122,7 +1122,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage()
       isoImage.addEntry(dir1, graftPoint="base")
       result = isoImage.getEstimatedSize()
-      self.failUnless(result > 0)
+      self.assertTrue(result > 0)
 
 
    ####################
@@ -1135,7 +1135,7 @@ class TestIsoImage(unittest.TestCase):
       """
       isoImage = IsoImage()
       imagePath = self.buildPath([ "image.iso", ])
-      self.failUnlessRaises(ValueError, isoImage.writeImage, imagePath)
+      self.assertRaises(ValueError, isoImage.writeImage, imagePath)
 
    def testWriteImage_002(self):
       """
@@ -1150,9 +1150,9 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(2, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002") in fsList)
+      self.assertEqual(2, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002") in fsList)
 
    def testWriteImage_003(self):
       """
@@ -1167,10 +1167,10 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(3, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "base") in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir002") in fsList)
+      self.assertEqual(3, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "base") in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir002") in fsList)
 
    def testWriteImage_004(self):
       """
@@ -1186,17 +1186,17 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(10, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002") in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", "dir002", ) in fsList)
+      self.assertEqual(10, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002") in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", "dir002", ) in fsList)
 
    def testWriteImage_005(self):
       """
@@ -1212,19 +1212,19 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(12, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "something", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002") in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", "dir002", ) in fsList)
+      self.assertEqual(12, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002") in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "dir002", ) in fsList)
 
    def testWriteImage_006(self):
       """
@@ -1239,9 +1239,9 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(2, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertEqual(2, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
 
    def testWriteImage_007(self):
       """
@@ -1256,10 +1256,10 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(3, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "point", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "point", "file001", ) in fsList)
+      self.assertEqual(3, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "point", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "point", "file001", ) in fsList)
 
    def testWriteImage_008(self):
       """
@@ -1277,10 +1277,10 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(3, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", ) in fsList)
+      self.assertEqual(3, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", ) in fsList)
 
    def testWriteImage_009(self):
       """
@@ -1298,12 +1298,12 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(5, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "other", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir002", ) in fsList)
+      self.assertEqual(5, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir002", ) in fsList)
 
    def testWriteImage_010(self):
       """
@@ -1321,18 +1321,18 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(11, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "base", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "dir002", ) in fsList)
+      self.assertEqual(11, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir002", ) in fsList)
 
    def testWriteImage_011(self):
       """
@@ -1352,20 +1352,20 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(13, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "base", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", "dir002", ) in fsList)
+      self.assertEqual(13, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir002", ) in fsList)
 
    def testWriteImage_012(self):
       """
@@ -1380,31 +1380,31 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(24, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "something", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir001", "dir002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "tree9", "dir002", "dir002", ) in fsList)
+      self.assertEqual(24, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir001", "dir002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "dir002", ) in fsList)
 
    def testWriteImage_013(self):
       """
@@ -1420,8 +1420,8 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(1, len(fsList))
-      self.failUnless(mountPath in fsList)
+      self.assertEqual(1, len(fsList))
+      self.assertTrue(mountPath in fsList)
 
    def testWriteImage_014(self):
       """
@@ -1437,9 +1437,9 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(2, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "base") in fsList)
+      self.assertEqual(2, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "base") in fsList)
 
    def testWriteImage_015(self):
       """
@@ -1455,16 +1455,16 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(9, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "dir002", ) in fsList)
+      self.assertEqual(9, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "dir002", ) in fsList)
 
    def testWriteImage_016(self):
       """
@@ -1480,18 +1480,18 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(11, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "something", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "else", "dir002", ) in fsList)
+      self.assertEqual(11, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", ) in fsList)
 
    def testWriteImage_017(self):
       """
@@ -1507,9 +1507,9 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(2, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertEqual(2, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
 
    def testWriteImage_018(self):
       """
@@ -1525,10 +1525,10 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(3, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "point", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "point", "file001", ) in fsList)
+      self.assertEqual(3, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "point", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "point", "file001", ) in fsList)
 
    def testWriteImage_019(self):
       """
@@ -1546,9 +1546,9 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(2, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertEqual(2, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
 
    def testWriteImage_020(self):
       """
@@ -1566,11 +1566,11 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(4, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "other", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", "file001", ) in fsList)
+      self.assertEqual(4, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", "file001", ) in fsList)
 
    def testWriteImage_021(self):
       """
@@ -1584,7 +1584,7 @@ class TestIsoImage(unittest.TestCase):
       imagePath = self.buildPath([ "image.iso", ])
       isoImage.addEntry(file1, graftPoint=None, contentsOnly=True)
       isoImage.addEntry(dir1, contentsOnly=True)
-      self.failUnlessRaises(IOError, isoImage.writeImage, imagePath)    # ends up with a duplicate name
+      self.assertRaises(IOError, isoImage.writeImage, imagePath)    # ends up with a duplicate name
 
    def testWriteImage_022(self):
       """
@@ -1604,19 +1604,19 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(12, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "base", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "other", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "base", "dir002", ) in fsList)
+      self.assertEqual(12, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "other", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "base", "dir002", ) in fsList)
 
    def testWriteImage_023(self):
       """
@@ -1632,30 +1632,30 @@ class TestIsoImage(unittest.TestCase):
       mountPath = self.mountImage(imagePath)
       fsList = FilesystemList()
       fsList.addDirContents(mountPath)
-      self.failUnlessEqual(23, len(fsList))
-      self.failUnless(mountPath in fsList)
-      self.failUnless(os.path.join(mountPath, "something", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir001", "dir002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "file001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "file002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "link001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "link002", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "link003", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "link004", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "dir001", ) in fsList)
-      self.failUnless(os.path.join(mountPath, "something", "dir002", "dir002", ) in fsList)
+      self.assertEqual(23, len(fsList))
+      self.assertTrue(mountPath in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir001", "dir002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "file001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "file002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "link001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "link002", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "link003", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "link004", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "dir001", ) in fsList)
+      self.assertTrue(os.path.join(mountPath, "something", "dir002", "dir002", ) in fsList)
 
 
 #######################################################################

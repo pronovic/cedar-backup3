@@ -162,212 +162,212 @@ class TestPostgresqlConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.user)
-      self.failUnlessEqual(None, postgresql.compressMode)
-      self.failUnlessEqual(False, postgresql.all)
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.user)
+      self.assertEqual(None, postgresql.compressMode)
+      self.assertEqual(False, postgresql.all)
+      self.assertEqual(None, postgresql.databases)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values, databases=None.
       """
       postgresql = PostgresqlConfig("user", "none", False, None)
-      self.failUnlessEqual("user", postgresql.user)
-      self.failUnlessEqual("none", postgresql.compressMode)
-      self.failUnlessEqual(False, postgresql.all)
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual("user", postgresql.user)
+      self.assertEqual("none", postgresql.compressMode)
+      self.assertEqual(False, postgresql.all)
+      self.assertEqual(None, postgresql.databases)
 
    def testConstructor_003(self):
       """
       Test constructor with all values filled in, with valid values, no databases.
       """
       postgresql = PostgresqlConfig("user", "none", True, [])
-      self.failUnlessEqual("user", postgresql.user)
-      self.failUnlessEqual("none", postgresql.compressMode)
-      self.failUnlessEqual(True, postgresql.all)
-      self.failUnlessEqual([], postgresql.databases)
+      self.assertEqual("user", postgresql.user)
+      self.assertEqual("none", postgresql.compressMode)
+      self.assertEqual(True, postgresql.all)
+      self.assertEqual([], postgresql.databases)
 
    def testConstructor_004(self):
       """
       Test constructor with all values filled in, with valid values, with one database.
       """
       postgresql = PostgresqlConfig("user", "gzip", True,  [ "one", ])
-      self.failUnlessEqual("user", postgresql.user)
-      self.failUnlessEqual("gzip", postgresql.compressMode)
-      self.failUnlessEqual(True, postgresql.all)
-      self.failUnlessEqual([ "one", ], postgresql.databases)
+      self.assertEqual("user", postgresql.user)
+      self.assertEqual("gzip", postgresql.compressMode)
+      self.assertEqual(True, postgresql.all)
+      self.assertEqual([ "one", ], postgresql.databases)
 
    def testConstructor_005(self):
       """
       Test constructor with all values filled in, with valid values, with multiple databases.
       """
       postgresql = PostgresqlConfig("user", "bzip2", True, [ "one", "two", ])
-      self.failUnlessEqual("user", postgresql.user)
-      self.failUnlessEqual("bzip2", postgresql.compressMode)
-      self.failUnlessEqual(True, postgresql.all)
-      self.failUnlessEqual([ "one", "two", ], postgresql.databases)
+      self.assertEqual("user", postgresql.user)
+      self.assertEqual("bzip2", postgresql.compressMode)
+      self.assertEqual(True, postgresql.all)
+      self.assertEqual([ "one", "two", ], postgresql.databases)
 
    def testConstructor_006(self):
       """
       Test assignment of user attribute, None value.
       """
       postgresql = PostgresqlConfig(user="user")
-      self.failUnlessEqual("user", postgresql.user)
+      self.assertEqual("user", postgresql.user)
       postgresql.user = None
-      self.failUnlessEqual(None, postgresql.user)
+      self.assertEqual(None, postgresql.user)
 
    def testConstructor_007(self):
       """
       Test assignment of user attribute, valid value.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.user)
+      self.assertEqual(None, postgresql.user)
       postgresql.user = "user"
-      self.failUnlessEqual("user", postgresql.user)
+      self.assertEqual("user", postgresql.user)
 
    def testConstructor_008(self):
       """
       Test assignment of user attribute, invalid value (empty).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.user)
+      self.assertEqual(None, postgresql.user)
       self.failUnlessAssignRaises(ValueError, postgresql, "user", "")
-      self.failUnlessEqual(None, postgresql.user)
+      self.assertEqual(None, postgresql.user)
 
    def testConstructor_009(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       postgresql = PostgresqlConfig(compressMode="none")
-      self.failUnlessEqual("none", postgresql.compressMode)
+      self.assertEqual("none", postgresql.compressMode)
       postgresql.compressMode = None
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
 
    def testConstructor_010(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
       postgresql.compressMode = "none"
-      self.failUnlessEqual("none", postgresql.compressMode)
+      self.assertEqual("none", postgresql.compressMode)
       postgresql.compressMode = "gzip"
-      self.failUnlessEqual("gzip", postgresql.compressMode)
+      self.assertEqual("gzip", postgresql.compressMode)
       postgresql.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", postgresql.compressMode)
+      self.assertEqual("bzip2", postgresql.compressMode)
 
    def testConstructor_011(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
       self.failUnlessAssignRaises(ValueError, postgresql, "compressMode", "")
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
       self.failUnlessAssignRaises(ValueError, postgresql, "compressMode", "bogus")
-      self.failUnlessEqual(None, postgresql.compressMode)
+      self.assertEqual(None, postgresql.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of all attribute, None value.
       """
       postgresql = PostgresqlConfig(all=True)
-      self.failUnlessEqual(True, postgresql.all)
+      self.assertEqual(True, postgresql.all)
       postgresql.all = None
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
 
    def testConstructor_014(self):
       """
       Test assignment of all attribute, valid value (real boolean).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
       postgresql.all = True
-      self.failUnlessEqual(True, postgresql.all)
+      self.assertEqual(True, postgresql.all)
       postgresql.all = False
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
 
    def testConstructor_015(self):
       """
       Test assignment of all attribute, valid value (expression).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
       postgresql.all = 0
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
       postgresql.all = []
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
       postgresql.all = None
-      self.failUnlessEqual(False, postgresql.all)
+      self.assertEqual(False, postgresql.all)
       postgresql.all = ['a']
-      self.failUnlessEqual(True, postgresql.all)
+      self.assertEqual(True, postgresql.all)
       postgresql.all = 3
-      self.failUnlessEqual(True, postgresql.all)
+      self.assertEqual(True, postgresql.all)
 
    def testConstructor_016(self):
       """
       Test assignment of databases attribute, None value.
       """
       postgresql = PostgresqlConfig(databases=[])
-      self.failUnlessEqual([], postgresql.databases)
+      self.assertEqual([], postgresql.databases)
       postgresql.databases = None
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
 
    def testConstructor_017(self):
       """
       Test assignment of databases attribute, [] value.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
       postgresql.databases = []
-      self.failUnlessEqual([], postgresql.databases)
+      self.assertEqual([], postgresql.databases)
 
    def testConstructor_018(self):
       """
       Test assignment of databases attribute, single valid entry.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
       postgresql.databases = ["/whatever", ]
-      self.failUnlessEqual(["/whatever", ], postgresql.databases)
+      self.assertEqual(["/whatever", ], postgresql.databases)
       postgresql.databases.append("/stuff")
-      self.failUnlessEqual(["/whatever", "/stuff", ], postgresql.databases)
+      self.assertEqual(["/whatever", "/stuff", ], postgresql.databases)
 
    def testConstructor_019(self):
       """
       Test assignment of databases attribute, multiple valid entries.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
       postgresql.databases = ["/whatever", "/stuff", ]
-      self.failUnlessEqual(["/whatever", "/stuff", ], postgresql.databases)
+      self.assertEqual(["/whatever", "/stuff", ], postgresql.databases)
       postgresql.databases.append("/etc/X11")
-      self.failUnlessEqual(["/whatever", "/stuff", "/etc/X11", ], postgresql.databases)
+      self.assertEqual(["/whatever", "/stuff", "/etc/X11", ], postgresql.databases)
 
    def testConstructor_020(self):
       """
       Test assignment of databases attribute, single invalid entry (empty).
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
       self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["", ])
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
 
    def testConstructor_021(self):
       """
       Test assignment of databases attribute, mixed valid and invalid entries.
       """
       postgresql = PostgresqlConfig()
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
       self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["good", "", "alsogood", ])
-      self.failUnlessEqual(None, postgresql.databases)
+      self.assertEqual(None, postgresql.databases)
 
 
    ############################
@@ -380,13 +380,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig()
-      self.failUnlessEqual(postgresql1, postgresql2)
-      self.failUnless(postgresql1 == postgresql2)
-      self.failUnless(not postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(postgresql1 >= postgresql2)
-      self.failUnless(not postgresql1 != postgresql2)
+      self.assertEqual(postgresql1, postgresql2)
+      self.assertTrue(postgresql1 == postgresql2)
+      self.assertTrue(not postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(postgresql1 >= postgresql2)
+      self.assertTrue(not postgresql1 != postgresql2)
 
    def testComparison_002(self):
       """
@@ -394,13 +394,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "gzip", True, None)
       postgresql2 = PostgresqlConfig("user", "gzip", True, None)
-      self.failUnlessEqual(postgresql1, postgresql2)
-      self.failUnless(postgresql1 == postgresql2)
-      self.failUnless(not postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(postgresql1 >= postgresql2)
-      self.failUnless(not postgresql1 != postgresql2)
+      self.assertEqual(postgresql1, postgresql2)
+      self.assertTrue(postgresql1 == postgresql2)
+      self.assertTrue(not postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(postgresql1 >= postgresql2)
+      self.assertTrue(not postgresql1 != postgresql2)
 
    def testComparison_003(self):
       """
@@ -408,13 +408,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "bzip2", True, [])
       postgresql2 = PostgresqlConfig("user", "bzip2", True, [])
-      self.failUnlessEqual(postgresql1, postgresql2)
-      self.failUnless(postgresql1 == postgresql2)
-      self.failUnless(not postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(postgresql1 >= postgresql2)
-      self.failUnless(not postgresql1 != postgresql2)
+      self.assertEqual(postgresql1, postgresql2)
+      self.assertTrue(postgresql1 == postgresql2)
+      self.assertTrue(not postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(postgresql1 >= postgresql2)
+      self.assertTrue(not postgresql1 != postgresql2)
 
    def testComparison_004(self):
       """
@@ -422,13 +422,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "none", True, [ "whatever", ])
       postgresql2 = PostgresqlConfig("user", "none", True, [ "whatever", ])
-      self.failUnlessEqual(postgresql1, postgresql2)
-      self.failUnless(postgresql1 == postgresql2)
-      self.failUnless(not postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(postgresql1 >= postgresql2)
-      self.failUnless(not postgresql1 != postgresql2)
+      self.assertEqual(postgresql1, postgresql2)
+      self.assertTrue(postgresql1 == postgresql2)
+      self.assertTrue(not postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(postgresql1 >= postgresql2)
+      self.assertTrue(not postgresql1 != postgresql2)
 
    def testComparison_005(self):
       """
@@ -436,13 +436,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig(user="user")
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_006(self):
       """
@@ -450,13 +450,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user1", "gzip", True, [ "whatever", ])
       postgresql2 = PostgresqlConfig("user2", "gzip", True, [ "whatever", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_007(self):
       """
@@ -464,13 +464,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig(compressMode="gzip")
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_008(self):
       """
@@ -478,13 +478,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "bzip2", True, [ "whatever", ])
       postgresql2 = PostgresqlConfig("user", "gzip", True, [ "whatever", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_009(self):
       """
@@ -492,13 +492,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig(all=True)
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_010(self):
       """
@@ -506,13 +506,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "gzip", False, [ "whatever", ])
       postgresql2 = PostgresqlConfig("user", "gzip", True, [ "whatever", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_011(self):
       """
@@ -520,13 +520,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig(databases=[])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_012(self):
       """
@@ -534,13 +534,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig()
       postgresql2 = PostgresqlConfig(databases=["whatever", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_013(self):
       """
@@ -548,13 +548,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "gzip", True, [ ])
       postgresql2 = PostgresqlConfig("user", "gzip", True, [ "whatever", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(postgresql1 < postgresql2)
-      self.failUnless(postgresql1 <= postgresql2)
-      self.failUnless(not postgresql1 > postgresql2)
-      self.failUnless(not postgresql1 >= postgresql2)
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(postgresql1 < postgresql2)
+      self.assertTrue(postgresql1 <= postgresql2)
+      self.assertTrue(not postgresql1 > postgresql2)
+      self.assertTrue(not postgresql1 >= postgresql2)
+      self.assertTrue(postgresql1 != postgresql2)
 
    def testComparison_014(self):
       """
@@ -562,13 +562,13 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
       postgresql1 = PostgresqlConfig("user", "gzip", True, [ "whatever", ])
       postgresql2 = PostgresqlConfig("user", "gzip", True, [ "whatever", "bogus", ])
-      self.failIfEqual(postgresql1, postgresql2)
-      self.failUnless(not postgresql1 == postgresql2)
-      self.failUnless(not postgresql1 < postgresql2)     # note: different than standard due to unsorted list
-      self.failUnless(not postgresql1 <= postgresql2)    # note: different than standard due to unsorted list
-      self.failUnless(postgresql1 > postgresql2)         # note: different than standard due to unsorted list
-      self.failUnless(postgresql1 >= postgresql2)        # note: different than standard due to unsorted list
-      self.failUnless(postgresql1 != postgresql2)
+      self.assertNotEqual(postgresql1, postgresql2)
+      self.assertTrue(not postgresql1 == postgresql2)
+      self.assertTrue(not postgresql1 < postgresql2)     # note: different than standard due to unsorted list
+      self.assertTrue(not postgresql1 <= postgresql2)    # note: different than standard due to unsorted list
+      self.assertTrue(postgresql1 > postgresql2)         # note: different than standard due to unsorted list
+      self.assertTrue(postgresql1 >= postgresql2)        # note: different than standard due to unsorted list
+      self.assertTrue(postgresql1 != postgresql2)
 
 
 ########################
@@ -586,7 +586,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -619,7 +619,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -644,14 +644,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql)
 
    def testConstructor_003(self):
       """
@@ -659,7 +659,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["postgresql.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -667,7 +667,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = None
-      self.failUnlessEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql)
 
    def testConstructor_005(self):
       """
@@ -675,7 +675,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = PostgresqlConfig()
-      self.failUnlessEqual(PostgresqlConfig(), config.postgresql)
+      self.assertEqual(PostgresqlConfig(), config.postgresql)
 
    def testConstructor_006(self):
       """
@@ -695,13 +695,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -713,13 +713,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.postgresql = PostgresqlConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -728,13 +728,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.postgresql = PostgresqlConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -746,13 +746,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.postgresql = PostgresqlConfig(user="two")
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -765,7 +765,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -773,7 +773,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = PostgresqlConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -797,7 +797,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = PostgresqlConfig("user", "bzip2", True, ["whatever", ])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_006(self):
       """
@@ -805,7 +805,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = PostgresqlConfig("user", "gzip", False, None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_007(self):
       """
@@ -813,7 +813,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.postgresql = PostgresqlConfig("user", "bzip2", False, [])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_008(self):
       """
@@ -842,12 +842,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["postgresql.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql)
 
    def testParse_003(self):
       """
@@ -856,16 +856,16 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["postgresql.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("none", config.postgresql.compressMode)
-      self.failUnlessEqual(True, config.postgresql.all)
-      self.failUnlessEqual(None, config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("none", config.postgresql.compressMode)
+      self.assertEqual(True, config.postgresql.all)
+      self.assertEqual(None, config.postgresql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("none", config.postgresql.compressMode)
-      self.failUnlessEqual(True, config.postgresql.all)
-      self.failUnlessEqual(None, config.postgresql.databases)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("none", config.postgresql.compressMode)
+      self.assertEqual(True, config.postgresql.all)
+      self.assertEqual(None, config.postgresql.databases)
 
    def testParse_004(self):
       """
@@ -874,17 +874,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["postgresql.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("gzip", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("gzip", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database", ], config.postgresql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("gzip", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("gzip", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database", ], config.postgresql.databases)
 
    def testParse_005(self):
       """
@@ -893,17 +893,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["postgresql.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("bzip2", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("bzip2", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database1", "database2", ], config.postgresql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual("user", config.postgresql.user)
-      self.failUnlessEqual("bzip2", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual("user", config.postgresql.user)
+      self.assertEqual("bzip2", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database1", "database2", ], config.postgresql.databases)
 
    def testParse_006(self):
       """
@@ -912,17 +912,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["postgresql.conf.5"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual(None, config.postgresql.user)
-      self.failUnlessEqual("bzip2", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql.user)
+      self.assertEqual("bzip2", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database1", "database2", ], config.postgresql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.postgresql)
-      self.failUnlessEqual(None, config.postgresql.user)
-      self.failUnlessEqual("bzip2", config.postgresql.compressMode)
-      self.failUnlessEqual(False, config.postgresql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.postgresql.databases)
+      self.assertNotEqual(None, config.postgresql)
+      self.assertEqual(None, config.postgresql.user)
+      self.assertEqual("bzip2", config.postgresql.compressMode)
+      self.assertEqual(False, config.postgresql.all)
+      self.assertEqual(["database1", "database2", ], config.postgresql.databases)
 
 
    ###################

@@ -151,134 +151,134 @@ class TestMboxFile(unittest.TestCase):
       Test constructor with no values filled in.
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.absolutePath)
-      self.failUnlessEqual(None, mboxFile.collectMode)
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.compressMode)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       mboxFile = MboxFile("/path/to/it", "daily", "gzip")
-      self.failUnlessEqual("/path/to/it", mboxFile.absolutePath)
-      self.failUnlessEqual("daily", mboxFile.collectMode)
-      self.failUnlessEqual("gzip", mboxFile.compressMode)
+      self.assertEqual("/path/to/it", mboxFile.absolutePath)
+      self.assertEqual("daily", mboxFile.collectMode)
+      self.assertEqual("gzip", mboxFile.compressMode)
 
    def testConstructor_003(self):
       """
       Test assignment of absolutePath attribute, None value.
       """
       mboxFile = MboxFile(absolutePath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", mboxFile.absolutePath)
+      self.assertEqual("/path/to/something", mboxFile.absolutePath)
       mboxFile.absolutePath = None
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
 
    def testConstructor_004(self):
       """
       Test assignment of absolutePath attribute, valid value.
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
       mboxFile.absolutePath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", mboxFile.absolutePath)
+      self.assertEqual("/path/to/whatever", mboxFile.absolutePath)
 
    def testConstructor_005(self):
       """
       Test assignment of absolutePath attribute, invalid value (empty).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
       self.failUnlessAssignRaises(ValueError, mboxFile, "absolutePath", "")
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
 
    def testConstructor_006(self):
       """
       Test assignment of absolutePath attribute, invalid value (not absolute).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
       self.failUnlessAssignRaises(ValueError, mboxFile, "absolutePath", "relative/path")
-      self.failUnlessEqual(None, mboxFile.absolutePath)
+      self.assertEqual(None, mboxFile.absolutePath)
 
    def testConstructor_007(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       mboxFile = MboxFile(collectMode="daily")
-      self.failUnlessEqual("daily", mboxFile.collectMode)
+      self.assertEqual("daily", mboxFile.collectMode)
       mboxFile.collectMode = None
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
       mboxFile.collectMode = "daily"
-      self.failUnlessEqual("daily", mboxFile.collectMode)
+      self.assertEqual("daily", mboxFile.collectMode)
       mboxFile.collectMode = "weekly"
-      self.failUnlessEqual("weekly", mboxFile.collectMode)
+      self.assertEqual("weekly", mboxFile.collectMode)
       mboxFile.collectMode = "incr"
-      self.failUnlessEqual("incr", mboxFile.collectMode)
+      self.assertEqual("incr", mboxFile.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
       self.failUnlessAssignRaises(ValueError, mboxFile, "collectMode", "")
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
       self.failUnlessAssignRaises(ValueError, mboxFile, "collectMode", "monthly")
-      self.failUnlessEqual(None, mboxFile.collectMode)
+      self.assertEqual(None, mboxFile.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       mboxFile = MboxFile(compressMode="gzip")
-      self.failUnlessEqual("gzip", mboxFile.compressMode)
+      self.assertEqual("gzip", mboxFile.compressMode)
       mboxFile.compressMode = None
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
       mboxFile.compressMode = "none"
-      self.failUnlessEqual("none", mboxFile.compressMode)
+      self.assertEqual("none", mboxFile.compressMode)
       mboxFile.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", mboxFile.compressMode)
+      self.assertEqual("bzip2", mboxFile.compressMode)
       mboxFile.compressMode = "gzip"
-      self.failUnlessEqual("gzip", mboxFile.compressMode)
+      self.assertEqual("gzip", mboxFile.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
       self.failUnlessAssignRaises(ValueError, mboxFile, "compressMode", "")
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       mboxFile = MboxFile()
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
       self.failUnlessAssignRaises(ValueError, mboxFile, "compressMode", "compress")
-      self.failUnlessEqual(None, mboxFile.compressMode)
+      self.assertEqual(None, mboxFile.compressMode)
 
 
    ############################
@@ -291,13 +291,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile()
       mboxFile2 = MboxFile()
-      self.failUnlessEqual(mboxFile1, mboxFile2)
-      self.failUnless(mboxFile1 == mboxFile2)
-      self.failUnless(not mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(mboxFile1 >= mboxFile2)
-      self.failUnless(not mboxFile1 != mboxFile2)
+      self.assertEqual(mboxFile1, mboxFile2)
+      self.assertTrue(mboxFile1 == mboxFile2)
+      self.assertTrue(not mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(mboxFile1 >= mboxFile2)
+      self.assertTrue(not mboxFile1 != mboxFile2)
 
    def testComparison_002(self):
       """
@@ -305,13 +305,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile("/path", "daily", "gzip")
       mboxFile2 = MboxFile("/path", "daily", "gzip")
-      self.failUnlessEqual(mboxFile1, mboxFile2)
-      self.failUnless(mboxFile1 == mboxFile2)
-      self.failUnless(not mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(mboxFile1 >= mboxFile2)
-      self.failUnless(not mboxFile1 != mboxFile2)
+      self.assertEqual(mboxFile1, mboxFile2)
+      self.assertTrue(mboxFile1 == mboxFile2)
+      self.assertTrue(not mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(mboxFile1 >= mboxFile2)
+      self.assertTrue(not mboxFile1 != mboxFile2)
 
    def testComparison_003(self):
       """
@@ -319,13 +319,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile()
       mboxFile2 = MboxFile(absolutePath="/zippy")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
    def testComparison_004(self):
       """
@@ -333,13 +333,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile("/path", "daily", "gzip")
       mboxFile2 = MboxFile("/zippy", "daily", "gzip")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
    def testComparison_005(self):
       """
@@ -347,13 +347,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile()
       mboxFile2 = MboxFile(collectMode="incr")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
    def testComparison_006(self):
       """
@@ -361,13 +361,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile("/path", "daily", "gzip")
       mboxFile2 = MboxFile("/path", "incr", "gzip")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
    def testComparison_007(self):
       """
@@ -375,13 +375,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile()
       mboxFile2 = MboxFile(compressMode="gzip")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
    def testComparison_008(self):
       """
@@ -389,13 +389,13 @@ class TestMboxFile(unittest.TestCase):
       """
       mboxFile1 = MboxFile("/path", "daily", "bzip2")
       mboxFile2 = MboxFile("/path", "daily", "gzip")
-      self.failIfEqual(mboxFile1, mboxFile2)
-      self.failUnless(not mboxFile1 == mboxFile2)
-      self.failUnless(mboxFile1 < mboxFile2)
-      self.failUnless(mboxFile1 <= mboxFile2)
-      self.failUnless(not mboxFile1 > mboxFile2)
-      self.failUnless(not mboxFile1 >= mboxFile2)
-      self.failUnless(mboxFile1 != mboxFile2)
+      self.assertNotEqual(mboxFile1, mboxFile2)
+      self.assertTrue(not mboxFile1 == mboxFile2)
+      self.assertTrue(mboxFile1 < mboxFile2)
+      self.assertTrue(mboxFile1 <= mboxFile2)
+      self.assertTrue(not mboxFile1 > mboxFile2)
+      self.assertTrue(not mboxFile1 >= mboxFile2)
+      self.assertTrue(mboxFile1 != mboxFile2)
 
 
 #####################
@@ -437,167 +437,167 @@ class TestMboxDir(unittest.TestCase):
       Test constructor with no values filled in.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.absolutePath)
-      self.failUnlessEqual(None, mboxDir.collectMode)
-      self.failUnlessEqual(None, mboxDir.compressMode)
-      self.failUnlessEqual(None, mboxDir.relativeExcludePaths)
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.relativeExcludePaths)
+      self.assertEqual(None, mboxDir.excludePatterns)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in.
       """
       mboxDir = MboxDir("/path/to/it", "daily", "gzip", [ "whatever", ], [ ".*SPAM.*", ] )
-      self.failUnlessEqual("/path/to/it", mboxDir.absolutePath)
-      self.failUnlessEqual("daily", mboxDir.collectMode)
-      self.failUnlessEqual("gzip", mboxDir.compressMode)
-      self.failUnlessEqual([ "whatever", ], mboxDir.relativeExcludePaths)
-      self.failUnlessEqual([ ".*SPAM.*", ], mboxDir.excludePatterns)
+      self.assertEqual("/path/to/it", mboxDir.absolutePath)
+      self.assertEqual("daily", mboxDir.collectMode)
+      self.assertEqual("gzip", mboxDir.compressMode)
+      self.assertEqual([ "whatever", ], mboxDir.relativeExcludePaths)
+      self.assertEqual([ ".*SPAM.*", ], mboxDir.excludePatterns)
 
    def testConstructor_003(self):
       """
       Test assignment of absolutePath attribute, None value.
       """
       mboxDir = MboxDir(absolutePath="/path/to/something")
-      self.failUnlessEqual("/path/to/something", mboxDir.absolutePath)
+      self.assertEqual("/path/to/something", mboxDir.absolutePath)
       mboxDir.absolutePath = None
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
 
    def testConstructor_004(self):
       """
       Test assignment of absolutePath attribute, valid value.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
       mboxDir.absolutePath = "/path/to/whatever"
-      self.failUnlessEqual("/path/to/whatever", mboxDir.absolutePath)
+      self.assertEqual("/path/to/whatever", mboxDir.absolutePath)
 
    def testConstructor_005(self):
       """
       Test assignment of absolutePath attribute, invalid value (empty).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
       self.failUnlessAssignRaises(ValueError, mboxDir, "absolutePath", "")
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
 
    def testConstructor_006(self):
       """
       Test assignment of absolutePath attribute, invalid value (not absolute).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
       self.failUnlessAssignRaises(ValueError, mboxDir, "absolutePath", "relative/path")
-      self.failUnlessEqual(None, mboxDir.absolutePath)
+      self.assertEqual(None, mboxDir.absolutePath)
 
    def testConstructor_007(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       mboxDir = MboxDir(collectMode="daily")
-      self.failUnlessEqual("daily", mboxDir.collectMode)
+      self.assertEqual("daily", mboxDir.collectMode)
       mboxDir.collectMode = None
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
       mboxDir.collectMode = "daily"
-      self.failUnlessEqual("daily", mboxDir.collectMode)
+      self.assertEqual("daily", mboxDir.collectMode)
       mboxDir.collectMode = "weekly"
-      self.failUnlessEqual("weekly", mboxDir.collectMode)
+      self.assertEqual("weekly", mboxDir.collectMode)
       mboxDir.collectMode = "incr"
-      self.failUnlessEqual("incr", mboxDir.collectMode)
+      self.assertEqual("incr", mboxDir.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
       self.failUnlessAssignRaises(ValueError, mboxDir, "collectMode", "")
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of collectMode attribute, invalid value (not in list).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
       self.failUnlessAssignRaises(ValueError, mboxDir, "collectMode", "monthly")
-      self.failUnlessEqual(None, mboxDir.collectMode)
+      self.assertEqual(None, mboxDir.collectMode)
 
    def testConstructor_011(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       mboxDir = MboxDir(compressMode="gzip")
-      self.failUnlessEqual("gzip", mboxDir.compressMode)
+      self.assertEqual("gzip", mboxDir.compressMode)
       mboxDir.compressMode = None
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
       mboxDir.compressMode = "none"
-      self.failUnlessEqual("none", mboxDir.compressMode)
+      self.assertEqual("none", mboxDir.compressMode)
       mboxDir.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", mboxDir.compressMode)
+      self.assertEqual("bzip2", mboxDir.compressMode)
       mboxDir.compressMode = "gzip"
-      self.failUnlessEqual("gzip", mboxDir.compressMode)
+      self.assertEqual("gzip", mboxDir.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
       self.failUnlessAssignRaises(ValueError, mboxDir, "compressMode", "")
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
       self.failUnlessAssignRaises(ValueError, mboxDir, "compressMode", "compress")
-      self.failUnlessEqual(None, mboxDir.compressMode)
+      self.assertEqual(None, mboxDir.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of relativeExcludePaths attribute, None value.
       """
       mboxDir = MboxDir(relativeExcludePaths=[])
-      self.failUnlessEqual([], mboxDir.relativeExcludePaths)
+      self.assertEqual([], mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths = None
-      self.failUnlessEqual(None, mboxDir.relativeExcludePaths)
+      self.assertEqual(None, mboxDir.relativeExcludePaths)
 
    def testConstructor_016(self):
       """
       Test assignment of relativeExcludePaths attribute, [] value.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.relativeExcludePaths)
+      self.assertEqual(None, mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths = []
-      self.failUnlessEqual([], mboxDir.relativeExcludePaths)
+      self.assertEqual([], mboxDir.relativeExcludePaths)
 
    def testConstructor_017(self):
       """
       Test assignment of relativeExcludePaths attribute, single valid entry.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.relativeExcludePaths)
+      self.assertEqual(None, mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths = ["stuff", ]
-      self.failUnlessEqual(["stuff", ], mboxDir.relativeExcludePaths)
+      self.assertEqual(["stuff", ], mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths.insert(0, "bogus")
-      self.failUnlessEqual(["bogus", "stuff", ], mboxDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", ], mboxDir.relativeExcludePaths)
 
    def testConstructor_018(self):
       """
@@ -605,69 +605,69 @@ class TestMboxDir(unittest.TestCase):
       entries.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.relativeExcludePaths)
+      self.assertEqual(None, mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths = ["bogus", "stuff", ]
-      self.failUnlessEqual(["bogus", "stuff", ], mboxDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", ], mboxDir.relativeExcludePaths)
       mboxDir.relativeExcludePaths.append("more")
-      self.failUnlessEqual(["bogus", "stuff", "more", ], mboxDir.relativeExcludePaths)
+      self.assertEqual(["bogus", "stuff", "more", ], mboxDir.relativeExcludePaths)
 
    def testConstructor_019(self):
       """
       Test assignment of excludePatterns attribute, None value.
       """
       mboxDir = MboxDir(excludePatterns=[])
-      self.failUnlessEqual([], mboxDir.excludePatterns)
+      self.assertEqual([], mboxDir.excludePatterns)
       mboxDir.excludePatterns = None
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
 
    def testConstructor_020(self):
       """
       Test assignment of excludePatterns attribute, [] value.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       mboxDir.excludePatterns = []
-      self.failUnlessEqual([], mboxDir.excludePatterns)
+      self.assertEqual([], mboxDir.excludePatterns)
 
    def testConstructor_021(self):
       """
       Test assignment of excludePatterns attribute, single valid entry.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       mboxDir.excludePatterns = ["valid", ]
-      self.failUnlessEqual(["valid", ], mboxDir.excludePatterns)
+      self.assertEqual(["valid", ], mboxDir.excludePatterns)
       mboxDir.excludePatterns.append("more")
-      self.failUnlessEqual(["valid", "more", ], mboxDir.excludePatterns)
+      self.assertEqual(["valid", "more", ], mboxDir.excludePatterns)
 
    def testConstructor_022(self):
       """
       Test assignment of excludePatterns attribute, multiple valid entries.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       mboxDir.excludePatterns = ["valid", "more", ]
-      self.failUnlessEqual(["valid", "more", ], mboxDir.excludePatterns)
+      self.assertEqual(["valid", "more", ], mboxDir.excludePatterns)
       mboxDir.excludePatterns.insert(1, "bogus")
-      self.failUnlessEqual(["valid", "bogus", "more", ], mboxDir.excludePatterns)
+      self.assertEqual(["valid", "bogus", "more", ], mboxDir.excludePatterns)
 
    def testConstructor_023(self):
       """
       Test assignment of excludePatterns attribute, single invalid entry.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg", ])
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
 
    def testConstructor_024(self):
       """
       Test assignment of excludePatterns attribute, multiple invalid entries.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg", "*" ])
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
 
    def testConstructor_025(self):
       """
@@ -675,9 +675,9 @@ class TestMboxDir(unittest.TestCase):
       entries.
       """
       mboxDir = MboxDir()
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
       self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg", "valid" ])
-      self.failUnlessEqual(None, mboxDir.excludePatterns)
+      self.assertEqual(None, mboxDir.excludePatterns)
 
 
    ############################
@@ -690,13 +690,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir()
-      self.failUnlessEqual(mboxDir1, mboxDir2)
-      self.failUnless(mboxDir1 == mboxDir2)
-      self.failUnless(not mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(mboxDir1 >= mboxDir2)
-      self.failUnless(not mboxDir1 != mboxDir2)
+      self.assertEqual(mboxDir1, mboxDir2)
+      self.assertTrue(mboxDir1 == mboxDir2)
+      self.assertTrue(not mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(mboxDir1 >= mboxDir2)
+      self.assertTrue(not mboxDir1 != mboxDir2)
 
    def testComparison_002(self):
       """
@@ -704,13 +704,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/path", "daily", "gzip")
       mboxDir2 = MboxDir("/path", "daily", "gzip")
-      self.failUnlessEqual(mboxDir1, mboxDir2)
-      self.failUnless(mboxDir1 == mboxDir2)
-      self.failUnless(not mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(mboxDir1 >= mboxDir2)
-      self.failUnless(not mboxDir1 != mboxDir2)
+      self.assertEqual(mboxDir1, mboxDir2)
+      self.assertTrue(mboxDir1 == mboxDir2)
+      self.assertTrue(not mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(mboxDir1 >= mboxDir2)
+      self.assertTrue(not mboxDir1 != mboxDir2)
 
    def testComparison_003(self):
       """
@@ -718,13 +718,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(absolutePath="/zippy")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_004(self):
       """
@@ -732,13 +732,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/path", "daily", "gzip")
       mboxDir2 = MboxDir("/zippy", "daily", "gzip")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_005(self):
       """
@@ -746,13 +746,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(collectMode="incr")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_006(self):
       """
@@ -760,13 +760,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/path", "daily", "gzip")
       mboxDir2 = MboxDir("/path", "incr", "gzip")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_007(self):
       """
@@ -774,13 +774,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(compressMode="gzip")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_008(self):
       """
@@ -788,13 +788,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/path", "daily", "bzip2")
       mboxDir2 = MboxDir("/path", "daily", "gzip")
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_009(self):
       """
@@ -803,13 +803,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(relativeExcludePaths=[])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_010(self):
       """
@@ -818,13 +818,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(relativeExcludePaths=["stuff", "other", ])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_011(self):
       """
@@ -833,13 +833,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one", ], [])
       mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], [])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(not mboxDir1 < mboxDir2)
-      self.failUnless(not mboxDir1 <= mboxDir2)
-      self.failUnless(mboxDir1 > mboxDir2)
-      self.failUnless(mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(not mboxDir1 < mboxDir2)
+      self.assertTrue(not mboxDir1 <= mboxDir2)
+      self.assertTrue(mboxDir1 > mboxDir2)
+      self.assertTrue(mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_012(self):
       """
@@ -848,13 +848,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one", ], [])
       mboxDir2 = MboxDir("/etc/whatever", "incr", "none", ["two", ], [])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_013(self):
       """
@@ -863,13 +863,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(excludePatterns=[])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_014(self):
       """
@@ -878,13 +878,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir()
       mboxDir2 = MboxDir(excludePatterns=["one", "two", "three", ])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_015(self):
       """
@@ -893,13 +893,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/etc/whatever", "incr", "none", [], [])
       mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], ["pattern", ])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
    def testComparison_016(self):
       """
@@ -908,13 +908,13 @@ class TestMboxDir(unittest.TestCase):
       """
       mboxDir1 = MboxDir("/etc/whatever", "incr", "none", [], ["p1", ])
       mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], ["p2", ])
-      self.failIfEqual(mboxDir1, mboxDir2)
-      self.failUnless(not mboxDir1 == mboxDir2)
-      self.failUnless(mboxDir1 < mboxDir2)
-      self.failUnless(mboxDir1 <= mboxDir2)
-      self.failUnless(not mboxDir1 > mboxDir2)
-      self.failUnless(not mboxDir1 >= mboxDir2)
-      self.failUnless(mboxDir1 != mboxDir2)
+      self.assertNotEqual(mboxDir1, mboxDir2)
+      self.assertTrue(not mboxDir1 == mboxDir2)
+      self.assertTrue(mboxDir1 < mboxDir2)
+      self.assertTrue(mboxDir1 <= mboxDir2)
+      self.assertTrue(not mboxDir1 > mboxDir2)
+      self.assertTrue(not mboxDir1 >= mboxDir2)
+      self.assertTrue(mboxDir1 != mboxDir2)
 
 
 #######################
@@ -956,30 +956,30 @@ class TestMboxConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.collectMode)
-      self.failUnlessEqual(None, mbox.compressMode)
-      self.failUnlessEqual(None, mbox.mboxFiles)
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.collectMode)
+      self.assertEqual(None, mbox.compressMode)
+      self.assertEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxDirs)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values, mboxFiles=None and mboxDirs=None.
       """
       mbox = MboxConfig("daily", "gzip", None, None)
-      self.failUnlessEqual("daily", mbox.collectMode)
-      self.failUnlessEqual("gzip", mbox.compressMode)
-      self.failUnlessEqual(None, mbox.mboxFiles)
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual("daily", mbox.collectMode)
+      self.assertEqual("gzip", mbox.compressMode)
+      self.assertEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxDirs)
 
    def testConstructor_003(self):
       """
       Test constructor with all values filled in, with valid values, no mboxFiles, no mboxDirs.
       """
       mbox = MboxConfig("daily", "gzip", [], [])
-      self.failUnlessEqual("daily", mbox.collectMode)
-      self.failUnlessEqual("gzip", mbox.compressMode)
-      self.failUnlessEqual([], mbox.mboxFiles)
-      self.failUnlessEqual([], mbox.mboxDirs)
+      self.assertEqual("daily", mbox.collectMode)
+      self.assertEqual("gzip", mbox.compressMode)
+      self.assertEqual([], mbox.mboxFiles)
+      self.assertEqual([], mbox.mboxDirs)
 
    def testConstructor_004(self):
       """
@@ -987,10 +987,10 @@ class TestMboxConfig(unittest.TestCase):
       """
       mboxFiles = [ MboxFile(), ]
       mbox = MboxConfig("daily", "gzip", mboxFiles, [])
-      self.failUnlessEqual("daily", mbox.collectMode)
-      self.failUnlessEqual("gzip", mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, mbox.mboxFiles)
-      self.failUnlessEqual([], mbox.mboxDirs)
+      self.assertEqual("daily", mbox.collectMode)
+      self.assertEqual("gzip", mbox.compressMode)
+      self.assertEqual(mboxFiles, mbox.mboxFiles)
+      self.assertEqual([], mbox.mboxDirs)
 
    def testConstructor_005(self):
       """
@@ -998,10 +998,10 @@ class TestMboxConfig(unittest.TestCase):
       """
       mboxDirs = [ MboxDir(), ]
       mbox = MboxConfig("daily", "gzip", [], mboxDirs)
-      self.failUnlessEqual("daily", mbox.collectMode)
-      self.failUnlessEqual("gzip", mbox.compressMode)
-      self.failUnlessEqual([], mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, mbox.mboxDirs)
+      self.assertEqual("daily", mbox.collectMode)
+      self.assertEqual("gzip", mbox.compressMode)
+      self.assertEqual([], mbox.mboxFiles)
+      self.assertEqual(mboxDirs, mbox.mboxDirs)
 
    def testConstructor_006(self):
       """
@@ -1010,198 +1010,198 @@ class TestMboxConfig(unittest.TestCase):
       mboxFiles = [ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), ]
       mboxDirs = [ MboxDir(collectMode="weekly"), MboxDir(collectMode="incr"), ]
       mbox = MboxConfig("daily", "gzip", mboxFiles=mboxFiles, mboxDirs=mboxDirs)
-      self.failUnlessEqual("daily", mbox.collectMode)
-      self.failUnlessEqual("gzip", mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, mbox.mboxDirs)
+      self.assertEqual("daily", mbox.collectMode)
+      self.assertEqual("gzip", mbox.compressMode)
+      self.assertEqual(mboxFiles, mbox.mboxFiles)
+      self.assertEqual(mboxDirs, mbox.mboxDirs)
 
    def testConstructor_007(self):
       """
       Test assignment of collectMode attribute, None value.
       """
       mbox = MboxConfig(collectMode="daily")
-      self.failUnlessEqual("daily", mbox.collectMode)
+      self.assertEqual("daily", mbox.collectMode)
       mbox.collectMode = None
-      self.failUnlessEqual(None, mbox.collectMode)
+      self.assertEqual(None, mbox.collectMode)
 
    def testConstructor_008(self):
       """
       Test assignment of collectMode attribute, valid value.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.collectMode)
+      self.assertEqual(None, mbox.collectMode)
       mbox.collectMode = "weekly"
-      self.failUnlessEqual("weekly", mbox.collectMode)
+      self.assertEqual("weekly", mbox.collectMode)
 
    def testConstructor_009(self):
       """
       Test assignment of collectMode attribute, invalid value (empty).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.collectMode)
+      self.assertEqual(None, mbox.collectMode)
       self.failUnlessAssignRaises(ValueError, mbox, "collectMode", "")
-      self.failUnlessEqual(None, mbox.collectMode)
+      self.assertEqual(None, mbox.collectMode)
 
    def testConstructor_010(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       mbox = MboxConfig(compressMode="gzip")
-      self.failUnlessEqual("gzip", mbox.compressMode)
+      self.assertEqual("gzip", mbox.compressMode)
       mbox.compressMode = None
-      self.failUnlessEqual(None, mbox.compressMode)
+      self.assertEqual(None, mbox.compressMode)
 
    def testConstructor_011(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.compressMode)
+      self.assertEqual(None, mbox.compressMode)
       mbox.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", mbox.compressMode)
+      self.assertEqual("bzip2", mbox.compressMode)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.compressMode)
+      self.assertEqual(None, mbox.compressMode)
       self.failUnlessAssignRaises(ValueError, mbox, "compressMode", "")
-      self.failUnlessEqual(None, mbox.compressMode)
+      self.assertEqual(None, mbox.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of mboxFiles attribute, None value.
       """
       mbox = MboxConfig(mboxFiles=[])
-      self.failUnlessEqual([], mbox.mboxFiles)
+      self.assertEqual([], mbox.mboxFiles)
       mbox.mboxFiles = None
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
 
    def testConstructor_014(self):
       """
       Test assignment of mboxFiles attribute, [] value.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       mbox.mboxFiles = []
-      self.failUnlessEqual([], mbox.mboxFiles)
+      self.assertEqual([], mbox.mboxFiles)
 
    def testConstructor_015(self):
       """
       Test assignment of mboxFiles attribute, single valid entry.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       mbox.mboxFiles = [ MboxFile(), ]
-      self.failUnlessEqual([ MboxFile(), ], mbox.mboxFiles)
+      self.assertEqual([ MboxFile(), ], mbox.mboxFiles)
       mbox.mboxFiles.append(MboxFile(collectMode="daily"))
-      self.failUnlessEqual([ MboxFile(), MboxFile(collectMode="daily"), ], mbox.mboxFiles)
+      self.assertEqual([ MboxFile(), MboxFile(collectMode="daily"), ], mbox.mboxFiles)
 
    def testConstructor_016(self):
       """
       Test assignment of mboxFiles attribute, multiple valid entries.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       mbox.mboxFiles = [ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), ]
-      self.failUnlessEqual([ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), ], mbox.mboxFiles)
+      self.assertEqual([ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), ], mbox.mboxFiles)
       mbox.mboxFiles.append(MboxFile(collectMode="incr"))
-      self.failUnlessEqual([ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), MboxFile(collectMode="incr"), ], mbox.mboxFiles)
+      self.assertEqual([ MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), MboxFile(collectMode="incr"), ], mbox.mboxFiles)
 
    def testConstructor_017(self):
       """
       Test assignment of mboxFiles attribute, single invalid entry (None).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [None, ])
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
 
    def testConstructor_018(self):
       """
       Test assignment of mboxFiles attribute, single invalid entry (wrong type).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [MboxDir(), ])
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
 
    def testConstructor_019(self):
       """
       Test assignment of mboxFiles attribute, mixed valid and invalid entries.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [MboxFile(), MboxDir(), ])
-      self.failUnlessEqual(None, mbox.mboxFiles)
+      self.assertEqual(None, mbox.mboxFiles)
 
    def testConstructor_020(self):
       """
       Test assignment of mboxDirs attribute, None value.
       """
       mbox = MboxConfig(mboxDirs=[])
-      self.failUnlessEqual([], mbox.mboxDirs)
+      self.assertEqual([], mbox.mboxDirs)
       mbox.mboxDirs = None
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
 
    def testConstructor_021(self):
       """
       Test assignment of mboxDirs attribute, [] value.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       mbox.mboxDirs = []
-      self.failUnlessEqual([], mbox.mboxDirs)
+      self.assertEqual([], mbox.mboxDirs)
 
    def testConstructor_022(self):
       """
       Test assignment of mboxDirs attribute, single valid entry.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       mbox.mboxDirs = [ MboxDir(), ]
-      self.failUnlessEqual([ MboxDir(), ], mbox.mboxDirs)
+      self.assertEqual([ MboxDir(), ], mbox.mboxDirs)
       mbox.mboxDirs.append(MboxDir(collectMode="daily"))
-      self.failUnlessEqual([ MboxDir(), MboxDir(collectMode="daily"), ], mbox.mboxDirs)
+      self.assertEqual([ MboxDir(), MboxDir(collectMode="daily"), ], mbox.mboxDirs)
 
    def testConstructor_023(self):
       """
       Test assignment of mboxDirs attribute, multiple valid entries.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       mbox.mboxDirs = [ MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), ]
-      self.failUnlessEqual([ MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), ], mbox.mboxDirs)
+      self.assertEqual([ MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), ], mbox.mboxDirs)
       mbox.mboxDirs.append(MboxDir(collectMode="incr"))
-      self.failUnlessEqual([ MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), MboxDir(collectMode="incr"), ], mbox.mboxDirs)
+      self.assertEqual([ MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), MboxDir(collectMode="incr"), ], mbox.mboxDirs)
 
    def testConstructor_024(self):
       """
       Test assignment of mboxDirs attribute, single invalid entry (None).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [None, ])
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
 
    def testConstructor_025(self):
       """
       Test assignment of mboxDirs attribute, single invalid entry (wrong type).
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [MboxFile(), ])
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
 
    def testConstructor_026(self):
       """
       Test assignment of mboxDirs attribute, mixed valid and invalid entries.
       """
       mbox = MboxConfig()
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
       self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [MboxDir(), MboxFile(), ])
-      self.failUnlessEqual(None, mbox.mboxDirs)
+      self.assertEqual(None, mbox.mboxDirs)
 
 
    ############################
@@ -1214,13 +1214,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig()
-      self.failUnlessEqual(mbox1, mbox2)
-      self.failUnless(mbox1 == mbox2)
-      self.failUnless(not mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(mbox1 >= mbox2)
-      self.failUnless(not mbox1 != mbox2)
+      self.assertEqual(mbox1, mbox2)
+      self.assertTrue(mbox1 == mbox2)
+      self.assertTrue(not mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(mbox1 >= mbox2)
+      self.assertTrue(not mbox1 != mbox2)
 
    def testComparison_002(self):
       """
@@ -1228,13 +1228,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", None, None)
       mbox2 = MboxConfig("daily", "gzip", None, None)
-      self.failUnlessEqual(mbox1, mbox2)
-      self.failUnless(mbox1 == mbox2)
-      self.failUnless(not mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(mbox1 >= mbox2)
-      self.failUnless(not mbox1 != mbox2)
+      self.assertEqual(mbox1, mbox2)
+      self.assertTrue(mbox1 == mbox2)
+      self.assertTrue(not mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(mbox1 >= mbox2)
+      self.assertTrue(not mbox1 != mbox2)
 
    def testComparison_003(self):
       """
@@ -1242,13 +1242,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", [], [])
       mbox2 = MboxConfig("daily", "gzip", [], [])
-      self.failUnlessEqual(mbox1, mbox2)
-      self.failUnless(mbox1 == mbox2)
-      self.failUnless(not mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(mbox1 >= mbox2)
-      self.failUnless(not mbox1 != mbox2)
+      self.assertEqual(mbox1, mbox2)
+      self.assertTrue(mbox1 == mbox2)
+      self.assertTrue(not mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(mbox1 >= mbox2)
+      self.assertTrue(not mbox1 != mbox2)
 
    def testComparison_004(self):
       """
@@ -1256,13 +1256,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", [ MboxFile(), ], [MboxDir(), ])
       mbox2 = MboxConfig("daily", "gzip", [ MboxFile(), ], [MboxDir(), ])
-      self.failUnlessEqual(mbox1, mbox2)
-      self.failUnless(mbox1 == mbox2)
-      self.failUnless(not mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(mbox1 >= mbox2)
-      self.failUnless(not mbox1 != mbox2)
+      self.assertEqual(mbox1, mbox2)
+      self.assertTrue(mbox1 == mbox2)
+      self.assertTrue(not mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(mbox1 >= mbox2)
+      self.assertTrue(not mbox1 != mbox2)
 
    def testComparison_005(self):
       """
@@ -1270,13 +1270,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(collectMode="daily")
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_006(self):
       """
@@ -1284,13 +1284,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", [ MboxFile(), ])
       mbox2 = MboxConfig("weekly", "gzip", [ MboxFile(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_007(self):
       """
@@ -1298,13 +1298,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(compressMode="bzip2")
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_008(self):
       """
@@ -1312,13 +1312,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "bzip2", [ MboxFile(), ])
       mbox2 = MboxConfig("daily", "gzip", [ MboxFile(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_009(self):
       """
@@ -1326,13 +1326,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(mboxFiles=[])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_010(self):
       """
@@ -1340,13 +1340,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(mboxFiles=[MboxFile(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_011(self):
       """
@@ -1354,13 +1354,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", [ ], None)
       mbox2 = MboxConfig("daily", "gzip", [ MboxFile(), ], None)
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_012(self):
       """
@@ -1368,13 +1368,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", [ MboxFile(), ], None)
       mbox2 = MboxConfig("daily", "gzip", [ MboxFile(), MboxFile(), ], None)
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_013(self):
       """
@@ -1382,13 +1382,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(mboxDirs=[])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_014(self):
       """
@@ -1396,13 +1396,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig()
       mbox2 = MboxConfig(mboxDirs=[MboxDir(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_015(self):
       """
@@ -1410,13 +1410,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", None, [ ])
       mbox2 = MboxConfig("daily", "gzip", None, [ MboxDir(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
    def testComparison_016(self):
       """
@@ -1424,13 +1424,13 @@ class TestMboxConfig(unittest.TestCase):
       """
       mbox1 = MboxConfig("daily", "gzip", None, [ MboxDir(), ])
       mbox2 = MboxConfig("daily", "gzip", None, [ MboxDir(), MboxDir(), ])
-      self.failIfEqual(mbox1, mbox2)
-      self.failUnless(not mbox1 == mbox2)
-      self.failUnless(mbox1 < mbox2)
-      self.failUnless(mbox1 <= mbox2)
-      self.failUnless(not mbox1 > mbox2)
-      self.failUnless(not mbox1 >= mbox2)
-      self.failUnless(mbox1 != mbox2)
+      self.assertNotEqual(mbox1, mbox2)
+      self.assertTrue(not mbox1 == mbox2)
+      self.assertTrue(mbox1 < mbox2)
+      self.assertTrue(mbox1 <= mbox2)
+      self.assertTrue(not mbox1 > mbox2)
+      self.assertTrue(not mbox1 >= mbox2)
+      self.assertTrue(mbox1 != mbox2)
 
 
 ########################
@@ -1448,7 +1448,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -1481,7 +1481,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -1506,14 +1506,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox)
 
    def testConstructor_003(self):
       """
@@ -1521,7 +1521,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["mbox.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -1529,7 +1529,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = None
-      self.failUnlessEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox)
 
    def testConstructor_005(self):
       """
@@ -1537,7 +1537,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = MboxConfig()
-      self.failUnlessEqual(MboxConfig(), config.mbox)
+      self.assertEqual(MboxConfig(), config.mbox)
 
    def testConstructor_006(self):
       """
@@ -1557,13 +1557,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -1575,13 +1575,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.mbox = MboxConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -1590,13 +1590,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.mbox = MboxConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -1608,13 +1608,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.mbox = MboxConfig(collectMode="weekly")
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -1627,7 +1627,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -1635,7 +1635,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = MboxConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -1643,7 +1643,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = MboxConfig("weekly", "gzip", None, None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_004(self):
       """
@@ -1651,7 +1651,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mbox = MboxConfig("weekly", "gzip", [], [])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_005(self):
       """
@@ -1691,7 +1691,7 @@ class TestLocalConfig(unittest.TestCase):
       config.mbox = MboxConfig()
       config.mbox.mboxFiles = mboxFiles
       config.mbox.mboxDirs = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_008(self):
       """
@@ -1703,7 +1703,7 @@ class TestLocalConfig(unittest.TestCase):
       config.mbox = MboxConfig()
       config.mbox.mboxFiles = None
       config.mbox.mboxDirs = mboxDirs
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_009(self):
       """
@@ -1876,12 +1876,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["mbox.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox)
 
    def testParse_002(self):
       """
@@ -1892,17 +1892,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mbox.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual("daily", config.mbox.collectMode)
-      self.failUnlessEqual("gzip", config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual("daily", config.mbox.collectMode)
+      self.assertEqual("gzip", config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual("daily", config.mbox.collectMode)
-      self.failUnlessEqual("gzip", config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual("daily", config.mbox.collectMode)
+      self.assertEqual("gzip", config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
 
    def testParse_003(self):
       """
@@ -1913,17 +1913,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mbox.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual(None, config.mbox.collectMode)
-      self.failUnlessEqual(None, config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox.collectMode)
+      self.assertEqual(None, config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual(None, config.mbox.collectMode)
-      self.failUnlessEqual(None, config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual(None, config.mbox.collectMode)
+      self.assertEqual(None, config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
 
    def testParse_004(self):
       """
@@ -1950,17 +1950,17 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mbox.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual("incr", config.mbox.collectMode)
-      self.failUnlessEqual("none", config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual("incr", config.mbox.collectMode)
+      self.assertEqual("none", config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mbox)
-      self.failUnlessEqual("incr", config.mbox.collectMode)
-      self.failUnlessEqual("none", config.mbox.compressMode)
-      self.failUnlessEqual(mboxFiles, config.mbox.mboxFiles)
-      self.failUnlessEqual(mboxDirs, config.mbox.mboxDirs)
+      self.assertNotEqual(None, config.mbox)
+      self.assertEqual("incr", config.mbox.collectMode)
+      self.assertEqual("none", config.mbox.compressMode)
+      self.assertEqual(mboxFiles, config.mbox.mboxFiles)
+      self.assertEqual(mboxDirs, config.mbox.mboxDirs)
 
 
    ###################

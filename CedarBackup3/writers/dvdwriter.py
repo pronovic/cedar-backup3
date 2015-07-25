@@ -811,10 +811,10 @@ class DvdWriter(object):
       @raise IOError: If there is a problem calling C{mkisofs}.
       """
       fudgeFactor = convertSize(2500.0, UNIT_SECTORS, UNIT_BYTES)  # determined through experimentation
-      if len(entries.keys()) == 0:
+      if len(list(entries.keys())) == 0:
          raise ValueError("Must add at least one entry with addImageEntry().")
       image = IsoImage()
-      for path in entries.keys():
+      for path in list(entries.keys()):
          image.addEntry(path, entries[path], override=False, contentsOnly=True)
       estimatedSize = image.getEstimatedSize() + fudgeFactor
       return estimatedSize
@@ -977,7 +977,7 @@ class DvdWriter(object):
             args.append(mediaLabel)
          args.append("-r")    # Rock Ridge extensions with sane ownership and permissions
          args.append("-graft-points")
-         keys = entries.keys()
+         keys = list(entries.keys())
          keys.sort() # just so we get consistent results
          for key in keys:
             # Same syntax as when calling mkisofs in IsoImage

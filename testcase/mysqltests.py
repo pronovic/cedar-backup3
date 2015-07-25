@@ -162,244 +162,244 @@ class TestMysqlConfig(unittest.TestCase):
       Test constructor with no values filled in.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.user)
-      self.failUnlessEqual(None, mysql.password)
-      self.failUnlessEqual(None, mysql.compressMode)
-      self.failUnlessEqual(False, mysql.all)
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.user)
+      self.assertEqual(None, mysql.password)
+      self.assertEqual(None, mysql.compressMode)
+      self.assertEqual(False, mysql.all)
+      self.assertEqual(None, mysql.databases)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values, databases=None.
       """
       mysql = MysqlConfig("user", "password", "none", False, None)
-      self.failUnlessEqual("user", mysql.user)
-      self.failUnlessEqual("password", mysql.password)
-      self.failUnlessEqual("none", mysql.compressMode)
-      self.failUnlessEqual(False, mysql.all)
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual("user", mysql.user)
+      self.assertEqual("password", mysql.password)
+      self.assertEqual("none", mysql.compressMode)
+      self.assertEqual(False, mysql.all)
+      self.assertEqual(None, mysql.databases)
 
    def testConstructor_003(self):
       """
       Test constructor with all values filled in, with valid values, no databases.
       """
       mysql = MysqlConfig("user", "password", "none", True, [])
-      self.failUnlessEqual("user", mysql.user)
-      self.failUnlessEqual("password", mysql.password)
-      self.failUnlessEqual("none", mysql.compressMode)
-      self.failUnlessEqual(True, mysql.all)
-      self.failUnlessEqual([], mysql.databases)
+      self.assertEqual("user", mysql.user)
+      self.assertEqual("password", mysql.password)
+      self.assertEqual("none", mysql.compressMode)
+      self.assertEqual(True, mysql.all)
+      self.assertEqual([], mysql.databases)
 
    def testConstructor_004(self):
       """
       Test constructor with all values filled in, with valid values, with one database.
       """
       mysql = MysqlConfig("user", "password", "gzip", True,  [ "one", ])
-      self.failUnlessEqual("user", mysql.user)
-      self.failUnlessEqual("password", mysql.password)
-      self.failUnlessEqual("gzip", mysql.compressMode)
-      self.failUnlessEqual(True, mysql.all)
-      self.failUnlessEqual([ "one", ], mysql.databases)
+      self.assertEqual("user", mysql.user)
+      self.assertEqual("password", mysql.password)
+      self.assertEqual("gzip", mysql.compressMode)
+      self.assertEqual(True, mysql.all)
+      self.assertEqual([ "one", ], mysql.databases)
 
    def testConstructor_005(self):
       """
       Test constructor with all values filled in, with valid values, with multiple databases.
       """
       mysql = MysqlConfig("user", "password", "bzip2", True, [ "one", "two", ])
-      self.failUnlessEqual("user", mysql.user)
-      self.failUnlessEqual("password", mysql.password)
-      self.failUnlessEqual("bzip2", mysql.compressMode)
-      self.failUnlessEqual(True, mysql.all)
-      self.failUnlessEqual([ "one", "two", ], mysql.databases)
+      self.assertEqual("user", mysql.user)
+      self.assertEqual("password", mysql.password)
+      self.assertEqual("bzip2", mysql.compressMode)
+      self.assertEqual(True, mysql.all)
+      self.assertEqual([ "one", "two", ], mysql.databases)
 
    def testConstructor_006(self):
       """
       Test assignment of user attribute, None value.
       """
       mysql = MysqlConfig(user="user")
-      self.failUnlessEqual("user", mysql.user)
+      self.assertEqual("user", mysql.user)
       mysql.user = None
-      self.failUnlessEqual(None, mysql.user)
+      self.assertEqual(None, mysql.user)
 
    def testConstructor_007(self):
       """
       Test assignment of user attribute, valid value.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.user)
+      self.assertEqual(None, mysql.user)
       mysql.user = "user"
-      self.failUnlessEqual("user", mysql.user)
+      self.assertEqual("user", mysql.user)
 
    def testConstructor_008(self):
       """
       Test assignment of user attribute, invalid value (empty).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.user)
+      self.assertEqual(None, mysql.user)
       self.failUnlessAssignRaises(ValueError, mysql, "user", "")
-      self.failUnlessEqual(None, mysql.user)
+      self.assertEqual(None, mysql.user)
 
    def testConstructor_009(self):
       """
       Test assignment of password attribute, None value.
       """
       mysql = MysqlConfig(password="password")
-      self.failUnlessEqual("password", mysql.password)
+      self.assertEqual("password", mysql.password)
       mysql.password = None
-      self.failUnlessEqual(None, mysql.password)
+      self.assertEqual(None, mysql.password)
 
    def testConstructor_010(self):
       """
       Test assignment of password attribute, valid value.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.password)
+      self.assertEqual(None, mysql.password)
       mysql.password = "password"
-      self.failUnlessEqual("password", mysql.password)
+      self.assertEqual("password", mysql.password)
 
    def testConstructor_011(self):
       """
       Test assignment of password attribute, invalid value (empty).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.password)
+      self.assertEqual(None, mysql.password)
       self.failUnlessAssignRaises(ValueError, mysql, "password", "")
-      self.failUnlessEqual(None, mysql.password)
+      self.assertEqual(None, mysql.password)
 
    def testConstructor_012(self):
       """
       Test assignment of compressMode attribute, None value.
       """
       mysql = MysqlConfig(compressMode="none")
-      self.failUnlessEqual("none", mysql.compressMode)
+      self.assertEqual("none", mysql.compressMode)
       mysql.compressMode = None
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
 
    def testConstructor_013(self):
       """
       Test assignment of compressMode attribute, valid value.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
       mysql.compressMode = "none"
-      self.failUnlessEqual("none", mysql.compressMode)
+      self.assertEqual("none", mysql.compressMode)
       mysql.compressMode = "gzip"
-      self.failUnlessEqual("gzip", mysql.compressMode)
+      self.assertEqual("gzip", mysql.compressMode)
       mysql.compressMode = "bzip2"
-      self.failUnlessEqual("bzip2", mysql.compressMode)
+      self.assertEqual("bzip2", mysql.compressMode)
 
    def testConstructor_014(self):
       """
       Test assignment of compressMode attribute, invalid value (empty).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
       self.failUnlessAssignRaises(ValueError, mysql, "compressMode", "")
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
 
    def testConstructor_015(self):
       """
       Test assignment of compressMode attribute, invalid value (not in list).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
       self.failUnlessAssignRaises(ValueError, mysql, "compressMode", "bogus")
-      self.failUnlessEqual(None, mysql.compressMode)
+      self.assertEqual(None, mysql.compressMode)
 
    def testConstructor_016(self):
       """
       Test assignment of all attribute, None value.
       """
       mysql = MysqlConfig(all=True)
-      self.failUnlessEqual(True, mysql.all)
+      self.assertEqual(True, mysql.all)
       mysql.all = None
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
 
    def testConstructor_017(self):
       """
       Test assignment of all attribute, valid value (real boolean).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
       mysql.all = True
-      self.failUnlessEqual(True, mysql.all)
+      self.assertEqual(True, mysql.all)
       mysql.all = False
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
 
    def testConstructor_018(self):
       """
       Test assignment of all attribute, valid value (expression).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
       mysql.all = 0
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
       mysql.all = []
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
       mysql.all = None
-      self.failUnlessEqual(False, mysql.all)
+      self.assertEqual(False, mysql.all)
       mysql.all = ['a']
-      self.failUnlessEqual(True, mysql.all)
+      self.assertEqual(True, mysql.all)
       mysql.all = 3
-      self.failUnlessEqual(True, mysql.all)
+      self.assertEqual(True, mysql.all)
 
    def testConstructor_019(self):
       """
       Test assignment of databases attribute, None value.
       """
       mysql = MysqlConfig(databases=[])
-      self.failUnlessEqual([], mysql.databases)
+      self.assertEqual([], mysql.databases)
       mysql.databases = None
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
 
    def testConstructor_020(self):
       """
       Test assignment of databases attribute, [] value.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
       mysql.databases = []
-      self.failUnlessEqual([], mysql.databases)
+      self.assertEqual([], mysql.databases)
 
    def testConstructor_021(self):
       """
       Test assignment of databases attribute, single valid entry.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
       mysql.databases = ["/whatever", ]
-      self.failUnlessEqual(["/whatever", ], mysql.databases)
+      self.assertEqual(["/whatever", ], mysql.databases)
       mysql.databases.append("/stuff")
-      self.failUnlessEqual(["/whatever", "/stuff", ], mysql.databases)
+      self.assertEqual(["/whatever", "/stuff", ], mysql.databases)
 
    def testConstructor_022(self):
       """
       Test assignment of databases attribute, multiple valid entries.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
       mysql.databases = ["/whatever", "/stuff", ]
-      self.failUnlessEqual(["/whatever", "/stuff", ], mysql.databases)
+      self.assertEqual(["/whatever", "/stuff", ], mysql.databases)
       mysql.databases.append("/etc/X11")
-      self.failUnlessEqual(["/whatever", "/stuff", "/etc/X11", ], mysql.databases)
+      self.assertEqual(["/whatever", "/stuff", "/etc/X11", ], mysql.databases)
 
    def testConstructor_023(self):
       """
       Test assignment of databases attribute, single invalid entry (empty).
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
       self.failUnlessAssignRaises(ValueError, mysql, "databases", ["", ])
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
 
    def testConstructor_024(self):
       """
       Test assignment of databases attribute, mixed valid and invalid entries.
       """
       mysql = MysqlConfig()
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
       self.failUnlessAssignRaises(ValueError, mysql, "databases", ["good", "", "alsogood", ])
-      self.failUnlessEqual(None, mysql.databases)
+      self.assertEqual(None, mysql.databases)
 
 
    ############################
@@ -412,13 +412,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig()
-      self.failUnlessEqual(mysql1, mysql2)
-      self.failUnless(mysql1 == mysql2)
-      self.failUnless(not mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(mysql1 >= mysql2)
-      self.failUnless(not mysql1 != mysql2)
+      self.assertEqual(mysql1, mysql2)
+      self.assertTrue(mysql1 == mysql2)
+      self.assertTrue(not mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(mysql1 >= mysql2)
+      self.assertTrue(not mysql1 != mysql2)
 
    def testComparison_002(self):
       """
@@ -426,13 +426,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "gzip", True, None)
       mysql2 = MysqlConfig("user", "password", "gzip", True, None)
-      self.failUnlessEqual(mysql1, mysql2)
-      self.failUnless(mysql1 == mysql2)
-      self.failUnless(not mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(mysql1 >= mysql2)
-      self.failUnless(not mysql1 != mysql2)
+      self.assertEqual(mysql1, mysql2)
+      self.assertTrue(mysql1 == mysql2)
+      self.assertTrue(not mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(mysql1 >= mysql2)
+      self.assertTrue(not mysql1 != mysql2)
 
    def testComparison_003(self):
       """
@@ -440,13 +440,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "bzip2", True, [])
       mysql2 = MysqlConfig("user", "password", "bzip2", True, [])
-      self.failUnlessEqual(mysql1, mysql2)
-      self.failUnless(mysql1 == mysql2)
-      self.failUnless(not mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(mysql1 >= mysql2)
-      self.failUnless(not mysql1 != mysql2)
+      self.assertEqual(mysql1, mysql2)
+      self.assertTrue(mysql1 == mysql2)
+      self.assertTrue(not mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(mysql1 >= mysql2)
+      self.assertTrue(not mysql1 != mysql2)
 
    def testComparison_004(self):
       """
@@ -454,13 +454,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "none", True, [ "whatever", ])
       mysql2 = MysqlConfig("user", "password", "none", True, [ "whatever", ])
-      self.failUnlessEqual(mysql1, mysql2)
-      self.failUnless(mysql1 == mysql2)
-      self.failUnless(not mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(mysql1 >= mysql2)
-      self.failUnless(not mysql1 != mysql2)
+      self.assertEqual(mysql1, mysql2)
+      self.assertTrue(mysql1 == mysql2)
+      self.assertTrue(not mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(mysql1 >= mysql2)
+      self.assertTrue(not mysql1 != mysql2)
 
    def testComparison_005(self):
       """
@@ -468,13 +468,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(user="user")
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_006(self):
       """
@@ -482,13 +482,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user1", "password", "gzip", True, [ "whatever", ])
       mysql2 = MysqlConfig("user2", "password", "gzip", True, [ "whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_007(self):
       """
@@ -496,13 +496,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(password="password")
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_008(self):
       """
@@ -510,13 +510,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password1", "gzip", True, [ "whatever", ])
       mysql2 = MysqlConfig("user", "password2", "gzip", True, [ "whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_009(self):
       """
@@ -524,13 +524,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(compressMode="gzip")
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_010(self):
       """
@@ -538,13 +538,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "bzip2", True, [ "whatever", ])
       mysql2 = MysqlConfig("user", "password", "gzip", True, [ "whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_011(self):
       """
@@ -552,13 +552,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(all=True)
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_012(self):
       """
@@ -566,13 +566,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "gzip", False, [ "whatever", ])
       mysql2 = MysqlConfig("user", "password", "gzip", True, [ "whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_013(self):
       """
@@ -580,13 +580,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(databases=[])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_014(self):
       """
@@ -594,13 +594,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig()
       mysql2 = MysqlConfig(databases=["whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_015(self):
       """
@@ -608,13 +608,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "gzip", True, [ ])
       mysql2 = MysqlConfig("user", "password", "gzip", True, [ "whatever", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(mysql1 < mysql2)
-      self.failUnless(mysql1 <= mysql2)
-      self.failUnless(not mysql1 > mysql2)
-      self.failUnless(not mysql1 >= mysql2)
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(mysql1 < mysql2)
+      self.assertTrue(mysql1 <= mysql2)
+      self.assertTrue(not mysql1 > mysql2)
+      self.assertTrue(not mysql1 >= mysql2)
+      self.assertTrue(mysql1 != mysql2)
 
    def testComparison_016(self):
       """
@@ -622,13 +622,13 @@ class TestMysqlConfig(unittest.TestCase):
       """
       mysql1 = MysqlConfig("user", "password", "gzip", True, [ "whatever", ])
       mysql2 = MysqlConfig("user", "password", "gzip", True, [ "whatever", "bogus", ])
-      self.failIfEqual(mysql1, mysql2)
-      self.failUnless(not mysql1 == mysql2)
-      self.failUnless(not mysql1 < mysql2)     # note: different than standard due to unsorted list
-      self.failUnless(not mysql1 <= mysql2)    # note: different than standard due to unsorted list
-      self.failUnless(mysql1 > mysql2)         # note: different than standard due to unsorted list
-      self.failUnless(mysql1 >= mysql2)        # note: different than standard due to unsorted list
-      self.failUnless(mysql1 != mysql2)
+      self.assertNotEqual(mysql1, mysql2)
+      self.assertTrue(not mysql1 == mysql2)
+      self.assertTrue(not mysql1 < mysql2)     # note: different than standard due to unsorted list
+      self.assertTrue(not mysql1 <= mysql2)    # note: different than standard due to unsorted list
+      self.assertTrue(mysql1 > mysql2)         # note: different than standard due to unsorted list
+      self.assertTrue(mysql1 >= mysql2)        # note: different than standard due to unsorted list
+      self.assertTrue(mysql1 != mysql2)
 
 
 ########################
@@ -646,7 +646,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -679,7 +679,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -704,14 +704,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql)
 
    def testConstructor_003(self):
       """
@@ -719,7 +719,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["mysql.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -727,7 +727,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = None
-      self.failUnlessEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql)
 
    def testConstructor_005(self):
       """
@@ -735,7 +735,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = MysqlConfig()
-      self.failUnlessEqual(MysqlConfig(), config.mysql)
+      self.assertEqual(MysqlConfig(), config.mysql)
 
    def testConstructor_006(self):
       """
@@ -755,13 +755,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -773,13 +773,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.mysql = MysqlConfig()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -788,13 +788,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.mysql = MysqlConfig()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -806,13 +806,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.mysql = MysqlConfig(user="two")
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -825,7 +825,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -833,7 +833,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = MysqlConfig()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -857,7 +857,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = MysqlConfig("user", "password", "bzip2", True, ["whatever", ])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_006(self):
       """
@@ -865,7 +865,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = MysqlConfig("user", "password", "gzip", False, None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_007(self):
       """
@@ -873,7 +873,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.mysql = MysqlConfig("user", "password", "bzip2", False, [])
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_008(self):
       """
@@ -918,12 +918,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["mysql.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql)
 
    def testParse_003(self):
       """
@@ -932,19 +932,19 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mysql.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("none", config.mysql.compressMode)
-      self.failUnlessEqual(True, config.mysql.all)
-      self.failUnlessEqual(None, config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("none", config.mysql.compressMode)
+      self.assertEqual(True, config.mysql.all)
+      self.assertEqual(None, config.mysql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("none", config.mysql.compressMode)
-      self.failIfEqual(None, config.mysql.password)
-      self.failUnlessEqual(True, config.mysql.all)
-      self.failUnlessEqual(None, config.mysql.databases)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("none", config.mysql.compressMode)
+      self.assertNotEqual(None, config.mysql.password)
+      self.assertEqual(True, config.mysql.all)
+      self.assertEqual(None, config.mysql.databases)
 
    def testParse_004(self):
       """
@@ -953,19 +953,19 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mysql.conf.3"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("gzip", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("gzip", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database", ], config.mysql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("gzip", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("gzip", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database", ], config.mysql.databases)
 
    def testParse_005(self):
       """
@@ -974,19 +974,19 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mysql.conf.4"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("bzip2", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("bzip2", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database1", "database2", ], config.mysql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual("user", config.mysql.user)
-      self.failUnlessEqual("password", config.mysql.password)
-      self.failUnlessEqual("bzip2", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual("user", config.mysql.user)
+      self.assertEqual("password", config.mysql.password)
+      self.assertEqual("bzip2", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database1", "database2", ], config.mysql.databases)
 
    def testParse_006(self):
       """
@@ -995,19 +995,19 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["mysql.conf.5"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual(None, config.mysql.user)
-      self.failUnlessEqual(None, config.mysql.password)
-      self.failUnlessEqual("bzip2", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql.user)
+      self.assertEqual(None, config.mysql.password)
+      self.assertEqual("bzip2", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database1", "database2", ], config.mysql.databases)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.mysql)
-      self.failUnlessEqual(None, config.mysql.user)
-      self.failUnlessEqual(None, config.mysql.password)
-      self.failUnlessEqual("bzip2", config.mysql.compressMode)
-      self.failUnlessEqual(False, config.mysql.all)
-      self.failUnlessEqual(["database1", "database2", ], config.mysql.databases)
+      self.assertNotEqual(None, config.mysql)
+      self.assertEqual(None, config.mysql.user)
+      self.assertEqual(None, config.mysql.password)
+      self.assertEqual("bzip2", config.mysql.compressMode)
+      self.assertEqual(False, config.mysql.all)
+      self.assertEqual(["database1", "database2", ], config.mysql.databases)
 
 
    ###################

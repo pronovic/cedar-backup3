@@ -282,7 +282,7 @@ class RepositoryDir(object):
             saved = self._relativeExcludePaths
             self._relativeExcludePaths = UnorderedList()
             self._relativeExcludePaths.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._relativeExcludePaths = saved
             raise e
 
@@ -303,7 +303,7 @@ class RepositoryDir(object):
             saved = self._excludePatterns
             self._excludePatterns = RegexList()
             self._excludePatterns.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._excludePatterns = saved
             raise e
 
@@ -611,7 +611,7 @@ class SubversionConfig(object):
             saved = self._repositories
             self._repositories = ObjectTypeList(Repository, "Repository")
             self._repositories.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._repositories = saved
             raise e
 
@@ -634,7 +634,7 @@ class SubversionConfig(object):
             saved = self._repositoryDirs
             self._repositoryDirs = ObjectTypeList(RepositoryDir, "RepositoryDir")
             self._repositoryDirs.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._repositoryDirs = saved
             raise e
 

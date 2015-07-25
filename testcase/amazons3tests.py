@@ -145,176 +145,176 @@ class TestAmazonS3Config(unittest.TestCase):
       Test constructor with no values filled in.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(False, amazons3.warnMidnite)
-      self.failUnlessEqual(None, amazons3.s3Bucket)
-      self.failUnlessEqual(None, amazons3.encryptCommand)
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(False, amazons3.warnMidnite)
+      self.assertEqual(None, amazons3.s3Bucket)
+      self.assertEqual(None, amazons3.encryptCommand)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_002(self):
       """
       Test constructor with all values filled in, with valid values.
       """
       amazons3 = AmazonS3Config(True, "bucket", "encrypt", 1, 2)
-      self.failUnlessEqual(True, amazons3.warnMidnite)
-      self.failUnlessEqual("bucket", amazons3.s3Bucket)
-      self.failUnlessEqual("encrypt", amazons3.encryptCommand)
-      self.failUnlessEqual(1L, amazons3.fullBackupSizeLimit)
-      self.failUnlessEqual(2L, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(True, amazons3.warnMidnite)
+      self.assertEqual("bucket", amazons3.s3Bucket)
+      self.assertEqual("encrypt", amazons3.encryptCommand)
+      self.assertEqual(1, amazons3.fullBackupSizeLimit)
+      self.assertEqual(2, amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_003(self):
       """
       Test assignment of warnMidnite attribute, valid value (real boolean).
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
       amazons3.warnMidnite = True
-      self.failUnlessEqual(True, amazons3.warnMidnite)
+      self.assertEqual(True, amazons3.warnMidnite)
       amazons3.warnMidnite = False
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
 
    def testConstructor_004(self):
       """
       Test assignment of warnMidnite attribute, valid value (expression).
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
       amazons3.warnMidnite = 0
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
       amazons3.warnMidnite = []
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
       amazons3.warnMidnite = None
-      self.failUnlessEqual(False, amazons3.warnMidnite)
+      self.assertEqual(False, amazons3.warnMidnite)
       amazons3.warnMidnite = ['a']
-      self.failUnlessEqual(True, amazons3.warnMidnite)
+      self.assertEqual(True, amazons3.warnMidnite)
       amazons3.warnMidnite = 3
-      self.failUnlessEqual(True, amazons3.warnMidnite)
+      self.assertEqual(True, amazons3.warnMidnite)
 
    def testConstructor_005(self):
       """
       Test assignment of s3Bucket attribute, None value.
       """
       amazons3 = AmazonS3Config(s3Bucket="bucket")
-      self.failUnlessEqual("bucket", amazons3.s3Bucket)
+      self.assertEqual("bucket", amazons3.s3Bucket)
       amazons3.s3Bucket = None
-      self.failUnlessEqual(None, amazons3.s3Bucket)
+      self.assertEqual(None, amazons3.s3Bucket)
 
    def testConstructor_006(self):
       """
       Test assignment of s3Bucket attribute, valid value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.s3Bucket)
+      self.assertEqual(None, amazons3.s3Bucket)
       amazons3.s3Bucket = "bucket"
-      self.failUnlessEqual("bucket", amazons3.s3Bucket)
+      self.assertEqual("bucket", amazons3.s3Bucket)
 
    def testConstructor_007(self):
       """
       Test assignment of s3Bucket attribute, invalid value (empty).
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.s3Bucket)
+      self.assertEqual(None, amazons3.s3Bucket)
       self.failUnlessAssignRaises(ValueError, amazons3, "s3Bucket", "")
-      self.failUnlessEqual(None, amazons3.s3Bucket)
+      self.assertEqual(None, amazons3.s3Bucket)
 
    def testConstructor_008(self):
       """
       Test assignment of encryptCommand attribute, None value.
       """
       amazons3 = AmazonS3Config(encryptCommand="encrypt")
-      self.failUnlessEqual("encrypt", amazons3.encryptCommand)
+      self.assertEqual("encrypt", amazons3.encryptCommand)
       amazons3.encryptCommand = None
-      self.failUnlessEqual(None, amazons3.encryptCommand)
+      self.assertEqual(None, amazons3.encryptCommand)
 
    def testConstructor_009(self):
       """
       Test assignment of encryptCommand attribute, valid value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.encryptCommand)
+      self.assertEqual(None, amazons3.encryptCommand)
       amazons3.encryptCommand = "encrypt"
-      self.failUnlessEqual("encrypt", amazons3.encryptCommand)
+      self.assertEqual("encrypt", amazons3.encryptCommand)
 
    def testConstructor_010(self):
       """
       Test assignment of encryptCommand attribute, invalid value (empty).
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.encryptCommand)
+      self.assertEqual(None, amazons3.encryptCommand)
       self.failUnlessAssignRaises(ValueError, amazons3, "encryptCommand", "")
-      self.failUnlessEqual(None, amazons3.encryptCommand)
+      self.assertEqual(None, amazons3.encryptCommand)
 
    def testConstructor_011(self):
       """
       Test assignment of fullBackupSizeLimit attribute, None value.
       """
       amazons3 = AmazonS3Config(fullBackupSizeLimit=100)
-      self.failUnlessEqual(100L, amazons3.fullBackupSizeLimit)
+      self.assertEqual(100, amazons3.fullBackupSizeLimit)
       amazons3.fullBackupSizeLimit = None
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
 
    def testConstructor_012(self):
       """
       Test assignment of fullBackupSizeLimit attribute, valid long value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
-      amazons3.fullBackupSizeLimit = 7516192768L
-      self.failUnlessEqual(7516192768L, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      amazons3.fullBackupSizeLimit = 7516192768
+      self.assertEqual(7516192768, amazons3.fullBackupSizeLimit)
 
    def testConstructor_013(self):
       """
       Test assignment of fullBackupSizeLimit attribute, valid string value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
       amazons3.fullBackupSizeLimit = "7516192768"
-      self.failUnlessEqual(7516192768L, amazons3.fullBackupSizeLimit)
+      self.assertEqual(7516192768, amazons3.fullBackupSizeLimit)
 
    def testConstructor_014(self):
       """
       Test assignment of fullBackupSizeLimit attribute, invalid value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
       self.failUnlessAssignRaises(ValueError, amazons3, "fullBackupSizeLimit", "xxx")
-      self.failUnlessEqual(None, amazons3.fullBackupSizeLimit)
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
 
    def testConstructor_015(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, None value.
       """
       amazons3 = AmazonS3Config(incrementalBackupSizeLimit=100)
-      self.failUnlessEqual(100L, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(100, amazons3.incrementalBackupSizeLimit)
       amazons3.incrementalBackupSizeLimit = None
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_016(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, valid long value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
-      amazons3.incrementalBackupSizeLimit = 7516192768L
-      self.failUnlessEqual(7516192768L, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
+      amazons3.incrementalBackupSizeLimit = 7516192768
+      self.assertEqual(7516192768, amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_017(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, valid string value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
       amazons3.incrementalBackupSizeLimit = "7516192768"
-      self.failUnlessEqual(7516192768L, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(7516192768, amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_018(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, invalid value.
       """
       amazons3 = AmazonS3Config()
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
       self.failUnlessAssignRaises(ValueError, amazons3, "incrementalBackupSizeLimit", "xxx")
-      self.failUnlessEqual(None, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
 
 
    ############################
@@ -327,13 +327,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config()
       amazons32 = AmazonS3Config()
-      self.failUnlessEqual(amazons31, amazons32)
-      self.failUnless(amazons31 == amazons32)
-      self.failUnless(not amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(amazons31 >= amazons32)
-      self.failUnless(not amazons31 != amazons32)
+      self.assertEqual(amazons31, amazons32)
+      self.assertTrue(amazons31 == amazons32)
+      self.assertTrue(not amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(amazons31 >= amazons32)
+      self.assertTrue(not amazons31 != amazons32)
 
    def testComparison_002(self):
       """
@@ -341,13 +341,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config(True, "bucket", "encrypt", 1, 2)
       amazons32 = AmazonS3Config(True, "bucket", "encrypt", 1, 2)
-      self.failUnlessEqual(amazons31, amazons32)
-      self.failUnless(amazons31 == amazons32)
-      self.failUnless(not amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(amazons31 >= amazons32)
-      self.failUnless(not amazons31 != amazons32)
+      self.assertEqual(amazons31, amazons32)
+      self.assertTrue(amazons31 == amazons32)
+      self.assertTrue(not amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(amazons31 >= amazons32)
+      self.assertTrue(not amazons31 != amazons32)
 
    def testComparison_003(self):
       """
@@ -355,13 +355,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config(warnMidnite=False)
       amazons32 = AmazonS3Config(warnMidnite=True)
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_004(self):
       """
@@ -369,13 +369,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config()
       amazons32 = AmazonS3Config(s3Bucket="bucket")
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_005(self):
       """
@@ -383,13 +383,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config(s3Bucket="bucket1")
       amazons32 = AmazonS3Config(s3Bucket="bucket2")
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_006(self):
       """
@@ -397,13 +397,13 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config()
       amazons32 = AmazonS3Config(encryptCommand="encrypt")
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_007(self):
       """
@@ -411,69 +411,69 @@ class TestAmazonS3Config(unittest.TestCase):
       """
       amazons31 = AmazonS3Config(encryptCommand="encrypt1")
       amazons32 = AmazonS3Config(encryptCommand="encrypt2")
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_008(self):
       """
       Test comparison of two differing objects, fullBackupSizeLimit differs (one None).
       """
       amazons31 = AmazonS3Config()
-      amazons32 = AmazonS3Config(fullBackupSizeLimit=1L)
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      amazons32 = AmazonS3Config(fullBackupSizeLimit=1)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_009(self):
       """
       Test comparison of two differing objects, fullBackupSizeLimit differs.
       """
-      amazons31 = AmazonS3Config(fullBackupSizeLimit=1L)
-      amazons32 = AmazonS3Config(fullBackupSizeLimit=2L)
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      amazons31 = AmazonS3Config(fullBackupSizeLimit=1)
+      amazons32 = AmazonS3Config(fullBackupSizeLimit=2)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_010(self):
       """
       Test comparison of two differing objects, incrementalBackupSizeLimit differs (one None).
       """
       amazons31 = AmazonS3Config()
-      amazons32 = AmazonS3Config(incrementalBackupSizeLimit=1L)
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      amazons32 = AmazonS3Config(incrementalBackupSizeLimit=1)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
    def testComparison_011(self):
       """
       Test comparison of two differing objects, incrementalBackupSizeLimit differs.
       """
-      amazons31 = AmazonS3Config(incrementalBackupSizeLimit=1L)
-      amazons32 = AmazonS3Config(incrementalBackupSizeLimit=2L)
-      self.failIfEqual(amazons31, amazons32)
-      self.failUnless(not amazons31 == amazons32)
-      self.failUnless(amazons31 < amazons32)
-      self.failUnless(amazons31 <= amazons32)
-      self.failUnless(not amazons31 > amazons32)
-      self.failUnless(not amazons31 >= amazons32)
-      self.failUnless(amazons31 != amazons32)
+      amazons31 = AmazonS3Config(incrementalBackupSizeLimit=1)
+      amazons32 = AmazonS3Config(incrementalBackupSizeLimit=2)
+      self.assertNotEqual(amazons31, amazons32)
+      self.assertTrue(not amazons31 == amazons32)
+      self.assertTrue(amazons31 < amazons32)
+      self.assertTrue(amazons31 <= amazons32)
+      self.assertTrue(not amazons31 > amazons32)
+      self.assertTrue(not amazons31 >= amazons32)
+      self.assertTrue(amazons31 != amazons32)
 
 
 ########################
@@ -491,7 +491,7 @@ class TestLocalConfig(unittest.TestCase):
    def setUp(self):
       try:
          self.resources = findResources(RESOURCES, DATA_DIRS)
-      except Exception, e:
+      except Exception as e:
          self.fail(e)
 
    def tearDown(self):
@@ -524,7 +524,7 @@ class TestLocalConfig(unittest.TestCase):
       origConfig.addConfig(xmlDom, parentNode)
       xmlData = serializeDom(xmlDom)
       newConfig = LocalConfig(xmlData=xmlData, validate=False)
-      self.failUnlessEqual(origConfig, newConfig)
+      self.assertEqual(origConfig, newConfig)
 
 
    ############################
@@ -549,14 +549,14 @@ class TestLocalConfig(unittest.TestCase):
       Test empty constructor, validate=False.
       """
       config = LocalConfig(validate=False)
-      self.failUnlessEqual(None, config.amazons3)
+      self.assertEqual(None, config.amazons3)
 
    def testConstructor_002(self):
       """
       Test empty constructor, validate=True.
       """
       config = LocalConfig(validate=True)
-      self.failUnlessEqual(None, config.amazons3)
+      self.assertEqual(None, config.amazons3)
 
    def testConstructor_003(self):
       """
@@ -564,7 +564,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["amazons3.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
       """
@@ -572,7 +572,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.amazons3 = None
-      self.failUnlessEqual(None, config.amazons3)
+      self.assertEqual(None, config.amazons3)
 
    def testConstructor_005(self):
       """
@@ -580,7 +580,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.amazons3 = AmazonS3Config()
-      self.failUnlessEqual(AmazonS3Config(), config.amazons3)
+      self.assertEqual(AmazonS3Config(), config.amazons3)
 
    def testConstructor_006(self):
       """
@@ -600,13 +600,13 @@ class TestLocalConfig(unittest.TestCase):
       """
       config1 = LocalConfig()
       config2 = LocalConfig()
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_002(self):
       """
@@ -618,13 +618,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.amazons3 = AmazonS3Config()
 
-      self.failUnlessEqual(config1, config2)
-      self.failUnless(config1 == config2)
-      self.failUnless(not config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(config1 >= config2)
-      self.failUnless(not config1 != config2)
+      self.assertEqual(config1, config2)
+      self.assertTrue(config1 == config2)
+      self.assertTrue(not config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(config1 >= config2)
+      self.assertTrue(not config1 != config2)
 
    def testComparison_003(self):
       """
@@ -633,13 +633,13 @@ class TestLocalConfig(unittest.TestCase):
       config1 = LocalConfig()
       config2 = LocalConfig()
       config2.amazons3 = AmazonS3Config()
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
    def testComparison_004(self):
       """
@@ -651,13 +651,13 @@ class TestLocalConfig(unittest.TestCase):
       config2 = LocalConfig()
       config2.amazons3 = AmazonS3Config(True, "bucket2", "encrypt", 1, 2)
 
-      self.failIfEqual(config1, config2)
-      self.failUnless(not config1 == config2)
-      self.failUnless(config1 < config2)
-      self.failUnless(config1 <= config2)
-      self.failUnless(not config1 > config2)
-      self.failUnless(not config1 >= config2)
-      self.failUnless(config1 != config2)
+      self.assertNotEqual(config1, config2)
+      self.assertTrue(not config1 == config2)
+      self.assertTrue(config1 < config2)
+      self.assertTrue(config1 <= config2)
+      self.assertTrue(not config1 > config2)
+      self.assertTrue(not config1 >= config2)
+      self.assertTrue(config1 != config2)
 
 
    ######################
@@ -670,7 +670,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.amazons3 = None
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_002(self):
       """
@@ -678,7 +678,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.amazons3 = AmazonS3Config()
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_003(self):
       """
@@ -686,7 +686,7 @@ class TestLocalConfig(unittest.TestCase):
       """
       config = LocalConfig()
       config.amazons3 = AmazonS3Config(None)
-      self.failUnlessRaises(ValueError, config.validate)
+      self.assertRaises(ValueError, config.validate)
 
    def testValidate_005(self):
       """
@@ -707,12 +707,12 @@ class TestLocalConfig(unittest.TestCase):
       """
       path = self.resources["amazons3.conf.1"]
       contents = open(path).read()
-      self.failUnlessRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
-      self.failUnlessRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
+      self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failUnlessEqual(None, config.amazons3)
+      self.assertEqual(None, config.amazons3)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failUnlessEqual(None, config.amazons3)
+      self.assertEqual(None, config.amazons3)
 
    def testParse_002(self):
       """
@@ -721,19 +721,19 @@ class TestLocalConfig(unittest.TestCase):
       path = self.resources["amazons3.conf.2"]
       contents = open(path).read()
       config = LocalConfig(xmlPath=path, validate=False)
-      self.failIfEqual(None, config.amazons3)
-      self.failUnlessEqual(True, config.amazons3.warnMidnite)
-      self.failUnlessEqual("mybucket", config.amazons3.s3Bucket)
-      self.failUnlessEqual("encrypt", config.amazons3.encryptCommand)
-      self.failUnlessEqual(5368709120L, config.amazons3.fullBackupSizeLimit)
-      self.failUnlessEqual(2147483648, config.amazons3.incrementalBackupSizeLimit)
+      self.assertNotEqual(None, config.amazons3)
+      self.assertEqual(True, config.amazons3.warnMidnite)
+      self.assertEqual("mybucket", config.amazons3.s3Bucket)
+      self.assertEqual("encrypt", config.amazons3.encryptCommand)
+      self.assertEqual(5368709120, config.amazons3.fullBackupSizeLimit)
+      self.assertEqual(2147483648, config.amazons3.incrementalBackupSizeLimit)
       config = LocalConfig(xmlData=contents, validate=False)
-      self.failIfEqual(None, config.amazons3)
-      self.failUnlessEqual(True, config.amazons3.warnMidnite)
-      self.failUnlessEqual("mybucket", config.amazons3.s3Bucket)
-      self.failUnlessEqual("encrypt", config.amazons3.encryptCommand)
-      self.failUnlessEqual(5368709120L, config.amazons3.fullBackupSizeLimit)
-      self.failUnlessEqual(2147483648, config.amazons3.incrementalBackupSizeLimit)
+      self.assertNotEqual(None, config.amazons3)
+      self.assertEqual(True, config.amazons3.warnMidnite)
+      self.assertEqual("mybucket", config.amazons3.s3Bucket)
+      self.assertEqual("encrypt", config.amazons3.encryptCommand)
+      self.assertEqual(5368709120, config.amazons3.fullBackupSizeLimit)
+      self.assertEqual(2147483648, config.amazons3.incrementalBackupSizeLimit)
 
 
    ###################

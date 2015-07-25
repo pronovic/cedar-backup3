@@ -700,9 +700,9 @@ class FilesystemList(list):
       """Normalizes the list, ensuring that each entry is unique."""
       orig = len(self)
       self.sort()
-      dups = filter(lambda x, self=self: self[x] == self[x+1], range(0, len(self) - 1))
-      items = map(lambda x, self=self: self[x], dups)
-      map(self.remove, items)
+      dups = list(filter(lambda x, self=self: self[x] == self[x+1], list(range(0, len(self) - 1))))
+      items = list(map(lambda x, self=self: self[x], dups))
+      list(map(self.remove, items))
       new = len(self)
       logger.debug("Completed normalizing list; removed %d items (%d originally, %d now)." % (new-orig, orig, new))
 
@@ -1115,23 +1115,23 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
                   tar.add(entry, arcname=os.path.basename(entry), recursive=False)
                else:
                   tar.add(entry, recursive=False)
-            except tarfile.TarError, e:
+            except tarfile.TarError as e:
                if not ignore:
                   raise e
                logger.info("Unable to add file [%s]; going on anyway." % entry)
-            except OSError, e:
+            except OSError as e:
                if not ignore:
                   raise tarfile.TarError(e)
                logger.info("Unable to add file [%s]; going on anyway." % entry)
          tar.close()
-      except tarfile.ReadError, e:
+      except tarfile.ReadError as e:
          try: tar.close()
          except: pass
          if os.path.exists(path): 
             try: os.remove(path) 
             except: pass
          raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
-      except tarfile.TarError, e:
+      except tarfile.TarError as e:
          try: tar.close()
          except: pass
          if os.path.exists(path): 
@@ -1196,30 +1196,30 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
                captured[entry] = table[entry]
             else:
                table[entry] = None
-         for entry in digestMap.keys():
-            if table.has_key(entry):
+         for entry in list(digestMap.keys()):
+            if entry in table:
                if table[entry] is not None:  # equivalent to file/link check in other case
                   digest = table[entry]
                   if digest == digestMap[entry]:
                      removed += 1
                      del table[entry]
                      logger.debug("Discarded unchanged file [%s]." % entry)
-         self[:] = table.keys()
+         self[:] = list(table.keys())
          return (removed, captured)
       else:
          removed = 0
          table = {}
          for entry in self:
             table[entry] = None
-         for entry in digestMap.keys():
-            if table.has_key(entry):
+         for entry in list(digestMap.keys()):
+            if entry in table:
                if os.path.isfile(entry) and not os.path.islink(entry):
                   digest = BackupFileList._generateDigest(entry)
                   if digest == digestMap[entry]:
                      removed += 1
                      del table[entry]
                      logger.debug("Discarded unchanged file [%s]." % entry)
-         self[:] = table.keys()
+         self[:] = list(table.keys())
          return removed
 
 
@@ -1479,7 +1479,7 @@ def compareContents(path1, path2, verbose=False):
       path2List.addDirContents(path2)
       path2Digest = path2List.generateDigestMap(stripPrefix=normalizeDir(path2))
       compareDigestMaps(path1Digest, path2Digest, verbose)
-   except IOError, e:
+   except IOError as e:
       logger.error("I/O error encountered during consistency check.")
       raise e
 
@@ -1502,8 +1502,8 @@ def compareDigestMaps(digest1, digest2, verbose=False):
       if digest1 != digest2:
          raise ValueError("Consistency check failed.")
    else:
-      list1 = UnorderedList(digest1.keys())
-      list2 = UnorderedList(digest2.keys())
+      list1 = UnorderedList(list(digest1.keys()))
+      list2 = UnorderedList(list(digest2.keys()))
       if list1 != list2:
          raise ValueError("Directories contain a different set of files.")
       for key in list1:

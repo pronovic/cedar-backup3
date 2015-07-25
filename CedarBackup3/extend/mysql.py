@@ -273,9 +273,9 @@ class MysqlConfig(object):
                raise ValueError("Each database must be a non-empty string.")
          try:
             saved = self._databases
-            self._databases = ObjectTypeList(basestring, "string")
+            self._databases = ObjectTypeList(str, "string")
             self._databases.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._databases = saved
             raise e
 

@@ -100,7 +100,7 @@ import sys
 import os
 import string  # pylint: disable=W0402
 import random
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 #######################################################################
@@ -115,18 +115,18 @@ def usage():
    """
    Prints out program usage information.
    """
-   print ""
-   print "Usage: %s <create-dir> <config-file>" % os.path.basename(sys.argv[0])
-   print ""
-   print "Creates a directory tree within <create-dir> based on the"
-   print "configuration within <config-file>.  The directory tree will"
-   print "contain a random number of directories and files of various"
-   print "sizes."
-   print ""
-   print "The <config-file> is a Windows-style INI file that can be"
-   print "parsed by the Python ConfigParser functionality.  For an"
-   print "example, see internal comments in this Python script."
-   print ""
+   print("")
+   print(("Usage: %s <create-dir> <config-file>" % os.path.basename(sys.argv[0])))
+   print("")
+   print("Creates a directory tree within <create-dir> based on the")
+   print("configuration within <config-file>.  The directory tree will")
+   print("contain a random number of directories and files of various")
+   print("sizes.")
+   print("")
+   print("The <config-file> is a Windows-style INI file that can be")
+   print("parsed by the Python ConfigParser functionality.  For an")
+   print("example, see internal comments in this Python script.")
+   print("")
 
 
 ########################
@@ -154,7 +154,7 @@ def createfile(config, filepath):
    characterSet = string.letters + string.digits + "\n"
    filesize = random.randint(config['minsize'], config['maxsize'])
    fp = open(filepath, "w")
-   fp.write("".join([random.choice(characterSet) for i in xrange(1, filesize)]))
+   fp.write("".join([random.choice(characterSet) for i in range(1, filesize)]))
    fp.write("\n")
    fp.close()
    return filesize
@@ -207,7 +207,7 @@ def filldir(config, basedir, depth):
       itemlist.append(dirname)
       os.mkdir(dirname)
       filldir(config, dirname, depth+1)
-      print "Created dir  [%s]." % dirname
+      print(("Created dir  [%s]." % dirname))
 
    # Create each of the files
    filecount = random.randint(config['minfiles'], config['maxfiles'])
@@ -215,7 +215,7 @@ def filldir(config, basedir, depth):
       filename = os.path.join(basedir, "%s%03d" % (config['fileprefix'], fileindex))
       itemlist.append(filename)
       size = createfile(config, filename)
-      print "Created file [%s] with size [%d] bytes." % (filename, size)
+      print(("Created file [%s] with size [%d] bytes." % (filename, size)))
 
    # Create each of the links, only as many as we have things to link to
    linkcount = random.randint(config['minlinks'], config['maxlinks'])
@@ -228,7 +228,7 @@ def filldir(config, basedir, depth):
       linkindex += 1
       linkname = os.path.join(basedir, "%s%03d" % (config['linkprefix'], linkindex))
       os.symlink(os.path.basename(linkitem), linkname)
-      print "Created link [%s -> %s]." % (linkname, os.path.basename(linkitem))
+      print(("Created link [%s -> %s]." % (linkname, os.path.basename(linkitem))))
 
 
 #########################
@@ -298,24 +298,24 @@ def main():
    # Parse configuration   
    try:
       config = parseconfig(configfile)
-   except Exception, e:
-      print "Unable to parse configuration file: %s" % e
+   except Exception as e:
+      print(("Unable to parse configuration file: %s" % e))
       sys.exit(2)
 
    # Validate the base directory
    if os.path.exists(basedir):
-      print "Path [%s] already exists; aborting." % basedir
+      print(("Path [%s] already exists; aborting." % basedir))
       sys.exit(2)
 
    # Create the tree (this is a recursive call)
    try:
       os.mkdir(basedir)
       filldir(config, basedir, 1)
-   except Exception, e:
-      print "Error filling directory: %s" % e
+   except Exception as e:
+      print(("Error filling directory: %s" % e))
 
    # Print a closing message
-   print "Completed with no errors."
+   print("Completed with no errors.")
       
 
 ########################################################################

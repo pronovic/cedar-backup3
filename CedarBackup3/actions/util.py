@@ -178,7 +178,7 @@ def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
    try:
       open(filename, "w").write("")
       changeOwnership(filename, backupUser, backupGroup)
-   except Exception, e:
+   except Exception as e:
       logger.error("Error writing [%s]: %s" % (filename, e))
       raise e
 

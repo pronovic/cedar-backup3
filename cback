@@ -24,9 +24,9 @@ Implements Cedar Backup cback script.
 try:
    import sys
    from CedarBackup3.cli import cli
-except ImportError, e:
-   print "Failed to import Python modules: %s" % e
-   print "Are you running a proper version of Python?"
+except ImportError as e:
+   print("Failed to import Python modules: %s" % e)
+   print("Are you running a proper version of Python?")
    sys.exit(1)
 
 result = cli()

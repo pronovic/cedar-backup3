@@ -68,8 +68,7 @@ import sys
 import re
 import logging
 import codecs
-from types import UnicodeType
-from StringIO import StringIO
+from io import StringIO
 
 # XML-related modules
 from xml.parsers.expat import ExpatError
@@ -104,7 +103,7 @@ def createInputDom(xmlData, name="cb_config"):
       xmlDom = parseString(xmlData)
       parentNode = readFirstChild(xmlDom, name)
       return (xmlDom, parentNode)
-   except (IOError, ExpatError), e:
+   except (IOError, ExpatError) as e:
       raise ValueError("Unable to parse XML document: %s" % e)
 
 def createOutputDom(name="cb_config"):
@@ -263,7 +262,7 @@ def readLong(parent, name):
    if result is None:
       return None
    else:
-      return long(result)
+      return int(result)
 
 def readFloat(parent, name):
    """
@@ -551,7 +550,7 @@ class Serializer(object):
       return
 
    def _visitNamedNodeMap(self, node):
-      for item in node.values():
+      for item in list(node.values()):
          self._visit(item)
       return
 
@@ -581,7 +580,7 @@ class Serializer(object):
    def _visitElement(self, node):
       self._tryIndent()
       self._write('<%s' % node.tagName)
-      for attr in node.attributes.values():
+      for attr in list(node.attributes.values()):
          self._visitAttr(attr)
       if len(node.childNodes):
          self._write('>')
@@ -680,16 +679,8 @@ class Serializer(object):
       return
 
 def _encodeText(text, encoding):
-   """
-   @copyright: This code, prior to customization, was part of the PyXML
-   codebase, and before that was part of the 4DOM suite developed by
-   Fourthought, Inc.  It its original form, it was attributed to Martin v.
-   Löwis and was Copyright (c) 2000 Fourthought Inc, USA; All Rights Reserved.
-   """
-   encoder = codecs.lookup(encoding)[0] # encode,decode,reader,writer
-   if type(text) is not UnicodeType:
-      text = unicode(text, "utf-8")
-   return encoder(text)[0] # result,size
+   """Encodes the passed-in text as UTF-8."""
+   return text.encode("utf-8")
 
 def _translateCDATAAttr(characters):
    """

@@ -408,7 +408,7 @@ class MboxDir(object):
             saved = self._relativeExcludePaths
             self._relativeExcludePaths = UnorderedList()
             self._relativeExcludePaths.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._relativeExcludePaths = saved
             raise e
 
@@ -429,7 +429,7 @@ class MboxDir(object):
             saved = self._excludePatterns
             self._excludePatterns = RegexList()
             self._excludePatterns.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._excludePatterns = saved
             raise e
 
@@ -589,7 +589,7 @@ class MboxConfig(object):
             saved = self._mboxFiles
             self._mboxFiles = ObjectTypeList(MboxFile, "MboxFile")
             self._mboxFiles.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._mboxFiles = saved
             raise e
 
@@ -612,7 +612,7 @@ class MboxConfig(object):
             saved = self._mboxDirs
             self._mboxDirs = ObjectTypeList(MboxDir, "MboxDir")
             self._mboxDirs.extend(value)
-         except Exception, e:
+         except Exception as e:
             self._mboxDirs = saved
             raise e
 

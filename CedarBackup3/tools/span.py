@@ -144,7 +144,7 @@ def cli():
    @return: Error code as described above.
    """
    try:
-      if map(int, [sys.version_info[0], sys.version_info[1]]) < [2, 5]:
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
          sys.stderr.write("Python version 3.4 or greater required.\n")
          return 1
    except:
@@ -154,7 +154,7 @@ def cli():
 
    try:
       options = SpanOptions(argumentList=sys.argv[1:])
-   except Exception, e:
+   except Exception as e:
       _usage()
       sys.stderr.write(" *** Error: %s\n" % e)
       return 2
@@ -171,7 +171,7 @@ def cli():
 
    try:
       logfile = setupLogging(options)
-   except Exception, e:
+   except Exception as e:
       sys.stderr.write("Error setting up logging: %s\n" % e)
       return 3
 
@@ -190,7 +190,7 @@ def cli():
       logger.info("Configuration path is [%s]" % configPath)
       config = Config(xmlPath=configPath)
       setupPathResolver(config)
-   except Exception, e:
+   except Exception as e:
       logger.error("Error reading or handling configuration: %s" % e)
       logger.info("Cedar Backup 'span' utility run completed with status 4.")
       return 4
@@ -204,7 +204,7 @@ def cli():
          logger.error("Backup interrupted.")
          logger.info("Cedar Backup 'span' utility run completed with status 5.")
          return 5
-      except Exception, e:
+      except Exception as e:
          logger.error("Error executing backup: %s" % e)
          logger.info("Cedar Backup 'span' utility run completed with status 6.")
          return 6
@@ -307,136 +307,136 @@ def _executeAction(options, config):
 
    @raise Exception: Under many generic error conditions
    """
-   print ""
-   print "================================================"
-   print "           Cedar Backup 'span' tool"
-   print "================================================"
-   print ""
-   print "This the Cedar Backup span tool.  It is used to split up staging"
-   print "data when that staging data does not fit onto a single disc."
-   print ""
-   print "This utility operates using Cedar Backup configuration.  Configuration"
-   print "specifies which staging directory to look at and which writer device"
-   print "and media type to use."
-   print ""
+   print("")
+   print("================================================")
+   print("           Cedar Backup 'span' tool")
+   print("================================================")
+   print("")
+   print("This the Cedar Backup span tool.  It is used to split up staging")
+   print("data when that staging data does not fit onto a single disc.")
+   print("")
+   print("This utility operates using Cedar Backup configuration.  Configuration")
+   print("specifies which staging directory to look at and which writer device")
+   print("and media type to use.")
+   print("")
    if not _getYesNoAnswer("Continue?", default="Y"):
       return
-   print "==="
+   print("===")
 
-   print ""
-   print "Cedar Backup store configuration looks like this:"
-   print ""
-   print "   Source Directory...: %s" % config.store.sourceDir
-   print "   Media Type.........: %s" % config.store.mediaType
-   print "   Device Type........: %s" % config.store.deviceType
-   print "   Device Path........: %s" % config.store.devicePath
-   print "   Device SCSI ID.....: %s" % config.store.deviceScsiId
-   print "   Drive Speed........: %s" % config.store.driveSpeed
-   print "   Check Data Flag....: %s" % config.store.checkData
-   print "   No Eject Flag......: %s" % config.store.noEject
-   print ""
+   print("")
+   print("Cedar Backup store configuration looks like this:")
+   print("")
+   print("   Source Directory...: %s" % config.store.sourceDir)
+   print("   Media Type.........: %s" % config.store.mediaType)
+   print("   Device Type........: %s" % config.store.deviceType)
+   print("   Device Path........: %s" % config.store.devicePath)
+   print("   Device SCSI ID.....: %s" % config.store.deviceScsiId)
+   print("   Drive Speed........: %s" % config.store.driveSpeed)
+   print("   Check Data Flag....: %s" % config.store.checkData)
+   print("   No Eject Flag......: %s" % config.store.noEject)
+   print("")
    if not _getYesNoAnswer("Is this OK?", default="Y"):
       return
-   print "==="
+   print("===")
 
    (writer, mediaCapacity) = _getWriter(config)
 
-   print ""
-   print "Please wait, indexing the source directory (this may take a while)..."
+   print("")
+   print("Please wait, indexing the source directory (this may take a while)...")
    (dailyDirs, fileList) = _findDailyDirs(config.store.sourceDir)
-   print "==="
+   print("===")
 
-   print ""
-   print "The following daily staging directories have not yet been written to disc:"
-   print ""
+   print("")
+   print("The following daily staging directories have not yet been written to disc:")
+   print("")
    for dailyDir in dailyDirs:
-      print "   %s" % dailyDir
+      print("   %s" % dailyDir)
 
    totalSize = fileList.totalSize()
-   print ""
-   print "The total size of the data in these directories is %s." % displayBytes(totalSize)
-   print ""
+   print("")
+   print("The total size of the data in these directories is %s." % displayBytes(totalSize))
+   print("")
    if not _getYesNoAnswer("Continue?", default="Y"):
       return
-   print "==="
+   print("===")
 
-   print ""
-   print "Based on configuration, the capacity of your media is %s." % displayBytes(mediaCapacity)
+   print("")
+   print("Based on configuration, the capacity of your media is %s." % displayBytes(mediaCapacity))
 
-   print ""
-   print "Since estimates are not perfect and there is some uncertainly in"
-   print "media capacity calculations, it is good to have a \"cushion\","
-   print "a percentage of capacity to set aside.  The cushion reduces the"
-   print "capacity of your media, so a 1.5% cushion leaves 98.5% remaining."
-   print ""
+   print("")
+   print("Since estimates are not perfect and there is some uncertainly in")
+   print("media capacity calculations, it is good to have a \"cushion\",")
+   print("a percentage of capacity to set aside.  The cushion reduces the")
+   print("capacity of your media, so a 1.5% cushion leaves 98.5% remaining.")
+   print("")
    cushion = _getFloat("What cushion percentage?", default=4.5)
-   print "==="
+   print("===")
 
    realCapacity = ((100.0 - cushion)/100.0) * mediaCapacity
    minimumDiscs = (totalSize/realCapacity) + 1
-   print ""
-   print "The real capacity, taking into account the %.2f%% cushion, is %s." % (cushion, displayBytes(realCapacity))
-   print "It will take at least %d disc(s) to store your %s of data." % (minimumDiscs, displayBytes(totalSize))
-   print ""
+   print("")
+   print("The real capacity, taking into account the %.2f%% cushion, is %s." % (cushion, displayBytes(realCapacity)))
+   print("It will take at least %d disc(s) to store your %s of data." % (minimumDiscs, displayBytes(totalSize)))
+   print("")
    if not _getYesNoAnswer("Continue?", default="Y"):
       return
-   print "==="
+   print("===")
    
    happy = False
    while not happy:
-      print ""
-      print "Which algorithm do you want to use to span your data across"
-      print "multiple discs?"
-      print ""
-      print "The following algorithms are available:"
-      print ""
-      print "   first....: The \"first-fit\" algorithm"
-      print "   best.....: The \"best-fit\" algorithm"
-      print "   worst....: The \"worst-fit\" algorithm"
-      print "   alternate: The \"alternate-fit\" algorithm"
-      print ""
-      print "If you don't like the results you will have a chance to try a"
-      print "different one later."
-      print ""
+      print("")
+      print("Which algorithm do you want to use to span your data across")
+      print("multiple discs?")
+      print("")
+      print("The following algorithms are available:")
+      print("")
+      print("   first....: The \"first-fit\" algorithm")
+      print("   best.....: The \"best-fit\" algorithm")
+      print("   worst....: The \"worst-fit\" algorithm")
+      print("   alternate: The \"alternate-fit\" algorithm")
+      print("")
+      print("If you don't like the results you will have a chance to try a")
+      print("different one later.")
+      print("")
       algorithm = _getChoiceAnswer("Which algorithm?", "worst", [ "first", "best", "worst", "alternate", ])
-      print "==="
+      print("===")
 
-      print ""
-      print "Please wait, generating file lists (this may take a while)..."
+      print("")
+      print("Please wait, generating file lists (this may take a while)...")
       spanSet = fileList.generateSpan(capacity=realCapacity, algorithm="%s_fit" % algorithm)
-      print "==="
+      print("===")
 
-      print ""
-      print "Using the \"%s-fit\" algorithm, Cedar Backup can split your data" % algorithm
-      print "into %d discs." % len(spanSet)
-      print ""
+      print("")
+      print("Using the \"%s-fit\" algorithm, Cedar Backup can split your data" % algorithm)
+      print("into %d discs." % len(spanSet))
+      print("")
       counter = 0
       for item in spanSet:
          counter += 1
-         print "Disc %d: %d files, %s, %.2f%% utilization" % (counter, len(item.fileList), 
-                                                              displayBytes(item.size), item.utilization)
-      print ""
+         print("Disc %d: %d files, %s, %.2f%% utilization" % (counter, len(item.fileList), 
+                                                              displayBytes(item.size), item.utilization))
+      print("")
       if _getYesNoAnswer("Accept this solution?", default="Y"):
          happy = True
-      print "==="
+      print("===")
 
    counter = 0
    for spanItem in spanSet:
       counter += 1
       if counter == 1:
-         print ""
+         print("")
          _getReturn("Please place the first disc in your backup device.\nPress return when ready.")
-         print "==="
+         print("===")
       else:
-         print ""
+         print("")
          _getReturn("Please replace the disc in your backup device.\nPress return when ready.")
-         print "==="
+         print("===")
       _writeDisc(config, writer, spanItem)
 
    _writeStoreIndicator(config, dailyDirs)
 
-   print ""
-   print "Completed writing all discs."
+   print("")
+   print("Completed writing all discs.")
 
 
 ############################
@@ -512,12 +512,12 @@ def _writeDisc(config, writer, spanItem):
    @param writer: Writer to use
    @param spanItem: Span item to write
    """
-   print ""
+   print("")
    _discInitializeImage(config, writer, spanItem)
    _discWriteImage(config, writer)
    _discConsistencyCheck(config, writer, spanItem)
-   print "Write process is complete."
-   print "==="
+   print("Write process is complete.")
+   print("===")
 
 def _discInitializeImage(config, writer, spanItem):
    """
@@ -529,21 +529,21 @@ def _discInitializeImage(config, writer, spanItem):
    complete = False
    while not complete:
       try:
-         print "Initializing image..."
+         print("Initializing image...")
          writer.initializeImage(newDisc=True, tmpdir=config.options.workingDir)
          for path in spanItem.fileList:
             graftPoint = os.path.dirname(path.replace(config.store.sourceDir, "", 1))
             writer.addImageEntry(path, graftPoint)
          complete = True
-      except KeyboardInterrupt, e:
+      except KeyboardInterrupt as e:
          raise e
-      except Exception, e:
+      except Exception as e:
          logger.error("Failed to initialize image: %s" % e)
          if not _getYesNoAnswer("Retry initialization step?", default="Y"):
             raise e
-         print "Ok, attempting retry."
-         print "==="
-   print "Completed initializing image."
+         print("Ok, attempting retry.")
+         print("===")
+   print("Completed initializing image.")
 
 def _discWriteImage(config, writer):
    """
@@ -554,19 +554,19 @@ def _discWriteImage(config, writer):
    complete = False
    while not complete:
       try:
-         print "Writing image to disc..."
+         print("Writing image to disc...")
          writer.writeImage()
          complete = True
-      except KeyboardInterrupt, e:
+      except KeyboardInterrupt as e:
          raise e
-      except Exception, e:
+      except Exception as e:
          logger.error("Failed to write image: %s" % e)
          if not _getYesNoAnswer("Retry this step?", default="Y"):
             raise e
-         print "Ok, attempting retry."
+         print("Ok, attempting retry.")
          _getReturn("Please replace media if needed.\nPress return when ready.")
-         print "==="
-   print "Completed writing image."
+         print("===")
+   print("Completed writing image.")
 
 def _discConsistencyCheck(config, writer, spanItem):
    """
@@ -579,24 +579,24 @@ def _discConsistencyCheck(config, writer, spanItem):
       complete = False
       while not complete:
          try:
-            print "Running consistency check..."
+            print("Running consistency check...")
             _consistencyCheck(config, spanItem.fileList)
             complete = True
-         except KeyboardInterrupt, e:
+         except KeyboardInterrupt as e:
             raise e
-         except Exception, e:
+         except Exception as e:
             logger.error("Consistency check failed: %s" % e)
             if not _getYesNoAnswer("Retry the consistency check?", default="Y"):
                raise e
             if _getYesNoAnswer("Rewrite the disc first?", default="N"):
-               print "Ok, attempting retry."
+               print("Ok, attempting retry.")
                _getReturn("Please replace the disc in your backup device.\nPress return when ready.")
-               print "==="
+               print("===")
                _discWriteImage(config, writer)
             else:
-               print "Ok, attempting retry."
-               print "==="
-      print "Completed consistency check."
+               print("Ok, attempting retry.")
+               print("===")
+      print("Completed consistency check.")
 
 
 ###############################
@@ -656,7 +656,7 @@ def _getYesNoAnswer(prompt, default):
       prompt = "%s [Y/n]: " % prompt
    else:
       prompt = "%s [y/N]: " % prompt
-   answer = raw_input(prompt)
+   answer = input(prompt)
    if answer in [ None, "", ]:
       answer = default
    if answer[0] in [ "Y", "y", ]:
@@ -676,12 +676,12 @@ def _getChoiceAnswer(prompt, default, validChoices):
    @return: Valid choice from user.
    """
    prompt = "%s [%s]: " % (prompt, default)
-   answer = raw_input(prompt)
+   answer = input(prompt)
    if answer in [ None, "", ]:
       answer = default
    while answer not in validChoices:
-      print "Choice must be one of %s" % validChoices
-      answer = raw_input(prompt)
+      print("Choice must be one of %s" % validChoices)
+      answer = input(prompt)
    return answer
 
 def _getFloat(prompt, default):
@@ -696,21 +696,21 @@ def _getFloat(prompt, default):
    """
    prompt = "%s [%.2f]: " % (prompt, default)
    while True:
-      answer = raw_input(prompt)
+      answer = input(prompt)
       if answer in [ None, "" ]:
          return default
       else:
          try:
             return float(answer)
          except ValueError:
-            print "Enter a floating point number."
+            print("Enter a floating point number.")
 
 def _getReturn(prompt):
    """
    Get a return key from the user.
    @param prompt: Prompt to show.
    """
-   raw_input(prompt)
+   input(prompt)
 
 
 #########################################################################
