@@ -237,7 +237,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -382,7 +382,7 @@ class LocalConfig(object):
    def _parseEncrypt(parent):
       """
       Parses an encrypt configuration section.
-      
+
       We read the following individual fields::
 
          encryptMode    //cb_config/encrypt/encrypt_mode
@@ -436,7 +436,7 @@ def executeAction(configPath, options, config):
       _confirmGpgRecipient(local.encrypt.encryptTarget)
    dailyDirs = findDailyDirs(config.stage.targetDir, ENCRYPT_INDICATOR)
    for dailyDir in dailyDirs:
-      _encryptDailyDir(dailyDir, local.encrypt.encryptMode, local.encrypt.encryptTarget, 
+      _encryptDailyDir(dailyDir, local.encrypt.encryptMode, local.encrypt.encryptTarget,
                        config.options.backupUser, config.options.backupGroup)
       writeIndicatorFile(dailyDir, ENCRYPT_INDICATOR, config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the encrypt extended action successfully.")
@@ -504,10 +504,10 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
    changeOwnership(encryptedPath, backupUser, backupGroup)
    if removeSource:
       if os.path.exists(sourcePath):
-         try: 
+         try:
             os.remove(sourcePath)
             logger.debug("Completed removing old file [%s]." % sourcePath)
-         except: 
+         except:
             raise IOError("Failed to remove file [%s] after encrypting it." % (sourcePath))
    return encryptedPath
 
@@ -526,7 +526,7 @@ def _encryptFileWithGpg(sourcePath, recipient):
 
    @param sourcePath: Absolute path of file to be encrypted.
    @param recipient: Recipient name to be passed to GPG's C{"-r"} option
-   
+
    @return: Path to the newly-created encrypted file.
 
    @raise IOError: If there is a problem encrypting the file.
@@ -541,7 +541,7 @@ def _encryptFileWithGpg(sourcePath, recipient):
       raise IOError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
    logger.debug("Completed encrypting file [%s] to [%s]." % (sourcePath, encryptedPath))
    return encryptedPath
-   
+
 
 #################################
 # _confirmGpgRecpient() function

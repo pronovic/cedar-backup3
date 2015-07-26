@@ -86,7 +86,7 @@ def executeStage(configPath, options, config):
    gets a stage indicator in its daily staging directory.  The store process
    uses the master's stage indicator to decide whether a directory is ready to
    be stored.  Currently, nothing uses the indicator at each peer, and it
-   exists for reference only. 
+   exists for reference only.
 
    @param configPath: Path to configuration file on disk.
    @type configPath: String representing a path on disk.
@@ -148,7 +148,7 @@ def executeStage(configPath, options, config):
 def _createStagingDirs(config, dailyDir, peers):
    """
    Creates staging directories as required.
-   
+
    The main staging directory is the passed in daily directory, something like
    C{staging/2002/05/23}.  Then, individual peers get their own directories,
    i.e. C{staging/2002/05/23/host}.
@@ -183,7 +183,7 @@ def _createStagingDirs(config, dailyDir, peers):
          except Exception as e:
             raise Exception("Unable to create staging directory: %s" % e)
    return mapping
-      
+
 
 ########################################################################
 # Private attribute "getter" functions
@@ -206,7 +206,7 @@ def _getIgnoreFailuresFlag(options, config, peer):
       return False
    elif peer.ignoreFailureMode == "all":
       return True
-   else: 
+   else:
       if options.full or isStartOfWeek(config.options.startingDay):
          return peer.ignoreFailureMode == "weekly"
       else:
@@ -284,7 +284,7 @@ def _getRemotePeers(config):
          localUser = _getLocalUser(config)
          rcpCommand = _getRcpCommand(config, peer)
          remotePeer = RemotePeer(peer.name, peer.collectDir, config.options.workingDir,
-                                 remoteUser, rcpCommand, localUser, 
+                                 remoteUser, rcpCommand, localUser,
                                  ignoreFailureMode=peer.ignoreFailureMode)
          remotePeers.append(remotePeer)
          logger.debug("Found remote peer: [%s]" % remotePeer.name)

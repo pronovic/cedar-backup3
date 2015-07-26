@@ -134,7 +134,7 @@ class MysqlConfig(object):
    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
       """
       Constructor for the C{MysqlConfig} class.
-      
+
       @param user: User to execute backup as.
       @param password: Password associated with user.
       @param compressMode: Compress mode for backed-up files.
@@ -256,7 +256,7 @@ class MysqlConfig(object):
       """
       Property target used to get the compress mode.
       """
-      return self._compressMode 
+      return self._compressMode
 
    def _setAll(self, value):
       """
@@ -349,7 +349,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -511,7 +511,7 @@ class LocalConfig(object):
    def _parseMysql(parentNode):
       """
       Parses a mysql configuration section.
-      
+
       We read the following fields::
 
          user           //cb_config/mysql/user
@@ -571,13 +571,13 @@ def executeAction(configPath, options, config):
    local = LocalConfig(xmlPath=configPath)
    if local.mysql.all:
       logger.info("Backing up all databases.")
-      _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password, 
+      _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
                       config.options.backupUser, config.options.backupGroup, None)
    else:
       logger.debug("Backing up %d individual databases." % len(local.mysql.databases))
       for database in local.mysql.databases:
          logger.info("Backing up database [%s]." % database)
-         _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password, 
+         _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
                          config.options.backupUser, config.options.backupGroup, database)
    logger.info("Executed the MySQL extended action successfully.")
 
@@ -615,7 +615,7 @@ def _getOutputFile(targetDir, database, compressMode):
    Opens the output file used for saving the MySQL dump.
 
    The filename is either C{"mysqldump.txt"} or C{"mysqldump-<database>.txt"}.  The
-   C{".bz2"} extension is added if C{compress} is C{True}. 
+   C{".bz2"} extension is added if C{compress} is C{True}.
 
    @param targetDir: Target directory to write file in.
    @param database: Name of the database (if any)
@@ -689,7 +689,7 @@ def backupDatabase(user, password, backupFile, database=None):
 
    @param backupFile: File use for writing backup.
    @type backupFile: Python file object as from C{open()} or C{file()}.
-   
+
    @param database: Name of the database to be backed up.
    @type database: String representing database name, or C{None} for all databases.
 

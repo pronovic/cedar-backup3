@@ -110,7 +110,7 @@ class MediaDefinition(object):
       """
       Creates a media definition for the indicated media type.
       @param mediaType: Type of the media, as discussed above.
-      @raise ValueError: If the media type is unknown or unsupported.      
+      @raise ValueError: If the media type is unknown or unsupported.
       """
       self._mediaType = None
       self._rewritable = False
@@ -123,7 +123,7 @@ class MediaDefinition(object):
       """
       Sets values based on media type.
       @param mediaType: Type of the media, as discussed above.
-      @raise ValueError: If the media type is unknown or unsupported.      
+      @raise ValueError: If the media type is unknown or unsupported.
       """
       if mediaType not in [MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80]:
          raise ValueError("Invalid media type %d." % mediaType)
@@ -191,7 +191,7 @@ class MediaCapacity(object):
 
    Space used includes the required media lead-in (unless the disk is unused).
    Space available attempts to provide a picture of how many bytes are
-   available for data storage, including any required lead-in.  
+   available for data storage, including any required lead-in.
 
    The boundaries value is either C{None} (if multisession discs are not
    supported or if the disc has no boundaries) or in exactly the form provided
@@ -334,7 +334,7 @@ class CdWriter(object):
       Most hardware can read and write both 74-minute and 80-minute CD-R and
       CD-RW media.  Some older drives may only be able to write CD-R media.
       The difference between the two is that CD-RW media can be rewritten
-      (erased), while CD-R media cannot be.  
+      (erased), while CD-R media cannot be.
 
       I do not support any other configurations for a couple of reasons.  The
       first is that I've never tested any other kind of media.  The second is
@@ -399,10 +399,10 @@ class CdWriter(object):
 
    @sort: __init__, isRewritable, _retrieveProperties, retrieveCapacity, _getBoundaries,
           _calculateCapacity, openTray, closeTray, refreshMedia, writeImage,
-          _blankMedia, _parsePropertiesOutput, _parseBoundariesOutput, 
-          _buildOpenTrayArgs, _buildCloseTrayArgs, _buildPropertiesArgs, 
+          _blankMedia, _parsePropertiesOutput, _parseBoundariesOutput,
+          _buildOpenTrayArgs, _buildCloseTrayArgs, _buildPropertiesArgs,
           _buildBoundariesArgs, _buildBlankArgs, _buildWriteArgs,
-          device, scsiId, hardwareId, driveSpeed, media, deviceType, deviceVendor, 
+          device, scsiId, hardwareId, driveSpeed, media, deviceType, deviceVendor,
           deviceId, deviceBufferSize, deviceSupportsMulti, deviceHasTray, deviceCanEject,
           initializeImage, addImageEntry, writeImage, setImageNewDisc, getEstimatedImageSize
    """
@@ -411,8 +411,8 @@ class CdWriter(object):
    # Constructor
    ##############
 
-   def __init__(self, device, scsiId=None, driveSpeed=None, 
-                mediaType=MEDIA_CDRW_74, noEject=False, 
+   def __init__(self, device, scsiId=None, driveSpeed=None,
+                mediaType=MEDIA_CDRW_74, noEject=False,
                 refreshMediaDelay=0, ejectDelay=0, unittest=False):
       """
       Initializes a CD writer object.
@@ -618,7 +618,7 @@ class CdWriter(object):
       if result != 0:
          raise IOError("Error (%d) executing cdrecord command to get properties." % result)
       return CdWriter._parsePropertiesOutput(output)
-      
+
    def retrieveCapacity(self, entireDisc=False, useMulti=True):
       """
       Retrieves capacity for the current media in terms of a C{MediaCapacity}
@@ -823,8 +823,8 @@ class CdWriter(object):
       these problems were due to the device management system or to the new
       kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
       I was opening and closing the tray too quickly.  I worked around that
-      behavior with the new ejectDelay flag.  
-      
+      behavior with the new ejectDelay flag.
+
       Later, I sometimes ran into issues after writing an image to a disc:
       eject would give errors like "unable to eject, last error: Inappropriate
       ioctl for device".  Various sources online (like Ubuntu bug #875543)
@@ -884,7 +884,7 @@ class CdWriter(object):
 
    def refreshMedia(self):
       """
-      Opens and then immediately closes the device's tray, to refresh the 
+      Opens and then immediately closes the device's tray, to refresh the
       device's idea of the media.
 
       Sometimes, a device gets confused about the state of its media.  Often,
@@ -911,11 +911,11 @@ class CdWriter(object):
 
    def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
       """
-      Writes an ISO image to the media in the device.  
+      Writes an ISO image to the media in the device.
 
       If C{newDisc} is passed in as C{True}, we assume that the entire disc
       will be overwritten, and the media will be blanked before writing it if
-      possible (i.e. if the media is rewritable).  
+      possible (i.e. if the media is rewritable).
 
       If C{writeMulti} is passed in as C{True}, then a multisession disc will
       be written if possible (i.e. if the drive supports writing multisession
@@ -1002,7 +1002,7 @@ class CdWriter(object):
       @param writeMulti: Indicates whether a multisession disc should be written, if possible.
       @param newDisc: Indicates whether the entire disc will overwritten.
       """
-      if newDisc: 
+      if newDisc:
          self._blankMedia()
       args = CdWriter._buildWriteArgs(self.hardwareId, imagePath, self._driveSpeed, writeMulti and self._deviceSupportsMulti)
       command = resolveCommand(CDRECORD_COMMAND)
@@ -1024,7 +1024,7 @@ class CdWriter(object):
             raise IOError("Error (%d) executing command to blank disc." % result)
          self.refreshMedia()
 
-      
+
    #######################################
    # Methods used to parse command output
    #######################################
@@ -1052,7 +1052,7 @@ class CdWriter(object):
       can't eject, doesn't have a tray and doesnt't support multisession
       discs).   I had briefly considered erroring out if certain lines weren't
       found or couldn't be parsed, but that seems like a bad idea given that
-      most of the information is just for reference.  
+      most of the information is just for reference.
 
       The results are returned as a tuple of the object device attributes:
       C{(deviceType, deviceVendor, deviceId, deviceBufferSize,
@@ -1289,6 +1289,6 @@ class CdWriter(object):
       if writeMulti:
          args.append("-multi")
       args.append("-data")
-      args.append(imagePath) 
+      args.append(imagePath)
       return args
 

@@ -270,7 +270,7 @@ class DvdWriter(object):
 
       Only these methods will be used by other Cedar Backup functionality
       that expects a compatible image writer.
-   
+
       The media attribute is also assumed to be available.
 
       Unlike the C{CdWriter}, the C{DvdWriter} can only operate in terms of
@@ -349,7 +349,7 @@ class DvdWriter(object):
       will work properly.  It's not perfect, but it's much better than no
       testing at all.
 
-   @sort: __init__, isRewritable, retrieveCapacity, openTray, closeTray, refreshMedia, 
+   @sort: __init__, isRewritable, retrieveCapacity, openTray, closeTray, refreshMedia,
           initializeImage, addImageEntry, writeImage, setImageNewDisc, getEstimatedImageSize,
           _writeImage, _getEstimatedImageSize, _searchForOverburn, _buildWriteArgs,
           device, scsiId, hardwareId, driveSpeed, media, deviceHasTray, deviceCanEject
@@ -360,7 +360,7 @@ class DvdWriter(object):
    ##############
 
    def __init__(self, device, scsiId=None, driveSpeed=None,
-                mediaType=MEDIA_DVDPLUSRW, noEject=False, 
+                mediaType=MEDIA_DVDPLUSRW, noEject=False,
                 refreshMediaDelay=0, ejectDelay=0, unittest=False):
       """
       Initializes a DVD writer object.
@@ -401,7 +401,7 @@ class DvdWriter(object):
       @type ejectDelay: Number of seconds, an integer >= 0
 
       @param unittest: Turns off certain validations, for use in unit testing.
-      @type unittest: Boolean true/false 
+      @type unittest: Boolean true/false
 
       @raise ValueError: If the device is not valid for some reason.
       @raise ValueError: If the SCSI id is not in a valid form.
@@ -420,8 +420,8 @@ class DvdWriter(object):
          self._deviceHasTray = False
          self._deviceCanEject = False
       else:
-         self._deviceHasTray = True   # just assume 
-         self._deviceCanEject = True  # just assume 
+         self._deviceHasTray = True   # just assume
+         self._deviceCanEject = True  # just assume
 
 
    #############
@@ -563,7 +563,7 @@ class DvdWriter(object):
       The contents of the filepath -- but not the path itself -- will be added
       to the image at the indicated graft point.  If you don't want to use a
       graft point, just pass C{None}.
-      
+
       @note: Before calling this method, you must call L{initializeImage}.
 
       @param path: File or directory to be added to the image
@@ -627,8 +627,8 @@ class DvdWriter(object):
       these problems were due to the device management system or to the new
       kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
       I was opening and closing the tray too quickly.  I worked around that
-      behavior with the new ejectDelay flag.  
-      
+      behavior with the new ejectDelay flag.
+
       Later, I sometimes ran into issues after writing an image to a disc:
       eject would give errors like "unable to eject, last error: Inappropriate
       ioctl for device".  Various sources online (like Ubuntu bug #875543)
@@ -685,7 +685,7 @@ class DvdWriter(object):
 
    def refreshMedia(self):
       """
-      Opens and then immediately closes the device's tray, to refresh the 
+      Opens and then immediately closes the device's tray, to refresh the
       device's idea of the media.
 
       Sometimes, a device gets confused about the state of its media.  Often,
@@ -712,7 +712,7 @@ class DvdWriter(object):
 
    def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
       """
-      Writes an ISO image to the media in the device.  
+      Writes an ISO image to the media in the device.
 
       If C{newDisc} is passed in as C{True}, we assume that the entire disc
       will be re-created from scratch.  Note that unlike C{CdWriter},
@@ -827,7 +827,7 @@ class DvdWriter(object):
       parse some information from its output.  However, to do that, we need to
       create a dummy file that we can pass to the command -- and we have to
       make sure to remove it later.
-   
+
       Once growisofs has been run, then we call C{_parseSectorsUsed} to parse
       the output and calculate the number of sectors used on the media.
 
@@ -888,7 +888,7 @@ class DvdWriter(object):
    def _searchForOverburn(output):
       """
       Search for an "overburn" error message in C{growisofs} output.
-      
+
       The C{growisofs} command returns a non-zero exit code and puts a message
       into the output -- even on a dry run -- if there is not enough space on
       the media.  This is called an "overburn" condition.
@@ -916,10 +916,10 @@ class DvdWriter(object):
                available = convertSize(float(match.group(4).strip()), UNIT_SECTORS, UNIT_BYTES)
                size = convertSize(float(match.group(6).strip()), UNIT_SECTORS, UNIT_BYTES)
                logger.error("Image [%s] does not fit in available capacity [%s]." % (displayBytes(size), displayBytes(available)))
-            except ValueError: 
+            except ValueError:
                logger.error("Image does not fit in available capacity (no useful capacity info available).")
             raise IOError("Media does not contain enough capacity to store image.")
-         
+
    @staticmethod
    def _buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel=None, dryRun=False):
       """
@@ -927,14 +927,14 @@ class DvdWriter(object):
 
       The arguments will either cause C{growisofs} to write the indicated image
       file to disc, or will pass C{growisofs} a list of directories or files
-      that should be written to disc.  
+      that should be written to disc.
 
       If a new image is created, it will always be created with Rock Ridge
       extensions (-r).  A volume name will be applied (-V) if C{mediaLabel} is
       not C{None}.
 
       @param newDisc: Indicates whether the disc should be re-initialized
-      @param hardwareId: Hardware id for the device 
+      @param hardwareId: Hardware id for the device
       @param driveSpeed: Speed at which the drive writes.
       @param imagePath: Path to an ISO image on disk, or c{None} to use C{entries}
       @param entries: Mapping from path to graft point, or C{None} to use C{imagePath}

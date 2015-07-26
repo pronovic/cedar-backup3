@@ -56,7 +56,7 @@ and not root.
 You can optionally configure Cedar Backup to encrypt data before sending it
 to S3.  To do that, provide a complete command line using the C{${input}} and
 C{${output}} variables to represent the original input file and the encrypted
-output file.  This command will be executed as the backup user.  
+output file.  This command will be executed as the backup user.
 
 For instance, you can use something like this with GPG::
 
@@ -138,7 +138,7 @@ class AmazonS3Config(object):
          warnMidnite, s3Bucket
    """
 
-   def __init__(self, warnMidnite=None, s3Bucket=None, encryptCommand=None, 
+   def __init__(self, warnMidnite=None, s3Bucket=None, encryptCommand=None,
                fullBackupSizeLimit=None, incrementalBackupSizeLimit=None):
       """
       Constructor for the C{AmazonS3Config} class.
@@ -317,9 +317,9 @@ class AmazonS3Config(object):
    warnMidnite = property(_getWarnMidnite, _setWarnMidnite, None, "Whether to generate warnings for crossing midnite.")
    s3Bucket = property(_getS3Bucket, _setS3Bucket, None, doc="Amazon S3 Bucket in which to store data")
    encryptCommand = property(_getEncryptCommand, _setEncryptCommand, None, doc="Command used to encrypt data before upload to S3")
-   fullBackupSizeLimit = property(_getFullBackupSizeLimit, _setFullBackupSizeLimit, None, 
+   fullBackupSizeLimit = property(_getFullBackupSizeLimit, _setFullBackupSizeLimit, None,
                                   doc="Maximum size of a full backup, in bytes")
-   incrementalBackupSizeLimit = property(_getIncrementalBackupSizeLimit, _setIncrementalBackupSizeLimit, None, 
+   incrementalBackupSizeLimit = property(_getIncrementalBackupSizeLimit, _setIncrementalBackupSizeLimit, None,
                                          doc="Maximum size of an incremental backup, in bytes")
 
 
@@ -365,7 +365,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -513,7 +513,7 @@ class LocalConfig(object):
    def _parseAmazonS3(parent):
       """
       Parses an amazons3 configuration section.
-      
+
       We read the following individual fields::
 
          warnMidnite                 //cb_config/amazons3/warn_midnite
@@ -694,7 +694,7 @@ def _writeToAmazonS3(config, local, stagingDirs):
    Each of the staging directories listed in C{stagingDirs} will be written to
    the configured Amazon S3 bucket from local configuration.  The directories
    will be placed into the image at the root by date, so staging directory
-   C{/opt/stage/2005/02/10} will be placed into the S3 bucket at C{/2005/02/10}.  
+   C{/opt/stage/2005/02/10} will be placed into the S3 bucket at C{/2005/02/10}.
    If an encrypt commmand is provided, the files will be encrypted first.
 
    @param config: Config object.
@@ -738,8 +738,8 @@ def _writeStoreIndicator(config, stagingDirs):
    @param stagingDirs: Dictionary mapping directory path to date suffix.
    """
    for stagingDir in list(stagingDirs.keys()):
-      writeIndicatorFile(stagingDir, STORE_INDICATOR, 
-                         config.options.backupUser, 
+      writeIndicatorFile(stagingDir, STORE_INDICATOR,
+                         config.options.backupUser,
                          config.options.backupGroup)
 
 

@@ -60,7 +60,7 @@ import os
 import logging
 import tempfile
 
-# Cedar Backup modules 
+# Cedar Backup modules
 from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
 from CedarBackup3.util import displayBytes, convertSize, mount, unmount
 from CedarBackup3.util import UNIT_SECTORS, UNIT_BYTES
@@ -93,7 +93,7 @@ class SpanOptions(Options):
 
    Most of the cback command-line options are exactly what we need here --
    logfile path, permissions, verbosity, etc.  However, we need to make a few
-   tweaks since we don't accept any actions.  
+   tweaks since we don't accept any actions.
 
    Also, a few extra command line options that we accept are really ignored
    underneath.  I just don't care about that for a tool like this.
@@ -381,7 +381,7 @@ def _executeAction(options, config):
    if not _getYesNoAnswer("Continue?", default="Y"):
       return
    print("===")
-   
+
    happy = False
    while not happy:
       print("")
@@ -413,7 +413,7 @@ def _executeAction(options, config):
       counter = 0
       for item in spanSet:
          counter += 1
-         print("Disc %d: %d files, %s, %.2f%% utilization" % (counter, len(item.fileList), 
+         print("Disc %d: %d files, %s, %.2f%% utilization" % (counter, len(item.fileList),
                                                               displayBytes(item.size), item.utilization))
       print("")
       if _getYesNoAnswer("Accept this solution?", default="Y"):
@@ -457,7 +457,7 @@ def _findDailyDirs(stagingDir):
    directories, and a BackupFileList containing all files among those staging
    directories.
 
-   @param stagingDir: Configured staging directory 
+   @param stagingDir: Configured staging directory
 
    @return: Tuple (staging dirs, backup file list)
    """
@@ -494,7 +494,7 @@ def _getWriter(config):
    Gets a writer and media capacity from store configuration.
    Returned is a writer and a media capacity in bytes.
    @param config: Cedar Backup configuration
-   @return: Tuple of (writer, mediaCapacity) 
+   @return: Tuple of (writer, mediaCapacity)
    """
    writer = createWriter(config)
    mediaCapacity = convertSize(writer.media.capacity, UNIT_SECTORS, UNIT_BYTES)
@@ -635,7 +635,7 @@ def _consistencyCheck(config, fileList):
       compareDigestMaps(sourceListDigest, discListDigest, verbose=True)
       logger.info("Consistency check completed.  No problems found.")
    finally:
-      unmount(mountPoint, True, 5, 1)  # try 5 times, and remove mount point when done 
+      unmount(mountPoint, True, 5, 1)  # try 5 times, and remove mount point when done
 
 
 #########################################################################

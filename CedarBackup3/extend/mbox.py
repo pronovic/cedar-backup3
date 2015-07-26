@@ -52,7 +52,7 @@ Backing up email
    One solution to this problem is to design a smarter incremental backup process,
    which backs up baseline content on the first day of the week, and then backs up
    only new messages added to that folder on every other day of the week.  This way,
-   the backup for any single day is only as large as the messages placed into the 
+   the backup for any single day is only as large as the messages placed into the
    folder on that day.  The backup isn't as "perfect" as the incremental backup
    process, because it doesn't preserve information about messages deleted from
    the backed-up folder.  However, it should be much more space-efficient, and
@@ -65,8 +65,8 @@ What is this extension?
    This is a Cedar Backup extension used to back up mbox email files via the Cedar
    Backup command line.  Individual mbox files or directories containing mbox
    files can be backed up using the same collect modes allowed for filesystems in
-   the standard Cedar Backup collect action: weekly, daily, incremental.  It 
-   implements the "smart" incremental backup process discussed above, using 
+   the standard Cedar Backup collect action: weekly, daily, incremental.  It
+   implements the "smart" incremental backup process discussed above, using
    functionality provided by the C{grepmail} utility.
 
    This extension requires a new configuration section <mbox> and is intended to
@@ -143,7 +143,7 @@ class MboxFile(object):
       Constructor for the C{MboxFile} class.
 
       You should never directly instantiate this class.
-      
+
       @param absolutePath: Absolute path to an mbox file on disk.
       @param collectMode: Overridden collect mode for this directory.
       @param compressMode: Overridden compression mode for this directory.
@@ -294,7 +294,7 @@ class MboxDir(object):
       Constructor for the C{MboxDir} class.
 
       You should never directly instantiate this class.
-      
+
       @param absolutePath: Absolute path to a mbox file on disk.
       @param collectMode: Overridden collect mode for this directory.
       @param compressMode: Overridden compression mode for this directory.
@@ -713,7 +713,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -893,7 +893,7 @@ class LocalConfig(object):
    def _parseMbox(parent):
       """
       Parses an mbox configuration section.
-      
+
       We read the following individual fields::
 
          collectMode    //cb_config/mbox/collect_mode
@@ -932,7 +932,7 @@ class LocalConfig(object):
 
          absolutePath            abs_path
          collectMode             collect_mode
-         compressMode            compess_mode 
+         compressMode            compess_mode
 
       @param parent: Parent node to search beneath.
 
@@ -960,7 +960,7 @@ class LocalConfig(object):
 
          absolutePath            abs_path
          collectMode             collect_mode
-         compressMode            compess_mode 
+         compressMode            compess_mode
 
       We also read groups of the following items, one list element per
       item::
@@ -999,7 +999,7 @@ class LocalConfig(object):
          patterns    exclude/pattern
 
       If there are none of some pattern (i.e. no relative path items) then
-      C{None} will be returned for that item in the tuple.  
+      C{None} will be returned for that item in the tuple.
 
       @param parentNode: Parent node to search beneath.
 
@@ -1122,7 +1122,7 @@ def executeAction(configPath, options, config):
          lastRevision = _loadLastRevision(config, mboxFile, fullBackup, collectMode)
          if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Mbox file meets criteria to be backed up today.")
-            _backupMboxFile(config, mboxFile.absolutePath, fullBackup, 
+            _backupMboxFile(config, mboxFile.absolutePath, fullBackup,
                             collectMode, compressMode, lastRevision, newRevision)
          else:
             logger.debug("Mbox file will not be backed up, per collect mode.")
@@ -1137,9 +1137,9 @@ def executeAction(configPath, options, config):
          (excludePaths, excludePatterns) = _getExclusions(mboxDir)
          if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Mbox directory meets criteria to be backed up today.")
-            _backupMboxDir(config, mboxDir.absolutePath, 
-                           fullBackup, collectMode, compressMode, 
-                           lastRevision, newRevision, 
+            _backupMboxDir(config, mboxDir.absolutePath,
+                           fullBackup, collectMode, compressMode,
+                           lastRevision, newRevision,
                            excludePaths, excludePatterns)
          else:
             logger.debug("Mbox directory will not be backed up, per collect mode.")
@@ -1149,7 +1149,7 @@ def executeAction(configPath, options, config):
 
 def _getCollectMode(local, item):
    """
-   Gets the collect mode that should be used for an mbox file or directory. 
+   Gets the collect mode that should be used for an mbox file or directory.
    Use file- or directory-specific value if possible, otherwise take from mbox section.
    @param local: LocalConfig object.
    @param item: Mbox file or directory
@@ -1260,7 +1260,7 @@ def _getExclusions(mboxDir):
    The returned files value is a list of absolute paths to be excluded from the
    backup for a given directory.  It is derived from the mbox directory's
    relative exclude paths.
-   
+
    The returned patterns value is a list of patterns to be excluded from the
    backup for a given directory.  It is derived from the mbox directory's list
    of patterns.
@@ -1371,8 +1371,8 @@ def _getOutputFile(backupPath, compressMode):
    else:
       return open(backupPath, "w")
 
-def _backupMboxFile(config, absolutePath, 
-                    fullBackup, collectMode, compressMode, 
+def _backupMboxFile(config, absolutePath,
+                    fullBackup, collectMode, compressMode,
                     lastRevision, newRevision, targetDir=None):
    """
    Backs up an individual mbox file.
@@ -1385,7 +1385,7 @@ def _backupMboxFile(config, absolutePath,
    @param lastRevision: Date of last backup as datetime.datetime
    @param newRevision: Date of new (current) backup as datetime.datetime
    @param targetDir: Target directory to write the backed-up file into
-    
+
    @raise ValueError: If some value is missing or invalid.
    @raise IOError: If there is a problem backing up the mbox file.
    """
@@ -1403,9 +1403,9 @@ def _backupMboxFile(config, absolutePath,
    logger.debug("Completed backing up mailbox [%s]." % absolutePath)
    return backupPath
 
-def _backupMboxDir(config, absolutePath, 
+def _backupMboxDir(config, absolutePath,
                    fullBackup, collectMode, compressMode,
-                   lastRevision, newRevision, 
+                   lastRevision, newRevision,
                    excludePaths, excludePatterns):
    """
    Backs up a directory containing mbox files.
@@ -1419,7 +1419,7 @@ def _backupMboxDir(config, absolutePath,
    @param newRevision: Date of new (current) backup as datetime.datetime
    @param excludePaths: List of absolute paths to exclude.
    @param excludePatterns: List of patterns to exclude.
-    
+
    @raise ValueError: If some value is missing or invalid.
    @raise IOError: If there is a problem backing up the mbox file.
    """
@@ -1432,14 +1432,14 @@ def _backupMboxDir(config, absolutePath,
       mboxList.addDirContents(absolutePath, recursive=False)
       tarList = BackupFileList()
       for item in mboxList:
-         backupPath = _backupMboxFile(config, item, fullBackup, 
+         backupPath = _backupMboxFile(config, item, fullBackup,
                                       collectMode, "none",  # no need to compress inside compressed tar
-                                      lastRevision, newRevision, 
+                                      lastRevision, newRevision,
                                       targetDir=tmpdir)
          tarList.addFile(backupPath)
       (tarfilePath, archiveMode) = _getTarfilePath(config, absolutePath, compressMode, newRevision)
       tarList.generateTarfile(tarfilePath, archiveMode, ignore=True, flat=True)
-      changeOwnership(tarfilePath, config.options.backupUser, config.options.backupGroup) 
+      changeOwnership(tarfilePath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Completed backing up directory [%s]." % absolutePath)
    finally:
       try:

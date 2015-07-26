@@ -79,7 +79,7 @@ def executeCollect(configPath, options, config):
 
    @note: When the collect action is complete, we will write a collect
    indicator to the collect directory, so it's obvious that the collect action
-   has completed.  The stage process uses this indicator to decide whether a 
+   has completed.  The stage process uses this indicator to decide whether a
    peer is ready to be staged.
 
    @param configPath: Path to configuration file on disk.
@@ -114,7 +114,7 @@ def executeCollect(configPath, options, config):
          tarfilePath = _getTarfilePath(config, collectFile.absolutePath, archiveMode)
          if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("File meets criteria to be backed up today.")
-            _collectFile(config, collectFile.absolutePath, tarfilePath, 
+            _collectFile(config, collectFile.absolutePath, tarfilePath,
                          collectMode, archiveMode, resetDigest, digestPath)
          else:
             logger.debug("File will not be backed up, per collect mode.")
@@ -131,13 +131,13 @@ def executeCollect(configPath, options, config):
          (excludePaths, excludePatterns) = _getExclusions(config, collectDir)
          if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Directory meets criteria to be backed up today.")
-            _collectDirectory(config, collectDir.absolutePath, 
+            _collectDirectory(config, collectDir.absolutePath,
                               collectMode, archiveMode, ignoreFile, linkDepth, dereference,
                               resetDigest, excludePaths, excludePatterns, recursionLevel)
          else:
             logger.debug("Directory will not be backed up, per collect mode.")
          logger.info("Completed collecting directory [%s]" % collectDir.absolutePath)
-   writeIndicatorFile(config.collect.targetDir, COLLECT_INDICATOR, 
+   writeIndicatorFile(config.collect.targetDir, COLLECT_INDICATOR,
                       config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the 'collect' action successfully.")
 
@@ -153,7 +153,7 @@ def executeCollect(configPath, options, config):
 def _collectFile(config, absolutePath, tarfilePath, collectMode, archiveMode, resetDigest, digestPath):
    """
    Collects a configured collect file.
-   
+
    The indicated collect file is collected into the indicated tarfile.
    For files that are collected incrementally, we'll use the indicated
    digest path and pay attention to the reset digest flag (basically, the reset
@@ -180,12 +180,12 @@ def _collectFile(config, absolutePath, tarfilePath, collectMode, archiveMode, re
 # _collectDirectory() function
 ###############################
 
-def _collectDirectory(config, absolutePath, collectMode, archiveMode, 
-                      ignoreFile, linkDepth, dereference, resetDigest, 
+def _collectDirectory(config, absolutePath, collectMode, archiveMode,
+                      ignoreFile, linkDepth, dereference, resetDigest,
                       excludePaths, excludePatterns, recursionLevel):
    """
    Collects a configured collect directory.
-   
+
    The indicated collect directory is collected into the indicated tarfile.
    For directories that are collected incrementally, we'll use the indicated
    digest path and pay attention to the reset digest flag (basically, the reset
@@ -231,13 +231,13 @@ def _collectDirectory(config, absolutePath, collectMode, archiveMode,
 
       # Back up the subdirectories separately
       for subdir in subdirs:
-         _collectDirectory(config, subdir, collectMode, archiveMode, 
-                           ignoreFile, linkDepth, dereference, resetDigest, 
+         _collectDirectory(config, subdir, collectMode, archiveMode,
+                           ignoreFile, linkDepth, dereference, resetDigest,
                            excludePaths, excludePatterns, recursionLevel-1)
          excludePaths.append(subdir) # this directory is already backed up, so exclude it
 
       # Back up everything that hasn't previously been backed up
-      _collectDirectory(config, absolutePath, collectMode, archiveMode, 
+      _collectDirectory(config, absolutePath, collectMode, archiveMode,
                         ignoreFile, linkDepth, dereference, resetDigest,
                         excludePaths, excludePatterns, 0)
 
@@ -317,10 +317,10 @@ def _loadDigest(digestPath):
       digest = {}
       logger.debug("Digest [%s] does not exist on disk." % digestPath)
    else:
-      try: 
+      try:
          digest = pickle.load(open(digestPath, "r"))
          logger.debug("Loaded digest [%s] from disk: %d entries." % (digestPath, len(digest)))
-      except: 
+      except:
          digest = {}
          logger.error("Failed loading digest [%s] from disk." % digestPath)
    return digest
@@ -341,11 +341,11 @@ def _writeDigest(config, digest, digestPath):
    @param digest: Digest dictionary to write to disk.
    @param digestPath: Path to the digest file on disk.
    """
-   try: 
+   try:
       pickle.dump(digest, open(digestPath, "w"))
       changeOwnership(digestPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new digest [%s] to disk: %d entries." % (digestPath, len(digest)))
-   except: 
+   except:
       logger.error("Failed to write digest [%s] to disk." % digestPath)
 
 

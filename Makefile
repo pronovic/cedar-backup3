@@ -113,7 +113,7 @@ allcheck:
 
 # Trim trailing whitespace from lines in source files
 trim:
-	-@$(SED) -i 's/[ \t]*$$//' CedarBackup3/*.py testcase/*.py
+	-@$(FIND) . -name "*.py" -exec $(SED) -i 's/\s*$$//g' \{} \;
 
 
 ################

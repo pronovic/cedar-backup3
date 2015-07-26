@@ -201,7 +201,7 @@ class CapacityConfig(object):
    def __init__(self, maxPercentage=None, minBytes=None):
       """
       Constructor for the C{CapacityConfig} class.
-      
+
       @param maxPercentage: Maximum percentage of the media that may be utilized
       @param minBytes: Minimum number of free bytes that must be available
       """
@@ -338,7 +338,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -481,7 +481,7 @@ class LocalConfig(object):
    def _parseCapacity(parentNode):
       """
       Parses a capacity configuration section.
-      
+
       We read the following fields::
 
          maxPercentage  //cb_config/capacity/max_percentage
@@ -565,11 +565,11 @@ def executeAction(configPath, options, config):
    logger.debug("Media capacity: %s" % capacity)
    if local.capacity.maxPercentage is not None:
       if capacity.utilized > local.capacity.maxPercentage.percentage:
-         logger.error("Media has reached capacity limit of %s%%: %.2f%% utilized" % 
+         logger.error("Media has reached capacity limit of %s%%: %.2f%% utilized" %
                       (local.capacity.maxPercentage.quantity, capacity.utilized))
    else: # if local.capacity.bytes is not None
       if capacity.bytesAvailable < local.capacity.minBytes.bytes:
-         logger.error("Media has reached capacity limit of %s: only %s available" % 
+         logger.error("Media has reached capacity limit of %s: only %s available" %
                       (displayBytes(local.capacity.minBytes.bytes), displayBytes(capacity.bytesAvailable)))
    logger.info("Executed the capacity extended action successfully.")
 

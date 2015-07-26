@@ -60,7 +60,7 @@ import chardet
 import warnings
 from functools import total_ordering
 
-# Cedar Backup modules 
+# Cedar Backup modules
 from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
 from CedarBackup3.filesystem import FilesystemList
 from CedarBackup3.cli import setupLogging, DEFAULT_LOGFILE, DEFAULT_OWNERSHIP, DEFAULT_MODE
@@ -77,9 +77,9 @@ logger = logging.getLogger("CedarBackup3.log.tools.amazons3")
 AWS_COMMAND   = [ "aws" ]
 
 SHORT_SWITCHES     = "hVbql:o:m:OdsDvw"
-LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet', 
-                       'logfile=', 'owner=', 'mode=', 
-                       'output', 'debug', 'stack', 'diagnostics', 
+LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
+                       'logfile=', 'owner=', 'mode=',
+                       'output', 'debug', 'stack', 'diagnostics',
                        'verifyOnly', 'ignoreWarnings', ]
 
 
@@ -98,7 +98,7 @@ class Options(object):
    Class representing command-line options for the cback-amazons3-sync script.
 
    The C{Options} class is a Python object representation of the command-line
-   options of the cback script.  
+   options of the cback script.
 
    The object representation is two-way: a command line string or a list of
    command line arguments can be used to create an C{Options} object, and then
@@ -406,7 +406,7 @@ class Options(object):
       """
       if value is not None:
          if len(value) < 1:
-            raise ValueError("The logfile parameter must be a non-empty string.") 
+            raise ValueError("The logfile parameter must be a non-empty string.")
       self._logfile = encodePath(value)
 
    def _getLogfile(self):
@@ -640,7 +640,7 @@ class Options(object):
       long option names (i.e. --version rather than -V).  The resulting list
       will be suitable for passing back to the constructor in the
       C{argumentList} parameter.  Unlike L{buildArgumentString}, string
-      arguments are not quoted here, because there is no need for it.  
+      arguments are not quoted here, because there is no need for it.
 
       Unless the C{validate} parameter is C{False}, the L{Options.validate}
       method will be called (with its default arguments) against the
@@ -766,7 +766,7 @@ class Options(object):
       any validation as to whether required elements exist or whether elements
       exist in the proper combination (instead, that's the job of the
       L{validate} method).
-   
+
       For any of the options which supply parameters, if the option is
       duplicated with long and short switches (i.e. C{-l} and a C{--logfile})
       then the long switch is used.  If the same option is duplicated with the
@@ -1031,7 +1031,7 @@ def _executeAction(options):
 def _buildSourceFiles(sourceDir):
    """
    Build a list of files in a source directory
-   @param sourceDir: Local source directory 
+   @param sourceDir: Local source directory
    @return: FilesystemList with contents of source directory
    """
    if not os.path.isdir(sourceDir):
@@ -1048,8 +1048,8 @@ def _buildSourceFiles(sourceDir):
 def _checkSourceFiles(sourceDir, sourceFiles):
    """
    Check source files, trying to guess which ones will have encoding problems.
-   @param sourceDir: Local source directory 
-   @param sourceDir: Local source directory 
+   @param sourceDir: Local source directory
+   @param sourceDir: Local source directory
    @raises ValueError: If a problem file is found
    @see U{http://opensourcehacker.com/2011/09/16/fix-linux-filename-encodings-with-python/}
    @see U{http://serverfault.com/questions/82821/how-to-tell-the-language-encoding-of-a-filename-on-linux}
@@ -1072,7 +1072,7 @@ def _checkSourceFiles(sourceDir, sourceFiles):
          except UnicodeEncodeError:
             logger.error("Inconsistent encoding for [%s]: got %s, but need %s" % (entry, result["encoding"], encoding))
             failed = True
-      
+
       if not failed:
          logger.info("Completed checking source filename encoding (no problems found).")
       else:
@@ -1090,8 +1090,8 @@ def _checkSourceFiles(sourceDir, sourceFiles):
 def _synchronizeBucket(sourceDir, s3BucketUrl):
    """
    Synchronize a local directory to an Amazon S3 bucket.
-   @param sourceDir: Local source directory 
-   @param s3BucketUrl: Target S3 bucket URL 
+   @param sourceDir: Local source directory
+   @param s3BucketUrl: Target S3 bucket URL
    """
    logger.info("Synchronizing local source directory up to Amazon S3.")
    args = [ "s3", "sync", sourceDir, s3BucketUrl, "--delete", "--recursive", ]
@@ -1107,9 +1107,9 @@ def _synchronizeBucket(sourceDir, s3BucketUrl):
 def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
    """
    Verify that a source directory is equivalent to an Amazon S3 bucket.
-   @param sourceDir: Local source directory 
+   @param sourceDir: Local source directory
    @param sourceFiles: Filesystem list containing contents of source directory
-   @param s3BucketUrl: Target S3 bucket URL 
+   @param s3BucketUrl: Target S3 bucket URL
    """
    # As of this writing, the documentation for the S3 API that we're using
    # below says that up to 1000 elements at a time are returned, and that we

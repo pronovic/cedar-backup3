@@ -41,7 +41,7 @@ Provides an extension to back up Subversion repositories.
 This is a Cedar Backup extension used to back up Subversion repositories via
 the Cedar Backup command line.  Each Subversion repository can be backed using
 the same collect modes allowed for filesystems in the standard Cedar Backup
-collect action: weekly, daily, incremental.  
+collect action: weekly, daily, incremental.
 
 This extension requires a new configuration section <subversion> and is
 intended to be run either immediately before or immediately after the standard
@@ -57,11 +57,11 @@ incremental mode.
 
 It turns out that FSFS repositories can also be backed up just like any
 other filesystem directory.  If you would rather do that, then use the normal
-collect action.  This is probably simpler, although it carries its own 
+collect action.  This is probably simpler, although it carries its own
 advantages and disadvantages (plus you will have to be careful to exclude
 the working directories Subversion uses when building an update to commit).
 Check the Subversion documentation for more information.
- 
+
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
@@ -158,7 +158,7 @@ class RepositoryDir(object):
       """
       Official string representation for class instance.
       """
-      return "RepositoryDir(%s, %s, %s, %s, %s, %s)" % (self.repositoryType, self.directoryPath, self.collectMode, 
+      return "RepositoryDir(%s, %s, %s, %s, %s, %s)" % (self.repositoryType, self.directoryPath, self.collectMode,
                                                         self.compressMode, self.relativeExcludePaths, self.excludePatterns)
 
    def __str__(self):
@@ -735,7 +735,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -912,7 +912,7 @@ class LocalConfig(object):
    def _parseSubversion(parent):
       """
       Parses a subversion configuration section.
-      
+
       We read the following individual fields::
 
          collectMode    //cb_config/subversion/collect_mode
@@ -952,7 +952,7 @@ class LocalConfig(object):
          repositoryType          type
          repositoryPath          abs_path
          collectMode             collect_mode
-         compressMode            compess_mode 
+         compressMode            compess_mode
 
       The type field is optional, and its value is kept around only for
       reference.
@@ -1014,7 +1014,7 @@ class LocalConfig(object):
          repositoryType          type
          directoryPath           abs_path
          collectMode             collect_mode
-         compressMode            compess_mode 
+         compressMode            compess_mode
 
       We also read groups of the following items, one list element per
       item::
@@ -1022,7 +1022,7 @@ class LocalConfig(object):
          relativeExcludePaths    exclude/rel_path
          excludePatterns         exclude/pattern
 
-      The exclusions are parsed by L{_parseExclusions}. 
+      The exclusions are parsed by L{_parseExclusions}.
 
       The type field is optional, and its value is kept around only for
       reference.
@@ -1153,7 +1153,7 @@ def executeAction(configPath, options, config):
       for repositoryDir in local.subversion.repositoryDirs:
          logger.debug("Working with repository directory [%s]." % repositoryDir.directoryPath)
          for repositoryPath in _getRepositoryPaths(repositoryDir):
-            repository = Repository(repositoryDir.repositoryType, repositoryPath, 
+            repository = Repository(repositoryDir.repositoryType, repositoryPath,
                                     repositoryDir.collectMode, repositoryDir.compressMode)
             _backupRepository(config, local, todayIsStart, fullBackup, repository)
          logger.info("Completed backing up Subversion repository directory [%s]." % repositoryDir.directoryPath)
@@ -1242,7 +1242,7 @@ def _getExclusions(repositoryDir):
    The returned files value is a list of absolute paths to be excluded from the
    backup for a given directory.  It is derived from the repository directory's
    relative exclude paths.
-   
+
    The returned patterns value is a list of patterns to be excluded from the
    backup for a given directory.  It is derived from the repository directory's
    list of patterns.
@@ -1273,8 +1273,8 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    @param local: Local configuration
    @param todayIsStart: Indicates whether today is start of week
    @param fullBackup: Full backup flag
-   @param repository: Repository to operate on 
-    
+   @param repository: Repository to operate on
+
    @raise ValueError: If some value is missing or invalid.
    @raise IOError: If there is a problem executing the Subversion dump.
    """
@@ -1410,7 +1410,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
 
    @param backupFile: Python file object to use for writing backup.
    @type backupFile: Python file object as from C{open()} or C{file()}.
-   
+
    @param startRevision: Starting repository revision to back up (for incremental backups)
    @type startRevision: Integer value >= 0.
 
@@ -1453,7 +1453,7 @@ def getYoungestRevision(repositoryPath):
    @type repositoryPath: String path representing Subversion repository on disk.
 
    @return: Youngest revision as an integer.
-   
+
    @raise ValueError: If there is a problem parsing the C{svnlook} output.
    @raise IOError: If there is a problem executing the C{svnlook} command.
    """

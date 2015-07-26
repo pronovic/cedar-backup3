@@ -265,7 +265,7 @@ def initializeMediaState(config):
 
    @raise ValueError: If media could not be initialized.
    @raise ValueError: If the configured media type is not rewritable
-   """ 
+   """
    if not config.store.mediaType in REWRITABLE_MEDIA_TYPES:
       raise ValueError("Only rewritable media types can be initialized.")
    mediaLabel = buildMediaLabel()

@@ -245,7 +245,7 @@ class LocalConfig(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -390,7 +390,7 @@ class LocalConfig(object):
    def _parseSplit(parent):
       """
       Parses an split configuration section.
-      
+
       We read the following individual fields::
 
          sizeLimit      //cb_config/split/size_limit
@@ -440,7 +440,7 @@ def executeAction(configPath, options, config):
    local = LocalConfig(xmlPath=configPath)
    dailyDirs = findDailyDirs(config.stage.targetDir, SPLIT_INDICATOR)
    for dailyDir in dailyDirs:
-      _splitDailyDir(dailyDir, local.split.sizeLimit, local.split.splitSize, 
+      _splitDailyDir(dailyDir, local.split.sizeLimit, local.split.splitSize,
                      config.options.backupUser, config.options.backupGroup)
       writeIndicatorFile(dailyDir, SPLIT_INDICATOR, config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the split extended action successfully.")
@@ -522,10 +522,10 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
          changeOwnership(path, backupUser, backupGroup)
       if removeSource:
          if os.path.exists(sourcePath):
-            try: 
+            try:
                os.remove(sourcePath)
                logger.debug("Completed removing old file [%s]." % sourcePath)
-            except: 
+            except:
                raise IOError("Failed to remove file [%s] after splitting it." % (sourcePath))
    finally:
       os.chdir(cwd)

@@ -206,7 +206,7 @@ class IsoImage(object):
       its standard "image contents" semantics are slightly different than the original
       C{mkisofs} semantics.  The difference is that files and directories are
       added to the image with some additional information about their source
-      directory kept intact.  
+      directory kept intact.
 
       As an example, suppose you add the file C{/etc/profile} to your image and
       you do not configure a graft point.  The file C{/profile} will be created
@@ -221,7 +221,7 @@ class IsoImage(object):
       from above, let's assume you set a graft point of C{base} when adding
       C{/etc/profile} and C{/etc/X11} to your image.  In this case, the file
       C{/base/profile} and the directory C{/base/X11} would be added to the
-      image.  
+      image.
 
       I feel that this behavior is more consistent than the original C{mkisofs}
       behavior.  However, to be fair, it is not quite as flexible, and some
@@ -229,7 +229,7 @@ class IsoImage(object):
       to the L{addEntry} method can be used to revert to the original behavior
       if desired.
 
-   @sort: __init__, addEntry, getEstimatedSize, _getEstimatedSize, writeImage, 
+   @sort: __init__, addEntry, getEstimatedSize, _getEstimatedSize, writeImage,
           _buildDirEntries _buildGeneralArgs, _buildSizeArgs, _buildWriteArgs,
           device, boundaries, graftPoint, useRockRidge, applicationId,
           biblioFile, publisherId, preparerId, volumeId
@@ -489,7 +489,7 @@ class IsoImage(object):
       behavior is determined by the value which is in effect I{at the time this
       method is called}, so you I{must} set the object-wide value before
       calling this method for the first time, or your image may not be
-      consistent.  
+      consistent.
 
       @note: You I{cannot} use the local C{graftPoint} parameter to "turn off"
       an object-wide instance variable by setting it to C{None}.  Python's
@@ -517,14 +517,14 @@ class IsoImage(object):
          if path in list(self.entries.keys()):
             raise ValueError("Path has already been added to the image.")
       if os.path.islink(path):
-         raise ValueError("Path must not be a link.") 
+         raise ValueError("Path must not be a link.")
       if os.path.isdir(path):
          if graftPoint is not None:
             if contentsOnly:
                self.entries[path] = graftPoint
             else:
                self.entries[path] = os.path.join(graftPoint, os.path.basename(path))
-         elif self.graftPoint is not None: 
+         elif self.graftPoint is not None:
             if contentsOnly:
                self.entries[path] = self.graftPoint
             else:
@@ -579,7 +579,7 @@ class IsoImage(object):
          sectors = float(output[0])
          size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
          return size
-      except: 
+      except:
          raise IOError("Unable to parse mkisofs output.")
 
    def writeImage(self, imagePath):

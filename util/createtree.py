@@ -48,7 +48,7 @@ What is this Program?
 
 Example of Configuration
 ========================
-   
+
    For configuration, this program takes a Windows-style INI file that can be
    parsed by the Python ConfigParser functionality.  The following is an
    example of a valid file.  Fields not listed below will be ignored::
@@ -194,7 +194,7 @@ def filldir(config, basedir, depth):
    """
 
    # Check our recursive exit condition
-   if depth > config['maxdepth']: 
+   if depth > config['maxdepth']:
       return
 
    # Initialize list of created items for later use with links
@@ -248,7 +248,7 @@ def parseconfig(configfile):
    """
 
    # Initialize parser
-   config = {} 
+   config = {}
    parser = SafeConfigParser()
    parser.read(configfile)
 
@@ -295,7 +295,7 @@ def main():
       usage()
       sys.exit(1)
 
-   # Parse configuration   
+   # Parse configuration
    try:
       config = parseconfig(configfile)
    except Exception as e:
@@ -316,7 +316,7 @@ def main():
 
    # Print a closing message
    print("Completed with no errors.")
-      
+
 
 ########################################################################
 # Module entry point

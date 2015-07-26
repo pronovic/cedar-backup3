@@ -87,7 +87,7 @@ def executeStore(configPath, options, config):
 
    @note: When the store action is complete, we will write a store indicator to
    the daily staging directory we used, so it's obvious that the store action
-   has completed.  
+   has completed.
 
    @param configPath: Path to configuration file on disk.
    @type configPath: String representing a path on disk.
@@ -162,11 +162,11 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
    The generated image will contain each of the staging directories listed in
    C{stagingDirs}.  The directories will be placed into the image at the root by
    date, so staging directory C{/opt/stage/2005/02/10} will be placed into the
-   disc at C{/2005/02/10}.  The media will always be written with a media 
+   disc at C{/2005/02/10}.  The media will always be written with a media
    label specific to Cedar Backup.
 
    This function is similar to L{writeImage}, but tries to implement a smarter
-   blanking strategy.  
+   blanking strategy.
 
    First, the media is always blanked if the C{rebuildMedia} flag is true.
    Then, if C{rebuildMedia} is false, blanking behavior and C{todayIsStart}
@@ -176,7 +176,7 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
       the disc will be blanked
 
       If blanking behavior is specified, and either the blank mode is "daily"
-      or the blank mode is "weekly" and it is the start of the week, then 
+      or the blank mode is "weekly" and it is the start of the week, then
       the disc will be blanked if it looks like the weekly backup will not
       fit onto the media.
 
@@ -269,8 +269,8 @@ def writeStoreIndicator(config, stagingDirs):
    @param stagingDirs: Dictionary mapping directory path to date suffix.
    """
    for stagingDir in list(stagingDirs.keys()):
-      writeIndicatorFile(stagingDir, STORE_INDICATOR, 
-                         config.options.backupUser, 
+      writeIndicatorFile(stagingDir, STORE_INDICATOR,
+                         config.options.backupUser,
                          config.options.backupGroup)
 
 
