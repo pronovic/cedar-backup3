@@ -35,7 +35,8 @@ EPYDOC            = epydoc
 FIND              = find
 MKDIR             = mkdir
 PYLINT            = pylint
-PYTHON            = python3   # gets us the right interpreter on Debian systems, which is what I care about
+PYTHON            = python3 
+COVERAGE          = python3-coverage
 RM                = rm
 SETUP             = $(PYTHON) ./setup.py
 SUDO              = sudo
@@ -79,6 +80,19 @@ test:
 # This leaves off "full" and gets on the tests most end-users would run
 usertest:
 	@$(PYTHON) util/test.py
+
+# This gets coverage for the full tests
+coverage:
+	@$(SUDO) -v
+	@$(COVERAGE) run --source CedarBackup3 util/test.py full
+	@$(COVERAGE) html
+	@echo "Coverage at: file://${PWD}/htmlcov/index.html"
+
+# This gets coverage for the user tests
+usercoverage:
+	@$(COVERAGE) run --source CedarBackup3 util/test.py
+	@$(COVERAGE) html
+	@echo "Coverage at: file://${PWD}/htmlcov/index.html"
 
 
 ##################################
