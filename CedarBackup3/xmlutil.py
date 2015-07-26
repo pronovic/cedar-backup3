@@ -679,8 +679,15 @@ class Serializer(object):
       return
 
 def _encodeText(text, encoding):
-   """Encodes the passed-in text as UTF-8."""
-   return text.encode("utf-8")
+   """Safely encodes the passed-in text as a Unicode string, converting bytes to UTF-8 if necessary."""
+   if text is None:
+      return text
+   try:
+      if isinstance(text, bytes):
+         text = str(path, "utf-8")
+      return text
+   except UnicodeError:
+      raise ValueError("Path could not be safely encoded as utf-8.")
 
 def _translateCDATAAttr(characters):
    """

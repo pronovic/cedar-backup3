@@ -58,6 +58,7 @@ import getopt
 import json
 import chardet
 import warnings
+from functools import total_ordering
 
 # Cedar Backup modules 
 from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
@@ -86,6 +87,7 @@ LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
 # Options class
 #######################################################################
 
+@total_ordering
 class Options(object):
 
    ######################
@@ -129,7 +131,7 @@ class Options(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__
    """
 
    ##############
@@ -230,9 +232,21 @@ class Options(object):
    # Standard comparison method
    #############################
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -260,17 +274,17 @@ class Options(object):
          else:
             return 1
       if self.logfile != other.logfile:
-         if self.logfile < other.logfile:
+         if str(self.logfile or "") < str(other.logfile or ""):
             return -1
          else:
             return 1
       if self.owner != other.owner:
-         if self.owner < other.owner:
+         if str(self.owner or "") < str(other.owner or ""):
             return -1
          else:
             return 1
       if self.mode != other.mode:
-         if self.mode < other.mode:
+         if int(self.mode or 0) < int(other.mode or 0):
             return -1
          else:
             return 1
@@ -305,12 +319,12 @@ class Options(object):
          else:
             return 1
       if self.sourceDir != other.sourceDir:
-         if self.sourceDir < other.sourceDir:
+         if str(self.sourceDir or "") < str(other.sourceDir or ""):
             return -1
          else:
             return 1
       if self.s3BucketUrl != other.s3BucketUrl:
-         if self.s3BucketUrl < other.s3BucketUrl:
+         if str(self.s3BucketUrl or "") < str(other.s3BucketUrl or ""):
             return -1
          else:
             return 1

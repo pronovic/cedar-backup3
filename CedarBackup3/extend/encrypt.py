@@ -59,6 +59,7 @@ configuration file.
 # System modules
 import os
 import logging
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
@@ -82,6 +83,7 @@ ENCRYPT_INDICATOR = "cback.encrypt"
 # EncryptConfig class definition
 ########################################################################
 
+@total_ordering
 class EncryptConfig(object):
 
    """
@@ -94,7 +96,8 @@ class EncryptConfig(object):
       - The encrypt mode must be one of the values in L{VALID_ENCRYPT_MODES}
       - The encrypt target value must be a non-empty string
 
-   @sort: __init__, __repr__, __str__, __cmp__, encryptMode, encryptTarget
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         encryptMode, encryptTarget
    """
 
    def __init__(self, encryptMode=None, encryptTarget=None):
@@ -123,9 +126,21 @@ class EncryptConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -133,12 +148,12 @@ class EncryptConfig(object):
       if other is None:
          return 1
       if self.encryptMode != other.encryptMode:
-         if self.encryptMode < other.encryptMode:
+         if str(self.encryptMode or "") < str(other.encryptMode or ""):
             return -1
          else:
             return 1
       if self.encryptTarget != other.encryptTarget:
-         if self.encryptTarget < other.encryptTarget:
+         if str(self.encryptTarget or "") < str(other.encryptTarget or ""):
             return -1
          else:
             return 1
@@ -184,6 +199,7 @@ class EncryptConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -197,7 +213,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, encrypt, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         encrypt, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -261,9 +278,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

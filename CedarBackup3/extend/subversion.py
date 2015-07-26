@@ -75,6 +75,7 @@ import logging
 import pickle
 from bz2 import BZ2File
 from gzip import GzipFile
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode
@@ -103,6 +104,7 @@ REVISION_PATH_EXTENSION = "svnlast"
 # RepositoryDir class definition
 ########################################################################
 
+@total_ordering
 class RepositoryDir(object):
 
    """
@@ -123,7 +125,8 @@ class RepositoryDir(object):
    Relative exclusions are allowed here.  However, there is no configured
    ignore file, because repository dir backups are not recursive.
 
-   @sort: __init__, __repr__, __str__, __cmp__, directoryPath, collectMode, compressMode
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         directoryPath, collectMode, compressMode
    """
 
    def __init__(self, repositoryType=None, directoryPath=None, collectMode=None, compressMode=None,
@@ -164,31 +167,43 @@ class RepositoryDir(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.repositoryType != other.repositoryType:
-         if self.repositoryType < other.repositoryType:
+         if str(self.repositoryType or "") < str(other.repositoryType or ""):
             return -1
          else:
             return 1
       if self.directoryPath != other.directoryPath:
-         if self.directoryPath < other.directoryPath:
+         if str(self.directoryPath or "") < str(other.directoryPath or ""):
             return -1
          else:
             return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -325,6 +340,7 @@ class RepositoryDir(object):
 # Repository class definition
 ########################################################################
 
+@total_ordering
 class Repository(object):
 
    """
@@ -339,7 +355,8 @@ class Repository(object):
    The repository type value is kept around just for reference.  It doesn't
    affect the behavior of the backup.
 
-   @sort: __init__, __repr__, __str__, __cmp__, repositoryPath, collectMode, compressMode
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         repositoryPath, collectMode, compressMode
    """
 
    def __init__(self, repositoryType=None, repositoryPath=None, collectMode=None, compressMode=None):
@@ -372,31 +389,43 @@ class Repository(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.repositoryType != other.repositoryType:
-         if self.repositoryType < other.repositoryType:
+         if str(self.repositoryType or "") < str(other.repositoryType or ""):
             return -1
          else:
             return 1
       if self.repositoryPath != other.repositoryPath:
-         if self.repositoryPath < other.repositoryPath:
+         if str(self.repositoryPath or "") < str(other.repositoryPath or ""):
             return -1
          else:
             return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -478,6 +507,7 @@ class Repository(object):
 # SubversionConfig class definition
 ########################################################################
 
+@total_ordering
 class SubversionConfig(object):
 
    """
@@ -498,7 +528,8 @@ class SubversionConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, collectMode, compressMode, repositories
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         collectMode, compressMode, repositories
    """
 
    def __init__(self, collectMode=None, compressMode=None, repositories=None, repositoryDirs=None):
@@ -533,9 +564,21 @@ class SubversionConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -543,12 +586,12 @@ class SubversionConfig(object):
       if other is None:
          return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -654,6 +697,7 @@ class SubversionConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -667,7 +711,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, subversion, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         subversion, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -731,9 +776,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

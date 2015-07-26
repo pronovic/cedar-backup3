@@ -84,6 +84,7 @@ import time
 import logging
 import string  # pylint: disable=W0402
 from subprocess import Popen, STDOUT, PIPE
+from functools import total_ordering
 
 from CedarBackup3.release import VERSION, DATE
 import collections
@@ -582,6 +583,7 @@ class _Vertex(object):
       self.endpoints = []
       self.state = None
 
+@total_ordering
 class DirectedGraph(object):
 
    """
@@ -633,9 +635,21 @@ class DirectedGraph(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
@@ -643,7 +657,7 @@ class DirectedGraph(object):
       if other is None:
          return 1
       if self.name != other.name:
-         if self.name < other.name:
+         if str(self.name or "") < str(other.name or ""):
             return -1
          else:
             return 1
@@ -1668,103 +1682,18 @@ def deviceMounted(devicePath):
 ########################
 
 def encodePath(path):
-
-   r"""
-   Safely encodes a filesystem path.
-
-   Many Python filesystem functions, such as C{os.listdir}, behave differently
-   if they are passed unicode arguments versus simple string arguments.  For
-   instance, C{os.listdir} generally returns unicode path names if it is passed
-   a unicode argument, and string pathnames if it is passed a string argument.
-
-   However, this behavior often isn't as consistent as we might like.  As an example,
-   C{os.listdir} "gives up" if it finds a filename that it can't properly encode
-   given the current locale settings.  This means that the returned list is
-   a mixed set of unicode and simple string paths.  This has consequences later,
-   because other filesystem functions like C{os.path.join} will blow up if they
-   are given one string path and one unicode path.
-
-   On comp.lang.python, Martin v. Löwis explained the C{os.listdir} behavior
-   like this::
-
-      The operating system (POSIX) does not have the inherent notion that file
-      names are character strings. Instead, in POSIX, file names are primarily
-      byte strings. There are some bytes which are interpreted as characters
-      (e.g. '\x2e', which is '.', or '\x2f', which is '/'), but apart from
-      that, most OS layers think these are just bytes.
-
-      Now, most *people* think that file names are character strings.  To
-      interpret a file name as a character string, you need to know what the
-      encoding is to interpret the file names (which are byte strings) as
-      character strings.
-
-      There is, unfortunately, no operating system API to carry the notion of a
-      file system encoding. By convention, the locale settings should be used
-      to establish this encoding, in particular the LC_CTYPE facet of the
-      locale. This is defined in the environment variables LC_CTYPE, LC_ALL,
-      and LANG (searched in this order).
-
-      If LANG is not set, the "C" locale is assumed, which uses ASCII as its
-      file system encoding. In this locale, '\xe2\x99\xaa\xe2\x99\xac' is not a
-      valid file name (at least it cannot be interpreted as characters, and
-      hence not be converted to Unicode).
-
-      Now, your Python script has requested that all file names *should* be
-      returned as character (ie. Unicode) strings, but Python cannot comply,
-      since there is no way to find out what this byte string means, in terms
-      of characters.
-
-      So we have three options:
-
-      1. Skip this string, only return the ones that can be converted to Unicode. 
-         Give the user the impression the file does not exist.
-      2. Return the string as a byte string
-      3. Refuse to listdir altogether, raising an exception (i.e. return nothing)
-
-      Python has chosen alternative 2, allowing the application to implement 1
-      or 3 on top of that if it wants to (or come up with other strategies,
-      such as user feedback).
-
-   As a solution, he suggests that rather than passing unicode paths into the
-   filesystem functions, that I should sensibly encode the path first.  That is
-   what this function accomplishes.  Any function which takes a filesystem path
-   as an argument should encode it first, before using it for any other purpose.
-
-   I confess I still don't completely understand how this works.  On a system
-   with filesystem encoding "ISO-8859-1", a path C{u"\xe2\x99\xaa\xe2\x99\xac"}
-   is converted into the string C{"\xe2\x99\xaa\xe2\x99\xac"}.  However, on a
-   system with a "utf-8" encoding, the result is a completely different string:
-   C{"\xc3\xa2\xc2\x99\xc2\xaa\xc3\xa2\xc2\x99\xc2\xac"}.  A quick test where I
-   write to the first filename and open the second proves that the two strings
-   represent the same file on disk, which is all I really care about.
-
-   @note: As a special case, if C{path} is C{None}, then this function will
-   return C{None}.
-
-   @note: To provide several examples of encoding values, my Debian sarge box
-   with an ext3 filesystem has Python filesystem encoding C{ISO-8859-1}.  User
-   Anarcat's Debian box with a xfs filesystem has filesystem encoding
-   C{ANSI_X3.4-1968}.  Both my iBook G4 running Mac OS X 10.4 and user Dag
-   Rende's SuSE 9.3 box both have filesystem encoding C{UTF-8}.
-
-   @note: Just because a filesystem has C{UTF-8} encoding doesn't mean that it
-   will be able to handle all extended-character filenames.  For instance,
-   certain extended-character (but not UTF-8) filenames -- like the ones in the
-   regression test tar file C{test/data/tree13.tar.gz} -- are not valid under
-   Mac OS X, and it's not even possible to extract them from the tarfile on
-   that platform.
-
+   """
+   Safely encodes a filesystem path as a Unicode string, converting bytes to fileystem encoding if necessary.
    @param path: Path to encode
-
    @return: Path, as a string, encoded appropriately
    @raise ValueError: If the path cannot be encoded properly.
    """
    if path is None:
       return path
    try:
-      if isinstance(path, str):
+      if isinstance(path, bytes):
          encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
-         path = path.encode(encoding)
+         path = str(path, encoding)
       return path
    except UnicodeError:
       raise ValueError("Path could not be safely encoded as %s." % encoding)

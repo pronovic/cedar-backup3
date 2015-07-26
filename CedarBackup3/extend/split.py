@@ -61,6 +61,7 @@ configuration file.
 import os
 import re
 import logging
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
@@ -84,6 +85,7 @@ SPLIT_INDICATOR = "cback.split"
 # SplitConfig class definition
 ########################################################################
 
+@total_ordering
 class SplitConfig(object):
 
    """
@@ -96,7 +98,8 @@ class SplitConfig(object):
       - The size limit must be a ByteQuantity
       - The split size must be a ByteQuantity
 
-   @sort: __init__, __repr__, __str__, __cmp__, sizeLimit, splitSize
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         sizeLimit, splitSize
    """
 
    def __init__(self, sizeLimit=None, splitSize=None):
@@ -125,9 +128,21 @@ class SplitConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -135,12 +150,12 @@ class SplitConfig(object):
       if other is None:
          return 1
       if self.sizeLimit != other.sizeLimit:
-         if self.sizeLimit < other.sizeLimit:
+         if (self.sizeLimit or ByteQuantity()) < (other.sizeLimit or ByteQuantity()):
             return -1
          else:
             return 1
       if self.splitSize != other.splitSize:
-         if self.splitSize < other.splitSize:
+         if (self.splitSize or ByteQuantity()) < (other.splitSize or ByteQuantity()):
             return -1
          else:
             return 1
@@ -192,6 +207,7 @@ class SplitConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -205,7 +221,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, split, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, split,
+         validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -269,9 +286,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

@@ -240,6 +240,7 @@ Validation
 import os
 import re
 import logging
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed
@@ -282,6 +283,7 @@ ACTION_NAME_REGEX     = r"^[a-z0-9]*$"
 # ByteQuantity class definition
 ########################################################################
 
+@total_ordering
 class ByteQuantity(object):
 
    """
@@ -302,7 +304,8 @@ class ByteQuantity(object):
    string format supported by Python is allowble.  However, it does not make
    sense to have a negative quantity of bytes in this context.  
 
-   @sort: __init__, __repr__, __str__, __cmp__, quantity, units
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         quantity, units
    """
 
    def __init__(self, quantity=None, units=None):
@@ -331,9 +334,21 @@ class ByteQuantity(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -341,12 +356,12 @@ class ByteQuantity(object):
       if other is None:
          return 1
       if self.quantity != other.quantity:
-         if self.quantity < other.quantity:
+         if float(self.quantity or 0.0) < float(other.quantity or 0.0):
             return -1
          else:
             return 1
       if self.units != other.units:
-         if self.units < other.units:
+         if str(self.units or "") < str(other.units or ""):
             return -1
          else:
             return 1
@@ -409,6 +424,7 @@ class ByteQuantity(object):
 # ActionDependencies class definition
 ########################################################################
 
+@total_ordering
 class ActionDependencies(object):
 
    """
@@ -423,7 +439,8 @@ class ActionDependencies(object):
 
       - Any action name must be a non-empty string matching C{ACTION_NAME_REGEX}
 
-   @sort: __init__, __repr__, __str__, __cmp__, beforeList, afterList
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         beforeList, afterList
    """
 
    def __init__(self, beforeList=None, afterList=None):
@@ -452,9 +469,21 @@ class ActionDependencies(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
@@ -526,6 +555,7 @@ class ActionDependencies(object):
 # ActionHook class definition
 ########################################################################
 
+@total_ordering
 class ActionHook(object):
 
    """
@@ -542,7 +572,8 @@ class ActionHook(object):
    The internal C{before} and C{after} instance variables are always set to
    False in this parent class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, action, command, before, after
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
+         command, before, after
    """
 
    def __init__(self, action=None, command=None):
@@ -573,21 +604,33 @@ class ActionHook(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.action != other.action:
-         if self.action < other.action:
+         if str(self.action or "") < str(other.action or ""):
             return -1
          else:
             return 1
       if self.command != other.command: 
-         if self.command < other.command: 
+         if str(self.command or "") < str(other.command or ""): 
             return -1
          else:
             return 1
@@ -658,6 +701,7 @@ class ActionHook(object):
    before = property(_getBefore, None, None, "Indicates whether command should be executed before action.")
    after = property(_getAfter, None, None, "Indicates whether command should be executed after action.")
 
+@total_ordering
 class PreActionHook(ActionHook):
 
    """
@@ -675,7 +719,8 @@ class PreActionHook(ActionHook):
    The internal C{before} instance variable is always set to True in this
    class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, action, command, before, after
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
+         command, before, after
    """
 
    def __init__(self, action=None, command=None):
@@ -696,6 +741,7 @@ class PreActionHook(ActionHook):
       """
       return "PreActionHook(%s, %s, %s, %s)" % (self.action, self.command, self.before, self.after)
 
+@total_ordering
 class PostActionHook(ActionHook):
 
    """
@@ -713,7 +759,8 @@ class PostActionHook(ActionHook):
    The internal C{before} instance variable is always set to True in this
    class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, action, command, before, after
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
+         command, before, after
    """
 
    def __init__(self, action=None, command=None):
@@ -739,6 +786,7 @@ class PostActionHook(ActionHook):
 # BlankBehavior class definition
 ########################################################################
 
+@total_ordering
 class BlankBehavior(object):
 
    """
@@ -749,7 +797,8 @@ class BlankBehavior(object):
       - The blanking mode must be a one of the values in L{VALID_BLANK_MODES}
       - The blanking factor must be a positive floating point number
 
-   @sort: __init__, __repr__, __str__, __cmp__, blankMode, blankFactor
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         blankMode, blankFactor
    """
 
    def __init__(self, blankMode=None, blankFactor=None):
@@ -778,21 +827,33 @@ class BlankBehavior(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.blankMode != other.blankMode:
-         if self.blankMode < other.blankMode:
+         if str(self.blankMode or "") < str(other.blankMode or ""):
             return -1
          else:
             return 1
       if self.blankFactor != other.blankFactor:
-         if self.blankFactor < other.blankFactor:
+         if float(self.blankFactor or 0.0) < float(other.blankFactor or 0.0):
             return -1
          else:
             return 1
@@ -845,6 +906,7 @@ class BlankBehavior(object):
 # ExtendedAction class definition
 ########################################################################
 
+@total_ordering
 class ExtendedAction(object):
 
    """
@@ -863,7 +925,8 @@ class ExtendedAction(object):
       - If set, the index must be a positive integer.
       - If set, the dependencies attribute must be an C{ActionDependencies} object.
 
-   @sort: __init__, __repr__, __str__, __cmp__, name, module, function, index, dependencies
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name,
+         module, function, index, dependencies
    """
 
    def __init__(self, name=None, module=None, function=None, index=None, dependencies=None):
@@ -901,31 +964,43 @@ class ExtendedAction(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.name != other.name:
-         if self.name < other.name:
+         if str(self.name or "") < str(other.name or ""):
             return -1
          else:
             return 1
       if self.module != other.module: 
-         if self.module < other.module: 
+         if str(self.module or "") < str(other.module or ""):  
             return -1
          else:
             return 1
       if self.function != other.function:
-         if self.function < other.function:
+         if str(self.function or "") < str(other.function or ""):
             return -1
          else:
             return 1
       if self.index != other.index:
-         if self.index < other.index:
+         if int(self.index or 0) < int(other.index or 0):
             return -1
          else:
             return 1
@@ -1052,6 +1127,7 @@ class ExtendedAction(object):
 # CommandOverride class definition
 ########################################################################
 
+@total_ordering
 class CommandOverride(object):
 
    """
@@ -1063,7 +1139,8 @@ class CommandOverride(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, command, absolutePath
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         command, absolutePath
    """
 
    def __init__(self, command=None, absolutePath=None):
@@ -1092,21 +1169,33 @@ class CommandOverride(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.command != other.command: 
-         if self.command < other.command:
+         if str(self.command or "") < str(other.command or ""):
             return -1
          else:
             return 1 
       if self.absolutePath != other.absolutePath: 
-         if self.absolutePath < other.absolutePath:
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1 
@@ -1156,6 +1245,7 @@ class CommandOverride(object):
 # CollectFile class definition
 ########################################################################
 
+@total_ordering
 class CollectFile(object):
 
    """
@@ -1167,7 +1257,8 @@ class CollectFile(object):
       - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
       - The archive mode must be one of the values in L{VALID_ARCHIVE_MODES}.
 
-   @sort: __init__, __repr__, __str__, __cmp__, absolutePath, collectMode, archiveMode
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         absolutePath, collectMode, archiveMode
    """
 
    def __init__(self, absolutePath=None, collectMode=None, archiveMode=None):
@@ -1199,26 +1290,38 @@ class CollectFile(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.absolutePath != other.absolutePath: 
-         if self.absolutePath < other.absolutePath:
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1 
       if self.collectMode != other.collectMode: 
-         if self.collectMode < other.collectMode: 
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1 
       if self.archiveMode != other.archiveMode: 
-         if self.archiveMode < other.archiveMode: 
+         if str(self.archiveMode or "") < str(other.archiveMode or ""): 
             return -1
          else:
             return 1 
@@ -1286,6 +1389,7 @@ class CollectFile(object):
 # CollectDir class definition
 ########################################################################
 
+@total_ordering
 class CollectDir(object):
 
    """
@@ -1304,7 +1408,7 @@ class CollectDir(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, absolutePath, collectMode,
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, absolutePath, collectMode,
           archiveMode, ignoreFile, linkDepth, dereference, absoluteExcludePaths, 
           relativeExcludePaths, excludePatterns
    """
@@ -1366,9 +1470,21 @@ class CollectDir(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -1376,27 +1492,27 @@ class CollectDir(object):
       if other is None:
          return 1
       if self.absolutePath != other.absolutePath: 
-         if self.absolutePath < other.absolutePath:
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1 
       if self.collectMode != other.collectMode: 
-         if self.collectMode < other.collectMode: 
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1 
       if self.archiveMode != other.archiveMode: 
-         if self.archiveMode < other.archiveMode: 
+         if str(self.archiveMode or "") < str(other.archiveMode or ""): 
             return -1
          else:
             return 1 
       if self.ignoreFile != other.ignoreFile: 
-         if self.ignoreFile < other.ignoreFile: 
+         if str(self.ignoreFile or "") < str(other.ignoreFile or ""):
             return -1
          else:
             return 1 
       if self.linkDepth != other.linkDepth: 
-         if self.linkDepth < other.linkDepth: 
+         if int(self.linkDepth or 0) < int(other.linkDepth or 0):
             return -1
          else:
             return 1 
@@ -1406,7 +1522,7 @@ class CollectDir(object):
          else:
             return 1 
       if self.recursionLevel != other.recursionLevel: 
-         if self.recursionLevel < other.recursionLevel: 
+         if int(self.recursionLevel or 0) < int(other.recursionLevel or 0):
             return -1
          else:
             return 1 
@@ -1640,6 +1756,7 @@ class CollectDir(object):
 # PurgeDir class definition
 ########################################################################
 
+@total_ordering
 class PurgeDir(object):
 
    """
@@ -1650,7 +1767,7 @@ class PurgeDir(object):
       - The absolute path must be an absolute path
       - The retain days value must be an integer >= 0.
 
-   @sort: __init__, __repr__, __str__, __cmp__, absolutePath, retainDays
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, absolutePath, retainDays
    """
 
    def __init__(self, absolutePath=None, retainDays=None):
@@ -1679,21 +1796,33 @@ class PurgeDir(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.absolutePath != other.absolutePath: 
-         if self.absolutePath < other.absolutePath: 
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1
       if self.retainDays != other.retainDays: 
-         if self.retainDays < other.retainDays: 
+         if int(self.retainDays or 0) < int(other.retainDays or 0): 
             return -1
          else:
             return 1
@@ -1749,6 +1878,7 @@ class PurgeDir(object):
 # LocalPeer class definition
 ########################################################################
 
+@total_ordering
 class LocalPeer(object):
 
    """
@@ -1760,7 +1890,7 @@ class LocalPeer(object):
       - The collect directory must be an absolute path.
       - The ignore failure mode must be one of the values in L{VALID_FAILURE_MODES}.
    
-   @sort: __init__, __repr__, __str__, __cmp__, name, collectDir
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir
    """
 
    def __init__(self, name=None, collectDir=None, ignoreFailureMode=None):
@@ -1792,26 +1922,38 @@ class LocalPeer(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.name != other.name: 
-         if self.name < other.name: 
+         if str(self.name or "") < str(other.name or ""): 
             return -1
          else:
             return 1
       if self.collectDir != other.collectDir:
-         if self.collectDir < other.collectDir:
+         if str(self.collectDir or "") < str(other.collectDir or ""):
             return -1
          else:
             return 1
       if self.ignoreFailureMode != other.ignoreFailureMode:
-         if self.ignoreFailureMode < other.ignoreFailureMode:
+         if str(self.ignoreFailureMode or "") < str(other.ignoreFailureMode or ""):
             return -1
          else:
             return 1
@@ -1879,6 +2021,7 @@ class LocalPeer(object):
 # RemotePeer class definition
 ########################################################################
 
+@total_ordering
 class RemotePeer(object):
 
    """
@@ -1895,7 +2038,7 @@ class RemotePeer(object):
       - Any managed action name must be a non-empty string matching C{ACTION_NAME_REGEX}
       - The ignore failure mode must be one of the values in L{VALID_FAILURE_MODES}.
 
-   @sort: __init__, __repr__, __str__, __cmp__, name, collectDir, remoteUser, rcpCommand
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir, remoteUser, rcpCommand
    """
 
    def __init__(self, name=None, collectDir=None, remoteUser=None, 
@@ -1949,46 +2092,58 @@ class RemotePeer(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.name != other.name:
-         if self.name < other.name:
+         if str(self.name or "") < str(other.name or ""):
             return -1
          else:
             return 1
       if self.collectDir != other.collectDir: 
-         if self.collectDir < other.collectDir: 
+         if str(self.collectDir or "") < str(other.collectDir or ""): 
             return -1
          else:
             return 1
       if self.remoteUser != other.remoteUser:
-         if self.remoteUser < other.remoteUser:
+         if str(self.remoteUser or "") < str(other.remoteUser or ""):
             return -1
          else:
             return 1
       if self.rcpCommand != other.rcpCommand:
-         if self.rcpCommand < other.rcpCommand:
+         if str(self.rcpCommand or "") < str(other.rcpCommand or ""):
             return -1
          else:
             return 1
       if self.rshCommand != other.rshCommand:
-         if self.rshCommand < other.rshCommand:
+         if str(self.rshCommand or "") < str(other.rshCommand or ""):
             return -1
          else:
             return 1
       if self.cbackCommand != other.cbackCommand:
-         if self.cbackCommand < other.cbackCommand:
+         if str(self.cbackCommand or "") < str(other.cbackCommand or ""):
             return -1
          else:
             return 1
       if self.managed != other.managed:
-         if self.managed < other.managed:
+         if str(self.managed or "") < str(other.managed or ""):
             return -1
          else:
             return 1
@@ -1998,7 +2153,7 @@ class RemotePeer(object):
          else:
             return 1
       if self.ignoreFailureMode != other.ignoreFailureMode:
-         if self.ignoreFailureMode < other.ignoreFailureMode:
+         if str(self.ignoreFailureMode or "") < str(other.ignoreFailureMode or ""):
             return -1
          else:
             return 1
@@ -2178,6 +2333,7 @@ class RemotePeer(object):
 # ReferenceConfig class definition
 ########################################################################
 
+@total_ordering
 class ReferenceConfig(object):
 
    """
@@ -2187,7 +2343,7 @@ class ReferenceConfig(object):
    configuration and exists mostly for backwards-compatibility with Cedar
    Backup 1.x.
 
-   @sort: __init__, __repr__, __str__, __cmp__, author, revision, description, generator
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, author, revision, description, generator
    """
 
    def __init__(self, author=None, revision=None, description=None, generator=None):
@@ -2220,31 +2376,43 @@ class ReferenceConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.author != other.author:
-         if self.author < other.author:
+         if str(self.author or "") < str(other.author or ""):
             return -1
          else:
             return 1
       if self.revision != other.revision:
-         if self.revision < other.revision:
+         if str(self.revision or "") < str(other.revision or ""):
             return -1
          else:
             return 1
       if self.description != other.description:
-         if self.description < other.description:
+         if str(self.description or "") < str(other.description or ""):
             return -1
          else:
             return 1
       if self.generator != other.generator:
-         if self.generator < other.generator:
+         if str(self.generator or "") < str(other.generator or ""):
             return -1
          else:
             return 1
@@ -2312,6 +2480,7 @@ class ReferenceConfig(object):
 # ExtensionsConfig class definition
 ########################################################################
 
+@total_ordering
 class ExtensionsConfig(object):
 
    """
@@ -2329,7 +2498,7 @@ class ExtensionsConfig(object):
       - If set, the order mode must be one of the values in C{VALID_ORDER_MODES}
       - The actions list must be a list of C{ExtendedAction} objects.
 
-   @sort: __init__, __repr__, __str__, __cmp__, orderMode, actions
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, orderMode, actions
    """
 
    def __init__(self, actions=None, orderMode=None):
@@ -2354,16 +2523,28 @@ class ExtensionsConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.orderMode != other.orderMode:
-         if self.orderMode < other.orderMode:
+         if str(self.orderMode or "") < str(other.orderMode or ""):
             return -1
          else:
             return 1
@@ -2422,6 +2603,7 @@ class ExtensionsConfig(object):
 # OptionsConfig class definition
 ########################################################################
 
+@total_ordering
 class OptionsConfig(object):
 
    """
@@ -2440,7 +2622,7 @@ class OptionsConfig(object):
       - The cback command must be a non-empty string.
       - Any managed action name must be a non-empty string matching C{ACTION_NAME_REGEX}
 
-   @sort: __init__, __repr__, __str__, __cmp__, startingDay, workingDir, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, startingDay, workingDir, 
          backupUser, backupGroup, rcpCommand, rshCommand, overrides
    """
 
@@ -2501,46 +2683,58 @@ class OptionsConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.startingDay != other.startingDay:
-         if self.startingDay < other.startingDay:
+         if str(self.startingDay or "") < str(other.startingDay or ""):
             return -1
          else:
             return 1
       if self.workingDir != other.workingDir:
-         if self.workingDir < other.workingDir:
+         if str(self.workingDir or "") < str(other.workingDir or ""):
             return -1
          else:
             return 1
       if self.backupUser != other.backupUser:
-         if self.backupUser < other.backupUser:
+         if str(self.backupUser or "") < str(other.backupUser or ""):
             return -1
          else:
             return 1
       if self.backupGroup != other.backupGroup:
-         if self.backupGroup < other.backupGroup:
+         if str(self.backupGroup or "") < str(other.backupGroup or ""):
             return -1
          else:
             return 1
       if self.rcpCommand != other.rcpCommand:
-         if self.rcpCommand < other.rcpCommand:
+         if str(self.rcpCommand or "") < str(other.rcpCommand or ""):
             return -1
          else:
             return 1
       if self.rshCommand != other.rshCommand:
-         if self.rshCommand < other.rshCommand:
+         if str(self.rshCommand or "") < str(other.rshCommand or ""):
             return -1
          else:
             return 1
       if self.cbackCommand != other.cbackCommand:
-         if self.cbackCommand < other.cbackCommand:
+         if str(self.cbackCommand or "") < str(other.cbackCommand or ""):
             return -1
          else:
             return 1
@@ -2804,6 +2998,7 @@ class OptionsConfig(object):
 # PeersConfig class definition
 ########################################################################
 
+@total_ordering
 class PeersConfig(object):
 
    """
@@ -2823,7 +3018,7 @@ class PeersConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, localPeers, remotePeers
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, localPeers, remotePeers
    """
 
    def __init__(self, localPeers=None, remotePeers=None):
@@ -2852,9 +3047,21 @@ class PeersConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -2935,6 +3142,7 @@ class PeersConfig(object):
 # CollectConfig class definition
 ########################################################################
 
+@total_ordering
 class CollectConfig(object):
 
    """
@@ -2961,7 +3169,7 @@ class CollectConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, targetDir, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir, 
           collectMode, archiveMode, ignoreFile, absoluteExcludePaths, 
           excludePatterns, collectFiles, collectDirs
    """
@@ -3014,9 +3222,21 @@ class CollectConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -3024,22 +3244,22 @@ class CollectConfig(object):
       if other is None:
          return 1
       if self.targetDir != other.targetDir:
-         if self.targetDir < other.targetDir:
+         if str(self.targetDir or "") < str(other.targetDir or ""):
             return -1
          else:
             return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.archiveMode != other.archiveMode:
-         if self.archiveMode < other.archiveMode:
+         if str(self.archiveMode or "") < str(other.archiveMode or ""):
             return -1
          else:
             return 1
       if self.ignoreFile != other.ignoreFile:
-         if self.ignoreFile < other.ignoreFile:
+         if str(self.ignoreFile or "") < str(other.ignoreFile or ""):
             return -1
          else:
             return 1
@@ -3241,6 +3461,7 @@ class CollectConfig(object):
 # StageConfig class definition
 ########################################################################
 
+@total_ordering
 class StageConfig(object):
 
    """
@@ -3254,7 +3475,7 @@ class StageConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, targetDir, localPeers, remotePeers
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir, localPeers, remotePeers
    """
 
    def __init__(self, targetDir=None, localPeers=None, remotePeers=None):
@@ -3286,9 +3507,21 @@ class StageConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -3296,7 +3529,7 @@ class StageConfig(object):
       if other is None:
          return 1
       if self.targetDir != other.targetDir:
-         if self.targetDir < other.targetDir:
+         if str(self.targetDir or "") < str(other.targetDir or ""):
             return -1
          else:
             return 1
@@ -3394,6 +3627,7 @@ class StageConfig(object):
 # StoreConfig class definition
 ########################################################################
 
+@total_ordering
 class StoreConfig(object):
 
    """
@@ -3415,7 +3649,7 @@ class StoreConfig(object):
    number, it is stored as a string. This is done so that we can losslessly go
    back and forth between XML and object representations of configuration.
 
-   @sort: __init__, __repr__, __str__, __cmp__, sourceDir, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, sourceDir, 
           mediaType, deviceType, devicePath, deviceScsiId, 
           driveSpeed, checkData, checkMedia, warnMidnite, noEject, 
           blankBehavior, refreshMediaDelay, ejectDelay
@@ -3489,41 +3723,53 @@ class StoreConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.sourceDir != other.sourceDir:
-         if self.sourceDir < other.sourceDir:
+         if str(self.sourceDir or "") < str(other.sourceDir or ""):
             return -1
          else:
             return 1
       if self.mediaType != other.mediaType:
-         if self.mediaType < other.mediaType:
+         if str(self.mediaType or "") < str(other.mediaType or ""):
             return -1
          else:
             return 1
       if self.deviceType != other.deviceType:
-         if self.deviceType < other.deviceType:
+         if str(self.deviceType or "") < str(other.deviceType or ""):
             return -1
          else:
             return 1
       if self.devicePath != other.devicePath:
-         if self.devicePath < other.devicePath:
+         if str(self.devicePath or "") < str(other.devicePath or ""):
             return -1
          else:
             return 1
       if self.deviceScsiId != other.deviceScsiId:
-         if self.deviceScsiId < other.deviceScsiId:
+         if str(self.deviceScsiId or "") < str(other.deviceScsiId or ""):
             return -1
          else:
             return 1
       if self.driveSpeed != other.driveSpeed:
-         if self.driveSpeed < other.driveSpeed:
+         if str(self.driveSpeed or "") < str(other.driveSpeed or ""):
             return -1
          else:
             return 1
@@ -3548,17 +3794,17 @@ class StoreConfig(object):
          else:
             return 1
       if self.blankBehavior != other.blankBehavior:
-         if self.blankBehavior < other.blankBehavior:
+         if str(self.blankBehavior or "") < str(other.blankBehavior or ""):
             return -1
          else:
             return 1
       if self.refreshMediaDelay != other.refreshMediaDelay:
-         if self.refreshMediaDelay < other.refreshMediaDelay:
+         if int(self.refreshMediaDelay or 0) < int(other.refreshMediaDelay or 0):
             return -1
          else:
             return 1
       if self.ejectDelay != other.ejectDelay:
-         if self.ejectDelay < other.ejectDelay:
+         if int(self.ejectDelay or 0) < int(other.ejectDelay or 0):
             return -1
          else:
             return 1
@@ -3819,6 +4065,7 @@ class StoreConfig(object):
 # PurgeConfig class definition
 ########################################################################
 
+@total_ordering
 class PurgeConfig(object):
 
    """
@@ -3834,7 +4081,7 @@ class PurgeConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, purgeDirs
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, purgeDirs
    """
 
    def __init__(self, purgeDirs=None):
@@ -3858,9 +4105,21 @@ class PurgeConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -3904,6 +4163,7 @@ class PurgeConfig(object):
 # Config class definition
 ########################################################################
 
+@total_ordering
 class Config(object):
 
    ######################
@@ -3940,7 +4200,7 @@ class Config(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, extractXml, validate, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, extractXml, validate, 
           reference, extensions, options, collect, stage, store, purge,
           _getReference, _setReference, _getExtensions, _setExtensions, 
           _getOptions, _setOptions, _getPeers, _setPeers, _getCollect, 
@@ -4039,9 +4299,21 @@ class Config(object):
    # Standard comparison method
    #############################
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

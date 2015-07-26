@@ -91,6 +91,7 @@ import tempfile
 import datetime
 import json
 import shutil
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList, BackupFileList
@@ -117,6 +118,7 @@ STORE_INDICATOR = "cback.amazons3"
 # AmazonS3Config class definition
 ########################################################################
 
+@total_ordering
 class AmazonS3Config(object):
 
    """
@@ -132,7 +134,8 @@ class AmazonS3Config(object):
       - The full backup size limit, if set, must be a number of bytes >= 0
       - The incremental backup size limit, if set, must be a number of bytes >= 0
 
-   @sort: __init__, __repr__, __str__, __cmp__, warnMidnite, s3Bucket
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         warnMidnite, s3Bucket
    """
 
    def __init__(self, warnMidnite=None, s3Bucket=None, encryptCommand=None, 
@@ -172,9 +175,21 @@ class AmazonS3Config(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
@@ -186,22 +201,22 @@ class AmazonS3Config(object):
          else:
             return 1
       if self.s3Bucket != other.s3Bucket:
-         if self.s3Bucket < other.s3Bucket:
+         if str(self.s3Bucket or "") < str(other.s3Bucket or ""):
             return -1
          else:
             return 1
       if self.encryptCommand != other.encryptCommand:
-         if self.encryptCommand < other.encryptCommand:
+         if str(self.encryptCommand or "") < str(other.encryptCommand or ""):
             return -1
          else:
             return 1
       if self.fullBackupSizeLimit != other.fullBackupSizeLimit:
-         if self.fullBackupSizeLimit < other.fullBackupSizeLimit:
+         if int(self.fullBackupSizeLimit or 0) < int(other.fullBackupSizeLimit or 0):
             return -1
          else:
             return 1
       if self.incrementalBackupSizeLimit != other.incrementalBackupSizeLimit:
-         if self.incrementalBackupSizeLimit < other.incrementalBackupSizeLimit:
+         if int(self.incrementalBackupSizeLimit or 0) < int(other.incrementalBackupSizeLimit or 0):
             return -1
          else:
             return 1
@@ -312,6 +327,7 @@ class AmazonS3Config(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -325,7 +341,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, amazons3, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         amazons3, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -389,9 +406,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

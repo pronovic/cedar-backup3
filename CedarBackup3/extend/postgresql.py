@@ -80,6 +80,7 @@ import os
 import logging
 from gzip import GzipFile
 from bz2 import BZ2File
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode, addBooleanNode
@@ -102,6 +103,7 @@ POSTGRESQLDUMPALL_COMMAND = [ "pg_dumpall", ]
 # PostgresqlConfig class definition
 ########################################################################
 
+@total_ordering
 class PostgresqlConfig(object):
 
    """
@@ -116,7 +118,8 @@ class PostgresqlConfig(object):
       - The 'all' flag must be 'N' if any databases are defined.
       - Any values in the databases list must be strings.
 
-   @sort: __init__, __repr__, __str__, __cmp__, user, all, databases
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, user,
+         all, databases
    """
 
    def __init__(self, user=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
@@ -149,21 +152,33 @@ class PostgresqlConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.user != other.user:
-         if self.user < other.user:
+         if str(self.user or "") < str(other.user or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -263,6 +278,7 @@ class PostgresqlConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -276,7 +292,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, postgresql, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         postgresql, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -340,9 +357,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

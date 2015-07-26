@@ -96,6 +96,7 @@ import pickle
 import tempfile
 from bz2 import BZ2File
 from gzip import GzipFile
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList, BackupFileList
@@ -121,6 +122,7 @@ REVISION_PATH_EXTENSION = "mboxlast"
 # MboxFile class definition
 ########################################################################
 
+@total_ordering
 class MboxFile(object):
 
    """
@@ -132,7 +134,8 @@ class MboxFile(object):
       - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
       - The compress mode must be one of the values in L{VALID_COMPRESS_MODES}.
 
-   @sort: __init__, __repr__, __str__, __cmp__, absolutePath, collectMode, compressMode
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         absolutePath, collectMode, compressMode
    """
 
    def __init__(self, absolutePath=None, collectMode=None, compressMode=None):
@@ -164,26 +167,38 @@ class MboxFile(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.absolutePath != other.absolutePath:
-         if self.absolutePath < other.absolutePath:
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -251,6 +266,7 @@ class MboxFile(object):
 # MboxDir class definition
 ########################################################################
 
+@total_ordering
 class MboxDir(object):
 
    """
@@ -267,8 +283,9 @@ class MboxDir(object):
    we only allow relative exclusions and there is no configured ignore file.
    This is because mbox directory backups are not recursive.
 
-   @sort: __init__, __repr__, __str__, __cmp__, absolutePath, collectMode, 
-          compressMode, relativeExcludePaths, excludePatterns
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         absolutePath, collectMode, compressMode, relativeExcludePaths,
+         excludePatterns
    """
 
    def __init__(self, absolutePath=None, collectMode=None, compressMode=None,
@@ -308,26 +325,38 @@ class MboxDir(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.absolutePath != other.absolutePath:
-         if self.absolutePath < other.absolutePath:
+         if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -450,6 +479,7 @@ class MboxDir(object):
 # MboxConfig class definition
 ########################################################################
 
+@total_ordering
 class MboxConfig(object):
 
    """
@@ -476,7 +506,8 @@ class MboxConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, collectMode, compressMode, mboxFiles, mboxDirs
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         collectMode, compressMode, mboxFiles, mboxDirs
    """
 
    def __init__(self, collectMode=None, compressMode=None, mboxFiles=None, mboxDirs=None):
@@ -511,9 +542,21 @@ class MboxConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -521,12 +564,12 @@ class MboxConfig(object):
       if other is None:
          return 1
       if self.collectMode != other.collectMode:
-         if self.collectMode < other.collectMode:
+         if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
             return 1
       if self.compressMode != other.compressMode:
-         if self.compressMode < other.compressMode:
+         if str(self.compressMode or "") < str(other.compressMode or ""):
             return -1
          else:
             return 1
@@ -632,6 +675,7 @@ class MboxConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -645,7 +689,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, mbox, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, mbox,
+         validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -709,9 +754,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.

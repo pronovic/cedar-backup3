@@ -83,6 +83,7 @@ import sys
 import os
 import logging
 import getopt
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
@@ -278,6 +279,7 @@ def cli():
 # _ActionItem class
 ####################
 
+@total_ordering
 class _ActionItem(object):
 
    """
@@ -324,9 +326,21 @@ class _ActionItem(object):
       self.postHook = postHook
       self.function = function
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       The only thing we compare is the item's index.  
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -334,13 +348,13 @@ class _ActionItem(object):
       if other is None:
          return 1
       if self.index != other.index:
-         if self.index < other.index:
+         if int(self.index or 0) < int(other.index or 0):
             return -1
          else:
             return 1 
       else:
          if self.SORT_ORDER != other.SORT_ORDER:
-            if self.SORT_ORDER < other.SORT_ORDER:
+            if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
                return -1
             else:
                return 1 
@@ -391,6 +405,7 @@ class _ActionItem(object):
 # _ManagedActionItem class
 ###########################
 
+@total_ordering
 class _ManagedActionItem(object):
 
    """
@@ -425,9 +440,21 @@ class _ManagedActionItem(object):
       self.name = name
       self.remotePeers = remotePeers
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       The only thing we compare is the item's index.  
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -435,13 +462,13 @@ class _ManagedActionItem(object):
       if other is None:
          return 1
       if self.index != other.index:
-         if self.index < other.index:
+         if int(self.index or 0) < int(other.index or 0):
             return -1
          else:
             return 1 
       else:
          if self.SORT_ORDER != other.SORT_ORDER:
-            if self.SORT_ORDER < other.SORT_ORDER:
+            if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
                return -1
             else:
                return 1 
@@ -1172,6 +1199,7 @@ def setupPathResolver(config):
 # Options class definition
 ########################################################################
 
+@total_ordering
 class Options(object):
 
    ######################
@@ -1215,7 +1243,7 @@ class Options(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__
    """
 
    ##############
@@ -1318,9 +1346,21 @@ class Options(object):
    # Standard comparison method
    #############################
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -1368,17 +1408,17 @@ class Options(object):
          else:
             return 1
       if self.logfile != other.logfile:
-         if self.logfile < other.logfile:
+         if str(self.logfile or "") < str(other.logfile or ""):
             return -1
          else:
             return 1
       if self.owner != other.owner:
-         if self.owner < other.owner:
+         if str(self.owner or "") < str(other.owner or ""):
             return -1
          else:
             return 1
       if self.mode != other.mode:
-         if self.mode < other.mode:
+         if int(self.mode or 0) < int(other.mode or 0):
             return -1
          else:
             return 1

@@ -52,6 +52,7 @@ than X bytes of capacity remaining.
 
 # System modules
 import logging
+from functools import total_ordering
 
 # Cedar Backup modules
 from CedarBackup3.util import displayBytes
@@ -72,6 +73,7 @@ logger = logging.getLogger("CedarBackup3.log.extend.capacity")
 # Percentage class definition
 ########################################################################
 
+@total_ordering
 class PercentageQuantity(object):
 
    """
@@ -89,7 +91,8 @@ class PercentageQuantity(object):
    string format supported by Python is allowble.  However, it does not make
    sense to have a negative percentage in this context.
 
-   @sort: __init__, __repr__, __str__, __cmp__, quantity
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         quantity
    """
 
    def __init__(self, quantity=None):
@@ -113,9 +116,21 @@ class PercentageQuantity(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
@@ -123,7 +138,7 @@ class PercentageQuantity(object):
       if other is None:
          return 1
       if self.quantity != other.quantity:
-         if self.quantity < other.quantity:
+         if float(self.quantity or 0.0) < float(other.quantity or 0.0):
             return -1
          else:
             return 1
@@ -168,6 +183,7 @@ class PercentageQuantity(object):
 # CapacityConfig class definition
 ########################################################################
 
+@total_ordering
 class CapacityConfig(object):
 
    """
@@ -178,7 +194,8 @@ class CapacityConfig(object):
       - The maximum percentage utilized must be a PercentageQuantity
       - The minimum bytes remaining must be a ByteQuantity
 
-   @sort: __init__, __repr__, __str__, __cmp__, maxPercentage, minBytes
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         maxPercentage, minBytes
    """
 
    def __init__(self, maxPercentage=None, minBytes=None):
@@ -205,21 +222,33 @@ class CapacityConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       if self.maxPercentage != other.maxPercentage:
-         if self.maxPercentage < other.maxPercentage:
+         if (self.maxPercentage or PercentageQuantity()) < (other.maxPercentage or PercentageQuantity()):
             return -1
          else:
             return 1
       if self.minBytes != other.minBytes:
-         if self.minBytes < other.minBytes:
+         if (self.minBytes or ByteQuantity()) < (other.minBytes or ByteQuantity()):
             return -1
          else:
             return 1
@@ -271,6 +300,7 @@ class CapacityConfig(object):
 # LocalConfig class definition
 ########################################################################
 
+@total_ordering
 class LocalConfig(object):
 
    """
@@ -284,7 +314,8 @@ class LocalConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, capacity, validate, addConfig
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
+         capacity, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
@@ -348,9 +379,21 @@ class LocalConfig(object):
       """
       return self.__repr__()
 
+   def __eq__(self, other):
+      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) == 0
+
+   def __lt__(self, other):
+      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) < 0
+
+   def __gt__(self, other):
+      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      return self.__cmp__(other) > 0
+
    def __cmp__(self, other):
       """
-      Definition of equals operator for this class.
+      Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
