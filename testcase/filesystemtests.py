@@ -114,10 +114,11 @@ import os
 import unittest
 import tempfile
 import tarfile
+import hashlib
 
 from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, changeFileAge, randomFilename
 from CedarBackup3.testutil import platformMacOsX, platformWindows, platformCygwin
-from CedarBackup3.testutil import platformSupportsLinks, platformRequiresBinaryRead
+from CedarBackup3.testutil import platformSupportsLinks
 from CedarBackup3.testutil import failUnlessAssignRaises
 from CedarBackup3.filesystem import FilesystemList, BackupFileList, PurgeItemList, normalizeDir, compareContents
 
@@ -19388,20 +19389,7 @@ class TestBackupFileList(unittest.TestCase):
       """
       for key in list(self.resources.keys()):
          path = self.resources[key]
-         if platformRequiresBinaryRead():
-            try:
-               import hashlib
-               digest1 = hashlib.sha1(open(path, mode="rb").read()).hexdigest()
-            except ImportError:
-               import sha
-               digest1 = sha.new(open(path, mode="rb").read()).hexdigest()
-         else:
-            try:
-               import hashlib
-               digest1 = hashlib.sha1(open(path).read()).hexdigest()
-            except ImportError:
-               import sha
-               digest1 = sha.new(open(path).read()).hexdigest()
+         digest1 = hashlib.sha1(open(path, mode="rb").read()).hexdigest()  # because generateDigest also uses "rb"
          digest2 = BackupFileList._generateDigest(path)
          self.assertEqual(digest1, digest2, "Digest for %s varies: [%s] vs [%s]." % (path, digest1, digest2))
 

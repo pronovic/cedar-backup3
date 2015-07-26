@@ -52,8 +52,7 @@ making them available to others.
        buildPath, removedir, extractTar, changeFileAge,
        getMaskAsMode, getLogin, failUnlessAssignRaises, runningAsRoot,
        platformDebian, platformMacOsX, platformCygwin, platformWindows, 
-       platformHasEcho, platformSupportsLinks, platformSupportsPermissions,
-       platformRequiresBinaryRead
+       platformHasEcho, platformSupportsLinks, platformSupportsPermissions
 
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
@@ -495,18 +494,6 @@ def platformSupportsPermissions():
    """
    return not platformWindows()
 
-
-########################################
-# platformRequiresBinaryRead() function
-########################################
-
-def platformRequiresBinaryRead():
-   """
-   Returns boolean indicating whether the platform requires binary reads.
-   Some platforms, like Windows, require a special flag to read binary data
-   from files.
-   """
-   return platformWindows()
 
 
 #############################
