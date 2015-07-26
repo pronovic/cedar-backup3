@@ -1503,8 +1503,9 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
          # The problem appears to be that we sometimes get a bad stderr file descriptor.
          pipe = Pipe(fields, ignoreStderr=ignoreStderr)
       while True:
-         line = pipe.stdout.readline().decode('utf-8')
+         line = pipe.stdout.readline()
          if not line: break
+         line = line.decode("utf-8")
          if returnOutput: output.append(line)
          if outputFile is not None: outputFile.write(line)
          if not doNotLog: outputLogger.info(line[:-1])  # this way the log will (hopefully) get updated in realtime
