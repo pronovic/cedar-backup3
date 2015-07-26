@@ -596,7 +596,7 @@ class TestRestrictedContentList(unittest.TestCase):
       self.assertEqual(list1, [])
       self.assertRaises(ValueError, list1.append, 1)
       self.assertEqual(list1, [])
-      self.assertRaises(AttributeError, list1.append, UnorderedList())
+      self.assertRaises(ValueError, list1.append, UnorderedList())
       self.assertEqual(list1, [])
 
    def testListOperations_003(self):
@@ -627,7 +627,7 @@ class TestRestrictedContentList(unittest.TestCase):
       self.assertEqual(list1, [])
       self.assertRaises(ValueError, list1.insert, 0, 1)
       self.assertEqual(list1, [])
-      self.assertRaises(AttributeError, list1.insert, 0, UnorderedList())
+      self.assertRaises(ValueError, list1.insert, 0, UnorderedList())
       self.assertEqual(list1, [])
 
    def testListOperations_005(self):
@@ -658,7 +658,7 @@ class TestRestrictedContentList(unittest.TestCase):
       self.assertEqual(list1, [])
       self.assertRaises(ValueError, list1.extend, [1, ])
       self.assertEqual(list1, [])
-      self.assertRaises(AttributeError, list1.extend, [ UnorderedList(), ])
+      self.assertRaises(ValueError, list1.extend, [ UnorderedList(), ])
       self.assertEqual(list1, [])
 
 

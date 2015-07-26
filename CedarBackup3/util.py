@@ -85,6 +85,8 @@ import logging
 import string  # pylint: disable=W0402
 from subprocess import Popen, STDOUT, PIPE
 from functools import total_ordering
+from numbers import Real
+from decimal import Decimal
 
 from CedarBackup3.release import VERSION, DATE
 import collections
@@ -180,10 +182,8 @@ class UnorderedList(list):
       """
       if other is None:
          return False
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__eq__(otherSorted)
 
    def __ne__(self, other):
@@ -194,10 +194,8 @@ class UnorderedList(list):
       """
       if other is None:
          return True
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__ne__(otherSorted)
 
    def __ge__(self, other):
@@ -208,10 +206,8 @@ class UnorderedList(list):
       """
       if other is None:
          return True
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__ge__(otherSorted)
 
    def __gt__(self, other):
@@ -222,10 +218,8 @@ class UnorderedList(list):
       """
       if other is None:
          return True
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__gt__(otherSorted)
 
    def __le__(self, other):
@@ -236,10 +230,8 @@ class UnorderedList(list):
       """
       if other is None:
          return False
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__le__(otherSorted)
 
    def __lt__(self, other):
@@ -250,11 +242,30 @@ class UnorderedList(list):
       """
       if other is None:
          return False
-      selfSorted = self[:]
-      otherSorted = other[:]
-      selfSorted.sort()
-      otherSorted.sort()
+      selfSorted = UnorderedList.mixedsort(self[:])
+      otherSorted = UnorderedList.mixedsort(other[:])
       return selfSorted.__lt__(otherSorted)
+
+   @staticmethod
+   def mixedsort(value):
+      """
+      Sort a list, making sure we don't blow up if the list happens to include mixed values.
+      @see: http://stackoverflow.com/questions/26575183/how-can-i-get-2-x-like-sorting-behaviour-in-python-3-x
+      """
+      return sorted(value, key=UnorderedList.mixedkey)
+
+   @staticmethod
+   def mixedkey(value):
+      numeric = Real, Decimal
+      if isinstance(value, numeric):
+         typeinfo = numeric
+      else:
+         typeinfo = type(value)
+      try:
+         x = value < value
+      except TypeError:
+         value = repr(value)
+      return repr(typeinfo), value
 
 
 ########################################################################
@@ -1055,15 +1066,11 @@ class Diagnostics(object):
 def sortDict(d):
    """
    Returns the keys of the dictionary sorted by value.
-
-   There are cuter ways to do this in Python 2.4, but we were originally
-   attempting to stay compatible with Python 2.3.
-
    @param d: Dictionary to operate on
    @return: List of dictionary keys sorted in order by dictionary value.
    """
    items = list(d.items())
-   items.sort(lambda x, y: cmp(x[1], y[1]))
+   items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
    return [key for key, value in items]
 
 
@@ -1241,7 +1248,7 @@ def getFunctionReference(module, function):
    copy = parts[:]
    while copy:
       try:
-         module = __import__(string.join(copy, "."))
+         module = __import__(".".join(copy))
          break
       except ImportError:
          del copy[-1]
@@ -1496,7 +1503,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
          # The problem appears to be that we sometimes get a bad stderr file descriptor.
          pipe = Pipe(fields, ignoreStderr=ignoreStderr)
       while True:
-         line = pipe.stdout.readline()
+         line = pipe.stdout.readline().decode('utf-8')
          if not line: break
          if returnOutput: output.append(line)
          if outputFile is not None: outputFile.write(line)
