@@ -102,7 +102,7 @@ from CedarBackup3.testutil import findResources, buildPath, removedir, extractTa
 # Module-wide configuration and constants
 #######################################################################
 
-GB44        = (4.4*1024.0*1024.0*1024.0)  # 4.4 GB 
+GB44        = (4.4*1024.0*1024.0*1024.0)  # 4.4 GB
 GB44SECTORS = GB44/2048.0                 # 4.4 GB in 2048-byte sectors
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
@@ -771,7 +771,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = None
       mediaLabel = None
       dryRun = False
-      self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId, 
+      self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId,
                             driveSpeed, imagePath, entries, mediaLabel, dryRun)
 
    def testBuildWriteArgs_002(self):
@@ -786,7 +786,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = None
       mediaLabel = None
       dryRun = True
-      self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId, 
+      self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId,
                             driveSpeed, imagePath, entries, mediaLabel, dryRun)
 
    def testBuildWriteArgs_003(self):
@@ -961,7 +961,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "path2":"graft2", "path3":"/path/to/graft3", }
       mediaLabel = None
       dryRun = False
-      expected = [ "-use-the-force-luke=tty", "-Z", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-Z", "/dev/dvd", "-r",
                    "-graft-points", "path1", "graft2/=path2", "path/to/graft3/=path3", ]
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -978,7 +978,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "path2":"graft2", "path3":"/path/to/graft3", }
       mediaLabel = None
       dryRun = True
-      expected = [ "-use-the-force-luke=tty", "-dry-run", "-Z", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-dry-run", "-Z", "/dev/dvd", "-r",
                    "-graft-points", "path1", "graft2/=path2", "path/to/graft3/=path3", ]
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -995,7 +995,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "path2":"graft2", }
       mediaLabel = None
       dryRun = False
-      expected = [ "-use-the-force-luke=tty", "-speed=1", "-M", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-speed=1", "-M", "/dev/dvd", "-r",
                    "-graft-points", "path1", "graft2/=path2", ]
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -1012,7 +1012,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "path2":"graft2", }
       mediaLabel = None
       dryRun = True
-      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=2", "-M", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=2", "-M", "/dev/dvd", "-r",
                    "-graft-points", "path1", "graft2/=path2", ]
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -1029,7 +1029,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "/path/to/path2":None, "/path/to/path3/":"/path/to/graft3/", }
       mediaLabel = None
       dryRun = False
-      expected = [ "-use-the-force-luke=tty", "-speed=3", "-Z", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-speed=3", "-Z", "/dev/dvd", "-r",
                    "-graft-points", "/path/to/path2", "path/to/graft3/=/path/to/path3/", "path1", ]  # sorted order
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -1046,7 +1046,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "/path/to/path2":None, "/path/to/path3/":"/path/to/graft3/", }
       mediaLabel = None
       dryRun = True
-      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=4", "-Z", "/dev/dvd", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=4", "-Z", "/dev/dvd", "-r",
                    "-graft-points", "/path/to/path2", "path/to/graft3/=/path/to/path3/", "path1", ]  # sorted order
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)
@@ -1079,7 +1079,7 @@ class TestDvdWriter(unittest.TestCase):
       entries = { "path1":None, "/path/to/path2":None, "/path/to/path3/":"/path/to/graft3/", }
       mediaLabel = "BACKUP"
       dryRun = True
-      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=4", "-Z", "/dev/dvd", "-V", "BACKUP", "-r", 
+      expected = [ "-use-the-force-luke=tty", "-dry-run", "-speed=4", "-Z", "/dev/dvd", "-V", "BACKUP", "-r",
                    "-graft-points", "/path/to/path2", "path/to/graft3/=/path/to/path3/", "path1", ]  # sorted order
       actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
       self.assertEqual(actual, expected)

@@ -67,9 +67,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ############################
-   # Test customizeOverrides() 
+   # Test customizeOverrides()
    ############################
-         
+
    def testCustomizeOverrides_001(self):
       """
       Test platform=standard, no existing overrides.
@@ -86,7 +86,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_002(self):
       """
-      Test platform=standard, existing override for cdrecord. 
+      Test platform=standard, existing override for cdrecord.
       """
       config = Config()
       options = OptionsConfig()
@@ -101,7 +101,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_003(self):
       """
-      Test platform=standard, existing override for mkisofs. 
+      Test platform=standard, existing override for mkisofs.
       """
       config = Config()
       options = OptionsConfig()
@@ -116,7 +116,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_004(self):
       """
-      Test platform=standard, existing override for cdrecord and mkisofs. 
+      Test platform=standard, existing override for cdrecord and mkisofs.
       """
       config = Config()
       options = OptionsConfig()
@@ -145,7 +145,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_006(self):
       """
-      Test platform=debian, existing override for cdrecord. 
+      Test platform=debian, existing override for cdrecord.
       """
       config = Config()
       options = OptionsConfig()
@@ -160,7 +160,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_007(self):
       """
-      Test platform=debian, existing override for mkisofs. 
+      Test platform=debian, existing override for mkisofs.
       """
       config = Config()
       options = OptionsConfig()
@@ -175,7 +175,7 @@ class TestFunctions(unittest.TestCase):
 
    def testCustomizeOverrides_008(self):
       """
-      Test platform=debian, existing override for cdrecord and mkisofs. 
+      Test platform=debian, existing override for cdrecord and mkisofs.
       """
       config = Config()
       options = OptionsConfig()

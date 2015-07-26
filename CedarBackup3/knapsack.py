@@ -90,7 +90,7 @@ def firstFit(items, capacity):
    no items fit, period, even if the items list contains zero-sized items.
 
    The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate 
+   seems kind of strange on first glance.  It works this way to facilitate
    easy sorting of the list on key if needed.
 
    The function assumes that the list of items may be used destructively, if
@@ -154,7 +154,7 @@ def bestFit(items, capacity):
    no items fit, period, even if the items list contains zero-sized items.
 
    The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate 
+   seems kind of strange on first glance.  It works this way to facilitate
    easy sorting of the list on key if needed.
 
    The function assumes that the list of items may be used destructively, if
@@ -223,7 +223,7 @@ def worstFit(items, capacity):
    no items fit, period, even if the items list contains zero-sized items.
 
    The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate 
+   seems kind of strange on first glance.  It works this way to facilitate
    easy sorting of the list on key if needed.
 
    The function assumes that the list of items may be used destructively, if
@@ -254,7 +254,7 @@ def worstFit(items, capacity):
       keys.append(item[0])
 
    # Search the list
-   used = 0 
+   used = 0
    remaining = capacity
    for key in keys:
       if remaining == 0:
@@ -294,7 +294,7 @@ def alternateFit(items, capacity):
    no items fit, period, even if the items list contains zero-sized items.
 
    The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate 
+   seems kind of strange on first glance.  It works this way to facilitate
    easy sorting of the list on key if needed.
 
    The function assumes that the list of items may be used destructively, if
@@ -325,13 +325,13 @@ def alternateFit(items, capacity):
       keys.append(item[0])
 
    # Search the list
-   used = 0 
+   used = 0
    remaining = capacity
 
    front = keys[0:len(keys)//2]
    back = keys[len(keys)//2:len(keys)]
    back.reverse()
-   
+
    i = 0
    j = 0
 

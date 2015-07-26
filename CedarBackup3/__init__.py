@@ -49,5 +49,5 @@ written in the Python programming language.
 # Using 'from CedarBackup3 import *' will just import the modules listed
 # in the __all__ variable.
 
-__all__ = [ 'actions', 'cli', 'config', 'extend', 'filesystem', 'knapsack', 
+__all__ = [ 'actions', 'cli', 'config', 'extend', 'filesystem', 'knapsack',
             'peer', 'release', 'tools', 'util', 'writers', ]

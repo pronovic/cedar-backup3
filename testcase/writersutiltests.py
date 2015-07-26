@@ -43,7 +43,7 @@ Code Coverage
 =============
 
    This module contains individual tests for the public functions and classes
-   implemented in writers/util.py. 
+   implemented in writers/util.py.
 
    I usually prefer to test only the public interface to a class, because that
    way the regression tests don't depend on the internal implementation.  In
@@ -152,7 +152,7 @@ class TestFunctions(unittest.TestCase):
 
 
    ########################
-   # Test validateScsiId() 
+   # Test validateScsiId()
    ########################
 
    def testValidateScsiId_001(self):
@@ -265,7 +265,7 @@ class TestFunctions(unittest.TestCase):
 
 
    ############################
-   # Test validateDriveSpeed() 
+   # Test validateDriveSpeed()
    ############################
 
    def testValidateDriveSpeed_001(self):
@@ -340,7 +340,7 @@ class TestIsoImage(unittest.TestCase):
          self.fail(e)
 
    def tearDown(self):
-      if self.mounted: 
+      if self.mounted:
          self.unmountImage()
       removedir(self.tmpdir)
       self.enableGnomeAutomount()
@@ -378,7 +378,7 @@ class TestIsoImage(unittest.TestCase):
    def mountImageDarwin(self, imagePath):
       """
       Mounts an ISO image at C{self.tmpdir/mnt} using Darwin's C{hdiutil} program.
-   
+
       Darwin (Mac OS X) uses the C{hdiutil} program to mount volumes.  The
       mount command doesn't really exist (or rather, doesn't know what to do
       with ISO 9660 volumes).
@@ -458,13 +458,13 @@ class TestIsoImage(unittest.TestCase):
       if result != 0:
          raise IOError("Error (%d) executing command to unmount image." % result)
       self.mounted = False
-      
+
    def unmountImageGeneric(self):
       """
       Unmounts an ISO image from C{self.tmpdir/mnt}.
 
       Sometimes, multiple tries are needed because the ISO filesystem is still
-      in use.  We try twice with a 1-second pause between attempts.  If this 
+      in use.  We try twice with a 1-second pause between attempts.  If this
       isn't successful, you may run out of loopback devices.  Check for leftover
       mounts using 'losetup -a' as root.  You can remove a leftover mount using
       something like 'losetup -d /dev/loop0'.
@@ -500,7 +500,7 @@ class TestIsoImage(unittest.TestCase):
 
       This causes lots of problems for these unit tests, which assume that they
       have complete control over the mounting and unmounting process.  So, for
-      these tests to work, we need to disable GNOME auto-mounting.  
+      these tests to work, we need to disable GNOME auto-mounting.
       """
       self.origMediaAutomount = None
       self.origMediaAutomountOpen = None
@@ -736,7 +736,7 @@ class TestIsoImage(unittest.TestCase):
       entries["/one/two/three"] = "backup1"
       isoImage = IsoImage(device="/dev/cdrw", boundaries=(1, 2))
       result = isoImage._buildSizeArgs(entries)
-      self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
+      self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three", ],
                            result)
 
    def testUtilityMethods_017(self):
@@ -804,7 +804,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage(device="/dev/cdrw", boundaries=(3, 4))
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three", ], 
+      self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three", ],
                            result)
 
 

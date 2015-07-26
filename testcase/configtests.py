@@ -43,7 +43,7 @@ Code Coverage
 =============
 
    This module contains individual tests for the public functions and classes
-   implemented in config.py.  
+   implemented in config.py.
 
    I usually prefer to test only the public interface to a class, because that
    way the regression tests don't depend on the internal implementation.  In
@@ -74,7 +74,7 @@ Testing XML Extraction
    constant string and say "the result must match this".  Instead, what we do
    is extract the XML and then feed it back into another object's constructor.
    If that parse process succeeds and the old object is equal to the new
-   object, we assume that the extract was successful.  
+   object, we assume that the extract was successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -114,11 +114,11 @@ from CedarBackup3.config import ByteQuantity
 #######################################################################
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
-RESOURCES = [ "cback.conf.1", "cback.conf.2", "cback.conf.3", "cback.conf.4", 
-              "cback.conf.5", "cback.conf.6", "cback.conf.7", "cback.conf.8", 
-              "cback.conf.9", "cback.conf.10", "cback.conf.11", "cback.conf.12", 
-              "cback.conf.13", "cback.conf.14", "cback.conf.15", "cback.conf.16", 
-              "cback.conf.17", "cback.conf.18", "cback.conf.19", "cback.conf.20", 
+RESOURCES = [ "cback.conf.1", "cback.conf.2", "cback.conf.3", "cback.conf.4",
+              "cback.conf.5", "cback.conf.6", "cback.conf.7", "cback.conf.8",
+              "cback.conf.9", "cback.conf.10", "cback.conf.11", "cback.conf.12",
+              "cback.conf.13", "cback.conf.14", "cback.conf.15", "cback.conf.16",
+              "cback.conf.17", "cback.conf.18", "cback.conf.19", "cback.conf.20",
               "cback.conf.21", "cback.conf.22", "cback.conf.23", ]
 
 
@@ -6044,7 +6044,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
       overrides = [ CommandOverride("one", "/one"), ]
       hooks = [ PreActionHook("collect", "ls -l ") ]
-      managedActions1 = [] 
+      managedActions1 = []
       managedActions2 = [ "collect", ]
       options1 = OptionsConfig("monday", "/tmp", "user", "group", "scp -1 -B", overrides, hooks, "ssh", "cback", managedActions1)
       options2 = OptionsConfig("monday", "/tmp", "user", "group", "scp -1 -B", overrides, hooks, "ssh", "cback", managedActions2)
@@ -6063,7 +6063,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
       overrides = [ CommandOverride("one", "/one"), ]
       hooks = [ PreActionHook("collect", "ls -l ") ]
-      managedActions1 = [ "collect", ] 
+      managedActions1 = [ "collect", ]
       managedActions2 = [ "purge", ]
       options1 = OptionsConfig("monday", "/tmp", "user", "group", "scp -1 -B", overrides, hooks, "ssh", "cback", managedActions1)
       options2 = OptionsConfig("monday", "/tmp", "user", "group", "scp -1 -B", overrides, hooks, "ssh", "cback", managedActions2)
@@ -9688,7 +9688,7 @@ class TestConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -9822,7 +9822,7 @@ class TestConfig(unittest.TestCase):
 
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = "dependency"
-      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("e", "f", "g", dependencies=ActionDependencies()), ]
       config._validateExtensions()
 
@@ -9835,13 +9835,13 @@ class TestConfig(unittest.TestCase):
 
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = None
-      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("e", "f", "g", dependencies=ActionDependencies()), ]
       self.assertRaises(ValueError, config._validateExtensions)
 
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = "index"
-      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("e", "f", "g", dependencies=ActionDependencies()), ]
       self.assertRaises(ValueError, config._validateExtensions)
 
@@ -9852,13 +9852,13 @@ class TestConfig(unittest.TestCase):
 
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = "index"
-      config.extensions.actions = [ ExtendedAction("a", "b", "c", 12), 
+      config.extensions.actions = [ ExtendedAction("a", "b", "c", 12),
                                     ExtendedAction("e", "f", "g", dependencies=ActionDependencies()), ]
       self.assertRaises(ValueError, config._validateExtensions)
 
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = "dependency"
-      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("a", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("e", "f", "g", 12), ]
       self.assertRaises(ValueError, config._validateExtensions)
 
@@ -10603,11 +10603,11 @@ class TestConfig(unittest.TestCase):
       config.extensions = ExtensionsConfig()
       config.extensions.orderMode = "dependency"
 
-      config.extensions.actions = [ ExtendedAction("unique1", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("unique1", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("unique2", "f", "g", dependencies=ActionDependencies()), ]
       config._validateExtensions()
 
-      config.extensions.actions = [ ExtendedAction("duplicate", "b", "c", dependencies=ActionDependencies()), 
+      config.extensions.actions = [ ExtendedAction("duplicate", "b", "c", dependencies=ActionDependencies()),
                                     ExtendedAction("duplicate", "f", "g", dependencies=ActionDependencies()), ]
       self.assertRaises(ValueError, config._validateExtensions)
 
@@ -10620,11 +10620,11 @@ class TestConfig(unittest.TestCase):
       config.stage = StageConfig()
       config.stage.targetDir = "/whatever"
 
-      config.stage.localPeers = [ LocalPeer(name="unique1", collectDir="/nowhere"), 
+      config.stage.localPeers = [ LocalPeer(name="unique1", collectDir="/nowhere"),
                                   LocalPeer(name="unique2", collectDir="/nowhere"), ]
       config._validateStage()
 
-      config.stage.localPeers = [ LocalPeer(name="duplicate", collectDir="/nowhere"), 
+      config.stage.localPeers = [ LocalPeer(name="duplicate", collectDir="/nowhere"),
                                   LocalPeer(name="duplicate", collectDir="/nowhere"), ]
       self.assertRaises(ValueError, config._validateStage)
 
@@ -10637,11 +10637,11 @@ class TestConfig(unittest.TestCase):
       config.stage = StageConfig()
       config.stage.targetDir = "/whatever"
 
-      config.stage.remotePeers = [ RemotePeer(name="unique1", collectDir="/some/path/to/data"), 
+      config.stage.remotePeers = [ RemotePeer(name="unique1", collectDir="/some/path/to/data"),
                                    RemotePeer(name="unique2", collectDir="/some/path/to/data"), ]
       config._validateStage()
 
-      config.stage.remotePeers = [ RemotePeer(name="duplicate", collectDir="/some/path/to/data"), 
+      config.stage.remotePeers = [ RemotePeer(name="duplicate", collectDir="/some/path/to/data"),
                                    RemotePeer(name="duplicate", collectDir="/some/path/to/data"), ]
       self.assertRaises(ValueError, config._validateStage)
 
@@ -10838,11 +10838,11 @@ class TestConfig(unittest.TestCase):
       config.options = OptionsConfig(backupUser="ken", rcpCommand="command")
       config.peers = PeersConfig()
 
-      config.peers.localPeers = [ LocalPeer(name="unique1", collectDir="/nowhere"), 
+      config.peers.localPeers = [ LocalPeer(name="unique1", collectDir="/nowhere"),
                                   LocalPeer(name="unique2", collectDir="/nowhere"), ]
       config._validatePeers()
 
-      config.peers.localPeers = [ LocalPeer(name="duplicate", collectDir="/nowhere"), 
+      config.peers.localPeers = [ LocalPeer(name="duplicate", collectDir="/nowhere"),
                                   LocalPeer(name="duplicate", collectDir="/nowhere"), ]
       self.assertRaises(ValueError, config._validatePeers)
 
@@ -10854,11 +10854,11 @@ class TestConfig(unittest.TestCase):
       config.options = OptionsConfig(backupUser="ken", rcpCommand="command")
       config.peers = PeersConfig()
 
-      config.peers.remotePeers = [ RemotePeer(name="unique1", collectDir="/some/path/to/data"), 
+      config.peers.remotePeers = [ RemotePeer(name="unique1", collectDir="/some/path/to/data"),
                                    RemotePeer(name="unique2", collectDir="/some/path/to/data"), ]
       config._validatePeers()
 
-      config.peers.remotePeers = [ RemotePeer(name="duplicate", collectDir="/some/path/to/data"), 
+      config.peers.remotePeers = [ RemotePeer(name="duplicate", collectDir="/some/path/to/data"),
                                    RemotePeer(name="duplicate", collectDir="/some/path/to/data"), ]
       self.assertRaises(ValueError, config._validatePeers)
 
@@ -11239,29 +11239,29 @@ class TestConfig(unittest.TestCase):
       expected.extensions = ExtensionsConfig()
       expected.extensions.orderMode = "dependency"
       expected.extensions.actions = []
-      expected.extensions.actions.append(ExtendedAction("sysinfo", "CedarBackup3.extend.sysinfo", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("sysinfo", "CedarBackup3.extend.sysinfo", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies()))
-      expected.extensions.actions.append(ExtendedAction("mysql", "CedarBackup3.extend.mysql", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("mysql", "CedarBackup3.extend.mysql", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies()))
-      expected.extensions.actions.append(ExtendedAction("postgresql", "CedarBackup3.extend.postgresql", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("postgresql", "CedarBackup3.extend.postgresql", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies(beforeList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("subversion", "CedarBackup3.extend.subversion", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("subversion", "CedarBackup3.extend.subversion", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies(afterList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("mbox", "CedarBackup3.extend.mbox", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("mbox", "CedarBackup3.extend.mbox", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies(beforeList=["one", ], afterList=["one", ])))
-      expected.extensions.actions.append(ExtendedAction("encrypt", "CedarBackup3.extend.encrypt", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("encrypt", "CedarBackup3.extend.encrypt", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies(beforeList=["a", "b", "c", "d", ],
                                                                                         afterList=["one", "two", "three",
                                                                                                    "four", "five", "six",
                                                                                                    "seven", "eight", ])))
-      expected.extensions.actions.append(ExtendedAction("amazons3", "CedarBackup3.extend.amazons3", "executeAction", 
-                                                        index=None, 
+      expected.extensions.actions.append(ExtendedAction("amazons3", "CedarBackup3.extend.amazons3", "executeAction",
+                                                        index=None,
                                                         dependencies=ActionDependencies()))
       self.assertEqual(expected, config)
 
@@ -11622,7 +11622,7 @@ class TestConfig(unittest.TestCase):
       expected.extensions.actions.append(ExtendedAction("example", "something.whatever", "example", index=None,
                                                         dependencies=ActionDependencies()))
       expected.extensions.actions.append(ExtendedAction("bogus", "module", "something", index=None,
-                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ], 
+                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ],
                                                                                         afterList=["one", ])))
       expected.options = OptionsConfig("tuesday", "/opt/backup/tmp", "backup", "group", "/usr/bin/scp -1 -B", [], [], "/usr/bin/ssh", "/usr/bin/cback", [])
       expected.options.overrides = [ CommandOverride("mkisofs", "/usr/bin/mkisofs"), CommandOverride("svnlook", "/svnlook"), ]
@@ -11755,7 +11755,7 @@ class TestConfig(unittest.TestCase):
       expected.extensions.actions.append(ExtendedAction("example", "something.whatever", "example", index=None,
                                                         dependencies=ActionDependencies()))
       expected.extensions.actions.append(ExtendedAction("bogus", "module", "something", index=None,
-                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ], 
+                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ],
                                                                                         afterList=["one", ])))
       expected.options = OptionsConfig("tuesday", "/opt/backup/tmp", "backup", "group", "/usr/bin/scp -1 -B", [], [], "/usr/bin/ssh", "/usr/bin/cback", [])
       expected.options.overrides = [ CommandOverride("mkisofs", "/usr/bin/mkisofs"), CommandOverride("svnlook", "/svnlook"), ]
@@ -11774,7 +11774,7 @@ class TestConfig(unittest.TestCase):
       expected.collect.collectDirs.append(CollectDir(absolutePath="/ken", linkDepth=1, dereference=True))
       expected.collect.collectDirs.append(CollectDir(absolutePath="/var/log", collectMode="incr"))
       expected.collect.collectDirs.append(CollectDir(absolutePath="/etc", collectMode="incr", archiveMode="tar", ignoreFile=".ignore"))
-      collectDir = CollectDir(absolutePath="/opt") 
+      collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
       collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
@@ -11902,7 +11902,7 @@ class TestConfig(unittest.TestCase):
       expected.extensions.actions.append(ExtendedAction("example", "something.whatever", "example", index=None,
                                                         dependencies=ActionDependencies()))
       expected.extensions.actions.append(ExtendedAction("bogus", "module", "something", index=None,
-                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ], 
+                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ],
                                                                                         afterList=["one", ])))
       expected.options = OptionsConfig("tuesday", "/opt/backup/tmp", "backup", "group", "/usr/bin/scp -1 -B", [], [], "/usr/bin/ssh", "/usr/bin/cback", [])
       expected.options.overrides = [ CommandOverride("mkisofs", "/usr/bin/mkisofs"), CommandOverride("svnlook", "/svnlook"), ]
@@ -11974,7 +11974,7 @@ class TestConfig(unittest.TestCase):
       expected.extensions.actions.append(ExtendedAction("example", "something.whatever", "example", index=None,
                                                         dependencies=ActionDependencies()))
       expected.extensions.actions.append(ExtendedAction("bogus", "module", "something", index=None,
-                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ], 
+                                                        dependencies=ActionDependencies(beforeList=["a", "b", "c", ],
                                                                                         afterList=["one", ])))
       expected.options = OptionsConfig("tuesday", "/opt/backup/tmp", "backup", "group", "/usr/bin/scp -1 -B", [], [], "/usr/bin/ssh", "/usr/bin/cback", [])
       expected.options.overrides = [ CommandOverride("mkisofs", "/usr/bin/mkisofs"), CommandOverride("svnlook", "/svnlook"), ]
@@ -12153,7 +12153,7 @@ class TestConfig(unittest.TestCase):
       before.extensions = ExtensionsConfig()
       before.extensions.orderMode = "dependency"
       before.extensions.actions = []
-      before.extensions.actions.append(ExtendedAction("name", "module", "function", 
+      before.extensions.actions.append(ExtendedAction("name", "module", "function",
                                                       dependencies=ActionDependencies(beforeList=["b", ], afterList=["a", ])))
       self.assertRaises(ValueError, before.extractXml, validate=True)
 
@@ -12670,28 +12670,28 @@ class TestConfig(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestByteQuantity, 'test'), 
-                              unittest.makeSuite(TestActionDependencies, 'test'), 
-                              unittest.makeSuite(TestActionHook, 'test'), 
-                              unittest.makeSuite(TestPreActionHook, 'test'), 
-                              unittest.makeSuite(TestPostActionHook, 'test'), 
-                              unittest.makeSuite(TestBlankBehavior, 'test'), 
-                              unittest.makeSuite(TestExtendedAction, 'test'), 
-                              unittest.makeSuite(TestCommandOverride, 'test'), 
-                              unittest.makeSuite(TestCollectFile, 'test'), 
-                              unittest.makeSuite(TestCollectDir, 'test'), 
-                              unittest.makeSuite(TestPurgeDir, 'test'), 
-                              unittest.makeSuite(TestLocalPeer, 'test'), 
-                              unittest.makeSuite(TestRemotePeer, 'test'), 
-                              unittest.makeSuite(TestReferenceConfig, 'test'), 
-                              unittest.makeSuite(TestExtensionsConfig, 'test'), 
-                              unittest.makeSuite(TestOptionsConfig, 'test'), 
-                              unittest.makeSuite(TestPeersConfig, 'test'), 
-                              unittest.makeSuite(TestCollectConfig, 'test'), 
-                              unittest.makeSuite(TestStageConfig, 'test'), 
-                              unittest.makeSuite(TestStoreConfig, 'test'), 
-                              unittest.makeSuite(TestPurgeConfig, 'test'), 
-                              unittest.makeSuite(TestConfig, 'test'), 
+                              unittest.makeSuite(TestByteQuantity, 'test'),
+                              unittest.makeSuite(TestActionDependencies, 'test'),
+                              unittest.makeSuite(TestActionHook, 'test'),
+                              unittest.makeSuite(TestPreActionHook, 'test'),
+                              unittest.makeSuite(TestPostActionHook, 'test'),
+                              unittest.makeSuite(TestBlankBehavior, 'test'),
+                              unittest.makeSuite(TestExtendedAction, 'test'),
+                              unittest.makeSuite(TestCommandOverride, 'test'),
+                              unittest.makeSuite(TestCollectFile, 'test'),
+                              unittest.makeSuite(TestCollectDir, 'test'),
+                              unittest.makeSuite(TestPurgeDir, 'test'),
+                              unittest.makeSuite(TestLocalPeer, 'test'),
+                              unittest.makeSuite(TestRemotePeer, 'test'),
+                              unittest.makeSuite(TestReferenceConfig, 'test'),
+                              unittest.makeSuite(TestExtensionsConfig, 'test'),
+                              unittest.makeSuite(TestOptionsConfig, 'test'),
+                              unittest.makeSuite(TestPeersConfig, 'test'),
+                              unittest.makeSuite(TestCollectConfig, 'test'),
+                              unittest.makeSuite(TestStageConfig, 'test'),
+                              unittest.makeSuite(TestStoreConfig, 'test'),
+                              unittest.makeSuite(TestPurgeConfig, 'test'),
+                              unittest.makeSuite(TestConfig, 'test'),
                             ))
 
 

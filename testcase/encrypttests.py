@@ -67,7 +67,7 @@ Testing XML Extraction
    is extract a node, build some XML from it, and then feed that XML back into
    another object's constructor.  If that parse process succeeds and the old
    object is equal to the new object, we assume that the extract was
-   successful.  
+   successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -88,7 +88,7 @@ Full vs. Reduced Tests
    In this module, the primary dependency is that for some tests, GPG must have
    access to the public key EFD75934.  There is also an assumption that GPG
    does I{not} have access to a public key for anyone named "Bogus J. User" (so
-   we can test failure scenarios).  
+   we can test failure scenarios).
 
 @author Kenneth J. Pronovici <pronovic@ieee.org>
 """
@@ -116,7 +116,7 @@ from CedarBackup3.extend.encrypt import _encryptFileWithGpg, _encryptFile, _encr
 #######################################################################
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
-RESOURCES = [ "encrypt.conf.1", "encrypt.conf.2", "tree1.tar.gz", "tree2.tar.gz", 
+RESOURCES = [ "encrypt.conf.1", "encrypt.conf.2", "tree1.tar.gz", "tree2.tar.gz",
               "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz", "tree17.tar.gz",
               "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]
 
@@ -509,7 +509,7 @@ class TestLocalConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -1220,14 +1220,14 @@ def suite():
    """Returns a suite containing all the test cases in this module."""
    if runAllTests():
       return unittest.TestSuite((
-                                 unittest.makeSuite(TestEncryptConfig, 'test'), 
-                                 unittest.makeSuite(TestLocalConfig, 'test'), 
-                                 unittest.makeSuite(TestFunctions, 'test'), 
+                                 unittest.makeSuite(TestEncryptConfig, 'test'),
+                                 unittest.makeSuite(TestLocalConfig, 'test'),
+                                 unittest.makeSuite(TestFunctions, 'test'),
                                ))
    else:
       return unittest.TestSuite((
-                                 unittest.makeSuite(TestEncryptConfig, 'test'), 
-                                 unittest.makeSuite(TestLocalConfig, 'test'), 
+                                 unittest.makeSuite(TestEncryptConfig, 'test'),
+                                 unittest.makeSuite(TestLocalConfig, 'test'),
                                ))
 
 

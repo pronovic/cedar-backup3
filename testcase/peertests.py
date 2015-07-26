@@ -229,7 +229,7 @@ class TestLocalPeer(unittest.TestCase):
       self.assertEqual("daily", peer.ignoreFailureMode)
       peer.ignoreFailureMode = "weekly"
       self.assertEqual("weekly", peer.ignoreFailureMode)
-      self.failUnlessAssignRaises(ValueError, peer, "ignoreFailureMode", "bogus") 
+      self.failUnlessAssignRaises(ValueError, peer, "ignoreFailureMode", "bogus")
 
 
    ###############################
@@ -869,7 +869,7 @@ class TestRemotePeer(unittest.TestCase):
       self.assertEqual("daily", peer.ignoreFailureMode)
       peer.ignoreFailureMode = "weekly"
       self.assertEqual("weekly", peer.ignoreFailureMode)
-      self.failUnlessAssignRaises(ValueError, peer, "ignoreFailureMode", "bogus") 
+      self.failUnlessAssignRaises(ValueError, peer, "ignoreFailureMode", "bogus")
 
 
    ###############################
@@ -1574,12 +1574,12 @@ def suite():
    if runAllTests():
       return unittest.TestSuite((
                                  unittest.makeSuite(TestLocalPeer, 'test'),
-                                 unittest.makeSuite(TestRemotePeer, 'test'), 
+                                 unittest.makeSuite(TestRemotePeer, 'test'),
                                ))
    else:
       return unittest.TestSuite((
                                  unittest.makeSuite(TestLocalPeer, 'test'),
-                                 unittest.makeSuite(TestRemotePeer, 'testBasic'), 
+                                 unittest.makeSuite(TestRemotePeer, 'testBasic'),
                                ))
 
 

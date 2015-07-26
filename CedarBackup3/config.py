@@ -43,7 +43,7 @@ Summary
 
    Cedar Backup stores all of its configuration in an XML document typically
    called C{cback.conf}.  The standard location for this document is in
-   C{/etc}, but users can specify a different location if they want to.  
+   C{/etc}, but users can specify a different location if they want to.
 
    The C{Config} class is a Python object representation of a Cedar Backup XML
    configuration file.  The representation is two-way: XML data can be used to
@@ -64,8 +64,8 @@ Backwards Compatibility
    The configuration file format has changed between Cedar Backup 1.x and Cedar
    Backup 2.x.  Any Cedar Backup 1.x configuration file is also a valid Cedar
    Backup 2.x configuration file.  However, it doesn't work to go the other
-   direction, as the 2.x configuration files contains additional configuration 
-   is not accepted by older versions of the software.  
+   direction, as the 2.x configuration files contains additional configuration
+   is not accepted by older versions of the software.
 
 XML Configuration Structure
 ===========================
@@ -73,7 +73,7 @@ XML Configuration Structure
    A C{Config} object can either be created "empty", or can be created based on
    XML input (either in the form of a string or read in from a file on disk).
    Generally speaking, the XML input I{must} result in a C{Config} object which
-   passes the validations laid out below in the I{Validation} section.  
+   passes the validations laid out below in the I{Validation} section.
 
    An XML configuration file is composed of seven sections:
 
@@ -87,7 +87,7 @@ XML Configuration Structure
       - I{purge}: specifies configuration related to the purge action
 
    Each section is represented by an class in this module, and then the overall
-   C{Config} class is a composition of the various other classes.  
+   C{Config} class is a composition of the various other classes.
 
    Any configuration section that is missing in the XML document (or has not
    been filled into an "empty" document) will just be set to C{None} in the
@@ -110,7 +110,7 @@ Unicode vs. String Data
    are I{not} converted, because they are generally only used for filtering,
    not for filesystem operations.
 
-Validation 
+Validation
 ==========
 
    There are two main levels of validation in the C{Config} class and its
@@ -212,11 +212,11 @@ Validation
    value.
 
 @sort: ActionDependencies, ActionHook, PreActionHook, PostActionHook,
-       ExtendedAction, CommandOverride, CollectFile, CollectDir, PurgeDir, LocalPeer, 
+       ExtendedAction, CommandOverride, CollectFile, CollectDir, PurgeDir, LocalPeer,
        RemotePeer, ReferenceConfig, ExtensionsConfig, OptionsConfig, PeersConfig,
        CollectConfig, StageConfig, StoreConfig, PurgeConfig, Config,
-       DEFAULT_DEVICE_TYPE, DEFAULT_MEDIA_TYPE, 
-       VALID_DEVICE_TYPES, VALID_MEDIA_TYPES, 
+       DEFAULT_DEVICE_TYPE, DEFAULT_MEDIA_TYPE,
+       VALID_DEVICE_TYPES, VALID_MEDIA_TYPES,
        VALID_COLLECT_MODES, VALID_ARCHIVE_MODES,
        VALID_ORDER_MODES
 
@@ -271,7 +271,7 @@ VALID_ARCHIVE_MODES   = [ "tar", "targz", "tarbz2", ]
 VALID_COMPRESS_MODES  = [ "none", "gzip", "bzip2", ]
 VALID_ORDER_MODES     = [ "index", "dependency", ]
 VALID_BLANK_MODES     = [ "daily", "weekly", ]
-VALID_BYTE_UNITS      = [ UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES, ] 
+VALID_BYTE_UNITS      = [ UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES, ]
 VALID_FAILURE_MODES   = [ "none", "all", "daily", "weekly", ]
 
 REWRITABLE_MEDIA_TYPES = [ "cdrw-74", "cdrw-80", "dvd+rw", ]
@@ -296,13 +296,13 @@ class ByteQuantity(object):
    precision can be avoided.  It really isn't possible to store a floating
    point number here while being able to losslessly translate back and forth
    between XML and object representations.  (Perhaps the Python 2.4 Decimal
-   class would have been an option, but I originally wanted to stay compatible 
+   class would have been an option, but I originally wanted to stay compatible
    with Python 2.3.)
 
    Even though the quantity is maintained as a string, the string must be in a
    valid floating point positive number.  Technically, any floating point
    string format supported by Python is allowble.  However, it does not make
-   sense to have a negative quantity of bytes in this context.  
+   sense to have a negative quantity of bytes in this context.
 
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
          quantity, units
@@ -562,7 +562,7 @@ class ActionHook(object):
    Class representing a hook associated with an action.
 
    A hook associated with an action is a shell command to be executed either
-   before or after a named action is executed.  
+   before or after a named action is executed.
 
    The following restrictions exist on data in this class:
 
@@ -629,18 +629,18 @@ class ActionHook(object):
             return -1
          else:
             return 1
-      if self.command != other.command: 
-         if str(self.command or "") < str(other.command or ""): 
+      if self.command != other.command:
+         if str(self.command or "") < str(other.command or ""):
             return -1
          else:
             return 1
-      if self.before != other.before: 
-         if self.before < other.before: 
+      if self.before != other.before:
+         if self.before < other.before:
             return -1
          else:
             return 1
-      if self.after != other.after: 
-         if self.after < other.after: 
+      if self.after != other.after:
+         if self.after < other.after:
             return -1
          else:
             return 1
@@ -989,8 +989,8 @@ class ExtendedAction(object):
             return -1
          else:
             return 1
-      if self.module != other.module: 
-         if str(self.module or "") < str(other.module or ""):  
+      if self.module != other.module:
+         if str(self.module or "") < str(other.module or ""):
             return -1
          else:
             return 1
@@ -1189,16 +1189,16 @@ class CommandOverride(object):
       """
       if other is None:
          return 1
-      if self.command != other.command: 
+      if self.command != other.command:
          if str(self.command or "") < str(other.command or ""):
             return -1
          else:
-            return 1 
-      if self.absolutePath != other.absolutePath: 
+            return 1
+      if self.absolutePath != other.absolutePath:
          if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
-            return 1 
+            return 1
       return 0
 
    def _setCommand(self, value):
@@ -1310,21 +1310,21 @@ class CollectFile(object):
       """
       if other is None:
          return 1
-      if self.absolutePath != other.absolutePath: 
+      if self.absolutePath != other.absolutePath:
          if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
-            return 1 
-      if self.collectMode != other.collectMode: 
+            return 1
+      if self.collectMode != other.collectMode:
          if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
-            return 1 
-      if self.archiveMode != other.archiveMode: 
-         if str(self.archiveMode or "") < str(other.archiveMode or ""): 
+            return 1
+      if self.archiveMode != other.archiveMode:
+         if str(self.archiveMode or "") < str(other.archiveMode or ""):
             return -1
          else:
-            return 1 
+            return 1
       return 0
 
    def _setAbsolutePath(self, value):
@@ -1409,7 +1409,7 @@ class CollectDir(object):
    @note: Lists within this class are "unordered" for equality comparisons.
 
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, absolutePath, collectMode,
-          archiveMode, ignoreFile, linkDepth, dereference, absoluteExcludePaths, 
+          archiveMode, ignoreFile, linkDepth, dereference, absoluteExcludePaths,
           relativeExcludePaths, excludePatterns
    """
 
@@ -1456,11 +1456,11 @@ class CollectDir(object):
       """
       Official string representation for class instance.
       """
-      return "CollectDir(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.absolutePath, self.collectMode, 
-                                                                     self.archiveMode, self.ignoreFile, 
-                                                                     self.absoluteExcludePaths, 
-                                                                     self.relativeExcludePaths, 
-                                                                     self.excludePatterns, 
+      return "CollectDir(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.absolutePath, self.collectMode,
+                                                                     self.archiveMode, self.ignoreFile,
+                                                                     self.absoluteExcludePaths,
+                                                                     self.relativeExcludePaths,
+                                                                     self.excludePatterns,
                                                                      self.linkDepth, self.dereference,
                                                                      self.recursionLevel)
 
@@ -1491,56 +1491,56 @@ class CollectDir(object):
       """
       if other is None:
          return 1
-      if self.absolutePath != other.absolutePath: 
+      if self.absolutePath != other.absolutePath:
          if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
-            return 1 
-      if self.collectMode != other.collectMode: 
+            return 1
+      if self.collectMode != other.collectMode:
          if str(self.collectMode or "") < str(other.collectMode or ""):
             return -1
          else:
-            return 1 
-      if self.archiveMode != other.archiveMode: 
-         if str(self.archiveMode or "") < str(other.archiveMode or ""): 
+            return 1
+      if self.archiveMode != other.archiveMode:
+         if str(self.archiveMode or "") < str(other.archiveMode or ""):
             return -1
          else:
-            return 1 
-      if self.ignoreFile != other.ignoreFile: 
+            return 1
+      if self.ignoreFile != other.ignoreFile:
          if str(self.ignoreFile or "") < str(other.ignoreFile or ""):
             return -1
          else:
-            return 1 
-      if self.linkDepth != other.linkDepth: 
+            return 1
+      if self.linkDepth != other.linkDepth:
          if int(self.linkDepth or 0) < int(other.linkDepth or 0):
             return -1
          else:
-            return 1 
-      if self.dereference != other.dereference: 
-         if self.dereference < other.dereference: 
+            return 1
+      if self.dereference != other.dereference:
+         if self.dereference < other.dereference:
             return -1
          else:
-            return 1 
-      if self.recursionLevel != other.recursionLevel: 
+            return 1
+      if self.recursionLevel != other.recursionLevel:
          if int(self.recursionLevel or 0) < int(other.recursionLevel or 0):
             return -1
          else:
-            return 1 
-      if self.absoluteExcludePaths != other.absoluteExcludePaths: 
-         if self.absoluteExcludePaths < other.absoluteExcludePaths: 
+            return 1
+      if self.absoluteExcludePaths != other.absoluteExcludePaths:
+         if self.absoluteExcludePaths < other.absoluteExcludePaths:
             return -1
          else:
-            return 1 
-      if self.relativeExcludePaths != other.relativeExcludePaths:  
-         if self.relativeExcludePaths < other.relativeExcludePaths:  
+            return 1
+      if self.relativeExcludePaths != other.relativeExcludePaths:
+         if self.relativeExcludePaths < other.relativeExcludePaths:
             return -1
          else:
-            return 1 
-      if self.excludePatterns != other.excludePatterns: 
-         if self.excludePatterns < other.excludePatterns: 
+            return 1
+      if self.excludePatterns != other.excludePatterns:
+         if self.excludePatterns < other.excludePatterns:
             return -1
          else:
-            return 1 
+            return 1
       return 0
 
    def _setAbsolutePath(self, value):
@@ -1816,13 +1816,13 @@ class PurgeDir(object):
       """
       if other is None:
          return 1
-      if self.absolutePath != other.absolutePath: 
+      if self.absolutePath != other.absolutePath:
          if str(self.absolutePath or "") < str(other.absolutePath or ""):
             return -1
          else:
             return 1
-      if self.retainDays != other.retainDays: 
-         if int(self.retainDays or 0) < int(other.retainDays or 0): 
+      if self.retainDays != other.retainDays:
+         if int(self.retainDays or 0) < int(other.retainDays or 0):
             return -1
          else:
             return 1
@@ -1889,7 +1889,7 @@ class LocalPeer(object):
       - The peer name must be a non-empty string.
       - The collect directory must be an absolute path.
       - The ignore failure mode must be one of the values in L{VALID_FAILURE_MODES}.
-   
+
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir
    """
 
@@ -1942,8 +1942,8 @@ class LocalPeer(object):
       """
       if other is None:
          return 1
-      if self.name != other.name: 
-         if str(self.name or "") < str(other.name or ""): 
+      if self.name != other.name:
+         if str(self.name or "") < str(other.name or ""):
             return -1
          else:
             return 1
@@ -2041,8 +2041,8 @@ class RemotePeer(object):
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir, remoteUser, rcpCommand
    """
 
-   def __init__(self, name=None, collectDir=None, remoteUser=None, 
-                rcpCommand=None, rshCommand=None, cbackCommand=None, 
+   def __init__(self, name=None, collectDir=None, remoteUser=None,
+                rcpCommand=None, rshCommand=None, cbackCommand=None,
                 managed=False, managedActions=None, ignoreFailureMode=None):
       """
       Constructor for the C{RemotePeer} class.
@@ -2082,7 +2082,7 @@ class RemotePeer(object):
       """
       Official string representation for class instance.
       """
-      return "RemotePeer(%s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.name, self.collectDir, self.remoteUser, 
+      return "RemotePeer(%s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.name, self.collectDir, self.remoteUser,
                                                                  self.rcpCommand, self.rshCommand, self.cbackCommand,
                                                                  self.managed, self.managedActions, self.ignoreFailureMode)
 
@@ -2117,8 +2117,8 @@ class RemotePeer(object):
             return -1
          else:
             return 1
-      if self.collectDir != other.collectDir: 
-         if str(self.collectDir or "") < str(other.collectDir or ""): 
+      if self.collectDir != other.collectDir:
+         if str(self.collectDir or "") < str(other.collectDir or ""):
             return -1
          else:
             return 1
@@ -2349,7 +2349,7 @@ class ReferenceConfig(object):
    def __init__(self, author=None, revision=None, description=None, generator=None):
       """
       Constructor for the C{ReferenceConfig} class.
-      
+
       @param author: Author of the configuration file.
       @param revision: Revision of the configuration file.
       @param description: Description of the configuration file.
@@ -2492,7 +2492,7 @@ class ExtensionsConfig(object):
    write a properly-formatted extension function, they can use the extension
    configuration to map a command-line Cedar Backup action (i.e. "database")
    to their function.
-   
+
    The following restrictions exist on data in this class:
 
       - If set, the order mode must be one of the values in C{VALID_ORDER_MODES}
@@ -2610,24 +2610,24 @@ class OptionsConfig(object):
    Class representing a Cedar Backup global options configuration.
 
    The options section is used to store global configuration options and
-   defaults that can be applied to other sections. 
+   defaults that can be applied to other sections.
 
    The following restrictions exist on data in this class:
 
-      - The working directory must be an absolute path.  
-      - The starting day must be a day of the week in English, i.e. C{"monday"}, C{"tuesday"}, etc.  
+      - The working directory must be an absolute path.
+      - The starting day must be a day of the week in English, i.e. C{"monday"}, C{"tuesday"}, etc.
       - All of the other values must be non-empty strings if they are set to something other than C{None}.
       - The overrides list must be a list of C{CommandOverride} objects.
       - The hooks list must be a list of C{ActionHook} objects.
       - The cback command must be a non-empty string.
       - Any managed action name must be a non-empty string matching C{ACTION_NAME_REGEX}
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, startingDay, workingDir, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, startingDay, workingDir,
          backupUser, backupGroup, rcpCommand, rshCommand, overrides
    """
 
-   def __init__(self, startingDay=None, workingDir=None, backupUser=None, 
-                backupGroup=None, rcpCommand=None, overrides=None, 
+   def __init__(self, startingDay=None, workingDir=None, backupUser=None,
+                backupGroup=None, rcpCommand=None, overrides=None,
                 hooks=None, rshCommand=None, cbackCommand=None,
                 managedActions=None):
       """
@@ -2671,8 +2671,8 @@ class OptionsConfig(object):
       """
       Official string representation for class instance.
       """
-      return "OptionsConfig(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.startingDay, self.workingDir,  
-                                                                        self.backupUser, self.backupGroup, 
+      return "OptionsConfig(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (self.startingDay, self.workingDir,
+                                                                        self.backupUser, self.backupGroup,
                                                                         self.rcpCommand, self.overrides,
                                                                         self.hooks, self.rshCommand,
                                                                         self.cbackCommand, self.managedActions)
@@ -3169,13 +3169,13 @@ class CollectConfig(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir, 
-          collectMode, archiveMode, ignoreFile, absoluteExcludePaths, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir,
+          collectMode, archiveMode, ignoreFile, absoluteExcludePaths,
           excludePatterns, collectFiles, collectDirs
    """
 
    def __init__(self, targetDir=None, collectMode=None, archiveMode=None, ignoreFile=None,
-                absoluteExcludePaths=None, excludePatterns=None, collectFiles=None, 
+                absoluteExcludePaths=None, excludePatterns=None, collectFiles=None,
                 collectDirs=None):
       """
       Constructor for the C{CollectConfig} class.
@@ -3212,10 +3212,10 @@ class CollectConfig(object):
       """
       Official string representation for class instance.
       """
-      return "CollectConfig(%s, %s, %s, %s, %s, %s, %s, %s)" % (self.targetDir, self.collectMode, self.archiveMode, 
+      return "CollectConfig(%s, %s, %s, %s, %s, %s, %s, %s)" % (self.targetDir, self.collectMode, self.archiveMode,
                                                                 self.ignoreFile, self.absoluteExcludePaths,
                                                                 self.excludePatterns, self.collectFiles, self.collectDirs)
-  
+
    def __str__(self):
       """
       Informal string representation for class instance.
@@ -3649,16 +3649,16 @@ class StoreConfig(object):
    number, it is stored as a string. This is done so that we can losslessly go
    back and forth between XML and object representations of configuration.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, sourceDir, 
-          mediaType, deviceType, devicePath, deviceScsiId, 
-          driveSpeed, checkData, checkMedia, warnMidnite, noEject, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, sourceDir,
+          mediaType, deviceType, devicePath, deviceScsiId,
+          driveSpeed, checkData, checkMedia, warnMidnite, noEject,
           blankBehavior, refreshMediaDelay, ejectDelay
    """
 
-   def __init__(self, sourceDir=None, mediaType=None, deviceType=None, 
+   def __init__(self, sourceDir=None, mediaType=None, deviceType=None,
                 devicePath=None, deviceScsiId=None, driveSpeed=None,
                 checkData=False, warnMidnite=False, noEject=False,
-                checkMedia=False, blankBehavior=None, refreshMediaDelay=None, 
+                checkMedia=False, blankBehavior=None, refreshMediaDelay=None,
                 ejectDelay=None):
       """
       Constructor for the C{StoreConfig} class.
@@ -3711,10 +3711,10 @@ class StoreConfig(object):
       Official string representation for class instance.
       """
       return "StoreConfig(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (
-                self.sourceDir, self.mediaType, self.deviceType, 
+                self.sourceDir, self.mediaType, self.deviceType,
                 self.devicePath, self.deviceScsiId, self.driveSpeed,
                 self.checkData, self.warnMidnite, self.noEject,
-                self.checkMedia, self.blankBehavior, self.refreshMediaDelay, 
+                self.checkMedia, self.blankBehavior, self.refreshMediaDelay,
                 self.ejectDelay)
 
    def __str__(self):
@@ -4182,16 +4182,16 @@ class Config(object):
    C{Config} object, and then changes to the object can be propogated back to
    disk.  A C{Config} object can even be used to create a configuration file
    from scratch programmatically.
-   
+
    This class and the classes it is composed from often use Python's
    C{property} construct to validate input and limit access to values.  Some
    validations can only be done once a document is considered "complete"
-   (see module notes for more details).  
+   (see module notes for more details).
 
    Assignments to the various instance variables must match the expected
    type, i.e. C{reference} must be a C{ReferenceConfig}.  The internal check
    uses the built-in C{isinstance} function, so it should be OK to use
-   subclasses if you want to.  
+   subclasses if you want to.
 
    If an instance variable is not set, its value will be C{None}.  When an
    object is initialized without using an XML document, all of the values
@@ -4200,11 +4200,11 @@ class Config(object):
 
    @note: Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, extractXml, validate, 
+   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, extractXml, validate,
           reference, extensions, options, collect, stage, store, purge,
-          _getReference, _setReference, _getExtensions, _setExtensions, 
-          _getOptions, _setOptions, _getPeers, _setPeers, _getCollect, 
-          _setCollect, _getStage, _setStage, _getStore, _setStore, 
+          _getReference, _setReference, _getExtensions, _setExtensions,
+          _getOptions, _setOptions, _getPeers, _setPeers, _getCollect,
+          _setCollect, _getStage, _setStage, _getStore, _setStore,
           _getPurge, _setPurge
    """
 
@@ -4232,7 +4232,7 @@ class Config(object):
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
-      invalid configuration from disk.  
+      invalid configuration from disk.
 
       @param xmlData: XML data representing configuration.
       @type xmlData: String data.
@@ -4284,8 +4284,8 @@ class Config(object):
       """
       Official string representation for class instance.
       """
-      return "Config(%s, %s, %s, %s, %s, %s, %s, %s)" % (self.reference, self.extensions, self.options, 
-                                                         self.peers, self.collect, self.stage, self.store, 
+      return "Config(%s, %s, %s, %s, %s, %s, %s, %s)" % (self.reference, self.extensions, self.options,
+                                                         self.peers, self.collect, self.stage, self.store,
                                                          self.purge)
 
    def __str__(self):
@@ -4545,7 +4545,7 @@ class Config(object):
       method will be called (with its default arguments) against the
       configuration before extracting the XML.  If configuration is not valid,
       then an XML document will not be extracted.
-   
+
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to write an
       invalid configuration file to disk.
@@ -4571,7 +4571,7 @@ class Config(object):
       else:
          return xmlData
 
-   def validate(self, requireOneAction=True, requireReference=False, requireExtensions=False, requireOptions=True, 
+   def validate(self, requireOneAction=True, requireReference=False, requireExtensions=False, requireOptions=True,
                 requireCollect=False, requireStage=False, requireStore=False, requirePurge=False, requirePeers=False):
       """
       Validates configuration represented by the object.
@@ -4652,7 +4652,7 @@ class Config(object):
    def _parseReference(parentNode):
       """
       Parses a reference configuration section.
-      
+
       We read the following fields::
 
          author         //cb_config/reference/author
@@ -4683,7 +4683,7 @@ class Config(object):
       We read the following fields::
 
          orderMode            //cb_config/extensions/order_mode
-      
+
       We also read groups of the following items, one list element per item::
 
          name                 //cb_config/extensions/action/name
@@ -4691,8 +4691,8 @@ class Config(object):
          function             //cb_config/extensions/action/function
          index                //cb_config/extensions/action/index
          dependencies         //cb_config/extensions/action/depends
-   
-      The extended actions are parsed by L{_parseExtendedActions}.  
+
+      The extended actions are parsed by L{_parseExtendedActions}.
 
       @param parentNode: Parent node to search beneath.
 
@@ -4800,7 +4800,7 @@ class Config(object):
          excludePatterns      //cb_config/collect/exclude/pattern
          collectFiles         //cb_config/collect/file
          collectDirs          //cb_config/collect/dir
-   
+
       The exclusions are parsed by L{_parseExclusions}, the collect files are
       parsed by L{_parseCollectFiles}, and the directories are parsed by
       L{_parseCollectDirs}.
@@ -4968,7 +4968,7 @@ class Config(object):
          patterns    exclude/pattern
 
       If there are none of some pattern (i.e. no relative path items) then
-      C{None} will be returned for that item in the tuple.  
+      C{None} will be returned for that item in the tuple.
 
       This method can be used to parse exclusions on both the collect
       configuration level and on the collect directory level within collect
@@ -4994,7 +4994,7 @@ class Config(object):
 
       We read the following individual fields::
 
-         command                 command 
+         command                 command
          absolutePath            abs_path
 
       @param parentNode: Parent node to search beneath.
@@ -5020,8 +5020,8 @@ class Config(object):
 
       We read the following individual fields::
 
-         action                  action  
-         command                 command 
+         action                  action
+         command                 command
 
       @param parentNode: Parent node to search beneath.
 
@@ -5185,7 +5185,7 @@ class Config(object):
       peer, and if the type is C{"local"}, it's a remote peer.
 
       If there are none of one type of peer (i.e. no local peers) then C{None}
-      will be returned for that item in the tuple.  
+      will be returned for that item in the tuple.
 
       @param parentNode: Parent node to search beneath.
 
@@ -5233,9 +5233,9 @@ class Config(object):
          runAfter    depends/run_after
 
       Each of these fields is a comma-separated list of action names.
-   
+
       The result is placed into an C{ActionDependencies} object.
-      
+
       If the dependencies parent node does not exist, C{None} will be returned.
       Otherwise, an C{ActionDependencies} object will always be created, even
       if it does not contain any actual dependencies in it.
@@ -5254,7 +5254,7 @@ class Config(object):
          beforeList = parseCommaSeparatedString(runBefore)
          afterList = parseCommaSeparatedString(runAfter)
          return ActionDependencies(beforeList, afterList)
-   
+
    @staticmethod
    def _parseBlankBehavior(parentNode):
       """
@@ -5349,7 +5349,7 @@ class Config(object):
 
       The extended action entries are added by L{_addExtendedAction}.
 
-      If C{extensionsConfig} is C{None}, then no container will be added.  
+      If C{extensionsConfig} is C{None}, then no container will be added.
 
       @param xmlDom: DOM tree as from L{createOutputDom}.
       @param parentNode: Parent that the section should be appended to.
@@ -5463,7 +5463,7 @@ class Config(object):
 
       The individual collect files are added by L{_addCollectFile} and
       individual collect directories are added by L{_addCollectDir}.
-   
+
       If C{collectConfig} is C{None}, then no container will be added.
 
       @param xmlDom: DOM tree as from L{createOutputDom}.
@@ -5636,7 +5636,7 @@ class Config(object):
 
          command                 override/command
          absolutePath            override/abs_path
-   
+
       The <override> node itself is created as the next child of the parent
       node.  This method only adds one override node.  The parent must loop for
       each override in the C{OptionsConfig} object.
@@ -5669,7 +5669,7 @@ class Config(object):
 
          action                  post_action_hook/action
          command                 post_action_hook/command
-   
+
       The <pre_action_hook> or <post_action_hook> node itself is created as the
       next child of the parent node.  This method only adds one hook node.  The
       parent must loop for each hook in the C{OptionsConfig} object.
@@ -5732,7 +5732,7 @@ class Config(object):
          linkDepth               dir/link_depth
          dereference             dir/dereference
          recursionLevel          dir/recursion_level
-   
+
       Note that an original XML document might have listed the collect mode
       using the C{mode} tag, since we accept both C{collect_mode} and C{mode}.
       However, here we'll only emit the preferred C{collect_mode} tag.
@@ -5883,7 +5883,7 @@ class Config(object):
       Adds a extended action dependencies to parent node.
 
       We add the following fields to the document::
-   
+
          runBefore      depends/run_before
          runAfter       depends/run_after
 
@@ -5925,7 +5925,7 @@ class Config(object):
 
          blankMode    blank_behavior/mode
          blankFactor  blank_behavior/factor
-   
+
       The <blank_behavior> node itself is created as the next child of the
       parent node.
 
@@ -5979,8 +5979,8 @@ class Config(object):
       Validates extensions configuration.
 
       The list of actions may be either C{None} or an empty list C{[]} if
-      desired.  Each extended action must include a name, a module, and a 
-      function.  
+      desired.  Each extended action must include a name, a module, and a
+      function.
 
       Then, if the order mode is None or "index", an index is required; and if
       the order mode is "dependency", dependency information is required.
@@ -6044,7 +6044,7 @@ class Config(object):
       The target directory must be filled in.  The collect mode, archive mode,
       ignore file, and recursion level are all optional.  The list of absolute
       paths to exclude and patterns to exclude may be either C{None} or an
-      empty list C{[]} if desired.  
+      empty list C{[]} if desired.
 
       Each collect directory entry must contain an absolute path to collect,
       and then must either be able to take collect mode, archive mode and
@@ -6089,7 +6089,7 @@ class Config(object):
       also validated.
 
       Peers are only required in this section if the peers configuration
-      section is not filled in.  However, if any peers are filled in 
+      section is not filled in.  However, if any peers are filled in
       here, they override the peers configuration and must meet the
       validation criteria in L{_validatePeerList}.
 
@@ -6118,7 +6118,7 @@ class Config(object):
       blanking factor are required.
 
       The image writer functionality in the C{writer} module is supposed to be
-      able to handle a device speed of C{None}.  
+      able to handle a device speed of C{None}.
 
       Any caller which needs a "real" (non-C{None}) value for the device type
       can use C{DEFAULT_DEVICE_TYPE}, which is guaranteed to be sensible.
@@ -6214,7 +6214,7 @@ class Config(object):
                   raise ValueError("Remote shell command must either be set in options section or individual remote peer.")
                if (self.options is None or self.options.cbackCommand is None) and remotePeer.cbackCommand is None:
                   raise ValueError("Remote cback command must either be set in options section or individual remote peer.")
-               if ((self.options is None or self.options.managedActions is None or len(self.options.managedActions) < 1) 
+               if ((self.options is None or self.options.managedActions is None or len(self.options.managedActions) < 1)
                     and (remotePeer.managedActions is None or len(remotePeer.managedActions) < 1)):
                   raise ValueError("Managed actions list must be set in options section or individual remote peer.")
       checkUnique("Duplicate peer names exist:", names)
@@ -6230,7 +6230,7 @@ def readByteQuantity(parent, name):
 
    A byte size value is an interpreted string value.  If the string value
    ends with "MB" or "GB", then the string before that is interpreted as
-   megabytes or gigabytes.  Otherwise, it is intepreted as bytes.  
+   megabytes or gigabytes.  Otherwise, it is intepreted as bytes.
 
    @param parent: Parent node to search beneath.
    @param name: Name of node to search for.

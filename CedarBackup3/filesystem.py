@@ -113,8 +113,8 @@ class FilesystemList(list):
 
    @sort: __init__, addFile, addDir, addDirContents, removeFiles, removeDirs,
           removeLinks, removeMatch, removeInvalid, normalize,
-          excludeFiles, excludeDirs, excludeLinks, excludePaths, 
-          excludePatterns, excludeBasenamePatterns, ignoreFile 
+          excludeFiles, excludeDirs, excludeLinks, excludePaths,
+          excludePatterns, excludeBasenamePatterns, ignoreFile
    """
 
 
@@ -261,12 +261,12 @@ class FilesystemList(list):
    excludeDirs = property(_getExcludeDirs, _setExcludeDirs, None, "Boolean indicating whether directories should be excluded.")
    excludeLinks = property(_getExcludeLinks, _setExcludeLinks, None, "Boolean indicating whether soft links should be excluded.")
    excludePaths = property(_getExcludePaths, _setExcludePaths, None, "List of absolute paths to be excluded.")
-   excludePatterns = property(_getExcludePatterns, _setExcludePatterns, None, 
+   excludePatterns = property(_getExcludePatterns, _setExcludePatterns, None,
                               "List of regular expression patterns (matching complete path) to be excluded.")
-   excludeBasenamePatterns = property(_getExcludeBasenamePatterns, _setExcludeBasenamePatterns, 
+   excludeBasenamePatterns = property(_getExcludeBasenamePatterns, _setExcludeBasenamePatterns,
                                       None, "List of regular expression patterns (matching basename) to be excluded.")
    ignoreFile = property(_getIgnoreFile, _setIgnoreFile, None, "Name of file which will cause directory contents to be ignored.")
-   
+
 
    ##############
    # Add methods
@@ -275,9 +275,9 @@ class FilesystemList(list):
    def addFile(self, path):
       """
       Adds a file to the list.
-   
+
       The path must exist and must be a file or a link to an existing file.  It
-      will be added to the list subject to any exclusions that are in place. 
+      will be added to the list subject to any exclusions that are in place.
 
       @param path: File path to be added to the list
       @type path: String representing a path on disk
@@ -317,11 +317,11 @@ class FilesystemList(list):
    def addDir(self, path):
       """
       Adds a directory to the list.
-   
+
       The path must exist and must be a directory or a link to an existing
       directory.  It will be added to the list subject to any exclusions that
       are in place.  The L{ignoreFile} does not apply to this method, only to
-      L{addDirContents}.  
+      L{addDirContents}.
 
       @param path: Directory path to be added to the list
       @type path: String representing a path on disk
@@ -391,7 +391,7 @@ class FilesystemList(list):
 
       @note: If you call this method I{on a link to a directory} that link will
       never be dereferenced (it may, however, be followed).
-   
+
       @param path: Directory path whose contents should be added to the list
       @type path: String representing a path on disk
 
@@ -425,7 +425,7 @@ class FilesystemList(list):
       the directory itself.  This is different than the standard C{FilesystemList}
       behavior and actually ends up making a special case out of the first
       call in the recursive chain.  Since I don't want to expose the modified
-      interface, C{addDirContents} ends up being wholly implemented in terms 
+      interface, C{addDirContents} ends up being wholly implemented in terms
       of this method.
 
       The linkDepth parameter controls whether soft links are followed when we
@@ -474,7 +474,7 @@ class FilesystemList(list):
          logger.debug("Path [%s] is excluded based on ignore file." % path)
          return added
       if includePath:
-         added += self.addDir(path)    # could actually be excluded by addDir, yet 
+         added += self.addDir(path)    # could actually be excluded by addDir, yet
       for entry in os.listdir(path):
          entrypath = os.path.join(path, entry)
          if os.path.isfile(entrypath):
@@ -761,7 +761,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
    total size of the files in the list and a way to export the list into tar
    form.
 
-   @sort: __init__, addDir, totalSize, generateSizeMap, generateDigestMap, 
+   @sort: __init__, addDir, totalSize, generateSizeMap, generateDigestMap,
           generateFitted, generateTarfile, removeUnchanged
    """
 
@@ -771,7 +771,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
 
    def __init__(self):
       """Initializes a list with no configured exclusions."""
-      FilesystemList.__init__(self)   
+      FilesystemList.__init__(self)
 
 
    ################################
@@ -814,10 +814,10 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
    def totalSize(self):
       """
       Returns the total size among all files in the list.
-      Only files are counted.  
+      Only files are counted.
       Soft links that point at files are ignored.
       Entries which do not exist on disk are ignored.
-      @return: Total size, in bytes 
+      @return: Total size, in bytes
       """
       total = 0.0
       for entry in self:
@@ -874,7 +874,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
             if os.path.isfile(entry) and not os.path.islink(entry):
                table[entry] = BackupFileList._generateDigest(entry)
       return table
-   
+
    @staticmethod
    def _generateDigest(path):
       """
@@ -895,7 +895,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
 
       In my tests using a 110 MB file on CD, the original implementation
       requires 111 seconds.  This implementation requires only 40-45 seconds,
-      which is a pretty substantial speed-up.  
+      which is a pretty substantial speed-up.
 
       Experience shows that reading in around 4kB (4096 bytes) at a time yields
       the best performance.  Smaller reads are quite a bit slower, and larger
@@ -947,7 +947,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
 
       @param algorithm: Knapsack (fit) algorithm to use
       @type algorithm: One of "first_fit", "best_fit", "worst_fit", "alternate_fit"
-      
+
       @return: Copy of list with total size no larger than indicated capacity
       @raise ValueError: If the algorithm is invalid.
       """
@@ -1058,7 +1058,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       L{removeInvalid()} and then attempt to extract the tar file a second
       time, since the most common cause of failures is a missing file (a file
       that existed when the list was built, but is gone again by the time the
-      tar file is built).  
+      tar file is built).
 
       If you want to, you can pass in C{ignore=True}, and the method will
       ignore errors encountered when adding individual files to the archive
@@ -1088,7 +1088,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       @param ignore: Indicates whether to ignore certain errors.
       @type ignore: Boolean
 
-      @param flat: Creates "flat" archive by putting all items in root 
+      @param flat: Creates "flat" archive by putting all items in root
       @type flat: Boolean
 
       @raise ValueError: If mode is not valid
@@ -1127,22 +1127,22 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       except tarfile.ReadError as e:
          try: tar.close()
          except: pass
-         if os.path.exists(path): 
-            try: os.remove(path) 
+         if os.path.exists(path):
+            try: os.remove(path)
             except: pass
          raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
       except tarfile.TarError as e:
          try: tar.close()
          except: pass
-         if os.path.exists(path): 
-            try: os.remove(path) 
+         if os.path.exists(path):
+            try: os.remove(path)
             except: pass
          raise e
 
    def removeUnchanged(self, digestMap, captureDigest=False):
       """
       Removes unchanged entries from the list.
-   
+
       This method relies on a digest map as returned from L{generateDigestMap}.
       For each entry in C{digestMap}, if the entry also exists in the current
       list I{and} the entry in the current list has the same digest value as in
@@ -1158,7 +1158,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       If C{captureDigest} is passed-in as C{True}, then digest information will
       be captured for the entire list before the removal step occurs using the
       same rules as in L{generateDigestMap}.  The check will involve a lookup
-      into the complete digest map.  
+      into the complete digest map.
 
       If C{captureDigest} is passed in as C{False}, we will only generate a
       digest value for files we actually need to check, and we'll ignore any
@@ -1290,7 +1290,7 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       @note: The L{excludeDirs} flag only controls whether any given soft link
       path itself is added to the list once it has been discovered.  It does
       I{not} modify any behavior related to directory recursion.
-   
+
       @note: The L{excludeDirs} flag only controls whether any given directory
       path itself is added to the list once it has been discovered.  It does
       I{not} modify any behavior related to directory recursion.
@@ -1303,7 +1303,7 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
 
       @param recursive: Indicates whether directory contents should be added recursively.
       @type recursive: Boolean value
-   
+
       @param addSelf: Ignored in this subclass.
 
       @param linkDepth: Depth of soft links that should be followed
@@ -1333,7 +1333,7 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Any file whose "age" in days is less than (C{<}) the value of the
       C{daysOld} parameter will be removed from the list so that it will not be
       purged later when L{purgeItems} is called.  Directories and soft links
-      will be ignored.  
+      will be ignored.
 
       The "age" of a file is the amount of time since the file was last used,
       per the most recent of the file's C{st_atime} and C{st_mtime} values.
@@ -1353,7 +1353,7 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       @return: Number of entries removed
       """
       removed = 0
-      daysOld = int(daysOld) 
+      daysOld = int(daysOld)
       if daysOld < 0:
          raise ValueError("Days old value must be an integer >= 0.")
       for entry in self[:]:
@@ -1375,7 +1375,7 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Every item in the list will be purged.  Directories in the list will
       I{not} be purged recursively, and hence will only be removed if they are
       empty.  Errors will be ignored.
-      
+
       To faciliate easy removal of directories that will end up being empty,
       the delete process happens in two passes: files first (including soft
       links), then directories.
@@ -1439,7 +1439,7 @@ def compareContents(path1, path2, verbose=False):
    Compares the contents of two directories to see if they are equivalent.
 
    The two directories are recursively compared.  First, we check whether they
-   contain exactly the same set of files.  Then, we check to see every given 
+   contain exactly the same set of files.  Then, we check to see every given
    file has exactly the same contents in both directories.
 
    This is all relatively simple to implement through the magic of

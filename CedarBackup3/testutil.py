@@ -36,7 +36,7 @@
 ########################################################################
 
 """
-Provides unit-testing utilities. 
+Provides unit-testing utilities.
 
 These utilities are kept here, separate from util.py, because they provide
 common functionality that I do not want exported "publicly" once Cedar Backup
@@ -51,7 +51,7 @@ making them available to others.
 @sort: findResources, commandAvailable,
        buildPath, removedir, extractTar, changeFileAge,
        getMaskAsMode, getLogin, failUnlessAssignRaises, runningAsRoot,
-       platformDebian, platformMacOsX, platformCygwin, platformWindows, 
+       platformDebian, platformMacOsX, platformCygwin, platformWindows,
        platformHasEcho, platformSupportsLinks, platformSupportsPermissions
 
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
@@ -117,7 +117,7 @@ def setupOverrides():
    When packages are built, this is done manually (hardcoded) in customize.py
    and the overrides are set up in cli.cli().  This way, no runtime checks need
    to be done.  This is safe, because the package maintainer knows exactly
-   which platform (Debian or not) the package is being built for.  
+   which platform (Debian or not) the package is being built for.
 
    Unit tests are different, because they might be run anywhere.  So, we
    attempt to make a guess about plaform using platformDebian(), and use that
@@ -200,7 +200,7 @@ def buildPath(components):
 def removedir(tree):
    """
    Recursively removes an entire directory.
-   This is basically taken from an example on python.com.  
+   This is basically taken from an example on python.com.
    @param tree: Directory tree to remove.
    @raise ValueError: If a path cannot be encoded properly.
    """
@@ -367,7 +367,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
       exec("obj.%s = value" % prop)    # pylint: disable=W0122
       missed = True
    except exception: pass
-   except Exception as e: 
+   except Exception as e:
       instead = e
    if missed:
       testCase.fail("Expected assignment to raise %s, but got no exception." % (exception.__name__))
@@ -506,7 +506,7 @@ def platformHasEcho():
    On some platforms, like Windows, echo doesn't really work for tests.
    """
    return not platformWindows()
-   
+
 
 ###########################
 # runningAsRoot() function

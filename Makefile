@@ -31,6 +31,7 @@
 CD                = cd
 CP                = cp
 MV                = mv
+SED               = sed
 EPYDOC            = epydoc
 FIND              = find
 MKDIR             = mkdir
@@ -109,6 +110,10 @@ check:
 allcheck:
 	-@$(PYLINT) --rcfile=pylint-code.rc CedarBackup3 util setup.py
 	-@$(PYLINT) --rcfile=pylint-test.rc testcase
+
+# Trim trailing whitespace from lines in source files
+trim:
+	-@$(SED) -i 's/[ \t]*$$//' CedarBackup3/*.py testcase/*.py
 
 
 ################

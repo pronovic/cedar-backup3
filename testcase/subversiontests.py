@@ -78,7 +78,7 @@ Testing XML Extraction
    is extract a node, build some XML from it, and then feed that XML back into
    another object's constructor.  If that parse process succeeds and the old
    object is equal to the new object, we assume that the extract was
-   successful.  
+   successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -117,7 +117,7 @@ from CedarBackup3.extend.subversion import Repository, RepositoryDir, BDBReposit
 #######################################################################
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
-RESOURCES = [ "subversion.conf.1", "subversion.conf.2", "subversion.conf.3", "subversion.conf.4", 
+RESOURCES = [ "subversion.conf.1", "subversion.conf.2", "subversion.conf.3", "subversion.conf.4",
               "subversion.conf.5", "subversion.conf.6", "subversion.conf.7", ]
 
 
@@ -2075,7 +2075,7 @@ class TestLocalConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -2607,12 +2607,12 @@ class TestLocalConfig(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestBDBRepository, 'test'), 
-                              unittest.makeSuite(TestFSFSRepository, 'test'), 
-                              unittest.makeSuite(TestRepository, 'test'), 
-                              unittest.makeSuite(TestRepositoryDir, 'test'), 
-                              unittest.makeSuite(TestSubversionConfig, 'test'), 
-                              unittest.makeSuite(TestLocalConfig, 'test'), 
+                              unittest.makeSuite(TestBDBRepository, 'test'),
+                              unittest.makeSuite(TestFSFSRepository, 'test'),
+                              unittest.makeSuite(TestRepository, 'test'),
+                              unittest.makeSuite(TestRepositoryDir, 'test'),
+                              unittest.makeSuite(TestSubversionConfig, 'test'),
+                              unittest.makeSuite(TestLocalConfig, 'test'),
                             ))
 
 

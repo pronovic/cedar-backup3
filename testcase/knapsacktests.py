@@ -136,7 +136,7 @@ def buildItemDict(origDict):
 
    @param origDict: Dictionary to convert
    @type origDict: Simple dictionary mapping item to size, like C{ITEMS_02}
- 
+
    @return: Dictionary suitable for passing to a knapsack function.
    """
    itemDict = { }
@@ -171,7 +171,7 @@ class TestKnapsack(unittest.TestCase):
    ################################
    # Tests for firstFit() function
    ################################
-         
+
    def testFirstFit_001(self):
       """
       Test firstFit() behavior for an empty items dictionary, zero capacity.
@@ -2555,7 +2555,7 @@ class TestKnapsack(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestKnapsack, 'test'), 
+                              unittest.makeSuite(TestKnapsack, 'test'),
                             ))
 
 

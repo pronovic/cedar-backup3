@@ -43,7 +43,7 @@ Code Coverage
 =============
 
    This module contains individual tests for the public functions and classes
-   implemented in actions/util.py. 
+   implemented in actions/util.py.
 
 Naming Conventions
 ==================
@@ -118,7 +118,7 @@ class TestFunctions(unittest.TestCase):
    def tearDown(self):
       try:
          removedir(self.tmpdir)
-      except: pass 
+      except: pass
 
 
    ##################
@@ -178,7 +178,7 @@ class TestFunctions(unittest.TestCase):
       Test with a valid staging directory, where the daily directories do NOT
       contain the encrypt indicator.
       """
-      self.extractTar("tree17")  
+      self.extractTar("tree17")
       stagingDir = self.buildPath(["tree17" ])
       dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
       self.assertEqual(6, len(dailyDirs))

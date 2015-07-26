@@ -100,7 +100,7 @@ class LocalPeer(object):
    The public methods other than the constructor are part of a "backup peer"
    interface shared with the C{RemotePeer} class.
 
-   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator, 
+   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator,
           _copyLocalDir, _copyLocalFile, name, collectDir
    """
 
@@ -116,11 +116,11 @@ class LocalPeer(object):
       have to exist when the object is instantiated.  We do a lazy validation
       on this value since we could (potentially) be creating peer objects
       before an ongoing backup completed.
-      
+
       @param name: Name of the backup peer
       @type name: String, typically a hostname
 
-      @param collectDir: Path to the peer's collect directory 
+      @param collectDir: Path to the peer's collect directory
       @type collectDir: String representing an absolute local path on disk
 
       @param ignoreFailureMode: Ignore failure mode for this peer
@@ -190,7 +190,7 @@ class LocalPeer(object):
       """
       Property target used to get the ignoreFailure mode.
       """
-      return self._ignoreFailureMode 
+      return self._ignoreFailureMode
 
    name = property(_getName, _setName, None, "Name of the peer.")
    collectDir = property(_getCollectDir, _setCollectDir, None, "Path to the peer's collect directory (an absolute local path).")
@@ -208,7 +208,7 @@ class LocalPeer(object):
       The collect and target directories must both already exist before this
       method is called.  If passed in, ownership and permissions will be
       applied to the files that are copied.
-   
+
       @note: The caller is responsible for checking that the indicator exists,
       if they care.  This function only stages the files within the directory.
 
@@ -226,7 +226,7 @@ class LocalPeer(object):
 
       @return: Number of files copied from the source directory to the target directory.
 
-      @raise ValueError: If collect directory is not a directory or does not exist 
+      @raise ValueError: If collect directory is not a directory or does not exist
       @raise ValueError: If target directory is not a directory, does not exist or is not absolute.
       @raise ValueError: If a path cannot be encoded properly.
       @raise IOError: If there were no files to stage (i.e. the directory was empty)
@@ -295,7 +295,7 @@ class LocalPeer(object):
       @param permissions: Permissions that the indicator file should have
       @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
 
-      @raise ValueError: If collect directory is not a directory or does not exist 
+      @raise ValueError: If collect directory is not a directory or does not exist
       @raise ValueError: If a path cannot be encoded properly.
       @raise IOError: If there is an IO error creating the file.
       @raise OSError: If there is an OS error creating or changing permissions on the file
@@ -433,7 +433,7 @@ class RemotePeer(object):
    Remote peers are backed up using an rcp-compatible copy command.  A remote
    peer has associated with it a name (which must be a valid hostname), a
    collect directory, a working directory and a copy method (an rcp-compatible
-   command).  
+   command).
 
    You can also set an optional local user value.  This username will be used
    as the local user for any remote copies that are required.  It can only be
@@ -447,9 +447,9 @@ class RemotePeer(object):
    The public methods other than the constructor are part of a "backup peer"
    interface shared with the C{LocalPeer} class.
 
-   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator, 
-          executeRemoteCommand, executeManagedAction, _getDirContents, 
-          _copyRemoteDir, _copyRemoteFile, _pushLocalFile, name, collectDir, 
+   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator,
+          executeRemoteCommand, executeManagedAction, _getDirContents,
+          _copyRemoteDir, _copyRemoteFile, _pushLocalFile, name, collectDir,
           remoteUser, rcpCommand, rshCommand, cbackCommand
    """
 
@@ -457,7 +457,7 @@ class RemotePeer(object):
    # Constructor
    ##############
 
-   def __init__(self, name=None, collectDir=None, workingDir=None, remoteUser=None, 
+   def __init__(self, name=None, collectDir=None, workingDir=None, remoteUser=None,
                 rcpCommand=None, localUser=None, rshCommand=None, cbackCommand=None,
                 ignoreFailureMode=None):
       """
@@ -472,12 +472,12 @@ class RemotePeer(object):
       @param name: Name of the backup peer
       @type name: String, must be a valid DNS hostname
 
-      @param collectDir: Path to the peer's collect directory 
+      @param collectDir: Path to the peer's collect directory
       @type collectDir: String representing an absolute path on the remote peer
 
       @param workingDir: Working directory that can be used to create temporary files, etc.
       @type workingDir: String representing an absolute path on the current host.
-      
+
       @param remoteUser: Name of the Cedar Backup user on the remote peer
       @type remoteUser: String representing a username, valid via remote shell to the peer
 
@@ -617,7 +617,7 @@ class RemotePeer(object):
       The value must be a non-empty string or C{None}.  Its value is stored in
       the two forms: "raw" as provided by the client, and "parsed" into a list
       suitable for being passed to L{util.executeCommand} via
-      L{util.splitCommandLine}.  
+      L{util.splitCommandLine}.
 
       However, all the caller will ever see via the property is the actual
       value they set (which includes seeing C{None}, even if we translate that
@@ -649,7 +649,7 @@ class RemotePeer(object):
       The value must be a non-empty string or C{None}.  Its value is stored in
       the two forms: "raw" as provided by the client, and "parsed" into a list
       suitable for being passed to L{util.executeCommand} via
-      L{util.splitCommandLine}.  
+      L{util.splitCommandLine}.
 
       However, all the caller will ever see via the property is the actual
       value they set (which includes seeing C{None}, even if we translate that
@@ -713,7 +713,7 @@ class RemotePeer(object):
       """
       Property target used to get the ignoreFailure mode.
       """
-      return self._ignoreFailureMode 
+      return self._ignoreFailureMode
 
    name = property(_getName, _setName, None, "Name of the peer (a valid DNS hostname).")
    collectDir = property(_getCollectDir, _setCollectDir, None, "Path to the peer's collect directory (an absolute local path).")
@@ -736,7 +736,7 @@ class RemotePeer(object):
 
       The target directory must already exist before this method is called.  If
       passed in, ownership and permissions will be applied to the files that
-      are copied.  
+      are copied.
 
       @note: The returned count of copied files might be inaccurate if some of
       the copied files already existed in the staging directory prior to the
@@ -751,7 +751,7 @@ class RemotePeer(object):
       remote copy method, we just don't have the fine-grained control over our
       exceptions that's available when we can look directly at the filesystem,
       and we can't control whether the remote copy method thinks an empty
-      directory is an error.  
+      directory is an error.
 
       @param targetDir: Target directory to write data into
       @type targetDir: String representing a directory on disk
@@ -777,9 +777,9 @@ class RemotePeer(object):
       if not os.path.exists(targetDir) or not os.path.isdir(targetDir):
          logger.debug("Target directory [%s] is not a directory or does not exist on disk." % targetDir)
          raise ValueError("Target directory is not a directory or does not exist on disk.")
-      count = RemotePeer._copyRemoteDir(self.remoteUser, self.localUser, self.name, 
-                                        self._rcpCommand, self._rcpCommandList, 
-                                        self.collectDir, targetDir, 
+      count = RemotePeer._copyRemoteDir(self.remoteUser, self.localUser, self.name,
+                                        self._rcpCommand, self._rcpCommandList,
+                                        self.collectDir, targetDir,
                                         ownership, permissions)
       if count == 0:
          raise IOError("Did not copy any files from local peer.")
@@ -792,7 +792,7 @@ class RemotePeer(object):
       When a peer has completed collecting its backup files, it will write an
       empty indicator file into its collect directory.  This method checks to
       see whether that indicator has been written.  If the remote copy command
-      fails, we return C{False} as if the file weren't there. 
+      fails, we return C{False} as if the file weren't there.
 
       If you need to, you can override the name of the collect indicator file
       by passing in a different name.
@@ -816,7 +816,7 @@ class RemotePeer(object):
          else:
             collectIndicator = encodePath(collectIndicator)
             sourceFile = os.path.join(self.collectDir, collectIndicator)
-            targetFile = os.path.join(self.workingDir, collectIndicator) 
+            targetFile = os.path.join(self.workingDir, collectIndicator)
          logger.debug("Fetch remote [%s] into [%s]." % (sourceFile, targetFile))
          if os.path.exists(targetFile):
             try:
@@ -824,9 +824,9 @@ class RemotePeer(object):
             except:
                raise Exception("Error: collect indicator [%s] already exists!" % targetFile)
          try:
-            RemotePeer._copyRemoteFile(self.remoteUser, self.localUser, self.name, 
-                                       self._rcpCommand, self._rcpCommandList, 
-                                       sourceFile, targetFile, 
+            RemotePeer._copyRemoteFile(self.remoteUser, self.localUser, self.name,
+                                       self._rcpCommand, self._rcpCommandList,
+                                       sourceFile, targetFile,
                                        overwrite=False)
             if os.path.exists(targetFile):
                return True
@@ -872,8 +872,8 @@ class RemotePeer(object):
       try:
          if not os.path.exists(sourceFile):
             open(sourceFile, "w").write("")
-         RemotePeer._pushLocalFile(self.remoteUser, self.localUser, self.name, 
-                                   self._rcpCommand, self._rcpCommandList, 
+         RemotePeer._pushLocalFile(self.remoteUser, self.localUser, self.name,
+                                   self._rcpCommand, self._rcpCommandList,
                                    sourceFile, targetFile)
       finally:
          if os.path.exists(sourceFile):
@@ -890,8 +890,8 @@ class RemotePeer(object):
 
       @raise IOError: If there is an error executing the command on the remote peer.
       """
-      RemotePeer._executeRemoteCommand(self.remoteUser, self.localUser, 
-                                       self.name, self._rshCommand, 
+      RemotePeer._executeRemoteCommand(self.remoteUser, self.localUser,
+                                       self.name, self._rshCommand,
                                        self._rshCommandList, command)
 
    def executeManagedAction(self, action, fullBackup):
@@ -919,7 +919,7 @@ class RemotePeer(object):
    def _getDirContents(path):
       """
       Returns the contents of a directory in terms of a Set.
-      
+
       The directory's contents are read as a L{FilesystemList} containing only
       files, and then the list is converted into a set object for later use.
 
@@ -940,7 +940,7 @@ class RemotePeer(object):
          return sets.Set(contents)
 
    @staticmethod
-   def _copyRemoteDir(remoteUser, localUser, remoteHost, rcpCommand, rcpCommandList, 
+   def _copyRemoteDir(remoteUser, localUser, remoteHost, rcpCommand, rcpCommandList,
                       sourceDir, targetDir, ownership=None, permissions=None):
       """
       Copies files from the source directory to the target directory.
@@ -1038,9 +1038,9 @@ class RemotePeer(object):
       return len(differenceSet)
 
    @staticmethod
-   def _copyRemoteFile(remoteUser, localUser, remoteHost, 
+   def _copyRemoteFile(remoteUser, localUser, remoteHost,
                        rcpCommand, rcpCommandList,
-                       sourceFile, targetFile, ownership=None, 
+                       sourceFile, targetFile, ownership=None,
                        permissions=None, overwrite=True):
       """
       Copies a remote source file to a target file.
@@ -1107,7 +1107,7 @@ class RemotePeer(object):
                raise IOError("Only root can remote copy as another user.")
          except AttributeError: pass
          actualCommand = "%s %s@%s:%s %s" % (rcpCommand, remoteUser, remoteHost, sourceFile.replace(" ", "\\ "), targetFile)
-         command = resolveCommand(SU_COMMAND) 
+         command = resolveCommand(SU_COMMAND)
          result = executeCommand(command, [localUser, "-c", actualCommand])[0]
          if result != 0:
             raise IOError("Error (%d) copying [%s] from remote host as local user [%s]." % (result, sourceFile, localUser))
@@ -1125,7 +1125,7 @@ class RemotePeer(object):
          os.chmod(targetFile, permissions)
 
    @staticmethod
-   def _pushLocalFile(remoteUser, localUser, remoteHost, 
+   def _pushLocalFile(remoteUser, localUser, remoteHost,
                       rcpCommand, rcpCommandList,
                       sourceFile, targetFile, overwrite=True):
       """
@@ -1220,7 +1220,7 @@ class RemotePeer(object):
             if not isRunningAsRoot():
                raise IOError("Only root can remote shell as another user.")
          except AttributeError: pass
-         command = resolveCommand(SU_COMMAND) 
+         command = resolveCommand(SU_COMMAND)
          result = executeCommand(command, [localUser, "-c", actualCommand])[0]
          if result != 0:
             raise IOError("Command failed [su -c %s \"%s\"]" % (localUser, actualCommand))

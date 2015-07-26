@@ -3153,9 +3153,9 @@ class TestOptions(unittest.TestCase):
       options.sourceDir = "source"
       options.s3BucketUrl = "bucket"
       argumentList = options.buildArgumentList(validate=False)
-      self.assertEqual(["--help", "--version", "--verbose", "--quiet", 
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
-                             "--output", "--debug", "--stack", "--diagnostics", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet",
+                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                             "--output", "--debug", "--stack", "--diagnostics",
                              "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
 
    def testBuildArgumentList_017(self):
@@ -3271,9 +3271,9 @@ class TestOptions(unittest.TestCase):
       options.sourceDir = "source"
       options.s3BucketUrl = "bucket"
       argumentList = options.buildArgumentList(validate=True)
-      self.assertEqual(["--help", "--version", "--verbose", "--quiet", 
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631", 
-                             "--output", "--debug", "--stack", "--diagnostics", 
+      self.assertEqual(["--help", "--version", "--verbose", "--quiet",
+                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                             "--output", "--debug", "--stack", "--diagnostics",
                              "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
 
 
@@ -3530,8 +3530,8 @@ class TestOptions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestFunctions, 'test'), 
-                              unittest.makeSuite(TestOptions, 'test'), 
+                              unittest.makeSuite(TestFunctions, 'test'),
+                              unittest.makeSuite(TestOptions, 'test'),
                             ))
 
 

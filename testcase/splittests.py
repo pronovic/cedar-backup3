@@ -67,7 +67,7 @@ Testing XML Extraction
    is extract a node, build some XML from it, and then feed that XML back into
    another object's constructor.  If that parse process succeeds and the old
    object is equal to the new object, we assume that the extract was
-   successful.  
+   successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -536,7 +536,7 @@ class TestLocalConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -759,7 +759,7 @@ class TestFunctions(unittest.TestCase):
       if leftoverBytes > 0:
          splitPath = "%s_%05d" % (sourcePath, wholeFiles)
          self.assertTrue(os.path.exists(splitPath))
-         self.assertEqual(leftoverBytes, os.stat(splitPath).st_size) 
+         self.assertEqual(leftoverBytes, os.stat(splitPath).st_size)
 
    def findBadLocale(self):
       """
@@ -1080,14 +1080,14 @@ def suite():
    """Returns a suite containing all the test cases in this module."""
    if runAllTests():
       return unittest.TestSuite((
-                                 unittest.makeSuite(TestSplitConfig, 'test'), 
-                                 unittest.makeSuite(TestLocalConfig, 'test'), 
-                                 unittest.makeSuite(TestFunctions, 'test'), 
+                                 unittest.makeSuite(TestSplitConfig, 'test'),
+                                 unittest.makeSuite(TestLocalConfig, 'test'),
+                                 unittest.makeSuite(TestFunctions, 'test'),
                                ))
    else:
       return unittest.TestSuite((
-                                 unittest.makeSuite(TestSplitConfig, 'test'), 
-                                 unittest.makeSuite(TestLocalConfig, 'test'), 
+                                 unittest.makeSuite(TestSplitConfig, 'test'),
+                                 unittest.makeSuite(TestLocalConfig, 'test'),
                                ))
 
 

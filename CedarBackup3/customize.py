@@ -93,4 +93,4 @@ def customizeOverrides(config, platform=PLATFORM):
       config.options.addOverride("cdrecord", DEBIAN_CDRECORD)
       logger.info("Overriding mkisofs for Debian platform: %s" % DEBIAN_MKISOFS)
       config.options.addOverride("mkisofs", DEBIAN_MKISOFS)
-   
+

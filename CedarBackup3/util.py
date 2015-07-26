@@ -39,16 +39,16 @@
 ########################################################################
 
 """
-Provides general-purpose utilities. 
+Provides general-purpose utilities.
 
 @sort: AbsolutePathList, ObjectTypeList, RestrictedContentList, RegexMatchList,
-       RegexList, _Vertex, DirectedGraph, PathResolverSingleton, 
+       RegexList, _Vertex, DirectedGraph, PathResolverSingleton,
        sortDict, convertSize, getUidGid, changeOwnership, splitCommandLine,
        resolveCommand, executeCommand, calculateFileAge, encodePath, nullDevice,
-       deriveDayOfWeek, isStartOfWeek, buildNormalizedPath, 
-       ISO_SECTOR_SIZE, BYTES_PER_SECTOR, 
-       BYTES_PER_KBYTE, BYTES_PER_MBYTE, BYTES_PER_GBYTE, KBYTES_PER_MBYTE, MBYTES_PER_GBYTE, 
-       SECONDS_PER_MINUTE, MINUTES_PER_HOUR, HOURS_PER_DAY, SECONDS_PER_DAY, 
+       deriveDayOfWeek, isStartOfWeek, buildNormalizedPath,
+       ISO_SECTOR_SIZE, BYTES_PER_SECTOR,
+       BYTES_PER_KBYTE, BYTES_PER_MBYTE, BYTES_PER_GBYTE, KBYTES_PER_MBYTE, MBYTES_PER_GBYTE,
+       SECONDS_PER_MINUTE, MINUTES_PER_HOUR, HOURS_PER_DAY, SECONDS_PER_DAY,
        UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES, UNIT_SECTORS
 
 @var ISO_SECTOR_SIZE: Size of an ISO image sector, in bytes.
@@ -94,9 +94,9 @@ import collections
 try:
    import pwd
    import grp
-   _UID_GID_AVAILABLE = True   
+   _UID_GID_AVAILABLE = True
 except ImportError:
-   _UID_GID_AVAILABLE = False   
+   _UID_GID_AVAILABLE = False
 
 
 ########################################################################
@@ -134,8 +134,8 @@ UMOUNT_COMMAND     = [ "umount", ]
 DEFAULT_LANGUAGE   = "C"
 LANG_VAR           = "LANG"
 LOCALE_VARS        = [ "LC_ADDRESS", "LC_ALL", "LC_COLLATE",
-                       "LC_CTYPE", "LC_IDENTIFICATION", 
-                       "LC_MEASUREMENT", "LC_MESSAGES", 
+                       "LC_CTYPE", "LC_IDENTIFICATION",
+                       "LC_MEASUREMENT", "LC_MESSAGES",
                        "LC_MONETARY", "LC_NAME", "LC_NUMERIC",
                        "LC_PAPER", "LC_TELEPHONE", "LC_TIME", ]
 
@@ -150,12 +150,12 @@ class UnorderedList(list):
    Class representing an "unordered list".
 
    An "unordered list" is a list in which only the contents matter, not the
-   order in which the contents appear in the list.  
-   
+   order in which the contents appear in the list.
+
    For instance, we might be keeping track of set of paths in a list, because
    it's convenient to have them in that form.  However, for comparison
    purposes, we would only care that the lists contain exactly the same
-   contents, regardless of order.  
+   contents, regardless of order.
 
    I have come up with two reasonable ways of doing this, plus a couple more
    that would work but would be a pain to implement.  My first method is to
@@ -280,7 +280,7 @@ class AbsolutePathList(UnorderedList):
    This is an unordered list.
 
    We override the C{append}, C{insert} and C{extend} methods to ensure that
-   any item added to the list is an absolute path.  
+   any item added to the list is an absolute path.
 
    Each item added to the list is encoded using L{encodePath}.  If we don't do
    this, we have problems trying certain operations between strings and unicode
@@ -337,7 +337,7 @@ class ObjectTypeList(UnorderedList):
    The C{objectName} value will be used in exceptions, i.e. C{"Item must be a
    CollectDir object."} if C{objectName} is C{"CollectDir"}.
    """
-   
+
    def __init__(self, objectType, objectName):
       """
       Initializes a typed list for a particular type.
@@ -402,7 +402,7 @@ class RestrictedContentList(UnorderedList):
    for instance lists and strings -- you will likely see AttributeError
    exceptions or other problems.
    """
-   
+
    def __init__(self, valuesList, valuesDescr, prefix=None):
       """
       Initializes a list restricted to containing certain values.
@@ -462,12 +462,12 @@ class RegexMatchList(UnorderedList):
    This is an unordered list.
 
    We override the C{append}, C{insert} and C{extend} methods to ensure that
-   any item added to the list matches the indicated regular expression.  
+   any item added to the list matches the indicated regular expression.
 
    @note: If you try to put values that are not strings into the list, you will
    likely get either TypeError or AttributeError exceptions as a result.
    """
-   
+
    def __init__(self, valuesRegex, emptyAllowed=True, prefix=None):
       """
       Initializes a list restricted to containing certain values.
@@ -602,13 +602,13 @@ class DirectedGraph(object):
 
    A graph B{G=(V,E)} consists of a set of vertices B{V} together with a set
    B{E} of vertex pairs or edges.  In a directed graph, each edge also has an
-   associated direction (from vertext B{v1} to vertex B{v2}).  A C{DirectedGraph} 
+   associated direction (from vertext B{v1} to vertex B{v2}).  A C{DirectedGraph}
    object provides a way to construct a directed graph and execute a depth-
    first search.
 
    This data structure was designed based on the graphing chapter in
    U{The Algorithm Design Manual<http://www2.toki.or.id/book/AlgDesignManual/>},
-   by Steven S. Skiena.  
+   by Steven S. Skiena.
 
    This class is intended to be used by Cedar Backup for dependency ordering.
    Because of this, it's not quite general-purpose.  Unlike a "general" graph,
@@ -723,9 +723,9 @@ class DirectedGraph(object):
       A directed acyclic graph (or "DAG") is a directed graph with no directed
       cycles.  A topological sort of a DAG is an ordering on the vertices such
       that all edges go from left to right.  Only an acyclic graph can have a
-      topological sort, but any DAG has at least one topological sort.  
+      topological sort, but any DAG has at least one topological sort.
 
-      Since a topological sort only makes sense for an acyclic graph, this 
+      Since a topological sort only makes sense for an acyclic graph, this
       method throws an exception if a cycle is found.
 
       A depth-first search only makes sense if the graph is acyclic.  If the
@@ -764,7 +764,7 @@ class DirectedGraph(object):
          elif endpoint.state != self._EXPLORED:
             raise ValueError("Cycle found in graph (found '%s' while searching '%s')." % (vertex.name, endpoint.name))
       if vertex.name is not None:
-         ordering.insert(0, vertex.name) 
+         ordering.insert(0, vertex.name)
       vertex.state = self._EXPLORED
 
 
@@ -792,7 +792,7 @@ class PathResolverSingleton(object):
    seem like kind of a "big hammer" solution.  Besides that, it might also
    represent a security flaw (for instance, I prefer not to mess with root's
    C{$PATH} on the application level if I don't have to).
-   
+
    The alternative is to set up some sort of configuration for the path to
    certain executables, i.e. "find C{svnlook} in C{/usr/local/bin/svnlook}" or
    whatever.  This PathResolverSingleton aims to provide a good solution to the
@@ -803,7 +803,7 @@ class PathResolverSingleton(object):
    This way, with no real effort on the part of the caller, behavior can neatly
    degrade to something equivalent to the current behavior if there is no
    special mapping or if the singleton was never initialized in the first
-   place.  
+   place.
 
    Even better, extensions automagically get access to the same resolver
    functionality, and they don't even need to understand how the mapping
@@ -833,7 +833,7 @@ class PathResolverSingleton(object):
             obj = PathResolverSingleton()
             PathResolverSingleton._instance = obj
          return PathResolverSingleton._instance
-    
+
    getInstance = _Helper()    # Method that callers will use to get an instance
 
    def __init__(self):
@@ -865,7 +865,7 @@ class PathResolverSingleton(object):
       self._mapping = { }
       for key in list(mapping.keys()):
          self._mapping[key] = mapping[key]
-      
+
 
 ########################################################################
 # Pipe class definition
@@ -879,13 +879,13 @@ class Pipe(Popen):
    with a pipe.  First, C{executeCommand} only reads from the pipe, and
    never writes to it.  Second, C{executeCommand} needs a way to discard all
    output written to C{stderr}, as a means of simulating the shell
-   C{2>/dev/null} construct.  
+   C{2>/dev/null} construct.
    """
    def __init__(self, cmd, bufsize=-1, ignoreStderr=False):
       stderr = STDOUT
       if ignoreStderr:
          devnull = nullDevice()
-         stderr = os.open(devnull, os.O_RDWR) 
+         stderr = os.open(devnull, os.O_RDWR)
       Popen.__init__(self, shell=False, args=cmd, bufsize=bufsize, stdin=None, stdout=PIPE, stderr=stderr)
 
 
@@ -1036,7 +1036,7 @@ class Diagnostics(object):
          return locale.getdefaultlocale()[0]
       except:
          return "(unknown)"
-   
+
    def _getTimestamp(self):
       """
       Property target to get a current date/time stamp.
@@ -1081,7 +1081,7 @@ def sortDict(d):
 def removeKeys(d, keys):
    """
    Removes all of the keys from the dictionary.
-   The dictionary is altered in-place. 
+   The dictionary is altered in-place.
    Each key must exist in the dictionary.
    @param d: Dictionary to operate on
    @param keys: List of keys to remove
@@ -1112,7 +1112,7 @@ def convertSize(size, fromUnit, toUnit):
       - C{UNIT_SECTORS} - Sectors, where 1 sector = 2048 B
 
    @param size: Size to convert
-   @type size: Integer or float value in units of C{fromUnit} 
+   @type size: Integer or float value in units of C{fromUnit}
 
    @param fromUnit: Unit to convert from
    @type fromUnit: One of the units listed above
@@ -1213,14 +1213,14 @@ def getFunctionReference(module, function):
    This does some hokey-pokey to get back a reference to a dynamically named
    function.  For instance, say you wanted to get a reference to the
    C{os.path.isdir} function.  You could use::
-   
+
       myfunc = getFunctionReference("os.path", "isdir")
 
    Although we won't bomb out directly, behavior is pretty much undefined if
    you pass in C{None} or C{""} for either C{module} or C{function}.
 
    The only validation we enforce is that whatever we get back must be
-   callable.  
+   callable.
 
    I derived this code based on the internals of the Python unittest
    implementation.  I don't claim to completely understand how it works.
@@ -1233,7 +1233,7 @@ def getFunctionReference(module, function):
 
    @return: Reference to function associated with name.
 
-   @raise ImportError: If the function cannot be found. 
+   @raise ImportError: If the function cannot be found.
    @raise ValueError: If the resulting reference is not callable.
 
    @copyright: Some of this code, prior to customization, was originally part
@@ -1256,7 +1256,7 @@ def getFunctionReference(module, function):
       parts = parts[1:]
    obj = module
    for part in parts:
-      obj = getattr(obj, part) 
+      obj = getattr(obj, part)
    if not isinstance(obj, collections.Callable):
       raise ValueError("Reference to %s.%s is not callable." % (module, function))
    return obj
@@ -1376,7 +1376,7 @@ def resolveCommand(command):
    Both extensions and standard Cedar Backup functionality need a way to
    resolve the "real" location of various executables.  Normally, they assume
    that these executables are on the system path, but some callers need to
-   specify an alternate location.  
+   specify an alternate location.
 
    Ideally, we want to handle this configuration in a central location.  The
    Cedar Backup path resolver mechanism (a singleton called
@@ -1384,7 +1384,7 @@ def resolveCommand(command):
    mappings.  This function wraps access to the singleton, and is what all
    functions (extensions or standard functionality) should call if they need to
    find a command.
-   
+
    The passed-in command must actually be a list, in the standard form used by
    all existing Cedar Backup code (something like C{["svnlook", ]}).  The
    lookup will actually be done on the first element in the list, and the
@@ -1435,7 +1435,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
 
    By default, C{stdout} and C{stderr} will be intermingled in the output.
    However, if you pass in C{ignoreStderr=True}, then only C{stdout} will be
-   included in the output.  
+   included in the output.
 
    The C{doNotLog} parameter exists so that callers can force the function to
    not log command output to the debug log.  Normally, you would want to log.
@@ -1508,7 +1508,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
          if returnOutput: output.append(line)
          if outputFile is not None: outputFile.write(line)
          if not doNotLog: outputLogger.info(line[:-1])  # this way the log will (hopefully) get updated in realtime
-      if outputFile is not None: 
+      if outputFile is not None:
          try: # note, not every file-like object can be flushed
             outputFile.flush()
          except: pass
@@ -1553,7 +1553,7 @@ def calculateFileAge(path):
    """
    currentTime = int(time.time())
    fileStats = os.stat(path)
-   lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest" 
+   lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest"
    ageInSeconds = currentTime - lastUse
    ageInDays = ageInSeconds / SECONDS_PER_DAY
    return ageInDays
@@ -1789,7 +1789,7 @@ def buildNormalizedPath(path):
    name.  To make a valid file name out of a complete path, we have to convert
    or remove some characters that are significant to the filesystem -- in
    particular, the path separator and any leading C{'.'} character (which would
-   cause the file to be hidden in a file listing).  
+   cause the file to be hidden in a file listing).
 
    Note that this is a one-way transformation -- you can't safely derive the
    original path from the normalized path.
@@ -1833,9 +1833,9 @@ def buildNormalizedPath(path):
 def sanitizeEnvironment():
    """
    Sanitizes the operating system environment.
-   
+
    The operating system environment is contained in C{os.environ}.  This method
-   sanitizes the contents of that dictionary.  
+   sanitizes the contents of that dictionary.
 
    Currently, all it does is reset the locale (removing C{$LC_*}) and set the
    default language (C{$LANG}) to L{DEFAULT_LANGUAGE}.  This way, we can count
@@ -1855,7 +1855,7 @@ def sanitizeEnvironment():
       if os.environ[LANG_VAR] != DEFAULT_LANGUAGE: # no need to reset if it exists (avoid leaks on BSD systems)
          os.environ[LANG_VAR] = DEFAULT_LANGUAGE
    return os.environ.copy()
-   
+
 
 #############################
 # dereferenceLink() function

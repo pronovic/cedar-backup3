@@ -46,7 +46,7 @@ accesses the DOM tree.  This is not so much to "protect" the other code from
 the DOM, but to standardize the way it's used.  It will also help extension
 authors write code that easily looks more like the rest of Cedar Backup.
 
-@sort: createInputDom, createOutputDom, serializeDom, isElement, readChildren, 
+@sort: createInputDom, createOutputDom, serializeDom, isElement, readChildren,
        readFirstChild, readStringList, readString, readInteger, readBoolean,
        addContainerNode, addStringNode, addIntegerNode, addBooleanNode,
        TRUE_BOOLEAN_VALUES, FALSE_BOOLEAN_VALUES, VALID_BOOLEAN_VALUES
@@ -133,7 +133,7 @@ def readChildren(parent, name):
    parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    Underneath, we use the Python C{getElementsByTagName} method, which is
    pretty cool, but which (surprisingly?) returns a list of all children
@@ -160,7 +160,7 @@ def readFirstChild(parent, name):
    Returns the first child with a given name immediately beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    @param parent: Parent node to search beneath.
    @param name: Name of node to search for.
@@ -178,7 +178,7 @@ def readStringList(parent, name):
    name immediately beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    First, we find all of the nodes using L{readChildren}, and then we
    retrieve the "string contents" of each of those nodes.  The returned list
@@ -230,7 +230,7 @@ def readInteger(parent, name):
    beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    @param parent: Parent node to search beneath.
    @param name: Name of node to search for.
@@ -250,7 +250,7 @@ def readLong(parent, name):
    beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    @param parent: Parent node to search beneath.
    @param name: Name of node to search for.
@@ -270,7 +270,7 @@ def readFloat(parent, name):
    beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    @param parent: Parent node to search beneath.
    @param name: Name of node to search for.
@@ -291,7 +291,7 @@ def readBoolean(parent, name):
    beneath the parent.
 
    By "immediately beneath" the parent, we mean from among nodes that are
-   direct children of the passed-in parent node.  
+   direct children of the passed-in parent node.
 
    The string value of the node must be one of the values in L{VALID_BOOLEAN_VALUES}.
 
@@ -438,7 +438,7 @@ def serializeDom(xmlDom, indent=3):
    serializer.serialize(xmlDom)
    xmlData = xmlBuffer.getvalue()
    xmlBuffer.close()
-   return xmlData 
+   return xmlData
 
 class Serializer(object):
 
@@ -450,7 +450,7 @@ class Serializer(object):
    I still had around a dependency on PyXML was for the PrettyPrint
    functionality, and that seemed pointless.  So, I stripped the PrettyPrint
    code out of PyXML and hacked bits of it off until it did just what I needed
-   and no more.  
+   and no more.
 
    This code started out being called PrintVisitor, but I decided it makes more
    sense just calling it a serializer.  I've made nearly all of the methods

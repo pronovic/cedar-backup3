@@ -67,7 +67,7 @@ Testing XML Extraction
    is extract a node, build some XML from it, and then feed that XML back into
    another object's constructor.  If that parse process succeeds and the old
    object is equal to the new object, we assume that the extract was
-   successful.  
+   successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -1618,7 +1618,7 @@ class TestLocalConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -1940,10 +1940,10 @@ class TestLocalConfig(unittest.TestCase):
       mboxDirs.append(mboxDir)
       mboxDir = MboxDir(absolutePath="/home/jimbob/mail", compressMode="bzip2", relativeExcludePaths=["logomachy-devel"])
       mboxDirs.append(mboxDir)
-      mboxDir = MboxDir(absolutePath="/home/billiejoe/mail", collectMode="weekly", compressMode="bzip2", 
+      mboxDir = MboxDir(absolutePath="/home/billiejoe/mail", collectMode="weekly", compressMode="bzip2",
                         excludePatterns=[".*SPAM.*"])
       mboxDirs.append(mboxDir)
-      mboxDir = MboxDir(absolutePath="/home/billybob/mail", 
+      mboxDir = MboxDir(absolutePath="/home/billybob/mail",
                         relativeExcludePaths=["debian-devel", "debian-python", ],
                         excludePatterns=[".*SPAM.*", ".*JUNK.*", ])
       mboxDirs.append(mboxDir)
@@ -2221,10 +2221,10 @@ class TestLocalConfig(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestMboxFile, 'test'), 
-                              unittest.makeSuite(TestMboxDir, 'test'), 
-                              unittest.makeSuite(TestMboxConfig, 'test'), 
-                              unittest.makeSuite(TestLocalConfig, 'test'), 
+                              unittest.makeSuite(TestMboxFile, 'test'),
+                              unittest.makeSuite(TestMboxDir, 'test'),
+                              unittest.makeSuite(TestMboxConfig, 'test'),
+                              unittest.makeSuite(TestLocalConfig, 'test'),
                             ))
 
 

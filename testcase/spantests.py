@@ -163,8 +163,8 @@ class TestSpanOptions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestFunctions, 'test'), 
-                              unittest.makeSuite(TestSpanOptions, 'test'), 
+                              unittest.makeSuite(TestFunctions, 'test'),
+                              unittest.makeSuite(TestSpanOptions, 'test'),
                             ))
 
 

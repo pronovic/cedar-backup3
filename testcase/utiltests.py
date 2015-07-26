@@ -2150,15 +2150,15 @@ class TestFunctions(unittest.TestCase):
 
 
    ##################
-   # Test sortDict() 
+   # Test sortDict()
    ##################
-         
+
    def testSortDict_001(self):
       """
       Test for empty dictionary.
       """
       d = {}
-      result = sortDict(d) 
+      result = sortDict(d)
       self.assertEqual([], result)
 
    def testSortDict_002(self):
@@ -2166,7 +2166,7 @@ class TestFunctions(unittest.TestCase):
       Test for dictionary with one item.
       """
       d = {'a':1}
-      result = sortDict(d) 
+      result = sortDict(d)
       self.assertEqual(['a', ], result)
 
    def testSortDict_003(self):
@@ -2174,7 +2174,7 @@ class TestFunctions(unittest.TestCase):
       Test for dictionary with two items, same value.
       """
       d = {'a':1, 'b':1, }
-      result = sortDict(d) 
+      result = sortDict(d)
       self.assertEqual(['a', 'b', ], result)
 
    def testSortDict_004(self):
@@ -2182,7 +2182,7 @@ class TestFunctions(unittest.TestCase):
       Test for dictionary with two items, different values.
       """
       d = {'a':1, 'b':2, }
-      result = sortDict(d) 
+      result = sortDict(d)
       self.assertEqual(['a', 'b', ], result)
 
    def testSortDict_005(self):
@@ -2190,14 +2190,14 @@ class TestFunctions(unittest.TestCase):
       Test for dictionary with many items, same and different values.
       """
       d = {'rebuild': 0, 'purge': 400, 'collect': 100, 'validate': 0, 'store': 300, 'stage': 200}
-      result = sortDict(d) 
+      result = sortDict(d)
       self.assertEqual(['rebuild', 'validate', 'collect', 'stage', 'store', 'purge', ], result)
 
 
    ##############################
-   # Test getFunctionReference() 
+   # Test getFunctionReference()
    ##############################
-         
+
    def testGetFunctionReference_001(self):
       """
       Check that the search works within "standard" Python namespace.
@@ -2218,9 +2218,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ########################
-   # Test resolveCommand() 
+   # Test resolveCommand()
    ########################
-         
+
    def testResolveCommand_001(self):
       """
       Test that the command is echoed back unchanged when singleton is empty.
@@ -2292,9 +2292,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ########################
-   # Test executeCommand() 
+   # Test executeCommand()
    ########################
-         
+
    def testExecuteCommand_001(self):
       """
       Execute a command that should succeed, no arguments, returnOutput=False
@@ -3296,9 +3296,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ####################
-   # Test encodePath() 
+   # Test encodePath()
    ####################
-         
+
    def testEncodePath_002(self):
       """
       Test with a simple string, empty.
@@ -3368,7 +3368,7 @@ class TestFunctions(unittest.TestCase):
 
       The result is different for a UTF-8 encoding than other non-ANSI
       encodings.  However, opening the original path and then the encoded path
-      seems to result in the exact same file on disk, so the test is valid.  
+      seems to result in the exact same file on disk, so the test is valid.
       """
       encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
       if not platformCygwin() and encoding != 'mbcs' and encoding.find("ANSI") != 0:    # test can't work on some filesystems
@@ -3382,9 +3382,9 @@ class TestFunctions(unittest.TestCase):
 
 
    #####################
-   # Test convertSize() 
+   # Test convertSize()
    ######################
-         
+
    def testConvertSize_001(self):
       """
       Test valid conversion from bytes to bytes.
@@ -3511,9 +3511,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ####################
-   # Test nullDevice() 
+   # Test nullDevice()
    #####################
-         
+
    def testNullDevice_001(self):
       """
       Test that the function behaves sensibly on Windows and non-Windows platforms.
@@ -3526,9 +3526,9 @@ class TestFunctions(unittest.TestCase):
 
 
    ######################
-   # Test displayBytes() 
+   # Test displayBytes()
    ######################
-         
+
    def testDisplayBytes_001(self):
       """
       Test display for a positive value < 1 KB
@@ -3655,9 +3655,9 @@ class TestFunctions(unittest.TestCase):
 
 
    #########################
-   # Test deriveDayOfWeek() 
+   # Test deriveDayOfWeek()
    #########################
-         
+
    def testDeriveDayOfWeek_001(self):
       """
       Test for valid day names.
@@ -3678,9 +3678,9 @@ class TestFunctions(unittest.TestCase):
 
 
    #######################
-   # Test isStartOfWeek() 
+   # Test isStartOfWeek()
    #######################
-         
+
    def testIsStartOfWeek001(self):
       """
       Test positive case.
@@ -3725,7 +3725,7 @@ class TestFunctions(unittest.TestCase):
 
 
    #############################
-   # Test buildNormalizedPath() 
+   # Test buildNormalizedPath()
    #############################
 
    def testBuildNormalizedPath001(self):
@@ -3733,7 +3733,7 @@ class TestFunctions(unittest.TestCase):
       Test for a None path.
       """
       self.assertRaises(ValueError, buildNormalizedPath, None)
-         
+
    def testBuildNormalizedPath002(self):
       """
       Test for an empty path.
@@ -3880,7 +3880,7 @@ class TestFunctions(unittest.TestCase):
 
 
    ##########################
-   # Test splitCommandLine() 
+   # Test splitCommandLine()
    ##########################
 
    def testSplitCommandLine_001(self):
@@ -3924,7 +3924,7 @@ class TestFunctions(unittest.TestCase):
 
 
    #########################
-   # Test dereferenceLink() 
+   # Test dereferenceLink()
    #########################
 
    def testDereferenceLink_001(self):
@@ -4048,7 +4048,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(["ken", ], actual)
 
    def testParseCommaSeparatedString_004(self):
-      """ 
+      """
       Test parseCommaSeparatedString() for a string with multiple values, no
       spaces.
       """
@@ -4056,7 +4056,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(["a", "b", "c", ], actual)
 
    def testParseCommaSeparatedString_005(self):
-      """ 
+      """
       Test parseCommaSeparatedString() for a string with multiple values, with
       spaces.
       """
@@ -4064,7 +4064,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(["a", "b", "c", ], actual)
 
    def testParseCommaSeparatedString_006(self):
-      """ 
+      """
       Test parseCommaSeparatedString() for a string with multiple values,
       worst-case kind of value.
       """

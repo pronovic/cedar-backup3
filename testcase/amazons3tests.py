@@ -67,7 +67,7 @@ Testing XML Extraction
    is extract a node, build some XML from it, and then feed that XML back into
    another object's constructor.  If that parse process succeeds and the old
    object is equal to the new object, we assume that the extract was
-   successful.  
+   successful.
 
    It would arguably be better if we could do a completely independent check -
    but implementing that check would be equivalent to re-implementing all of
@@ -97,7 +97,7 @@ from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
 #######################################################################
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
-RESOURCES = [ "amazons3.conf.1", "amazons3.conf.2", "tree1.tar.gz", "tree2.tar.gz", 
+RESOURCES = [ "amazons3.conf.1", "amazons3.conf.2", "tree1.tar.gz", "tree2.tar.gz",
               "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz", "tree17.tar.gz",
               "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]
 
@@ -661,7 +661,7 @@ class TestLocalConfig(unittest.TestCase):
 
 
    ######################
-   # Test validate logic 
+   # Test validate logic
    ######################
 
    def testValidate_001(self):
@@ -766,8 +766,8 @@ class TestLocalConfig(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestAmazonS3Config, 'test'), 
-                              unittest.makeSuite(TestLocalConfig, 'test'), 
+                              unittest.makeSuite(TestAmazonS3Config, 'test'),
+                              unittest.makeSuite(TestLocalConfig, 'test'),
                             ))
 
 
