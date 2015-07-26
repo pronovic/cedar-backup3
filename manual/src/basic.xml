@@ -605,8 +605,7 @@
       <para>
          Cedar Backup also supports an optional feature called the
          <quote>managed backup</quote>.  This feature is intended for use with
-         remote clients where cron is not available (for instance, SourceForge
-         shell accounts).
+         remote clients where cron is not available.
       </para>
 
       <para>
