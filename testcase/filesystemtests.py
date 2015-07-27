@@ -3808,6 +3808,7 @@ class TestFilesystemList(unittest.TestCase):
       path = self.buildPath(["tree12", "unicode", ])
       fsList = FilesystemList()
       count = fsList.addDirContents(path)
+      print("\nfsList: %s\n" % fsList)
       self.assertEqual(6, count)
       self.assertEqual(6, len(fsList))
       self.assertTrue(self.buildPath([ "tree12", "unicode", ]) in fsList)
@@ -3815,7 +3816,7 @@ class TestFilesystemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in fsList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", "\xe2\x99\xaa\xe2\x99\xac", ]) in fsList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", u"\xe2\x99\xaa\xe2\x99\xac", ]) in fsList)
 
    def testAddDirContents_072(self):
       """
