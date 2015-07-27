@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 # vim: set ft=python ts=3 sw=3 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -946,7 +946,7 @@ class TestFilesystemList(unittest.TestCase):
       Attempt to add a UTF-8 file.
       """
       self.extractTar("tree12")
-      path = self.buildPath(["tree12", "unicode", b"\xe2\x99\xaa\xe2\x99\xac".decode("iso8859-1")])
+      path = self.buildPath(["tree12", "unicode", b'\xc3\xa2\xc2\x99\xc2\xaa\xc3\xa2\xc2\x99\xc2\xac'.decode("utf-8")])
       fsList = FilesystemList()
       count = fsList.addFile(path)
       self.assertEqual(1, count)
@@ -24962,7 +24962,8 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035a'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035b'),
                               unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
                               unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
                               unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
