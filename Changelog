@@ -2,12 +2,7 @@ Version 3.0.0     unreleased
 
 	* Convert to Python 3, using v2.42.2 as the basis for conversion.
 	* Move source tree from Subversion at SourceForge to Mercurial at BitBucket.
-
-Version 2.24.4    27 Jul 2015
-
-	* Fix long-standing bugs with pre- and post-action hooks.
-	  - Return status from hook scripts was ignored, so failures weren't exposed
-	  - Config supported multiple hooks per action, but only one was ever executed
+	* Fix long-standing bugs with pre- and post-action hooks, backported from v2.24.4.
 
 Version 2.24.2    05 Jan 2015
 
