@@ -107,7 +107,7 @@ def main():
 
    # Check the Python version.  We require 3.4 or greater.
    try:
-      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
          print("Python version 3.4 or greater required, sorry.")
          return 1
    except:

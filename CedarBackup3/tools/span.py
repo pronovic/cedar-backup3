@@ -144,7 +144,7 @@ def cli():
    @return: Error code as described above.
    """
    try:
-      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [2, 5]:
+      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
          sys.stderr.write("Python version 3.4 or greater required.\n")
          return 1
    except:
