@@ -3366,10 +3366,6 @@ class TestFunctions(unittest.TestCase):
    def testEncodePath_009(self):
       """
       Test with simple string, a non-ascii path.
-
-      The result is different for a UTF-8 encoding than other non-ANSI
-      encodings.  However, opening the original path and then the encoded path
-      seems to result in the exact same file on disk, so the test is valid.
       """
       encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
       path = "\xe2\x99\xaa\xe2\x99\xac"

@@ -1698,11 +1698,10 @@ def encodePath(path):
       return path
    try:
       if isinstance(path, bytes):
-         encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
-         path = str(path, encoding)
+         path = path.decode("utf-8")
       return path
    except UnicodeError:
-      raise ValueError("Path could not be safely encoded as %s." % encoding)
+      raise ValueError("Path could not be safely encoded as UTF-8")
 
 
 ########################
