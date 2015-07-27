@@ -24962,10 +24962,15 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestFilesystemList, 'test'),
-                              unittest.makeSuite(TestBackupFileList, 'test'),
-                              unittest.makeSuite(TestPurgeItemList, 'test'),
-                              unittest.makeSuite(TestFunctions, 'test'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
+                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
+                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_072'),
+#                              unittest.makeSuite(TestFilesystemList, 'test'),
+#                              unittest.makeSuite(TestBackupFileList, 'test'),
+#                              unittest.makeSuite(TestPurgeItemList, 'test'),
+#                              unittest.makeSuite(TestFunctions, 'test'),
                             ))
 
 

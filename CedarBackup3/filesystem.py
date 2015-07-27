@@ -476,6 +476,8 @@ class FilesystemList(list):
       if includePath:
          added += self.addDir(path)    # could actually be excluded by addDir, yet
       for entry in os.listdir(path):
+         import codecs
+         print("\nentry [%s][%s]\n" % (entry, repr(entry.encode("iso-8859-1"))))
          entrypath = os.path.join(path, entry)
          if os.path.isfile(entrypath):
             if linkDepth > 0 and dereference:
