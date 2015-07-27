@@ -76,11 +76,6 @@ instance passing "config" runs only the tests for config.py.  Any number of
 individual tests may be listed on the command line, and unknown values will
 simply be ignored.
 
-@note: Even if you run this test with the C{python3} interpreter, some of the
-individual unit tests require the C{python} interpreter.  In particular, the
-utility tests (in test/utiltests.py) use brief Python script snippets with
-known results to verify the behavior of C{executeCommand}.
-
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 

@@ -2305,7 +2305,7 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, one argument, returnOutput=False
       Command-line: python -V
       """
-      command=["python", ]
+      command=[sys.executable, ]
       args=["-V", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
@@ -2314,10 +2314,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_003(self):
       """
       Execute a command that should succeed, two arguments, returnOutput=False
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2325,10 +2325,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_004(self):
       """
       Execute a command that should succeed, three arguments, returnOutput=False
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2336,10 +2336,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_005(self):
       """
       Execute a command that should succeed, four arguments, returnOutput=False
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2347,10 +2347,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_006(self):
       """
       Execute a command that should fail, returnOutput=False
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(1)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(1)", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertNotEqual(0, result)
       self.assertEqual(None, output)
@@ -2358,10 +2358,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_007(self):
       """
       Execute a command that should fail, more arguments, returnOutput=False
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(1)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertNotEqual(0, result)
       self.assertEqual(None, output)
@@ -2384,7 +2384,7 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, one argument, returnOutput=True
       Command-line: python -V
       """
-      command=["python", ]
+      command=[sys.executable, ]
       args=["-V", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
@@ -2394,10 +2394,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_010(self):
       """
       Execute a command that should succeed, two arguments, returnOutput=True
-      Command-line: python -c "import sys; print ''; sys.exit(0)"
+      Command-line: python -c "import sys; print(''); sys.exit(0)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print ''; sys.exit(0)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(''); sys.exit(0)", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2406,10 +2406,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_011(self):
       """
       Execute a command that should succeed, three arguments, returnOutput=True
-      Command-line: python -c "import sys; print '%s' % (sys.argv[1]); sys.exit(0)" first
+      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % (sys.argv[1]); sys.exit(0)", "first", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % (sys.argv[1])); sys.exit(0)", "first", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2418,10 +2418,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_012(self):
       """
       Execute a command that should succeed, four arguments, returnOutput=True
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
       self.assertEqual(2, len(output))
@@ -2431,10 +2431,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_013(self):
       """
       Execute a command that should fail, returnOutput=True
-      Command-line: python -c "import sys; print ''; sys.exit(1)"
+      Command-line: python -c "import sys; print(''); sys.exit(1)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print ''; sys.exit(1)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(''); sys.exit(1)", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertNotEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2443,10 +2443,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_014(self):
       """
       Execute a command that should fail, more arguments, returnOutput=True
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertNotEqual(0, result)
       self.assertEqual(2, len(output))
@@ -2472,7 +2472,7 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: python -V
       """
-      command=["python", "-V", ]
+      command=[sys.executable, "-V", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
@@ -2482,9 +2482,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, two arguments, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
@@ -2494,9 +2494,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, three arguments, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
@@ -2506,9 +2506,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, four arguments, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertEqual(0, result)
@@ -2518,9 +2518,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(1)", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(1)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertNotEqual(0, result)
@@ -2530,9 +2530,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, more arguments, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(1)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False)
       self.assertNotEqual(0, result)
@@ -2558,7 +2558,7 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: python -V
       """
-      command=["python", "-V"]
+      command=[sys.executable, "-V"]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
@@ -2569,9 +2569,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, two arguments, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(0)"
+      Command-line: python -c "import sys; print(''); sys.exit(0)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(0)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(0)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
@@ -2582,9 +2582,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, three arguments, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % (sys.argv[1]); sys.exit(0)" first
+      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
       """
-      command=["python", "-c", "import sys; print '%s' % (sys.argv[1]); sys.exit(0)", "first", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % (sys.argv[1])); sys.exit(0)", "first", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
@@ -2595,9 +2595,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, four arguments, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertEqual(0, result)
@@ -2609,9 +2609,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(1)"
+      Command-line: python -c "import sys; print(''); sys.exit(1)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(1)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(1)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertNotEqual(0, result)
@@ -2622,9 +2622,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, more arguments, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True)
       self.assertNotEqual(0, result)
@@ -2649,7 +2649,7 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, one argument, returnOutput=False, ignoring stderr.
       Command-line: python -V
       """
-      command=["python", ]
+      command=[sys.executable, ]
       args=["-V", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2658,10 +2658,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_032(self):
       """
       Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2669,10 +2669,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_033(self):
       """
       Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2680,10 +2680,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_034(self):
       """
       Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(None, output)
@@ -2691,10 +2691,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_035(self):
       """
       Execute a command that should fail, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(1)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(1)", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertNotEqual(0, result)
       self.assertEqual(None, output)
@@ -2702,10 +2702,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_036(self):
       """
       Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print sys.argv[1:]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(sys.argv[1:]); sys.exit(1)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertNotEqual(0, result)
       self.assertEqual(None, output)
@@ -2728,19 +2728,23 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, one argument, returnOutput=True, ignoring stderr.
       Command-line: python -V
       """
-      command=["python", ]
-      args=["-V", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('X', file=sys.stderr)", ]
+      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=False)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual("X%s" % os.linesep, output[0])      # prove stderr is captured
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
-      self.assertEqual(0, len(output))
+      self.assertEqual(0, len(output))                     # prove stderr is now ignored
 
    def testExecuteCommand_039(self):
       """
       Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print ''; sys.exit(0)"
+      Command-line: python -c "import sys; print(''); sys.exit(0)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print ''; sys.exit(0)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(''); sys.exit(0)", ]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2749,10 +2753,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_040(self):
       """
       Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print '%s' % (sys.argv[1]); sys.exit(0)" first
+      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % (sys.argv[1]); sys.exit(0)", "first", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % (sys.argv[1])); sys.exit(0)", "first", ]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2761,10 +2765,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_041(self):
       """
       Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
       self.assertEqual(2, len(output))
@@ -2774,10 +2778,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_042(self):
       """
       Execute a command that should fail, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print ''; sys.exit(1)"
+      Command-line: python -c "import sys; print(''); sys.exit(1)"
       """
-      command=["python", ]
-      args=["-c", "import sys; print ''; sys.exit(1)", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print(''); sys.exit(1)", ]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertNotEqual(0, result)
       self.assertEqual(1, len(output))
@@ -2786,10 +2790,10 @@ class TestFunctions(unittest.TestCase):
    def testExecuteCommand_043(self):
       """
       Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
       """
-      command=["python", ]
-      args=["-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, ]
+      args=["-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)", "first", "second", ]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertNotEqual(0, result)
       self.assertEqual(2, len(output))
@@ -2815,7 +2819,7 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: python -V
       """
-      command=["python", "-V", ]
+      command=[sys.executable, "-V", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2825,9 +2829,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2837,9 +2841,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2849,9 +2853,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(0)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2861,9 +2865,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)"
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(1)", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(1)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertNotEqual(0, result)
@@ -2873,9 +2877,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print sys.argv[1:]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
       """
-      command=["python", "-c", "import sys; print sys.argv[1:]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print(sys.argv[1:]); sys.exit(1)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
       self.assertNotEqual(0, result)
@@ -2901,19 +2905,23 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: python -V
       """
-      command=["python", "-V"]
+      command=[sys.executable, "-c", "import sys; print('X', file=sys.stderr)", ]
       args=[]
+      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=False)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual("X%s" % os.linesep, output[0])      # prove stderr is captured
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
-      self.assertEqual(0, len(output))
+      self.assertEqual(0, len(output))                     # prove stderr is now ignored
 
    def testExecuteCommand_053(self):
       """
       Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(0)"
+      Command-line: python -c "import sys; print(''); sys.exit(0)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(0)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(0)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2924,9 +2932,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % (sys.argv[1]); sys.exit(0)" first
+      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
       """
-      command=["python", "-c", "import sys; print '%s' % (sys.argv[1]); sys.exit(0)", "first", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % (sys.argv[1])); sys.exit(0)", "first", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2937,9 +2945,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertEqual(0, result)
@@ -2951,9 +2959,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(1)"
+      Command-line: python -c "import sys; print(''); sys.exit(1)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(1)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(1)", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertNotEqual(0, result)
@@ -2964,9 +2972,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)", "first", "second", ]
       args=[]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
       self.assertNotEqual(0, result)
@@ -3003,7 +3011,7 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: python -V
       """
-      command=["python", "-V"]
+      command=[sys.executable, "-V"]
       args=[]
 
       filename = self.getTempfile()
@@ -3023,9 +3031,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, two arguments, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(0)"
+      Command-line: python -c "import sys; print(''); sys.exit(0)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(0)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(0)", ]
       args=[]
 
       filename = self.getTempfile()
@@ -3045,9 +3053,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, three arguments, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % (sys.argv[1]); sys.exit(0)" first
+      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
       """
-      command=["python", "-c", "import sys; print '%s' % (sys.argv[1]); sys.exit(0)", "first", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % (sys.argv[1])); sys.exit(0)", "first", ]
       args=[]
 
       filename = self.getTempfile()
@@ -3067,9 +3075,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should succeed, four arguments, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(0)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)", "first", "second", ]
       args=[]
 
       filename = self.getTempfile()
@@ -3090,9 +3098,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print ''; sys.exit(1)"
+      Command-line: python -c "import sys; print(''); sys.exit(1)"
       """
-      command=["python", "-c", "import sys; print ''; sys.exit(1)", ]
+      command=[sys.executable, "-c", "import sys; print(''); sys.exit(1)", ]
       args=[]
 
       filename = self.getTempfile()
@@ -3112,9 +3120,9 @@ class TestFunctions(unittest.TestCase):
       """
       Execute a command that should fail, more arguments, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)" first second
+      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
       """
-      command=["python", "-c", "import sys; print '%s' % sys.argv[1]; print '%s' % sys.argv[2]; sys.exit(1)", "first", "second", ]
+      command=[sys.executable, "-c", "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)", "first", "second", ]
       args=[]
 
       filename = self.getTempfile()
@@ -3139,7 +3147,7 @@ class TestFunctions(unittest.TestCase):
       either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "stdout", ]
+      command=[sys.executable, lotsoflines, "stdout", ]
       args = []
 
       filename = self.getTempfile()
@@ -3165,7 +3173,7 @@ class TestFunctions(unittest.TestCase):
       either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "stdout", ]
+      command=[sys.executable, lotsoflines, "stdout", ]
       args = []
 
       filename = self.getTempfile()
@@ -3191,7 +3199,7 @@ class TestFunctions(unittest.TestCase):
       either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "stderr", ]
+      command=[sys.executable, lotsoflines, "stderr", ]
       args = []
 
       filename = self.getTempfile()
@@ -3217,7 +3225,7 @@ class TestFunctions(unittest.TestCase):
       either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "stderr", ]
+      command=[sys.executable, lotsoflines, "stderr", ]
       args = []
 
       filename = self.getTempfile()
@@ -3243,7 +3251,7 @@ class TestFunctions(unittest.TestCase):
       is either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "both", ]
+      command=[sys.executable, lotsoflines, "both", ]
       args = []
 
       filename = self.getTempfile()
@@ -3269,7 +3277,7 @@ class TestFunctions(unittest.TestCase):
       is either a lot of data or a lot of data to ignore.
       """
       lotsoflines = self.resources['lotsoflines.py']
-      command=["python", lotsoflines, "both", ]
+      command=[sys.executable, lotsoflines, "both", ]
       args = []
 
       filename = self.getTempfile()
