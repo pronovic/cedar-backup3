@@ -307,23 +307,23 @@ class _ActionItem(object):
 
    SORT_ORDER = 0
 
-   def __init__(self, index, name, preHook, postHook, function):
+   def __init__(self, index, name, preHooks, postHooks, function):
       """
       Default constructor.
 
-      It's OK to pass C{None} for C{index}, C{preHook} or C{postHook}, but not
+      It's OK to pass C{None} for C{index}, C{preHooks} or C{postHooks}, but not
       for C{name}.
 
       @param index: Index of the item (or C{None}).
       @param name: Name of the action that is being executed.
-      @param preHook: Pre-action hook in terms of an C{ActionHook} object, or C{None}.
-      @param postHook: Post-action hook in terms of an C{ActionHook} object, or C{None}.
+      @param preHooks: List of pre-action hooks in terms of an C{ActionHook} object, or C{None}.
+      @param postHooks: List of post-action hooks in terms of an C{ActionHook} object, or C{None}.
       @param function: Reference to function associated with item.
       """
       self.index = index
       self.name = name
-      self.preHook = preHook
-      self.postHook = postHook
+      self.preHooks = preHooks
+      self.postHooks = postHooks
       self.function = function
 
    def __eq__(self, other):
@@ -373,11 +373,13 @@ class _ActionItem(object):
       @raise Exception: If there is a problem executing the action.
       """
       logger.debug("Executing [%s] action." % self.name)
-      if self.preHook is not None:
-         self._executeHook("pre-action", self.preHook)
+      if self.preHooks is not None:
+         for hook in self.preHooks:
+            self._executeHook("pre-action", hook)
       self._executeAction(configPath, options, config)
-      if self.postHook is not None:
-         self._executeHook("post-action", self.postHook)
+      if self.postHooks is not None:
+         for hook in self.postHooks:
+            self._executeHook("post-action", hook)
 
    def _executeAction(self, configPath, options, config):
       """
@@ -396,9 +398,11 @@ class _ActionItem(object):
       @param type: String describing the type of hook, for logging.
       @param hook: Hook, in terms of a C{ActionHook} object.
       """
-      logger.debug("Executing %s hook for action [%s]." % (type, hook.action))
       fields = splitCommandLine(hook.command)
-      executeCommand(command=fields[0:1], args=fields[1:])
+      logger.debug("Executing %s hook for action [%s]: %s" % (type, hook.action, fields[0:1]))
+      result = executeCommand(command=fields[0:1], args=fields[1:])[0]
+      if result != 0:
+         raise IOError("Error (%d) executing %s hook for action [%s]: %s" % (result, type, hook.action, fields[0:1]))
 
 
 ###########################
@@ -499,7 +503,6 @@ class _ManagedActionItem(object):
          except IOError as e:
             logger.error(e)   # log the message and go on, so we don't kill the backup
 
-
 ###################
 # _ActionSet class
 ###################
@@ -540,8 +543,8 @@ class _ActionSet(object):
       are initialized based on the input:
 
          - C{extensionNames}: List of extensions available in configuration
-         - C{preHookMap}: Mapping from action name to pre C{ActionHook}
-         - C{preHookMap}: Mapping from action name to post C{ActionHook}
+         - C{preHookMap}: Mapping from action name to list of C{PreActionHook}
+         - C{postHookMap}: Mapping from action name to list of C{PostActionHook}
          - C{functionMap}: Mapping from action name to Python function
          - C{indexMap}: Mapping from action name to execution index
          - C{peerMap}: Mapping from action name to set of C{RemotePeer}
@@ -597,9 +600,13 @@ class _ActionSet(object):
       if hooks is not None:
          for hook in hooks:
             if hook.before:
-               preHookMap[hook.action] = hook
+               if not hook.action in preHookMap:
+                  preHookMap[hook.action] = []
+               preHookMap[hook.action].append(hook)
             elif hook.after:
-               postHookMap[hook.action] = hook
+               if not hook.action in postHookMap:
+                  postHookMap[hook.action] = []
+               postHookMap[hook.action].append(hook)
       return (preHookMap, postHookMap)
 
    @staticmethod
@@ -744,8 +751,8 @@ class _ActionSet(object):
             index = indexMap[name]
             actionMap[name] = []
             if local:
-               (preHook, postHook) = _ActionSet._deriveHooks(name, preHookMap, postHookMap)
-               actionMap[name].append(_ActionItem(index, name, preHook, postHook, function))
+               (preHooks, postHooks) = _ActionSet._deriveHooks(name, preHookMap, postHookMap)
+               actionMap[name].append(_ActionItem(index, name, preHooks, postHooks, function))
             if managed:
                if name in peerMap:
                   actionMap[name].append(_ManagedActionItem(index, name, peerMap[name]))
@@ -791,15 +798,15 @@ class _ActionSet(object):
       @param action: Name of action to look up
       @param preHookDict: Dictionary mapping pre-action hooks to action name
       @param postHookDict: Dictionary mapping post-action hooks to action name
-      @return Tuple (preHook, postHook) per mapping, with None values if there is no hook.
+      @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook.
       """
-      preHook = None
-      postHook = None
+      preHooks = None
+      postHooks = None
       if action in preHookDict:
-         preHook = preHookDict[action]
+         preHooks = preHookDict[action]
       if action in postHookDict:
-         postHook = postHookDict[action]
-      return (preHook, postHook)
+         postHooks = postHookDict[action]
+      return (preHooks, postHooks)
 
    @staticmethod
    def _validateActions(actions, extensionNames):
