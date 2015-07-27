@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: iso-8859-1 -*-
 # vim: set ft=python ts=3 sw=3 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -24962,12 +24962,11 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035a'),
-                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035b'),
-                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
-                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
-                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
-                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_072'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
+#                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
+#                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
+#                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
+#                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_072'),
 #                              unittest.makeSuite(TestFilesystemList, 'test'),
 #                              unittest.makeSuite(TestBackupFileList, 'test'),
 #                              unittest.makeSuite(TestPurgeItemList, 'test'),
