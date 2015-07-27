@@ -836,10 +836,8 @@ class PathResolverSingleton(object):
 
    getInstance = _Helper()    # Method that callers will use to get an instance
 
-   def __init__(self):
+   def __init__(self, ):
       """Singleton constructor, which just creates the singleton instance."""
-      if PathResolverSingleton._instance is not None:
-         raise RuntimeError("Only one instance of PathResolverSingleton is allowed!")
       PathResolverSingleton._instance = self
       self._mapping = { }
 

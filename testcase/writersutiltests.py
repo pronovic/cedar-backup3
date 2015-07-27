@@ -97,6 +97,7 @@ import tempfile
 import time
 from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
 from CedarBackup3.testutil import platformMacOsX, platformSupportsLinks
+from CedarBackup3.testutil import setupOverrides
 from CedarBackup3.filesystem import FilesystemList
 from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed, IsoImage
 from CedarBackup3.util import executeCommand
@@ -143,6 +144,14 @@ class TestFunctions(unittest.TestCase):
    ################
    # Setup methods
    ################
+
+   @classmethod
+   def setUpClass(cls):
+      # We absolutely need the overrides set properly for this test, since it
+      # runs programs.  Since other tests might mess with the overrides and/or
+      # singletons, and we don't control the order of execution, we need to set
+      # them up here.
+      setupOverrides()  
 
    def setUp(self):
       pass

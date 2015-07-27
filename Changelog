@@ -1,8 +1,9 @@
 Version 3.0.0     unreleased
 
-	* Convert to Python 3, using v2.42.2 as the basis for conversion.
+	* Convert to Python 3, using v2.24.2 as the basis for conversion.
 	* Move source tree from Subversion at SourceForge to Mercurial at BitBucket.
-	* Fix long-standing bugs with pre- and post-action hooks, backported from v2.24.4.
+	* Fix long-standing bugs with pre- and post-action hooks, ported from v2.24.4.
+	* Adjust resolver setup for unit tests, due to lack of stability in test ordering.
 
 Version 2.24.2    05 Jan 2015
 

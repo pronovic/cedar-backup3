@@ -1912,13 +1912,6 @@ class TestPathResolverSingleton(unittest.TestCase):
       self.assertNotEqual(None, PathResolverSingleton._instance)
       self.assertTrue(instance is PathResolverSingleton._instance)
 
-      self.assertRaises(RuntimeError, PathResolverSingleton)
-
-      PathResolverSingleton._instance = None
-      instance = PathResolverSingleton()
-      self.assertNotEqual(None, PathResolverSingleton._instance)
-      self.assertTrue(instance is PathResolverSingleton._instance)
-
    def testBehavior_002(self):
       """
       Check behavior of getInstance() around filling and clearing instance variable.

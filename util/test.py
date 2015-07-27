@@ -133,10 +133,6 @@ def main():
       print("tree, or properly set the PYTHONPATH enviroment variable.")
       return 1
 
-   # Setup platform-specific command overrides
-   from CedarBackup3.testutil import setupOverrides
-   setupOverrides()
-
    # Import the unit test modules
    try:
       if os.path.exists(os.path.join(".", "testcase", "filesystemtests.py")):
