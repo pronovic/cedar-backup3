@@ -3372,14 +3372,10 @@ class TestFunctions(unittest.TestCase):
       seems to result in the exact same file on disk, so the test is valid.
       """
       encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
-      if not platformCygwin() and encoding != 'mbcs' and encoding.find("ANSI") != 0:    # test can't work on some filesystems
-         path = "\xe2\x99\xaa\xe2\x99\xac"
-         safePath = encodePath(path)
-         self.assertTrue(isinstance(safePath, str))
-         if encoding.upper() == "UTF-8":  # apparently, some platforms have "utf-8", some have "UTF-8"
-            self.assertEqual('\xc3\xa2\xc2\x99\xc2\xaa\xc3\xa2\xc2\x99\xc2\xac', safePath)
-         else:
-            self.assertEqual("\xe2\x99\xaa\xe2\x99\xac", safePath)
+      path = "\xe2\x99\xaa\xe2\x99\xac"
+      safePath = encodePath(path)
+      self.assertTrue(isinstance(safePath, str))
+      self.assertEqual("\xe2\x99\xaa\xe2\x99\xac", safePath)
 
 
    #####################
