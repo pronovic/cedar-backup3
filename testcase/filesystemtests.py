@@ -946,7 +946,7 @@ class TestFilesystemList(unittest.TestCase):
       Attempt to add a UTF-8 file.
       """
       self.extractTar("tree12")
-      path = self.buildPath(["tree12", "unicode", "\xe2\x99\xaa\xe2\x99\xac"])
+      path = self.buildPath(["tree12", "unicode", b"\xe2\x99\xaa\xe2\x99\xac".decode("iso8859-1")])
       fsList = FilesystemList()
       count = fsList.addFile(path)
       self.assertEqual(1, count)
@@ -3808,7 +3808,6 @@ class TestFilesystemList(unittest.TestCase):
       path = self.buildPath(["tree12", "unicode", ])
       fsList = FilesystemList()
       count = fsList.addDirContents(path)
-      print("\nfsList: %s\n" % fsList)
       self.assertEqual(6, count)
       self.assertEqual(6, len(fsList))
       self.assertTrue(self.buildPath([ "tree12", "unicode", ]) in fsList)
@@ -3816,7 +3815,7 @@ class TestFilesystemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in fsList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", "\xe2\x99\xaa\xe2\x99\xac", ]) in fsList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", b"\xe2\x99\xaa\xe2\x99\xac".decode("iso8859-1"), ]) in fsList)
 
    def testAddDirContents_072(self):
       """
@@ -3833,16 +3832,16 @@ class TestFilesystemList(unittest.TestCase):
          self.assertEqual(11, count)
          self.assertEqual(11, len(fsList))
          self.assertTrue(self.buildPath([ "tree13", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "Les mouvements de r\x82forme.doc", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "l'\x82nonc\x82.sxw", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard - renvois et bibliographie.sxw", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard copie finale.sxw", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard de vinci - page titre.sxw", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard de vinci.sxw", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "Rammstein - B\x81ck Dich.mp3", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "megaherz - Glas Und Tr\x84nen.mp3", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "Megaherz - Mistst\x81ck.MP3", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", "Rammstein - Mutter - B\x94se.mp3", ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"Les mouvements de r\x82forme.doc".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"l'\x82nonc\x82.sxw".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard - renvois et bibliographie.sxw".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard copie finale.sxw".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard de vinci - page titre.sxw".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard de vinci.sxw".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"Rammstein - B\x81ck Dich.mp3".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"megaherz - Glas Und Tr\x84nen.mp3".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"Megaherz - Mistst\x81ck.MP3".decode("iso8859-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"Rammstein - Mutter - B\x94se.mp3".decode("iso8859-1"), ]) in fsList)
 
    def testAddDirContents_073(self):
       """
@@ -21532,7 +21531,7 @@ class TestPurgeItemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in purgeList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in purgeList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in purgeList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", "\xe2\x99\xaa\xe2\x99\xac", ]) in purgeList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", b"\xe2\x99\xaa\xe2\x99\xac".decode("iso8859-1"), ]) in purgeList)
 
    def testAddDirContents_072(self):
       """
@@ -21547,16 +21546,16 @@ class TestPurgeItemList(unittest.TestCase):
          count = purgeList.addDirContents(path)
          self.assertEqual(10, count)
          self.assertEqual(10, len(purgeList))
-         self.assertTrue(self.buildPath([ "tree13", "Les mouvements de r\x82forme.doc", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "l'\x82nonc\x82.sxw", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard - renvois et bibliographie.sxw", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard copie finale.sxw", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard de vinci - page titre.sxw", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "l\x82onard de vinci.sxw", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "Rammstein - B\x81ck Dich.mp3", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "megaherz - Glas Und Tr\x84nen.mp3", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "Megaherz - Mistst\x81ck.MP3", ]) in purgeList)
-         self.assertTrue(self.buildPath([ "tree13", "Rammstein - Mutter - B\x94se.mp3", ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"Les mouvements de r\x82forme.doc".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"l'\x82nonc\x82.sxw".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard - renvois et bibliographie.sxw".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard copie finale.sxw".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard de vinci - page titre.sxw".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"l\x82onard de vinci.sxw".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"Rammstein - B\x81ck Dich.mp3".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"megaherz - Glas Und Tr\x84nen.mp3".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"Megaherz - Mistst\x81ck.MP3".decode("iso8859-1"), ]) in purgeList)
+         self.assertTrue(self.buildPath([ "tree13", b"Rammstein - Mutter - B\x94se.mp3".decode("iso8859-1"), ]) in purgeList)
 
    def testAddDirContents_073(self):
       """
