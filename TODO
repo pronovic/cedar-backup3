@@ -1,9 +1,5 @@
-update release procedure to match Mercurial and BitBucket
-add trove categories in setup.py
 review all documentation for completeness
 review all URLs in source code and documentation to make sure they still exist
 run pylint on codebase and get things clean
-get things running in Cloudbees Jenkins (including coverage, pylint reports, etc. if possible)
-figure out why mkisofs sometimes fails when running full tests on dev system (can't reproduce easily)
+Get "nice to have" things running in Cloudbees Jenkins (including coverage, pylint reports, etc.)
 start looking at code coverage to see if there are other tests I need to write
-fix unit tests that are failing on Cloudbees Jenkins (all look like encoding-type issues)
