@@ -42,11 +42,8 @@
       <title>Purpose</title>
 
       <para>
-         This software manual has been written to document the 3.0 series of
-         Cedar Backup, originally released in mid-2015.  Most of it also
-         applies to the 2.0 series of Cedar Backup, since the main difference
-         is that the 3.0 series uses the Python 3 interpreter instead of the
-         Python 2 interpreter.
+         This software manual has been written to document version 2 of
+         Cedar Backup, originally released in early 2005.
       </para>
 
    </sect1>
@@ -156,9 +153,9 @@
             <term><xref linkend="cedar-intro"/></term>
             <listitem>
                <para>
-                  Provides some background about how Cedar Backup came to be,
-                  its history, some general information about what needs it is
-                  intended to meet, etc.
+                  Provides some some general history about Cedar Backup, what
+                  needs it is intended to meet, how to get support, and how to
+                  migrate from version 2 to version 3.
                </para>
             </listitem>
          </varlistentry>
@@ -188,7 +185,7 @@
             <listitem>
                <para>
                   Discusses the various Cedar Backup command-line tools,
-                  including the primary <command>cback</command> command.
+                  including the primary <command>cback3</command> command.
                </para>
             </listitem>
          </varlistentry>
@@ -273,29 +270,9 @@
       <para>
          The structure of this manual and some of the basic boilerplate has been
          taken from the book <ulink url="http://svnbook.red-bean.com/">Version
-         Control with Subversion</ulink>.  Many thanks to the authors (and
+         Control with Subversion</ulink>.  Thanks to the authors (and
          O'Reilly) for making this excellent reference available under a free
          and open license.
-      </para>
-
-      <para>
-         There are not very many Cedar Backup users today, but almost all of
-         them have contributed in some way to the documentation in this manual,
-         either by asking questions, making suggestions or finding bugs.  I'm
-         glad to have them as users, and I hope that this new release meets
-         their needs even better than the previous release.
-      </para>
-
-      <para>
-         My wife Julie puts up with a lot.  It's sometimes not easy to live
-         with someone who hacks on open source code in his free time &mdash;
-         even when you're a pretty good engineer yourself, like she is.  First,
-         she managed to live with a dual-boot Debian and Windoze machine; then
-         she managed to get used to IceWM rather than a prettier desktop; and
-         eventually she even managed to cope with <command>vim</command> when
-         she needed to.  Now, even after all that, she has graciously
-         volunteered to edit this manual.  I much appreciate her skill with a
-         red pen.
       </para>
 
    </sect1>

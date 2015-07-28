@@ -728,7 +728,7 @@ root:/tmp# grepmail -a -u restore.mbox > nodups.mbox
       <para>
          The Split extension takes large files and splits them up into smaller
          files. Typically, it would be used in conjunction with the
-         <command>cback-span</command> command.
+         <command>cback3-span</command> command.
       </para>
 
       <para>

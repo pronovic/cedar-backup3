@@ -224,13 +224,13 @@ scp -t /path/to/collect/cback.stage
       </para>
 
       <screen>
-/usr/bin/cback --full collect
-/usr/bin/cback collect
+/usr/bin/cback3 --full collect
+/usr/bin/cback3 collect
       </screen>
 
       <para>
          Of course, you would have to list the actual path to the
-         <command>cback</command> executable &mdash; exactly the one listed in
+         <command>cback3</command> executable &mdash; exactly the one listed in
          the &lt;cback_command&gt; configuration option for your managed peer.
       </para>
 

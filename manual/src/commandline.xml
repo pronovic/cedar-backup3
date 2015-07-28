@@ -43,18 +43,18 @@
 
       <para>
          Cedar Backup comes with three command-line programs:
-         <command>cback</command>, <command>cback-amazons3-sync</command>, and
-         <command>cback-span</command>.  
+         <command>cback3</command>, <command>cback3-amazons3-sync</command>, and
+         <command>cback3-span</command>.  
       </para>
          
       <para>
-         The <command>cback</command> command is the primary command line
+         The <command>cback3</command> command is the primary command line
          interface and the only Cedar Backup program that most users will ever
          need.  
       </para>
 
       <para>
-         The <command>cback-amazons3-sync</command> tool is used for
+         The <command>cback3-amazons3-sync</command> tool is used for
          synchronizing entire directories of files up to an Amazon S3 cloud
          storage bucket, outside of the normal Cedar Backup process. 
       </para>
@@ -62,7 +62,7 @@
       <para>
          Users who have a <emphasis>lot</emphasis> of data to back up &mdash;
          more than will fit on a single CD or DVD &mdash; can use the
-         interactive <command>cback-span</command> tool to split their data
+         interactive <command>cback3-span</command> tool to split their data
          between multiple discs.
       </para>
 
@@ -70,19 +70,19 @@
 
    <!-- ################################################################# -->
 
-   <sect1 id="cedar-commandline-cback">
+   <sect1 id="cedar-commandline-cback3">
          
-      <title>The <command>cback</command> command</title>
+      <title>The <command>cback3</command> command</title>
 
       <!-- ################################################################# -->
 
-      <sect2 id="cedar-commandline-cback-intro">
+      <sect2 id="cedar-commandline-cback3-intro">
 
          <title>Introduction</title>
 
          <para>
             Cedar Backup's primary command-line interface is the
-            <command>cback</command> command.  It controls the entire
+            <command>cback3</command> command.  It controls the entire
             backup process.  
          </para>
 
@@ -91,16 +91,16 @@
 
       <!-- ################################################################# -->
 
-      <sect2 id="cedar-commandline-cback-syntax">
+      <sect2 id="cedar-commandline-cback3-syntax">
 
          <title>Syntax</title>
 
          <para>
-            The <command>cback</command> command has the following syntax:
+            The <command>cback3</command> command has the following syntax:
          </para>
 
          <screen>
- Usage: cback [switches] action(s)
+ Usage: cback3 [switches] action(s)
 
  The following switches are accepted:
 
@@ -108,11 +108,11 @@
    -V, --version      Display version information
    -b, --verbose      Print verbose output as well as logging to disk
    -q, --quiet        Run quietly (display no output to the screen)
-   -c, --config       Path to config file (default: /etc/cback.conf)
+   -c, --config       Path to config file (default: /etc/cback3.conf)
    -f, --full         Perform a full backup, regardless of configuration
    -M, --managed      Include managed clients when executing actions
    -N, --managed-only Include ONLY managed clients when executing actions
-   -l, --logfile      Path to logfile (default: /var/log/cback.log)
+   -l, --logfile      Path to logfile (default: /var/log/cback3.log)
    -o, --owner        Logfile ownership, user:group (default: root:adm)
    -m, --mode         Octal logfile permissions mode (default: 640)
    -O, --output       Record some sub-command (i.e. cdrecord) output to the log
@@ -157,7 +157,7 @@
 
       <!-- ################################################################# -->
 
-      <sect2 id="cedar-commandline-cback-options">
+      <sect2 id="cedar-commandline-cback3-options">
 
          <title>Switches</title>
 
@@ -201,7 +201,7 @@
                <listitem>
                   <para>
                      Specify the path to an alternate configuration file.
-                     The default configuration file is <filename>/etc/cback.conf</filename>.
+                     The default configuration file is <filename>/etc/cback3.conf</filename>.
                   </para>
                </listitem>
             </varlistentry>
@@ -249,7 +249,7 @@
                <listitem>
                   <para>
                      Specify the path to an alternate logfile.  The default
-                     logfile file is <filename>/var/log/cback.log</filename>.
+                     logfile file is <filename>/var/log/cback3.log</filename>.
                   </para>
                </listitem>
             </varlistentry>
@@ -263,7 +263,7 @@
                     <literal>root:adm</literal>, to match the Debian standard
                     for most logfiles. This value will only be used when
                     creating a new logfile.  If the logfile already exists when
-                    the <command>cback</command> command is executed, it will
+                    the <command>cback3</command> command is executed, it will
                     retain its existing ownership and mode. Only user and group
                     names may be used, not numeric uid and gid values.
                   </para>
@@ -279,7 +279,7 @@
                     <literal>0640</literal> (<literal>-rw-r-----</literal>).
                     This value will only be used when creating a new logfile.
                     If the logfile already exists when the
-                    <command>cback</command> command is executed, it will retain
+                    <command>cback3</command> command is executed, it will retain
                     its existing ownership and mode.
                   </para>
                </listitem>
@@ -292,8 +292,7 @@
                      Record some sub-command output to the logfile.  When this
                      option is enabled, all output from system commands will be
                      logged.  This might be useful for debugging or just for
-                     reference.  Cedar Backup uses system commands mostly for
-                     dealing with the CD/DVD recorder and its media.
+                     reference.
                   </para>
                </listitem>
             </varlistentry>
@@ -341,7 +340,7 @@
 
       <!-- ################################################################# -->
 
-      <sect2 id="cedar-commandline-cback-actions">
+      <sect2 id="cedar-commandline-cback3-actions">
 
          <title>Actions</title>
 
@@ -375,7 +374,7 @@
 
    <sect1 id="cedar-commandline-sync">
          
-      <title>The <command>cback-amazons3-sync</command> command</title>
+      <title>The <command>cback3-amazons3-sync</command> command</title>
 
       <!-- ################################################################# -->
 
@@ -384,7 +383,7 @@
          <title>Introduction</title>
 
          <para>
-            The <command>cback-amazons3-sync</command> tool is used for
+            The <command>cback3-amazons3-sync</command> tool is used for
             synchronizing entire directories of files up to an Amazon S3 cloud
             storage bucket, outside of the normal Cedar Backup process.  
          </para>
@@ -395,7 +394,7 @@
             objects that get modified or deleted as part of a sync.  S3 does
             support versioning, but it won't be quite as easy to get at those
             previous versions as with an explicit incremental backup like
-            <command>cback</command> provides.  Cedar Backup does not provide
+            <command>cback3</command> provides.  Cedar Backup does not provide
             any tooling that would help you retrieve previous versions.
          </para>
 
@@ -406,7 +405,7 @@
             account and configure AWS CLI as detailed in Amazons's 
             <ulink url="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html">setup guide</ulink>.
             The <command>aws</command> command will be executed as the same user that
-            is executing the <command>cback-amazons3-sync</command> command, so
+            is executing the <command>cback3-amazons3-sync</command> command, so
             make sure you configure it as the proper user.  (This is different
             than the amazons3 extension, which is designed to execute as root
             and switches over to the configured backup user to execute AWS CLI
@@ -422,11 +421,11 @@
          <title>Syntax</title>
 
          <para>
-            The <command>cback-amazons3-sync</command> command has the following syntax:
+            The <command>cback3-amazons3-sync</command> command has the following syntax:
          </para>
 
          <screen>
- Usage: cback-amazons3-sync [switches] sourceDir s3bucketUrl
+ Usage: cback3-amazons3-sync [switches] sourceDir s3bucketUrl
 
  Cedar Backup Amazon S3 sync tool.
 
@@ -447,7 +446,7 @@
    -V, --version        Display version information
    -b, --verbose        Print verbose output as well as logging to disk
    -q, --quiet          Run quietly (display no output to the screen)
-   -l, --logfile        Path to logfile (default: /var/log/cback.log)
+   -l, --logfile        Path to logfile (default: /var/log/cback3.log)
    -o, --owner          Logfile ownership, user:group (default: root:adm)
    -m, --mode           Octal logfile permissions mode (default: 640)
    -O, --output         Record some sub-command (i.e. aws) output to the log
@@ -459,7 +458,7 @@
 
  Typical usage would be something like:
 
-   cback-amazons3-sync /home/myuser s3://example.com-backup/myuser
+   cback3-amazons3-sync /home/myuser s3://example.com-backup/myuser
 
  This will sync the contents of /home/myuser into the indicated bucket.
          </screen>
@@ -513,7 +512,7 @@
                <listitem>
                   <para>
                      Specify the path to an alternate logfile.  The default
-                     logfile file is <filename>/var/log/cback.log</filename>.
+                     logfile file is <filename>/var/log/cback3.log</filename>.
                   </para>
                </listitem>
             </varlistentry>
@@ -527,7 +526,7 @@
                     <literal>root:adm</literal>, to match the Debian standard
                     for most logfiles. This value will only be used when
                     creating a new logfile.  If the logfile already exists when
-                    the <command>cback-amazons3-sync</command> command is
+                    the <command>cback3-amazons3-sync</command> command is
                     executed, it will retain its existing ownership and mode.
                     Only user and group names may be used, not numeric uid and
                     gid values.
@@ -544,7 +543,7 @@
                     <literal>0640</literal> (<literal>-rw-r-----</literal>).
                     This value will only be used when creating a new logfile.
                     If the logfile already exists when the
-                    <command>cback-amazons3-sync</command> command is executed,
+                    <command>cback3-amazons3-sync</command> command is executed,
                     it will retain its existing ownership and mode.
                   </para>
                </listitem>
@@ -630,7 +629,7 @@
                   </para>
 
                   <para>
-                     To avoid confusion, the <command>cback-amazons3-sync</command> 
+                     To avoid confusion, the <command>cback3-amazons3-sync</command> 
                      tries to guess which files in the source directory will
                      cause problems, and refuses to execute the AWS CLI S3 sync if
                      any problematic files exist.  If you'd rather proceed
@@ -658,7 +657,7 @@
 
    <sect1 id="cedar-commandline-cbackspan">
          
-      <title>The <command>cback-span</command> command</title>
+      <title>The <command>cback3-span</command> command</title>
 
       <!-- ################################################################# -->
 
@@ -677,14 +676,14 @@
          <para>
             However, some users have expressed a need to write these large
             kinds of backups to disc &mdash; if not every day, then at least
-            occassionally.  The <command>cback-span</command> tool was written
+            occassionally.  The <command>cback3-span</command> tool was written
             to meet those needs.  If you have staged more data than fits on a
-            single CD or DVD, you can use <command>cback-span</command> to
+            single CD or DVD, you can use <command>cback3-span</command> to
             split that data between multiple discs.
          </para>
 
          <para>
-            <command>cback-span</command> is not a general-purpose
+            <command>cback3-span</command> is not a general-purpose
             disc-splitting tool.  It is a specialized program that requires
             Cedar Backup configuration to run.  All it can do is read Cedar
             Backup configuration, find any staging directories that have not
@@ -693,15 +692,15 @@
          </para>
 
          <para>
-            <command>cback-span</command> accepts many of the same command-line
-            options as <command>cback</command>, but <emphasis>must</emphasis>
+            <command>cback3-span</command> accepts many of the same command-line
+            options as <command>cback3</command>, but <emphasis>must</emphasis>
             be run interactively.  It cannot be run from cron.  This is
             intentional.  It is intended to be a useful tool, not a new part of
             the backup process (that is the purpose of an extension).
          </para>
 
          <para>
-            In order to use <command>cback-span</command>, you must configure
+            In order to use <command>cback3-span</command>, you must configure
             your backup such that the largest individual backup file can fit on
             a single disc.  <emphasis>The command will not split a single file
             onto more than one disc.</emphasis>  All it can do is split large
@@ -719,11 +718,11 @@
          <title>Syntax</title>
 
          <para>
-            The <command>cback-span</command> command has the following syntax:
+            The <command>cback3-span</command> command has the following syntax:
          </para>
 
          <screen>
- Usage: cback-span [switches]
+ Usage: cback3-span [switches]
 
  Cedar Backup 'span' tool.
 
@@ -736,8 +735,8 @@
    -h, --help     Display this usage/help listing
    -V, --version  Display version information
    -b, --verbose  Print verbose output as well as logging to disk
-   -c, --config   Path to config file (default: /etc/cback.conf)
-   -l, --logfile  Path to logfile (default: /var/log/cback.log)
+   -c, --config   Path to config file (default: /etc/cback3.conf)
+   -l, --logfile  Path to logfile (default: /var/log/cback3.log)
    -o, --owner    Logfile ownership, user:group (default: root:adm)
    -m, --mode     Octal logfile permissions mode (default: 640)
    -O, --output   Record some sub-command (i.e. cdrecord) output to the log
@@ -784,7 +783,7 @@
                <listitem>
                   <para>
                      Specify the path to an alternate configuration file.
-                     The default configuration file is <filename>/etc/cback.conf</filename>.
+                     The default configuration file is <filename>/etc/cback3.conf</filename>.
                   </para>
                </listitem>
             </varlistentry>
@@ -794,7 +793,7 @@
                <listitem>
                   <para>
                      Specify the path to an alternate logfile.  The default
-                     logfile file is <filename>/var/log/cback.log</filename>.
+                     logfile file is <filename>/var/log/cback3.log</filename>.
                   </para>
                </listitem>
             </varlistentry>
@@ -808,7 +807,7 @@
                     <literal>root:adm</literal>, to match the Debian standard
                     for most logfiles. This value will only be used when
                     creating a new logfile.  If the logfile already exists when
-                    the <command>cback</command> command is executed, it will
+                    the <command>cback3</command> command is executed, it will
                     retain its existing ownership and mode. Only user and group
                     names may be used, not numeric uid and gid values.
                   </para>
@@ -824,7 +823,7 @@
                     <literal>0640</literal> (<literal>-rw-r-----</literal>).
                     This value will only be used when creating a new logfile.
                     If the logfile already exists when the
-                    <command>cback</command> command is executed, it will retain
+                    <command>cback3</command> command is executed, it will retain
                     its existing ownership and mode.
                   </para>
                </listitem>
@@ -877,10 +876,10 @@
 
       <sect2 id="cedar-commandline-cbackspan-using">
 
-         <title>Using <command>cback-span</command></title>
+         <title>Using <command>cback3-span</command></title>
 
          <para>
-            As discussed above, the <command>cback-span</command> is an
+            As discussed above, the <command>cback3-span</command> is an
             interactive command.  It cannot be run from cron.  
          </para>
 
@@ -891,17 +890,17 @@
          </para>
 
          <para>
-            The cushion percentage is used by <command>cback-span</command> to
+            The cushion percentage is used by <command>cback3-span</command> to
             determine what capacity to shoot for when splitting up your staging
             directories.  A 650 MB disc does not fit fully 650 MB of data.
             It's usually more like 627 MB of data.  The cushion percentage
-            tells <command>cback-span</command> how much overhead to reserve
+            tells <command>cback3-span</command> how much overhead to reserve
             for the filesystem.  The default of 4% is usually OK, but if you
             have problems you may need to increase it slightly.
          </para>
 
          <para>
-            The fit algorithm tells <command>cback-span</command> how it
+            The fit algorithm tells <command>cback3-span</command> how it
             should determine which items should be placed on each disc.  
             If you don't like the result from one algorithm, you can reject
             that solution and choose a different algorithm.
@@ -1011,7 +1010,7 @@
          <title>Sample run</title>
 
          <para>
-            Below is a log showing a sample <command>cback-span</command> run.
+            Below is a log showing a sample <command>cback3-span</command> run.
          </para>
 
          <screen>

@@ -120,10 +120,6 @@
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=openssh"/></entry>
                         </row>
-                        <row>
-                           <entry>Mac OS X</entry>
-                           <entry><emphasis>built-in</emphasis></entry>
-                        </row>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -143,7 +139,13 @@
 
                <para>
                   The <command>mkisofs</command> command is used create ISO filesystem
-                  images that can later be written to backup media.
+                  images that can later be written to backup media.  
+               </para>
+
+               <para>
+                  On Debian platforms, <command>mkisofs</command> is not
+                  distributed and <command>genisoimage</command> is used
+                  instead.  The Debian package takes care of this for you.
                </para>
 
                <informaltable>
@@ -159,11 +161,7 @@
                      <tbody>
                         <row>
                            <entry>upstream</entry>
-                           <entry><ulink url="http://freshmeat.net/projects/mkisofs/"/></entry>
-                        </row>
-                        <row>
-                           <entry>Debian</entry>
-                           <entry><ulink url="http://packages.debian.org/stable/otherosfs/mkisofs"/></entry>
+                           <entry><ulink url="https://en.wikipedia.org/wiki/Cdrtools"/></entry>
                         </row>
                         <row>
                            <entry>RPM</entry>
@@ -190,6 +188,12 @@
                   ISO images to CD media in a backup device.  
                </para>
 
+               <para>
+                  On Debian platforms, <command>cdrecord</command> is not
+                  distributed and <command>wodim</command> is used
+                  instead.  The Debian package takes care of this for you.
+               </para>
+
                <informaltable>
                   <tgroup cols="2">
                      <colspec colnum="1" colwidth="1*"/>
@@ -203,11 +207,7 @@
                      <tbody>
                         <row>
                            <entry>upstream</entry>
-                           <entry><ulink url="http://freshmeat.net/projects/cdrecord/"/></entry>
-                        </row>
-                        <row>
-                           <entry>Debian</entry>
-                           <entry><ulink url="http://packages.debian.org/stable/otherosfs/cdrecord"/></entry>
+                           <entry><ulink url="https://en.wikipedia.org/wiki/Cdrtools"/></entry>
                         </row>
                         <row>
                            <entry>RPM</entry>
@@ -345,7 +345,7 @@
                      <tbody>
                         <row>
                            <entry>upstream</entry>
-                           <entry><ulink url="http://freshmeat.net/projects/util-linux/"/></entry>
+                           <entry><ulink url="https://www.kernel.org/pub/linux/utils/util-linux/"/></entry>
                         </row>
                         <row>
                            <entry>Debian</entry>
@@ -354,10 +354,6 @@
                         <row>
                            <entry>RPM</entry>
                            <entry><ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=mount"/></entry>
-                        </row>
-                        <row>
-                           <entry>Mac OS X</entry>
-                           <entry><para><emphasis>built-in</emphasis></para></entry>
                         </row>
                      </tbody>
                   </tgroup>
@@ -394,7 +390,7 @@
                      <tbody>
                         <row>
                            <entry>upstream</entry>
-                           <entry><ulink url="http://freshmeat.net/projects/grepmail/"/></entry>
+                           <entry><ulink url="http://sourceforge.net/projects/grepmail/"/></entry>
                         </row>
                         <row>
                            <entry>Debian</entry>
@@ -438,7 +434,7 @@
                      <tbody>
                         <row>
                            <entry>upstream</entry>
-                           <entry><ulink url="http://freshmeat.net/projects/gnupg/"/></entry>
+                           <entry><ulink url="https://www.gnupg.org/"/></entry>
                         </row>
                         <row>
                            <entry>Debian</entry>
@@ -508,6 +504,10 @@
                            <entry>upstream</entry>
                            <entry><ulink url="http://aws.amazon.com/documentation/cli/"/></entry>
                         </row>
+                        <row>
+                           <entry>Debian</entry>
+                           <entry><ulink url="https://packages.debian.org/stable/awscli"/></entry>
+                        </row>
                      </tbody>
                   </tgroup>
                </informaltable>
@@ -516,9 +516,9 @@
                   The initial implementation of the amazons3 extension was written
                   using AWS CLI 1.4.  As of this writing, not all Linux distributions
                   include a package for this version.  On these platforms, the
-                  easiest way to install it is via PIP: <code>apt-get install python-pip</code>,
-                  and then <code>pip install awscli</code>.  The Debian package includes
-                  an appropriate dependency starting with the jesse release.
+                  easiest way to install it is via PIP: <literal>apt-get install python3-pip</literal>,
+                  and then <literal>pip3 install awscli</literal>.  The Debian package includes
+                  an appropriate dependency starting with the jessie release.
                </para>
 
             </listitem>
@@ -529,8 +529,8 @@
             <listitem>
 
                <para>
-                  The <command>cback-amazons3-sync</command> command relies on the
-                  Chardet python package to check filename encoding.  You only need
+                  The <command>cback3-amazons3-sync</command> command relies on the
+                  Chardet Python package to check filename encoding.  You only need
                   this package if you are going to use the sync tool.
                </para>
 
@@ -551,7 +551,7 @@
                         </row>
                         <row>
                            <entry>debian</entry>
-                           <entry><ulink url="https://packages.debian.org/stable/python-chardet"/></entry>
+                           <entry><ulink url="https://packages.debian.org/stable/python3-chardet"/></entry>
                         </row>
                      </tbody>
                   </tgroup>

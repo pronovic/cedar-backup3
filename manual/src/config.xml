@@ -61,14 +61,14 @@
 
       <para>
          Once everything has been installed, you are ready to begin configuring
-         Cedar Backup.  Look over <xref linkend="cedar-commandline-cback"/> (in
+         Cedar Backup.  Look over <xref linkend="cedar-commandline-cback3"/> (in
          <xref linkend="cedar-commandline"/>) to become familiar with the
          command line interface.  Then, look over <xref
          linkend="cedar-config-configfile"/> (below) and create a configuration
          file for each peer in your backup pool.  To start with, create a very
          simple configuration file, then expand it later.  Decide now whether
          you will store the configuration file in the standard place
-         (<filename>/etc/cback.conf</filename>) or in some other location.
+         (<filename>/etc/cback3.conf</filename>) or in some other location.
       </para>
 
       <para>
@@ -118,7 +118,7 @@
          Cedar Backup is configured through an XML <footnote><para>See 
          <ulink url="http://www.xml.com/pub/a/98/10/guide0.html"/>
          for a basic introduction to XML.</para></footnote> configuration file,
-         usually called <filename>/etc/cback.conf</filename>.  The configuration
+         usually called <filename>/etc/cback3.conf</filename>.  The configuration
          file contains the following sections: <firstterm>reference</firstterm>,
          <firstterm>options</firstterm>, <firstterm>collect</firstterm>,
          <firstterm>stage</firstterm>, <firstterm>store</firstterm>,
@@ -160,9 +160,8 @@
 
          <para>
             Both the Python source distribution and the Debian package come with a
-            sample configuration file.  The Debian package includes a stripped
-            config file in <filename>/etc/cback.conf</filename> and a larger
-            sample in <filename>/usr/share/doc/cedar-backup3/examples/cback.conf.sample</filename>.
+            sample configuration file.  The Debian package includes its sample in
+            <filename>/usr/share/doc/cedar-backup3/examples/cback3.conf.sample</filename>.
          </para>
 
          <para>
@@ -3000,7 +2999,7 @@
          <warning>
             <para>
                Because of the way Cedar Backup works, you must ensure that your
-               backup <emphasis>always</emphasis> runs son the first day of your
+               backup <emphasis>always</emphasis> runs on the first day of your
                configured week.  This is because Cedar Backup will only clear
                incremental backup information and re-initialize your media when
                running on the first day of the week.  If you skip running Cedar
@@ -3186,9 +3185,9 @@
             
          <para>
             The usual location for the Cedar Backup config file is
-            <filename>/etc/cback.conf</filename>.  If you change the location,
+            <filename>/etc/cback3.conf</filename>.  If you change the location,
             make sure you edit your cronjobs (below) to point the
-            <command>cback</command> script at the correct config file (using
+            <command>cback3</command> script at the correct config file (using
             the <option>--config</option> option).
          </para>
 
@@ -3199,7 +3198,7 @@
             </para>
 
             <para>
-               If you intend to place confidental information into the Cedar
+               If you intend to place confidential information into the Cedar
                Backup configuration file, make sure that you set the filesystem
                permissions on the file appropriately.  For instance, if you
                configure any extensions that require passwords or other similar
@@ -3217,7 +3216,7 @@
          <title>Step 7: Validate the Cedar Backup configuration file.</title>
 
          <para>
-            Use the command <command>cback validate</command> to validate your
+            Use the command <command>cback3 validate</command> to validate your
             configuration file. This command checks that the configuration file
             can be found and parsed, and also checks for typical configuration
             problems, such as invalid CD/DVD device entries.
@@ -3238,14 +3237,14 @@
 
          <para>
             Place a valid CD/DVD disc in your drive, and then use the
-            command <command>cback --full all</command>.  You should execute
+            command <command>cback3 --full all</command>.  You should execute
             this command as root.  If the command completes with no output,
             then the backup was run successfully.
          </para>
 
          <para>
             Just to be sure that everything worked properly, check the logfile
-            (<filename>/var/log/cback.log</filename>) for errors and also mount
+            (<filename>/var/log/cback3.log</filename>) for errors and also mount
             the CD/DVD disc to be sure it can be read.
          </para>
 
@@ -3274,7 +3273,7 @@
          </para>
 
          <programlisting>
-30 00 * * * root  cback all
+30 00 * * * root  cback3 all
          </programlisting>
                           
          <para>
@@ -3285,12 +3284,12 @@
 
          <programlisting>
 #/bin/sh
-cback all
+cback3 all
          </programlisting>
 
          <para>
             You should consider adding the <option>--output</option> or
-            <option>-O</option> switch to your <command>cback</command>
+            <option>-O</option> switch to your <command>cback3</command>
             command-line in cron.  This will result in larger logs, but could
             help diagnose problems when commands like
             <command>cdrecord</command> or <command>mkisofs</command> fail
@@ -3594,9 +3593,9 @@ The key fingerprint is:
             
          <para>
             The usual location for the Cedar Backup config file is
-            <filename>/etc/cback.conf</filename>.  If you change the location,
+            <filename>/etc/cback3.conf</filename>.  If you change the location,
             make sure you edit your cronjobs (below) to point the
-            <command>cback</command> script at the correct config file (using
+            <command>cback3</command> script at the correct config file (using
             the <option>--config</option> option).
          </para>
 
@@ -3625,7 +3624,7 @@ The key fingerprint is:
          <title>Step 7: Validate the Cedar Backup configuration file.</title>
 
          <para>
-            Use the command <command>cback validate</command> to validate your
+            Use the command <command>cback3 validate</command> to validate your
             configuration file. This command checks that the configuration file
             can be found and parsed, and also checks for typical configuration
             problems.  This command <emphasis>only</emphasis> validates
@@ -3648,10 +3647,10 @@ The key fingerprint is:
          <title>Step 8: Test your backup.</title>
 
          <para>
-            Use the command <command>cback --full collect purge</command>.  If the 
+            Use the command <command>cback3 --full collect purge</command>.  If the 
             command completes with no output, then the backup was run successfully.
             Just to be sure that everything worked properly, check the logfile 
-            (<filename>/var/log/cback.log</filename>) for errors.
+            (<filename>/var/log/cback3.log</filename>) for errors.
          </para>
 
       </sect2>
@@ -3668,13 +3667,13 @@ The key fingerprint is:
          </para>
 
          <programlisting>
-30 00 * * * root  cback collect
-30 06 * * * root  cback purge
+30 00 * * * root  cback3 collect
+30 06 * * * root  cback3 purge
          </programlisting>
 
          <para>
             You should consider adding the <option>--output</option> or
-            <option>-O</option> switch to your <command>cback</command>
+            <option>-O</option> switch to your <command>cback3</command>
             command-line in cron.  This will result in larger logs, but could
             help diagnose problems when commands like
             <command>cdrecord</command> or <command>mkisofs</command> fail
@@ -4031,9 +4030,9 @@ The key fingerprint is:
             
          <para>
             The usual location for the Cedar Backup config file is
-            <filename>/etc/cback.conf</filename>.  If you change the location,
+            <filename>/etc/cback3.conf</filename>.  If you change the location,
             make sure you edit your cronjobs (below) to point the
-            <command>cback</command> script at the correct config file (using
+            <command>cback3</command> script at the correct config file (using
             the <option>--config</option> option).
          </para>
 
@@ -4062,7 +4061,7 @@ The key fingerprint is:
          <title>Step 7: Validate the Cedar Backup configuration file.</title>
 
          <para>
-            Use the command <command>cback validate</command> to validate your
+            Use the command <command>cback3 validate</command> to validate your
             configuration file. This command checks that the configuration file
             can be found and parsed, and also checks for typical configuration
             problems, such as invalid CD/DVD device entries.  This command
@@ -4116,14 +4115,14 @@ The key fingerprint is:
 
          <para>
              Make sure that you have configured all of the clients in your
-             backup pool. On all of the clients, execute <command>cback --full
+             backup pool. On all of the clients, execute <command>cback3 --full
              collect</command>.  (You will probably have already tested this
              command on each of the clients, so it should succeed.)
          </para>
 
          <para>
             When all of the client backups have completed, place a valid CD/DVD
-            disc in your drive, and then use the command <command>cback --full
+            disc in your drive, and then use the command <command>cback3 --full
             all</command>.  You should execute this command as root.  If the
             command completes with no output, then the backup was run
             successfully. 
@@ -4131,13 +4130,13 @@ The key fingerprint is:
 
          <para>
             Just to be sure that everything worked properly, check the logfile
-            (<filename>/var/log/cback.log</filename>) on the master and each of
+            (<filename>/var/log/cback3.log</filename>) on the master and each of
             the clients, and also mount the CD/DVD disc on the master to
             be sure it can be read.
          </para>
 
          <para>
-            You may also want to run <command>cback purge</command> on the
+            You may also want to run <command>cback3 purge</command> on the
             master and each client once you have finished validating that
             everything worked.
          </para>
@@ -4165,15 +4164,15 @@ The key fingerprint is:
          </para>
 
          <programlisting>
-30 00 * * * root  cback collect
-30 02 * * * root  cback stage
-30 04 * * * root  cback store
-30 06 * * * root  cback purge
+30 00 * * * root  cback3 collect
+30 02 * * * root  cback3 stage
+30 04 * * * root  cback3 store
+30 06 * * * root  cback3 purge
          </programlisting>
 
          <para>
             You should consider adding the <option>--output</option> or
-            <option>-O</option> switch to your <command>cback</command>
+            <option>-O</option> switch to your <command>cback3</command>
             command-line in cron.  This will result in larger logs, but could
             help diagnose problems when commands like
             <command>cdrecord</command> or <command>mkisofs</command> fail
@@ -4437,12 +4436,6 @@ scsibus1:
             required to fight the operating system about who owns the media and
             the device makes it nearly impossible to execute the store action
             successfully.
-         </para>
-
-         <para>
-            If you are interested in some of my notes about what works and what
-            doesn't on this platform, check out the documentation in the
-            <filename>doc/osx</filename> directory in the source distribution.
          </para>
 
       </sect2>

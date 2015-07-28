@@ -50,7 +50,7 @@
 
 <book id="cedar">
 
-   <title>Cedar Backup Software Manual</title>
+   <title>Cedar Backup 3 Software Manual</title>
 
    <bookinfo>
 
@@ -99,8 +99,8 @@
             Copies of the GNU General Public License are available from
             the Free Software Foundation website,
             <systemitem class="url">http://www.gnu.org/</systemitem>.
-            You may also write the Free Software Foundation, Inc., 59 Temple
-            Place, Suite 330, Boston, MA 02111-1307 USA.
+            You may also write the Free Software Foundation, Inc., 
+            51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
          </para>
       </legalnotice>
 

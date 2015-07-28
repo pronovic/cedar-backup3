@@ -174,7 +174,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
       </para>
       
       <programlisting>
-&lt;extensions&gt; &lt;action&gt;
+&lt;extensions&gt;
    &lt;action&gt;
       &lt;name&gt;amazons3&lt;/name&gt;
       &lt;module&gt;CedarBackup3.extend.amazons3&lt;/module&gt;
@@ -341,10 +341,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
          that way, then use the normal collect action rather than this
          extension.  If you decide to do that, be sure to consult the
          Subversion documentation and make sure you understand the limitations
-         of this kind of backup. <footnote><para>For instance, see the
-         <quote>Backups</quote> section on this page: 
-         <ulink url="http://freehackers.org/~shlomif/svn-raweb-light/subversion.cgi/trunk/notes/fsfs"/>
-         </para></footnote>
+         of this kind of backup. 
       </para>
 
       <para>
@@ -760,7 +757,7 @@ host = remote.host
 
          <para>
             Regardless of whether you are using <filename>~/.my.cnf</filename> or
-            <filename>/etc/cback.conf</filename> to store database login and
+            <filename>/etc/cback3.conf</filename> to store database login and
             password information, you should be careful about who is allowed to
             view that information.  Typically, this means locking down permissions
             so that only the file owner can read the file contents (i.e. use mode
@@ -1670,7 +1667,7 @@ host = remote.host
       <para>
          The Split Extension is a Cedar Backup extension used to split up
          large files within staging directories.  It is probably only useful
-         in combination with the <command>cback-span</command> command, which
+         in combination with the <command>cback3-span</command> command, which
          requires individual files within staging directories to each be
          smaller than a single disc.
       </para>
@@ -1678,7 +1675,7 @@ host = remote.host
       <para>
          You would normally run this action immediately after the standard
          stage action, but you could also choose to run it by hand immediately
-         before running <command>cback-span</command>.
+         before running <command>cback3-span</command>.
       </para>
 
       <para>
@@ -1692,7 +1689,7 @@ host = remote.host
          original large file, you must have every file that the original file
          was split into.</emphasis>  Think carefully about whether this is what
          you want.  It doesn't sound like a huge limitation.  However,
-         <command>cback-span</command> might put an indivdual file on
+         <command>cback3-span</command> might put an indivdual file on
          <emphasis>any</emphasis> disc in a set &mdash; the files split from
          one larger file will not necessarily be together.  That means you will
          probably need every disc in your backup set in order to recover any

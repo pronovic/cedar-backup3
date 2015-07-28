@@ -89,22 +89,21 @@
 
       <para>
          There are many different backup software implementations out there in
-         the free software and open source world. Cedar Backup aims to fill a
-         niche: it aims to be a good fit for people who need to back up a
-         limited amount of important data to CD or DVD on a regular basis.
-         Cedar Backup isn't for you if you want to back up your MP3 collection
-         every night, or if you want to back up a few hundred machines.
-         However, if you administer a small set machines and you want to run
-         daily incremental backups for things like system configuration,
-         current email, small web sites, a Subversion or Mercurial repository,
-         or a small MySQL database, then Cedar Backup is probably worth your
-         time.
+         the open source world. Cedar Backup aims to fill a niche: it aims to
+         be a good fit for people who need to back up a limited amount of
+         important data on a regular basis. Cedar Backup isn't for you if you
+         want to back up your huge MP3 collection every night, or if you want
+         to back up a few hundred machines. However, if you administer a small
+         set of machines and you want to run daily incremental backups for
+         things like system configuration, current email, small web sites,
+         Subversion or Mercurial repositories, or small MySQL databases, then
+         Cedar Backup is probably worth your time.
       </para>
 
       <para>
          Cedar Backup has been developed on a Debian GNU/Linux system and is
          primarily supported on Debian and other Linux systems.  However, since
-         it is written in portable Python, it should run without problems on
+         it is written in portable Python 3, it should run without problems on
          just about any UNIX-like operating system.  In particular, full Cedar
          Backup functionality is known to work on Debian and SuSE Linux
          systems, and client functionality is also known to work on FreeBSD and
@@ -112,19 +111,55 @@
       </para>
 
       <para>
-         To run a Cedar Backup client, you really just need a working Python
+         To run a Cedar Backup client, you really just need a working Python 3
          installation.  To run a Cedar Backup master, you will also need a set
          of other executables, most of which are related to building and
-         writing CD/DVD images.  A full list of dependencies is provided in 
+         writing CD/DVD images or talking to the Amazon S3 infrastructure.  A
+         full list of dependencies is provided in 
          <xref linkend="cedar-install-source-deps"/>.
       </para>
 
+   </sect1>
+
+   <!-- ################################################################# -->
+
+   <sect1 id="cedar-intro-migrating">
+
+      <title>Migrating from Version 2 to Version 3</title>
+
       <para>
-         CedarBackup2 and CedarBackup3 are functionally equivalent and are
-         compatible with one another.  The main difference is that CedarBackup3
-         is targeted at the Python 3 interpreter, while CedarBackup3 is
-         targeted at the Python 2 interpreter.  It is safe to mix-and-match
-         clients running both versions within the same backup configuration.
+         The main difference between Cedar Backup version 2 and Cedar Backup
+         version 3 is the targeted Python interpreter.  Cedar Backup version 2
+         was designed for Python 2, while version 3 is a conversion of the
+         original code to Python 3.  Other than that, both versions are
+         functionally equivalent.  The configuration format is unchanged, and
+         you can mix-and-match masters and clients of different versions in the
+         same backup pool.  Both versions will be fully supported until around
+         the time of the Python 2 end-of-life in 2020, but you should plan to
+         migrate sooner than that if possible.
+      </para>
+
+      <para>
+         A major design goal for version 3 was to facilitate easy migration
+         testing for users, by making it possible to install version 3 on the
+         same server where version 2 was already in use.  A side effect of this
+         design choice is that all of the executables, configuration files, and
+         logs changed names in version 3.  Where version 2 used
+         &quot;cback&quot;, version 3 uses &quot;cback3&quot;:
+         <filename>cback3.conf</filename> instead of
+         <filename>cback.conf</filename>, <filename>cback3.log</filename> instead
+         of <filename>cback.log</filename>, etc.
+      </para>
+
+      <para>
+         So, while migrating from version 2 to version 3 is relatively
+         straightforward, you will have to make some changes manually.  You
+         will need to create a new configuration file (or soft link to the old
+         one), modify your cron jobs to use the new executable name, etc.  You
+         can migrate one server at a time in your pool with no ill effects, or
+         even incrementally migrate a single server by using version 2 and
+         version 3 on different days of the week or for different parts of the
+         backup.
       </para>
 
    </sect1>
@@ -141,14 +176,14 @@
          or FITNESS FOR A PARTICULAR PURPOSE.  However, that said, someone can
          usually help you solve whatever problems you might see.  
       </para>
-      
+
       <para>
          If you experience a problem, your best bet is to file an issue in
-         the issue tracker at BitBucket.  
+         the issue tracker at BitBucket.
          <footnote><para>See <ulink url="https://bitbucket.org/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
          When the source code was hosted at SourceForge, there was a mailing
          list.  However, it was very lightly used in the last years before I
-         abandoned SourceForge, and I have decided not to replace it.  
+         abandoned SourceForge, and I have decided not to replace it.
       </para>
       
       <para>
@@ -283,7 +318,7 @@
          undertaken over the last few years.  I structured the code to take
          advantage of Python's unique ability to blend procedural code with
          object-oriented code, and I made automated unit testing a primary
-         requirement.  The result is the 2.0 release, which is cleaner, more
+         requirement.  The result was the 2.0 release, which is cleaner, more
          compact, better focused, and better documented than any release before
          it.  Utility code is less application-specific, and is now usable as a
          general-purpose library.  The 2.0 release also includes a complete
@@ -297,7 +332,8 @@
          The 3.0 release of Cedar Backup is a Python 3 conversion of the 2.0
          release, with minimal additional functionality.  The conversion from
          Python 2 to Python 3 started in mid-2015, about 5 years before the
-         anticipated deprecation of Python 2 in 2020.
+         anticipated deprecation of Python 2 in 2020.  Most users should
+         consider transitioning to the 3.0 release.
       </para>
 
    </sect1>

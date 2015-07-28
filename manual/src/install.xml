@@ -61,7 +61,7 @@
          <para>
             Cedar Backup has been developed on a Debian GNU/Linux system and is
             primarily supported on Debian and other Linux systems.  However,
-            since it is written in portable Python, it should run without
+            since it is written in portable Python 3, it should run without
             problems on just about any UNIX-like operating system.  In
             particular, full Cedar Backup functionality is known to work on
             Debian and SuSE Linux systems, and client functionality is also
@@ -69,7 +69,7 @@
          </para>
 
          <para>
-            To run a Cedar Backup client, you really just need a working Python
+            To run a Cedar Backup client, you really just need a working Python 3
             installation.  To run a Cedar Backup master, you will also need a set
             of other executables, most of which are related to building and
             writing CD/DVD images.  A full list of dependencies is provided further
@@ -95,10 +95,13 @@
       <para>
          If you are running a Debian release which contains Cedar Backup, you
          can use your normal Debian mirror as an APT data source. (The Debian
-         <quote>etch</quote> release is the first release to contain Cedar
-         Backup.) Otherwise, you need to install from the Cedar Solutions APT
-         data source.  To do this, add the Cedar Solutions APT data source to
-         your <filename>/etc/apt/sources.list</filename> file.  
+         <quote>jessie</quote> release is the first release to contain Cedar
+         Backup 3.) Otherwise, you need to install from the Cedar Solutions APT
+         data source.  
+         <footnote id="cedar-install-foot-software"><para>See <ulink
+         url="http://cedar-solutions.com/debian.html"/></para></footnote>
+         To do this, add the Cedar Solutions APT data source to
+         your <filename>/etc/apt/sources.list</filename> file.
       </para>
 
       <para>
@@ -127,8 +130,6 @@ $ apt-get install cedar-backup3 cedar-backup3-doc
          <filename>.deb</filename> files and install them by hand with a tool
          such as <command>dpkg</command>.  You can find 
          these files files in the Cedar Solutions APT source.
-         <footnote id="cedar-install-foot-software"><para>See <ulink
-         url="http://cedar-solutions.com/debian.html"/>.</para></footnote>
       </para>
 
       <para>
@@ -187,9 +188,8 @@ $ apt-get install cedar-backup3 cedar-backup3-doc
          </para>
 
          <para>
-            Cedar Backup is written in Python and requires version 3.4 or
-            greater of the language.  You must install Python 3 on every peer
-            node in a pool (master or client). 
+            Cedar Backup is written in Python 3 and requires version 3.4 or
+            greater of the language. 
          </para>
 
          <para>
@@ -259,12 +259,12 @@ $ apt-get install cedar-backup3 cedar-backup3-doc
          </para>
 
          <screen>
-$ zcat CedarBackup3-2.0.0.tar.gz | tar xvf -
+$ zcat CedarBackup3-3.0.0.tar.gz | tar xvf -
          </screen>
 
          <para>
             This will create a directory called (in this case)
-            <filename>CedarBackup3-2.0.0</filename>.  The version number in the
+            <filename>CedarBackup3-3.0.0</filename>.  The version number in the
             directory will always match the version number in the filename.
          </para>
 
@@ -275,8 +275,8 @@ $ zcat CedarBackup3-2.0.0.tar.gz | tar xvf -
          </para>
 
          <screen>
-$ cd CedarBackup3-2.0.0
-$ python setup.py install
+$ cd CedarBackup3-3.0.0
+$ python3 setup.py install
          </screen>
 
          <para>
@@ -290,7 +290,7 @@ $ python setup.py install
          </para>
 
          <screen>
-python util/test.py
+python3 util/test.py
          </screen>
 
          <para>
@@ -309,8 +309,8 @@ python util/test.py
          </para>
 
          <screen>
-$ python setup.py --help
-$ python setup.py install --help
+$ python3 setup.py --help
+$ python3 setup.py install --help
          </screen>
 
          <para>

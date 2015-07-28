@@ -51,11 +51,11 @@
       </para>
 
       <para>
-         The <command>cback</command> script is designed to run as root, since
+         The <command>cback3</command> script is designed to run as root, since
          otherwise it's difficult to back up system directories or write to the
          CD/DVD device.  However, pains are taken to use the backup user's
          effective user id (specified in configuration) when appropriate.
-         Note: this does not mean that <command>cback</command> runs
+         Note: this does not mean that <command>cback3</command> runs
          <firstterm>setuid</firstterm><footnote><para>See <ulink
          url="http://en.wikipedia.org/wiki/Setuid"/></para></footnote> or
          <firstterm>setgid</firstterm>.  However, all files on disk will be
@@ -64,9 +64,9 @@
       </para>
 
       <para>
-         The <command>cback</command> script is configured via command-line
+         The <command>cback3</command> script is configured via command-line
          options and an XML configuration file on disk.  The configuration file
-         is normally stored in <filename>/etc/cback.conf</filename>, but this
+         is normally stored in <filename>/etc/cback3.conf</filename>, but this
          path can be overridden at runtime.   See <xref linkend="cedar-config"/>
          for more information on how Cedar Backup is configured.
       </para>
@@ -185,7 +185,7 @@
       </para>
 
       <para>
-         The <command>cback</command> command also supports several actions
+         The <command>cback3</command> command also supports several actions
          that are not part of the standard backup run and cannot be executed
          along with any other actions.  These actions are
          <firstterm>validate</firstterm>, <firstterm>initialize</firstterm> and
@@ -237,7 +237,7 @@
 
          <para>
             The collect action is the first action in a standard backup run.
-            It executes both master and client nodes.  Based on configuration,
+            It executes on both master and client nodes.  Based on configuration,
             this action traverses the peer's filesystem and gathers files to be
             backed up.  Each configured high-level directory is collected up
             into its own <command>tar</command> file in the <firstterm>collect
@@ -360,7 +360,7 @@
             If the backup is running on the first day of the week, if the drive
             does not support multisession discs, or if the
             <option>--full</option> option is passed to the
-            <command>cback</command> command, the disc will be rebuilt from
+            <command>cback3</command> command, the disc will be rebuilt from
             scratch.   Otherwise, a new ISO session will be added to the disc
             each day the backup runs.  
          </para>
@@ -553,7 +553,7 @@
 
          <para>
             To decide what data to write to disc again, the rebuild action
-            looks back and finds first day of the current week.  Then, it finds
+            looks back and finds the first day of the current week.  Then, it finds
             any remaining staging directories between that date and the current
             date.  If any staging directories are found, they are all written
             to disc in one big ISO session.
@@ -818,7 +818,7 @@
       </para>
 
       <para>
-         Prior to Cedar Backup 2.0, any such integration would have been
+         Prior to Cedar Backup version 2, any such integration would have been
          completely independent of Cedar Backup itself.  The
          <quote>external</quote> backup functionality would have had to
          maintain its own configuration and would not have had access to any
@@ -826,10 +826,10 @@
       </para>
 
       <para>
-         Starting with version 2.0, Cedar Backup allows
+         Starting with version 2, Cedar Backup allows
          <firstterm>extensions</firstterm> to the backup process.   An
-         extension is an action that isn't part of the standard backup process,
-         (i.e. not collect, stage, store or purge) but can be executed by Cedar
+         extension is an action that isn't part of the standard backup process
+         (i.e. not collect, stage, store or purge), but can be executed by Cedar
          Backup when properly configured.
       </para>
 
@@ -839,11 +839,11 @@
          the Cedar Backup configuration file, so that all backup configuration
          can be centralized.  Then, the action process function is associated
          with an action name which can be executed from the
-         <command>cback</command> command line like any other action.
+         <command>cback3</command> command line like any other action.
       </para>
 
       <para>
-         Hopefully, as the Cedar Backup 2.0 user community grows, users will
+         Hopefully, as the Cedar Backup user community grows, users will
          contribute their own extensions back to the community.  Well-written
          general-purpose extensions will be accepted into the official
          codebase.
