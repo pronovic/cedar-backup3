@@ -3821,7 +3821,7 @@ class TestFilesystemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in fsList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", b'\xe2\x99\xaa\xe2\x99\xac'.decode("latin-1", ]) in fsList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", b'\xe2\x99\xaa\xe2\x99\xac'.decode("latin-1"), ]) in fsList)
 
    def testAddDirContents_072(self):
       """
