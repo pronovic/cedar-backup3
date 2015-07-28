@@ -1547,7 +1547,7 @@ class TestRemotePeer(unittest.TestCase):
       Test with None for cbackCommand, "collect" for action, False for fullBackup.
       """
       result = RemotePeer._buildCbackCommand(None, "collect", False)
-      self.assertEqual("/usr/bin/cback collect", result)
+      self.assertEqual("/usr/bin/cback3 collect", result)
 
    def testBuildCbackCommand_003(self):
       """

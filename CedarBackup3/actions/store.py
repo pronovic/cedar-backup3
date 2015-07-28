@@ -344,7 +344,7 @@ def _findCorrectDailyDir(options, config):
    There is one exception to this rule.  If the C{options.full} flag is set,
    then the special "span midnite" logic will be disabled and any existing
    store indicator will be ignored.  I did this because I think that most users
-   who run C{cback --full store} twice in a row expect the command to generate
+   who run C{cback3 --full store} twice in a row expect the command to generate
    two identical discs.  With the other rule in place, running that command
    twice in a row could result in an error ("no unstored directory exists") or
    could even cause a completely unexpected directory to be written to disc (if

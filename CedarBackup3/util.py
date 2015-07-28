@@ -1350,7 +1350,7 @@ def splitCommandLine(commandLine):
    Google Groups, and I tweaked it for my own use.
 
    @param commandLine: Command line string
-   @type commandLine: String, i.e. "cback --verbose stage store"
+   @type commandLine: String, i.e. "cback3 --verbose stage store"
 
    @return: List of arguments, suitable for passing to C{popen2}.
 

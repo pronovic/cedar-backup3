@@ -1,5 +1,5 @@
 include setup.py
-include cback
+include cback3
 include Changelog
 include CREDITS
 include INSTALL
@@ -10,8 +10,8 @@ include CedarBackup3/actions/*.py
 include CedarBackup3/extend/*.py
 include CedarBackup3/tools/*.py
 include CedarBackup3/writers/*.py
-include util/cback-span
-include util/cback-amazons3-sync
+include util/cback3-span
+include util/cback3-amazons3-sync
 include util/test.py
 include util/knapsackdemo.py
 include util/docbook/*
@@ -20,10 +20,10 @@ include testcase/data/*
 include manual/Makefile
 include manual/src/*.xml
 include manual/src/images/html/*.png
-include doc/cback.1
-include doc/cback-span.1
-include doc/cback-amazons3-sync.1
-include doc/cback.conf.sample
+include doc/cback3.1
+include doc/cback3-span.1
+include doc/cback3-amazons3-sync.1
+include doc/cback3.conf.sample
 include doc/docbook.txt
 include doc/release.txt
 include doc/osx/*

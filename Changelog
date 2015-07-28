@@ -5,6 +5,9 @@ Version 3.0.0     unreleased
 	* Fix long-standing bugs with pre- and post-action hooks, ported from v2.24.4.
 	* Adjust resolver setup for unit tests, due to lack of stability in test ordering.
 	* Rewrite executeCommand tests to run properly with Python 3.
+	* Clean up manpages and add notes about migrating to version 3.
+	* Review user guide, fix broken links, make minor tweaks to wording, etc
+	* Rename files (logs, config, executables) to use cback3 prefix rather than cback.
 
 Version 2.24.2    05 Jan 2015
 

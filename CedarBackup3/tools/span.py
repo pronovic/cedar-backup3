@@ -91,7 +91,7 @@ class SpanOptions(Options):
    """
    Tool-specific command-line options.
 
-   Most of the cback command-line options are exactly what we need here --
+   Most of the cback3 command-line options are exactly what we need here --
    logfile path, permissions, verbosity, etc.  However, we need to make a few
    tweaks since we don't accept any actions.
 
@@ -118,9 +118,9 @@ class SpanOptions(Options):
 
 def cli():
    """
-   Implements the command-line interface for the C{cback-span} script.
+   Implements the command-line interface for the C{cback3-span} script.
 
-   Essentially, this is the "main routine" for the cback-span script.  It does
+   Essentially, this is the "main routine" for the cback3-span script.  It does
    all of the argument processing for the script, and then also implements the
    tool functionality.
 
@@ -223,12 +223,12 @@ def cli():
 
 def _usage(fd=sys.stderr):
    """
-   Prints usage information for the cback script.
+   Prints usage information for the cback3-span script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
    fd.write("\n")
-   fd.write(" Usage: cback-span [switches]\n")
+   fd.write(" Usage: cback3-span [switches]\n")
    fd.write("\n")
    fd.write(" Cedar Backup 'span' tool.\n")
    fd.write("\n")
@@ -257,7 +257,7 @@ def _usage(fd=sys.stderr):
 
 def _version(fd=sys.stdout):
    """
-   Prints version information for the cback script.
+   Prints version information for the cback3-span script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
@@ -297,7 +297,7 @@ def _diagnostics(fd=sys.stdout):
 
 def _executeAction(options, config):
    """
-   Implements the guts of the cback-span tool.
+   Implements the guts of the cback3-span tool.
 
    @param options: Program command-line options.
    @type options: SpanOptions object.

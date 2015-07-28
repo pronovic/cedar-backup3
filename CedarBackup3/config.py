@@ -42,7 +42,7 @@ Summary
 =======
 
    Cedar Backup stores all of its configuration in an XML document typically
-   called C{cback.conf}.  The standard location for this document is in
+   called C{cback3.conf}.  The standard location for this document is in
    C{/etc}, but users can specify a different location if they want to.
 
    The C{Config} class is a Python object representation of a Cedar Backup XML

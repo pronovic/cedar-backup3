@@ -95,10 +95,10 @@ class Options(object):
    ######################
 
    """
-   Class representing command-line options for the cback-amazons3-sync script.
+   Class representing command-line options for the cback3-amazons3-sync script.
 
    The C{Options} class is a Python object representation of the command-line
-   options of the cback script.
+   options of the cback3-amazons3-sync script.
 
    The object representation is two-way: a command line string or a list of
    command line arguments can be used to create an C{Options} object, and then
@@ -168,7 +168,7 @@ class Options(object):
       command line, so an exception might still be raised.
 
       @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback script.
+      Call L{_usage} to see a usage statement for the cback3-amazons3-sync script.
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
@@ -178,7 +178,7 @@ class Options(object):
       @type argumentList: List of arguments, i.e. C{sys.argv}
 
       @param argumentString: Command line for a program.
-      @type argumentString: String, i.e. "cback --verbose stage store"
+      @type argumentString: String, i.e. "cback3-amazons3-sync --verbose stage store"
 
       @param validate: Validate the command line after parsing it.
       @type validate: Boolean true/false.
@@ -622,7 +622,7 @@ class Options(object):
       functionality.
 
       @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback script.
+      Call L{_usage} to see a usage statement for the cback3-amazons3-sync script.
 
       @raise ValueError: If one of the validations fails.
       """
@@ -830,9 +830,9 @@ class Options(object):
 
 def cli():
    """
-   Implements the command-line interface for the C{cback-amazons3-sync} script.
+   Implements the command-line interface for the C{cback3-amazons3-sync} script.
 
-   Essentially, this is the "main routine" for the cback-amazons3-sync script.  It does
+   Essentially, this is the "main routine" for the cback3-amazons3-sync script.  It does
    all of the argument processing for the script, and then also implements the
    tool functionality.
 
@@ -919,12 +919,12 @@ def cli():
 
 def _usage(fd=sys.stderr):
    """
-   Prints usage information for the cback-amazons3-sync script.
+   Prints usage information for the cback3-amazons3-sync script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
    fd.write("\n")
-   fd.write(" Usage: cback-amazons3-sync [switches] sourceDir s3bucketUrl\n")
+   fd.write(" Usage: cback3-amazons3-sync [switches] sourceDir s3bucketUrl\n")
    fd.write("\n")
    fd.write(" Cedar Backup Amazon S3 sync tool.\n")
    fd.write("\n")
@@ -957,7 +957,7 @@ def _usage(fd=sys.stderr):
    fd.write("\n")
    fd.write(" Typical usage would be something like:\n")
    fd.write("\n")
-   fd.write("   cback-amazons3-sync /home/myuser s3://example.com-backup/myuser\n")
+   fd.write("   cback3-amazons3-sync /home/myuser s3://example.com-backup/myuser\n")
    fd.write("\n")
    fd.write(" This will sync the contents of /home/myuser into the indicated bucket.\n")
    fd.write("\n")
@@ -969,7 +969,7 @@ def _usage(fd=sys.stderr):
 
 def _version(fd=sys.stdout):
    """
-   Prints version information for the cback script.
+   Prints version information for the cback3-amazons3-sync script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
@@ -1009,7 +1009,7 @@ def _diagnostics(fd=sys.stdout):
 
 def _executeAction(options):
    """
-   Implements the guts of the cback-amazons3-sync tool.
+   Implements the guts of the cback3-amazons3-sync tool.
 
    @param options: Program command-line options.
    @type options: Options object.

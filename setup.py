@@ -64,6 +64,6 @@ setup (
    platforms        = ('Any',),
    packages         = ['CedarBackup3', 'CedarBackup3.actions', 'CedarBackup3.extend',
                        'CedarBackup3.tools', 'CedarBackup3.writers', ],
-   scripts          = ['cback', 'util/cback-span', 'util/cback-amazons3-sync', ],
+   scripts          = ['cback3', 'util/cback3-span', 'util/cback3-amazons3-sync', ],
 )
 

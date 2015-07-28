@@ -72,7 +72,7 @@ this in C{/root/.my.cnf}::
    user     = root
    password = <secret>
 
-Regardless of whether you are using C{~/.my.cnf} or C{/etc/cback.conf} to store
+Regardless of whether you are using C{~/.my.cnf} or C{/etc/cback3.conf} to store
 database login and password information, you should be careful about who is
 allowed to view that information.  Typically, this means locking down
 permissions so that only the file owner can read the file contents (i.e. use

@@ -12,12 +12,12 @@
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : Python 3 (>= 3.4)
 # Project  : Cedar Backup, release 3
-# Purpose  : Implements Cedar Backup cback script.
+# Purpose  : Implements Cedar Backup cback3 script.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 """
-Implements Cedar Backup cback script.
+Implements Cedar Backup cback3 script.
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 

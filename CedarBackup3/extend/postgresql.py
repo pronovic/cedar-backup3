@@ -59,7 +59,7 @@ voodoo in the C{pg_hda.conf} file.
 Note that this code always produces a full backup.  There is currently no
 facility for making incremental backups.
 
-You should always make C{/etc/cback.conf} unreadble to non-root users once you
+You should always make C{/etc/cback3.conf} unreadble to non-root users once you
 place postgresql configuration into it, since postgresql configuration will
 contain information about available PostgreSQL databases and usernames.
 

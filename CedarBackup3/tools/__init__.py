@@ -28,7 +28,7 @@ instance, they might not be intended to run from cron, or might need to interact
 dynamically with the user (i.e. accept user input).
 
 Tools are usually scripts that are run directly from the command line, just
-like the main C{cback} script.  Like the C{cback} script, the majority of a
+like the main C{cback3} script.  Like the C{cback3} script, the majority of a
 tool is implemented in a .py module, and then the script just invokes the
 module's C{cli()} function.  The actual scripts for tools are distributed in
 the util/ directory.

@@ -36,13 +36,13 @@
 ########################################################################
 
 """
-Provides command-line interface implementation for the cback script.
+Provides command-line interface implementation for the cback3 script.
 
 Summary
 =======
 
    The functionality in this module encapsulates the command-line interface for
-   the cback script.  The cback script itself is very short, basically just an
+   the cback3 script.  The cback3 script itself is very short, basically just an
    invokation of one function implemented here.  That, in turn, makes it
    simpler to validate the command line interface (for instance, it's easier to
    run pychecker against a module, and unit tests are easier, too).
@@ -114,8 +114,8 @@ SCREEN_LOG_FORMAT  = "%(message)s"
 SCREEN_LOG_STREAM  = sys.stdout
 DATE_FORMAT        = "%Y-%m-%dT%H:%M:%S %Z"
 
-DEFAULT_CONFIG     = "/etc/cback.conf"
-DEFAULT_LOGFILE    = "/var/log/cback.log"
+DEFAULT_CONFIG     = "/etc/cback3.conf"
+DEFAULT_LOGFILE    = "/var/log/cback3.log"
 DEFAULT_OWNERSHIP  = [ "root", "adm", ]
 DEFAULT_MODE       = 0o640
 
@@ -148,9 +148,9 @@ LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
 
 def cli():
    """
-   Implements the command-line interface for the C{cback} script.
+   Implements the command-line interface for the C{cback3} script.
 
-   Essentially, this is the "main routine" for the cback script.  It does all
+   Essentially, this is the "main routine" for the cback3 script.  It does all
    of the argument processing for the script, and then sets about executing the
    indicated actions.
 
@@ -935,12 +935,12 @@ class _ActionSet(object):
 
 def _usage(fd=sys.stderr):
    """
-   Prints usage information for the cback script.
+   Prints usage information for the cback3 script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
    fd.write("\n")
-   fd.write(" Usage: cback [switches] action(s)\n")
+   fd.write(" Usage: cback3 [switches] action(s)\n")
    fd.write("\n")
    fd.write(" The following switches are accepted:\n")
    fd.write("\n")
@@ -989,7 +989,7 @@ def _usage(fd=sys.stderr):
 
 def _version(fd=sys.stdout):
    """
-   Prints version information for the cback script.
+   Prints version information for the cback3 script.
    @param fd: File descriptor used to print information.
    @note: The C{fd} is used rather than C{print} to facilitate unit testing.
    """
@@ -1078,7 +1078,7 @@ def _setupLogfile(options):
    as safely as possible (using C{O_CREAT}).  If two processes attempt to
    create the file at the same time, then one of them will fail.  In practice,
    this shouldn't really be a problem, but it might happen occassionally if two
-   instances of cback run concurrently or if cback collides with logrotate or
+   instances of cback3 run concurrently or if cback3 collides with logrotate or
    something.
 
    @param options: Command-line options.
@@ -1214,10 +1214,10 @@ class Options(object):
    ######################
 
    """
-   Class representing command-line options for the cback script.
+   Class representing command-line options for the cback3 script.
 
    The C{Options} class is a Python object representation of the command-line
-   options of the cback script.
+   options of the cback3 script.
 
    The object representation is two-way: a command line string or a list of
    command line arguments can be used to create an C{Options} object, and then
@@ -1287,7 +1287,7 @@ class Options(object):
       command line, so an exception might still be raised.
 
       @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback script.
+      Call L{_usage} to see a usage statement for the cback3 script.
 
       @note: It is strongly suggested that the C{validate} option always be set
       to C{True} (the default) unless there is a specific need to read in
@@ -1297,7 +1297,7 @@ class Options(object):
       @type argumentList: List of arguments, i.e. C{sys.argv}
 
       @param argumentString: Command line for a program.
-      @type argumentString: String, i.e. "cback --verbose stage store"
+      @type argumentString: String, i.e. "cback3 --verbose stage store"
 
       @param validate: Validate the command line after parsing it.
       @type validate: Boolean true/false.
@@ -1773,7 +1773,7 @@ class Options(object):
       functionality.
 
       @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback script.
+      Call L{_usage} to see a usage statement for the cback3 script.
 
       @raise ValueError: If one of the validations fails.
       """
