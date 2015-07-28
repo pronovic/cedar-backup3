@@ -150,7 +150,7 @@ class TestFunctions(unittest.TestCase):
       # runs programs.  Since other tests might mess with the overrides and/or
       # singletons, and we don't control the order of execution, we need to set
       # them up here.
-      setupOverrides()  
+      setupOverrides()
 
    def setUp(self):
       pass

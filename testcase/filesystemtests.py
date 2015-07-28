@@ -3192,13 +3192,13 @@ class TestFilesystemList(unittest.TestCase):
       This test data was taken from Rick Lowe's problems around the release of
       v1.10.  I don't run the test for Darwin (Mac OS X) because the tarball
       isn't valid on that platform.
-   
+
       All of the tests with unicode paths were incredibly painful to get
       working with Python 3, but these tests in particular were difficult,
       because character 0x82 is not a valid UTF-8 character.  The key is was to
-      get the filename into the same encoding used by methods like os.listdir(), 
+      get the filename into the same encoding used by methods like os.listdir(),
       which uses a "surrogateescape" fallback for encoding filenames.  Once I
-      switched encodePath to do the same thing, this test started passing.  
+      switched encodePath to do the same thing, this test started passing.
       There's apparently no other way to represent filenames like this.
       """
       if not platformMacOsX():
@@ -17350,13 +17350,13 @@ class TestPurgeItemList(unittest.TestCase):
 
       This test data was taken from Rick Lowe's problems around the release of v1.10.
       I don't run the test for Darwin (Mac OS X) because the tarball isn't valid there.
-   
+
       All of the tests with unicode paths were incredibly painful to get
       working with Python 3, but these tests in particular were difficult,
       because character 0x82 is not a valid UTF-8 character.  The key is was to
-      get the filename into the same encoding used by methods like os.listdir(), 
+      get the filename into the same encoding used by methods like os.listdir(),
       which uses a "surrogateescape" fallback for encoding filenames.  Once I
-      switched encodePath to do the same thing, this test started passing.  
+      switched encodePath to do the same thing, this test started passing.
       There's apparently no other way to represent filenames like this.
       """
       if not platformMacOsX():
