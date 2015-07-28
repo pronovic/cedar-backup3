@@ -37,5 +37,7 @@ if [ ! -d ${DIR} ]; then
    done
 fi
 
-echo "Working with `${PYTHON} --version` (`${PIP} --version | awk '{print $1" "$2}'`) at ${PYTHON}"
+PYTHON_RESULT=`${PYTHON} -V 2>&1`  # Python 2 dumps this info to stderr
+PIP_RESULT=`${PIP} --version | awk '{print $1" "$2}'`
+echo "Working with ${PYTHON_RESULT} (${PIP_RESULT}) at ${PYTHON}"
 
