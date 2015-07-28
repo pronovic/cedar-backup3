@@ -10,48 +10,78 @@
 .\" # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 .\" # Language : nroff
 .\" # Project  : Cedar Backup, release 3
-.\" # Purpose  : Manpage for cback script
+.\" # Purpose  : Manpage for cback3 script
 .\" #
 .\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 .\"
-.TH cback "1" "Jul 2015" "Cedar Backup" "Kenneth J. Pronovici"
+.TH cback3 "1" "July 2015" "Cedar Backup 3" "Kenneth J. Pronovici"
 .SH NAME
-cback \- Local and remote backups to CD\-R/CD\-RW media
+cback3 \- Local and remote backups to CD or DVD media or Amazon S3 storage
 .SH SYNOPSIS
-.B cback
+.B cback3
 [\fIswitches\fR]
 action(s)
 .SH DESCRIPTION
 .PP
-The cback script provides the command\-line interface for Cedar Backup.
-Cedar Backup is a software package designed to manage system backups for a
-pool of local and remote machines.  Cedar Backup understands how to back up
-filesystem data as well as MySQL and PostgreSQL databases and Subversion
-repositories.  It can also be easily extended to support other kinds of
-data sources.  
+The cback3 script provides the command\-line interface for Cedar Backup 3.
+Cedar Backup 3 is a software package designed to manage system backups for a
+pool of local and remote machines.  It understands how to back up filesystem
+data as well as MySQL and PostgreSQL databases and Subversion repositories.  It
+can also be easily extended to support other kinds of data sources.  
 .PP
-Cedar Backup is focused around weekly backups to a single CD or DVD disc,
+Cedar Backup 3 is focused around weekly backups to a single CD or DVD disc,
 with the expectation that the disc will be changed or overwritten at the
 beginning of each week.  If your hardware is new enough, Cedar Backup can
 write multisession discs, allowing you to add incremental data to a disc on
 a daily basis.
 .PP
+Alternately, Cedar Backup 3 can write your backups to the Amazon S3 cloud
+rather than relying on physical media.
+.SH BACKUP CONCEPTS
+.PP
 There are two kinds of machines in a Cedar Backup pool.  One machine (the
-\fImaster\fR) has a CD\-R or CD\-RW drive on it and is where the backup is
+\fImaster\fR) has a CD or DVD writer on it and is where the backup is
 written to disc.  The others (\fIclients\fR) collect data to be written to disc
 by the master.  Collectively, the master and client machines in a pool are all
 referred to as \fIpeer\fR machines.  There are four actions that take place as
 part of the backup process: \fIcollect\fR, \fIstage\fR, \fIstore\fR and
 \fIpurge\fR.  Both the master and the clients execute the collect and purge
 actions, but only the master executes the stage and store actions.  The
-configuration file \fI/etc/cback.conf\fR controls the actions taken during
-collect, stage, store and purge actions.
+configuration file \fI/etc/cback3.conf\fR controls the actions taken during
+the collect, stage, store and purge actions.
 .PP
 Cedar Backup also supports the concept of \fImanaged clients\fR.  Managed
 clients have their entire backup process managed by the master via a remote
 shell.  The same actions are run as part of the backup process, but the master
 controls when the actions are executed on the clients rather than the clients
-controlling it for themselves.
+controlling it for themselves.  This facility is intended for use in
+environments where a scheduler like cron is not available.
+.SH MIGRATING FROM VERSION 2 TO VERSION 3
+.PP
+The main difference between Cedar Backup version 2 and Cedar Backup version 3
+is the targeted Python interpreter.  Cedar Backup version 2 was designed for
+Python 2, while version 3 is a conversion of the original code to Python 3.
+Other than that, both versions are functionally equivalent.  The configuration
+format is unchanged, and you can mix\-and\-match masters and clients of different
+versions in the same backup pool.  Both versions will be fully supported until
+around the time of the Python 2 end\-of\-life in 2020, but you should plan to
+migrate sooner than that if possible.
+.PP
+A major design goal for version 3 was to facilitate easy migration testing for
+users, by making it possible to install version 3 on the same server where
+version 2 was already in use.  A side effect of this design choice is that all
+of the executables, configuration files, and logs changed names in version
+3.  Where version 2 used \fIcback\fR, version 3 uses \fIcback3\fR:
+\fIcback3.conf\fR instead of \fIcback.conf\fR, \fIcback3.log\fR instead of
+\fIcback.log\fR, etc.
+.PP
+So, while migrating from version 2 to version 3 is relatively
+straightforward, you will have to make some changes manually.  You will need to
+create a new configuration file (or soft link to the old one), modify your cron
+jobs to use the new executable name, etc.  You can migrate one server at a time
+in your pool with no ill effects, or even incrementally migrate a single server
+by using version 2 and version 3 on different days of the week or for different
+parts of the backup.
 .SH SWITCHES
 .TP
 \fB\-h\fR, \fB\-\-help\fR
@@ -70,7 +100,7 @@ Run quietly (display no output to the screen).
 .TP
 \fB\-c\fR, \fB\-\-config\fR
 Specify the path to an alternate configuration file.  The default configuration
-file is /etc/cback.conf.
+file is \fI/etc/cback3.conf\fR.
 .TP
 \fB\-f\fR, \fB\-\-full\fR
 Perform a full backup, regardless of configuration.  For the collect action,
@@ -90,27 +120,26 @@ on that client, but do not execute the action locally.
 .TP
 \fB\-l\fR, \fB\-\-logfile\fR
 Specify the path to an alternate logfile.  The default logfile file is
-/var/log/cback.log.
+\fI/var/log/cback3.log\fR.
 .TP
 \fB\-o\fR, \fB\-\-owner\fR
 Specify the ownership of the logfile, in the form user:group.  The default
-ownership is root:adm, to match the Debian standard for most logfiles.  This
+ownership is \fIroot:adm\fR, to match the Debian standard for most logfiles.  This
 value will only be used when creating a new logfile.  If the logfile already
-exists when the cback script is executed, it will retain its existing ownership
+exists when the cback3 script is executed, it will retain its existing ownership
 and mode.  Only user and group names may be used, not numeric uid and gid
 values.
 .TP
 \fB\-m\fR, \fB\-\-mode\fR
 Specify the permissions for the logfile, using the numeric mode as in chmod(1).
-The default mode is 640 (\-rw\-r\-\-\-\-\-).  This value will only be used when
-creating a new logfile.  If the logfile already exists when the cback script is
+The default mode is \fI640\fR (\-rw\-r\-\-\-\-\-).  This value will only be used when
+creating a new logfile.  If the logfile already exists when the cback3 script is
 executed, it will retain its existing ownership and mode.
 .TP
 \fB\-O\fR, \fB\-\-output\fR
 Record some sub-command output to the logfile. When this option is enabled, all
 output from system commands will be logged. This might be useful for debugging
-or just for reference. Cedar Backup uses system commands mostly for dealing
-with the CD recorder and its media.
+or just for reference.
 .TP
 \fB\-d\fR, \fB\-\-debug\fR
 Write debugging information to the logfile. This option produces a high volume
@@ -150,9 +179,10 @@ Take the purge action, removing old and outdated files as specified in the
 purge section of the configuration file.
 .TP
 \fBrebuild\fR
-Rebuild the "this week's" disc based on the current contents of the staging
-directory.  This option has been made available as a means to recover a disc
-that has been "trashed" due to a hardware or media error.
+The rebuild action attempts to rebuild "this week's" disc from any remaining
+unpurged staging directories.  Typically, it is used to make a copy of a
+backup, replace lost or damaged media, or to switch to new media mid-week for
+some other reason.
 .TP
 \fBvalidate\fR
 Ensure that configuration is valid, but take no other action.  Validation
@@ -197,8 +227,8 @@ stage, followed by store, followed by purge).
 If you have configured any Cedar Backup extensions, then the actions associated
 with those extensions may also be specified on the command line. If you specify
 any other actions along with an extended action, the actions will be executed
-in a sensible order per configuration. The "all" action never executes extended
-actions, however.
+in a sensible order per configuration. However, the "all" action never executes
+extended actions.
 .PP
 Note that there is no facility for restoring backups.  It is assumed that the
 user can deal with copying tarfiles off disc and using them to restore missing
@@ -211,24 +241,30 @@ consider this when setting up device permissions on your machine.  You might
 also want to investigate the encrypt extension.
 .SH FILES
 .TP
-\fI/etc/cback.conf\fR - Default configuration file
+\fI/etc/cback3.conf\fR - Default configuration file
 .TP
-\fI/var/log/cback.log\fR - Default log file
+\fI/var/log/cback3.log\fR - Default log file
+.SH URLS
+.TP
+The project homepage is: \fIhttps://bitbucket.org/cedarsolutions/cedar\-backup3\fR
 .SH BUGS
 .PP
 There probably are bugs in this code.  However, it is in active use for my own
 backups, and I fix problems as I notice them.  If you find a bug, please report
-it.  If possible, give me the output from \-\-diagnostics, all of the error
+it.  
+.PP
+If possible, give me the output from \-\-diagnostics, all of the error
 messages that the script printed into its log, and also any stack\-traces
 (exceptions) that Python printed.  It would be even better if you could tell me
-how to reproduce the problem (i.e. by sending me your configuration file).
+how to reproduce the problem, for instance by sending me your configuration file.
 .PP
-Report bugs to <support@cedar\-solutions.com>.
+Report bugs to <support@cedar\-solutions.com> or by using the BitBucket issue
+tracker.
 .SH AUTHOR
-Written by Kenneth J. Pronovici <pronovic@ieee.org>.
+Written and maintained by Kenneth J. Pronovici <pronovic@ieee.org> with contributions from others.
 .SH COPYRIGHT
-Copyright (c) 2004\-2010,2015 Kenneth J. Pronovici.
-.br
+Copyright (c) 2004\-2011,2013\-2015 Kenneth J. Pronovici.
+.PP
 This is free software; see the source for copying conditions.  There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 PURPOSE.

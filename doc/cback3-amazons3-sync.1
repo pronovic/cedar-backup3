@@ -10,28 +10,34 @@
 .\" # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 .\" # Language : nroff
 .\" # Project  : Cedar Backup, release 3
-.\" # Purpose  : Manpage for cback-amazons3-sync script
+.\" # Purpose  : Manpage for cback3-amazons3-sync script
 .\" #
 .\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 .\"
-.TH cback\-amazons3-sync "1" "Jul 2015" "Cedar Backup" "Kenneth J. Pronovici"
+.TH cback3\-amazons3-sync "1" "July 2015" "Cedar Backup 3" "Kenneth J. Pronovici"
 .SH NAME
-cback\-amazons3-sync \- Synchronize a local directory with an Amazon S3 bucket
+cback3\-amazons3-sync \- Synchronize a local directory with an Amazon S3 bucket
 .SH SYNOPSIS
-.B cback\-amazons3-sync
+.B cback3\-amazons3\-sync
 [\fIswitches\fR]
 sourceDir s3BucketUrl
 .SH DESCRIPTION
 .PP
-This is the Cedar Backup Amazon S3 sync tool.  It synchronizes a local
+This is the Cedar Backup 3 Amazon S3 sync tool.  It synchronizes a local
 directory to an Amazon S3 cloud storage bucket.  After the sync is complete, a
 validation step is taken.  An error is reported if the contents of the bucket
 do not match the source directory, or if the indicated size for any file
 differs.
 .PP
-Generally, one can run the cback\-amazons3-sync command with no special
+Generally, one can run the cback3\-amazons3\-sync command with no special
 switches.  This will start it using the default Cedar Backup log file, etc.
 You only need to use the switches if you need to change the default behavior.
+.SH MIGRATING FROM VERSION 2 TO VERSION 3
+.PP
+The main difference between Cedar Backup version 2 and Cedar Backup version 3
+is the targeted Python interpreter.  For most users, migration should be
+straightforward.  See the discussion found at cback3(1) or reference the Cedar
+Backup user guide.
 .SH ARGUMENTS
 .TP
 \fBsourceDir\fR
@@ -39,7 +45,7 @@ The source directory on a local disk.
 .TP
 \fBs3BucketUrl\fR
 The URL specifying the location of the Amazon S3 cloud storage bucket
-to synchronize with, like s3://example.com-backup/subdir.
+to synchronize with, like \fIs3://example.com\-backup/subdir\fR.
 .SH SWITCHES
 .TP
 \fB\-h\fR, \fB\-\-help\fR
@@ -55,21 +61,21 @@ logfile will also be written to the screen.
 .TP
 \fB\-l\fR, \fB\-\-logfile\fR
 Specify the path to an alternate logfile.  The default logfile file is
-/var/log/cback.log.
+\fI/var/log/cback3.log\fR.
 .TP
 \fB\-o\fR, \fB\-\-owner\fR
 Specify the ownership of the logfile, in the form user:group.  The default
-ownership is root:adm, to match the Debian standard for most logfiles.  This
-value will only be used when creating a new logfile.  If the logfile already
-exists when the cback script is executed, it will retain its existing ownership
-and mode.  Only user and group names may be used, not numeric uid and gid
-values.
+ownership is \fIroot:adm\fR, to match the Debian standard for most logfiles.
+This value will only be used when creating a new logfile.  If the logfile
+already exists when the cback3 script is executed, it will retain its existing
+ownership and mode.  Only user and group names may be used, not numeric uid and
+gid values.
 .TP
 \fB\-m\fR, \fB\-\-mode\fR
 Specify the permissions for the logfile, using the numeric mode as in chmod(1).
-The default mode is 640 (\-rw\-r\-\-\-\-\-).  This value will only be used when
-creating a new logfile.  If the logfile already exists when the cback script is
-executed, it will retain its existing ownership and mode.
+The default mode is \fI640\fR (\-rw\-r\-\-\-\-\-).  This value will only be
+used when creating a new logfile.  If the logfile already exists when the cback3
+script is executed, it will retain its existing ownership and mode.
 .TP
 \fB\-O\fR, \fB\-\-output\fR
 Record some sub-command output to the logfile. When this option is enabled, all
@@ -113,29 +119,41 @@ Other error during processing.
 .SH NOTES
 .PP
 This tool is a wrapper over the Amazon AWS CLI interface found in the aws(1)
-command.  Specifically, cback\-amazons3\-sync invokes "aws s3 sync" followed by
-"aws s3api list-objects".
+command.  Specifically, cback3\-amazons3\-sync invokes "aws s3 sync" followed by
+"aws s3api list\-objects".
 .PP
-Cedar Backup itself is designed to run as root.  However, this command can be
-run safely as any user that is configured to use the Amazon AWS CLI interface.
-The aws(1) command will be executed by the same user which is executing 
-cback\-amazons3\-sync.
+Cedar Backup itself is designed to run as root.  However, cback3\-amazons3\-sync
+can be run safely as any user that is configured to use the Amazon AWS CLI
+interface.  The aws(1) command will be executed by the same user which is
+executing cback3\-amazons3\-sync.
 .PP
 You must configure the AWS CLI interface to have a valid connection to Amazon
-S3 infrastructure before using cback\-amazons3\-sync. For more information
+S3 infrastructure before using cback3\-amazons3\-sync. For more information
 about how to accomplish this, see the Cedar Backup user guide.
 .SH SEE ALSO
-cback(1)
+cback3(1)
 .SH FILES
 .TP
-\fI/var/log/cback.log\fR - Default log file
+\fI/var/log/cback3.log\fR - Default log file
+.SH URLS
+.TP
+The project homepage is: \fIhttps://bitbucket.org/cedarsolutions/cedar\-backup3\fR
 .SH BUGS
-Report bugs to <support@cedar\-solutions.com>.
+.PP
+If you find a bug, please report it.
+.PP
+If possible, give me the output from \-\-diagnostics, all of the error
+messages that the script printed into its log, and also any stack\-traces
+(exceptions) that Python printed.  It would be even better if you could tell me
+how to reproduce the problem, for instance by sending me your configuration file.
+.PP
+Report bugs to <support@cedar\-solutions.com> or by using the BitBucket issue
+tracker.
 .SH AUTHOR
-Written by Kenneth J. Pronovici <pronovic@ieee.org>.
+Written and maintained by Kenneth J. Pronovici <pronovic@ieee.org> with contributions from others.
 .SH COPYRIGHT
-Copyright (c) 2014,2015 Kenneth J. Pronovici.
-.br
+Copyright (c) 2004\-2011,2013\-2015 Kenneth J. Pronovici.
+.PP
 This is free software; see the source for copying conditions.  There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 PURPOSE.
