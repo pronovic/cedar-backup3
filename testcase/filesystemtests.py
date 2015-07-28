@@ -3833,7 +3833,7 @@ class TestFilesystemList(unittest.TestCase):
          self.assertEqual(11, count)
          self.assertEqual(11, len(fsList))
          self.assertTrue(self.buildPath([ "tree13", ]) in fsList)
-         self.assertTrue(self.buildPath([ "tree13", b"Les mouvements de r\x82forme.doc".decode("latin-1"), ]) in fsList)
+         self.assertTrue(self.buildPath([ "tree13", b"Les mouvements de r\x82forme.doc".decode("iso8859-1"), ]) in fsList)
 #         self.assertTrue(self.buildPath([ "tree13", encodePath(b"l'\x82nonc\x82.sxw"), ]) in fsList)
 #         self.assertTrue(self.buildPath([ "tree13", encodePath(b"l\x82onard - renvois et bibliographie.sxw"), ]) in fsList)
 #         self.assertTrue(self.buildPath([ "tree13", encodePath(b"l\x82onard copie finale.sxw"), ]) in fsList)
