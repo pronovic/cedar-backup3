@@ -95,7 +95,6 @@ import unittest
 import tempfile
 from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
 from CedarBackup3.testutil import getMaskAsMode, getLogin, runningAsRoot, failUnlessAssignRaises
-from CedarBackup3.testutil import platformSupportsPermissions, platformWindows, platformCygwin
 from CedarBackup3.peer import LocalPeer, RemotePeer
 from CedarBackup3.peer import DEF_RCP_COMMAND, DEF_RSH_COMMAND
 from CedarBackup3.peer import DEF_COLLECT_INDICATOR, DEF_STAGE_INDICATOR
@@ -340,13 +339,8 @@ class TestLocalPeer(unittest.TestCase):
       with spaces in the collect directory path and collect indicator file name.
       """
       name = "peer1"
-      if platformWindows() or platformCygwin():
-         # os.listdir has problems with trailing spaces
-         collectDir = self.buildPath([" collect dir", ])
-         collectIndicator = self.buildPath([" collect dir", "different, file", ])
-      else:
-         collectDir = self.buildPath([" collect dir ", ])
-         collectIndicator = self.buildPath([" collect dir ", "different, file", ])
+      collectDir = self.buildPath([" collect dir ", ])
+      collectIndicator = self.buildPath([" collect dir ", "different, file", ])
       os.mkdir(collectDir)
       open(collectIndicator, "w").write("")     # touch the file
       self.assertTrue(os.path.exists(collectDir))
@@ -554,10 +548,7 @@ class TestLocalPeer(unittest.TestCase):
       self.extractTar("tree2")
       name = "peer1"
       collectDir = self.buildPath(["tree2", "dir001", ])
-      if platformWindows():
-         targetDir = self.buildPath([" target directory", ])  # os.listdir has problems with trailing spaces
-      else:
-         targetDir = self.buildPath([" target directory ", ])
+      targetDir = self.buildPath([" target directory ", ])
       os.mkdir(targetDir)
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(targetDir))
@@ -636,38 +627,37 @@ class TestLocalPeer(unittest.TestCase):
       """
       Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
       """
-      if platformSupportsPermissions():
-         self.extractTar("tree1")
-         name = "peer1"
-         collectDir = self.buildPath(["tree1", ])
-         targetDir = self.buildPath(["target", ])
-         os.mkdir(targetDir)
-         self.assertTrue(os.path.exists(collectDir))
-         self.assertTrue(os.path.exists(targetDir))
-         self.assertEqual(0, len(os.listdir(targetDir)))
-         peer = LocalPeer(name, collectDir)
-         if getMaskAsMode() == 0o400:
-            permissions = 0o642   # arbitrary, but different than umask would give
-         else:
-            permissions = 0o400   # arbitrary
-         count = peer.stagePeer(targetDir=targetDir, permissions=permissions)
-         self.assertEqual(7, count)
-         stagedFiles = os.listdir(targetDir)
-         self.assertEqual(7, len(stagedFiles))
-         self.assertTrue("file001" in stagedFiles)
-         self.assertTrue("file002" in stagedFiles)
-         self.assertTrue("file003" in stagedFiles)
-         self.assertTrue("file004" in stagedFiles)
-         self.assertTrue("file005" in stagedFiles)
-         self.assertTrue("file006" in stagedFiles)
-         self.assertTrue("file007" in stagedFiles)
-         self.assertEqual(permissions, self.getFileMode(["target", "file001", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file002", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file003", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file004", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file005", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file006", ]))
-         self.assertEqual(permissions, self.getFileMode(["target", "file007", ]))
+      self.extractTar("tree1")
+      name = "peer1"
+      collectDir = self.buildPath(["tree1", ])
+      targetDir = self.buildPath(["target", ])
+      os.mkdir(targetDir)
+      self.assertTrue(os.path.exists(collectDir))
+      self.assertTrue(os.path.exists(targetDir))
+      self.assertEqual(0, len(os.listdir(targetDir)))
+      peer = LocalPeer(name, collectDir)
+      if getMaskAsMode() == 0o400:
+         permissions = 0o642   # arbitrary, but different than umask would give
+      else:
+         permissions = 0o400   # arbitrary
+      count = peer.stagePeer(targetDir=targetDir, permissions=permissions)
+      self.assertEqual(7, count)
+      stagedFiles = os.listdir(targetDir)
+      self.assertEqual(7, len(stagedFiles))
+      self.assertTrue("file001" in stagedFiles)
+      self.assertTrue("file002" in stagedFiles)
+      self.assertTrue("file003" in stagedFiles)
+      self.assertTrue("file004" in stagedFiles)
+      self.assertTrue("file005" in stagedFiles)
+      self.assertTrue("file006" in stagedFiles)
+      self.assertTrue("file007" in stagedFiles)
+      self.assertEqual(permissions, self.getFileMode(["target", "file001", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file002", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file003", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file004", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file005", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file006", ]))
+      self.assertEqual(permissions, self.getFileMode(["target", "file007", ]))
 
 
 ######################

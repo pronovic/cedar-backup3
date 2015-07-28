@@ -107,10 +107,6 @@ class FilesystemList(list):
    are treated as if they begin with C{^} and end with C{$}.  This is true
    whether we are matching a complete path or a basename.
 
-   @note: Some platforms, like Windows, do not support soft links.  On those
-   platforms, the ignore-soft-links flag can be set, but it won't do any good
-   because the operating system never reports a file as a soft link.
-
    @sort: __init__, addFile, addDir, addDirContents, removeFiles, removeDirs,
           removeLinks, removeMatch, removeInvalid, normalize,
           excludeFiles, excludeDirs, excludeLinks, excludePaths,

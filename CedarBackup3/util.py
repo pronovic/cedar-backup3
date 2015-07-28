@@ -1009,19 +1009,11 @@ class Diagnostics(object):
       Property target to get the operating system platform.
       """
       try:
-         if sys.platform.startswith("win"):
-            windowsPlatforms = [ "Windows 3.1", "Windows 95/98/ME", "Windows NT/2000/XP", "Windows CE", ]
-            wininfo = sys.getwindowsversion()  # pylint: disable=E1101
-            winversion = "%d.%d.%d" % (wininfo[0], wininfo[1], wininfo[2])
-            winplatform = windowsPlatforms[wininfo[3]]
-            wintext = wininfo[4]  # i.e. "Service Pack 2"
-            return "%s (%s %s %s)" % (sys.platform, winplatform, winversion, wintext)
-         else:
-            uname = os.uname()
-            sysname = uname[0] # i.e. Linux
-            release = uname[2] # i.e. 2.16.18-2
-            machine = uname[4] # i.e. i686
-            return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
+         uname = os.uname()
+         sysname = uname[0] # i.e. Linux
+         release = uname[2] # i.e. 2.16.18-2
+         machine = uname[4] # i.e. i686
+         return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
       except:
          return sys.platform
 

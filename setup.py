@@ -61,7 +61,6 @@ setup (
    author_email     = EMAIL,
    url              = URL,
    license          = "Copyright (c) %s %s.  Licensed under the GNU GPL." % (COPYRIGHT, AUTHOR),
-   platforms        = ('Any',),
    packages         = ['CedarBackup3', 'CedarBackup3.actions', 'CedarBackup3.extend',
                        'CedarBackup3.tools', 'CedarBackup3.writers', ],
    scripts          = ['cback3', 'util/cback3-span', 'util/cback3-amazons3-sync', ],

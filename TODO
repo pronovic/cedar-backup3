@@ -1,6 +1,3 @@
-review all documentation for completeness
-review all URLs in source code and documentation to make sure they still exist
 run pylint on codebase and get things clean
 Get "nice to have" things running in Cloudbees Jenkins (including coverage, pylint reports, etc.)
 start looking at code coverage to see if there are other tests I need to write
-remove Windows and Cygwin stuff, which I don't want to support for CedarBackup3

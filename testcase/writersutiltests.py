@@ -95,7 +95,7 @@ import unittest
 import tempfile
 import time
 from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup3.testutil import platformMacOsX, platformSupportsLinks
+from CedarBackup3.testutil import platformMacOsX
 from CedarBackup3.testutil import setupOverrides
 from CedarBackup3.filesystem import FilesystemList
 from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed, IsoImage
@@ -832,11 +832,10 @@ class TestIsoImage(unittest.TestCase):
       """
       Attempt to add a an entry that is a soft link to a file.
       """
-      if platformSupportsLinks():
-         self.extractTar("tree9")
-         file1 = self.buildPath([ "tree9", "dir002", "link003", ])
-         isoImage = IsoImage()
-         self.assertRaises(ValueError, isoImage.addEntry, file1)
+      self.extractTar("tree9")
+      file1 = self.buildPath([ "tree9", "dir002", "link003", ])
+      isoImage = IsoImage()
+      self.assertRaises(ValueError, isoImage.addEntry, file1)
 
    def testAddEntry_003(self):
       """

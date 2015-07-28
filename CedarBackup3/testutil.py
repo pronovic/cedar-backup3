@@ -51,8 +51,7 @@ making them available to others.
 @sort: findResources, commandAvailable,
        buildPath, removedir, extractTar, changeFileAge,
        getMaskAsMode, getLogin, failUnlessAssignRaises, runningAsRoot,
-       platformDebian, platformMacOsX, platformCygwin, platformWindows,
-       platformHasEcho, platformSupportsLinks, platformSupportsPermissions
+       platformDebian, platformMacOsX
 
 @author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
@@ -447,67 +446,6 @@ def platformMacOsX():
    return _isPlatform("macosx")
 
 
-#############################
-# platformWindows() function
-#############################
-
-def platformWindows():
-   """
-   Returns boolean indicating whether this is the Windows platform.
-   """
-   return _isPlatform("windows")
-
-
-############################
-# platformCygwin() function
-############################
-
-def platformCygwin():
-   """
-   Returns boolean indicating whether this is the Cygwin platform.
-   """
-   return _isPlatform("cygwin")
-
-
-###################################
-# platformSupportsLinks() function
-###################################
-
-def platformSupportsLinks():
-   """
-   Returns boolean indicating whether the platform supports soft-links.
-   Some platforms, like Windows, do not support links, and tests need to take
-   this into account.
-   """
-   return not platformWindows()
-
-
-#########################################
-# platformSupportsPermissions() function
-#########################################
-
-def platformSupportsPermissions():
-   """
-   Returns boolean indicating whether the platform supports UNIX-style file permissions.
-   Some platforms, like Windows, do not support permissions, and tests need to take
-   this into account.
-   """
-   return not platformWindows()
-
-
-
-#############################
-# platformHasEcho() function
-#############################
-
-def platformHasEcho():
-   """
-   Returns boolean indicating whether the platform has a sensible echo command.
-   On some platforms, like Windows, echo doesn't really work for tests.
-   """
-   return not platformWindows()
-
-
 ###########################
 # runningAsRoot() function
 ###########################
@@ -515,12 +453,8 @@ def platformHasEcho():
 def runningAsRoot():
    """
    Returns boolean indicating whether the effective user id is root.
-   This is always true on platforms that have no concept of root, like Windows.
    """
-   if platformWindows():
-      return True
-   else:
-      return os.geteuid() == 0
+   return os.geteuid() == 0
 
 
 ##############################

@@ -82,7 +82,6 @@ import logging
 from os.path import isdir
 
 from CedarBackup3.testutil import findResources, removedir, extractTar, buildPath, captureOutput
-from CedarBackup3.testutil import platformHasEcho, platformWindows, platformCygwin, platformSupportsLinks
 from CedarBackup3.util import UnorderedList, AbsolutePathList, ObjectTypeList
 from CedarBackup3.util import RestrictedContentList, RegexMatchList, RegexList
 from CedarBackup3.util import DirectedGraph, PathResolverSingleton, Diagnostics, parseCommaSeparatedString
@@ -2292,12 +2291,11 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, no arguments, returnOutput=False
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=False)
-         self.assertEqual(0, result)
-         self.assertEqual(None, output)
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=False)
+      self.assertEqual(0, result)
+      self.assertEqual(None, output)
 
    def testExecuteCommand_002(self):
       """
@@ -2370,13 +2368,12 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, no arguments, returnOutput=True
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=True)
-         self.assertEqual(0, result)
-         self.assertEqual(1, len(output))
-         self.assertEqual(os.linesep, output[0])
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=True)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual(os.linesep, output[0])
 
    def testExecuteCommand_009(self):
       """
@@ -2458,12 +2455,11 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=False)
-         self.assertEqual(0, result)
-         self.assertEqual(None, output)
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=False)
+      self.assertEqual(0, result)
+      self.assertEqual(None, output)
 
    def testExecuteCommand_016(self):
       """
@@ -2543,13 +2539,12 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=True)
-         self.assertEqual(0, result)
-         self.assertEqual(1, len(output))
-         self.assertEqual(os.linesep, output[0])
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=True)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual(os.linesep, output[0])
 
    def testExecuteCommand_023(self):
       """
@@ -2636,12 +2631,11 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
-         self.assertEqual(0, result)
-         self.assertEqual(None, output)
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
+      self.assertEqual(0, result)
+      self.assertEqual(None, output)
 
    def testExecuteCommand_031(self):
       """
@@ -2714,13 +2708,12 @@ class TestFunctions(unittest.TestCase):
       Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-         self.assertEqual(0, result)
-         self.assertEqual(1, len(output))
-         self.assertEqual(os.linesep, output[0])
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual(os.linesep, output[0])
 
    def testExecuteCommand_038(self):
       """
@@ -2805,12 +2798,11 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
-         self.assertEqual(0, result)
-         self.assertEqual(None, output)
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
+      self.assertEqual(0, result)
+      self.assertEqual(None, output)
 
    def testExecuteCommand_045(self):
       """
@@ -2890,13 +2882,12 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
-         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-         self.assertEqual(0, result)
-         self.assertEqual(1, len(output))
-         self.assertEqual(os.linesep, output[0])
+      command=["echo", ]
+      args=[]
+      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+      self.assertEqual(0, result)
+      self.assertEqual(1, len(output))
+      self.assertEqual(os.linesep, output[0])
 
    def testExecuteCommand_052(self):
       """
@@ -2987,22 +2978,21 @@ class TestFunctions(unittest.TestCase):
       Do this all bundled into the command list, just to check that this works as expected.
       Command-line: echo
       """
-      if platformHasEcho():
-         command=["echo", ]
-         args=[]
+      command=["echo", ]
+      args=[]
 
-         filename = self.getTempfile()
-         outputFile = open(filename, "w")
-         try:
-            result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-         finally:
-            outputFile.close()
-         self.assertEqual(0, result)
-         self.assertTrue(os.path.exists(filename))
-         output = open(filename).readlines()
+      filename = self.getTempfile()
+      outputFile = open(filename, "w")
+      try:
+         result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
+      finally:
+         outputFile.close()
+      self.assertEqual(0, result)
+      self.assertTrue(os.path.exists(filename))
+      output = open(filename).readlines()
 
-         self.assertEqual(1, len(output))
-         self.assertEqual(os.linesep, output[0])
+      self.assertEqual(1, len(output))
+      self.assertEqual(os.linesep, output[0])
 
    def testExecuteCommand_059(self):
       """
@@ -3508,13 +3498,10 @@ class TestFunctions(unittest.TestCase):
 
    def testNullDevice_001(self):
       """
-      Test that the function behaves sensibly on Windows and non-Windows platforms.
+      Test that the function behaves sensibly.
       """
       device = nullDevice()
-      if platformWindows():
-         self.assertEqual("NUL", device.upper())
-      else:
-         self.assertEqual("/dev/null", device)
+      self.assertEqual("/dev/null", device)
 
 
    ######################
@@ -3925,10 +3912,7 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree10")
       path = self.buildPath(["tree10", "link002"])
-      if platformSupportsLinks():
-         expected = "file002"
-      else:
-         expected = path
+      expected = "file002"
       actual = dereferenceLink(path, absolute=False)
       self.assertEqual(expected, actual)
 
@@ -3938,10 +3922,7 @@ class TestFunctions(unittest.TestCase):
       """
       self.extractTar("tree10")
       path = self.buildPath(["tree10", "link002"])
-      if platformSupportsLinks():
-         expected = self.buildPath(["tree10", "file002"])
-      else:
-         expected = path
+      expected = self.buildPath(["tree10", "file002"])
       actual = dereferenceLink(path)
       self.assertEqual(expected, actual)
       actual = dereferenceLink(path, absolute=True)
