@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # -*- coding: iso-8859-1 -*-
 # vim: set ft=python ts=3 sw=3 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
