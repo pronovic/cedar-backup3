@@ -3821,9 +3821,18 @@ class TestFilesystemList(unittest.TestCase):
    def testAddDirContents_072(self):
       """
       Attempt to add a directory which has several UTF-8 filenames in it.
+
       This test data was taken from Rick Lowe's problems around the release of v1.10.
       I don't run the test for Darwin (Mac OS X) and Windows because the tarball
       isn't valid on those platforms.
+   
+      All of the tests with unicode paths were incredibly painful to get
+      working with Python 3, but these tests in particular were difficult,
+      because character 0x82 is not a valid UTF-8 character.  The key is was to
+      get the filename into the same encoding used by methods like os.listdir(), 
+      which uses a "surrogateescape" fallback for encoding filenames.  Once I
+      switched encodePath to do the same thing, this test started passing.  
+      There's apparently no other way to represent filenames like this.
       """
       if not platformMacOsX() and not platformWindows():
          self.extractTar("tree13")
@@ -21537,8 +21546,17 @@ class TestPurgeItemList(unittest.TestCase):
    def testAddDirContents_072(self):
       """
       Attempt to add a directory which has several UTF-8 filenames in it.
+
       This test data was taken from Rick Lowe's problems around the release of v1.10.
       I don't run the test for Darwin (Mac OS X) because the tarball isn't valid there.
+   
+      All of the tests with unicode paths were incredibly painful to get
+      working with Python 3, but these tests in particular were difficult,
+      because character 0x82 is not a valid UTF-8 character.  The key is was to
+      get the filename into the same encoding used by methods like os.listdir(), 
+      which uses a "surrogateescape" fallback for encoding filenames.  Once I
+      switched encodePath to do the same thing, this test started passing.  
+      There's apparently no other way to represent filenames like this.
       """
       if not (platformMacOsX() and sys.getfilesystemencoding() == "utf-8"):
          self.extractTar("tree13")
@@ -24963,11 +24981,6 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-#                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
-#                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
-#                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
-#                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
-#                              unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_072'),
                               unittest.makeSuite(TestFilesystemList, 'test'),
                               unittest.makeSuite(TestBackupFileList, 'test'),
                               unittest.makeSuite(TestPurgeItemList, 'test'),

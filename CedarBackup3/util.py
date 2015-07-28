@@ -1693,6 +1693,7 @@ def encodePath(path):
    @param path: Path to encode
    @return: Path, as a string, encoded appropriately
    @raise ValueError: If the path cannot be encoded properly.
+   @see: http://lucumr.pocoo.org/2013/7/2/the-updated-guide-to-unicode/
    """
    if path is None:
       return path
