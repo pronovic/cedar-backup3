@@ -67,9 +67,9 @@ MANUAL_DIR        = $(DOC_DIR)/manual
 
 all: 
 
-clean: docclean distribclean 
+clean: docclean distribclean coverageclean
 	-@$(FIND) . -name "*.pyc" | xargs rm -f
-	-@rm -f PKG-INFO tags
+	-@rm -f PKG-INFO tags 
 
 tags:
 	ctags `find . -name "*.py"`
@@ -95,6 +95,10 @@ usercoverage:
 	@$(COVERAGE) run --source CedarBackup3 util/test.py
 	@$(COVERAGE) html
 	@echo "Coverage at: file://${PWD}/htmlcov/index.html"
+
+coverageclean:
+	@rm -f .coverage
+	@rm -rf htmlcov
 
 
 ##################################
@@ -199,10 +203,10 @@ debdistclean:
 # This layout matches the htdocs/docs tree for the website
 htmldocs: docdist
 docdist: doc
-	@$(MKDIR) -p $(BITBUCKET_DIR)/docs/cedar-backup2/
-	@$(CP) Changelog $(BITBUCKET_DIR)/docs/cedar-backup2/
-	@$(CP) -r $(MANUAL_DIR) $(BITBUCKET_DIR)/docs/cedar-backup2/
-	@$(CP) -r $(INTERFACE_DIR) $(BITBUCKET_DIR)/docs/cedar-backup2/
+	@$(MKDIR) -p $(BITBUCKET_DIR)/docs/cedar-backup3/
+	@$(CP) Changelog $(BITBUCKET_DIR)/docs/cedar-backup3/
+	@$(CP) -r $(MANUAL_DIR) $(BITBUCKET_DIR)/docs/cedar-backup3/
+	@$(CP) -r $(INTERFACE_DIR) $(BITBUCKET_DIR)/docs/cedar-backup3/
 
 
 ##################################
