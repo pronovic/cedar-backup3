@@ -18,9 +18,22 @@ DEPENDENCIES="chardet pylint coverage"
 if [ ! -d ${DIR} ]; then
    echo "Creating virtual environment for Python ${VERSION}..."
    rm -rf ${DIR}
+
    ${VIRTUALENV} --quiet --python=python${VERSION} ${DIR}
+   if [ $? != 0 ]; then
+      echo "Failed to create virtual environment for Python ${VERSION}"
+      exit 1
+   fi
+
    for PACKAGE in ${DEPENDENCIES}; do
-      echo -n "Installing ${PACKAGE}..." && ${PIP} install --quiet ${PACKAGE} >/dev/null 2>&1 && echo "done."
+      echo -n "Installing ${PACKAGE}..." 
+      ${PIP} install --quiet ${PACKAGE} >/dev/null 2>&1 
+      if [ $? != 0 ]; then
+         echo "failed."
+         exit 1
+      else
+         echo "done."
+      fi
    done
 fi
 
