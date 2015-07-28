@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 # vim: set ft=python ts=3 sw=3 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -2614,13 +2613,4 @@ def suite():
                               unittest.makeSuite(TestSubversionConfig, 'test'),
                               unittest.makeSuite(TestLocalConfig, 'test'),
                             ))
-
-
-########################################################################
-# Module entry point
-########################################################################
-
-# When this module is executed from the command-line, run its tests
-if __name__ == '__main__':
-   unittest.main()
 
