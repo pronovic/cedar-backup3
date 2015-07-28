@@ -120,6 +120,7 @@ from CedarBackup3.testutil import findResources, buildPath, removedir, extractTa
 from CedarBackup3.testutil import platformMacOsX, platformWindows, platformCygwin
 from CedarBackup3.testutil import platformSupportsLinks
 from CedarBackup3.testutil import failUnlessAssignRaises
+from CedarBackup3.util import encodePath
 from CedarBackup3.filesystem import FilesystemList, BackupFileList, PurgeItemList, normalizeDir, compareContents
 
 
@@ -3821,7 +3822,7 @@ class TestFilesystemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in fsList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in fsList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", b'\xe2\x99\xaa\xe2\x99\xac'.decode("latin-1"), ]) in fsList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", encodePath(b'\xe2\x99\xaa\xe2\x99\xac'), ]) in fsList)
 
    def testAddDirContents_072(self):
       """
@@ -21542,7 +21543,7 @@ class TestPurgeItemList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.long.gz", ]) in purgeList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.cp437.gz", ]) in purgeList)
       self.assertTrue(self.buildPath([ "tree12", "unicode", "utflist.short.gz", ]) in purgeList)
-      self.assertTrue(self.buildPath([ "tree12", "unicode", b'\xe2\x99\xaa\xe2\x99\xac'.decode("latin-1"), ]) in purgeList)
+      self.assertTrue(self.buildPath([ "tree12", "unicode", encodePath(b'\xe2\x99\xaa\xe2\x99\xac'), ]) in purgeList)
 
    def testAddDirContents_072(self):
       """
@@ -24973,7 +24974,7 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    return unittest.TestSuite((
-#                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
+                              unittest.makeSuite(TestFilesystemList, 'testAddFile_035'),
                               unittest.makeSuite(TestFilesystemList, 'testAddDirContents_071'),
 #                              unittest.makeSuite(TestFilesystemList, 'testAddDirContents_072'),
                               unittest.makeSuite(TestPurgeItemList, 'testAddDirContents_071'),
