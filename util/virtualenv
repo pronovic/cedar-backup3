@@ -1,0 +1,28 @@
+#!/bin/sh
+# Creates a Python virtual environment for use in Makefile or Jenkins.
+
+if [ $# != 2 ]; then
+   echo "Usage: virtualenv <version> <dir>"
+   echo "Creates a Python virtual environment for the version in the directory."
+   exit 1
+fi
+
+VERSION=${1}
+DIR=${2}
+
+VIRTUALENV=virtualenv
+PYTHON=${DIR}/bin/python
+PIP=${DIR}/bin/pip
+DEPENDENCIES="chardet pylint coverage"
+
+if [ ! -d ${DIR} ]; then
+   echo "Creating virtual environment for Python ${VERSION}..."
+   rm -rf ${DIR}
+   ${VIRTUALENV} --quiet --python=python${VERSION} ${DIR}
+   for PACKAGE in ${DEPENDENCIES}; do
+      echo -n "Installing ${PACKAGE}..." && ${PIP} install --quiet ${PACKAGE} >/dev/null 2>&1 && echo "done."
+   done
+fi
+
+echo "Working with `${PYTHON} --version` (`${PIP} --version | awk '{print $1" "$2}'`) at ${PYTHON}"
+
