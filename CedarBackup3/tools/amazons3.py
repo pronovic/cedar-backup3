@@ -856,11 +856,11 @@ def cli():
    """
    try:
       if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
-         sys.stderr.write("Python version 3.4 or greater required.\n")
+         sys.stderr.write("Python 3 version 3.4 or greater required.\n")
          return 1
    except:
       # sys.version_info isn't available before 2.0
-      sys.stderr.write("Python version 3.4 or greater required.\n")
+      sys.stderr.write("Python 3 version 3.4 or greater required.\n")
       return 1
 
    try:
