@@ -1,0 +1,46 @@
+#!/bin/sh
+# Execute the Jenkins build
+
+# Process command-line arguments
+if [ $# = 1 ]; then
+   PYTHON=${1}
+   if [ ! -d ${PYTHON} ]; then
+      echo "Virtual environment does not exist: ${PYTHON}"
+   fi
+else
+   echo "Usage: jenkins <virtualenv>"
+   echo "Execute the Jenkins build using the passed-in Python virtualenv."
+   exit 1
+fi  
+
+# Clean up so each build starts fresh
+echo "Cleaning up source tree..."
+find . -name "*.pyc" | xargs rm -f 
+rm -f PKG-INFO tags
+rm -f coverage.html
+rm -rf htmlcov
+rm -f coverage.xml
+rm -f .coverage
+rm -f pylint.*.out
+
+# Run tests and collect coverage data
+echo "Running unit tests..."
+${PYTHON}/bin/coverage run --source=CedarBackup2 util/test.py
+if [ $? != 0 ]; then
+   echo "Unit tests failed."
+   exit 1
+fi
+
+# Generate coverage.xml that can be picked up by the Cobertura plugin
+# Note that we ignore the return status so an error does not fail the build
+echo "Generating coverage report..."
+${PYTHON}/bin/coverage xml
+
+# Run Pylint checks
+# Note that we ignore the return status so an error does not fail the build
+echo "Running pylint checks..."
+${PYTHON}/bin/pylint --rcfile=pylint-code.rc CedarBackup2 util setup.py > pylint-code.out
+
+# Return successfully
+echo "Build is complete."
+exit 0

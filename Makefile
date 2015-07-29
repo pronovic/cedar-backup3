@@ -122,10 +122,10 @@ coverageclean:
 ##################################
 
 check: virtualenv
-	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE)
+	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE) cback3 util setup.py
 
 allcheck: virtualenv
-	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE) util setup.py
+	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE) cback3 util setup.py
 	-@$(PYLINT) --rcfile=pylint-test.rc testcase
 
 # Trim trailing whitespace from lines in source files
