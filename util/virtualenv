@@ -1,23 +1,41 @@
 #!/bin/sh
 # Creates a Python virtual environment for use in Makefile or Jenkins.
 
-if [ $# != 2 ]; then
-   echo "Usage: virtualenv <version> <dir>"
+# Process command-line arguments
+if [ $# = 2 ]; then
+   VERSION=${1}
+   DIR=${2}
+   REBUILD="false"
+elif [ $# = 3 ]; then
+   if [ "${1}" = "--rebuild" ]; then
+      VERSION=${2}
+      DIR=${3}
+      REBUILD="true"
+   else
+      echo "Usage: virtualenv [--rebuild] <version> <dir>"
+      echo "Creates a Python virtual environment for the version in the directory."
+      exit 1
+   fi
+else
+   echo "Usage: virtualenv [--rebuild] <version> <dir>"
    echo "Creates a Python virtual environment for the version in the directory."
    exit 1
 fi
 
-VERSION=${1}
-DIR=${2}
-
+# Configuration
 VIRTUALENV=virtualenv
 PYTHON=${DIR}/bin/python
 PIP=${DIR}/bin/pip
 DEPENDENCIES="chardet pylint coverage"
 
+# Delete the virtualenv if we're supposed to rebuild it
+if [ "${REBUILD}" = "true" ]; then
+   rm -rf ${DIR}
+fi
+
+# Rebuild the virtualenv if it doesn't exist
 if [ ! -d ${DIR} ]; then
    echo "Creating virtual environment for Python ${VERSION}..."
-   rm -rf ${DIR}
 
    ${VIRTUALENV} --quiet --python=python${VERSION} ${DIR}
    if [ $? != 0 ]; then
@@ -37,6 +55,7 @@ if [ ! -d ${DIR} ]; then
    done
 fi
 
+# Log a message indicating which environment is in use
 PYTHON_RESULT=`${PYTHON} -V 2>&1`  # Python 2 dumps this info to stderr
 PIP_RESULT=`${PIP} --version | awk '{print $1" "$2}'`
 echo "Working with ${PYTHON_RESULT} (${PIP_RESULT}) at ${PYTHON}"
