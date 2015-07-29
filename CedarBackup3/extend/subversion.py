@@ -1333,7 +1333,7 @@ def _getOutputFile(backupPath, compressMode):
    elif compressMode == "bzip2":
       return BZ2File(backupPath, "w")
    else:
-      return open(backupPath, "w")
+      return open(backupPath, "wb")
 
 def _loadLastRevision(revisionPath):
    """

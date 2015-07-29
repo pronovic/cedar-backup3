@@ -1471,7 +1471,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
    @type doNotLog: Boolean C{True} or C{False}
 
    @param outputFile: File object that all output should be written to.
-   @type outputFile: File object as returned from C{open()} or C{file()}.
+   @type outputFile: File object as returned from C{open()} or C{file()}, configured for binary write
 
    @return: Tuple of C{(result, output)} as described above.
    """
@@ -1495,10 +1495,9 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
       while True:
          line = pipe.stdout.readline()
          if not line: break
-         line = line.decode("utf-8")
-         if returnOutput: output.append(line)
+         if returnOutput: output.append(line.decode("utf-8"))
          if outputFile is not None: outputFile.write(line)
-         if not doNotLog: outputLogger.info(line[:-1])  # this way the log will (hopefully) get updated in realtime
+         if not doNotLog: outputLogger.info(line.decode("utf-8")[:-1])  # this way the log will (hopefully) get updated in realtime
       if outputFile is not None:
          try: # note, not every file-like object can be flushed
             outputFile.flush()

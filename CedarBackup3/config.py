@@ -4566,7 +4566,7 @@ class Config(object):
          self.validate()
       xmlData = self._extractXml()
       if xmlPath is not None:
-         open(xmlPath, "w").write(xmlData)
+         open(xmlPath, 'wt', encoding='utf-8').write(xmlData)
          return None
       else:
          return xmlData

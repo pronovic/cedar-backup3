@@ -211,6 +211,6 @@ def _getOutputFile(targetDir, name, compress=True):
    if compress:
       outputFile = BZ2File(filename, "w")
    else:
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
    return (outputFile, filename)
 

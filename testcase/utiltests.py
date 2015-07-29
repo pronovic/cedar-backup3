@@ -2982,7 +2982,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3004,7 +3004,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3026,7 +3026,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3048,7 +3048,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3070,7 +3070,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3093,7 +3093,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3115,7 +3115,7 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3140,7 +3140,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3166,7 +3166,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3192,7 +3192,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3218,7 +3218,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3244,7 +3244,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
       finally:
@@ -3270,7 +3270,7 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "w")
+      outputFile = open(filename, "wb")
       try:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
       finally:
