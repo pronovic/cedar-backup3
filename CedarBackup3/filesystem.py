@@ -52,6 +52,7 @@ import re
 import math
 import logging
 import tarfile
+import hashlib
 
 # Cedar Backup modules
 from CedarBackup3.knapsack import firstFit, bestFit, worstFit, alternateFit
@@ -907,12 +908,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       @raise OSError: If the file cannot be opened.
       """
       # pylint: disable=C0103,E1101
-      try:
-         import hashlib
-         s = hashlib.sha1()
-      except ImportError:
-         import sha
-         s = sha.new()
+      s = hashlib.sha1()
       f = open(path, mode="rb")  # in case platform cares about binary reads
       readBytes = 4096  # see notes above
       while readBytes > 0:

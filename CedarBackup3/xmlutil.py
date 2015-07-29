@@ -683,7 +683,7 @@ def _encodeText(text, encoding):
       return text
    try:
       if isinstance(text, bytes):
-         text = str(path, "utf-8")
+         text = str(text, "utf-8")
       return text
    except UnicodeError:
       raise ValueError("Path could not be safely encoded as utf-8.")

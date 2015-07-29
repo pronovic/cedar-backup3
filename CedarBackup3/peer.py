@@ -933,11 +933,7 @@ class RemotePeer(object):
       contents.excludeDirs = True
       contents.excludeLinks = True
       contents.addDirContents(path)
-      try:
-         return set(contents)
-      except:
-         import sets
-         return sets.Set(contents)
+      return set(contents)
 
    @staticmethod
    def _copyRemoteDir(remoteUser, localUser, remoteHost, rcpCommand, rcpCommandList,

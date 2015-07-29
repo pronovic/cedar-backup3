@@ -151,7 +151,7 @@ def createfile(config, filepath):
 
    @return: Size of file that was created.
    """
-   characterSet = string.letters + string.digits + "\n"
+   characterSet = string.ascii_letters + string.digits + "\n"
    filesize = random.randint(config['minsize'], config['maxsize'])
    fp = open(filepath, "w")
    fp.write("".join([random.choice(characterSet) for i in range(1, filesize)]))

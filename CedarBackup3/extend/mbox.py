@@ -1443,10 +1443,10 @@ def _backupMboxDir(config, absolutePath,
       logger.debug("Completed backing up directory [%s].", absolutePath)
    finally:
       try:
-         for item in tarList:
-            if os.path.exists(item):
+         for cleanitem in tarList:
+            if os.path.exists(cleanitem):
                try:
-                  os.remove(item)
+                  os.remove(cleanitem)
                except: pass
       except: pass
       try:
