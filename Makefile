@@ -124,8 +124,7 @@ coverageclean:
 check: virtualenv
 	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE) cback3 util setup.py
 
-allcheck: virtualenv
-	-@$(PYLINT) --rcfile=pylint-code.rc $(PACKAGE) cback3 util setup.py
+testcheck: virtualenv
 	-@$(PYLINT) --rcfile=pylint-test.rc testcase
 
 # Trim trailing whitespace from lines in source files
@@ -226,5 +225,5 @@ docdist: doc
 # Phony rules for use by GNU make
 ##################################
 
-.PHONY: all clean tags test usertest check allcheck doc docs docclean docsclean epydoc interface interface-doc interface-html book validate manual manual-doc distrib distribclean sdist sdistclean debdist debdistclean docdist virtualenv virtualenvclean coverage coverageclean
+.PHONY: all clean tags test usertest check testcheck doc docs docclean docsclean epydoc interface interface-doc interface-html book validate manual manual-doc distrib distribclean sdist sdistclean debdist debdistclean docdist virtualenv virtualenvclean coverage coverageclean
 
