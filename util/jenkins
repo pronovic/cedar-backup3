@@ -25,7 +25,7 @@ rm -f pylint.*.out
 
 # Run tests and collect coverage data
 echo "Running unit tests..."
-${PYTHON}/bin/coverage run --source=CedarBackup2 util/test.py
+${PYTHON}/bin/coverage run --source=CedarBackup3 util/test.py
 if [ $? != 0 ]; then
    echo "Unit tests failed."
    exit 1
@@ -39,7 +39,7 @@ ${PYTHON}/bin/coverage xml
 # Run Pylint checks
 # Note that we ignore the return status so an error does not fail the build
 echo "Running pylint checks..."
-${PYTHON}/bin/pylint --rcfile=pylint-code.rc CedarBackup2 util setup.py > pylint-code.out
+${PYTHON}/bin/pylint --rcfile=pylint-code.rc CedarBackup3 util setup.py > pylint-code.out
 
 # Return successfully
 echo "Build is complete."
