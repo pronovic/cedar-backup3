@@ -26,7 +26,7 @@ fi
 VIRTUALENV=virtualenv
 PYTHON=${DIR}/bin/python
 PIP=${DIR}/bin/pip
-DEPENDENCIES="chardet pylint coverage"
+DEPENDENCIES="chardet>=2.3.0 pylint>=1.4.4 coverage>=3.7.1"
 
 # Delete the virtualenv if we're supposed to rebuild it
 if [ "${REBUILD}" = "true" ]; then
@@ -45,7 +45,7 @@ if [ ! -d ${DIR} ]; then
 
    for PACKAGE in ${DEPENDENCIES}; do
       echo -n "Installing ${PACKAGE}..." 
-      ${PIP} install --quiet ${PACKAGE} >/dev/null 2>&1 
+      ${PIP} install --quiet "${PACKAGE}" >/dev/null 2>&1 
       if [ $? != 0 ]; then
          echo "failed."
          exit 1
