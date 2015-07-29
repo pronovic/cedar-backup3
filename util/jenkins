@@ -14,7 +14,7 @@ else
 fi  
 
 # Clean up so each build starts fresh
-echo "Cleaning up source tree..."
+echo "`date` Cleaning up source tree..."
 find . -name "*.pyc" | xargs rm -f 
 rm -f PKG-INFO tags
 rm -f coverage.html
@@ -24,7 +24,7 @@ rm -f .coverage
 rm -f pylint.*.out
 
 # Run tests and collect coverage data
-echo "Running unit tests..."
+echo "`date` Running unit tests..."
 ${PYTHON}/bin/coverage run --source=CedarBackup3 util/test.py
 if [ $? != 0 ]; then
    echo "Unit tests failed."
@@ -33,14 +33,16 @@ fi
 
 # Generate coverage.xml that can be picked up by the Cobertura plugin
 # Note that we ignore the return status so an error does not fail the build
-echo "Generating coverage report..."
+echo "`date` Generating coverage report..."
 ${PYTHON}/bin/coverage xml
 
 # Run Pylint checks
 # Note that we ignore the return status so an error does not fail the build
-echo "Running pylint checks..."
+echo "`date` Running pylint checks on source code..."
 ${PYTHON}/bin/pylint --rcfile=pylint-code.rc CedarBackup3 util setup.py > pylint-code.out
+echo "`date` Running pylint checks on test cases..."
+${PYTHON}/bin/pylint --rcfile=pylint-test.rc testcase > pylint-test.out
 
 # Return successfully
-echo "Build is complete."
+echo "`date` Build is complete."
 exit 0
