@@ -255,7 +255,7 @@ class TestFunctions(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestFunctions, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestFunctions, 'test'))
+   return unittest.TestSuite(tests)
 

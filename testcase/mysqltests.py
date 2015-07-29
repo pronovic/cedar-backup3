@@ -1099,8 +1099,8 @@ class TestLocalConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestMysqlConfig, 'test'),
-                              unittest.makeSuite(TestLocalConfig, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestMysqlConfig, 'test'))
+   tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   return unittest.TestSuite(tests)
 

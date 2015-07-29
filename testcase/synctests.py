@@ -3153,9 +3153,9 @@ class TestOptions(unittest.TestCase):
       options.s3BucketUrl = "bucket"
       argumentList = options.buildArgumentList(validate=False)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet",
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics",
-                             "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
+                        "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics",
+                        "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
 
    def testBuildArgumentList_017(self):
       """Test with no values set, validate=True."""
@@ -3271,9 +3271,9 @@ class TestOptions(unittest.TestCase):
       options.s3BucketUrl = "bucket"
       argumentList = options.buildArgumentList(validate=True)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet",
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics",
-                             "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
+                        "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics",
+                        "--verifyOnly", "--ignoreWarnings", "source", "bucket", ], argumentList)
 
 
    #############################
@@ -3528,8 +3528,8 @@ class TestOptions(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestFunctions, 'test'),
-                              unittest.makeSuite(TestOptions, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestFunctions, 'test'))
+   tests.append(unittest.makeSuite(TestOptions, 'test'))
+   return unittest.TestSuite(tests)
 

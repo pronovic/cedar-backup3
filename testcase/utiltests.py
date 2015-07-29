@@ -946,12 +946,12 @@ class TestRegexList(unittest.TestCase):
       Test append() for a valid regular expresson.
       """
       list1 = RegexList()
-      list1.append(".*\.jpg")
-      self.assertEqual(list1, [ ".*\.jpg", ])
-      self.assertEqual(list1[0], ".*\.jpg")
+      list1.append(r".*\.jpg")
+      self.assertEqual(list1, [ r".*\.jpg", ])
+      self.assertEqual(list1[0], r".*\.jpg")
       list1.append("[a-zA-Z0-9]*")
-      self.assertEqual(list1, [ ".*\.jpg", "[a-zA-Z0-9]*", ])
-      self.assertEqual(list1[0], ".*\.jpg")
+      self.assertEqual(list1, [ r".*\.jpg", "[a-zA-Z0-9]*", ])
+      self.assertEqual(list1[0], r".*\.jpg")
       self.assertEqual(list1[1], "[a-zA-Z0-9]*")
 
    def testListOperations_002(self):
@@ -968,13 +968,13 @@ class TestRegexList(unittest.TestCase):
       Test insert() for a valid regular expression.
       """
       list1 = RegexList()
-      list1.insert(0, ".*\.jpg")
-      self.assertEqual(list1, [ ".*\.jpg", ])
-      self.assertEqual(list1[0], ".*\.jpg")
+      list1.insert(0, r".*\.jpg")
+      self.assertEqual(list1, [ r".*\.jpg", ])
+      self.assertEqual(list1[0], r".*\.jpg")
       list1.insert(0, "[a-zA-Z0-9]*")
-      self.assertEqual(list1, [ "[a-zA-Z0-9]*", ".*\.jpg", ])
+      self.assertEqual(list1, [ "[a-zA-Z0-9]*", r".*\.jpg", ])
       self.assertEqual(list1[0], "[a-zA-Z0-9]*")
-      self.assertEqual(list1[1], ".*\.jpg")
+      self.assertEqual(list1[1], r".*\.jpg")
 
    def testListOperations_004(self):
       """
@@ -988,12 +988,12 @@ class TestRegexList(unittest.TestCase):
       Test extend() for a valid regular expression.
       """
       list1 = RegexList()
-      list1.extend([".*\.jpg", ])
-      self.assertEqual(list1, [ ".*\.jpg", ])
-      self.assertEqual(list1[0], ".*\.jpg")
+      list1.extend([r".*\.jpg", ])
+      self.assertEqual(list1, [ r".*\.jpg", ])
+      self.assertEqual(list1[0], r".*\.jpg")
       list1.extend(["[a-zA-Z0-9]*", ])
-      self.assertEqual(list1, [ ".*\.jpg", "[a-zA-Z0-9]*", ])
-      self.assertEqual(list1[0], ".*\.jpg")
+      self.assertEqual(list1, [ r".*\.jpg", "[a-zA-Z0-9]*", ])
+      self.assertEqual(list1[0], r".*\.jpg")
       self.assertEqual(list1[1], "[a-zA-Z0-9]*")
 
    def testListOperations_006(self):
@@ -3795,7 +3795,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(expected, actual)
 
    def testBuildNormalizedPath011(self):
-      """
+      r"""
       Test for "\."
       """
       path = r"\."
@@ -3804,7 +3804,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(expected, actual)
 
    def testBuildNormalizedPath012(self):
-      """
+      r"""
       Test for "\.."
       """
       path = r"\.."
@@ -3813,7 +3813,7 @@ class TestFunctions(unittest.TestCase):
       self.assertEqual(expected, actual)
 
    def testBuildNormalizedPath013(self):
-      """
+      r"""
       Test for "\..."
       """
       path = r"\..."
@@ -4051,16 +4051,16 @@ class TestFunctions(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestUnorderedList, 'test'),
-                              unittest.makeSuite(TestAbsolutePathList, 'test'),
-                              unittest.makeSuite(TestObjectTypeList, 'test'),
-                              unittest.makeSuite(TestRestrictedContentList, 'test'),
-                              unittest.makeSuite(TestRegexMatchList, 'test'),
-                              unittest.makeSuite(TestRegexList, 'test'),
-                              unittest.makeSuite(TestDirectedGraph, 'test'),
-                              unittest.makeSuite(TestPathResolverSingleton, 'test'),
-                              unittest.makeSuite(TestDiagnostics, 'test'),
-                              unittest.makeSuite(TestFunctions, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestUnorderedList, 'test'))
+   tests.append(unittest.makeSuite(TestAbsolutePathList, 'test'))
+   tests.append(unittest.makeSuite(TestObjectTypeList, 'test'))
+   tests.append(unittest.makeSuite(TestRestrictedContentList, 'test'))
+   tests.append(unittest.makeSuite(TestRegexMatchList, 'test'))
+   tests.append(unittest.makeSuite(TestRegexList, 'test'))
+   tests.append(unittest.makeSuite(TestDirectedGraph, 'test'))
+   tests.append(unittest.makeSuite(TestPathResolverSingleton, 'test'))
+   tests.append(unittest.makeSuite(TestDiagnostics, 'test'))
+   tests.append(unittest.makeSuite(TestFunctions, 'test'))
+   return unittest.TestSuite(tests)
 

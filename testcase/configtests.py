@@ -11371,7 +11371,7 @@ class TestConfig(unittest.TestCase):
       expected = Config()
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11385,7 +11385,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       self.assertEqual(expected, config)
 
@@ -11561,7 +11561,7 @@ class TestConfig(unittest.TestCase):
       expected.options.managedActions = [ "collect", "purge", ]
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11575,7 +11575,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -11629,7 +11629,7 @@ class TestConfig(unittest.TestCase):
       expected.options.managedActions = [ "collect", "purge", ]
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11643,7 +11643,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -11694,7 +11694,7 @@ class TestConfig(unittest.TestCase):
       expected.options.managedActions = [ "collect", "purge", ]
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11708,7 +11708,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -11762,7 +11762,7 @@ class TestConfig(unittest.TestCase):
       expected.options.managedActions = [ "collect", "purge", ]
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11776,7 +11776,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -11918,7 +11918,7 @@ class TestConfig(unittest.TestCase):
       expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge", ]))
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -11932,7 +11932,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -11990,7 +11990,7 @@ class TestConfig(unittest.TestCase):
       expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge", ]))
       expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
       expected.collect.absoluteExcludePaths = ["/etc/cback.conf", "/etc/X11", ]
-      expected.collect.excludePatterns = [".*tmp.*", ".*\.netscape\/.*", ]
+      expected.collect.excludePatterns = [".*tmp.*", r".*\.netscape\/.*", ]
       expected.collect.collectFiles = []
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.profile"))
       expected.collect.collectFiles.append(CollectFile(absolutePath="/home/root/.kshrc", collectMode="weekly"))
@@ -12004,7 +12004,7 @@ class TestConfig(unittest.TestCase):
       collectDir = CollectDir(absolutePath="/opt")
       collectDir.absoluteExcludePaths = [ "/opt/share", "/opt/tmp", ]
       collectDir.relativeExcludePaths = [ "large", "backup", ]
-      collectDir.excludePatterns = [ ".*\.doc\.*", ".*\.xls\.*", ]
+      collectDir.excludePatterns = [ r".*\.doc\.*", r".*\.xls\.*", ]
       expected.collect.collectDirs.append(collectDir)
       expected.stage = StageConfig()
       expected.stage.targetDir = "/opt/backup/staging"
@@ -12668,28 +12668,28 @@ class TestConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestByteQuantity, 'test'),
-                              unittest.makeSuite(TestActionDependencies, 'test'),
-                              unittest.makeSuite(TestActionHook, 'test'),
-                              unittest.makeSuite(TestPreActionHook, 'test'),
-                              unittest.makeSuite(TestPostActionHook, 'test'),
-                              unittest.makeSuite(TestBlankBehavior, 'test'),
-                              unittest.makeSuite(TestExtendedAction, 'test'),
-                              unittest.makeSuite(TestCommandOverride, 'test'),
-                              unittest.makeSuite(TestCollectFile, 'test'),
-                              unittest.makeSuite(TestCollectDir, 'test'),
-                              unittest.makeSuite(TestPurgeDir, 'test'),
-                              unittest.makeSuite(TestLocalPeer, 'test'),
-                              unittest.makeSuite(TestRemotePeer, 'test'),
-                              unittest.makeSuite(TestReferenceConfig, 'test'),
-                              unittest.makeSuite(TestExtensionsConfig, 'test'),
-                              unittest.makeSuite(TestOptionsConfig, 'test'),
-                              unittest.makeSuite(TestPeersConfig, 'test'),
-                              unittest.makeSuite(TestCollectConfig, 'test'),
-                              unittest.makeSuite(TestStageConfig, 'test'),
-                              unittest.makeSuite(TestStoreConfig, 'test'),
-                              unittest.makeSuite(TestPurgeConfig, 'test'),
-                              unittest.makeSuite(TestConfig, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestByteQuantity, 'test'))
+   tests.append(unittest.makeSuite(TestActionDependencies, 'test'))
+   tests.append(unittest.makeSuite(TestActionHook, 'test'))
+   tests.append(unittest.makeSuite(TestPreActionHook, 'test'))
+   tests.append(unittest.makeSuite(TestPostActionHook, 'test'))
+   tests.append(unittest.makeSuite(TestBlankBehavior, 'test'))
+   tests.append(unittest.makeSuite(TestExtendedAction, 'test'))
+   tests.append(unittest.makeSuite(TestCommandOverride, 'test'))
+   tests.append(unittest.makeSuite(TestCollectFile, 'test'))
+   tests.append(unittest.makeSuite(TestCollectDir, 'test'))
+   tests.append(unittest.makeSuite(TestPurgeDir, 'test'))
+   tests.append(unittest.makeSuite(TestLocalPeer, 'test'))
+   tests.append(unittest.makeSuite(TestRemotePeer, 'test'))
+   tests.append(unittest.makeSuite(TestReferenceConfig, 'test'))
+   tests.append(unittest.makeSuite(TestExtensionsConfig, 'test'))
+   tests.append(unittest.makeSuite(TestOptionsConfig, 'test'))
+   tests.append(unittest.makeSuite(TestPeersConfig, 'test'))
+   tests.append(unittest.makeSuite(TestCollectConfig, 'test'))
+   tests.append(unittest.makeSuite(TestStageConfig, 'test'))
+   tests.append(unittest.makeSuite(TestStoreConfig, 'test'))
+   tests.append(unittest.makeSuite(TestPurgeConfig, 'test'))
+   tests.append(unittest.makeSuite(TestConfig, 'test'))
+   return unittest.TestSuite(tests)
 

@@ -1561,13 +1561,13 @@ class TestRemotePeer(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    if runAllTests():
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestLocalPeer, 'test'),
-                                 unittest.makeSuite(TestRemotePeer, 'test'),
-                               ))
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestLocalPeer, 'test'))
+      tests.append(unittest.makeSuite(TestRemotePeer, 'test'))
+      return unittest.TestSuite(tests)
    else:
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestLocalPeer, 'test'),
-                                 unittest.makeSuite(TestRemotePeer, 'testBasic'),
-                               ))
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestLocalPeer, 'test'))
+      tests.append(unittest.makeSuite(TestRemotePeer, 'testBasic'))
+      return unittest.TestSuite(tests)
 

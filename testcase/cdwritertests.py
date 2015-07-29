@@ -1705,9 +1705,9 @@ class TestCdWriter(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestMediaDefinition, 'test'),
-                              unittest.makeSuite(TestMediaCapacity, 'test'),
-                              unittest.makeSuite(TestCdWriter, 'test'),
-                            ))
+   tests =  [ ]
+   tests.append(unittest.makeSuite(TestMediaDefinition, 'test'))
+   tests.append(unittest.makeSuite(TestMediaCapacity, 'test'))
+   tests.append(unittest.makeSuite(TestCdWriter, 'test'))
+   return unittest.TestSuite(tests)
 

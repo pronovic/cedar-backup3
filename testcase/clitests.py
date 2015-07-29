@@ -4210,9 +4210,9 @@ class TestOptions(unittest.TestCase):
       options.actions = ["collect", ]
       argumentList = options.buildArgumentList(validate=False)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config",
-                             "--full", "--managed", "--managed-only",
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
+                        "--full", "--managed", "--managed-only",
+                        "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
 
    def testBuildArgumentList_017(self):
       """Test with all values set, actions containing multiple items, validate=False."""
@@ -4235,9 +4235,9 @@ class TestOptions(unittest.TestCase):
       options.actions = ["collect", "stage", ]
       argumentList = options.buildArgumentList(validate=False)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config",
-                             "--full", "--managed", "--managed-only",
-                             "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
+                        "--full", "--managed", "--managed-only",
+                        "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
 
    def testBuildArgumentList_018(self):
       """Test with no values set, validate=True."""
@@ -4351,8 +4351,8 @@ class TestOptions(unittest.TestCase):
       options.actions = ["collect", ]
       argumentList = options.buildArgumentList(validate=True)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config",
-                             "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
+                        "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics", "collect", ], argumentList)
 
    def testBuildArgumentList_034(self):
       """Test with all values set (except managed ones), actions containing multiple items, validate=True."""
@@ -4373,8 +4373,8 @@ class TestOptions(unittest.TestCase):
       options.actions = ["collect", "stage", ]
       argumentList = options.buildArgumentList(validate=True)
       self.assertEqual(["--help", "--version", "--verbose", "--quiet", "--config", "config",
-                             "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
-                             "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
+                        "--full", "--logfile", "logfile", "--owner", "a:b", "--mode", "631",
+                        "--output", "--debug", "--stack", "--diagnostics", "collect", "stage", ], argumentList)
 
    def testBuildArgumentList_035(self):
       """Test with managed set, validate=False."""
@@ -6309,9 +6309,11 @@ class TestActionSet(unittest.TestCase):
       Test with actions=[ collect, stage, store, purge, one, two, three, four, five ], extensions=[ (index 50, 150, 250, 350, 450)].
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
       self.assertTrue(len(actionSet.actionSet) == 9)
@@ -6366,9 +6368,11 @@ class TestActionSet(unittest.TestCase):
       Test with actions=[ one, five, collect, store, three, stage, four, purge, two ], extensions=[ (index 50, 150, 250, 350, 450)].
       """
       actions = [ "one", "five", "collect", "store", "three", "stage", "four", "purge", "two", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       actionSet = _ActionSet(actions, extensions, options, None, False, True)
       self.assertTrue(len(actionSet.actionSet) == 9)
@@ -9402,9 +9406,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=True
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       actionSet = _ActionSet(actions, extensions, options, None, True, True)
@@ -9819,9 +9825,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=True
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -10130,9 +10138,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=False
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -10449,9 +10459,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=False
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -10952,9 +10964,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=False
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -11515,9 +11529,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=False
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -12168,9 +12184,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=False
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", "three", "four", "five", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -13058,9 +13076,11 @@ class TestActionSet(unittest.TestCase):
       managed=True, local=True
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       peers = PeersConfig()
@@ -13193,9 +13213,11 @@ class TestActionSet(unittest.TestCase):
       Test to make sure that various options all seem to be pulled from the right places with mixed data.
       """
       actions = [ "collect", "stage", "store", "purge", "one", "two", ]
-      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50), ExtendedAction("two", "os.path", "isfile", 150),
-                     ExtendedAction("three", "os.path", "islink", 250), ExtendedAction("four", "os.path", "isabs", 350),
-                     ExtendedAction("five", "os.path", "exists", 450), ], None)
+      extensions = ExtensionsConfig([ ExtendedAction("one", "os.path", "isdir", 50),
+                                      ExtendedAction("two", "os.path", "isfile", 150),
+                                      ExtendedAction("three", "os.path", "islink", 250),
+                                      ExtendedAction("four", "os.path", "isabs", 350),
+                                      ExtendedAction("five", "os.path", "exists", 450), ], None)
       options = OptionsConfig()
       options.managedActions = [ "collect", "purge", "one", ]
       options.backupUser = "userZ"
@@ -13291,9 +13313,9 @@ class TestActionSet(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestFunctions, 'test'),
-                              unittest.makeSuite(TestOptions, 'test'),
-                              unittest.makeSuite(TestActionSet, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestFunctions, 'test'))
+   tests.append(unittest.makeSuite(TestOptions, 'test'))
+   tests.append(unittest.makeSuite(TestActionSet, 'test'))
+   return unittest.TestSuite(tests)
 

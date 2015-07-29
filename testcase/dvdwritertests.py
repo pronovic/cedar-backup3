@@ -771,7 +771,7 @@ class TestDvdWriter(unittest.TestCase):
       mediaLabel = None
       dryRun = False
       self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId,
-                            driveSpeed, imagePath, entries, mediaLabel, dryRun)
+                        driveSpeed, imagePath, entries, mediaLabel, dryRun)
 
    def testBuildWriteArgs_002(self):
       """
@@ -786,7 +786,7 @@ class TestDvdWriter(unittest.TestCase):
       mediaLabel = None
       dryRun = True
       self.assertRaises(ValueError, DvdWriter._buildWriteArgs, newDisc, hardwareId,
-                            driveSpeed, imagePath, entries, mediaLabel, dryRun)
+                        driveSpeed, imagePath, entries, mediaLabel, dryRun)
 
    def testBuildWriteArgs_003(self):
       """
@@ -1090,9 +1090,9 @@ class TestDvdWriter(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestMediaDefinition, 'test'),
-                              unittest.makeSuite(TestMediaCapacity, 'test'),
-                              unittest.makeSuite(TestDvdWriter, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestMediaDefinition, 'test'))
+   tests.append(unittest.makeSuite(TestMediaCapacity, 'test'))
+   tests.append(unittest.makeSuite(TestDvdWriter, 'test'))
+   return unittest.TestSuite(tests)
 

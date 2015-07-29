@@ -998,8 +998,8 @@ class TestLocalConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestPostgresqlConfig, 'test'),
-                              unittest.makeSuite(TestLocalConfig, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestPostgresqlConfig, 'test'))
+   tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   return unittest.TestSuite(tests)
 

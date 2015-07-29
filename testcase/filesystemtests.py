@@ -90,7 +90,6 @@ Full vs. Reduced Tests
 # Import modules and do runtime validations
 ########################################################################
 
-import sys
 import os
 import unittest
 import tempfile
@@ -296,27 +295,27 @@ class TestFilesystemList(unittest.TestCase):
       self.assertEqual([], fsList.excludePatterns)
       fsList.excludePatterns = None
       self.assertEqual([], fsList.excludePatterns)
-      fsList.excludePatterns = [ ".*\.jpg", ]
-      self.assertEqual([ ".*\.jpg", ], fsList.excludePatterns)
-      fsList.excludePatterns = [ ".*\.jpg", "[a-zA-Z0-9]*", ]
-      self.assertEqual([ ".*\.jpg", "[a-zA-Z0-9]*", ], fsList.excludePatterns)
+      fsList.excludePatterns = [ r".*\.jpg", ]
+      self.assertEqual([ r".*\.jpg", ], fsList.excludePatterns)
+      fsList.excludePatterns = [ r".*\.jpg", "[a-zA-Z0-9]*", ]
+      self.assertEqual([ r".*\.jpg", "[a-zA-Z0-9]*", ], fsList.excludePatterns)
       self.failUnlessAssignRaises(ValueError, fsList, "excludePatterns", [ "*.jpg", ])
       self.failUnlessAssignRaises(ValueError, fsList, "excludePatterns", [ "*.jpg", "[a-zA-Z0-9]*", ])
-      fsList.excludePatterns = [ ".*\.jpg", ]
-      self.assertEqual([ ".*\.jpg", ], fsList.excludePatterns)
+      fsList.excludePatterns = [ r".*\.jpg", ]
+      self.assertEqual([ r".*\.jpg", ], fsList.excludePatterns)
       fsList.excludePatterns.insert(0, "ken")
-      self.assertEqual([ "ken", ".*\.jpg", ], fsList.excludePatterns)
+      self.assertEqual([ "ken", r".*\.jpg", ], fsList.excludePatterns)
       fsList.excludePatterns.append("pattern")
-      self.assertEqual([ "ken", ".*\.jpg", "pattern", ], fsList.excludePatterns)
+      self.assertEqual([ "ken", r".*\.jpg", "pattern", ], fsList.excludePatterns)
       fsList.excludePatterns.extend(["one", "two", ])
-      self.assertEqual([ "ken", ".*\.jpg", "pattern", "one", "two", ], fsList.excludePatterns)
-      fsList.excludePatterns = [ ".*\.jpg", ]
+      self.assertEqual([ "ken", r".*\.jpg", "pattern", "one", "two", ], fsList.excludePatterns)
+      fsList.excludePatterns = [ r".*\.jpg", ]
       self.assertRaises(ValueError, fsList.excludePatterns.insert, 0, "*.jpg")
-      self.assertEqual([ ".*\.jpg", ], fsList.excludePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludePatterns)
       self.assertRaises(ValueError, fsList.excludePatterns.append, "*.jpg")
-      self.assertEqual([ ".*\.jpg", ], fsList.excludePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludePatterns)
       self.assertRaises(ValueError, fsList.excludePatterns.extend, ["*.jpg", ])
-      self.assertEqual([ ".*\.jpg", ], fsList.excludePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludePatterns)
 
    def testAssignment_010(self):
       """
@@ -326,27 +325,27 @@ class TestFilesystemList(unittest.TestCase):
       self.assertEqual([], fsList.excludeBasenamePatterns)
       fsList.excludeBasenamePatterns = None
       self.assertEqual([], fsList.excludeBasenamePatterns)
-      fsList.excludeBasenamePatterns = [ ".*\.jpg", ]
-      self.assertEqual([ ".*\.jpg", ], fsList.excludeBasenamePatterns)
-      fsList.excludeBasenamePatterns = [ ".*\.jpg", "[a-zA-Z0-9]*", ]
-      self.assertEqual([ ".*\.jpg", "[a-zA-Z0-9]*", ], fsList.excludeBasenamePatterns)
+      fsList.excludeBasenamePatterns = [ r".*\.jpg", ]
+      self.assertEqual([ r".*\.jpg", ], fsList.excludeBasenamePatterns)
+      fsList.excludeBasenamePatterns = [ r".*\.jpg", "[a-zA-Z0-9]*", ]
+      self.assertEqual([ r".*\.jpg", "[a-zA-Z0-9]*", ], fsList.excludeBasenamePatterns)
       self.failUnlessAssignRaises(ValueError, fsList, "excludeBasenamePatterns", [ "*.jpg", ])
       self.failUnlessAssignRaises(ValueError, fsList, "excludeBasenamePatterns", [ "*.jpg", "[a-zA-Z0-9]*", ])
-      fsList.excludeBasenamePatterns = [ ".*\.jpg", ]
-      self.assertEqual([ ".*\.jpg", ], fsList.excludeBasenamePatterns)
+      fsList.excludeBasenamePatterns = [ r".*\.jpg", ]
+      self.assertEqual([ r".*\.jpg", ], fsList.excludeBasenamePatterns)
       fsList.excludeBasenamePatterns.insert(0, "ken")
-      self.assertEqual([ "ken", ".*\.jpg", ], fsList.excludeBasenamePatterns)
+      self.assertEqual([ "ken", r".*\.jpg", ], fsList.excludeBasenamePatterns)
       fsList.excludeBasenamePatterns.append("pattern")
-      self.assertEqual([ "ken", ".*\.jpg", "pattern", ], fsList.excludeBasenamePatterns)
+      self.assertEqual([ "ken", r".*\.jpg", "pattern", ], fsList.excludeBasenamePatterns)
       fsList.excludeBasenamePatterns.extend(["one", "two", ])
-      self.assertEqual([ "ken", ".*\.jpg", "pattern", "one", "two", ], fsList.excludeBasenamePatterns)
-      fsList.excludeBasenamePatterns = [ ".*\.jpg", ]
+      self.assertEqual([ "ken", r".*\.jpg", "pattern", "one", "two", ], fsList.excludeBasenamePatterns)
+      fsList.excludeBasenamePatterns = [ r".*\.jpg", ]
       self.assertRaises(ValueError, fsList.excludeBasenamePatterns.insert, 0, "*.jpg")
-      self.assertEqual([ ".*\.jpg", ], fsList.excludeBasenamePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludeBasenamePatterns)
       self.assertRaises(ValueError, fsList.excludeBasenamePatterns.append, "*.jpg")
-      self.assertEqual([ ".*\.jpg", ], fsList.excludeBasenamePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludeBasenamePatterns)
       self.assertRaises(ValueError, fsList.excludeBasenamePatterns.extend, ["*.jpg", ])
-      self.assertEqual([ ".*\.jpg", ], fsList.excludeBasenamePatterns)
+      self.assertEqual([ r".*\.jpg", ], fsList.excludeBasenamePatterns)
 
 
    ################################
@@ -2867,7 +2866,7 @@ class TestFilesystemList(unittest.TestCase):
       self.extractTar("tree6")
       path = self.buildPath(["tree6"])
       fsList = FilesystemList()
-      fsList.excludePatterns = [ ".*file001.*", ".*tree6\/dir002\/dir001.*" ]
+      fsList.excludePatterns = [ ".*file001.*", r".*tree6\/dir002\/dir001.*" ]
       count = fsList.addDirContents(path)
       self.assertEqual(108, count)
       self.assertEqual(108, len(fsList))
@@ -15249,7 +15248,7 @@ class TestBackupFileList(unittest.TestCase):
       digestMap = {}
       backupList = BackupFileList()
       self.assertEqual(0, len(backupList))
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(0, len(backupList))
@@ -15267,7 +15266,7 @@ class TestBackupFileList(unittest.TestCase):
                     self.buildPath([ "tree9", "file002", ])          :"fae89085ee97b57ccefa7e30346c573bb0a769db", }
       backupList = BackupFileList()
       self.assertEqual(0, len(backupList))
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(0, len(backupList))
@@ -15299,7 +15298,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(15, len(backupList))
@@ -15357,7 +15356,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(15, len(backupList))
@@ -15416,7 +15415,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(15, len(backupList))
@@ -15475,7 +15474,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(6, count)
       self.assertEqual(9, len(backupList))
@@ -15528,7 +15527,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(0, count)
       self.assertEqual(15, len(backupList))
@@ -15587,7 +15586,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(3, count)
       self.assertEqual(12, len(backupList))
@@ -15643,7 +15642,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
+      (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True) # pylint: disable=W0633
       self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
       self.assertEqual(2, count)
       self.assertEqual(13, len(backupList))
@@ -16895,9 +16894,9 @@ class TestPurgeItemList(unittest.TestCase):
       path = self.buildPath(["tree6"])
       purgeList = PurgeItemList()
       purgeList.excludePaths = [ self.buildPath([ "tree6", "dir001", "dir002", ]),
-                              self.buildPath([ "tree6", "dir002", "dir001", "dir001", ]),
-                              self.buildPath([ "tree6", "dir003", "dir002", "file001", ]),
-                              self.buildPath([ "tree6", "dir003", "dir002", "file002", ]), ]
+                                 self.buildPath([ "tree6", "dir002", "dir001", "dir001", ]),
+                                 self.buildPath([ "tree6", "dir003", "dir002", "file001", ]),
+                                 self.buildPath([ "tree6", "dir003", "dir002", "file002", ]), ]
       count = purgeList.addDirContents(path)
       self.assertEqual(124, count)
       self.assertEqual(124, len(purgeList))
@@ -17033,7 +17032,7 @@ class TestPurgeItemList(unittest.TestCase):
       self.extractTar("tree6")
       path = self.buildPath(["tree6"])
       purgeList = PurgeItemList()
-      purgeList.excludePatterns = [ ".*file001.*", ".*tree6\/dir002\/dir001.*" ]
+      purgeList.excludePatterns = [ ".*file001.*", r".*tree6\/dir002\/dir001.*" ]
       count = purgeList.addDirContents(path)
       self.assertEqual(107, count)
       self.assertEqual(107, len(purgeList))
@@ -19023,7 +19022,7 @@ class TestPurgeItemList(unittest.TestCase):
       changeFileAge(self.buildPath([ "tree1", "file004", ]), AGE_24_HOURS)
       count = purgeList.removeYoungFiles(daysOld)
       self.assertEqual(2, count)
-      self.assertTrue(2, len(purgeList))
+      self.assertEqual(2, len(purgeList))
       self.assertTrue(self.buildPath([ "tree1", "file001", ]) in purgeList)
       self.assertTrue(self.buildPath([ "tree1", "file004", ]) in purgeList)
 
@@ -20170,11 +20169,10 @@ class TestFunctions(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestFilesystemList, 'test'),
-                              unittest.makeSuite(TestBackupFileList, 'test'),
-                              unittest.makeSuite(TestPurgeItemList, 'test'),
-                              unittest.makeSuite(TestFunctions, 'test'),
-                            ))
-
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestFilesystemList, 'test'))
+   tests.append(unittest.makeSuite(TestBackupFileList, 'test'))
+   tests.append(unittest.makeSuite(TestPurgeItemList, 'test'))
+   tests.append(unittest.makeSuite(TestFunctions, 'test'))
+   return unittest.TestSuite(tests)
 

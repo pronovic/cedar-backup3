@@ -2219,11 +2219,10 @@ class TestLocalConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestMboxFile, 'test'),
-                              unittest.makeSuite(TestMboxDir, 'test'),
-                              unittest.makeSuite(TestMboxConfig, 'test'),
-                              unittest.makeSuite(TestLocalConfig, 'test'),
-                            ))
-
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestMboxFile, 'test'))
+   tests.append(unittest.makeSuite(TestMboxDir, 'test'))
+   tests.append(unittest.makeSuite(TestMboxConfig, 'test'))
+   tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   return unittest.TestSuite(tests)
 

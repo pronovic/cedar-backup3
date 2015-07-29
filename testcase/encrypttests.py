@@ -1112,15 +1112,14 @@ class TestFunctions(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    if runAllTests():
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestEncryptConfig, 'test'),
-                                 unittest.makeSuite(TestLocalConfig, 'test'),
-                                 unittest.makeSuite(TestFunctions, 'test'),
-                               ))
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestEncryptConfig, 'test'))
+      tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+      tests.append(unittest.makeSuite(TestFunctions, 'test'))
+      return unittest.TestSuite(tests)
    else:
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestEncryptConfig, 'test'),
-                                 unittest.makeSuite(TestLocalConfig, 'test'),
-                               ))
-
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestEncryptConfig, 'test'))
+      tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+      return unittest.TestSuite(tests)
 

@@ -882,9 +882,9 @@ class TestLocalConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestPercentageQuantity, 'test'),
-                              unittest.makeSuite(TestCapacityConfig, 'test'),
-                              unittest.makeSuite(TestLocalConfig, 'test'),
-                            ))
+   tests =  [ ]
+   tests.append(unittest.makeSuite(TestPercentageQuantity, 'test'))
+   tests.append(unittest.makeSuite(TestCapacityConfig, 'test'))
+   tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   return unittest.TestSuite(tests)
 

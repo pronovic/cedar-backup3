@@ -2605,12 +2605,12 @@ class TestLocalConfig(unittest.TestCase):
 
 def suite():
    """Returns a suite containing all the test cases in this module."""
-   return unittest.TestSuite((
-                              unittest.makeSuite(TestBDBRepository, 'test'),
-                              unittest.makeSuite(TestFSFSRepository, 'test'),
-                              unittest.makeSuite(TestRepository, 'test'),
-                              unittest.makeSuite(TestRepositoryDir, 'test'),
-                              unittest.makeSuite(TestSubversionConfig, 'test'),
-                              unittest.makeSuite(TestLocalConfig, 'test'),
-                            ))
+   tests = [ ]
+   tests.append(unittest.makeSuite(TestBDBRepository, 'test'))
+   tests.append(unittest.makeSuite(TestFSFSRepository, 'test'))
+   tests.append(unittest.makeSuite(TestRepository, 'test'))
+   tests.append(unittest.makeSuite(TestRepositoryDir, 'test'))
+   tests.append(unittest.makeSuite(TestSubversionConfig, 'test'))
+   tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   return unittest.TestSuite(tests)
 

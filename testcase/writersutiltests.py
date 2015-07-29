@@ -745,7 +745,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage = IsoImage(device="/dev/cdrw", boundaries=(1, 2))
       result = isoImage._buildSizeArgs(entries)
       self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three", ],
-                           result)
+                       result)
 
    def testUtilityMethods_017(self):
       """
@@ -813,7 +813,7 @@ class TestIsoImage(unittest.TestCase):
       isoImage.useRockRidge = False
       result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
       self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three", ],
-                           result)
+                       result)
 
 
    ##################
@@ -1672,15 +1672,15 @@ class TestIsoImage(unittest.TestCase):
 def suite():
    """Returns a suite containing all the test cases in this module."""
    if runAllTests():
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestFunctions, 'test'),
-                                 unittest.makeSuite(TestIsoImage, 'test'),
-                               ))
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestFunctions, 'test'))
+      tests.append(unittest.makeSuite(TestIsoImage, 'test'))
+      return unittest.TestSuite(tests)
    else:
-      return unittest.TestSuite((
-                                 unittest.makeSuite(TestFunctions, 'test'),
-                                 unittest.makeSuite(TestIsoImage, 'testConstructor'),
-                                 unittest.makeSuite(TestIsoImage, 'testUtilityMethods'),
-                                 unittest.makeSuite(TestIsoImage, 'testAddEntry'),
-                               ))
+      tests = [ ]
+      tests.append(unittest.makeSuite(TestFunctions, 'test'))
+      tests.append(unittest.makeSuite(TestIsoImage, 'testConstructor'))
+      tests.append(unittest.makeSuite(TestIsoImage, 'testUtilityMethods'))
+      tests.append(unittest.makeSuite(TestIsoImage, 'testAddEntry'))
+      return unittest.TestSuite(tests)
 

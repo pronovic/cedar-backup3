@@ -1,3 +1,0 @@
-run pylint on codebase and get things clean
-Get "nice to have" things running in Cloudbees Jenkins (including coverage, pylint reports, etc.)
-start looking at code coverage to see if there are other tests I need to write

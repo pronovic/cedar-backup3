@@ -9,6 +9,7 @@ Version 3.0.0     unreleased
 	* Review user guide, fix broken links, make minor tweaks to wording, etc
 	* Rename files (logs, config, executables) to use cback3 prefix rather than cback.
 	* Remove support for Windows and Cygwin, which was never advertised and rarely tested.
+	* Fix a variety of minor warnings from pylint 1.4.4, most of which also appeared in 2.24.2.
 
 Version 2.24.2    05 Jan 2015
 
