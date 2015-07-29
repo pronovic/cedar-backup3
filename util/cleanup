@@ -8,4 +8,5 @@ rm -f coverage.html
 rm -rf htmlcov
 rm -f coverage.xml
 rm -f .coverage
+rm -f pylint.*.out
 
