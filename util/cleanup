@@ -1,0 +1,11 @@
+#!/bin/sh
+# Clean up the source tree, for use by Jenkins
+
+echo "Cleaning up source tree..."
+find . -name "*.pyc" | xargs rm -f 
+rm -f PKG-INFO tags
+rm -f coverage.html
+rm -rf htmlcov
+rm -f coverage.xml
+rm -f .coverage
+
