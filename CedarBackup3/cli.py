@@ -197,7 +197,7 @@ def cli():
 
    try:
       options = Options(argumentList=sys.argv[1:])
-      logger.info("Specified command-line actions: " % options.actions)
+      logger.info("Specified command-line actions: %s", options.actions)
    except Exception as e:
       _usage()
       sys.stderr.write(" *** Error: %s\n" % e)
@@ -220,8 +220,8 @@ def cli():
       return 3
 
    logger.info("Cedar Backup run started.")
-   logger.info("Options were [%s]" % options)
-   logger.info("Logfile is [%s]" % logfile)
+   logger.info("Options were [%s]", options)
+   logger.info("Logfile is [%s]", logfile)
    Diagnostics().logDiagnostics(method=logger.info)
 
    if options.config is None:
@@ -238,18 +238,18 @@ def cli():
       executeManaged = True
    if options.managed:
       executeManaged = True
-   logger.debug("Execute local actions: %s" % executeLocal)
-   logger.debug("Execute managed actions: %s" % executeManaged)
+   logger.debug("Execute local actions: %s", executeLocal)
+   logger.debug("Execute managed actions: %s", executeManaged)
 
    try:
-      logger.info("Configuration path is [%s]" % configPath)
+      logger.info("Configuration path is [%s]", configPath)
       config = Config(xmlPath=configPath)
       customizeOverrides(config)
       setupPathResolver(config)
       actionSet = _ActionSet(options.actions, config.extensions, config.options,
                              config.peers, executeManaged, executeLocal)
    except Exception as e:
-      logger.error("Error reading or handling configuration: %s" % e)
+      logger.error("Error reading or handling configuration: %s", e)
       logger.info("Cedar Backup run completed with status 4.")
       return 4
 
@@ -263,7 +263,7 @@ def cli():
          logger.info("Cedar Backup run completed with status 5.")
          return 5
       except Exception as e:
-         logger.error("Error executing backup: %s" % e)
+         logger.error("Error executing backup: %s", e)
          logger.info("Cedar Backup run completed with status 6.")
          return 6
 
@@ -372,7 +372,7 @@ class _ActionItem(object):
 
       @raise Exception: If there is a problem executing the action.
       """
-      logger.debug("Executing [%s] action." % self.name)
+      logger.debug("Executing [%s] action.", self.name)
       if self.preHooks is not None:
          for hook in self.preHooks:
             self._executeHook("pre-action", hook)
@@ -389,7 +389,7 @@ class _ActionItem(object):
       @param config: Parsed configuration to be passed to action.
       """
       name = "%s.%s" % (self.function.__module__, self.function.__name__)
-      logger.debug("Calling action function [%s], execution index [%d]" % (name, self.index))
+      logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
       self.function(configPath, options, config)
 
    def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
@@ -399,7 +399,7 @@ class _ActionItem(object):
       @param hook: Hook, in terms of a C{ActionHook} object.
       """
       fields = splitCommandLine(hook.command)
-      logger.debug("Executing %s hook for action [%s]: %s" % (type, hook.action, fields[0:1]))
+      logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
       result = executeCommand(command=fields[0:1], args=fields[1:])[0]
       if result != 0:
          raise IOError("Error (%d) executing %s hook for action [%s]: %s" % (result, type, hook.action, fields[0:1]))
@@ -497,7 +497,7 @@ class _ManagedActionItem(object):
       @raise Exception: If there is a problem executing the action.
       """
       for peer in self.remotePeers:
-         logger.debug("Executing managed action [%s] on peer [%s]." % (self.name, peer.name))
+         logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
          try:
             peer.executeManagedAction(self.name, options.full)
          except IOError as e:
@@ -657,7 +657,7 @@ class _ActionSet(object):
          indexMap['store'] = STORE_INDEX
          indexMap['purge'] = PURGE_INDEX
          logger.debug("Completed filling in action indices for built-in actions.")
-         logger.info("Action order will be: %s" % sortDict(indexMap))
+         logger.info("Action order will be: %s", sortDict(indexMap))
       else:
          if extensions.orderMode is None or extensions.orderMode == "index":
             logger.info("Action ordering will use 'index' order mode.")
@@ -672,7 +672,7 @@ class _ActionSet(object):
             for action in extensions.actions:
                indexMap[action.name] = action.index
             logger.debug("Completed filling in action indices for extended actions.")
-            logger.info("Action order will be: %s" % sortDict(indexMap))
+            logger.info("Action order will be: %s", sortDict(indexMap))
          else:
             logger.info("Action ordering will use 'dependency' order mode.")
             graph = DirectedGraph("dependencies")
@@ -697,19 +697,19 @@ class _ActionSet(object):
                      try:
                         graph.createEdge(action.name, vertex)   # actions that this action must be run before
                      except ValueError:
-                        logger.error("Dependency [%s] on extension [%s] is unknown." % (vertex, action.name))
+                        logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
                         raise ValueError("Unable to determine proper action order due to invalid dependency.")
                if action.dependencies.afterList is not None:
                   for vertex in action.dependencies.afterList:
                      try:
                         graph.createEdge(vertex, action.name)   # actions that this action must be run after
                      except ValueError:
-                        logger.error("Dependency [%s] on extension [%s] is unknown." % (vertex, action.name))
+                        logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
                         raise ValueError("Unable to determine proper action order due to invalid dependency.")
             try:
                ordering = graph.topologicalSort()
                indexMap = dict([(ordering[i], i+1) for i in range(0, len(ordering))])
-               logger.info("Action order will be: %s" % ordering)
+               logger.info("Action order will be: %s", ordering)
             except ValueError:
                logger.error("Unable to determine proper action order due to dependency recursion.")
                logger.error("Extensions configuration is invalid (check for loops).")

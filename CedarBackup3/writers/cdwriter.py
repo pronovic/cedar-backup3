@@ -685,14 +685,14 @@ class CdWriter(object):
          command = resolveCommand(CDRECORD_COMMAND)
          (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
          if result != 0:
-            logger.debug("Error (%d) executing cdrecord command to get capacity." % result)
+            logger.debug("Error (%d) executing cdrecord command to get capacity.", result)
             logger.warn("Unable to read disc (might not be initialized); returning boundaries of None.")
             return None
          boundaries = CdWriter._parseBoundariesOutput(output)
          if boundaries is None:
             logger.debug("Returning disc boundaries: None")
          else:
-            logger.debug("Returning disc boundaries: (%d, %d)" % (boundaries[0], boundaries[1]))
+            logger.debug("Returning disc boundaries: (%d, %d)", boundaries[0], boundaries[1])
          return boundaries
 
    @staticmethod
@@ -722,7 +722,7 @@ class CdWriter(object):
          if sectorsAvailable < 0: sectorsAvailable = 0
          bytesUsed = convertSize(boundaries[1], UNIT_SECTORS, UNIT_BYTES)
          bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
-      logger.debug("Used [%s], available [%s]." % (displayBytes(bytesUsed), displayBytes(bytesAvailable)))
+      logger.debug("Used [%s], available [%s].", displayBytes(bytesUsed), displayBytes(bytesAvailable))
       return MediaCapacity(bytesUsed, bytesAvailable, boundaries)
 
 
@@ -846,7 +846,7 @@ class CdWriter(object):
                   raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
                logger.debug("Kludge was apparently successful.")
             if self.ejectDelay is not None:
-               logger.debug("Per configuration, sleeping %d seconds after opening tray." % self.ejectDelay)
+               logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
                time.sleep(self.ejectDelay)
 
    def unlockTray(self):
@@ -905,7 +905,7 @@ class CdWriter(object):
       self.closeTray()
       self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
       if self.refreshMediaDelay is not None:
-         logger.debug("Per configuration, sleeping %d seconds to stabilize media state." % self.refreshMediaDelay)
+         logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
          time.sleep(self.refreshMediaDelay)
       logger.debug("Media refresh complete; hopefully media state is stable now.")
 
@@ -975,18 +975,18 @@ class CdWriter(object):
       for key in list(self._image.entries.keys()):
          image.addEntry(key, self._image.entries[key], override=False, contentsOnly=True)
       size = image.getEstimatedSize()
-      logger.info("Image size will be %s." % displayBytes(size))
+      logger.info("Image size will be %s.", displayBytes(size))
       available = capacity.bytesAvailable
-      logger.debug("Media capacity: %s" % displayBytes(available))
+      logger.debug("Media capacity: %s", displayBytes(available))
       if size > available:
-         logger.error("Image [%s] does not fit in available capacity [%s]." % (displayBytes(size), displayBytes(available)))
+         logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
          raise IOError("Media does not contain enough capacity to store image.")
       try:
          (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
          try: os.close(handle)
          except: pass
          image.writeImage(path)
-         logger.debug("Completed creating image [%s]." % path)
+         logger.debug("Completed creating image [%s].", path)
          return path
       except Exception as e:
          if path is not None and os.path.exists(path):
@@ -1080,18 +1080,18 @@ class CdWriter(object):
       for line in output:
          if typePattern.search(line):
             deviceType =  typePattern.search(line).group(2)
-            logger.info("Device type is [%s]." % deviceType)
+            logger.info("Device type is [%s].", deviceType)
          elif vendorPattern.search(line):
             deviceVendor = vendorPattern.search(line).group(2)
-            logger.info("Device vendor is [%s]." % deviceVendor)
+            logger.info("Device vendor is [%s].", deviceVendor)
          elif idPattern.search(line):
             deviceId = idPattern.search(line).group(2)
-            logger.info("Device id is [%s]." % deviceId)
+            logger.info("Device id is [%s].", deviceId)
          elif bufferPattern.search(line):
             try:
                sectors = int(bufferPattern.search(line).group(2))
                deviceBufferSize = convertSize(sectors, UNIT_KBYTES, UNIT_BYTES)
-               logger.info("Device buffer size is [%d] bytes." % deviceBufferSize)
+               logger.info("Device buffer size is [%d] bytes.", deviceBufferSize)
             except TypeError: pass
          elif multiPattern.search(line):
             deviceSupportsMulti = True

@@ -129,9 +129,9 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
    @raise IOError: If the dump fails for some reason.
    """
    if not os.path.exists(DPKG_PATH):
-      logger.info("Not executing Debian package dump since %s doesn't seem to exist." % DPKG_PATH)
+      logger.info("Not executing Debian package dump since %s doesn't seem to exist.", DPKG_PATH)
    elif not os.access(DPKG_PATH, os.X_OK):
-      logger.info("Not executing Debian package dump since %s cannot be executed." % DPKG_PATH)
+      logger.info("Not executing Debian package dump since %s cannot be executed.", DPKG_PATH)
    else:
       (outputFile, filename) = _getOutputFile(targetDir, "dpkg-selections", compress)
       try:
@@ -155,9 +155,9 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
    @raise IOError: If the dump fails for some reason.
    """
    if not os.path.exists(FDISK_PATH):
-      logger.info("Not executing partition table dump since %s doesn't seem to exist." % FDISK_PATH)
+      logger.info("Not executing partition table dump since %s doesn't seem to exist.", FDISK_PATH)
    elif not os.access(FDISK_PATH, os.X_OK):
-      logger.info("Not executing partition table dump since %s cannot be executed." % FDISK_PATH)
+      logger.info("Not executing partition table dump since %s cannot be executed.", FDISK_PATH)
    else:
       (outputFile, filename) = _getOutputFile(targetDir, "fdisk-l", compress)
       try:
@@ -207,7 +207,7 @@ def _getOutputFile(targetDir, name, compress=True):
    filename = os.path.join(targetDir, "%s.txt" % name)
    if compress:
       filename = "%s.bz2" % filename
-   logger.debug("Dump file will be [%s]." % filename)
+   logger.debug("Dump file will be [%s].", filename)
    if compress:
       outputFile = BZ2File(filename, "w")
    else:

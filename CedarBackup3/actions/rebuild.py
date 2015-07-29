@@ -156,7 +156,7 @@ def _findRebuildDirs(config):
       stageDir = os.path.join(config.store.sourceDir, dateSuffix)
       indicator = os.path.join(stageDir, STAGE_INDICATOR)
       if os.path.isdir(stageDir) and os.path.exists(indicator):
-         logger.info("Rebuild process will include stage directory [%s]" % stageDir)
+         logger.info("Rebuild process will include stage directory [%s]", stageDir)
          stagingDirs[stageDir] = dateSuffix
    if len(stagingDirs) == 0:
       raise IOError("Unable to find any staging directories for rebuild process.")

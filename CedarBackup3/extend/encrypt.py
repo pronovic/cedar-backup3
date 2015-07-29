@@ -462,11 +462,11 @@ def _encryptDailyDir(dailyDir, encryptMode, encryptTarget, backupUser, backupGro
    @raise ValueError: If the encrypt mode is not supported.
    @raise ValueError: If the daily staging directory does not exist.
    """
-   logger.debug("Begin encrypting contents of [%s]." % dailyDir)
+   logger.debug("Begin encrypting contents of [%s].", dailyDir)
    fileList = getBackupFiles(dailyDir) # ignores indicator files
    for path in fileList:
       _encryptFile(path, encryptMode, encryptTarget, backupUser, backupGroup, removeSource=True)
-   logger.debug("Completed encrypting contents of [%s]." % dailyDir)
+   logger.debug("Completed encrypting contents of [%s].", dailyDir)
 
 
 ##########################
@@ -506,7 +506,7 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
       if os.path.exists(sourcePath):
          try:
             os.remove(sourcePath)
-            logger.debug("Completed removing old file [%s]." % sourcePath)
+            logger.debug("Completed removing old file [%s].", sourcePath)
          except:
             raise IOError("Failed to remove file [%s] after encrypting it." % (sourcePath))
    return encryptedPath
@@ -539,7 +539,7 @@ def _encryptFileWithGpg(sourcePath, recipient):
       raise IOError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
    if not os.path.exists(encryptedPath):
       raise IOError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
-   logger.debug("Completed encrypting file [%s] to [%s]." % (sourcePath, encryptedPath))
+   logger.debug("Completed encrypting file [%s] to [%s].", sourcePath, encryptedPath)
    return encryptedPath
 
 

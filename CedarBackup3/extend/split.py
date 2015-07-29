@@ -467,13 +467,13 @@ def _splitDailyDir(dailyDir, sizeLimit, splitSize, backupUser, backupGroup):
    @raise ValueError: If the encrypt mode is not supported.
    @raise ValueError: If the daily staging directory does not exist.
    """
-   logger.debug("Begin splitting contents of [%s]." % dailyDir)
+   logger.debug("Begin splitting contents of [%s].", dailyDir)
    fileList = getBackupFiles(dailyDir)  # ignores indicator files
    for path in fileList:
       size = float(os.stat(path).st_size)
       if size > sizeLimit.bytes:
          _splitFile(path, splitSize, backupUser, backupGroup, removeSource=True)
-   logger.debug("Completed splitting contents of [%s]." % dailyDir)
+   logger.debug("Completed splitting contents of [%s].", dailyDir)
 
 
 ########################
@@ -524,7 +524,7 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
          if os.path.exists(sourcePath):
             try:
                os.remove(sourcePath)
-               logger.debug("Completed removing old file [%s]." % sourcePath)
+               logger.debug("Completed removing old file [%s].", sourcePath)
             except:
                raise IOError("Failed to remove file [%s] after splitting it." % (sourcePath))
    finally:

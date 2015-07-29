@@ -537,9 +537,9 @@ def executeAction(configPath, options, config):
       _backupDatabase(config.collect.targetDir, local.postgresql.compressMode, local.postgresql.user,
                       config.options.backupUser, config.options.backupGroup, None)
    if local.postgresql.databases is not None and local.postgresql.databases != []:
-      logger.debug("Backing up %d individual databases." % len(local.postgresql.databases))
+      logger.debug("Backing up %d individual databases.", len(local.postgresql.databases))
       for database in local.postgresql.databases:
-         logger.info("Backing up database [%s]." % database)
+         logger.info("Backing up database [%s].", database)
          _backupDatabase(config.collect.targetDir, local.postgresql.compressMode, local.postgresql.user,
                          config.options.backupUser, config.options.backupGroup, database)
    logger.info("Executed the PostgreSQL extended action successfully.")
@@ -598,7 +598,7 @@ def _getOutputFile(targetDir, database, compressMode):
       outputFile = BZ2File(filename, "w")
    else:
       outputFile = open(filename, "w")
-   logger.debug("PostgreSQL dump file will be [%s]." % filename)
+   logger.debug("PostgreSQL dump file will be [%s].", filename)
    return (outputFile, filename)
 
 

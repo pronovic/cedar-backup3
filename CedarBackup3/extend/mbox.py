@@ -1113,10 +1113,10 @@ def executeAction(configPath, options, config):
    local = LocalConfig(xmlPath=configPath)
    todayIsStart = isStartOfWeek(config.options.startingDay)
    fullBackup = options.full or todayIsStart
-   logger.debug("Full backup flag is [%s]" % fullBackup)
+   logger.debug("Full backup flag is [%s]", fullBackup)
    if local.mbox.mboxFiles is not None:
       for mboxFile in local.mbox.mboxFiles:
-         logger.debug("Working with mbox file [%s]" % mboxFile.absolutePath)
+         logger.debug("Working with mbox file [%s]", mboxFile.absolutePath)
          collectMode = _getCollectMode(local, mboxFile)
          compressMode = _getCompressMode(local, mboxFile)
          lastRevision = _loadLastRevision(config, mboxFile, fullBackup, collectMode)
@@ -1130,7 +1130,7 @@ def executeAction(configPath, options, config):
             _writeNewRevision(config, mboxFile, newRevision)
    if local.mbox.mboxDirs is not None:
       for mboxDir in local.mbox.mboxDirs:
-         logger.debug("Working with mbox directory [%s]" % mboxDir.absolutePath)
+         logger.debug("Working with mbox directory [%s]", mboxDir.absolutePath)
          collectMode = _getCollectMode(local, mboxDir)
          compressMode = _getCompressMode(local, mboxDir)
          lastRevision = _loadLastRevision(config, mboxDir, fullBackup, collectMode)
@@ -1159,7 +1159,7 @@ def _getCollectMode(local, item):
       collectMode = local.mbox.collectMode
    else:
       collectMode = item.collectMode
-   logger.debug("Collect mode is [%s]" % collectMode)
+   logger.debug("Collect mode is [%s]", collectMode)
    return collectMode
 
 def _getCompressMode(local, item):
@@ -1174,7 +1174,7 @@ def _getCompressMode(local, item):
       compressMode = local.mbox.compressMode
    else:
       compressMode = item.compressMode
-   logger.debug("Compress mode is [%s]" % compressMode)
+   logger.debug("Compress mode is [%s]", compressMode)
    return compressMode
 
 def _getRevisionPath(config, item):
@@ -1187,7 +1187,7 @@ def _getRevisionPath(config, item):
    normalized = buildNormalizedPath(item.absolutePath)
    filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
    revisionPath = os.path.join(config.options.workingDir, filename)
-   logger.debug("Revision file path is [%s]" % revisionPath)
+   logger.debug("Revision file path is [%s]", revisionPath)
    return revisionPath
 
 def _loadLastRevision(config, item, fullBackup, collectMode):
@@ -1215,19 +1215,19 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
       logger.debug("Revision file ignored because this is a full backup.")
    elif collectMode in ['weekly', 'daily']:
       revisionDate = None
-      logger.debug("No revision file based on collect mode [%s]." % collectMode)
+      logger.debug("No revision file based on collect mode [%s].", collectMode)
    else:
       logger.debug("Revision file will be used for non-full incremental backup.")
       if not os.path.isfile(revisionPath):
          revisionDate = None
-         logger.debug("Revision file [%s] does not exist on disk." % revisionPath)
+         logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
       else:
          try:
             revisionDate = pickle.load(open(revisionPath, "r"))
-            logger.debug("Loaded revision file [%s] from disk: [%s]" % (revisionPath, revisionDate))
+            logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
          except:
             revisionDate = None
-            logger.error("Failed loading revision file [%s] from disk." % revisionPath)
+            logger.error("Failed loading revision file [%s] from disk.", revisionPath)
    return revisionDate
 
 def _writeNewRevision(config, item, newRevision):
@@ -1249,9 +1249,9 @@ def _writeNewRevision(config, item, newRevision):
    try:
       pickle.dump(newRevision, open(revisionPath, "w"))
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
-      logger.debug("Wrote new revision file [%s] to disk: [%s]" % (revisionPath, newRevision))
+      logger.debug("Wrote new revision file [%s] to disk: [%s]", revisionPath, newRevision)
    except:
-      logger.error("Failed to write revision file [%s] to disk." % revisionPath)
+      logger.error("Failed to write revision file [%s] to disk.", revisionPath)
 
 def _getExclusions(mboxDir):
    """
@@ -1276,8 +1276,8 @@ def _getExclusions(mboxDir):
    patterns = []
    if mboxDir.excludePatterns is not None:
       patterns.extend(mboxDir.excludePatterns)
-   logger.debug("Exclude paths: %s" % paths)
-   logger.debug("Exclude patterns: %s" % patterns)
+   logger.debug("Exclude paths: %s", paths)
+   logger.debug("Exclude patterns: %s", patterns)
    return(paths, patterns)
 
 def _getBackupPath(config, mboxPath, compressMode, newRevision, targetDir=None):
@@ -1314,7 +1314,7 @@ def _getBackupPath(config, mboxPath, compressMode, newRevision, targetDir=None):
       backupPath = os.path.join(config.collect.targetDir, filename)
    else:
       backupPath = os.path.join(targetDir, filename)
-   logger.debug("Backup file path is [%s]" % backupPath)
+   logger.debug("Backup file path is [%s]", backupPath)
    return backupPath
 
 def _getTarfilePath(config, mboxPath, compressMode, newRevision):
@@ -1348,7 +1348,7 @@ def _getTarfilePath(config, mboxPath, compressMode, newRevision):
    else:
       archiveMode = "tar"
    tarfilePath = os.path.join(config.collect.targetDir, filename)
-   logger.debug("Tarfile path is [%s]" % tarfilePath)
+   logger.debug("Tarfile path is [%s]", tarfilePath)
    return (tarfilePath, archiveMode)
 
 def _getOutputFile(backupPath, compressMode):
@@ -1400,7 +1400,7 @@ def _backupMboxFile(config, absolutePath,
    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
    if result != 0:
       raise IOError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
-   logger.debug("Completed backing up mailbox [%s]." % absolutePath)
+   logger.debug("Completed backing up mailbox [%s].", absolutePath)
    return backupPath
 
 def _backupMboxDir(config, absolutePath,
@@ -1440,7 +1440,7 @@ def _backupMboxDir(config, absolutePath,
       (tarfilePath, archiveMode) = _getTarfilePath(config, absolutePath, compressMode, newRevision)
       tarList.generateTarfile(tarfilePath, archiveMode, ignore=True, flat=True)
       changeOwnership(tarfilePath, config.options.backupUser, config.options.backupGroup)
-      logger.debug("Completed backing up directory [%s]." % absolutePath)
+      logger.debug("Completed backing up directory [%s].", absolutePath)
    finally:
       try:
          for item in tarList:

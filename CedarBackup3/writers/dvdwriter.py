@@ -408,7 +408,7 @@ class DvdWriter(object):
       @raise ValueError: If the drive speed is not an integer >= 1.
       """
       if scsiId is not None:
-         logger.warn("SCSI id [%s] will be ignored by DvdWriter." % scsiId)
+         logger.warn("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
       self._image = None  # optionally filled in by initializeImage()
       self._device = validateDevice(device, unittest)
       self._scsiId = scsiId  # not validated, because it's just for reference
@@ -650,7 +650,7 @@ class DvdWriter(object):
                raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
             logger.debug("Kludge was apparently successful.")
          if self.ejectDelay is not None:
-            logger.debug("Per configuration, sleeping %d seconds after opening tray." % self.ejectDelay)
+            logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
             time.sleep(self.ejectDelay)
 
    def unlockTray(self):
@@ -706,7 +706,7 @@ class DvdWriter(object):
       self.closeTray()
       self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
       if self.refreshMediaDelay is not None:
-         logger.debug("Per configuration, sleeping %d seconds to stabilize media state." % self.refreshMediaDelay)
+         logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
          time.sleep(self.refreshMediaDelay)
       logger.debug("Media refresh complete; hopefully media state is stable now.")
 
@@ -747,15 +747,15 @@ class DvdWriter(object):
       @raise ValueError: If no image is passed in and initializeImage() was not previously called
       """
       if not writeMulti:
-         logger.warn("writeMulti value of [%s] ignored." % writeMulti)
+         logger.warn("writeMulti value of [%s] ignored.", writeMulti)
       if imagePath is None:
          if self._image is None:
             raise ValueError("Must call initializeImage() before using this method with no image path.")
          size = self.getEstimatedImageSize()
-         logger.info("Image size will be %s (estimated)." % displayBytes(size))
+         logger.info("Image size will be %s (estimated).", displayBytes(size))
          available = self.retrieveCapacity(entireDisc=self._image.newDisc).bytesAvailable
          if size > available:
-            logger.error("Image [%s] does not fit in available capacity [%s]." % (displayBytes(size), displayBytes(available)))
+            logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
             raise IOError("Media does not contain enough capacity to store image.")
          self._writeImage(self._image.newDisc, None, self._image.entries, self._image.mediaLabel)
       else:
@@ -840,11 +840,11 @@ class DvdWriter(object):
          command = resolveCommand(GROWISOFS_COMMAND)
          (result, output) = executeCommand(command, args, returnOutput=True)
          if result != 0:
-            logger.debug("Error (%d) calling growisofs to read sectors used." % result)
+            logger.debug("Error (%d) calling growisofs to read sectors used.", result)
             logger.warn("Unable to read disc (might not be initialized); returning zero sectors used.")
             return 0.0
          sectorsUsed = DvdWriter._parseSectorsUsed(output)
-         logger.debug("Determined sectors used as %s" % sectorsUsed)
+         logger.debug("Determined sectors used as %s", sectorsUsed)
          return sectorsUsed
       finally:
          if os.path.exists(tempdir):
@@ -915,7 +915,7 @@ class DvdWriter(object):
             try:
                available = convertSize(float(match.group(4).strip()), UNIT_SECTORS, UNIT_BYTES)
                size = convertSize(float(match.group(6).strip()), UNIT_SECTORS, UNIT_BYTES)
-               logger.error("Image [%s] does not fit in available capacity [%s]." % (displayBytes(size), displayBytes(available)))
+               logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
             except ValueError:
                logger.error("Image does not fit in available capacity (no useful capacity info available).")
             raise IOError("Media does not contain enough capacity to store image.")

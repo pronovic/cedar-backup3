@@ -176,8 +176,8 @@ def cli():
       return 3
 
    logger.info("Cedar Backup 'span' utility run started.")
-   logger.info("Options were [%s]" % options)
-   logger.info("Logfile is [%s]" % logfile)
+   logger.info("Options were [%s]", options)
+   logger.info("Logfile is [%s]", logfile)
 
    if options.config is None:
       logger.debug("Using default configuration file.")
@@ -187,11 +187,11 @@ def cli():
       configPath = options.config
 
    try:
-      logger.info("Configuration path is [%s]" % configPath)
+      logger.info("Configuration path is [%s]", configPath)
       config = Config(xmlPath=configPath)
       setupPathResolver(config)
    except Exception as e:
-      logger.error("Error reading or handling configuration: %s" % e)
+      logger.error("Error reading or handling configuration: %s", e)
       logger.info("Cedar Backup 'span' utility run completed with status 4.")
       return 4
 
@@ -205,7 +205,7 @@ def cli():
          logger.info("Cedar Backup 'span' utility run completed with status 5.")
          return 5
       except Exception as e:
-         logger.error("Error executing backup: %s" % e)
+         logger.error("Error executing backup: %s", e)
          logger.info("Cedar Backup 'span' utility run completed with status 6.")
          return 6
 
@@ -538,7 +538,7 @@ def _discInitializeImage(config, writer, spanItem):
       except KeyboardInterrupt as e:
          raise e
       except Exception as e:
-         logger.error("Failed to initialize image: %s" % e)
+         logger.error("Failed to initialize image: %s", e)
          if not _getYesNoAnswer("Retry initialization step?", default="Y"):
             raise e
          print("Ok, attempting retry.")
@@ -560,7 +560,7 @@ def _discWriteImage(config, writer):
       except KeyboardInterrupt as e:
          raise e
       except Exception as e:
-         logger.error("Failed to write image: %s" % e)
+         logger.error("Failed to write image: %s", e)
          if not _getYesNoAnswer("Retry this step?", default="Y"):
             raise e
          print("Ok, attempting retry.")
@@ -585,7 +585,7 @@ def _discConsistencyCheck(config, writer, spanItem):
          except KeyboardInterrupt as e:
             raise e
          except Exception as e:
-            logger.error("Consistency check failed: %s" % e)
+            logger.error("Consistency check failed: %s", e)
             if not _getYesNoAnswer("Retry the consistency check?", default="Y"):
                raise e
             if _getYesNoAnswer("Rewrite the disc first?", default="N"):

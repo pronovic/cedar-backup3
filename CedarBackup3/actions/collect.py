@@ -101,13 +101,13 @@ def executeCollect(configPath, options, config):
        (config.collect.collectDirs is None or len(config.collect.collectDirs) < 1)):
       raise ValueError("There must be at least one collect file or collect directory.")
    fullBackup = options.full
-   logger.debug("Full backup flag is [%s]" % fullBackup)
+   logger.debug("Full backup flag is [%s]", fullBackup)
    todayIsStart = isStartOfWeek(config.options.startingDay)
    resetDigest = fullBackup or todayIsStart
-   logger.debug("Reset digest flag is [%s]" % resetDigest)
+   logger.debug("Reset digest flag is [%s]", resetDigest)
    if config.collect.collectFiles is not None:
       for collectFile in config.collect.collectFiles:
-         logger.debug("Working with collect file [%s]" % collectFile.absolutePath)
+         logger.debug("Working with collect file [%s]", collectFile.absolutePath)
          collectMode = _getCollectMode(config, collectFile)
          archiveMode = _getArchiveMode(config, collectFile)
          digestPath = _getDigestPath(config, collectFile.absolutePath)
@@ -118,10 +118,10 @@ def executeCollect(configPath, options, config):
                          collectMode, archiveMode, resetDigest, digestPath)
          else:
             logger.debug("File will not be backed up, per collect mode.")
-         logger.info("Completed collecting file [%s]" % collectFile.absolutePath)
+         logger.info("Completed collecting file [%s]", collectFile.absolutePath)
    if config.collect.collectDirs is not None:
       for collectDir in config.collect.collectDirs:
-         logger.debug("Working with collect directory [%s]" % collectDir.absolutePath)
+         logger.debug("Working with collect directory [%s]", collectDir.absolutePath)
          collectMode = _getCollectMode(config, collectDir)
          archiveMode = _getArchiveMode(config, collectDir)
          ignoreFile = _getIgnoreFile(config, collectDir)
@@ -136,7 +136,7 @@ def executeCollect(configPath, options, config):
                               resetDigest, excludePaths, excludePatterns, recursionLevel)
          else:
             logger.debug("Directory will not be backed up, per collect mode.")
-         logger.info("Completed collecting directory [%s]" % collectDir.absolutePath)
+         logger.info("Completed collecting directory [%s]", collectDir.absolutePath)
    writeIndicatorFile(config.collect.targetDir, COLLECT_INDICATOR,
                       config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the 'collect' action successfully.")
@@ -209,7 +209,7 @@ def _collectDirectory(config, absolutePath, collectMode, archiveMode,
    """
    if recursionLevel == 0:
       # Collect the actual directory because we're at recursion level 0
-      logger.info("Collecting directory [%s]" % absolutePath)
+      logger.info("Collecting directory [%s]", absolutePath)
       tarfilePath = _getTarfilePath(config, absolutePath, archiveMode)
       digestPath = _getDigestPath(config, absolutePath)
 
@@ -270,11 +270,11 @@ def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, a
    @param digestPath: Path to digest file on disk, if needed.
    """
    if collectMode != 'incr':
-      logger.debug("Collect mode is [%s]; no digest will be used." % collectMode)
+      logger.debug("Collect mode is [%s]; no digest will be used.", collectMode)
       if len(backupList) == 1 and backupList[0] == absolutePath:  # special case for individual file
-         logger.info("Backing up file [%s] (%s)." % (absolutePath, displayBytes(backupList.totalSize())))
+         logger.info("Backing up file [%s] (%s).", absolutePath, displayBytes(backupList.totalSize()))
       else:
-         logger.info("Backing up %d files in [%s] (%s)." % (len(backupList), absolutePath, displayBytes(backupList.totalSize())))
+         logger.info("Backing up %d files in [%s] (%s).", len(backupList), absolutePath, displayBytes(backupList.totalSize()))
       if len(backupList) > 0:
          backupList.generateTarfile(tarfilePath, archiveMode, True)
          changeOwnership(tarfilePath, config.options.backupUser, config.options.backupGroup)
@@ -286,11 +286,11 @@ def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, a
          logger.debug("Based on resetDigest flag, digest will loaded from disk.")
          oldDigest = _loadDigest(digestPath)
       (removed, newDigest) = backupList.removeUnchanged(oldDigest, captureDigest=True)
-      logger.debug("Removed %d unchanged files based on digest values." % removed)
+      logger.debug("Removed %d unchanged files based on digest values.", removed)
       if len(backupList) == 1 and backupList[0] == absolutePath:  # special case for individual file
-         logger.info("Backing up file [%s] (%s)." % (absolutePath, displayBytes(backupList.totalSize())))
+         logger.info("Backing up file [%s] (%s).", absolutePath, displayBytes(backupList.totalSize()))
       else:
-         logger.info("Backing up %d files in [%s] (%s)." % (len(backupList), absolutePath, displayBytes(backupList.totalSize())))
+         logger.info("Backing up %d files in [%s] (%s).", len(backupList), absolutePath, displayBytes(backupList.totalSize()))
       if len(backupList) > 0:
          backupList.generateTarfile(tarfilePath, archiveMode, True)
          changeOwnership(tarfilePath, config.options.backupUser, config.options.backupGroup)
@@ -315,14 +315,14 @@ def _loadDigest(digestPath):
    """
    if not os.path.isfile(digestPath):
       digest = {}
-      logger.debug("Digest [%s] does not exist on disk." % digestPath)
+      logger.debug("Digest [%s] does not exist on disk.", digestPath)
    else:
       try:
          digest = pickle.load(open(digestPath, "r"))
-         logger.debug("Loaded digest [%s] from disk: %d entries." % (digestPath, len(digest)))
+         logger.debug("Loaded digest [%s] from disk: %d entries.", digestPath, len(digest))
       except:
          digest = {}
-         logger.error("Failed loading digest [%s] from disk." % digestPath)
+         logger.error("Failed loading digest [%s] from disk.", digestPath)
    return digest
 
 
@@ -344,9 +344,9 @@ def _writeDigest(config, digest, digestPath):
    try:
       pickle.dump(digest, open(digestPath, "w"))
       changeOwnership(digestPath, config.options.backupUser, config.options.backupGroup)
-      logger.debug("Wrote new digest [%s] to disk: %d entries." % (digestPath, len(digest)))
+      logger.debug("Wrote new digest [%s] to disk: %d entries.", digestPath, len(digest))
    except:
-      logger.error("Failed to write digest [%s] to disk." % digestPath)
+      logger.error("Failed to write digest [%s] to disk.", digestPath)
 
 
 ########################################################################
@@ -369,7 +369,7 @@ def _getCollectMode(config, item):
       collectMode = config.collect.collectMode
    else:
       collectMode = item.collectMode
-   logger.debug("Collect mode is [%s]" % collectMode)
+   logger.debug("Collect mode is [%s]", collectMode)
    return collectMode
 
 
@@ -389,7 +389,7 @@ def _getArchiveMode(config, item):
       archiveMode = config.collect.archiveMode
    else:
       archiveMode = item.archiveMode
-   logger.debug("Archive mode is [%s]" % archiveMode)
+   logger.debug("Archive mode is [%s]", archiveMode)
    return archiveMode
 
 
@@ -409,7 +409,7 @@ def _getIgnoreFile(config, item):
       ignoreFile = config.collect.ignoreFile
    else:
       ignoreFile = item.ignoreFile
-   logger.debug("Ignore file is [%s]" % ignoreFile)
+   logger.debug("Ignore file is [%s]", ignoreFile)
    return ignoreFile
 
 
@@ -428,7 +428,7 @@ def _getLinkDepth(item):
       linkDepth = 0
    else:
       linkDepth = item.linkDepth
-   logger.debug("Link depth is [%d]" % linkDepth)
+   logger.debug("Link depth is [%d]", linkDepth)
    return linkDepth
 
 
@@ -447,7 +447,7 @@ def _getDereference(item):
       dereference = False
    else:
       dereference = item.dereference
-   logger.debug("Dereference flag is [%s]" % dereference)
+   logger.debug("Dereference flag is [%s]", dereference)
    return dereference
 
 
@@ -466,7 +466,7 @@ def _getRecursionLevel(item):
       recursionLevel = 0
    else:
       recursionLevel = item.recursionLevel
-   logger.debug("Recursion level is [%d]" % recursionLevel)
+   logger.debug("Recursion level is [%d]", recursionLevel)
    return recursionLevel
 
 
@@ -484,7 +484,7 @@ def _getDigestPath(config, absolutePath):
    normalized = buildNormalizedPath(absolutePath)
    filename = "%s.%s" % (normalized, DIGEST_EXTENSION)
    digestPath = os.path.join(config.options.workingDir, filename)
-   logger.debug("Digest path is [%s]" % digestPath)
+   logger.debug("Digest path is [%s]", digestPath)
    return digestPath
 
 
@@ -509,7 +509,7 @@ def _getTarfilePath(config, absolutePath, archiveMode):
    normalized = buildNormalizedPath(absolutePath)
    filename = "%s.%s" % (normalized, extension)
    tarfilePath = os.path.join(config.collect.targetDir, filename)
-   logger.debug("Tarfile path is [%s]" % tarfilePath)
+   logger.debug("Tarfile path is [%s]", tarfilePath)
    return tarfilePath
 
 
@@ -548,7 +548,7 @@ def _getExclusions(config, collectDir):
       patterns.extend(config.collect.excludePatterns)
    if collectDir.excludePatterns is not None:
       patterns.extend(collectDir.excludePatterns)
-   logger.debug("Exclude paths: %s" % paths)
-   logger.debug("Exclude patterns: %s" % patterns)
+   logger.debug("Exclude paths: %s", paths)
+   logger.debug("Exclude patterns: %s", patterns)
    return(paths, patterns)
 

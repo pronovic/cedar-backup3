@@ -562,14 +562,14 @@ def executeAction(configPath, options, config):
    if config.store.checkMedia:
       checkMediaState(config.store)  # raises exception if media is not initialized
    capacity = createWriter(config).retrieveCapacity()
-   logger.debug("Media capacity: %s" % capacity)
+   logger.debug("Media capacity: %s", capacity)
    if local.capacity.maxPercentage is not None:
       if capacity.utilized > local.capacity.maxPercentage.percentage:
-         logger.error("Media has reached capacity limit of %s%%: %.2f%% utilized" %
-                      (local.capacity.maxPercentage.quantity, capacity.utilized))
+         logger.error("Media has reached capacity limit of %s%%: %.2f%% utilized",
+                      local.capacity.maxPercentage.quantity, capacity.utilized)
    else: # if local.capacity.bytes is not None
       if capacity.bytesAvailable < local.capacity.minBytes.bytes:
-         logger.error("Media has reached capacity limit of %s: only %s available" %
-                      (displayBytes(local.capacity.minBytes.bytes), displayBytes(capacity.bytesAvailable)))
+         logger.error("Media has reached capacity limit of %s: only %s available",
+                      displayBytes(local.capacity.minBytes.bytes), displayBytes(capacity.bytesAvailable))
    logger.info("Executed the capacity extended action successfully.")
 

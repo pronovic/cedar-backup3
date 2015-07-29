@@ -107,9 +107,9 @@ def findDailyDirs(stagingDir, indicatorFile):
          dailyDirs.addDirContents(path=monthDir, recursive=False, addSelf=False)
          for dailyDir in dailyDirs:
             if os.path.exists(os.path.join(dailyDir, indicatorFile)):
-               logger.debug("Skipping directory [%s]; contains %s." % (dailyDir, indicatorFile))
+               logger.debug("Skipping directory [%s]; contains %s.", dailyDir, indicatorFile)
             else:
-               logger.debug("Adding [%s] to list of daily directories." % dailyDir)
+               logger.debug("Adding [%s] to list of daily directories.", dailyDir)
                results.append(dailyDir) # just put it in the list, no fancy operations
    return results
 
@@ -174,12 +174,12 @@ def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
    @raise IOException: If there is a problem writing the indicator file
    """
    filename = os.path.join(targetDir, indicatorFile)
-   logger.debug("Writing indicator file [%s]." % filename)
+   logger.debug("Writing indicator file [%s].", filename)
    try:
       open(filename, "w").write("")
       changeOwnership(filename, backupUser, backupGroup)
    except Exception as e:
-      logger.error("Error writing [%s]: %s" % (filename, e))
+      logger.error("Error writing [%s]: %s", filename, e)
       raise e
 
 
@@ -318,7 +318,7 @@ def _getDeviceType(config):
       deviceType = DEFAULT_DEVICE_TYPE
    else:
       deviceType = config.store.deviceType
-   logger.debug("Device type is [%s]" % deviceType)
+   logger.debug("Device type is [%s]", deviceType)
    return deviceType
 
 

@@ -574,9 +574,9 @@ def executeAction(configPath, options, config):
       _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
                       config.options.backupUser, config.options.backupGroup, None)
    else:
-      logger.debug("Backing up %d individual databases." % len(local.mysql.databases))
+      logger.debug("Backing up %d individual databases.", len(local.mysql.databases))
       for database in local.mysql.databases:
-         logger.info("Backing up database [%s]." % database)
+         logger.info("Backing up database [%s].", database)
          _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
                          config.options.backupUser, config.options.backupGroup, database)
    logger.info("Executed the MySQL extended action successfully.")
@@ -635,7 +635,7 @@ def _getOutputFile(targetDir, database, compressMode):
       outputFile = BZ2File(filename, "w")
    else:
       outputFile = open(filename, "w")
-   logger.debug("MySQL dump file will be [%s]." % filename)
+   logger.debug("MySQL dump file will be [%s].", filename)
    return (outputFile, filename)
 
 

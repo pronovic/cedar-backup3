@@ -620,20 +620,20 @@ def _findCorrectDailyDir(options, config, local):
    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
    if options.full:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
-         logger.info("Amazon S3 process will use current day's staging directory [%s]" % todayPath)
+         logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
          return { todayPath:todayDate }
       raise IOError("Unable to find staging directory to process (only tried today due to full option).")
    else:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
-         logger.info("Amazon S3 process will use current day's staging directory [%s]" % todayPath)
+         logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
          return { todayPath:todayDate }
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
-         logger.info("Amazon S3 process will use previous day's staging directory [%s]" % yesterdayPath)
+         logger.info("Amazon S3 process will use previous day's staging directory [%s]", yesterdayPath)
          if local.amazons3.warnMidnite:
             logger.warn("Warning: Amazon S3 process crossed midnite boundary to find data.")
          return { yesterdayPath:yesterdayDate }
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
-         logger.info("Amazon S3 process will use next day's staging directory [%s]" % tomorrowPath)
+         logger.info("Amazon S3 process will use next day's staging directory [%s]", tomorrowPath)
          if local.amazons3.warnMidnite:
             logger.warn("Warning: Amazon S3 process crossed midnite boundary to find data.")
          return { tomorrowPath:tomorrowDate }
@@ -670,14 +670,14 @@ def _applySizeLimits(options, config, local, stagingDirs):
    if limit is None:
       logger.debug("No Amazon S3 size limit will be applied.")
    else:
-      logger.debug("Amazon S3 size limit is: %d bytes" % limit)
+      logger.debug("Amazon S3 size limit is: %d bytes", limit)
       contents = BackupFileList()
       for stagingDir in stagingDirs:
          contents.addDirContents(stagingDir)
       total = contents.totalSize()
-      logger.debug("Amazon S3 backup size is is: %d bytes" % total)
+      logger.debug("Amazon S3 backup size is is: %d bytes", total)
       if total > limit:
-         logger.error("Amazon S3 size limit exceeded: %.0f bytes > %d bytes" % (total, limit))
+         logger.error("Amazon S3 size limit exceeded: %.0f bytes > %d bytes", total, limit)
          raise ValueError("Amazon S3 size limit exceeded: %.0f bytes > %d bytes" % (total, limit))
       else:
          logger.info("Total size does not exceed Amazon S3 size limit, so backup can continue.")
@@ -705,10 +705,10 @@ def _writeToAmazonS3(config, local, stagingDirs):
    @raise IOError: If there is a problem writing to Amazon S3
    """
    for stagingDir in list(stagingDirs.keys()):
-      logger.debug("Storing stage directory to Amazon S3 [%s]." % stagingDir)
+      logger.debug("Storing stage directory to Amazon S3 [%s].", stagingDir)
       dateSuffix = stagingDirs[stagingDir]
       s3BucketUrl = "s3://%s/%s" % (local.amazons3.s3Bucket, dateSuffix)
-      logger.debug("S3 bucket URL is [%s]" % s3BucketUrl)
+      logger.debug("S3 bucket URL is [%s]", s3BucketUrl)
       _clearExistingBackup(config, s3BucketUrl)
       if local.amazons3.encryptCommand is None:
          logger.debug("Encryption is disabled; files will be uploaded in cleartext.")
@@ -759,7 +759,7 @@ def _clearExistingBackup(config, s3BucketUrl):
    result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI to clear existing backup for [%s]." % (result, s3BucketUrl))
-   logger.debug("Completed clearing any existing backup in S3 for [%s]" % s3BucketUrl)
+   logger.debug("Completed clearing any existing backup in S3 for [%s]", s3BucketUrl)
 
 
 ###############################
@@ -779,7 +779,7 @@ def _uploadStagingDir(config, stagingDir, s3BucketUrl):
    result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
-   logger.debug("Completed uploading staging dir [%s] to [%s]" % (stagingDir, s3BucketUrl))
+   logger.debug("Completed uploading staging dir [%s] to [%s]", stagingDir, s3BucketUrl)
 
 
 ###########################
@@ -817,7 +817,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
          else:
             if size != contents[key]:
                raise IOError("File size differs [%s], expected %s bytes but got %s bytes" % (entry, size, contents[key]))
-   logger.debug("Completed verifying upload from [%s] to [%s]." % (stagingDir, s3BucketUrl))
+   logger.debug("Completed verifying upload from [%s] to [%s].", stagingDir, s3BucketUrl)
 
 
 ################################
@@ -848,5 +848,5 @@ def _encryptStagingDir(config, local, stagingDir, encryptedDir):
             result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
             if result != 0:
                raise IOError("Error [%d] encrypting [%s]." % (result, cleartext))
-   logger.debug("Completed encrypting staging directory [%s] into [%s]" % (stagingDir, encryptedDir))
+   logger.debug("Completed encrypting staging directory [%s] into [%s]", stagingDir, encryptedDir)
 

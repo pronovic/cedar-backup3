@@ -89,8 +89,8 @@ def customizeOverrides(config, platform=PLATFORM):
    @param platform: Platform that is in use
    """
    if platform == "debian":
-      logger.info("Overriding cdrecord for Debian platform: %s" % DEBIAN_CDRECORD)
+      logger.info("Overriding cdrecord for Debian platform: %s", DEBIAN_CDRECORD)
       config.options.addOverride("cdrecord", DEBIAN_CDRECORD)
-      logger.info("Overriding mkisofs for Debian platform: %s" % DEBIAN_MKISOFS)
+      logger.info("Overriding mkisofs for Debian platform: %s", DEBIAN_MKISOFS)
       config.options.addOverride("mkisofs", DEBIAN_MKISOFS)
 

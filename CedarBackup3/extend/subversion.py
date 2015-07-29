@@ -1145,18 +1145,18 @@ def executeAction(configPath, options, config):
    local = LocalConfig(xmlPath=configPath)
    todayIsStart = isStartOfWeek(config.options.startingDay)
    fullBackup = options.full or todayIsStart
-   logger.debug("Full backup flag is [%s]" % fullBackup)
+   logger.debug("Full backup flag is [%s]", fullBackup)
    if local.subversion.repositories is not None:
       for repository in local.subversion.repositories:
          _backupRepository(config, local, todayIsStart, fullBackup, repository)
    if local.subversion.repositoryDirs is not None:
       for repositoryDir in local.subversion.repositoryDirs:
-         logger.debug("Working with repository directory [%s]." % repositoryDir.directoryPath)
+         logger.debug("Working with repository directory [%s].", repositoryDir.directoryPath)
          for repositoryPath in _getRepositoryPaths(repositoryDir):
             repository = Repository(repositoryDir.repositoryType, repositoryPath,
                                     repositoryDir.collectMode, repositoryDir.compressMode)
             _backupRepository(config, local, todayIsStart, fullBackup, repository)
-         logger.info("Completed backing up Subversion repository directory [%s]." % repositoryDir.directoryPath)
+         logger.info("Completed backing up Subversion repository directory [%s].", repositoryDir.directoryPath)
    logger.info("Executed the Subversion extended action successfully.")
 
 def _getCollectMode(local, repository):
@@ -1170,7 +1170,7 @@ def _getCollectMode(local, repository):
       collectMode = local.subversion.collectMode
    else:
       collectMode = repository.collectMode
-   logger.debug("Collect mode is [%s]" % collectMode)
+   logger.debug("Collect mode is [%s]", collectMode)
    return collectMode
 
 def _getCompressMode(local, repository):
@@ -1185,7 +1185,7 @@ def _getCompressMode(local, repository):
       compressMode = local.subversion.compressMode
    else:
       compressMode = repository.compressMode
-   logger.debug("Compress mode is [%s]" % compressMode)
+   logger.debug("Compress mode is [%s]", compressMode)
    return compressMode
 
 def _getRevisionPath(config, repository):
@@ -1198,7 +1198,7 @@ def _getRevisionPath(config, repository):
    normalized = buildNormalizedPath(repository.repositoryPath)
    filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
    revisionPath = os.path.join(config.options.workingDir, filename)
-   logger.debug("Revision file path is [%s]" % revisionPath)
+   logger.debug("Revision file path is [%s]", revisionPath)
    return revisionPath
 
 def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevision):
@@ -1218,7 +1218,7 @@ def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevis
    elif compressMode == 'bzip2':
       filename = "%s.bz2" % filename
    backupPath = os.path.join(config.collect.targetDir, filename)
-   logger.debug("Backup file path is [%s]" % backupPath)
+   logger.debug("Backup file path is [%s]", backupPath)
    return backupPath
 
 def _getRepositoryPaths(repositoryDir):
@@ -1258,8 +1258,8 @@ def _getExclusions(repositoryDir):
    patterns = []
    if repositoryDir.excludePatterns is not None:
       patterns.extend(repositoryDir.excludePatterns)
-   logger.debug("Exclude paths: %s" % paths)
-   logger.debug("Exclude patterns: %s" % patterns)
+   logger.debug("Exclude paths: %s", paths)
+   logger.debug("Exclude patterns: %s", patterns)
    return(paths, patterns)
 
 def _backupRepository(config, local, todayIsStart, fullBackup, repository):
@@ -1278,8 +1278,8 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    @raise ValueError: If some value is missing or invalid.
    @raise IOError: If there is a problem executing the Subversion dump.
    """
-   logger.debug("Working with repository [%s]" % repository.repositoryPath)
-   logger.debug("Repository type is [%s]" % repository.repositoryType)
+   logger.debug("Working with repository [%s]", repository.repositoryPath)
+   logger.debug("Repository type is [%s]", repository.repositoryType)
    collectMode = _getCollectMode(local, repository)
    compressMode = _getCompressMode(local, repository)
    revisionPath = _getRevisionPath(config, repository)
@@ -1290,7 +1290,7 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    if collectMode != "incr" or fullBackup:
       startRevision = 0
       endRevision = getYoungestRevision(repository.repositoryPath)
-      logger.debug("Using full backup, revision: (%d, %d)." % (startRevision, endRevision))
+      logger.debug("Using full backup, revision: (%d, %d).", startRevision, endRevision)
    else:
       if fullBackup:
          startRevision = 0
@@ -1299,9 +1299,9 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
          startRevision = _loadLastRevision(revisionPath) + 1
          endRevision = getYoungestRevision(repository.repositoryPath)
          if startRevision > endRevision:
-            logger.info("No need to back up repository [%s]; no new revisions." % repository.repositoryPath)
+            logger.info("No need to back up repository [%s]; no new revisions.", repository.repositoryPath)
             return
-      logger.debug("Using incremental backup, revision: (%d, %d)." % (startRevision, endRevision))
+      logger.debug("Using incremental backup, revision: (%d, %d).", startRevision, endRevision)
    backupPath = _getBackupPath(config, repository.repositoryPath, compressMode, startRevision, endRevision)
    outputFile = _getOutputFile(backupPath, compressMode)
    try:
@@ -1313,7 +1313,7 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
    if collectMode == "incr":
       _writeLastRevision(config, revisionPath, endRevision)
-   logger.info("Completed backing up Subversion repository [%s]." % repository.repositoryPath)
+   logger.info("Completed backing up Subversion repository [%s].", repository.repositoryPath)
 
 def _getOutputFile(backupPath, compressMode):
    """
@@ -1351,14 +1351,14 @@ def _loadLastRevision(revisionPath):
    """
    if not os.path.isfile(revisionPath):
       startRevision = -1
-      logger.debug("Revision file [%s] does not exist on disk." % revisionPath)
+      logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
    else:
       try:
          startRevision = pickle.load(open(revisionPath, "r"))
-         logger.debug("Loaded revision file [%s] from disk: %d." % (revisionPath, startRevision))
+         logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
       except:
          startRevision = -1
-         logger.error("Failed loading revision file [%s] from disk." % revisionPath)
+         logger.error("Failed loading revision file [%s] from disk.", revisionPath)
    return startRevision
 
 def _writeLastRevision(config, revisionPath, endRevision):
@@ -1375,9 +1375,9 @@ def _writeLastRevision(config, revisionPath, endRevision):
    try:
       pickle.dump(endRevision, open(revisionPath, "w"))
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
-      logger.debug("Wrote new revision file [%s] to disk: %d." % (revisionPath, endRevision))
+      logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
    except:
-      logger.error("Failed to write revision file [%s] to disk." % revisionPath)
+      logger.error("Failed to write revision file [%s] to disk.", revisionPath)
 
 
 ##############################
@@ -1435,7 +1435,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
    if result != 0:
       raise IOError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
-   logger.debug("Completed dumping subversion repository [%s]." % repositoryPath)
+   logger.debug("Completed dumping subversion repository [%s].", repositoryPath)
 
 
 #################################

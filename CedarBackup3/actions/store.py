@@ -110,7 +110,7 @@ def executeStore(configPath, options, config):
    if config.store.checkMedia:
       checkMediaState(config.store)  # raises exception if media is not initialized
    rebuildMedia = options.full
-   logger.debug("Rebuild media flag [%s]" % rebuildMedia)
+   logger.debug("Rebuild media flag [%s]", rebuildMedia)
    todayIsStart = isStartOfWeek(config.options.startingDay)
    stagingDirs = _findCorrectDailyDir(options, config)
    writeImageBlankSafe(config, rebuildMedia, todayIsStart, config.store.blankBehavior, stagingDirs)
@@ -203,7 +203,7 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
    writer = createWriter(config)
    writer.initializeImage(True, config.options.workingDir, mediaLabel)  # default value for newDisc
    for stageDir in list(stagingDirs.keys()):
-      logger.debug("Adding stage directory [%s]." % stageDir)
+      logger.debug("Adding stage directory [%s].", stageDir)
       dateSuffix = stagingDirs[stageDir]
       writer.addImageEntry(stageDir, dateSuffix)
    newDisc = _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior)
@@ -239,18 +239,18 @@ def _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior):
          if blankBehavior.blankMode == "daily" or (blankBehavior.blankMode == "weekly" and todayIsStart):
             logger.debug("New disc flag will be set based on blank factor calculation.")
             blankFactor = float(blankBehavior.blankFactor)
-            logger.debug("Configured blanking factor: %.2f" % blankFactor)
+            logger.debug("Configured blanking factor: %.2f", blankFactor)
             available = writer.retrieveCapacity().bytesAvailable
-            logger.debug("Bytes available: %s" % displayBytes(available))
+            logger.debug("Bytes available: %s", displayBytes(available))
             required = writer.getEstimatedImageSize()
-            logger.debug("Bytes required: %s" % displayBytes(required))
+            logger.debug("Bytes required: %s", displayBytes(required))
             ratio = available / (1.0 + required)
-            logger.debug("Calculated ratio: %.2f" % ratio)
+            logger.debug("Calculated ratio: %.2f", ratio)
             newDisc = (ratio <= blankFactor)
-            logger.debug("%.2f <= %.2f ? %s" % (ratio, blankFactor, newDisc))
+            logger.debug("%.2f <= %.2f ? %s", ratio, blankFactor, newDisc)
          else:
             logger.debug("No blank factor calculation is required based on configuration.")
-   logger.debug("New disc flag [%s]." % newDisc)
+   logger.debug("New disc flag [%s].", newDisc)
    return newDisc
 
 
@@ -310,9 +310,9 @@ def consistencyCheck(config, stagingDirs):
       mount(config.store.devicePath, mountPoint, "iso9660")
       for stagingDir in list(stagingDirs.keys()):
          discDir = os.path.join(mountPoint, stagingDirs[stagingDir])
-         logger.debug("Checking [%s] vs. [%s]." % (stagingDir, discDir))
+         logger.debug("Checking [%s] vs. [%s].", stagingDir, discDir)
          compareContents(stagingDir, discDir, verbose=True)
-         logger.info("Consistency check completed for [%s].  No problems found." % stagingDir)
+         logger.info("Consistency check completed for [%s].  No problems found.", stagingDir)
    finally:
       unmount(mountPoint, True, 5, 1)  # try 5 times, and remove mount point when done
 
@@ -377,20 +377,20 @@ def _findCorrectDailyDir(options, config):
    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
    if options.full:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
-         logger.info("Store process will use current day's stage directory [%s]" % todayPath)
+         logger.info("Store process will use current day's stage directory [%s]", todayPath)
          return { todayPath:todayDate }
       raise IOError("Unable to find staging directory to store (only tried today due to full option).")
    else:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
-         logger.info("Store process will use current day's stage directory [%s]" % todayPath)
+         logger.info("Store process will use current day's stage directory [%s]", todayPath)
          return { todayPath:todayDate }
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
-         logger.info("Store process will use previous day's stage directory [%s]" % yesterdayPath)
+         logger.info("Store process will use previous day's stage directory [%s]", yesterdayPath)
          if config.store.warnMidnite:
             logger.warn("Warning: store process crossed midnite boundary to find data.")
          return { yesterdayPath:yesterdayDate }
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
-         logger.info("Store process will use next day's stage directory [%s]" % tomorrowPath)
+         logger.info("Store process will use next day's stage directory [%s]", tomorrowPath)
          if config.store.warnMidnite:
             logger.warn("Warning: store process crossed midnite boundary to find data.")
          return { tomorrowPath:tomorrowDate }

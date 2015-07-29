@@ -109,30 +109,30 @@ def executeStage(configPath, options, config):
    allPeers = localPeers + remotePeers
    stagingDirs = _createStagingDirs(config, dailyDir, allPeers)
    for peer in allPeers:
-      logger.info("Staging peer [%s]." % peer.name)
+      logger.info("Staging peer [%s].", peer.name)
       ignoreFailures = _getIgnoreFailuresFlag(options, config, peer)
       if not peer.checkCollectIndicator():
          if not ignoreFailures:
-            logger.error("Peer [%s] was not ready to be staged." % peer.name)
+            logger.error("Peer [%s] was not ready to be staged.", peer.name)
          else:
-            logger.info("Peer [%s] was not ready to be staged." % peer.name)
+            logger.info("Peer [%s] was not ready to be staged.", peer.name)
          continue
       logger.debug("Found collect indicator.")
       targetDir = stagingDirs[peer.name]
       if isRunningAsRoot():
          # Since we're running as root, we can change ownership
          ownership = getUidGid(config.options.backupUser,  config.options.backupGroup)
-         logger.debug("Using target dir [%s], ownership [%d:%d]." % (targetDir, ownership[0], ownership[1]))
+         logger.debug("Using target dir [%s], ownership [%d:%d].", targetDir, ownership[0], ownership[1])
       else:
          # Non-root cannot change ownership, so don't set it
          ownership = None
-         logger.debug("Using target dir [%s], ownership [None]." % targetDir)
+         logger.debug("Using target dir [%s], ownership [None].", targetDir)
       try:
          count = peer.stagePeer(targetDir=targetDir, ownership=ownership)  # note: utilize effective user's default umask
-         logger.info("Staged %d files for peer [%s]." % (count, peer.name))
+         logger.info("Staged %d files for peer [%s].", count, peer.name)
          peer.writeStageIndicator()
       except (ValueError, IOError, OSError) as e:
-         logger.error("Error staging [%s]: %s" % (peer.name, e))
+         logger.error("Error staging [%s]: %s", peer.name, e)
    writeIndicatorFile(dailyDir, STAGE_INDICATOR, config.options.backupUser, config.options.backupGroup)
    logger.info("Executed the 'stage' action successfully.")
 
@@ -161,10 +161,10 @@ def _createStagingDirs(config, dailyDir, peers):
    """
    mapping = {}
    if os.path.isdir(dailyDir):
-      logger.warn("Staging directory [%s] already existed." % dailyDir)
+      logger.warn("Staging directory [%s] already existed.", dailyDir)
    else:
       try:
-         logger.debug("Creating staging directory [%s]." % dailyDir)
+         logger.debug("Creating staging directory [%s].", dailyDir)
          os.makedirs(dailyDir)
          for path in [ dailyDir, os.path.join(dailyDir, ".."), os.path.join(dailyDir, "..", ".."), ]:
             changeOwnership(path, config.options.backupUser, config.options.backupGroup)
@@ -174,10 +174,10 @@ def _createStagingDirs(config, dailyDir, peers):
       peerDir = os.path.join(dailyDir, peer.name)
       mapping[peer.name] = peerDir
       if os.path.isdir(peerDir):
-         logger.warn("Peer staging directory [%s] already existed." % peerDir)
+         logger.warn("Peer staging directory [%s] already existed.", peerDir)
       else:
          try:
-            logger.debug("Creating peer staging directory [%s]." % peerDir)
+            logger.debug("Creating peer staging directory [%s].", peerDir)
             os.makedirs(peerDir)
             changeOwnership(peerDir, config.options.backupUser, config.options.backupGroup)
          except Exception as e:
@@ -201,7 +201,7 @@ def _getIgnoreFailuresFlag(options, config, peer):
    @param peer: Peer to check
    @return: Whether to ignore stage failures for this peer
    """
-   logger.debug("Ignore failure mode for this peer: %s" % peer.ignoreFailureMode)
+   logger.debug("Ignore failure mode for this peer: %s", peer.ignoreFailureMode)
    if peer.ignoreFailureMode is None or peer.ignoreFailureMode == "none":
       return False
    elif peer.ignoreFailureMode == "all":
@@ -230,7 +230,7 @@ def _getDailyDir(config):
    @return: Path of daily staging directory.
    """
    dailyDir = os.path.join(config.stage.targetDir, time.strftime(DIR_TIME_FORMAT))
-   logger.debug("Daily staging directory is [%s]." % dailyDir)
+   logger.debug("Daily staging directory is [%s].", dailyDir)
    return dailyDir
 
 
@@ -256,7 +256,7 @@ def _getLocalPeers(config):
       for peer in configPeers:
          localPeer = LocalPeer(peer.name, peer.collectDir, peer.ignoreFailureMode)
          localPeers.append(localPeer)
-         logger.debug("Found local peer: [%s]" % localPeer.name)
+         logger.debug("Found local peer: [%s]", localPeer.name)
    return localPeers
 
 
@@ -287,7 +287,7 @@ def _getRemotePeers(config):
                                  remoteUser, rcpCommand, localUser,
                                  ignoreFailureMode=peer.ignoreFailureMode)
          remotePeers.append(remotePeer)
-         logger.debug("Found remote peer: [%s]" % remotePeer.name)
+         logger.debug("Found remote peer: [%s]", remotePeer.name)
    return remotePeers
 
 

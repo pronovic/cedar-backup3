@@ -235,13 +235,13 @@ class LocalPeer(object):
       """
       targetDir = encodePath(targetDir)
       if not os.path.isabs(targetDir):
-         logger.debug("Target directory [%s] not an absolute path." % targetDir)
+         logger.debug("Target directory [%s] not an absolute path.", targetDir)
          raise ValueError("Target directory must be an absolute path.")
       if not os.path.exists(self.collectDir) or not os.path.isdir(self.collectDir):
-         logger.debug("Collect directory [%s] is not a directory or does not exist on disk." % self.collectDir)
+         logger.debug("Collect directory [%s] is not a directory or does not exist on disk.", self.collectDir)
          raise ValueError("Collect directory is not a directory or does not exist on disk.")
       if not os.path.exists(targetDir) or not os.path.isdir(targetDir):
-         logger.debug("Target directory [%s] is not a directory or does not exist on disk." % targetDir)
+         logger.debug("Target directory [%s] is not a directory or does not exist on disk.", targetDir)
          raise ValueError("Target directory is not a directory or does not exist on disk.")
       count = LocalPeer._copyLocalDir(self.collectDir, targetDir, ownership, permissions)
       if count == 0:
@@ -302,7 +302,7 @@ class LocalPeer(object):
       """
       stageIndicator = encodePath(stageIndicator)
       if not os.path.exists(self.collectDir) or not os.path.isdir(self.collectDir):
-         logger.debug("Collect directory [%s] is not a directory or does not exist on disk." % self.collectDir)
+         logger.debug("Collect directory [%s] is not a directory or does not exist on disk.", self.collectDir)
          raise ValueError("Collect directory is not a directory or does not exist on disk.")
       if stageIndicator is None:
          fileName = os.path.join(self.collectDir, DEF_STAGE_INDICATOR)
@@ -408,7 +408,7 @@ class LocalPeer(object):
          if os.path.isfile(sourceFile) and not os.path.islink(sourceFile):
             shutil.copy(sourceFile, targetFile)
          else:
-            logger.debug("Source [%s] is not a regular file." % sourceFile)
+            logger.debug("Source [%s] is not a regular file.", sourceFile)
             raise ValueError("Source is not a regular file.")
       if ownership is not None:
          os.chown(targetFile, ownership[0], ownership[1])
@@ -772,10 +772,10 @@ class RemotePeer(object):
       """
       targetDir = encodePath(targetDir)
       if not os.path.isabs(targetDir):
-         logger.debug("Target directory [%s] not an absolute path." % targetDir)
+         logger.debug("Target directory [%s] not an absolute path.", targetDir)
          raise ValueError("Target directory must be an absolute path.")
       if not os.path.exists(targetDir) or not os.path.isdir(targetDir):
-         logger.debug("Target directory [%s] is not a directory or does not exist on disk." % targetDir)
+         logger.debug("Target directory [%s] is not a directory or does not exist on disk.", targetDir)
          raise ValueError("Target directory is not a directory or does not exist on disk.")
       count = RemotePeer._copyRemoteDir(self.remoteUser, self.localUser, self.name,
                                         self._rcpCommand, self._rcpCommandList,
@@ -817,7 +817,7 @@ class RemotePeer(object):
             collectIndicator = encodePath(collectIndicator)
             sourceFile = os.path.join(self.collectDir, collectIndicator)
             targetFile = os.path.join(self.workingDir, collectIndicator)
-         logger.debug("Fetch remote [%s] into [%s]." % (sourceFile, targetFile))
+         logger.debug("Fetch remote [%s] into [%s].", sourceFile, targetFile)
          if os.path.exists(targetFile):
             try:
                os.remove(targetFile)
@@ -833,7 +833,7 @@ class RemotePeer(object):
             else:
                return False
          except Exception as e:
-            logger.info("Failed looking for collect indicator: %s" % e)
+            logger.info("Failed looking for collect indicator: %s", e)
             return False
       finally:
          if os.path.exists(targetFile):
