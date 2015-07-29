@@ -139,7 +139,7 @@ class AmazonS3Config(object):
    """
 
    def __init__(self, warnMidnite=None, s3Bucket=None, encryptCommand=None,
-               fullBackupSizeLimit=None, incrementalBackupSizeLimit=None):
+                fullBackupSizeLimit=None, incrementalBackupSizeLimit=None):
       """
       Constructor for the C{AmazonS3Config} class.
 

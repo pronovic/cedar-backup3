@@ -915,7 +915,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
          s = sha.new()
       f = open(path, mode="rb")  # in case platform cares about binary reads
       readBytes = 4096  # see notes above
-      while(readBytes > 0):
+      while readBytes > 0:
          readString = f.read(readBytes)
          s.update(readString)
          readBytes = len(readString)
@@ -1095,9 +1095,9 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       # pylint: disable=E1101
       path = encodePath(path)
       if len(self) == 0: raise ValueError("Empty list cannot be used to generate tarfile.")
-      if(mode == 'tar'): tarmode = "w:"
-      elif(mode == 'targz'): tarmode = "w:gz"
-      elif(mode == 'tarbz2'): tarmode = "w:bz2"
+      if mode == 'tar': tarmode = "w:"
+      elif mode == 'targz': tarmode = "w:gz"
+      elif mode == 'tarbz2': tarmode = "w:bz2"
       else: raise ValueError("Mode [%s] is not valid." % mode)
       try:
          tar = tarfile.open(path, tarmode)

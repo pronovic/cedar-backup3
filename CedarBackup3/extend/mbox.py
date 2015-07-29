@@ -819,8 +819,8 @@ class LocalConfig(object):
       """
       if self.mbox is None:
          raise ValueError("Mbox section is required.")
-      if ((self.mbox.mboxFiles is None or len(self.mbox.mboxFiles) < 1) and \
-          (self.mbox.mboxDirs is None or len(self.mbox.mboxDirs) < 1)):
+      if (self.mbox.mboxFiles is None or len(self.mbox.mboxFiles) < 1) and \
+          (self.mbox.mboxDirs is None or len(self.mbox.mboxDirs) < 1):
          raise ValueError("At least one mbox file or directory must be configured.")
       if self.mbox.mboxFiles is not None:
          for mboxFile in self.mbox.mboxFiles:

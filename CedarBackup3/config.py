@@ -3711,11 +3711,11 @@ class StoreConfig(object):
       Official string representation for class instance.
       """
       return "StoreConfig(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" % (
-                self.sourceDir, self.mediaType, self.deviceType,
-                self.devicePath, self.deviceScsiId, self.driveSpeed,
-                self.checkData, self.warnMidnite, self.noEject,
-                self.checkMedia, self.blankBehavior, self.refreshMediaDelay,
-                self.ejectDelay)
+          self.sourceDir, self.mediaType, self.deviceType,
+          self.devicePath, self.deviceScsiId, self.driveSpeed,
+          self.checkData, self.warnMidnite, self.noEject,
+          self.checkMedia, self.blankBehavior, self.refreshMediaDelay,
+          self.ejectDelay)
 
    def __str__(self):
       """
@@ -6215,7 +6215,7 @@ class Config(object):
                if (self.options is None or self.options.cbackCommand is None) and remotePeer.cbackCommand is None:
                   raise ValueError("Remote cback command must either be set in options section or individual remote peer.")
                if ((self.options is None or self.options.managedActions is None or len(self.options.managedActions) < 1)
-                    and (remotePeer.managedActions is None or len(remotePeer.managedActions) < 1)):
+                   and (remotePeer.managedActions is None or len(remotePeer.managedActions) < 1)):
                   raise ValueError("Managed actions list must be set in options section or individual remote peer.")
       checkUnique("Duplicate peer names exist:", names)
 

@@ -67,7 +67,6 @@ authors write code that easily looks more like the rest of Cedar Backup.
 import sys
 import re
 import logging
-import codecs
 from io import StringIO
 
 # XML-related modules

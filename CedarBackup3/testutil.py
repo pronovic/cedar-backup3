@@ -99,7 +99,7 @@ def setupDebugLogger():
    logger = logging.getLogger("CedarBackup3")
    logger.setLevel(logging.DEBUG)    # let the logger see all messages
    formatter = logging.Formatter(fmt="%(message)s")
-   handler = logging.StreamHandler(strm=sys.stdout)
+   handler = logging.StreamHandler(stream=sys.stdout)
    handler.setFormatter(formatter)
    handler.setLevel(logging.DEBUG)
    logger.addHandler(handler)

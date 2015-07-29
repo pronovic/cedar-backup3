@@ -16,7 +16,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# pylint: disable=C0111
+# pylint: disable=C0111,E0611,F0401
 
 ########################################################################
 # Imported modules
@@ -52,17 +52,17 @@ written in the Python 3 programming language.
 """
 
 setup (
-   name             = 'CedarBackup3',
-   version          = VERSION,
-   description      = 'Implements local and remote backups to CD/DVD media.',
-   long_description = LONG_DESCRIPTION,
-   keywords         = ('local', 'remote', 'backup', 'scp', 'CD-R', 'CD-RW', 'DVD+R', 'DVD+RW',),
-   author           = AUTHOR,
-   author_email     = EMAIL,
-   url              = URL,
-   license          = "Copyright (c) %s %s.  Licensed under the GNU GPL." % (COPYRIGHT, AUTHOR),
-   packages         = ['CedarBackup3', 'CedarBackup3.actions', 'CedarBackup3.extend',
-                       'CedarBackup3.tools', 'CedarBackup3.writers', ],
-   scripts          = ['cback3', 'util/cback3-span', 'util/cback3-amazons3-sync', ],
+    name             = 'CedarBackup3',
+    version          = VERSION,
+    description      = 'Implements local and remote backups to CD/DVD media.',
+    long_description = LONG_DESCRIPTION,
+    keywords         = ('local', 'remote', 'backup', 'scp', 'CD-R', 'CD-RW', 'DVD+R', 'DVD+RW',),
+    author           = AUTHOR,
+    author_email     = EMAIL,
+    url              = URL,
+    license          = "Copyright (c) %s %s.  Licensed under the GNU GPL." % (COPYRIGHT, AUTHOR),
+    packages         = ['CedarBackup3', 'CedarBackup3.actions', 'CedarBackup3.extend',
+                        'CedarBackup3.tools', 'CedarBackup3.writers', ],
+    scripts          = ['cback3', 'util/cback3-span', 'util/cback3-amazons3-sync', ],
 )
 

@@ -82,7 +82,6 @@ import os
 import re
 import time
 import logging
-import string  # pylint: disable=W0402
 from subprocess import Popen, STDOUT, PIPE
 from functools import total_ordering
 from numbers import Real
@@ -256,6 +255,7 @@ class UnorderedList(list):
 
    @staticmethod
    def mixedkey(value):
+      """Provide a key for use by mixedsort()"""
       numeric = Real, Decimal
       if isinstance(value, numeric):
          typeinfo = numeric
@@ -1174,7 +1174,7 @@ def displayBytes(bytes, digits=2): # pylint: disable=W0622
 
    @return: String, formatted for sensible display.
    """
-   if(bytes is None):
+   if bytes is None:
       raise ValueError("Cannot display byte value of None.")
    bytes = float(bytes)
    if math.fabs(bytes) < BYTES_PER_KBYTE:
