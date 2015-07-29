@@ -1176,7 +1176,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       @param captureDigest: Indicates that digest information should be captured.
       @type captureDigest: Boolean
 
-      @return: Number of entries removed
+      @return: Results as discussed above (format varies based on arguments)
       """
       if captureDigest:
          removed = 0
