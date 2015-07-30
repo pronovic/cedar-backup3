@@ -1,15 +1,13 @@
-Version 3.0.0     unreleased
+Version 3.0.1     29 Jul 2015
 
+	* Create project in Mercurial at BitBucket, alongside Cedar Backup 2.
 	* Convert to Python 3, using v2.24.2 as the basis for conversion.
-	* Move source tree from Subversion at SourceForge to Mercurial at BitBucket.
-	* Fix long-standing bugs with pre- and post-action hooks, ported from v2.24.4.
-	* Adjust resolver setup for unit tests, due to lack of stability in test ordering.
-	* Rewrite executeCommand tests to run properly with Python 3.
-	* Clean up manpages and add notes about migrating to version 3.
-	* Review user guide, fix broken links, make minor tweaks to wording, etc
 	* Rename files (logs, config, executables) to use cback3 prefix rather than cback.
 	* Remove support for Windows and Cygwin, which was never advertised and rarely tested.
 	* Fix a variety of minor warnings from pylint 1.4.4, most of which also appeared in 2.24.2.
+	* Clean up manpages and add notes about migrating to version 3.
+	* Review user guide, fix broken links, make minor tweaks to wording, etc.
+	* Fix long-standing bugs with pre- and post-action hooks, ported from v2.24.4.
 
 Version 2.24.2    05 Jan 2015
 
