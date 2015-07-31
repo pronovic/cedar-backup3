@@ -49,7 +49,7 @@ PIP               = $(PYTHON_INSTALL)/bin/pip
 PYLINT            = $(PYTHON_INSTALL)/bin/pylint
 COVERAGE          = $(PYTHON_INSTALL)/bin/coverage
 SETUP             = $(PYTHON) setup.py
-EPYDOC            = epydoc  # only runs with Python 2 interpreter, so use it from system
+EPYDOC            = epydoc --no-include-build-time # Requires python-epydoc_3.0.1+dfsg-7 from stretch
 
 PACKAGE           = CedarBackup3
 PACKAGE_LC        = cedar-backup3
