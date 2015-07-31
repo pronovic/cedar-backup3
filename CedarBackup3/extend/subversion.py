@@ -1353,11 +1353,11 @@ def _loadLastRevision(revisionPath):
    else:
       try:
          with open(revisionPath, "rb") as f:
-            startRevision = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
+            startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
          logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
-      except:
+      except Exception as e:
          startRevision = -1
-         logger.error("Failed loading revision file [%s] from disk.", revisionPath)
+         logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
    return startRevision
 
 def _writeLastRevision(config, revisionPath, endRevision):
@@ -1373,11 +1373,11 @@ def _writeLastRevision(config, revisionPath, endRevision):
    """
    try:
       with open(revisionPath, "wb") as f:
-         pickle.dump(endRevision, file=f, protocol=0, fix_imports=True)
+         pickle.dump(endRevision, f, 0, fix_imports=True)
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
-   except:
-      logger.error("Failed to write revision file [%s] to disk.", revisionPath)
+   except Exception as e:
+      logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 
 ##############################

@@ -319,11 +319,11 @@ def _loadDigest(digestPath):
    else:
       try:
          with open(digestPath, "rb") as f:
-            digest = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
+            digest = pickle.load(f, fix_imports=True)  # be compatible with Python 2
          logger.debug("Loaded digest [%s] from disk: %d entries.", digestPath, len(digest))
-      except:
+      except Exception as e:
          digest = {}
-         logger.error("Failed loading digest [%s] from disk.", digestPath)
+         logger.error("Failed loading digest [%s] from disk: %s", digestPath, e)
    return digest
 
 
@@ -344,11 +344,11 @@ def _writeDigest(config, digest, digestPath):
    """
    try:
       with open(digestPath, "wb") as f:
-         pickle.dump(digest, file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
+         pickle.dump(digest, f, 0, fix_imports=True)  # be compatible with Python 2
       changeOwnership(digestPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new digest [%s] to disk: %d entries.", digestPath, len(digest))
-   except:
-      logger.error("Failed to write digest [%s] to disk.", digestPath)
+   except Exception as e:
+      logger.error("Failed to write digest [%s] to disk: %s", digestPath, e)
 
 
 ########################################################################

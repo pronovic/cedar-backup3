@@ -1225,11 +1225,11 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
       else:
          try:
             with open(revisionPath, "rb") as f:
-               revisionDate = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
+               revisionDate = pickle.load(f, fix_imports=True)  # be compatible with Python 2
             logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
-         except:
+         except Exception as e:
             revisionDate = None
-            logger.error("Failed loading revision file [%s] from disk.", revisionPath)
+            logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
    return revisionDate
 
 def _writeNewRevision(config, item, newRevision):
@@ -1250,11 +1250,11 @@ def _writeNewRevision(config, item, newRevision):
    revisionPath = _getRevisionPath(config, item)
    try:
       with open(revisionPath, "wb") as f:
-         pickle.dump(newRevision, file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
+         pickle.dump(newRevision, f, 0, fix_imports=True)  # be compatible with Python 2
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new revision file [%s] to disk: [%s]", revisionPath, newRevision)
-   except:
-      logger.error("Failed to write revision file [%s] to disk.", revisionPath)
+   except Exception as e:
+      logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 def _getExclusions(mboxDir):
    """
