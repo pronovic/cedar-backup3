@@ -717,7 +717,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["mysql.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -916,7 +917,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["mysql.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -929,7 +931,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a mysql section, no databases, all=True.
       """
       path = self.resources["mysql.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mysql)
       self.assertEqual("user", config.mysql.user)
@@ -950,7 +953,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a mysql section, single database, all=False.
       """
       path = self.resources["mysql.conf.3"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mysql)
       self.assertEqual("user", config.mysql.user)
@@ -971,7 +975,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a mysql section, multiple databases, all=False.
       """
       path = self.resources["mysql.conf.4"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mysql)
       self.assertEqual("user", config.mysql.user)
@@ -992,7 +997,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a mysql section, no user or password, multiple databases, all=False.
       """
       path = self.resources["mysql.conf.5"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mysql)
       self.assertEqual(None, config.mysql.user)

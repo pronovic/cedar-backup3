@@ -234,13 +234,13 @@ def extractTar(tmpdir, filepath):
    # pylint: disable=E1101
    tmpdir = encodePath(tmpdir)
    filepath = encodePath(filepath)
-   tar = tarfile.open(filepath)
-   try:
-      tar.format = tarfile.GNU_FORMAT
-   except AttributeError:
-      tar.posix = False
-   for tarinfo in tar:
-      tar.extract(tarinfo, tmpdir)
+   with tarfile.open(filepath) as tar:
+      try:
+         tar.format = tarfile.GNU_FORMAT
+      except AttributeError:
+         tar.posix = False
+      for tarinfo in tar:
+         tar.extract(tarinfo, tmpdir)
 
 
 ###########################

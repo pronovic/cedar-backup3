@@ -318,7 +318,8 @@ def _loadDigest(digestPath):
       logger.debug("Digest [%s] does not exist on disk.", digestPath)
    else:
       try:
-         digest = pickle.load(open(digestPath, "r"))
+         with open(digestPath, "rb") as f:
+            digest = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
          logger.debug("Loaded digest [%s] from disk: %d entries.", digestPath, len(digest))
       except:
          digest = {}
@@ -342,7 +343,8 @@ def _writeDigest(config, digest, digestPath):
    @param digestPath: Path to the digest file on disk.
    """
    try:
-      pickle.dump(digest, open(digestPath, "w"))
+      with open(digestPath, "wb") as f:
+         pickle.dump(digest, file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
       changeOwnership(digestPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new digest [%s] to disk: %d entries.", digestPath, len(digest))
    except:

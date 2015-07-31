@@ -1976,7 +1976,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["subversion.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -2331,7 +2332,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["subversion.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -2345,7 +2347,8 @@ class TestLocalConfig(unittest.TestCase):
       """
       repositories = [ Repository(repositoryPath="/opt/public/svn/software"), ]
       path = self.resources["subversion.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual("daily", config.subversion.collectMode)
@@ -2365,7 +2368,8 @@ class TestLocalConfig(unittest.TestCase):
       """
       repositories = [ Repository(repositoryPath="/opt/public/svn/software", collectMode="daily", compressMode="gzip"), ]
       path = self.resources["subversion.conf.3"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual(None, config.subversion.collectMode)
@@ -2390,7 +2394,8 @@ class TestLocalConfig(unittest.TestCase):
       repositories.append(Repository(repositoryPath="/opt/public/svn/three", compressMode="bzip2"))
       repositories.append(Repository(repositoryType="FSFS", repositoryPath="/opt/public/svn/four", collectMode="incr", compressMode="bzip2"))
       path = self.resources["subversion.conf.4"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual("daily", config.subversion.collectMode)
@@ -2410,7 +2415,8 @@ class TestLocalConfig(unittest.TestCase):
       """
       repositoryDirs = [ RepositoryDir(directoryPath="/opt/public/svn/software"), ]
       path = self.resources["subversion.conf.5"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual("daily", config.subversion.collectMode)
@@ -2430,7 +2436,8 @@ class TestLocalConfig(unittest.TestCase):
       """
       repositoryDirs = [ RepositoryDir(directoryPath="/opt/public/svn/software", collectMode="daily", compressMode="gzip"), ]
       path = self.resources["subversion.conf.6"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual(None, config.subversion.collectMode)
@@ -2455,7 +2462,8 @@ class TestLocalConfig(unittest.TestCase):
       repositoryDirs.append(RepositoryDir(directoryPath="/opt/public/svn/three", compressMode="bzip2", excludePatterns=[".*software.*", ]))
       repositoryDirs.append(RepositoryDir(repositoryType="FSFS", directoryPath="/opt/public/svn/four", collectMode="incr", compressMode="bzip2", relativeExcludePaths=["cedar", "banner", ], excludePatterns=[".*software.*", ".*database.*", ]))
       path = self.resources["subversion.conf.7"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.subversion)
       self.assertEqual("daily", config.subversion.collectMode)

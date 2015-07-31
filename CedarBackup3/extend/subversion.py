@@ -759,7 +759,8 @@ class LocalConfig(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()
@@ -1303,11 +1304,8 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
             return
       logger.debug("Using incremental backup, revision: (%d, %d).", startRevision, endRevision)
    backupPath = _getBackupPath(config, repository.repositoryPath, compressMode, startRevision, endRevision)
-   outputFile = _getOutputFile(backupPath, compressMode)
-   try:
+   with _getOutputFile(backupPath, compressMode) as outputFile:
       backupRepository(repository.repositoryPath, outputFile, startRevision, endRevision)
-   finally:
-      outputFile.close()
    if not os.path.exists(backupPath):
       raise IOError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
    changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
@@ -1326,12 +1324,12 @@ def _getOutputFile(backupPath, compressMode):
    @param backupPath: Path to file to open.
    @param compressMode: Compress mode of file ("none", "gzip", "bzip").
 
-   @return: Output file object.
+   @return: Output file object, opened in binary mode for use with executeCommand()
    """
    if compressMode == "gzip":
-      return GzipFile(backupPath, "w")
+      return GzipFile(backupPath, "wb")
    elif compressMode == "bzip2":
-      return BZ2File(backupPath, "w")
+      return BZ2File(backupPath, "wb")
    else:
       return open(backupPath, "wb")
 
@@ -1354,7 +1352,8 @@ def _loadLastRevision(revisionPath):
       logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
    else:
       try:
-         startRevision = pickle.load(open(revisionPath, "r"))
+         with open(revisionPath, "rb") as f:
+            startRevision = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
          logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
       except:
          startRevision = -1
@@ -1373,7 +1372,8 @@ def _writeLastRevision(config, revisionPath, endRevision):
    @param endRevision: Last revision backed up on this run.
    """
    try:
-      pickle.dump(endRevision, open(revisionPath, "w"))
+      with open(revisionPath, "wb") as f:
+         pickle.dump(endRevision, file=f, protocol=0, fix_imports=True)
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
    except:

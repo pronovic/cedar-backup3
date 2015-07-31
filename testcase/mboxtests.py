@@ -1519,7 +1519,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["mbox.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -1874,7 +1875,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["mbox.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -1889,7 +1891,8 @@ class TestLocalConfig(unittest.TestCase):
       mboxFiles = [ MboxFile(absolutePath="/home/joebob/mail/cedar-backup-users"), ]
       mboxDirs = [ MboxDir(absolutePath="/home/billiejoe/mail"), ]
       path = self.resources["mbox.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mbox)
       self.assertEqual("daily", config.mbox.collectMode)
@@ -1910,7 +1913,8 @@ class TestLocalConfig(unittest.TestCase):
       mboxFiles = [ MboxFile(absolutePath="/home/joebob/mail/cedar-backup-users", collectMode="daily", compressMode="gzip"), ]
       mboxDirs = [ MboxDir(absolutePath="/home/billiejoe/mail", collectMode="weekly", compressMode="bzip2"), ]
       path = self.resources["mbox.conf.3"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mbox)
       self.assertEqual(None, config.mbox.collectMode)
@@ -1947,7 +1951,8 @@ class TestLocalConfig(unittest.TestCase):
                         excludePatterns=[".*SPAM.*", ".*JUNK.*", ])
       mboxDirs.append(mboxDir)
       path = self.resources["mbox.conf.4"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.mbox)
       self.assertEqual("incr", config.mbox.collectMode)

@@ -1091,9 +1091,13 @@ def _setupLogfile(options):
       logfile = options.logfile
    if not os.path.exists(logfile):
       if options.mode is None:
-         os.fdopen(os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, DEFAULT_MODE), "a+").write("")
+         with os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, DEFAULT_MODE) as fd:
+            with os.fdopen(fd, "a+") as f:
+               f.write("")
       else:
-         os.fdopen(os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, options.mode), "a+").write("")
+         with os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, options.mode) as fd:
+            with os.fdopen(fd, "a+") as f:
+               f.write("")
       try:
          if options.owner is None or len(options.owner) < 2:
             (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])

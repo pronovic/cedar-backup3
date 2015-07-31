@@ -4270,7 +4270,8 @@ class Config(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()
@@ -4566,7 +4567,8 @@ class Config(object):
          self.validate()
       xmlData = self._extractXml()
       if xmlPath is not None:
-         open(xmlPath, 'wt', encoding='utf-8').write(xmlData)
+         with open(xmlPath, "w") as f:
+            f.write(xmlData)
          return None
       else:
          return xmlData

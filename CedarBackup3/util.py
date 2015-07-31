@@ -1665,7 +1665,8 @@ def deviceMounted(devicePath):
    """
    if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
       realPath = os.path.realpath(devicePath)
-      lines = open(MTAB_FILE).readlines()
+      with open(MTAB_FILE) as f:
+         lines = f.readlines()
       for line in lines:
          (mountDevice, mountPoint, remainder) = line.split(None, 2)
          if mountDevice in [ devicePath, realPath, ]:

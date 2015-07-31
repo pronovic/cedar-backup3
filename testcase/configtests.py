@@ -8988,7 +8988,8 @@ class TestConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["cback.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, Config, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -8996,7 +8997,8 @@ class TestConfig(unittest.TestCase):
       Test with empty config document as data, validate=False.
       """
       path = self.resources["cback.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = Config(xmlData=contents, validate=False)
       self.assertEqual(None, config.reference)
       self.assertEqual(None, config.extensions)

@@ -2982,14 +2982,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(1, len(output))
       self.assertEqual(os.linesep, output[0])
@@ -3004,14 +3002,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(1, len(output))
       self.assertTrue(output[0].startswith("Python"))
@@ -3026,14 +3022,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(1, len(output))
       self.assertEqual(os.linesep, output[0])
@@ -3048,14 +3042,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(1, len(output))
       self.assertEqual("first%s" % os.linesep, output[0])
@@ -3070,14 +3062,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(2, len(output))
       self.assertEqual("first%s" % os.linesep, output[0])
@@ -3093,14 +3083,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertNotEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(1, len(output))
       self.assertEqual(os.linesep, output[0])
@@ -3115,14 +3103,12 @@ class TestFunctions(unittest.TestCase):
       args=[]
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertNotEqual(0, result)
       self.assertTrue(os.path.exists(filename))
-      output = open(filename).readlines()
+      with open(filename) as f:
+         output = f.readlines()
 
       self.assertEqual(2, len(output))
       self.assertEqual("first%s" % os.linesep, output[0])
@@ -3140,17 +3126,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(100000, length)
 
@@ -3166,17 +3149,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(100000, length)
 
@@ -3192,17 +3172,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(0, length)
 
@@ -3218,17 +3195,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(100000, length)
 
@@ -3244,17 +3218,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=True, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(100000, length)
 
@@ -3270,17 +3241,14 @@ class TestFunctions(unittest.TestCase):
       args = []
 
       filename = self.getTempfile()
-      outputFile = open(filename, "wb")
-      try:
+      with open(filename, "wb") as outputFile:
          result = executeCommand(command, args, ignoreStderr=False, returnOutput=False, outputFile=outputFile)[0]
-      finally:
-         outputFile.close()
       self.assertEqual(0, result)
 
       length = 0
-      contents = open(filename)
-      for i in contents:
-         length += 1
+      with open(filename) as contents:
+         for i in contents:
+            length += 1
 
       self.assertEqual(100000*2, length)
 

@@ -909,13 +909,12 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       """
       # pylint: disable=C0103,E1101
       s = hashlib.sha1()
-      f = open(path, mode="rb")  # in case platform cares about binary reads
-      readBytes = 4096  # see notes above
-      while readBytes > 0:
-         readString = f.read(readBytes)
-         s.update(readString)
-         readBytes = len(readString)
-      f.close()
+      with open(path, mode="rb") as f:
+         readBytes = 4096  # see notes above
+         while readBytes > 0:
+            readString = f.read(readBytes)
+            s.update(readString)
+            readBytes = len(readString)
       digest = s.hexdigest()
       logger.debug("Generated digest [%s] for file [%s].", digest, path)
       return digest

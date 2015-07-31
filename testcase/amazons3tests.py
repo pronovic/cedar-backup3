@@ -562,7 +562,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["amazons3.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -705,7 +706,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["amazons3.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -718,7 +720,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document with filled-in values.
       """
       path = self.resources["amazons3.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.amazons3)
       self.assertEqual(True, config.amazons3.warnMidnite)

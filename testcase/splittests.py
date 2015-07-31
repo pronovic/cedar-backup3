@@ -437,7 +437,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["split.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -590,7 +591,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["split.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -603,7 +605,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document with filled-in values, size in bytes.
       """
       path = self.resources["split.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.split)
       self.assertEqual(ByteQuantity("12345", UNIT_BYTES), config.split.sizeLimit)
@@ -618,7 +621,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document with filled-in values, size in KB.
       """
       path = self.resources["split.conf.3"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.split)
       self.assertEqual(ByteQuantity("1.25", UNIT_KBYTES), config.split.sizeLimit)
@@ -633,7 +637,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document with filled-in values, size in MB.
       """
       path = self.resources["split.conf.4"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.split)
       self.assertEqual(ByteQuantity("1.25", UNIT_MBYTES), config.split.sizeLimit)
@@ -648,7 +653,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document with filled-in values, size in GB.
       """
       path = self.resources["split.conf.5"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.split)
       self.assertEqual(ByteQuantity("1.25", UNIT_GBYTES), config.split.sizeLimit)

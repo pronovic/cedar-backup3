@@ -389,7 +389,8 @@ class LocalConfig(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()
@@ -838,7 +839,8 @@ def _encryptStagingDir(config, local, stagingDir, encryptedDir):
       if os.path.isfile(cleartext):
          encrypted = "%s%s" % (encryptedDir, cleartext.replace(stagingDir, ""))
          if int(os.stat(cleartext).st_size) == 0:
-            open(encrypted, 'a').close() # don't bother encrypting empty files
+            with open(encrypted, 'a') as f:
+               f.close() # don't bother encrypting empty files
          else:
             actualCommand = local.amazons3.encryptCommand.replace("${input}", cleartext).replace("${output}", encrypted)
             subdir = os.path.dirname(encrypted)

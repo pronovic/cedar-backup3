@@ -221,7 +221,8 @@ class TestDvdWriter(unittest.TestCase):
    def getFileContents(self, resource):
       """Gets contents of named resource as a list of strings."""
       path = self.resources[resource]
-      return open(path).readlines()
+      with open(path) as f:
+         return f.readlines()
 
 
    ###################

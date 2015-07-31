@@ -340,7 +340,8 @@ class LocalConfig(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()
@@ -564,10 +565,8 @@ def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, data
    @raise IOError: If there is a problem executing the PostgreSQL dump.
    """
    (outputFile, filename) = _getOutputFile(targetDir, database, compressMode)
-   try:
+   with outputFile:
       backupDatabase(user, outputFile, database)
-   finally:
-      outputFile.close()
    if not os.path.exists(filename):
       raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
    changeOwnership(filename, backupUser, backupGroup)
@@ -584,7 +583,7 @@ def _getOutputFile(targetDir, database, compressMode):
    @param database: Name of the database (if any)
    @param compressMode: Compress mode to be used for backed-up files.
 
-   @return: Tuple of (Output file object, filename)
+   @return: Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
    if database is None:
       filename = os.path.join(targetDir, "postgresqldump.txt")
@@ -592,10 +591,10 @@ def _getOutputFile(targetDir, database, compressMode):
       filename = os.path.join(targetDir, "postgresqldump-%s.txt" % database)
    if compressMode == "gzip":
       filename = "%s.gz" % filename
-      outputFile = GzipFile(filename, "w")
+      outputFile = GzipFile(filename, "wb")
    elif compressMode == "bzip2":
       filename = "%s.bz2" % filename
-      outputFile = BZ2File(filename, "w")
+      outputFile = BZ2File(filename, "wb")
    else:
       outputFile = open(filename, "wb")
    logger.debug("PostgreSQL dump file will be [%s].", filename)

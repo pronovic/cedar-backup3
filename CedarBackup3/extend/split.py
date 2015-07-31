@@ -269,7 +269,8 @@ class LocalConfig(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()

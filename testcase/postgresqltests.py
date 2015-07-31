@@ -657,7 +657,8 @@ class TestLocalConfig(unittest.TestCase):
       Test with empty config document as both data and file, validate=False.
       """
       path = self.resources["postgresql.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, xmlPath=path, validate=False)
 
    def testConstructor_004(self):
@@ -840,7 +841,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse empty config document.
       """
       path = self.resources["postgresql.conf.1"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       self.assertRaises(ValueError, LocalConfig, xmlPath=path, validate=True)
       self.assertRaises(ValueError, LocalConfig, xmlData=contents, validate=True)
       config = LocalConfig(xmlPath=path, validate=False)
@@ -853,7 +855,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a postgresql section, no databases, all=True.
       """
       path = self.resources["postgresql.conf.2"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.postgresql)
       self.assertEqual("user", config.postgresql.user)
@@ -871,7 +874,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a postgresql section, single database, all=False.
       """
       path = self.resources["postgresql.conf.3"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.postgresql)
       self.assertEqual("user", config.postgresql.user)
@@ -890,7 +894,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a postgresql section, multiple databases, all=False.
       """
       path = self.resources["postgresql.conf.4"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.postgresql)
       self.assertEqual("user", config.postgresql.user)
@@ -909,7 +914,8 @@ class TestLocalConfig(unittest.TestCase):
       Parse config document containing only a postgresql section, no user, multiple databases, all=False.
       """
       path = self.resources["postgresql.conf.5"]
-      contents = open(path).read()
+      with open(path) as f:
+         contents = f.read()
       config = LocalConfig(xmlPath=path, validate=False)
       self.assertNotEqual(None, config.postgresql)
       self.assertEqual(None, config.postgresql.user)

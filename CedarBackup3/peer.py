@@ -403,7 +403,8 @@ class LocalPeer(object):
          if os.path.exists(targetFile):
             raise IOError("Target file [%s] already exists." % targetFile)
       if sourceFile is None:
-         open(targetFile, "w").write("")
+         with open(targetFile, "w") as f:
+            f.write("")
       else:
          if os.path.isfile(sourceFile) and not os.path.islink(sourceFile):
             shutil.copy(sourceFile, targetFile)
@@ -871,7 +872,8 @@ class RemotePeer(object):
          targetFile = os.path.join(self.collectDir, stageIndicator)
       try:
          if not os.path.exists(sourceFile):
-            open(sourceFile, "w").write("")
+            with open(sourceFile, "w") as f:
+               f.write("")
          RemotePeer._pushLocalFile(self.remoteUser, self.localUser, self.name,
                                    self._rcpCommand, self._rcpCommandList,
                                    sourceFile, targetFile)

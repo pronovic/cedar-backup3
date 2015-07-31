@@ -1,3 +1,9 @@
+Version 3.0.2     unreleased
+
+	* Be much stricter with the way files are opened, relying on the new 'with' idiom.
+	* Fix problems with pickle by using binary open, protocol=0, fix_imports=True.
+	* Make sure every file opened for use with executeCommand() uses mode "wb".
+
 Version 3.0.1     29 Jul 2015
 
 	* Create project in Mercurial at BitBucket, alongside Cedar Backup 2.

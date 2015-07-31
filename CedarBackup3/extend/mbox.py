@@ -737,7 +737,8 @@ class LocalConfig(object):
          if validate:
             self.validate()
       elif xmlPath is not None:
-         xmlData = open(xmlPath).read()
+         with open(xmlPath) as f:
+            xmlData = f.read()
          self._parseXmlData(xmlData)
          if validate:
             self.validate()
@@ -1223,7 +1224,8 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
          logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
       else:
          try:
-            revisionDate = pickle.load(open(revisionPath, "r"))
+            with open(revisionPath, "rb") as f:
+               revisionDate = pickle.load(file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
             logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
          except:
             revisionDate = None
@@ -1247,7 +1249,8 @@ def _writeNewRevision(config, item, newRevision):
    """
    revisionPath = _getRevisionPath(config, item)
    try:
-      pickle.dump(newRevision, open(revisionPath, "w"))
+      with open(revisionPath, "wb") as f:
+         pickle.dump(newRevision, file=f, protocol=0, fix_imports=True)  # be compatible with Python 2
       changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
       logger.debug("Wrote new revision file [%s] to disk: [%s]", revisionPath, newRevision)
    except:
@@ -1362,14 +1365,14 @@ def _getOutputFile(backupPath, compressMode):
    @param backupPath: Path to file to open.
    @param compressMode: Compress mode of file ("none", "gzip", "bzip").
 
-   @return: Output file object.
+   @return: Output file object, opened in binary mode for use with executeCommand()
    """
    if compressMode == "gzip":
-      return GzipFile(backupPath, "w")
+      return GzipFile(backupPath, "wb")
    elif compressMode == "bzip2":
-      return BZ2File(backupPath, "w")
+      return BZ2File(backupPath, "wb")
    else:
-      return open(backupPath, "w")
+      return open(backupPath, "wb")
 
 def _backupMboxFile(config, absolutePath,
                     fullBackup, collectMode, compressMode,
@@ -1389,17 +1392,17 @@ def _backupMboxFile(config, absolutePath,
    @raise ValueError: If some value is missing or invalid.
    @raise IOError: If there is a problem backing up the mbox file.
    """
-   backupPath = _getBackupPath(config, absolutePath, compressMode, newRevision, targetDir=targetDir)
-   outputFile = _getOutputFile(backupPath, compressMode)
    if fullBackup or collectMode != "incr" or lastRevision is None:
       args = [ "-a", "-u", absolutePath, ]  # remove duplicates but fetch entire mailbox
    else:
       revisionDate = lastRevision.strftime("%Y-%m-%dT%H:%M:%S")  # ISO-8601 format; grepmail calls Date::Parse::str2time()
       args = [ "-a", "-u", "-d", "since %s" % revisionDate, absolutePath, ]
    command = resolveCommand(GREPMAIL_COMMAND)
-   result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
-   if result != 0:
-      raise IOError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
+   backupPath = _getBackupPath(config, absolutePath, compressMode, newRevision, targetDir=targetDir)
+   with _getOutputFile(backupPath, compressMode) as outputFile:
+      result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
+      if result != 0:
+         raise IOError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
    logger.debug("Completed backing up mailbox [%s].", absolutePath)
    return backupPath
 

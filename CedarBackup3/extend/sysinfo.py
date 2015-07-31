@@ -134,13 +134,11 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
       logger.info("Not executing Debian package dump since %s cannot be executed.", DPKG_PATH)
    else:
       (outputFile, filename) = _getOutputFile(targetDir, "dpkg-selections", compress)
-      try:
+      with outputFile:
          command = resolveCommand(DPKG_COMMAND)
          result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
          if result != 0:
             raise IOError("Error [%d] executing Debian package dump." % result)
-      finally:
-         outputFile.close()
       if not os.path.exists(filename):
          raise IOError("File [%s] does not seem to exist after Debian package dump finished." % filename)
       changeOwnership(filename, backupUser, backupGroup)
@@ -160,13 +158,11 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
       logger.info("Not executing partition table dump since %s cannot be executed.", FDISK_PATH)
    else:
       (outputFile, filename) = _getOutputFile(targetDir, "fdisk-l", compress)
-      try:
+      with outputFile:
          command = resolveCommand(FDISK_COMMAND)
          result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, outputFile=outputFile)[0]
          if result != 0:
             raise IOError("Error [%d] executing partition table dump." % result)
-      finally:
-         outputFile.close()
       if not os.path.exists(filename):
          raise IOError("File [%s] does not seem to exist after partition table dump finished." % filename)
       changeOwnership(filename, backupUser, backupGroup)
@@ -181,12 +177,10 @@ def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
    @raise IOError: If the dump fails for some reason.
    """
    (outputFile, filename) = _getOutputFile(targetDir, "ls-laR", compress)
-   try:
+   with outputFile:
       # Note: can't count on return status from 'ls', so we don't check it.
       command = resolveCommand(LS_COMMAND)
       executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)
-   finally:
-      outputFile.close()
    if not os.path.exists(filename):
       raise IOError("File [%s] does not seem to exist after filesystem contents dump finished." % filename)
    changeOwnership(filename, backupUser, backupGroup)
@@ -202,14 +196,14 @@ def _getOutputFile(targetDir, name, compress=True):
    @param name: Name of the file to create.
    @param compress: Indicates whether to write compressed output.
 
-   @return: Tuple of (Output file object, filename)
+   @return: Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
    filename = os.path.join(targetDir, "%s.txt" % name)
    if compress:
       filename = "%s.bz2" % filename
    logger.debug("Dump file will be [%s].", filename)
    if compress:
-      outputFile = BZ2File(filename, "w")
+      outputFile = BZ2File(filename, "wb")
    else:
       outputFile = open(filename, "wb")
    return (outputFile, filename)

@@ -14315,9 +14315,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(16, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001/" ]) in tarList
                       or self.tarPath([ "tree9", "dir001//" ]) in tarList  # Grr... Python 2.5 behavior differs
@@ -14401,9 +14400,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath, ignore=True)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14478,9 +14476,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14524,9 +14521,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(13, len(tarList))
       self.assertTrue(self.tarPath([ "tree11", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree11", "file with spaces", ]) in tarList)
@@ -14570,9 +14566,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14618,9 +14613,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar.gz", ])
       backupList.generateTarfile(tarPath, mode="targz")
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14666,9 +14660,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar.bz2", ])
       backupList.generateTarfile(tarPath, mode="tarbz2")
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14714,9 +14707,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildRandomPath(260, ".tar")
       backupList.generateTarfile(tarPath, mode="tar")
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14762,9 +14754,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildRandomPath(260, ".tar")
       backupList.generateTarfile(tarPath, mode="targz")
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14810,9 +14801,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildRandomPath(260, ".tar")
       backupList.generateTarfile(tarPath, mode="tarbz2")
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(15, len(tarList))
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file001", ]) in tarList)
       self.assertTrue(self.tarPath([ "tree9", "dir001", "file002", ]) in tarList)
@@ -14852,9 +14842,8 @@ class TestBackupFileList(unittest.TestCase):
       tarPath = self.buildPath(["file.tar", ])
       backupList.generateTarfile(tarPath, flat=True)
       self.assertTrue(tarfile.is_tarfile(tarPath))
-      tarFile = tarfile.open(tarPath)
-      tarList = tarFile.getnames()
-      tarFile.close()
+      with tarfile.open(tarPath) as tarFile:
+         tarList = tarFile.getnames()
       self.assertEqual(4, len(tarList))
       self.assertTrue("file with spaces" in tarList)
       self.assertTrue("file001" in tarList)
@@ -15680,7 +15669,8 @@ class TestBackupFileList(unittest.TestCase):
       """
       for key in list(self.resources.keys()):
          path = self.resources[key]
-         digest1 = hashlib.sha1(open(path, mode="rb").read()).hexdigest()  # because generateDigest also uses "rb"
+         with open(path, mode="rb") as f: # because generateDigest also uses "rb"
+            digest1 = hashlib.sha1(f.read()).hexdigest()
          digest2 = BackupFileList._generateDigest(path)
          self.assertEqual(digest1, digest2, "Digest for %s varies: [%s] vs [%s]." % (path, digest1, digest2))
 
@@ -20113,7 +20103,8 @@ class TestFunctions(unittest.TestCase):
       self.extractTar("tree1", within="path2")
       path1 = self.buildPath(["path1", "tree1", ])
       path2 = self.buildPath(["path2", "tree1", ])
-      open(self.buildPath(["path1", "tree1", "file004", ]), "a").write("BOGUS")  # change content
+      with open(self.buildPath(["path1", "tree1", "file004", ]), "a") as f:
+         f.write("BOGUS")  # change content
       self.assertRaises(ValueError, compareContents, path1, path2)
       self.assertRaises(ValueError, compareContents, path1, path2, verbose=True)
 
@@ -20147,7 +20138,8 @@ class TestFunctions(unittest.TestCase):
       self.extractTar("tree9", within="path2")
       path1 = self.buildPath(["path1", "tree9", ])
       path2 = self.buildPath(["path2", "tree9", ])
-      open(self.buildPath(["path2", "tree9", "dir001", "file002", ]), "a").write("whoops")  # change content
+      with open(self.buildPath(["path2", "tree9", "dir001", "file002", ]), "a") as f:
+         f.write("whoops")  # change content
       self.assertRaises(ValueError, compareContents, path1, path2)
       self.assertRaises(ValueError, compareContents, path1, path2, verbose=True)
 

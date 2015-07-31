@@ -295,7 +295,7 @@ class TestLocalPeer(unittest.TestCase):
       collectDir = self.buildPath(["collect", ])
       collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR, ])
       os.mkdir(collectDir)
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(collectIndicator))
       peer = LocalPeer(name, collectDir)
@@ -310,7 +310,7 @@ class TestLocalPeer(unittest.TestCase):
       collectDir = self.buildPath(["collect", ])
       collectIndicator = self.buildPath(["collect", "different", ])
       os.mkdir(collectDir)
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(collectIndicator))
       peer = LocalPeer(name, collectDir)
@@ -326,7 +326,7 @@ class TestLocalPeer(unittest.TestCase):
       collectDir = self.buildPath(["collect directory here", ])
       collectIndicator = self.buildPath(["collect directory here", DEF_COLLECT_INDICATOR, ])
       os.mkdir(collectDir)
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(collectIndicator))
       peer = LocalPeer(name, collectDir)
@@ -342,7 +342,7 @@ class TestLocalPeer(unittest.TestCase):
       collectDir = self.buildPath([" collect dir ", ])
       collectIndicator = self.buildPath([" collect dir ", "different, file", ])
       os.mkdir(collectDir)
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(collectIndicator))
       peer = LocalPeer(name, collectDir)
@@ -1014,7 +1014,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = getLogin()
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectIndicator))
       peer = RemotePeer(name, collectDir, workingDir, remoteUser)
       result = peer.checkCollectIndicator()
@@ -1031,7 +1031,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = getLogin()
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectIndicator))
       peer = RemotePeer(name, collectDir, workingDir, remoteUser)
       result = peer.checkCollectIndicator(collectIndicator="whatever")
@@ -1049,7 +1049,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = getLogin()
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectIndicator))
       peer = RemotePeer(name, collectDir, workingDir, remoteUser)
       result = peer.checkCollectIndicator()
@@ -1068,7 +1068,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = getLogin()
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      open(collectIndicator, "w").write("")     # touch the file
+      with open(collectIndicator, "w") as f: f.write("")     # touch the file
       self.assertTrue(os.path.exists(collectIndicator))
       peer = RemotePeer(name, collectDir, workingDir, remoteUser)
       result = peer.checkCollectIndicator(collectIndicator="whatever, dude")
