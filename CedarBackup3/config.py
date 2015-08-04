@@ -246,7 +246,7 @@ from functools import total_ordering
 from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed
 from CedarBackup3.util import UnorderedList, AbsolutePathList, ObjectTypeList, parseCommaSeparatedString
 from CedarBackup3.util import RegexMatchList, RegexList, encodePath, checkUnique
-from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
+from CedarBackup3.util import convertSize, displayBytes, UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
 from CedarBackup3.xmlutil import isElement, readChildren, readFirstChild
 from CedarBackup3.xmlutil import readStringList, readString, readInteger, readBoolean
 from CedarBackup3.xmlutil import addContainerNode, addStringNode, addIntegerNode, addBooleanNode
@@ -333,7 +333,7 @@ class ByteQuantity(object):
       """
       Informal string representation for class instance.
       """
-      return "%s %s" % (self.quantity, self.units)
+      return "%s" % displayBytes(self.bytes)
 
    def __eq__(self, other):
       """Equals operator, implemented in terms of Python 2-style compare operator."""
