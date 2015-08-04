@@ -472,7 +472,7 @@ def _splitDailyDir(dailyDir, sizeLimit, splitSize, backupUser, backupGroup):
    fileList = getBackupFiles(dailyDir)  # ignores indicator files
    for path in fileList:
       size = float(os.stat(path).st_size)
-      if size > sizeLimit.bytes:
+      if size > sizeLimit:
          _splitFile(path, splitSize, backupUser, backupGroup, removeSource=True)
    logger.debug("Completed splitting contents of [%s].", dailyDir)
 

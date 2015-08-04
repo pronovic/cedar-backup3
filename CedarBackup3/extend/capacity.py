@@ -568,9 +568,9 @@ def executeAction(configPath, options, config):
       if capacity.utilized > local.capacity.maxPercentage.percentage:
          logger.error("Media has reached capacity limit of %s%%: %.2f%% utilized",
                       local.capacity.maxPercentage.quantity, capacity.utilized)
-   else: # if local.capacity.bytes is not None
-      if capacity.bytesAvailable < local.capacity.minBytes.bytes:
+   else:
+      if capacity.bytesAvailable < local.capacity.minBytes:
          logger.error("Media has reached capacity limit of %s: only %s available",
-                      displayBytes(local.capacity.minBytes.bytes), displayBytes(capacity.bytesAvailable))
+                      local.capacity.minBytes, displayBytes(capacity.bytesAvailable))
    logger.info("Executed the capacity extended action successfully.")
 
