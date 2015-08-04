@@ -647,15 +647,15 @@ class DirectedGraph(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):

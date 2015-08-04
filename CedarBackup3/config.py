@@ -473,15 +473,15 @@ class ActionDependencies(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -608,15 +608,15 @@ class ActionHook(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -831,15 +831,15 @@ class BlankBehavior(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -968,15 +968,15 @@ class ExtendedAction(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -1173,15 +1173,15 @@ class CommandOverride(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -1294,15 +1294,15 @@ class CollectFile(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -1474,15 +1474,15 @@ class CollectDir(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -1800,15 +1800,15 @@ class PurgeDir(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -1926,15 +1926,15 @@ class LocalPeer(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -2096,15 +2096,15 @@ class RemotePeer(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -2380,15 +2380,15 @@ class ReferenceConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -2527,15 +2527,15 @@ class ExtensionsConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -2687,15 +2687,15 @@ class OptionsConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -3051,15 +3051,15 @@ class PeersConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -3226,15 +3226,15 @@ class CollectConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -3511,15 +3511,15 @@ class StageConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -3727,15 +3727,15 @@ class StoreConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -4109,15 +4109,15 @@ class PurgeConfig(object):
       return self.__repr__()
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
@@ -4304,15 +4304,15 @@ class Config(object):
    #############################
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
