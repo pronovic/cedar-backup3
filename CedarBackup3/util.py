@@ -517,7 +517,7 @@ class RegexMatchList(UnorderedList):
       """
       for item in seq:
          if item is None or (not self.emptyAllowed and item == ""):
-            raise ValueError("%s cannot be empty.", self.prefix)
+            raise ValueError("%s cannot be empty." % self.prefix)
          if not self.pattern.search(item):
             raise ValueError("%s is not valid: [%s]" % (self.prefix, item))
       list.extend(self, seq)
