@@ -86,6 +86,8 @@ Testing XML Extraction
 import unittest
 
 # Cedar Backup modules
+from CedarBackup3.util import UNIT_BYTES, UNIT_MBYTES, UNIT_GBYTES
+from CedarBackup3.config import ByteQuantity
 from CedarBackup3.testutil import findResources, failUnlessAssignRaises
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
@@ -96,9 +98,9 @@ from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
 #######################################################################
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
-RESOURCES = [ "amazons3.conf.1", "amazons3.conf.2", "tree1.tar.gz", "tree2.tar.gz",
-              "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz", "tree17.tar.gz",
-              "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]
+RESOURCES = [ "amazons3.conf.1", "amazons3.conf.2", "amazons3.conf.3", "tree1.tar.gz",
+              "tree2.tar.gz", "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz",
+              "tree17.tar.gz", "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]
 
 
 #######################################################################
@@ -150,9 +152,9 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual(None, amazons3.fullBackupSizeLimit)
       self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
 
-   def testConstructor_002(self):
+   def testConstructor_002a(self):
       """
-      Test constructor with all values filled in, with valid values.
+      Test constructor with all values filled in, with valid values (integers).
       """
       amazons3 = AmazonS3Config(True, "bucket", "encrypt", 1, 2)
       self.assertEqual(True, amazons3.warnMidnite)
@@ -160,6 +162,19 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual("encrypt", amazons3.encryptCommand)
       self.assertEqual(1, amazons3.fullBackupSizeLimit)
       self.assertEqual(2, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(ByteQuantity(1, UNIT_BYTES), amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(2, UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
+
+   def testConstructor_002b(self):
+      """
+      Test constructor with all values filled in, with valid values (byte quantities).
+      """
+      amazons3 = AmazonS3Config(True, "bucket", "encrypt", ByteQuantity(1, UNIT_BYTES), ByteQuantity(2, UNIT_BYTES))
+      self.assertEqual(True, amazons3.warnMidnite)
+      self.assertEqual("bucket", amazons3.s3Bucket)
+      self.assertEqual("encrypt", amazons3.encryptCommand)
+      self.assertEqual(ByteQuantity(1, UNIT_BYTES), amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(2, UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
 
    def testConstructor_003(self):
       """
@@ -252,7 +267,17 @@ class TestAmazonS3Config(unittest.TestCase):
       amazons3.fullBackupSizeLimit = None
       self.assertEqual(None, amazons3.fullBackupSizeLimit)
 
-   def testConstructor_012(self):
+   def testConstructor_012a(self):
+      """
+      Test assignment of fullBackupSizeLimit attribute, valid int value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      amazons3.fullBackupSizeLimit = 15
+      self.assertEqual(15, amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(15, UNIT_BYTES), amazons3.fullBackupSizeLimit)
+
+   def testConstructor_012b(self):
       """
       Test assignment of fullBackupSizeLimit attribute, valid long value.
       """
@@ -260,8 +285,19 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual(None, amazons3.fullBackupSizeLimit)
       amazons3.fullBackupSizeLimit = 7516192768
       self.assertEqual(7516192768, amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(7516192768, UNIT_BYTES), amazons3.fullBackupSizeLimit)
 
-   def testConstructor_013(self):
+   def testConstructor_012c(self):
+      """
+      Test assignment of fullBackupSizeLimit attribute, valid float value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      amazons3.fullBackupSizeLimit = 7516192768.0
+      self.assertEqual(7516192768.0, amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(7516192768.0, UNIT_BYTES), amazons3.fullBackupSizeLimit)
+
+   def testConstructor_012d(self):
       """
       Test assignment of fullBackupSizeLimit attribute, valid string value.
       """
@@ -269,8 +305,29 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual(None, amazons3.fullBackupSizeLimit)
       amazons3.fullBackupSizeLimit = "7516192768"
       self.assertEqual(7516192768, amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity("7516192768", UNIT_BYTES), amazons3.fullBackupSizeLimit)
 
-   def testConstructor_014(self):
+   def testConstructor_012e(self):
+      """
+      Test assignment of fullBackupSizeLimit attribute, valid byte quantity value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      amazons3.fullBackupSizeLimit = ByteQuantity(2.5, UNIT_GBYTES)
+      self.assertEqual(ByteQuantity(2.5, UNIT_GBYTES), amazons3.fullBackupSizeLimit)
+      self.assertEqual(2684354560.0, amazons3.fullBackupSizeLimit.bytes)
+
+   def testConstructor_012f(self):
+      """
+      Test assignment of fullBackupSizeLimit attribute, valid byte quantity value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.fullBackupSizeLimit)
+      amazons3.fullBackupSizeLimit = ByteQuantity(600, UNIT_MBYTES)
+      self.assertEqual(ByteQuantity(600, UNIT_MBYTES), amazons3.fullBackupSizeLimit)
+      self.assertEqual(629145600.0, amazons3.fullBackupSizeLimit.bytes)
+
+   def testConstructor_013(self):
       """
       Test assignment of fullBackupSizeLimit attribute, invalid value.
       """
@@ -279,7 +336,7 @@ class TestAmazonS3Config(unittest.TestCase):
       self.failUnlessAssignRaises(ValueError, amazons3, "fullBackupSizeLimit", "xxx")
       self.assertEqual(None, amazons3.fullBackupSizeLimit)
 
-   def testConstructor_015(self):
+   def testConstructor_014(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, None value.
       """
@@ -288,7 +345,17 @@ class TestAmazonS3Config(unittest.TestCase):
       amazons3.incrementalBackupSizeLimit = None
       self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
 
-   def testConstructor_016(self):
+   def testConstructor_015a(self):
+      """
+      Test assignment of incrementalBackupSizeLimit attribute, valid int value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
+      amazons3.incrementalBackupSizeLimit = 15
+      self.assertEqual(15, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(ByteQuantity(15, UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
+
+   def testConstructor_015b(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, valid long value.
       """
@@ -296,8 +363,19 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
       amazons3.incrementalBackupSizeLimit = 7516192768
       self.assertEqual(7516192768, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(ByteQuantity(7516192768, UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
 
-   def testConstructor_017(self):
+   def testConstructor_015c(self):
+      """
+      Test assignment of incrementalBackupSizeLimit attribute, valid float value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
+      amazons3.incrementalBackupSizeLimit = 7516192768.0
+      self.assertEqual(7516192768.0, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(ByteQuantity(7516192768.0, UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
+
+   def testConstructor_015d(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, valid string value.
       """
@@ -305,8 +383,29 @@ class TestAmazonS3Config(unittest.TestCase):
       self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
       amazons3.incrementalBackupSizeLimit = "7516192768"
       self.assertEqual(7516192768, amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(ByteQuantity("7516192768", UNIT_BYTES), amazons3.incrementalBackupSizeLimit)
 
-   def testConstructor_018(self):
+   def testConstructor_015e(self):
+      """
+      Test assignment of incrementalBackupSizeLimit attribute, valid byte quantity value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
+      amazons3.incrementalBackupSizeLimit = ByteQuantity(2.5, UNIT_GBYTES)
+      self.assertEqual(ByteQuantity(2.5, UNIT_GBYTES), amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(2684354560.0, amazons3.incrementalBackupSizeLimit.bytes)
+
+   def testConstructor_015f(self):
+      """
+      Test assignment of incrementalBackupSizeLimit attribute, valid byte quantity value.
+      """
+      amazons3 = AmazonS3Config()
+      self.assertEqual(None, amazons3.incrementalBackupSizeLimit)
+      amazons3.incrementalBackupSizeLimit = ByteQuantity(600, UNIT_MBYTES)
+      self.assertEqual(ByteQuantity(600, UNIT_MBYTES), amazons3.incrementalBackupSizeLimit)
+      self.assertEqual(629145600.0, amazons3.incrementalBackupSizeLimit.bytes)
+
+   def testConstructor_016(self):
       """
       Test assignment of incrementalBackupSizeLimit attribute, invalid value.
       """
@@ -736,6 +835,28 @@ class TestLocalConfig(unittest.TestCase):
       self.assertEqual("encrypt", config.amazons3.encryptCommand)
       self.assertEqual(5368709120, config.amazons3.fullBackupSizeLimit)
       self.assertEqual(2147483648, config.amazons3.incrementalBackupSizeLimit)
+
+   def testParse_003(self):
+      """
+      Parse config document with filled-in values.
+      """
+      path = self.resources["amazons3.conf.3"]
+      with open(path) as f:
+         contents = f.read()
+      config = LocalConfig(xmlPath=path, validate=False)
+      self.assertNotEqual(None, config.amazons3)
+      self.assertEqual(True, config.amazons3.warnMidnite)
+      self.assertEqual("mybucket", config.amazons3.s3Bucket)
+      self.assertEqual("encrypt", config.amazons3.encryptCommand)
+      self.assertEqual(ByteQuantity(2.5, UNIT_GBYTES), config.amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(600, UNIT_MBYTES), config.amazons3.incrementalBackupSizeLimit)
+      config = LocalConfig(xmlData=contents, validate=False)
+      self.assertNotEqual(None, config.amazons3)
+      self.assertEqual(True, config.amazons3.warnMidnite)
+      self.assertEqual("mybucket", config.amazons3.s3Bucket)
+      self.assertEqual("encrypt", config.amazons3.encryptCommand)
+      self.assertEqual(ByteQuantity(2.5, UNIT_GBYTES), config.amazons3.fullBackupSizeLimit)
+      self.assertEqual(ByteQuantity(600, UNIT_MBYTES), config.amazons3.incrementalBackupSizeLimit)
 
 
    ###################

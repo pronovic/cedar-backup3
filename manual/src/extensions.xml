@@ -271,7 +271,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
          <varlistentry>
             <term><literal>full_size_limit</literal></term>
             <listitem>
-               <para>Maximum size of a full backup, in bytes</para>
+               <para>Maximum size of a full backup</para>
                <para>
                   If this field is provided, then a size limit will be applied
                   to full backups.  If the total size of the selected staging
@@ -279,7 +279,17 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
                   fail.  
                </para>
                <para>
-                  <emphasis>Restrictions:</emphasis> If provided, must be an integer greater than zero.
+                  You can enter this value in two different forms.  It can
+                  either be a simple number, in which case the value is assumed
+                  to be in bytes; or it can be a number followed by a unit
+                  (KB, MB, GB).  
+               </para>
+               <para>
+                  Valid examples are <quote>10240</quote>, <quote>250
+                  MB</quote> or <quote>1.1 GB</quote>.
+               </para>
+               <para>
+                  <emphasis>Restrictions:</emphasis> Must be a value as described above, greater than zero.
                </para>
             </listitem>
          </varlistentry>
@@ -287,7 +297,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
          <varlistentry>
             <term><literal>incr_size_limit</literal></term>
             <listitem>
-               <para>Maximum size of an incremental backup, in bytes</para>
+               <para>Maximum size of an incremental backup</para>
                <para>
                   If this field is provided, then a size limit will be applied
                   to incremental backups.  If the total size of the selected
@@ -295,7 +305,17 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
                   will fail.  
                </para>
                <para>
-                  <emphasis>Restrictions:</emphasis> If provided, must be an integer greater than zero.
+                  You can enter this value in two different forms.  It can
+                  either be a simple number, in which case the value is assumed
+                  to be in bytes; or it can be a number followed by a unit
+                  (KB, MB, GB).  
+               </para>
+               <para>
+                  Valid examples are <quote>10240</quote>, <quote>250
+                  MB</quote> or <quote>1.1 GB</quote>.
+               </para>
+               <para>
+                  <emphasis>Restrictions:</emphasis> Must be a value as described above, greater than zero.
                </para>
             </listitem>
          </varlistentry>

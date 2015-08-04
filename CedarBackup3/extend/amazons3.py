@@ -96,10 +96,12 @@ from functools import total_ordering
 # Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList, BackupFileList
 from CedarBackup3.util import resolveCommand, executeCommand, isRunningAsRoot, changeOwnership, isStartOfWeek
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addBooleanNode, addStringNode, addLongNode
-from CedarBackup3.xmlutil import readFirstChild, readString, readBoolean, readLong
+from CedarBackup3.util import displayBytes, UNIT_BYTES
+from CedarBackup3.xmlutil import createInputDom, addContainerNode, addBooleanNode, addStringNode
+from CedarBackup3.xmlutil import readFirstChild, readString, readBoolean
 from CedarBackup3.actions.util import writeIndicatorFile
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
+from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityNode
 
 
 ########################################################################
@@ -131,8 +133,8 @@ class AmazonS3Config(object):
 
       - The s3Bucket value must be a non-empty string
       - The encryptCommand value, if set, must be a non-empty string
-      - The full backup size limit, if set, must be a number of bytes >= 0
-      - The incremental backup size limit, if set, must be a number of bytes >= 0
+      - The full backup size limit, if set, must be a ByteQuantity >= 0
+      - The incremental backup size limit, if set, must be a ByteQuantity >= 0
 
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
          warnMidnite, s3Bucket
@@ -211,12 +213,12 @@ class AmazonS3Config(object):
          else:
             return 1
       if self.fullBackupSizeLimit != other.fullBackupSizeLimit:
-         if int(self.fullBackupSizeLimit or 0) < int(other.fullBackupSizeLimit or 0):
+         if (self.fullBackupSizeLimit or ByteQuantity()) < (other.fullBackupSizeLimit or ByteQuantity()):
             return -1
          else:
             return 1
       if self.incrementalBackupSizeLimit != other.incrementalBackupSizeLimit:
-         if int(self.incrementalBackupSizeLimit or 0) < int(other.incrementalBackupSizeLimit or 0):
+         if (self.incrementalBackupSizeLimit or ByteQuantity()) < (other.incrementalBackupSizeLimit or ByteQuantity()):
             return -1
          else:
             return 1
@@ -277,13 +279,10 @@ class AmazonS3Config(object):
       if value is None:
          self._fullBackupSizeLimit = None
       else:
-         try:
-            value = int(value)
-         except TypeError:
-            raise ValueError("Full backup size limit must be an integer >= 0.")
-         if value < 0:
-            raise ValueError("Full backup size limit must be an integer >= 0.")
-         self._fullBackupSizeLimit = value
+         if isinstance(value, ByteQuantity):
+            self._fullBackupSizeLimit = value
+         else:
+            self._fullBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
 
    def _getFullBackupSizeLimit(self):
       """
@@ -300,13 +299,10 @@ class AmazonS3Config(object):
       if value is None:
          self._incrementalBackupSizeLimit = None
       else:
-         try:
-            value = int(value)
-         except TypeError:
-            raise ValueError("Incremental backup size limit must be an integer >= 0.")
-         if value < 0:
-            raise ValueError("Incremental backup size limit must be an integer >= 0.")
-         self._incrementalBackupSizeLimit = value
+         if isinstance(value, ByteQuantity):
+            self._incrementalBackupSizeLimit = value
+         else:
+            self._incrementalBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
 
    def _getIncrementalBackupSizeLimit(self):
       """
@@ -318,9 +314,9 @@ class AmazonS3Config(object):
    s3Bucket = property(_getS3Bucket, _setS3Bucket, None, doc="Amazon S3 Bucket in which to store data")
    encryptCommand = property(_getEncryptCommand, _setEncryptCommand, None, doc="Command used to encrypt data before upload to S3")
    fullBackupSizeLimit = property(_getFullBackupSizeLimit, _setFullBackupSizeLimit, None,
-                                  doc="Maximum size of a full backup, in bytes")
+                                  doc="Maximum size of a full backup, as a ByteQuantity")
    incrementalBackupSizeLimit = property(_getIncrementalBackupSizeLimit, _setIncrementalBackupSizeLimit, None,
-                                         doc="Maximum size of an incremental backup, in bytes")
+                                         doc="Maximum size of an incremental backup, as a ByteQuantity")
 
 
 ########################################################################
@@ -492,8 +488,8 @@ class LocalConfig(object):
          addBooleanNode(xmlDom, sectionNode, "warn_midnite", self.amazons3.warnMidnite)
          addStringNode(xmlDom, sectionNode, "s3_bucket", self.amazons3.s3Bucket)
          addStringNode(xmlDom, sectionNode, "encrypt", self.amazons3.encryptCommand)
-         addLongNode(xmlDom, sectionNode, "full_size_limit", self.amazons3.fullBackupSizeLimit)
-         addLongNode(xmlDom, sectionNode, "incr_size_limit", self.amazons3.incrementalBackupSizeLimit)
+         addByteQuantityNode(xmlDom, sectionNode, "full_size_limit", self.amazons3.fullBackupSizeLimit)
+         addByteQuantityNode(xmlDom, sectionNode, "incr_size_limit", self.amazons3.incrementalBackupSizeLimit)
 
    def _parseXmlData(self, xmlData):
       """
@@ -535,8 +531,8 @@ class LocalConfig(object):
          amazons3.warnMidnite = readBoolean(section, "warn_midnite")
          amazons3.s3Bucket = readString(section, "s3_bucket")
          amazons3.encryptCommand = readString(section, "encrypt")
-         amazons3.fullBackupSizeLimit = readLong(section, "full_size_limit")
-         amazons3.incrementalBackupSizeLimit = readLong(section, "incr_size_limit")
+         amazons3.fullBackupSizeLimit = readByteQuantity(section, "full_size_limit")
+         amazons3.incrementalBackupSizeLimit = readByteQuantity(section, "incr_size_limit")
       return amazons3
 
 
@@ -671,15 +667,15 @@ def _applySizeLimits(options, config, local, stagingDirs):
    if limit is None:
       logger.debug("No Amazon S3 size limit will be applied.")
    else:
-      logger.debug("Amazon S3 size limit is: %d bytes", limit)
+      logger.debug("Amazon S3 size limit is: %s bytes", displayBytes(limit))
       contents = BackupFileList()
       for stagingDir in stagingDirs:
          contents.addDirContents(stagingDir)
       total = contents.totalSize()
-      logger.debug("Amazon S3 backup size is is: %d bytes", total)
+      logger.debug("Amazon S3 backup size is is: %s bytes", displayBytes(total))
       if total > limit:
-         logger.error("Amazon S3 size limit exceeded: %.0f bytes > %d bytes", total, limit)
-         raise ValueError("Amazon S3 size limit exceeded: %.0f bytes > %d bytes" % (total, limit))
+         logger.error("Amazon S3 size limit exceeded: %s bytes > %s bytes", displayBytes(total), displayBytes(limit))
+         raise ValueError("Amazon S3 size limit exceeded: %s bytes > %s bytes" % (displayBytes(total), displayBytes(limit)))
       else:
          logger.info("Total size does not exceed Amazon S3 size limit, so backup can continue.")
 
