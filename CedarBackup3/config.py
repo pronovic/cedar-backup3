@@ -312,7 +312,7 @@ class ByteQuantity(object):
       """
       Constructor for the C{ByteQuantity} class.
 
-      @param quantity: Quantity of bytes, as string ("1.25")
+      @param quantity: Quantity of bytes, something interpretable as a float
       @param units: Unit of bytes, one of VALID_BYTE_UNITS
 
       @raise ValueError: If one of the values is invalid.
@@ -355,33 +355,39 @@ class ByteQuantity(object):
       """
       if other is None:
          return 1
-      if self.quantity != other.quantity:
-         if float(self.quantity or 0.0) < float(other.quantity or 0.0):
-            return -1
-         else:
-            return 1
-      if self.units != other.units:
-         if str(self.units or "") < str(other.units or ""):
-            return -1
-         else:
-            return 1
-      return 0
+      elif isinstance(other, ByteQuantity):
+         if self.quantity != other.quantity:
+            if float(self.quantity or 0.0) < float(other.quantity or 0.0):
+               return -1
+            else:
+               return 1
+         if self.units != other.units:
+            if str(self.units or "") < str(other.units or ""):
+               return -1
+            else:
+               return 1
+         return 0
+      else:
+         return self.__cmp__(ByteQuantity(other, UNIT_BYTES)) # will fail if other can't be coverted to float
 
    def _setQuantity(self, value):
       """
       Property target used to set the quantity
-      The value must be a non-empty string if it is not C{None}.
+      The value must be interpretable as a float if it is not None
       @raise ValueError: If the value is an empty string.
       @raise ValueError: If the value is not a valid floating point number
       @raise ValueError: If the value is less than zero
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("Quantity must be a non-empty string.")
-         floatValue = float(value)
+      if value is None:
+         self._quantity = None
+      else:
+         try:
+            floatValue = float(value)  # allow integer, float, string, etc.
+         except:
+            raise ValueError("Quantity must be interpretable as a float")
          if floatValue < 0.0:
             raise ValueError("Quantity cannot be negative.")
-      self._quantity = value # keep around string
+         self._quantity = str(value) # keep around string
 
    def _getQuantity(self):
       """
