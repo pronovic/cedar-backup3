@@ -1,4 +1,4 @@
-Version 3.1.0     unreleased
+Version 3.1.0     03 Aug 2015
 
 	* Enhance ByteQuantity so it can be built from and compared to simple numeric values.
 	* Improve the way the amazons3 extension deals with byte quantities.
