@@ -148,8 +148,8 @@ class AmazonS3Config(object):
       @param warnMidnite: Whether to generate warnings for crossing midnite.
       @param s3Bucket: Name of the Amazon S3 bucket in which to store the data
       @param encryptCommand: Command used to encrypt backup data before upload to S3
-      @param fullBackupSizeLimit: Maximum size of a full backup, in bytes
-      @param incrementalBackupSizeLimit: Maximum size of an incremental backup, in bytes
+      @param fullBackupSizeLimit: Maximum size of a full backup, a ByteQuantity
+      @param incrementalBackupSizeLimit: Maximum size of an incremental backup, a ByteQuantity
 
       @raise ValueError: If one of the values is invalid.
       """
@@ -667,15 +667,15 @@ def _applySizeLimits(options, config, local, stagingDirs):
    if limit is None:
       logger.debug("No Amazon S3 size limit will be applied.")
    else:
-      logger.debug("Amazon S3 size limit is: %s bytes", displayBytes(limit))
+      logger.debug("Amazon S3 size limit is: %s", displayBytes(limit.bytes))
       contents = BackupFileList()
       for stagingDir in stagingDirs:
          contents.addDirContents(stagingDir)
       total = contents.totalSize()
-      logger.debug("Amazon S3 backup size is is: %s bytes", displayBytes(total))
+      logger.debug("Amazon S3 backup size is is: %s", displayBytes(total))
       if total > limit:
-         logger.error("Amazon S3 size limit exceeded: %s bytes > %s bytes", displayBytes(total), displayBytes(limit))
-         raise ValueError("Amazon S3 size limit exceeded: %s bytes > %s bytes" % (displayBytes(total), displayBytes(limit)))
+         logger.error("Amazon S3 size limit exceeded: %s > %s", displayBytes(total), displayBytes(limit.bytes))
+         raise ValueError("Amazon S3 size limit exceeded: %s > %s" % (displayBytes(total), displayBytes(limit.bytes)))
       else:
          logger.info("Total size does not exceed Amazon S3 size limit, so backup can continue.")
 
