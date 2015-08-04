@@ -165,7 +165,7 @@ class TestByteQuantity(unittest.TestCase):
       """
       quantity = ByteQuantity()
       self.assertEqual(None, quantity.quantity)
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.assertEqual(0.0, quantity.bytes)
 
    def testConstructor_002a(self):
@@ -256,7 +256,7 @@ class TestByteQuantity(unittest.TestCase):
       """
       quantity = ByteQuantity(quantity="1.0")
       self.assertEqual("1.0", quantity.quantity)
-      self.assertEqual(0.0, quantity.bytes) # because no units are set
+      self.assertEqual(1.0, quantity.bytes)
       quantity.quantity = None
       self.assertEqual(None, quantity.quantity)
       self.assertEqual(0.0, quantity.bytes)
@@ -372,18 +372,16 @@ class TestByteQuantity(unittest.TestCase):
       """
       Test assignment of units attribute, None value.
       """
-      quantity = ByteQuantity(units=UNIT_BYTES)
-      self.assertEqual(UNIT_BYTES, quantity.units)
+      quantity = ByteQuantity(units=UNIT_MBYTES)
+      self.assertEqual(UNIT_MBYTES, quantity.units)
       quantity.units = None
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
 
    def testConstructor_009(self):
       """
       Test assignment of units attribute, valid values.
       """
       quantity = ByteQuantity()
-      self.assertEqual(None, quantity.units)
-      quantity.units = UNIT_BYTES
       self.assertEqual(UNIT_BYTES, quantity.units)
       quantity.units = UNIT_KBYTES
       self.assertEqual(UNIT_KBYTES, quantity.units)
@@ -391,36 +389,38 @@ class TestByteQuantity(unittest.TestCase):
       self.assertEqual(UNIT_MBYTES, quantity.units)
       quantity.units = UNIT_GBYTES
       self.assertEqual(UNIT_GBYTES, quantity.units)
+      quantity.units = UNIT_BYTES
+      self.assertEqual(UNIT_BYTES, quantity.units)
 
    def testConstructor_010(self):
       """
       Test assignment of units attribute, invalid value (empty).
       """
       quantity = ByteQuantity()
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
 
    def testConstructor_011(self):
       """
       Test assignment of units attribute, invalid value (not a valid unit).
       """
       quantity = ByteQuantity()
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", 16)
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", -2)
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "bytes")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "B")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "KB")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "MB")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
       self.failUnlessAssignRaises(ValueError, quantity, "units", "GB")
-      self.assertEqual(None, quantity.units)
+      self.assertEqual(UNIT_BYTES, quantity.units)
 
 
    ############################
@@ -469,12 +469,68 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(not quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
-   def testComparison_004(self):
+   def testComparison_004a(self):
       """
-      Test comparison of two differing objects, quantity differs.
+      Test comparison of two differing objects, quantity differs (same units).
       """
       quantity1 = ByteQuantity("10", UNIT_BYTES)
       quantity2 = ByteQuantity("12", UNIT_BYTES)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_004b(self):
+      """
+      Test comparison of two differing objects, quantity differs (different units).
+      """
+      quantity1 = ByteQuantity("10", UNIT_BYTES)
+      quantity2 = ByteQuantity("12", UNIT_KBYTES)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_004c(self):
+      """
+      Test comparison of two differing objects, quantity differs (implied UNIT_BYTES).
+      """
+      quantity1 = ByteQuantity("10")
+      quantity2 = ByteQuantity("12", UNIT_BYTES)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_004d(self):
+      """
+      Test comparison of two differing objects, quantity differs (implied UNIT_BYTES).
+      """
+      quantity1 = ByteQuantity("10", UNIT_BYTES)
+      quantity2 = ByteQuantity("12")
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_004e(self):
+      """
+      Test comparison of two differing objects, quantity differs (implied UNIT_BYTES).
+      """
+      quantity1 = ByteQuantity("10")
+      quantity2 = ByteQuantity("12")
       self.assertNotEqual(quantity1, quantity2)
       self.assertTrue(not quantity1 == quantity2)
       self.assertTrue(quantity1 < quantity2)
@@ -489,13 +545,13 @@ class TestByteQuantity(unittest.TestCase):
       """
       quantity1 = ByteQuantity()
       quantity2 = ByteQuantity(units=UNIT_MBYTES)
-      self.assertNotEqual(quantity1, quantity2)
-      self.assertTrue(not quantity1 == quantity2)
-      self.assertTrue(quantity1 < quantity2)
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
       self.assertTrue(quantity1 <= quantity2)
       self.assertTrue(not quantity1 > quantity2)
-      self.assertTrue(not quantity1 >= quantity2)
-      self.assertTrue(quantity1 != quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
 
    def testComparison_006(self):
       """
@@ -511,9 +567,9 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(not quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
-   def testComparison_007(self):
+   def testComparison_007a(self):
       """
-      Test comparison of byte quanity to integer bytes, equivalent
+      Test comparison of byte quantity to integer bytes, equivalent
       """
       quantity1 = 12
       quantity2 = ByteQuantity(quantity="12", units=UNIT_BYTES)
@@ -525,9 +581,37 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(quantity1 >= quantity2)
       self.assertTrue(not quantity1 != quantity2)
 
-   def testComparison_008(self):
+   def testComparison_007b(self):
       """
-      Test comparison of byte quanity to integer bytes, integer smaller
+      Test comparison of byte quantity to integer bytes, equivalent
+      """
+      quantity1 = 629145600
+      quantity2 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
+
+   def testComparison_007c(self):
+      """
+      Test comparison of byte quantity to integer bytes, equivalent
+      """
+      quantity1 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      quantity2 = 629145600
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
+
+   def testComparison_008a(self):
+      """
+      Test comparison of byte quantity to integer bytes, integer smaller
       """
       quantity1 = 11
       quantity2 = ByteQuantity(quantity="12", units=UNIT_BYTES)
@@ -539,9 +623,23 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(not quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
-   def testComparison_009(self):
+   def testComparison_008b(self):
       """
-      Test comparison of byte quanity to integer bytes, integer larger
+      Test comparison of byte quantity to integer bytes, integer smaller
+      """
+      quantity1 = 130390425
+      quantity2 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_009a(self):
+      """
+      Test comparison of byte quantity to integer bytes, integer larger
       """
       quantity1 = 13
       quantity2 = ByteQuantity(quantity="12", units=UNIT_BYTES)
@@ -553,9 +651,23 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
-   def testComparison_010(self):
+   def testComparison_009b(self):
       """
-      Test comparison of byte quanity to float bytes, equivalent
+      Test comparison of byte quantity to integer bytes, integer larger
+      """
+      quantity1 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      quantity2 = 629145610
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_010a(self):
+      """
+      Test comparison of byte quantity to float bytes, equivalent
       """
       quantity1 = 12.0
       quantity2 = ByteQuantity(quantity="12.0", units=UNIT_BYTES)
@@ -567,9 +679,23 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(quantity1 >= quantity2)
       self.assertTrue(not quantity1 != quantity2)
 
-   def testComparison_011(self):
+   def testComparison_010b(self):
       """
-      Test comparison of byte quanity to float bytes, float smaller
+      Test comparison of byte quantity to float bytes, equivalent
+      """
+      quantity1 = 629145600.0
+      quantity2 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      self.assertEqual(quantity1, quantity2)
+      self.assertTrue(quantity1 == quantity2)
+      self.assertTrue(not quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(not quantity1 != quantity2)
+
+   def testComparison_011a(self):
+      """
+      Test comparison of byte quantity to float bytes, float smaller
       """
       quantity1 = 11.0
       quantity2 = ByteQuantity(quantity="12.0", units=UNIT_BYTES)
@@ -581,9 +707,23 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(not quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
-   def testComparison_012(self):
+   def testComparison_011b(self):
       """
-      Test comparison of byte quanity to float bytes, float larger
+      Test comparison of byte quantity to float bytes, float smaller
+      """
+      quantity1 = 130390425.0
+      quantity2 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_012a(self):
+      """
+      Test comparison of byte quantity to float bytes, float larger
       """
       quantity1 = 13.0
       quantity2 = ByteQuantity(quantity="12.0", units=UNIT_BYTES)
@@ -593,6 +733,20 @@ class TestByteQuantity(unittest.TestCase):
       self.assertTrue(not quantity1 <= quantity2)
       self.assertTrue(quantity1 > quantity2)
       self.assertTrue(quantity1 >= quantity2)
+      self.assertTrue(quantity1 != quantity2)
+
+   def testComparison_012b(self):
+      """
+      Test comparison of byte quantity to float bytes, float larger
+      """
+      quantity1 = ByteQuantity(quantity="600", units=UNIT_MBYTES)
+      quantity2 = 629145610.0
+      self.assertNotEqual(quantity1, quantity2)
+      self.assertTrue(not quantity1 == quantity2)
+      self.assertTrue(quantity1 < quantity2)
+      self.assertTrue(quantity1 <= quantity2)
+      self.assertTrue(not quantity1 > quantity2)
+      self.assertTrue(not quantity1 >= quantity2)
       self.assertTrue(quantity1 != quantity2)
 
 

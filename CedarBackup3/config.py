@@ -290,7 +290,8 @@ class ByteQuantity(object):
    Class representing a byte quantity.
 
    A byte quantity has both a quantity and a byte-related unit.  Units are
-   maintained using the constants from util.py.
+   maintained using the constants from util.py.  If no units are provided,
+   C{UNIT_BYTES} is assumed.
 
    The quantity is maintained internally as a string so that issues of
    precision can be avoided.  It really isn't possible to store a floating
@@ -305,7 +306,7 @@ class ByteQuantity(object):
    sense to have a negative quantity of bytes in this context.
 
    @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         quantity, units
+         quantity, units, bytes
    """
 
    def __init__(self, quantity=None, units=None):
@@ -332,37 +333,31 @@ class ByteQuantity(object):
       """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+      return "%s %s" % (self.quantity, self.units)
 
    def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
+      """Equals operator, implemented in terms of Python 2-style compare operator."""
       return self.__cmp__(other) == 0
 
    def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Less-than operator, implemented in terms of Python 2-style compare operator."""
       return self.__cmp__(other) < 0
 
    def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+      """Greater-than operator, implemented in terms of Python 2-style compare operator."""
       return self.__cmp__(other) > 0
 
    def __cmp__(self, other):
       """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
+      Python 2-style comparison operator.
       @param other: Other object to compare to.
       @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
       """
       if other is None:
          return 1
       elif isinstance(other, ByteQuantity):
-         if self.quantity != other.quantity:
-            if float(self.quantity or 0.0) < float(other.quantity or 0.0):
-               return -1
-            else:
-               return 1
-         if self.units != other.units:
-            if str(self.units or "") < str(other.units or ""):
+         if self.bytes != other.bytes:
+            if self.bytes < other.bytes:
                return -1
             else:
                return 1
@@ -401,10 +396,12 @@ class ByteQuantity(object):
       If not C{None}, the units value must be one of the values in L{VALID_BYTE_UNITS}.
       @raise ValueError: If the value is not valid.
       """
-      if value is not None:
+      if value is None:
+         self._units = UNIT_BYTES
+      else:
          if value not in VALID_BYTE_UNITS:
             raise ValueError("Units value must be one of %s." % VALID_BYTE_UNITS)
-      self._units = value
+         self._units = value
 
    def _getUnits(self):
       """
