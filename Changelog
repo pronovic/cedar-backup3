@@ -1,5 +1,7 @@
 Version 3.1.1     unreleased
 
+	* Fix incorrect exception raise without % in util.py, found by accident.
+	* Fix cut-and-paste typo 'iplemented' in cli.py, config.py, and util.py.
 	* Fix bugs in the ByteQuantity changes from v3.1.0, so comparisons work properly.
 	* Adjust amazons3, capacity and split to use ByteQuantity directly, not bytes field.
 
