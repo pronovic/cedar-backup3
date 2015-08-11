@@ -1,4 +1,4 @@
-Version 3.1.2     unreleased
+Version 3.1.2     11 Aug 2015
 
 	* Fix PurgeItemList.removeYoungFiles() so ageInWholeDays can never be negative.
 
