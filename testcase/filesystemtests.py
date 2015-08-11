@@ -14704,7 +14704,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      tarPath = self.buildRandomPath(260, ".tar")
+      tarPath = self.buildRandomPath(255, ".tar")
       backupList.generateTarfile(tarPath, mode="tar")
       self.assertTrue(tarfile.is_tarfile(tarPath))
       with tarfile.open(tarPath) as tarFile:
@@ -14751,7 +14751,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      tarPath = self.buildRandomPath(260, ".tar")
+      tarPath = self.buildRandomPath(255, ".tar")
       backupList.generateTarfile(tarPath, mode="targz")
       self.assertTrue(tarfile.is_tarfile(tarPath))
       with tarfile.open(tarPath) as tarFile:
@@ -14798,7 +14798,7 @@ class TestBackupFileList(unittest.TestCase):
       self.assertTrue(self.buildPath([ "tree9", "file002", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link001", ]) in backupList)
       self.assertTrue(self.buildPath([ "tree9", "link002", ]) in backupList)
-      tarPath = self.buildRandomPath(260, ".tar")
+      tarPath = self.buildRandomPath(255, ".tar")
       backupList.generateTarfile(tarPath, mode="tarbz2")
       self.assertTrue(tarfile.is_tarfile(tarPath))
       with tarfile.open(tarPath) as tarFile:
