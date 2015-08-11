@@ -1093,14 +1093,14 @@ def _setupLogfile(options):
    else:
       logfile = options.logfile
    if not os.path.exists(logfile):
-      if options.mode is None:
-         with os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, DEFAULT_MODE) as fd:
-            with os.fdopen(fd, "a+") as f:
-               f.write("")
-      else:
-         with os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, options.mode) as fd:
-            with os.fdopen(fd, "a+") as f:
-               f.write("")
+      mode = DEFAULT_MODE if options.mode is None else options.mode
+      orig = os.umask(0) # Per os.open(), "When computing mode, the current umask value is first masked out"
+      try:
+         fd = os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, mode)
+         with os.fdopen(fd, "a+") as f:
+            f.write("")
+      finally:
+         os.umask(orig)
       try:
          if options.owner is None or len(options.owner) < 2:
             (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
