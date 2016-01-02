@@ -609,6 +609,7 @@ def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupG
       raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
    changeOwnership(filename, backupUser, backupGroup)
 
+#pylint: disable=R0204
 def _getOutputFile(targetDir, database, compressMode):
    """
    Opens the output file used for saving the MySQL dump.
@@ -697,10 +698,10 @@ def backupDatabase(user, password, backupFile, database=None):
    """
    args = [ "-all", "--flush-logs", "--opt", ]
    if user is not None:
-      logger.warn("Warning: MySQL username will be visible in process listing (consider using ~/.my.cnf).")
+      logger.warning("Warning: MySQL username will be visible in process listing (consider using ~/.my.cnf).")
       args.append("--user=%s" % user)
    if password is not None:
-      logger.warn("Warning: MySQL password will be visible in process listing (consider using ~/.my.cnf).")
+      logger.warning("Warning: MySQL password will be visible in process listing (consider using ~/.my.cnf).")
       args.append("--password=%s" % password)
    if database is None:
       args.insert(0, "--all-databases")

@@ -86,8 +86,6 @@ from subprocess import Popen, STDOUT, PIPE
 from functools import total_ordering
 from numbers import Real
 from decimal import Decimal
-
-from CedarBackup3.release import VERSION, DATE
 import collections
 
 try:
@@ -96,6 +94,8 @@ try:
    _UID_GID_AVAILABLE = True
 except ImportError:
    _UID_GID_AVAILABLE = False
+
+from CedarBackup3.release import VERSION, DATE
 
 
 ########################################################################
@@ -254,6 +254,7 @@ class UnorderedList(list):
       return sorted(value, key=UnorderedList.mixedkey)
 
    @staticmethod
+   #pylint: disable=R0204
    def mixedkey(value):
       """Provide a key for use by mixedsort()"""
       numeric = Real, Decimal

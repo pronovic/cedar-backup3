@@ -161,7 +161,7 @@ def _createStagingDirs(config, dailyDir, peers):
    """
    mapping = {}
    if os.path.isdir(dailyDir):
-      logger.warn("Staging directory [%s] already existed.", dailyDir)
+      logger.warning("Staging directory [%s] already existed.", dailyDir)
    else:
       try:
          logger.debug("Creating staging directory [%s].", dailyDir)
@@ -174,7 +174,7 @@ def _createStagingDirs(config, dailyDir, peers):
       peerDir = os.path.join(dailyDir, peer.name)
       mapping[peer.name] = peerDir
       if os.path.isdir(peerDir):
-         logger.warn("Peer staging directory [%s] already existed.", peerDir)
+         logger.warning("Peer staging directory [%s] already existed.", peerDir)
       else:
          try:
             logger.debug("Creating peer staging directory [%s].", peerDir)

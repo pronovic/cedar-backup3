@@ -686,7 +686,7 @@ class CdWriter(object):
          (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
          if result != 0:
             logger.debug("Error (%d) executing cdrecord command to get capacity.", result)
-            logger.warn("Unable to read disc (might not be initialized); returning boundaries of None.")
+            logger.warning("Unable to read disc (might not be initialized); returning boundaries of None.")
             return None
          boundaries = CdWriter._parseBoundariesOutput(output)
          if boundaries is None:
@@ -713,13 +713,13 @@ class CdWriter(object):
       if boundaries is None or boundaries[1] == 0:
          logger.debug("Capacity calculations are based on a complete disc rewrite.")
          sectorsAvailable = media.capacity - media.initialLeadIn
-         if sectorsAvailable < 0: sectorsAvailable = 0
-         bytesUsed = 0
+         if sectorsAvailable < 0: sectorsAvailable = 0.0
+         bytesUsed = 0.0
          bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
       else:
          logger.debug("Capacity calculations are based on a new ISO session.")
          sectorsAvailable = media.capacity - boundaries[1] - media.leadIn
-         if sectorsAvailable < 0: sectorsAvailable = 0
+         if sectorsAvailable < 0: sectorsAvailable = 0.0
          bytesUsed = convertSize(boundaries[1], UNIT_SECTORS, UNIT_BYTES)
          bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
       logger.debug("Used [%s], available [%s].", displayBytes(bytesUsed), displayBytes(bytesAvailable))
@@ -1135,7 +1135,7 @@ class CdWriter(object):
       @raise IOError: If there is problem parsing the output.
       """
       if len(output) < 1:
-         logger.warn("Unable to read disc (might not be initialized); returning full capacity.")
+         logger.warning("Unable to read disc (might not be initialized); returning full capacity.")
          return None
       boundaryPattern = re.compile(r"(^\s*)([0-9]*)(\s*,\s*)([0-9]*)(\s*$)")
       parsed = boundaryPattern.search(output[0])

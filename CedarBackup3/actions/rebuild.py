@@ -100,8 +100,8 @@ def executeRebuild(configPath, options, config):
    """
    logger.debug("Executing the 'rebuild' action.")
    if sys.platform == "darwin":
-      logger.warn("Warning: the rebuild action is not fully supported on Mac OS X.")
-      logger.warn("See the Cedar Backup software manual for further information.")
+      logger.warning("Warning: the rebuild action is not fully supported on Mac OS X.")
+      logger.warning("See the Cedar Backup software manual for further information.")
    if config.options is None or config.store is None:
       raise ValueError("Rebuild configuration is not properly filled in.")
    if config.store.checkMedia:
@@ -110,8 +110,8 @@ def executeRebuild(configPath, options, config):
    writeImage(config, True, stagingDirs)
    if config.store.checkData:
       if sys.platform == "darwin":
-         logger.warn("Warning: consistency check cannot be run successfully on Mac OS X.")
-         logger.warn("See the Cedar Backup software manual for further information.")
+         logger.warning("Warning: consistency check cannot be run successfully on Mac OS X.")
+         logger.warning("See the Cedar Backup software manual for further information.")
       else:
          logger.debug("Running consistency check of media.")
          consistencyCheck(config, stagingDirs)

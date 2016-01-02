@@ -276,6 +276,7 @@ class TestFunctions(unittest.TestCase):
    # Test validateDriveSpeed()
    ############################
 
+   #pylint: disable=R0204
    def testValidateDriveSpeed_001(self):
       """
       Test for a valid drive speed.

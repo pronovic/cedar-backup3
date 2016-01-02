@@ -571,6 +571,7 @@ def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, data
       raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
    changeOwnership(filename, backupUser, backupGroup)
 
+#pylint: disable=R0204
 def _getOutputFile(targetDir, database, compressMode):
    """
    Opens the output file used for saving the PostgreSQL dump.

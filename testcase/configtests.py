@@ -175,27 +175,27 @@ class TestByteQuantity(unittest.TestCase):
       quantity = ByteQuantity("6", UNIT_BYTES)
       self.assertEqual("6", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(6.0, quantity.bytes)
+      self.assertEqual(6.0, quantity.bytes)
 
       quantity = ByteQuantity("2684354560", UNIT_BYTES)
       self.assertEqual("2684354560", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(2684354560.0, quantity.bytes)
+      self.assertEqual(2684354560.0, quantity.bytes)
 
       quantity = ByteQuantity("629145600", UNIT_BYTES)
       self.assertEqual("629145600", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
       quantity = ByteQuantity("2.5", UNIT_GBYTES)
       self.assertEqual("2.5", quantity.quantity)
       self.assertEqual(UNIT_GBYTES, quantity.units)
-      self.assertEquals(2684354560.0, quantity.bytes)
+      self.assertEqual(2684354560.0, quantity.bytes)
 
       quantity = ByteQuantity("600", UNIT_MBYTES)
       self.assertEqual("600", quantity.quantity)
       self.assertEqual(UNIT_MBYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
    def testConstructor_002b(self):
       """
@@ -204,22 +204,22 @@ class TestByteQuantity(unittest.TestCase):
       quantity = ByteQuantity(6, UNIT_BYTES)
       self.assertEqual("6", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(6.0, quantity.bytes)
+      self.assertEqual(6.0, quantity.bytes)
 
       quantity = ByteQuantity(2684354560, UNIT_BYTES)
       self.assertEqual("2684354560", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(2684354560.0, quantity.bytes)
+      self.assertEqual(2684354560.0, quantity.bytes)
 
       quantity = ByteQuantity(629145600, UNIT_BYTES)
       self.assertEqual("629145600", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
       quantity = ByteQuantity(600, UNIT_MBYTES)
       self.assertEqual("600", quantity.quantity)
       self.assertEqual(UNIT_MBYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
    def testConstructor_002c(self):
       """
@@ -228,27 +228,27 @@ class TestByteQuantity(unittest.TestCase):
       quantity = ByteQuantity(6.0, UNIT_BYTES)
       self.assertEqual("6.0", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(6.0, quantity.bytes)
+      self.assertEqual(6.0, quantity.bytes)
 
       quantity = ByteQuantity(2684354560.0, UNIT_BYTES)
       self.assertEqual("2684354560.0", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(2684354560.0, quantity.bytes)
+      self.assertEqual(2684354560.0, quantity.bytes)
 
       quantity = ByteQuantity(629145600.0, UNIT_BYTES)
       self.assertEqual("629145600.0", quantity.quantity)
       self.assertEqual(UNIT_BYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
       quantity = ByteQuantity(2.5, UNIT_GBYTES)
       self.assertEqual("2.5", quantity.quantity)
       self.assertEqual(UNIT_GBYTES, quantity.units)
-      self.assertEquals(2684354560.0, quantity.bytes)
+      self.assertEqual(2684354560.0, quantity.bytes)
 
       quantity = ByteQuantity(600.0, UNIT_MBYTES)
       self.assertEqual("600.0", quantity.quantity)
       self.assertEqual(UNIT_MBYTES, quantity.units)
-      self.assertEquals(629145600.0, quantity.bytes)
+      self.assertEqual(629145600.0, quantity.bytes)
 
    def testConstructor_003(self):
       """
@@ -307,6 +307,7 @@ class TestByteQuantity(unittest.TestCase):
       self.assertEqual("181281", quantity.quantity)
       self.assertEqual(181281.0, quantity.bytes)
 
+   #pylint: disable=R0204
    def testConstructor_004c(self):
       """
       Test assignment of quantity attribute, valid float values.
@@ -3174,6 +3175,7 @@ class TestCollectDir(unittest.TestCase):
       collectDir.dereference = False
       self.assertEqual(False, collectDir.dereference)
 
+   #pylint: disable=R0204
    def testConstructor_041(self):
       """
       Test assignment of dereference attribute, valid value (expression).
@@ -4372,6 +4374,7 @@ class TestRemotePeer(unittest.TestCase):
       remotePeer.managed = False
       self.assertEqual(False, remotePeer.managed)
 
+   #pylint: disable=R0204
    def testConstructor_023(self):
       """
       Test assignment of managed attribute, valid value (expression).
@@ -8424,6 +8427,7 @@ class TestStoreConfig(unittest.TestCase):
       store.driveSpeed = None
       self.assertEqual(None, store.driveSpeed)
 
+   #pylint: disable=R0204
    def testConstructor_024(self):
       """
       Test assignment of driveSpeed attribute, valid value.
@@ -8466,6 +8470,7 @@ class TestStoreConfig(unittest.TestCase):
       store.checkData = False
       self.assertEqual(False, store.checkData)
 
+   #pylint: disable=R0204
    def testConstructor_028(self):
       """
       Test assignment of checkData attribute, valid value (expression).
@@ -8503,6 +8508,7 @@ class TestStoreConfig(unittest.TestCase):
       store.warnMidnite = False
       self.assertEqual(False, store.warnMidnite)
 
+   #pylint: disable=R0204
    def testConstructor_031(self):
       """
       Test assignment of warnMidnite attribute, valid value (expression).
@@ -8540,6 +8546,7 @@ class TestStoreConfig(unittest.TestCase):
       store.noEject = False
       self.assertEqual(False, store.noEject)
 
+   #pylint: disable=R0204
    def testConstructor_034(self):
       """
       Test assignment of noEject attribute, valid value (expression).
@@ -8577,6 +8584,7 @@ class TestStoreConfig(unittest.TestCase):
       store.checkMedia = False
       self.assertEqual(False, store.checkMedia)
 
+   #pylint: disable=R0204
    def testConstructor_037(self):
       """
       Test assignment of checkMedia attribute, valid value (expression).
@@ -8626,6 +8634,7 @@ class TestStoreConfig(unittest.TestCase):
       store.refreshMediaDelay = None
       self.assertEqual(None, store.refreshMediaDelay)
 
+   #pylint: disable=R0204
    def testConstructor_042(self):
       """
       Test assignment of refreshMediaDelay attribute, valid value.
@@ -8661,6 +8670,7 @@ class TestStoreConfig(unittest.TestCase):
       store.ejectDelay = None
       self.assertEqual(None, store.ejectDelay)
 
+   #pylint: disable=R0204
    def testConstructor_045(self):
       """
       Test assignment of ejectDelay attribute, valid value.

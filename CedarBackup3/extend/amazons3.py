@@ -627,12 +627,12 @@ def _findCorrectDailyDir(options, config, local):
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
          logger.info("Amazon S3 process will use previous day's staging directory [%s]", yesterdayPath)
          if local.amazons3.warnMidnite:
-            logger.warn("Warning: Amazon S3 process crossed midnite boundary to find data.")
+            logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
          return { yesterdayPath:yesterdayDate }
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
          logger.info("Amazon S3 process will use next day's staging directory [%s]", tomorrowPath)
          if local.amazons3.warnMidnite:
-            logger.warn("Warning: Amazon S3 process crossed midnite boundary to find data.")
+            logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
          return { tomorrowPath:tomorrowDate }
       raise IOError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
 

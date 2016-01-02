@@ -56,9 +56,9 @@ import os
 import logging
 import getopt
 import json
-import chardet
 import warnings
 from functools import total_ordering
+import chardet
 
 # Cedar Backup modules
 from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT

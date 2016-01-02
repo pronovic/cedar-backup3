@@ -5019,6 +5019,7 @@ class Config(object):
       return lst
 
    @staticmethod
+   #pylint: disable=R0204
    def _parseHooks(parentNode):
       """
       Reads a list of C{ActionHook} objects from immediately beneath the parent.
@@ -6140,7 +6141,7 @@ class Config(object):
             raise ValueError("Store section media type must be filled in.")
          if self.store.devicePath is None:
             raise ValueError("Store section device path must be filled in.")
-         if self.store.deviceType == None or self.store.deviceType == "cdwriter":
+         if self.store.deviceType is None or self.store.deviceType == "cdwriter":
             if self.store.mediaType not in VALID_CD_MEDIA_TYPES:
                raise ValueError("Media type must match device type.")
          elif self.store.deviceType == "dvdwriter":

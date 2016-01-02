@@ -103,8 +103,8 @@ def executeStore(configPath, options, config):
    """
    logger.debug("Executing the 'store' action.")
    if sys.platform == "darwin":
-      logger.warn("Warning: the store action is not fully supported on Mac OS X.")
-      logger.warn("See the Cedar Backup software manual for further information.")
+      logger.warning("Warning: the store action is not fully supported on Mac OS X.")
+      logger.warning("See the Cedar Backup software manual for further information.")
    if config.options is None or config.store is None:
       raise ValueError("Store configuration is not properly filled in.")
    if config.store.checkMedia:
@@ -116,8 +116,8 @@ def executeStore(configPath, options, config):
    writeImageBlankSafe(config, rebuildMedia, todayIsStart, config.store.blankBehavior, stagingDirs)
    if config.store.checkData:
       if sys.platform == "darwin":
-         logger.warn("Warning: consistency check cannot be run successfully on Mac OS X.")
-         logger.warn("See the Cedar Backup software manual for further information.")
+         logger.warning("Warning: consistency check cannot be run successfully on Mac OS X.")
+         logger.warning("See the Cedar Backup software manual for further information.")
       else:
          logger.debug("Running consistency check of media.")
          consistencyCheck(config, stagingDirs)
@@ -387,12 +387,12 @@ def _findCorrectDailyDir(options, config):
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
          logger.info("Store process will use previous day's stage directory [%s]", yesterdayPath)
          if config.store.warnMidnite:
-            logger.warn("Warning: store process crossed midnite boundary to find data.")
+            logger.warning("Warning: store process crossed midnite boundary to find data.")
          return { yesterdayPath:yesterdayDate }
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
          logger.info("Store process will use next day's stage directory [%s]", tomorrowPath)
          if config.store.warnMidnite:
-            logger.warn("Warning: store process crossed midnite boundary to find data.")
+            logger.warning("Warning: store process crossed midnite boundary to find data.")
          return { tomorrowPath:tomorrowDate }
       raise IOError("Unable to find unused staging directory to store (tried today, yesterday, tomorrow).")
 

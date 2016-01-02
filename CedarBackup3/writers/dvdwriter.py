@@ -408,7 +408,7 @@ class DvdWriter(object):
       @raise ValueError: If the drive speed is not an integer >= 1.
       """
       if scsiId is not None:
-         logger.warn("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
+         logger.warning("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
       self._image = None  # optionally filled in by initializeImage()
       self._device = validateDevice(device, unittest)
       self._scsiId = scsiId  # not validated, because it's just for reference
@@ -520,7 +520,7 @@ class DvdWriter(object):
       @raise ValueError: If there is a problem parsing the C{growisofs} output
       @raise IOError: If the media could not be read for some reason.
       """
-      sectorsUsed = 0
+      sectorsUsed = 0.0
       if not entireDisc:
          sectorsUsed = self._retrieveSectorsUsed()
       sectorsAvailable = self._media.capacity - sectorsUsed  # both are in sectors
@@ -747,7 +747,7 @@ class DvdWriter(object):
       @raise ValueError: If no image is passed in and initializeImage() was not previously called
       """
       if not writeMulti:
-         logger.warn("writeMulti value of [%s] ignored.", writeMulti)
+         logger.warning("writeMulti value of [%s] ignored.", writeMulti)
       if imagePath is None:
          if self._image is None:
             raise ValueError("Must call initializeImage() before using this method with no image path.")
@@ -841,7 +841,7 @@ class DvdWriter(object):
          (result, output) = executeCommand(command, args, returnOutput=True)
          if result != 0:
             logger.debug("Error (%d) calling growisofs to read sectors used.", result)
-            logger.warn("Unable to read disc (might not be initialized); returning zero sectors used.")
+            logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
             return 0.0
          sectorsUsed = DvdWriter._parseSectorsUsed(output)
          logger.debug("Determined sectors used as %s", sectorsUsed)
@@ -881,7 +881,7 @@ class DvdWriter(object):
                   return float(match.group(4).strip()) * 16.0
                except ValueError:
                   raise ValueError("Unable to parse sectors used out of growisofs output.")
-      logger.warn("Unable to read disc (might not be initialized); returning zero sectors used.")
+      logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
       return 0.0
 
    @staticmethod
