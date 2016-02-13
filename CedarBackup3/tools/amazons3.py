@@ -58,6 +58,7 @@ import getopt
 import json
 import warnings
 from functools import total_ordering
+from pathlib import Path
 import chardet
 
 # Cedar Backup modules
@@ -1059,21 +1060,33 @@ def _checkSourceFiles(sourceDir, sourceFiles):
    @see U{http://randysofia.com/2014/06/06/aws-cli-and-your-locale/}
    """
    with warnings.catch_warnings():
-      warnings.simplefilter("ignore") # So we don't print unicode warnings from comparisons
-
       encoding = Diagnostics().encoding
+
+      # Note: this was difficult to fully test.  As of the original Python 2
+      # implementation, I had a bunch of files on disk that had inconsistent
+      # encodings, so I was able to prove that the check warned about these
+      # files initially, and then didn't warn after I fixed them.  I didn't
+      # save off those files for a unit test (ugh) so by the time of the Python
+      # 3 conversion -- which is subtly different because of the different way
+      # Python 3 handles unicode strings -- I had to contrive some tests.  I
+      # think the tests I wrote are consistent with the earlier problems, and I
+      # do get the same result for those tests in both CedarBackup 2 and Cedar
+      # Backup 3.  However, I can't be certain the implementation is
+      # equivalent.  If someone runs into a situation that this code doesn't
+      # handle, you may need to revisit the implementation.
 
       failed = False
       for entry in sourceFiles:
-         result = chardet.detect(entry)
-         source = entry.decode(result["encoding"])
+         path = bytes(Path(entry))
+         result = chardet.detect(path)
+         source = path.decode(result["encoding"])
          try:
-            target = source.encode(encoding)
+            target = path.decode(encoding)
             if source != target:
-               logger.error("Inconsistent encoding for [%s]: got %s, but need %s", entry, result["encoding"], encoding)
+               logger.error("Inconsistent encoding for [%s]: got %s, but need %s", source, result["encoding"], encoding)
                failed = True
-         except UnicodeEncodeError:
-            logger.error("Inconsistent encoding for [%s]: got %s, but need %s", entry, result["encoding"], encoding)
+         except Exception:
+            logger.error("Inconsistent encoding for [%s]: got %s, but need %s", source, result["encoding"], encoding)
             failed = True
 
       if not failed:

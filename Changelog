@@ -1,3 +1,7 @@
+Version 3.1.6     unreleased
+
+	* Fix bug in the file encoding checks for the amazons3sync tool.
+
 Version 3.1.5     02 Jan 2016
 
 	* Fix or disable a variety of new warnings and suggestions from pylint.

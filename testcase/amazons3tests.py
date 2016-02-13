@@ -84,13 +84,15 @@ Testing XML Extraction
 
 # System modules
 import unittest
+import tempfile
 
 # Cedar Backup modules
 from CedarBackup3.util import UNIT_BYTES, UNIT_MBYTES, UNIT_GBYTES
 from CedarBackup3.config import ByteQuantity
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises 
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
+from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles 
 
 
 #######################################################################
@@ -99,8 +101,9 @@ from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
 
 DATA_DIRS = [ "./data", "./testcase/data", ]
 RESOURCES = [ "amazons3.conf.1", "amazons3.conf.2", "amazons3.conf.3", "tree1.tar.gz",
-              "tree2.tar.gz", "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz",
-              "tree17.tar.gz", "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]
+              "tree2.tar.gz", "tree4.tar.gz", "tree8.tar.gz", "tree13.tar.gz",
+              "tree15.tar.gz", "tree16.tar.gz", "tree17.tar.gz", "tree18.tar.gz",
+              "tree19.tar.gz", "tree20.tar.gz", ]
 
 
 #######################################################################
@@ -883,6 +886,68 @@ class TestLocalConfig(unittest.TestCase):
       self.validateAddConfig(config)
 
 
+#################
+# TestTool class
+#################
+
+class TestTool(unittest.TestCase):
+
+
+   ################
+   # Setup methods
+   ################
+
+   def setUp(self):
+      try:
+         self.tmpdir = tempfile.mkdtemp()
+         self.resources = findResources(RESOURCES, DATA_DIRS)
+      except Exception as e:
+         self.fail(e)
+
+   def tearDown(self):
+      try:
+         removedir(self.tmpdir)
+      except: pass
+
+
+   ##################
+   # Utility methods
+   ##################
+
+   def extractTar(self, tarname):
+      """Extracts a tarfile with a particular name."""
+      extractTar(self.tmpdir, self.resources['%s.tar.gz' % tarname])
+
+   def buildPath(self, components):
+      """Builds a complete search path from a list of components."""
+      components.insert(0, self.tmpdir)
+      return buildPath(components)
+
+
+   ###########################
+   # Test _checkSourceFiles()
+   ###########################
+
+   def testCheckSourceFiles_001(self):
+      """
+      Test _checkSourceFiles() where some files have an invalid encoding.
+      """
+      self.extractTar("tree13")
+      sourceDir = self.buildPath(["tree13", ])
+      sourceFiles = _buildSourceFiles(sourceDir)
+      self.assertRaises(ValueError, _checkSourceFiles, sourceDir=sourceDir, sourceFiles=sourceFiles)
+
+   def testFileEncoding_002(self):
+      """
+      Test _checkSourceFiles() where all files have a valid encoding.
+      """
+      self.extractTar("tree4")
+      sourceDir = self.buildPath(["tree4", "dir006", ])
+      sourceFiles = _buildSourceFiles(sourceDir)
+      _checkSourceFiles(sourceDir=sourceDir, sourceFiles=sourceFiles)
+
+
+
 #######################################################################
 # Suite definition
 #######################################################################
@@ -892,5 +957,6 @@ def suite():
    tests =  [ ]
    tests.append(unittest.makeSuite(TestAmazonS3Config, 'test'))
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
+   tests.append(unittest.makeSuite(TestTool, 'test'))
    return unittest.TestSuite(tests)
 
