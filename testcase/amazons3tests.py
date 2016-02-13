@@ -89,10 +89,10 @@ import tempfile
 # Cedar Backup modules
 from CedarBackup3.util import UNIT_BYTES, UNIT_MBYTES, UNIT_GBYTES
 from CedarBackup3.config import ByteQuantity
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises 
+from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
-from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles 
+from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles
 
 
 #######################################################################
