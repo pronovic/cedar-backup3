@@ -1,3 +1,7 @@
+Version 3.1.7     unreleased
+
+	* Fix typo in cback.1, noticed by Debian's Lintian checks.
+
 Version 3.1.6     13 Feb 2016
 
 	* Fix bug in the file encoding checks for the amazons3sync tool.
