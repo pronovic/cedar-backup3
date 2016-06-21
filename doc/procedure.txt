@@ -7,7 +7,7 @@ Release Procedure
 - Run unit tests one last time (make test)
 - Run pylint tests one last time (make check testcheck)
 - Build the source distributions (make distrib)
-- Build the HTML documentation into the BitBucket repository (make htmldocs)
+- Build the HTML documentation into the BitBucket repository (make htmldocs) - PULL FIRST!
 - Commit the HTML documentation changes in the BitBucketSite repository
 - Label the cedar-backup3 Mercurial repository as CEDAR_BACKUP3_VX.Y.Z 
 - Push both Mercurial repositories to BitBucket
