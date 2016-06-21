@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2014,2015 Kenneth J. Pronovici.
+# Copyright (c) 2014-2016 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -1083,10 +1083,10 @@ def _checkSourceFiles(sourceDir, sourceFiles):
          try:
             target = path.decode(encoding)
             if source != target:
-               logger.error("Inconsistent encoding for [%s]: got %s, but need %s", source, result["encoding"], encoding)
+               logger.error("Inconsistent encoding for [%s]: got %s, but need %s", path, result["encoding"], encoding)
                failed = True
          except Exception:
-            logger.error("Inconsistent encoding for [%s]: got %s, but need %s", source, result["encoding"], encoding)
+            logger.error("Inconsistent encoding for [%s]: got %s, but need %s", path, result["encoding"], encoding)
             failed = True
 
       if not failed:

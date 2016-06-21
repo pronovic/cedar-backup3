@@ -1,6 +1,7 @@
 Version 3.1.7     unreleased
 
 	* Fix typo in cback.1, noticed by Debian's Lintian checks.
+	* Fix logging errors with odd paths in tools/amazons3.py when ascii encoding is set.
 
 Version 3.1.6     13 Feb 2016
 
