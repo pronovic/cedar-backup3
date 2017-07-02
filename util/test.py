@@ -166,16 +166,29 @@ def main():
       print("tree, or properly set the PYTHONPATH enviroment variable.")
       return 1
 
-   # Set up logging to discard everything
-   devnull = nullDevice()
-   handler = logging.FileHandler(filename=devnull)
-   handler.setLevel(logging.NOTSET)
-   logger = logging.getLogger("CedarBackup3")
-   logger.setLevel(logging.NOTSET)
-   logger.addHandler(handler)
-
    # Get a list of program arguments
    args = sys.argv[1:]
+
+   # Set verbosity for the test runner
+   if "verbose" in args:
+      verbosity = 2   # prints each test name
+   else:
+      verbosity = 1   # prints a . for each test
+
+   # Set up logging, where "debug" sends all output to stderr
+   if "debug" in args:
+      handler = logging.StreamHandler(sys.stdout)
+      handler.setLevel(logging.DEBUG)
+      logger = logging.getLogger("CedarBackup3")
+      logger.setLevel(logging.DEBUG)
+      logger.addHandler(handler)
+   else:
+      devnull = nullDevice()
+      handler = logging.FileHandler(filename=devnull)
+      handler.setLevel(logging.NOTSET)
+      logger = logging.getLogger("CedarBackup3")
+      logger.setLevel(logging.NOTSET)
+      logger.addHandler(handler)
 
    # Set flags in the environment to control tests
    if "full" in args:
@@ -229,7 +242,7 @@ def main():
    # Create and run the test suite
    print("")
    suite = unittest.TestSuite(list(unittests.values()))
-   suiteResult = unittest.TextTestRunner(verbosity=1).run(suite)
+   suiteResult = unittest.TextTestRunner(verbosity=verbosity).run(suite)
    print("")
    if not suiteResult.wasSuccessful():
       return 1

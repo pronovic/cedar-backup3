@@ -1,3 +1,7 @@
+Version 3.1.8     unreleased
+
+	* Add options in util/test.py to get better output from unit tests.
+
 Version 3.1.7     21 Jun 2016
 
 	* Fix typo in cback.1, noticed by Debian's Lintian checks.
