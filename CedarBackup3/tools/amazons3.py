@@ -1109,8 +1109,11 @@ def _synchronizeBucket(sourceDir, s3BucketUrl):
    @param sourceDir: Local source directory
    @param s3BucketUrl: Target S3 bucket URL
    """
+   # Since at least early 2015, 'aws s3 sync' is always recursive and the
+   # --recursive option is useless.  They eventually removed it and now using
+   # it causes an error.  See: https://github.com/aws/aws-cli/issues/1170
    logger.info("Synchronizing local source directory up to Amazon S3.")
-   args = [ "s3", "sync", sourceDir, s3BucketUrl, "--delete", "--recursive", ]
+   args = [ "s3", "sync", sourceDir, s3BucketUrl, "--delete" ]
    result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI synchronize bucket." % result)

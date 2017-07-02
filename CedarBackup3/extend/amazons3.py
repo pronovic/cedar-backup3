@@ -770,9 +770,14 @@ def _uploadStagingDir(config, stagingDir, s3BucketUrl):
    @param stagingDir: Staging directory to upload
    @param s3BucketUrl: S3 bucket URL associated with the staging directory
    """
+   # The version of awscli in Debian stretch (1.11.13-1) has a problem
+   # uploading empty files, due to running with Python 3 rather than Python 2
+   # as the upstream maintainers intended.  To work around this, I'm explicitly
+   # excluding files like cback.stage, cback.collect, etc. which should be the
+   # only empty files we ever try to copy.  See: https://github.com/aws/aws-cli/issues/2403
    suCommand = resolveCommand(SU_COMMAND)
    awsCommand = resolveCommand(AWS_COMMAND)
-   actualCommand = "%s s3 cp --recursive %s/ %s/" % (awsCommand[0], stagingDir, s3BucketUrl)
+   actualCommand = "%s s3 cp --recursive --exclude \"*cback.*\" %s/ %s/" % (awsCommand[0], stagingDir, s3BucketUrl)
    result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
@@ -804,6 +809,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
       size = int(entry["Size"])
       contents[key] = size
    files = FilesystemList()
+   files.excludeBasenamePatterns = [ "cback\..*", ]  # because these are excluded from the upload
    files.addDirContents(stagingDir)
    for entry in files:
       if os.path.isfile(entry):
