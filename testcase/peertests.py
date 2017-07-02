@@ -113,6 +113,9 @@ NONEXISTENT_HOST = "hostname.invalid"                 # RFC 2606 reserves the ".
 NONEXISTENT_USER = "unittestuser"                     # This user name should never exist on localhost
 NONEXISTENT_CMD  = "/bogus/~~~ZZZZ/bad/not/there"     # This command should never exist in the filesystem
 
+SAFE_RCP_COMMAND = "/usr/bin/scp -B -q -C -o ConnectTimeout=1"  # set a connection timeout so invalid hosts don't hang
+SAFE_RSH_COMMAND = "/usr/bin/ssh -o ConnectTimeout=1"           # set a connection timeout so invalid hosts don't hang
+
 
 #######################################################################
 # Utility functions
@@ -875,7 +878,7 @@ class TestRemotePeer(unittest.TestCase):
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
       remoteUser = getLogin()
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       result = peer.checkCollectIndicator()
       self.assertEqual(False, result)
 
@@ -889,7 +892,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = NONEXISTENT_USER
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       result = peer.checkCollectIndicator()
       self.assertEqual(False, result)
 
@@ -1089,7 +1092,7 @@ class TestRemotePeer(unittest.TestCase):
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
       remoteUser = getLogin()
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       self.assertRaises((IOError, OSError), peer.writeStageIndicator)
 
    def testWriteStageIndicator_002(self):
@@ -1102,7 +1105,7 @@ class TestRemotePeer(unittest.TestCase):
       remoteUser = NONEXISTENT_USER
       os.mkdir(collectDir)
       self.assertTrue(os.path.exists(collectDir))
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       self.assertRaises((IOError, OSError), peer.writeStageIndicator)
 
    def testWriteStageIndicator_003(self):
@@ -1233,7 +1236,7 @@ class TestRemotePeer(unittest.TestCase):
       os.mkdir(targetDir)
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(targetDir))
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
    def testStagePeer_002(self):
@@ -1249,7 +1252,7 @@ class TestRemotePeer(unittest.TestCase):
       os.mkdir(targetDir)
       self.assertTrue(os.path.exists(collectDir))
       self.assertTrue(os.path.exists(targetDir))
-      peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+      peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
       self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
    def testStagePeer_003(self):
