@@ -675,6 +675,20 @@ class TestRemotePeer(unittest.TestCase):
    # Setup methods
    ################
 
+   @classmethod
+   def setUpClass(cls):
+      # Full tests require configured SSH connectivity, so I want to use my own
+      # scp/ssh scripts that are set up to use an SSH agent.  This means other
+      # people won't be able to run the full tests... but that's always been
+      # true, since I don't docuemnt the system setup needed to make them work.
+      if runAllTests():
+         from CedarBackup3.util import PathResolverSingleton
+         mapping = {}
+         mapping["/usr/bin/ssh"] = os.path.join(os.environ["HOME"], "util", "ssh")
+         mapping["/usr/bin/scp"] = os.path.join(os.environ["HOME"], "util", "scp")
+         singleton = PathResolverSingleton()
+         singleton.fill(mapping)
+
    def setUp(self):
       try:
          self.tmpdir = tempfile.mkdtemp()

@@ -2,7 +2,7 @@ Version 3.1.8     unreleased
 
 	* Add options in util/test.py to get better output from unit tests.
 	* Update Python virtualenv setup to work with Python 3.5 and recent pip.
-	* Make peer tests safer, by setting a connection timeout so invalid hosts don't hang.
+	* Make various adjustments to remote peer tests, to make them safer and more robust.
 	* Fix problems discovered with the awscli version in Debian stretch.
 
 Version 3.1.7     21 Jun 2016

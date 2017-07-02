@@ -38,6 +38,7 @@ MV                = mv
 RM                = rm
 SED               = sed
 SUDO              = sudo
+SETUPSSH          = $(HOME)/util/setupssh
 TAR               = tar
 VALIDATE          = util/validate
 
@@ -91,8 +92,10 @@ virtualenvclean:
 	@rm -rf $(PYTHON_INSTALL)
 
 # This uses the "full" argument to get all tests
+# We prompt for passphrases and passwords up-front, to simplify things
 test: virtualenv
 	@$(SUDO) -v
+	@$(SETUPSSH)
 	@$(PYTHON) util/test.py full
 
 # This leaves off "full" and gets on the tests most end-users would run
