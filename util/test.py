@@ -172,6 +172,7 @@ def main():
    # Set verbosity for the test runner
    if "verbose" in args:
       verbosity = 2   # prints each test name
+      args.remove("verbose")
    else:
       verbosity = 1   # prints a . for each test
 
@@ -182,6 +183,7 @@ def main():
       logger = logging.getLogger("CedarBackup3")
       logger.setLevel(logging.DEBUG)
       logger.addHandler(handler)
+      args.remove("debug")
    else:
       devnull = nullDevice()
       handler = logging.FileHandler(filename=devnull)
