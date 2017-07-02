@@ -1,4 +1,4 @@
-Version 3.1.8     unreleased
+Version 3.1.8     02 Jul 2017
 
 	* Add options in util/test.py to get better output from unit tests.
 	* Update Python virtualenv setup to work with Python 3.5 and recent pip.
