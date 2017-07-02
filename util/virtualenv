@@ -28,6 +28,10 @@ PYTHON=${DIR}/bin/python
 PIP=${DIR}/bin/pip
 DEPENDENCIES="pip>=1.5.6 chardet pylint>=1.4.4 coverage>=3.7.1"
 
+# Get rid of stupid pip warnings
+# See: https://github.com/pypa/pip/issues/4087
+export PIP_FORMAT=legacy
+
 # Delete the virtualenv if we're supposed to rebuild it
 if [ "${REBUILD}" = "true" ]; then
    rm -rf ${DIR}
