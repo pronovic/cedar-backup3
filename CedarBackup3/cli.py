@@ -481,6 +481,7 @@ class _ManagedActionItem(object):
                return 1
       return 0
 
+   # pylint: disable=W0613
    def executeAction(self, configPath, options, config):
       """
       Executes the managed action associated with an item.

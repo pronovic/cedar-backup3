@@ -68,6 +68,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.purge")
 # executePurge() function
 ##########################
 
+# pylint: disable=W0613
 def executePurge(configPath, options, config):
    """
    Executes the purge backup action.

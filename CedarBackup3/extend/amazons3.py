@@ -809,7 +809,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
       size = int(entry["Size"])
       contents[key] = size
    files = FilesystemList()
-   files.excludeBasenamePatterns = [ "cback\..*", ]  # because these are excluded from the upload
+   files.excludeBasenamePatterns = [ r"cback\..*", ]  # because these are excluded from the upload
    files.addDirContents(stagingDir)
    for entry in files:
       if os.path.isfile(entry):

@@ -95,6 +95,7 @@ LS_COMMAND     = [ "ls", "-laR", "/", ]
 # executeAction() function
 ###########################
 
+# pylint: disable=W0613
 def executeAction(configPath, options, config):
    """
    Executes the sysinfo backup action.

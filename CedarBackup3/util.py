@@ -254,7 +254,6 @@ class UnorderedList(list):
       return sorted(value, key=UnorderedList.mixedkey)
 
    @staticmethod
-   #pylint: disable=R0204
    def mixedkey(value):
       """Provide a key for use by mixedsort()"""
       numeric = Real, Decimal

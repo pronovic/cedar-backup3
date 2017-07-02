@@ -322,6 +322,7 @@ def randomFilename(length, prefix=None, suffix=None):
 # failUnlessAssignRaises() function
 ####################################
 
+# pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
    """
    Equivalent of C{failUnlessRaises}, but used for property assignments instead.

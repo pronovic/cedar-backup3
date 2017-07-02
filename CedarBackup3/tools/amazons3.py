@@ -1049,6 +1049,7 @@ def _buildSourceFiles(sourceDir):
 # _checkSourceFiles() function
 ###############################
 
+# pylint: disable=W0613
 def _checkSourceFiles(sourceDir, sourceFiles):
    """
    Check source files, trying to guess which ones will have encoding problems.

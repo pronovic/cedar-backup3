@@ -677,6 +677,7 @@ class Serializer(object):
       self._inText = 0
       return
 
+# pylint: disable=W0613
 def _encodeText(text, encoding):
    """Safely encodes the passed-in text as a Unicode string, converting bytes to UTF-8 if necessary."""
    if text is None:

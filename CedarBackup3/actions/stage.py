@@ -73,6 +73,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.stage")
 # executeStage() function
 ##########################
 
+# pylint: disable=W0613
 def executeStage(configPath, options, config):
    """
    Executes the stage backup action.

@@ -513,6 +513,7 @@ class LocalConfig(object):
 # executeAction() function
 ###########################
 
+# pylint: disable=W0613
 def executeAction(configPath, options, config):
    """
    Executes the PostgreSQL backup action.
@@ -571,7 +572,6 @@ def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, data
       raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
    changeOwnership(filename, backupUser, backupGroup)
 
-#pylint: disable=R0204
 def _getOutputFile(targetDir, database, compressMode):
    """
    Opens the output file used for saving the PostgreSQL dump.

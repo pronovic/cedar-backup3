@@ -293,7 +293,6 @@ class TestPostgresqlConfig(unittest.TestCase):
       postgresql.all = False
       self.assertEqual(False, postgresql.all)
 
-   #pylint: disable=R0204
    def testConstructor_015(self):
       """
       Test assignment of all attribute, valid value (expression).

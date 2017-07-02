@@ -5019,7 +5019,6 @@ class Config(object):
       return lst
 
    @staticmethod
-   #pylint: disable=R0204
    def _parseHooks(parentNode):
       """
       Reads a list of C{ActionHook} objects from immediately beneath the parent.

@@ -298,6 +298,7 @@ def _diagnostics(fd=sys.stdout):
 # _executeAction() function
 ############################
 
+# pylint: disable=W0613
 def _executeAction(options, config):
    """
    Implements the guts of the cback3-span tool.
@@ -548,6 +549,7 @@ def _discInitializeImage(config, writer, spanItem):
          print("===")
    print("Completed initializing image.")
 
+# pylint: disable=W0613
 def _discWriteImage(config, writer):
    """
    Writes a ISO image for a span item.
