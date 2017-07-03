@@ -1,4 +1,4 @@
-Version 3.1.9     unreleased
+Version 3.1.9     03 Jul 2017
 
 	* Fix issues discovered with peer test changes when backporting to CedarBackup2.
 
