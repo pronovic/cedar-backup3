@@ -416,6 +416,58 @@
 
       <!-- ################################################################# -->
 
+      <sect2 id="cedar-commandline-sync-permissions">
+
+         <title>Permissons</title>
+
+         <para>
+            You can use whichever Amazon-supported authentication mechanism you
+            would like when setting up connectivity for the AWS CLI.  It's best
+            to set up a separate user in the 
+            <ulink url="https://console.aws.amazon.com/iam/home">IAM Console</ulink>
+            rather than using your main administrative user.
+         </para>
+
+         <para>
+            You probably want to lock down this user so that it can only take
+            backup related actions in the AWS infrastructure.  One option is to
+            apply the <command>AmazonS3FullAccess</command> policy, which grants
+				full access to the S3 infrastructure.  If you would like to lock
+				down the user even further, this appears to be the minimum set of
+				permissions required for the <command>aws s3 sync</command> action,
+				written as a JSON policy statement:
+         </para>
+
+			<screen>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::your-bucket",
+                "arn:aws:s3:::your-bucket/*"
+            ]
+        }
+    ]
+} 
+			</screen>
+
+			<para>
+				In the <literal>Resource</literal> section, be sure to list the name
+				of your S3 bucket instead of <literal>my-bucket</literal>.
+			</para>
+
+      </sect2>
+
+      <!-- ################################################################# -->
+
       <sect2 id="cedar-commandline-sync-syntax">
 
          <title>Syntax</title>

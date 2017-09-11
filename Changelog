@@ -1,3 +1,7 @@
+Version 3.1.10    unreleased
+
+	* Add information to the user manual about how to lock down the Amazon S3 user.
+
 Version 3.1.9     03 Jul 2017
 
 	* Fix issues discovered with peer test changes when backporting to CedarBackup2.

@@ -119,6 +119,51 @@
       </para>
 
       <para>
+         You can use whichever Amazon-supported authentication mechanism you
+         would like when setting up connectivity for the AWS CLI.  It's best
+         to set up a separate user in the 
+         <ulink url="https://console.aws.amazon.com/iam/home">IAM Console</ulink>
+         rather than using your main administrative user.
+      </para>
+
+      <para>
+         You probably want to lock down this user so that it can only take
+         backup related actions in the AWS infrastructure.  One option is to
+         apply the <command>AmazonS3FullAccess</command> policy, which grants
+         full access to the S3 infrastructure.  If you would like to lock down
+         the user even further, this appears to be the minimum set of
+         permissions required for Cedar Backup, written as a JSON policy
+         statement:
+      </para>
+
+      <programlisting>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:ListObjects",
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::my-bucket",
+                "arn:aws:s3:::my-bucket/*"
+            ]
+        }
+    ]
+}
+      </programlisting>
+
+      <para>
+         In the <literal>Resource</literal> section, be sure to list the name
+         of your S3 bucket instead of <literal>my-bucket</literal>.
+      </para>
+
+      <para>
          When using physical media via the standard store action, there is an
          implicit limit to the size of a backup, since a backup must fit on a
          single disc.  Since there is no physical media, no such limit exists
@@ -321,6 +366,7 @@ dd if=/dev/urandom count=20 bs=1 | xxd -ps
          </varlistentry>
 
       </variablelist>
+
 
    </sect1>
 
