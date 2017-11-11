@@ -50,7 +50,6 @@ PIP               = $(PYTHON_INSTALL)/bin/pip
 PYLINT            = $(PYTHON_INSTALL)/bin/pylint
 COVERAGE          = $(PYTHON_INSTALL)/bin/coverage
 SETUP             = $(PYTHON) setup.py
-EPYDOC            = epydoc --no-include-build-time # Requires python-epydoc_3.0.1+dfsg-7 from stretch
 
 PACKAGE           = CedarBackup3
 PACKAGE_LC        = cedar-backup3
@@ -61,9 +60,10 @@ DOC_DIR           = doc
 BITBUCKET_DIR     = ../gwt/CedarCommon/BitBucketSite
 DIST_DIR          = build
 MANUAL_SRC        = manual
+SPHINX_SRC        = sphinx
 SDIST_DIR         = $(DIST_DIR)/sdist
 INTERFACE_DIR     = $(DOC_DIR)/interface
-INTERFACE_TEMPDIR = $(DOC_DIR)/interface/tmp
+SPHINX_BUILD      = $(SPHINX_SRC)/_build
 MANUAL_DIR        = $(DOC_DIR)/manual
 CHANGELOG_FILE    = Changelog
 COVERAGE_FILE     = .coverage
@@ -142,7 +142,6 @@ trim:
 # Aliases, since I can't remember what to type. :)
 docs: doc
 docsclean: docclean
-epydoc: interface-html
 interface: interface-doc
 book: manual
 
@@ -150,8 +149,10 @@ doc: interface-doc manual-doc
 
 interface-doc: interface-html 
 
-interface-html: virtualenv $(INTERFACE_DIR)
-	@$(EPYDOC) -v --html --name "$(PACKAGE)" --output $(INTERFACE_DIR) --url $(URL) $(PACKAGE)/
+interface-html: $(INTERFACE_DIR)
+	@$(CD) $(SPHINX_SRC) && $(MAKE) html 
+	@rm -rf $(INTERFACE_DIR)/*
+	@mv $(SPHINX_BUILD)/html/* $(INTERFACE_DIR)
 
 manual-doc: $(MANUAL_DIR)
 	@$(CD) $(MANUAL_SRC) && $(MAKE) install
@@ -165,8 +166,8 @@ validate:
 
 docclean:
 	-@$(CD) $(MANUAL_SRC) && $(MAKE) clean
+	-@$(CD) $(SPHINX_SRC) && $(MAKE) clean
 	-@$(RM) -rf $(INTERFACE_DIR)
-	-@$(RM) -rf $(INTERFACE_TEMPDIR)
 	-@$(RM) -rf $(MANUAL_DIR)
 
 $(MANUAL_DIR):
@@ -174,9 +175,6 @@ $(MANUAL_DIR):
 
 $(INTERFACE_DIR):
 	@$(MKDIR) -p $(INTERFACE_DIR)
-
-$(INTERFACE_TEMPDIR):
-	@$(MKDIR) -p $(INTERFACE_TEMPDIR)
 
 
 ################
@@ -228,5 +226,5 @@ docdist: doc
 # Phony rules for use by GNU make
 ##################################
 
-.PHONY: all clean tags test usertest check testcheck doc docs docclean docsclean epydoc interface interface-doc interface-html book validate manual manual-doc distrib distribclean sdist sdistclean debdist debdistclean docdist virtualenv virtualenvclean coverage coverageclean
+.PHONY: all clean tags test usertest check testcheck doc docs docclean docsclean interface interface-doc interface-html book validate manual manual-doc distrib distribclean sdist sdistclean debdist debdistclean docdist virtualenv virtualenvclean coverage coverageclean
 
