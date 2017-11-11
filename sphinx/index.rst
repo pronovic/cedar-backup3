@@ -1,10 +1,10 @@
-.. Cedar Backup v3 documentation master file, created by
-   sphinx-quickstart on Sat Nov 11 18:59:04 2017.
+.. Cedar Backup documentation master file, created by
+   sphinx-quickstart on Sat Nov 11 19:15:10 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Cedar Backup v3's documentation!
-===========================================
+Welcome to Cedar Backup's documentation!
+========================================
 
 Contents:
 
