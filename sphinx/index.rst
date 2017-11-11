@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Cedar Backup's documentation!
-========================================
+Cedar Backup v3 API Documentation
+=================================
 
 Contents:
 

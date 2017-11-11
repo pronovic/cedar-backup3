@@ -1,6 +1,12 @@
 CedarBackup3.writers package
 ============================
 
+.. automodule:: CedarBackup3.writers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :special-members: __init__
+
 Submodules
 ----------
 
@@ -11,6 +17,7 @@ CedarBackup3.writers.cdwriter module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.writers.dvdwriter module
 -------------------------------------
@@ -19,6 +26,7 @@ CedarBackup3.writers.dvdwriter module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.writers.util module
 --------------------------------
@@ -27,12 +35,6 @@ CedarBackup3.writers.util module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 
-Module contents
----------------
-
-.. automodule:: CedarBackup3.writers
-    :members:
-    :undoc-members:
-    :show-inheritance:

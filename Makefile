@@ -46,7 +46,6 @@ VIRTUALENV        = util/virtualenv
 PYTHON_INSTALL    = .python
 PYTHON_VERSION    = 3.5
 PYTHON            = $(PYTHON_INSTALL)/bin/python
-PIP               = $(PYTHON_INSTALL)/bin/pip
 PYLINT            = $(PYTHON_INSTALL)/bin/pylint
 COVERAGE          = $(PYTHON_INSTALL)/bin/coverage
 SETUP             = $(PYTHON) setup.py
@@ -149,10 +148,10 @@ doc: interface-doc manual-doc
 
 interface-doc: interface-html 
 
-interface-html: $(INTERFACE_DIR)
-	@$(CD) $(SPHINX_SRC) && $(MAKE) html 
+interface-html: virtualenv $(INTERFACE_DIR)
 	@rm -rf $(INTERFACE_DIR)/*
-	@mv $(SPHINX_BUILD)/html/* $(INTERFACE_DIR)
+	@$(CD) $(SPHINX_SRC) && $(MAKE) html 
+	@cp -r $(SPHINX_BUILD)/html/* $(INTERFACE_DIR)
 
 manual-doc: $(MANUAL_DIR)
 	@$(CD) $(MANUAL_SRC) && $(MAKE) install

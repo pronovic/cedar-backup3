@@ -1,0 +1,54 @@
+#!/bin/bash
+# vim: set ft=sh:
+# Automate conversion from Epytext format to Sphinx reStructuredText using the Google comment standard
+#
+# Generate initial Sphinx configuration with something like this, then adjust by hand:
+#
+#   sphinx-apidoc -f -H "Cedar Backup" -V "3" -R "x.y.z" -A "Kenneth J.  Pronovici" -F -o sphinx CedarBackup3
+#
+# References:
+# 
+# - http://google.github.io/styleguide/pyguide.html#Comments
+# - https://sphinxcontrib-napoleon.readthedocs.io/en/latest/
+# - https://stackoverflow.com/questions/5599254/how-to-use-sphinxs-autodoc-to-document-a-classs-init-self-method/5599712#5599712
+#
+
+# Simple character classes - literals, italics, bold, etc.
+perl -pi -e 's|(C\{)(.*?)(\})|``${2}``|g' "$@"
+perl -pi -e 's|(I\{)(.*?)(\})|*${2}*|g' "$@"
+perl -pi -e 's|(B\{)(.*?)(\})|**${2}**|g' "$@"
+perl -pi -e 's|(L\{)(.*?)(\(\))?(\})|:any:`${2}`|g' "$@"
+
+# Other simple single-line tags
+perl -pi -e 's|(\@note:)|*Note:*|g' "$@"
+perl -pi -e 's|(\@author:)|:author:|g' "$@"
+
+# @sort statements get removed because they have no meaning any more
+# These are a little tricky because they can extend to several lines
+perl -0777 -pi -e 's|(\@sort: )([a-zA-Z0-9_, ]*)(\n\s*[a-zA-Z0-9_, ]*)*||gm' "$@"
+
+# @return statements
+perl -pi -e 's|(^\s+)(\@return:)(.*$)|${1}Returns:\n${1}   ${3}|g' "$@"
+
+# @raise statements
+# We need to turn multiple @raise statements into a single Raises block
+perl -0777 -pi -e 's|((\n)([^\n]*))((\@raise )(.*?)(: )(.*)((\n(\s+)(\@raise )(.*?)(: )(.*))*))|\n${3}Raises:\n${3}${4}|gm' "$@"
+perl -pi -e 's|(\s+)(\@raise )(.*)|${1}   ${3}|g' "$@"
+
+# Simple @param statements
+# We need to turn multiple @param statements into a single Args block
+# We also need to handle the possibility of an optional @type statement
+perl -0777 -pi -e 's|(\@param )(.*)(: )(.*)(\n\s+)(\@type )(.*)(: )(.*)|${1}${2} (${9}): ${4}|gm' "$@"
+perl -0777 -pi -e 's|((\n)([^\n]*))((\@param )(.*?)(: )(.*)((\n(\s+)(\@param )(.*?)(: )(.*))*))|\n${3}Args:\n${3}${4}|gm' "$@"
+perl -pi -e 's|(\s+)(\@param )(.*)|${1}   ${3}|g' "$@"
+
+# @var statements
+# We need to turn multiple @var statements into a single Attributes block
+perl -0777 -pi -e 's|((\@var )(.*)(: )(.*)((\n(\@var )(.*?)(: )(.*))*))|Module Attributes\n==============\n\nAttributes:\n${1}|gm' "$@"
+perl -pi -e 's|(\@var )(.*)|   ${2}|g' "$@"
+
+# @cvar statements
+# We need to turn multiple @cvar statements into a single Attributes block
+perl -0777 -pi -e 's|((\n)([^\n]*))((\@[ci]var )(.*?)(: )(.*)((\n(\s+)(\@[ci]var )(.*?)(: )(.*))*))|\n${3}Attributes:\n${3}${4}|gm' "$@"
+perl -pi -e 's|(\s+)(\@[ci]var )(.*)|${1}   ${3}|g' "$@"
+

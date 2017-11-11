@@ -1,6 +1,12 @@
 CedarBackup3.actions package
 ============================
 
+.. automodule:: CedarBackup3.actions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :special-members: __init__
+
 Submodules
 ----------
 
@@ -11,6 +17,7 @@ CedarBackup3.actions.collect module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.constants module
 -------------------------------------
@@ -19,6 +26,7 @@ CedarBackup3.actions.constants module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.initialize module
 --------------------------------------
@@ -27,6 +35,7 @@ CedarBackup3.actions.initialize module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.purge module
 ---------------------------------
@@ -35,6 +44,7 @@ CedarBackup3.actions.purge module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.rebuild module
 -----------------------------------
@@ -43,6 +53,7 @@ CedarBackup3.actions.rebuild module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.stage module
 ---------------------------------
@@ -51,6 +62,7 @@ CedarBackup3.actions.stage module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.store module
 ---------------------------------
@@ -59,6 +71,7 @@ CedarBackup3.actions.store module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.util module
 --------------------------------
@@ -67,6 +80,7 @@ CedarBackup3.actions.util module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.actions.validate module
 ------------------------------------
@@ -75,12 +89,6 @@ CedarBackup3.actions.validate module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 
-Module contents
----------------
-
-.. automodule:: CedarBackup3.actions
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,6 +1,12 @@
 CedarBackup3.extend package
 ===========================
 
+.. automodule:: CedarBackup3.extend
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :special-members: __init__
+
 Submodules
 ----------
 
@@ -11,6 +17,7 @@ CedarBackup3.extend.amazons3 module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.capacity module
 -----------------------------------
@@ -19,6 +26,7 @@ CedarBackup3.extend.capacity module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.encrypt module
 ----------------------------------
@@ -27,6 +35,7 @@ CedarBackup3.extend.encrypt module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.mbox module
 -------------------------------
@@ -35,6 +44,7 @@ CedarBackup3.extend.mbox module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.mysql module
 --------------------------------
@@ -43,6 +53,7 @@ CedarBackup3.extend.mysql module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.postgresql module
 -------------------------------------
@@ -51,6 +62,7 @@ CedarBackup3.extend.postgresql module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.split module
 --------------------------------
@@ -59,6 +71,7 @@ CedarBackup3.extend.split module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.subversion module
 -------------------------------------
@@ -67,6 +80,7 @@ CedarBackup3.extend.subversion module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.extend.sysinfo module
 ----------------------------------
@@ -75,12 +89,6 @@ CedarBackup3.extend.sysinfo module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 
-Module contents
----------------
-
-.. automodule:: CedarBackup3.extend
-    :members:
-    :undoc-members:
-    :show-inheritance:

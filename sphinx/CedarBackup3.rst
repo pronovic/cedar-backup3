@@ -1,6 +1,12 @@
 CedarBackup3 package
 ====================
 
+.. automodule:: CedarBackup3
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :special-members: __init__
+
 Subpackages
 -----------
 
@@ -21,6 +27,7 @@ CedarBackup3.action module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.cli module
 -----------------------
@@ -29,6 +36,7 @@ CedarBackup3.cli module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.config module
 --------------------------
@@ -37,6 +45,7 @@ CedarBackup3.config module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.customize module
 -----------------------------
@@ -45,6 +54,7 @@ CedarBackup3.customize module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.filesystem module
 ------------------------------
@@ -53,6 +63,7 @@ CedarBackup3.filesystem module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.image module
 -------------------------
@@ -61,6 +72,7 @@ CedarBackup3.image module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.knapsack module
 ----------------------------
@@ -69,6 +81,7 @@ CedarBackup3.knapsack module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.peer module
 ------------------------
@@ -77,6 +90,7 @@ CedarBackup3.peer module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.release module
 ---------------------------
@@ -85,6 +99,7 @@ CedarBackup3.release module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.testutil module
 ----------------------------
@@ -93,6 +108,7 @@ CedarBackup3.testutil module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.util module
 ------------------------
@@ -101,6 +117,7 @@ CedarBackup3.util module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.writer module
 --------------------------
@@ -109,6 +126,7 @@ CedarBackup3.writer module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.xmlutil module
 ---------------------------
@@ -117,12 +135,5 @@ CedarBackup3.xmlutil module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
-
-Module contents
----------------
-
-.. automodule:: CedarBackup3
-    :members:
-    :undoc-members:
-    :show-inheritance:

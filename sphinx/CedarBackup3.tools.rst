@@ -1,6 +1,12 @@
 CedarBackup3.tools package
 ==========================
 
+.. automodule:: CedarBackup3.tools
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :special-members: __init__
+
 Submodules
 ----------
 
@@ -11,6 +17,7 @@ CedarBackup3.tools.amazons3 module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 CedarBackup3.tools.span module
 ------------------------------
@@ -19,12 +26,6 @@ CedarBackup3.tools.span module
     :members:
     :undoc-members:
     :show-inheritance:
+    :special-members: __init__
 
 
-Module contents
----------------
-
-.. automodule:: CedarBackup3.tools
-    :members:
-    :undoc-members:
-    :show-inheritance:
