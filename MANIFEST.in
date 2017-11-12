@@ -28,7 +28,8 @@ include doc/docbook.txt
 include doc/release.txt
 include doc/osx/*
 include doc/interface/*
-include doc/interface/public/*
-include doc/interface/private/*
+include doc/interface/_modules/*
+include doc/interface/_sources/*
+include doc/interface/_static/*
 include doc/manual/*
 include doc/manual/images/*
