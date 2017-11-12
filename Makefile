@@ -148,8 +148,9 @@ doc: interface-doc manual-doc
 
 interface-doc: interface-html 
 
-interface-html: virtualenv $(INTERFACE_DIR)
+interface-html: $(INTERFACE_DIR)
 	@rm -rf $(INTERFACE_DIR)/*
+	@rm -rf $(SPHINX_BUILD)/*
 	@$(CD) $(SPHINX_SRC) && $(MAKE) html 
 	@cp -r $(SPHINX_BUILD)/html/* $(INTERFACE_DIR)
 
