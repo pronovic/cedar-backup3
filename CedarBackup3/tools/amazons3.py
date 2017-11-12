@@ -603,7 +603,7 @@ class Options(object):
    stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (``-s,--stack``) flag.")
    diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (``-D,--diagnostics``) flag.")
    verifyOnly = property(_getVerifyOnly, _setVerifyOnly, None, "Command-line verifyOnly (``-v,--verifyOnly``) flag.")
-   ignoreWarnings = property(_getIgnoreWarnings, _setIgnoreWarnings, None, "Command-line ignoreWarnings (``-w,--ignoreWarnings``) flag.")
+   ignoreWarnings = property(_getIgnoreWarnings, _setIgnoreWarnings, None, "Command-line ignoreWarnings (``-w,--ignoreWarnings``) flag")
    sourceDir = property(_getSourceDir, _setSourceDir, None, "Command-line sourceDir, source of sync.")
    s3BucketUrl = property(_getS3BucketUrl, _setS3BucketUrl, None, "Command-line s3BucketUrl, target of sync.")
 

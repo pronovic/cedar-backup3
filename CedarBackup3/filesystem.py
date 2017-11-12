@@ -392,7 +392,7 @@ class FilesystemList(list):
          path (String representing a path on disk): Directory path whose contents should be added to the list
          recursive (Boolean value): Indicates whether directory contents should be added recursively
          addSelf (Boolean value): Indicates whether the directory itself should be added to the list
-         linkDepth (Integer value, where zero means not to follow any soft links): Maximum depth of the tree at which soft links should be followed
+         linkDepth (Integer value): Maximum depth of the tree at which soft links should be followed, zero means not to folow
          dereference (Boolean value): Indicates whether soft links, if followed, should be dereferenced
       Returns:
           Number of items recursively added to the list

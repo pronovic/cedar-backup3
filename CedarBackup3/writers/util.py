@@ -258,9 +258,12 @@ class IsoImage(object):
       built by an image writer class and returned in a ``writer.MediaCapacity``
       object.
 
+      The boundaries parameter is a tuple of ``(last_sess_start, next_sess_start)``,
+      as returned from ``cdrecord -msinfo``.
+
       Args:
          device (Either be a filesystem path or a SCSI address): Name of the device that the image will be written to
-         boundaries (Tuple ``last_sess_start,next_sess_start`` as returned from ``cdrecord -msinfo``, or ``None``): Session boundaries as required by ``mkisofs``
+         boundaries: Session boundaries as required by ``mkisofs``, or ``None``
          graftPoint (String representing a graft point path (see :any:`addEntry`)): Default graft point for this page
       """
       self._device = None

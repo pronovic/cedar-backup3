@@ -1506,7 +1506,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
       returnOutput (Boolean ``True`` or ``False``): Indicates whether to return the output of the command
       ignoreStderr (Boolean True or False): Whether stderr should be discarded
       doNotLog (Boolean ``True`` or ``False``): Indicates that output should not be logged
-      outputFile (File object as returned from ``open`` or ``file``, configured for binary write): File object that all output should be written to
+      outputFile (File as from ``open`` or ``file``, binary write): File that all output should be written to
    Returns:
        Tuple of ``(result, output)`` as described above
    """

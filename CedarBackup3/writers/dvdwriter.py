@@ -371,18 +371,20 @@ class DvdWriter(object):
       is safe.  If ``noEject=True``, then we assume that there is no tray and
       open/close is not safe.
 
+      The SCSI id, if provided, is in the form ``[<method>:]scsibus,target,lun``.
+
       *Note:* The ``unittest`` parameter should never be set to ``True``
       outside of Cedar Backup code.  It is intended for use in unit testing
       Cedar Backup internals and has no other sensible purpose.
 
       Args:
-         device (Absolute path to a filesystem device, i.e. ``/dev/dvd``): Filesystem device associated with this writer
-         scsiId (If provided, SCSI id in the form ``[<method>:]scsibus,target,lun``): SCSI id for the device (optional, for reference only)
-         driveSpeed (Use ``2`` for 2x device, etc. or ``None`` to use device default): Speed at which the drive writes
-         mediaType (One of the valid media type as discussed above): Type of the media that is assumed to be in the drive
+         device: Absolute path to the writer filesystem device, like ``/dev/dvd``
+         scsiId: SCSI id for the device (optional, for reference only)
+         driveSpeed: Speed at which the drive writes, like 2 for a 2x device, or None for device default
+         mediaType: Type of the media that is assumed to be in the drive
          noEject (Boolean true/false): Tells Cedar Backup that the device cannot safely be ejected
-         refreshMediaDelay (Number of seconds, an integer >= 0): Refresh media delay to use, if any
-         ejectDelay (Number of seconds, an integer >= 0): Eject delay to use, if any
+         refreshMediaDelay (Integer >= 0): Refresh media delay to use, if any
+         ejectDelay (Integer >= 0): Eject delay to use, if any
          unittest (Boolean true/false): Turns off certain validations, for use in unit testing
       Raises:
          ValueError: If the device is not valid for some reason
