@@ -100,7 +100,7 @@ def firstFit(items, capacity):
    capacity used by the items.
 
    Args:
-      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
       capacity (integer): Capacity of container to fit to
    Returns:
        Tuple ``(items, used)`` as described above
@@ -162,7 +162,7 @@ def bestFit(items, capacity):
    capacity used by the items.
 
    Args:
-      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
       capacity (integer): Capacity of container to fit to
    Returns:
        Tuple ``(items, used)`` as described above
@@ -229,7 +229,7 @@ def worstFit(items, capacity):
    capacity used by the items.
 
    Args:
-      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
       capacity (integer): Capacity of container to fit to
    Returns:
        Tuple ``(items, used)`` as described above
@@ -298,7 +298,7 @@ def alternateFit(items, capacity):
    capacity used by the items.
 
    Args:
-      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
       capacity (integer): Capacity of container to fit to
    Returns:
        Tuple ``(items, used)`` as described above

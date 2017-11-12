@@ -869,8 +869,8 @@ class LocalConfig(object):
          mboxFiles      //cb_config/mbox/file
          mboxDirs       //cb_config/mbox/dir
 
-      The mbox files and mbox directories are added by :any:`_addMboxFile` and
-      :any:`_addMboxDir`.
+      The mbox files and mbox directories are added by ``_addMboxFile`` and
+      ``_addMboxDir``.
 
       Args:
          xmlDom: DOM tree as from ``impl.createDocument()``

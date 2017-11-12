@@ -216,7 +216,7 @@ class LocalPeer(object):
 
       Args:
          targetDir (String representing a directory on disk): Target directory to write data into
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the staged files should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the staged files should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
       Returns:
           Number of files copied from the source directory to the target directory
@@ -285,7 +285,7 @@ class LocalPeer(object):
 
       Args:
          stageIndicator (String representing name of a file in the collect directory): Name of the indicator file to write
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the indicator file should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the indicator file should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the indicator file should have
       Raises:
          ValueError: If collect directory is not a directory or does not exist
@@ -325,7 +325,7 @@ class LocalPeer(object):
       Args:
          sourceDir (String representing a directory on disk): Source directory
          targetDir (String representing a directory on disk): Target directory
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied files should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied files should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
       Returns:
           Number of files copied from the source directory to the target directory
@@ -365,7 +365,7 @@ class LocalPeer(object):
       Args:
          sourceFile (String representing a file on disk, as an absolute path): Source file to copy
          targetFile (String representing a file on disk, as an absolute path): Target file to create
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
          overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
       Raises:
@@ -725,7 +725,7 @@ class RemotePeer(object):
 
       Args:
          targetDir (String representing a directory on disk): Target directory to write data into
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the staged files should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the staged files should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
       Returns:
           Number of files copied from the source directory to the target directory
@@ -951,7 +951,7 @@ class RemotePeer(object):
          rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
          sourceDir (String representing a directory on disk): Source directory
          targetDir (String representing a directory on disk): Target directory
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied files should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied files should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
       Returns:
           Number of files copied from the source directory to the target directory
@@ -1025,7 +1025,7 @@ class RemotePeer(object):
          rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
          sourceFile (String representing a file on disk, as an absolute path): Source file to copy
          targetFile (String representing a file on disk, as an absolute path): Target file to create
-         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied should have
+         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied should have
          permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
          overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
       Raises:

@@ -622,7 +622,7 @@ def backupDatabase(user, backupFile, database=None):
    backups.
 
    The backup data will be written into the passed-in back file.  Normally,
-   this would be an object as returned from ``open()``, but it is possible to
+   this would be an object as returned from ``open``, but it is possible to
    use something like a ``GzipFile`` to write compressed output.  The caller is
    responsible for closing the passed-in backup file.
 
@@ -630,7 +630,7 @@ def backupDatabase(user, backupFile, database=None):
 
    Args:
       user (String representing PostgreSQL username): User to use for connecting to the database
-      backupFile (Python file object as from ``open()`` or ``file()``): File use for writing backup
+      backupFile (Python file object as from ``open`` or ``file``): File use for writing backup
       database (String representing database name, or ``None`` for all databases): Name of the database to be backed up
    Raises:
       ValueError: If some value is missing or invalid

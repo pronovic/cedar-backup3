@@ -659,7 +659,7 @@ def backupDatabase(user, password, backupFile, database=None):
    no facility for incremental backups.
 
    The backup data will be written into the passed-in backup file.  Normally,
-   this would be an object as returned from ``open()``, but it is possible to
+   this would be an object as returned from ``open``, but it is possible to
    use something like a ``GzipFile`` to write compressed output.  The caller is
    responsible for closing the passed-in backup file.
 
@@ -690,7 +690,7 @@ def backupDatabase(user, password, backupFile, database=None):
    Args:
       user (String representing MySQL username, or ``None``): User to use for connecting to the database (if any)
       password (String representing MySQL password, or ``None``): Password associated with user (if any)
-      backupFile (Python file object as from ``open()`` or ``file()``): File use for writing backup
+      backupFile (Python file object as from ``open`` or ``file``): File use for writing backup
       database (String representing database name, or ``None`` for all databases): Name of the database to be backed up
    Raises:
       ValueError: If some value is missing or invalid

@@ -1447,7 +1447,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
 
    Args:
       repositoryPath (String path representing Subversion repository on disk): Path to Subversion repository to back up
-      backupFile (Python file object as from ``open()`` or ``file()``): Python file object to use for writing backup
+      backupFile (Python file object as from ``open`` or ``file``): Python file object to use for writing backup
       startRevision (Integer value >= 0): Starting repository revision to back up (for incremental backups)
       endRevision (Integer value >= 0): Ending repository revision to back up (for incremental backups)
    Raises:

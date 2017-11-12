@@ -167,8 +167,8 @@ class Options(object):
       ``validate`` is ``False``, it might not be possible to parse the passed-in
       command line, so an exception might still be raised.
 
-      *Note:* The command line format is specified by the :any:`_usage` function.
-      Call :any:`_usage` to see a usage statement for the cback3-amazons3-sync script.
+      *Note:* The command line format is specified by the ``_usage`` function.
+      Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
 
       *Note:* It is strongly suggested that the ``validate`` option always be set
       to ``True`` (the default) unless there is a specific need to read in
@@ -621,8 +621,8 @@ class Options(object):
       options) will be taken care of at assignment time by the properties
       functionality.
 
-      *Note:* The command line format is specified by the :any:`_usage` function.
-      Call :any:`_usage` to see a usage statement for the cback3-amazons3-sync script.
+      *Note:* The command line format is specified by the ``_usage`` function.
+      Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
 
       Raises:
          ValueError: If one of the validations fails

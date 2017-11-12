@@ -503,6 +503,7 @@ class RegexMatchList(UnorderedList):
    def append(self, item):
       """
       Overrides the standard ``append`` method.
+
       Raises:
          ValueError: If item is None
          ValueError: If item is empty and empty values are not allowed
@@ -517,6 +518,7 @@ class RegexMatchList(UnorderedList):
    def insert(self, index, item):
       """
       Overrides the standard ``insert`` method.
+
       Raises:
          ValueError: If item is None
          ValueError: If item is empty and empty values are not allowed
@@ -531,6 +533,7 @@ class RegexMatchList(UnorderedList):
    def extend(self, seq):
       """
       Overrides the standard ``insert`` method.
+
       Raises:
          ValueError: If any item is None
          ValueError: If any item is empty and empty values are not allowed
@@ -1503,7 +1506,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
       returnOutput (Boolean ``True`` or ``False``): Indicates whether to return the output of the command
       ignoreStderr (Boolean True or False): Whether stderr should be discarded
       doNotLog (Boolean ``True`` or ``False``): Indicates that output should not be logged
-      outputFile (File object as returned from ``open()`` or ``file()``, configured for binary write): File object that all output should be written to
+      outputFile (File object as returned from ``open`` or ``file``, configured for binary write): File object that all output should be written to
    Returns:
        Tuple of ``(result, output)`` as described above
    """
@@ -1877,7 +1880,7 @@ def sanitizeEnvironment():
    sanitizes the contents of that dictionary.
 
    Currently, all it does is reset the locale (removing ``$LC_*``) and set the
-   default language (``$LANG``) to :any:`DEFAULT_LANGUAGE`.  This way, we can count
+   default language (``$LANG``) to ``DEFAULT_LANGUAGE``.  This way, we can count
    on consistent localization regardless of what the end-user has configured.
    This is important for code that needs to parse program output.
 

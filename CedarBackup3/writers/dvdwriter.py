@@ -175,6 +175,7 @@ class MediaCapacity(object):
    def __init__(self, bytesUsed, bytesAvailable):
       """
       Initializes a capacity object.
+
       Raises:
          ValueError: If the bytes used and available values are not floats
       """

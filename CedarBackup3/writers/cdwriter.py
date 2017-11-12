@@ -206,6 +206,7 @@ class MediaCapacity(object):
    def __init__(self, bytesUsed, bytesAvailable, boundaries):
       """
       Initializes a capacity object.
+
       Raises:
          IndexError: If the boundaries tuple does not have enough elements
          ValueError: If the boundaries values are not integers

@@ -255,14 +255,13 @@ class IsoImage(object):
       The device and boundaries values are both required in order to write
       multisession discs.  If either is missing or ``None``, a multisession disc
       will not be written.  The boundaries tuple is in terms of ISO sectors, as
-      built by an image writer class and returned in a :any:`writer.MediaCapacity`
+      built by an image writer class and returned in a ``writer.MediaCapacity``
       object.
 
       Args:
          device (Either be a filesystem path or a SCSI address): Name of the device that the image will be written to
-         boundaries (Tuple ``(last_sess_start,next_sess_start)`` as returned from ``cdrecord -msinfo``, or ``None``): Session boundaries as required by ``mkisofs``
+         boundaries (Tuple ``last_sess_start,next_sess_start`` as returned from ``cdrecord -msinfo``, or ``None``): Session boundaries as required by ``mkisofs``
          graftPoint (String representing a graft point path (see :any:`addEntry`)): Default graft point for this page
-
       """
       self._device = None
       self._boundaries = None

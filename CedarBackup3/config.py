@@ -804,7 +804,7 @@ class BlankBehavior(object):
 
    The following restrictions exist on data in this class:
 
-      - The blanking mode must be a one of the values in :any:`VALID_BLANK_MODES`
+      - The blanking mode must be a one of the values in ``VALID_BLANK_MODES``
       - The blanking factor must be a positive floating point number
 
    """
@@ -874,7 +874,7 @@ class BlankBehavior(object):
    def _setBlankMode(self, value):
       """
       Property target used to set the blanking mode.
-      The value must be one of :any:`VALID_BLANK_MODES`.
+      The value must be one of ``VALID_BLANK_MODES``.
       Raises:
          ValueError: If the value is not valid
       """
@@ -1931,7 +1931,7 @@ class LocalPeer(object):
 
       - The peer name must be a non-empty string.
       - The collect directory must be an absolute path.
-      - The ignore failure mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      - The ignore failure mode must be one of the values in ``VALID_FAILURE_MODES``.
 
    """
 
@@ -2046,7 +2046,7 @@ class LocalPeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      If not ``None``, the mode must be one of the values in ``VALID_FAILURE_MODES``.
       Raises:
          ValueError: If the value is not valid
       """
@@ -2085,7 +2085,7 @@ class RemotePeer(object):
       - The rsh command must be a non-empty string.
       - The cback command must be a non-empty string.
       - Any managed action name must be a non-empty string matching ``ACTION_NAME_REGEX``
-      - The ignore failure mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      - The ignore failure mode must be one of the values in ``VALID_FAILURE_MODES``.
 
    """
 
@@ -2362,7 +2362,7 @@ class RemotePeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      If not ``None``, the mode must be one of the values in ``VALID_FAILURE_MODES``.
       Raises:
          ValueError: If the value is not valid
       """

@@ -93,7 +93,7 @@ class EncryptConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The encrypt mode must be one of the values in :any:`VALID_ENCRYPT_MODES`
+      - The encrypt mode must be one of the values in ``VALID_ENCRYPT_MODES``
       - The encrypt target value must be a non-empty string
 
    """
@@ -164,7 +164,7 @@ class EncryptConfig(object):
    def _setEncryptMode(self, value):
       """
       Property target used to set the encrypt mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_ENCRYPT_MODES`.
+      If not ``None``, the mode must be one of the values in ``VALID_ENCRYPT_MODES``.
       Raises:
          ValueError: If the value is not valid
       """
