@@ -37,5 +37,14 @@ are officially supported along with Cedar Backup.
 # Using 'from CedarBackup3.extend import *' will just import the modules listed
 # in the __all__ variable.
 
+import CedarBackup3.extend.amazons3
+import CedarBackup3.extend.encrypt
+import CedarBackup3.extend.mbox
+import CedarBackup3.extend.mysql
+import CedarBackup3.extend.postgresql
+import CedarBackup3.extend.split
+import CedarBackup3.extend.subversion
+import CedarBackup3.extend.sysinfo
+
 __all__ = [ 'amazons3', 'encrypt', 'mbox', 'mysql', 'postgresql', 'split', 'subversion', 'sysinfo', ]
 

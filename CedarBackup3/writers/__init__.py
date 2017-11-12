@@ -36,5 +36,9 @@ functionality, including utilities and specific writer implementations.
 # Using 'from CedarBackup3.writers import *' will just import the modules listed
 # in the __all__ variable.
 
+import CedarBackup3.writers.util
+import CedarBackup3.writers.cdwriter
+import CedarBackup3.writers.dvdwriter
+
 __all__ = [ 'util', 'cdwriter', 'dvdwriter', ]
 

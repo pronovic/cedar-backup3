@@ -181,53 +181,51 @@ class IsoImage(object):
    """
    Represents an ISO filesystem image.
 
-   Summary
-   =======
+   **Summary**
 
-      This object represents an ISO 9660 filesystem image.  It is implemented
-      in terms of the C{mkisofs} program, which has been ported to many
-      operating systems and platforms.  A "sensible subset" of the C{mkisofs}
-      functionality is made available through the public interface, allowing
-      callers to set a variety of basic options such as publisher id,
-      application id, etc. as well as specify exactly which files and
-      directories they want included in their image.
+   This object represents an ISO 9660 filesystem image.  It is implemented
+   in terms of the C{mkisofs} program, which has been ported to many
+   operating systems and platforms.  A "sensible subset" of the C{mkisofs}
+   functionality is made available through the public interface, allowing
+   callers to set a variety of basic options such as publisher id,
+   application id, etc. as well as specify exactly which files and
+   directories they want included in their image.
 
-      By default, the image is created using the Rock Ridge protocol (using the
-      C{-r} option to C{mkisofs}) because Rock Ridge discs are generally more
-      useful on UN*X filesystems than standard ISO 9660 images.  However,
-      callers can fall back to the default C{mkisofs} functionality by setting
-      the C{useRockRidge} instance variable to C{False}.  Note, however, that
-      this option is not well-tested.
+   By default, the image is created using the Rock Ridge protocol (using the
+   C{-r} option to C{mkisofs}) because Rock Ridge discs are generally more
+   useful on UN*X filesystems than standard ISO 9660 images.  However,
+   callers can fall back to the default C{mkisofs} functionality by setting
+   the C{useRockRidge} instance variable to C{False}.  Note, however, that
+   this option is not well-tested.
 
-   Where Files and Directories are Placed in the Image
-   ===================================================
+   **Where Files and Directories are Placed in the Image**
 
-      Although this class is implemented in terms of the C{mkisofs} program,
-      its standard "image contents" semantics are slightly different than the original
-      C{mkisofs} semantics.  The difference is that files and directories are
-      added to the image with some additional information about their source
-      directory kept intact.
+   Although this class is implemented in terms of the C{mkisofs} program,
+   its standard "image contents" semantics are slightly different than the original
+   C{mkisofs} semantics.  The difference is that files and directories are
+   added to the image with some additional information about their source
+   directory kept intact.
 
-      As an example, suppose you add the file C{/etc/profile} to your image and
-      you do not configure a graft point.  The file C{/profile} will be created
-      in the image.  The behavior for directories is similar.  For instance,
-      suppose that you add C{/etc/X11} to the image and do not configure a
-      graft point.  In this case, the directory C{/X11} will be created in the
-      image, even if the original C{/etc/X11} directory is empty.  I{This
-      behavior differs from the standard C{mkisofs} behavior!}
+   As an example, suppose you add the file C{/etc/profile} to your image and
+   you do not configure a graft point.  The file C{/profile} will be created
+   in the image.  The behavior for directories is similar.  For instance,
+   suppose that you add C{/etc/X11} to the image and do not configure a
+   graft point.  In this case, the directory C{/X11} will be created in the
+   image, even if the original C{/etc/X11} directory is empty.  I{This
+   behavior differs from the standard C{mkisofs} behavior!}
 
-      If a graft point is configured, it will be used to modify the point at
-      which a file or directory is added into an image.  Using the examples
-      from above, let's assume you set a graft point of C{base} when adding
-      C{/etc/profile} and C{/etc/X11} to your image.  In this case, the file
-      C{/base/profile} and the directory C{/base/X11} would be added to the
-      image.
+   If a graft point is configured, it will be used to modify the point at
+   which a file or directory is added into an image.  Using the examples
+   from above, let's assume you set a graft point of C{base} when adding
+   C{/etc/profile} and C{/etc/X11} to your image.  In this case, the file
+   C{/base/profile} and the directory C{/base/X11} would be added to the
+   image.
 
-      I feel that this behavior is more consistent than the original C{mkisofs}
-      behavior.  However, to be fair, it is not quite as flexible, and some
-      users might not like it.  For this reason, the C{contentsOnly} parameter
-      to the L{addEntry} method can be used to revert to the original behavior
-      if desired.
+   I feel that this behavior is more consistent than the original C{mkisofs}
+   behavior.  However, to be fair, it is not quite as flexible, and some
+   users might not like it.  For this reason, the C{contentsOnly} parameter
+   to the L{addEntry} method can be used to revert to the original behavior
+   if desired.
 
    @sort: __init__, addEntry, getEstimatedSize, _getEstimatedSize, writeImage,
           _buildDirEntries _buildGeneralArgs, _buildSizeArgs, _buildWriteArgs,

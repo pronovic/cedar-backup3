@@ -289,113 +289,105 @@ class CdWriter(object):
    """
    Class representing a device that knows how to write CD media.
 
-   Summary
-   =======
+   This is a class representing a device that knows how to write CD media.  It
+   provides common operations for the device, such as ejecting the media,
+   writing an ISO image to the media, or checking for the current media
+   capacity.  It also provides a place to store device attributes, such as
+   whether the device supports writing multisession discs, etc.
 
-      This is a class representing a device that knows how to write CD media.  It
-      provides common operations for the device, such as ejecting the media,
-      writing an ISO image to the media, or checking for the current media
-      capacity.  It also provides a place to store device attributes, such as
-      whether the device supports writing multisession discs, etc.
+   This class is implemented in terms of the C{eject} and C{cdrecord}
+   programs, both of which should be available on most UN*X platforms.
 
-      This class is implemented in terms of the C{eject} and C{cdrecord}
-      programs, both of which should be available on most UN*X platforms.
+   **Image Writer Interface**
 
-   Image Writer Interface
-   ======================
+   The following methods make up the "image writer" interface shared
+   with other kinds of writers (such as DVD writers)::
 
-      The following methods make up the "image writer" interface shared
-      with other kinds of writers (such as DVD writers)::
+      __init__
+      initializeImage()
+      addImageEntry()
+      writeImage()
+      setImageNewDisc()
+      retrieveCapacity()
+      getEstimatedImageSize()
 
-         __init__
-         initializeImage()
-         addImageEntry()
-         writeImage()
-         setImageNewDisc()
-         retrieveCapacity()
-         getEstimatedImageSize()
+   Only these methods will be used by other Cedar Backup functionality
+   that expects a compatible image writer.
 
-      Only these methods will be used by other Cedar Backup functionality
-      that expects a compatible image writer.
+   The media attribute is also assumed to be available.
 
-      The media attribute is also assumed to be available.
+   **Media Types**
 
-   Media Types
-   ===========
+   This class knows how to write to two different kinds of media, represented
+   by the following constants:
 
-      This class knows how to write to two different kinds of media, represented
-      by the following constants:
+      - C{MEDIA_CDR_74}: 74-minute CD-R media (650 MB capacity)
+      - C{MEDIA_CDRW_74}: 74-minute CD-RW media (650 MB capacity)
+      - C{MEDIA_CDR_80}: 80-minute CD-R media (700 MB capacity)
+      - C{MEDIA_CDRW_80}: 80-minute CD-RW media (700 MB capacity)
 
-         - C{MEDIA_CDR_74}: 74-minute CD-R media (650 MB capacity)
-         - C{MEDIA_CDRW_74}: 74-minute CD-RW media (650 MB capacity)
-         - C{MEDIA_CDR_80}: 80-minute CD-R media (700 MB capacity)
-         - C{MEDIA_CDRW_80}: 80-minute CD-RW media (700 MB capacity)
+   Most hardware can read and write both 74-minute and 80-minute CD-R and
+   CD-RW media.  Some older drives may only be able to write CD-R media.
+   The difference between the two is that CD-RW media can be rewritten
+   (erased), while CD-R media cannot be.
 
-      Most hardware can read and write both 74-minute and 80-minute CD-R and
-      CD-RW media.  Some older drives may only be able to write CD-R media.
-      The difference between the two is that CD-RW media can be rewritten
-      (erased), while CD-R media cannot be.
+   I do not support any other configurations for a couple of reasons.  The
+   first is that I've never tested any other kind of media.  The second is
+   that anything other than 74 or 80 minute is apparently non-standard.
 
-      I do not support any other configurations for a couple of reasons.  The
-      first is that I've never tested any other kind of media.  The second is
-      that anything other than 74 or 80 minute is apparently non-standard.
+   **Device Attributes vs. Media Attributes**
 
-   Device Attributes vs. Media Attributes
-   ======================================
+   A given writer instance has two different kinds of attributes associated
+   with it, which I call device attributes and media attributes.  Device
+   attributes are things which can be determined without looking at the
+   media, such as whether the drive supports writing multisession disks or
+   has a tray.  Media attributes are attributes which vary depending on the
+   state of the media, such as the remaining capacity on a disc.  In
+   general, device attributes are available via instance variables and are
+   constant over the life of an object, while media attributes can be
+   retrieved through method calls.
 
-      A given writer instance has two different kinds of attributes associated
-      with it, which I call device attributes and media attributes.  Device
-      attributes are things which can be determined without looking at the
-      media, such as whether the drive supports writing multisession disks or
-      has a tray.  Media attributes are attributes which vary depending on the
-      state of the media, such as the remaining capacity on a disc.  In
-      general, device attributes are available via instance variables and are
-      constant over the life of an object, while media attributes can be
-      retrieved through method calls.
+   **Talking to Hardware**
 
-   Talking to Hardware
-   ===================
+   This class needs to talk to CD writer hardware in two different ways:
+   through cdrecord to actually write to the media, and through the
+   filesystem to do things like open and close the tray.
 
-      This class needs to talk to CD writer hardware in two different ways:
-      through cdrecord to actually write to the media, and through the
-      filesystem to do things like open and close the tray.
+   Historically, CdWriter has interacted with cdrecord using the scsiId
+   attribute, and with most other utilities using the device attribute.
+   This changed somewhat in Cedar Backup 2.9.0.
 
-      Historically, CdWriter has interacted with cdrecord using the scsiId
-      attribute, and with most other utilities using the device attribute.
-      This changed somewhat in Cedar Backup 2.9.0.
+   When Cedar Backup was first written, the only way to interact with
+   cdrecord was by using a SCSI device id.  IDE devices were mapped to
+   pseudo-SCSI devices through the kernel.  Later, extended SCSI "methods"
+   arrived, and it became common to see C{ATA:1,0,0} or C{ATAPI:0,0,0} as a
+   way to address IDE hardware.  By late 2006, C{ATA} and C{ATAPI} had
+   apparently been deprecated in favor of just addressing the IDE device
+   directly by name, i.e. C{/dev/cdrw}.
 
-      When Cedar Backup was first written, the only way to interact with
-      cdrecord was by using a SCSI device id.  IDE devices were mapped to
-      pseudo-SCSI devices through the kernel.  Later, extended SCSI "methods"
-      arrived, and it became common to see C{ATA:1,0,0} or C{ATAPI:0,0,0} as a
-      way to address IDE hardware.  By late 2006, C{ATA} and C{ATAPI} had
-      apparently been deprecated in favor of just addressing the IDE device
-      directly by name, i.e. C{/dev/cdrw}.
+   Because of this latest development, it no longer makes sense to require a
+   CdWriter to be created with a SCSI id -- there might not be one.  So, the
+   passed-in SCSI id is now optional.  Also, there is now a hardwareId
+   attribute.  This attribute is filled in with either the SCSI id (if
+   provided) or the device (otherwise).  The hardware id is the value that
+   will be passed to cdrecord in the C{dev=} argument.
 
-      Because of this latest development, it no longer makes sense to require a
-      CdWriter to be created with a SCSI id -- there might not be one.  So, the
-      passed-in SCSI id is now optional.  Also, there is now a hardwareId
-      attribute.  This attribute is filled in with either the SCSI id (if
-      provided) or the device (otherwise).  The hardware id is the value that
-      will be passed to cdrecord in the C{dev=} argument.
+   **Testing**
 
-   Testing
-   =======
+   It's rather difficult to test this code in an automated fashion, even if
+   you have access to a physical CD writer drive.  It's even more difficult
+   to test it if you are running on some build daemon (think of a Debian
+   autobuilder) which can't be expected to have any hardware or any media
+   that you could write to.
 
-      It's rather difficult to test this code in an automated fashion, even if
-      you have access to a physical CD writer drive.  It's even more difficult
-      to test it if you are running on some build daemon (think of a Debian
-      autobuilder) which can't be expected to have any hardware or any media
-      that you could write to.
-
-      Because of this, much of the implementation below is in terms of static
-      methods that are supposed to take defined actions based on their
-      arguments.  Public methods are then implemented in terms of a series of
-      calls to simplistic static methods.  This way, we can test as much as
-      possible of the functionality via testing the static methods, while
-      hoping that if the static methods are called appropriately, things will
-      work properly.  It's not perfect, but it's much better than no testing at
-      all.
+   Because of this, much of the implementation below is in terms of static
+   methods that are supposed to take defined actions based on their
+   arguments.  Public methods are then implemented in terms of a series of
+   calls to simplistic static methods.  This way, we can test as much as
+   possible of the functionality via testing the static methods, while
+   hoping that if the static methods are called appropriately, things will
+   work properly.  It's not perfect, but it's much better than no testing at
+   all.
 
    @sort: __init__, isRewritable, _retrieveProperties, retrieveCapacity, _getBoundaries,
           _calculateCapacity, openTray, closeTray, refreshMedia, writeImage,

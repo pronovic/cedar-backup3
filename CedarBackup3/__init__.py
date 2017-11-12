@@ -49,5 +49,17 @@ written in the Python programming language.
 # Using 'from CedarBackup3 import *' will just import the modules listed
 # in the __all__ variable.
 
+import CedarBackup3.actions
+import CedarBackup3.cli
+import CedarBackup3.config
+import CedarBackup3.extend
+import CedarBackup3.filesystem
+import CedarBackup3.knapsack
+import CedarBackup3.peer
+import CedarBackup3.release
+import CedarBackup3.tools
+import CedarBackup3.util
+import CedarBackup3.writers
+
 __all__ = [ 'actions', 'cli', 'config', 'extend', 'filesystem', 'knapsack',
             'peer', 'release', 'tools', 'util', 'writers', ]

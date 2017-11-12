@@ -244,110 +244,104 @@ class DvdWriter(object):
    """
    Class representing a device that knows how to write some kinds of DVD media.
 
-   Summary
-   =======
+   **Summary**
 
-      This is a class representing a device that knows how to write some kinds
-      of DVD media.  It provides common operations for the device, such as
-      ejecting the media and writing data to the media.
+   This is a class representing a device that knows how to write some kinds
+   of DVD media.  It provides common operations for the device, such as
+   ejecting the media and writing data to the media.
 
-      This class is implemented in terms of the C{eject} and C{growisofs}
-      utilities, all of which should be available on most UN*X platforms.
+   This class is implemented in terms of the C{eject} and C{growisofs}
+   utilities, all of which should be available on most UN*X platforms.
 
-   Image Writer Interface
-   ======================
+   **Image Writer Interface**
 
-      The following methods make up the "image writer" interface shared
-      with other kinds of writers::
+   The following methods make up the "image writer" interface shared
+   with other kinds of writers::
 
-         __init__
-         initializeImage()
-         addImageEntry()
-         writeImage()
-         setImageNewDisc()
-         retrieveCapacity()
-         getEstimatedImageSize()
+      __init__
+      initializeImage()
+      addImageEntry()
+      writeImage()
+      setImageNewDisc()
+      retrieveCapacity()
+      getEstimatedImageSize()
 
-      Only these methods will be used by other Cedar Backup functionality
-      that expects a compatible image writer.
+   Only these methods will be used by other Cedar Backup functionality
+   that expects a compatible image writer.
 
-      The media attribute is also assumed to be available.
+   The media attribute is also assumed to be available.
 
-      Unlike the C{CdWriter}, the C{DvdWriter} can only operate in terms of
-      filesystem devices, not SCSI devices.  So, although the constructor
-      interface accepts a SCSI device parameter for the sake of compatibility,
-      it's not used.
+   Unlike the C{CdWriter}, the C{DvdWriter} can only operate in terms of
+   filesystem devices, not SCSI devices.  So, although the constructor
+   interface accepts a SCSI device parameter for the sake of compatibility,
+   it's not used.
 
-   Media Types
-   ===========
+   **Media Types**
 
-      This class knows how to write to DVD+R and DVD+RW media, represented
-      by the following constants:
+   This class knows how to write to DVD+R and DVD+RW media, represented
+   by the following constants:
 
-         - C{MEDIA_DVDPLUSR}: DVD+R media (4.4 GB capacity)
-         - C{MEDIA_DVDPLUSRW}: DVD+RW media (4.4 GB capacity)
+      - C{MEDIA_DVDPLUSR}: DVD+R media (4.4 GB capacity)
+      - C{MEDIA_DVDPLUSRW}: DVD+RW media (4.4 GB capacity)
 
-      The difference is that DVD+RW media can be rewritten, while DVD+R media
-      cannot be (although at present, C{DvdWriter} does not really
-      differentiate between rewritable and non-rewritable media).
+   The difference is that DVD+RW media can be rewritten, while DVD+R media
+   cannot be (although at present, C{DvdWriter} does not really
+   differentiate between rewritable and non-rewritable media).
 
-      The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
-      of 1024*1024*1024 bytes per gigabyte.
+   The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
+   of 1024*1024*1024 bytes per gigabyte.
 
-      The underlying C{growisofs} utility does support other kinds of media
-      (including DVD-R, DVD-RW and BlueRay) which work somewhat differently
-      than standard DVD+R and DVD+RW media.  I don't support these other kinds
-      of media because I haven't had any opportunity to work with them.  The
-      same goes for dual-layer media of any type.
+   The underlying C{growisofs} utility does support other kinds of media
+   (including DVD-R, DVD-RW and BlueRay) which work somewhat differently
+   than standard DVD+R and DVD+RW media.  I don't support these other kinds
+   of media because I haven't had any opportunity to work with them.  The
+   same goes for dual-layer media of any type.
 
-   Device Attributes vs. Media Attributes
-   ======================================
+   **Device Attributes vs. Media Attributes**
 
-      As with the cdwriter functionality, a given dvdwriter instance has two
-      different kinds of attributes associated with it.  I call these device
-      attributes and media attributes.
+   As with the cdwriter functionality, a given dvdwriter instance has two
+   different kinds of attributes associated with it.  I call these device
+   attributes and media attributes.
 
-      Device attributes are things which can be determined without looking at
-      the media.  Media attributes are attributes which vary depending on the
-      state of the media.  In general, device attributes are available via
-      instance variables and are constant over the life of an object, while
-      media attributes can be retrieved through method calls.
+   Device attributes are things which can be determined without looking at
+   the media.  Media attributes are attributes which vary depending on the
+   state of the media.  In general, device attributes are available via
+   instance variables and are constant over the life of an object, while
+   media attributes can be retrieved through method calls.
 
-      Compared to cdwriters, dvdwriters have very few attributes.  This is due
-      to differences between the way C{growisofs} works relative to
-      C{cdrecord}.
+   Compared to cdwriters, dvdwriters have very few attributes.  This is due
+   to differences between the way C{growisofs} works relative to
+   C{cdrecord}.
 
-   Media Capacity
-   ==============
+   **Media Capacity**
 
-      One major difference between the C{cdrecord}/C{mkisofs} utilities used by
-      the cdwriter class and the C{growisofs} utility used here is that the
-      process of estimating remaining capacity and image size is more
-      straightforward with C{cdrecord}/C{mkisofs} than with C{growisofs}.
+   One major difference between the C{cdrecord}/C{mkisofs} utilities used by
+   the cdwriter class and the C{growisofs} utility used here is that the
+   process of estimating remaining capacity and image size is more
+   straightforward with C{cdrecord}/C{mkisofs} than with C{growisofs}.
 
-      In this class, remaining capacity is calculated by asking doing a dry run
-      of C{growisofs} and grabbing some information from the output of that
-      command.  Image size is estimated by asking the C{IsoImage} class for an
-      estimate and then adding on a "fudge factor" determined through
-      experimentation.
+   In this class, remaining capacity is calculated by asking doing a dry run
+   of C{growisofs} and grabbing some information from the output of that
+   command.  Image size is estimated by asking the C{IsoImage} class for an
+   estimate and then adding on a "fudge factor" determined through
+   experimentation.
 
-   Testing
-   =======
+   **Testing**
 
-      It's rather difficult to test this code in an automated fashion, even if
-      you have access to a physical DVD writer drive.  It's even more difficult
-      to test it if you are running on some build daemon (think of a Debian
-      autobuilder) which can't be expected to have any hardware or any media
-      that you could write to.
+   It's rather difficult to test this code in an automated fashion, even if
+   you have access to a physical DVD writer drive.  It's even more difficult
+   to test it if you are running on some build daemon (think of a Debian
+   autobuilder) which can't be expected to have any hardware or any media
+   that you could write to.
 
-      Because of this, some of the implementation below is in terms of static
-      methods that are supposed to take defined actions based on their
-      arguments.  Public methods are then implemented in terms of a series of
-      calls to simplistic static methods.  This way, we can test as much as
-      possible of the "difficult" functionality via testing the static methods,
-      while hoping that if the static methods are called appropriately, things
-      will work properly.  It's not perfect, but it's much better than no
-      testing at all.
+   Because of this, some of the implementation below is in terms of static
+   methods that are supposed to take defined actions based on their
+   arguments.  Public methods are then implemented in terms of a series of
+   calls to simplistic static methods.  This way, we can test as much as
+   possible of the "difficult" functionality via testing the static methods,
+   while hoping that if the static methods are called appropriately, things
+   will work properly.  It's not perfect, but it's much better than no
+   testing at all.
 
    @sort: __init__, isRewritable, retrieveCapacity, openTray, closeTray, refreshMedia,
           initializeImage, addImageEntry, writeImage, setImageNewDisc, getEstimatedImageSize,

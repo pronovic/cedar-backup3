@@ -44,5 +44,8 @@ the util/ directory.
 # Using 'from CedarBackup3.tools import *' will just import the modules listed
 # in the __all__ variable.
 
+import CedarBackup3.tools.span
+import CedarBackup3.tools.amazons3
+
 __all__ = [ 'span', 'amazons3', ]
 
