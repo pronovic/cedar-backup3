@@ -5,7 +5,7 @@ Release Procedure
 - Update CedarBackup3/release.py
 - Check in changes 
 - Run unit tests one last time (make test)
-- Run pylint tests one last time (make check testcheck)
+- Run pylint tests one last time (make check); note that testcheck is too slow to be usable these days
 - Build the source distributions (make distrib)
 - Build the HTML documentation into the BitBucket repository (make htmldocs) - PULL FIRST!
 - Commit the HTML documentation changes in the BitBucketSite repository
