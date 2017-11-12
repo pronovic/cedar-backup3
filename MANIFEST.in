@@ -29,6 +29,11 @@ include doc/release.txt
 include doc/osx/*
 include doc/interface/*
 include doc/interface/_modules/*
+include doc/interface/_modules/CedarBackup3/*
+include doc/interface/_modules/CedarBackup3/extend/*
+include doc/interface/_modules/CedarBackup3/writers/*
+include doc/interface/_modules/CedarBackup3/tools/*
+include doc/interface/_modules/CedarBackup3/actions/*
 include doc/interface/_sources/*
 include doc/interface/_static/*
 include doc/manual/*
