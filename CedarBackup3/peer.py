@@ -118,9 +118,9 @@ class LocalPeer(object):
       before an ongoing backup completed.
 
       Args:
-         name (String, typically a hostname): Name of the backup peer
-         collectDir (String representing an absolute local path on disk): Path to the peer's collect directory
-         ignoreFailureMode (One of VALID_FAILURE_MODES): Ignore failure mode for this peer
+         name: Name of the backup peer
+         collectDir: Path to the peer's collect directory
+         ignoreFailureMode: Ignore failure mode for this peer, one of ``VALID_FAILURE_MODES``
       Raises:
          ValueError: If the name is empty
          ValueError: If collect directory is not an absolute path
@@ -215,9 +215,9 @@ class LocalPeer(object):
       to get the associated uid/gid as an ownership tuple.
 
       Args:
-         targetDir (String representing a directory on disk): Target directory to write data into
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the staged files should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         targetDir: Target directory to write data into
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
       Returns:
           Number of files copied from the source directory to the target directory
 
@@ -257,7 +257,7 @@ class LocalPeer(object):
       by passing in a different name.
 
       Args:
-         collectIndicator (String representing name of a file in the collect directory): Name of the collect indicator file to check
+         collectIndicator: Name of the collect indicator file to check
       Returns:
           Boolean true/false depending on whether the indicator exists
       Raises:
@@ -284,9 +284,9 @@ class LocalPeer(object):
       function to get the associated uid/gid as an ownership tuple.
 
       Args:
-         stageIndicator (String representing name of a file in the collect directory): Name of the indicator file to write
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the indicator file should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the indicator file should have
+         stageIndicator: Name of the indicator file to write
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
       Raises:
          ValueError: If collect directory is not a directory or does not exist
          ValueError: If a path cannot be encoded properly
@@ -323,10 +323,10 @@ class LocalPeer(object):
       function to get the associated uid/gid as an ownership tuple.
 
       Args:
-         sourceDir (String representing a directory on disk): Source directory
-         targetDir (String representing a directory on disk): Target directory
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied files should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         sourceDir: Source directory
+         targetDir: Target directory
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
       Returns:
           Number of files copied from the source directory to the target directory
 
@@ -363,11 +363,11 @@ class LocalPeer(object):
       is invoked.  If the target already exists, we'll raise an exception.
 
       Args:
-         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
-         targetFile (String representing a file on disk, as an absolute path): Target file to create
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
-         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+         sourceFile: Source file to copy
+         targetFile: Target file to create
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
+         overwrite: Indicates whether it's OK to overwrite the target file
       Raises:
          ValueError: If the passed-in source file is not a regular file
          ValueError: If a path cannot be encoded properly
@@ -447,15 +447,15 @@ class RemotePeer(object):
       that function for some important notes about its limitations.
 
       Args:
-         name (String, must be a valid DNS hostname): Name of the backup peer
-         collectDir (String representing an absolute path on the remote peer): Path to the peer's collect directory
-         workingDir (String representing an absolute path on the current host): Working directory that can be used to create temporary files, etc
-         remoteUser (String representing a username, valid via remote shell to the peer): Name of the Cedar Backup user on the remote peer
-         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
-         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
-         rshCommand (String representing a system command including required arguments): An rsh-compatible copy command to use for remote shells to the peer
-         cbackCommand (String representing a system command including required arguments): A chack-compatible command to use for executing managed actions
-         ignoreFailureMode (One of VALID_FAILURE_MODES): Ignore failure mode for this peer
+         name: Name of the backup peer, a valid DNS name
+         collectDir: Path to the peer's collect directory, absolute path
+         workingDir: Working directory that can be used to create temporary files, etc, an absolute path
+         remoteUser: Name of the Cedar Backup user on the remote peer
+         localUser: Name of the Cedar Backup user on the current host
+         rcpCommand: An rcp-compatible copy command to use for copying files from the peer
+         rshCommand: An rsh-compatible copy command to use for remote shells to the peer
+         cbackCommand: A chack-compatible command to use for executing managed actions
+         ignoreFailureMode: Ignore failure mode for this peer, one of ``VALID_FAILURE_MODES``
       Raises:
          ValueError: If collect directory is not an absolute path
       """
@@ -724,9 +724,9 @@ class RemotePeer(object):
       directory is an error.
 
       Args:
-         targetDir (String representing a directory on disk): Target directory to write data into
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the staged files should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         targetDir: Target directory to write data into
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
       Returns:
           Number of files copied from the source directory to the target directory
 
@@ -771,7 +771,7 @@ class RemotePeer(object):
       this, the implementation of this method is rather convoluted.
 
       Args:
-         collectIndicator (String representing name of a file in the collect directory): Name of the collect indicator file to check
+         collectIndicator: Name of the collect indicator file to check
       Returns:
           Boolean true/false depending on whether the indicator exists
       Raises:
@@ -824,7 +824,7 @@ class RemotePeer(object):
       to get the associated uid/gid as an ownership tuple.
 
       Args:
-         stageIndicator (String representing name of a file in the collect directory): Name of the indicator file to write
+         stageIndicator: Name of the indicator file to write
       Raises:
          ValueError: If a path cannot be encoded properly
          IOError: If there is an IO error creating the file
@@ -855,7 +855,7 @@ class RemotePeer(object):
       Executes a command on the peer via remote shell.
 
       Args:
-         command (String command-line suitable for use with rsh): Command to execute
+         command: Command to execute
       Raises:
          IOError: If there is an error executing the command on the remote peer
       """
@@ -895,7 +895,7 @@ class RemotePeer(object):
       files, and then the list is converted into a set object for later use.
 
       Args:
-         path (String representing a path on disk): Directory path to get contents for
+         path: Directory path to get contents for
       Returns:
           Set of files in the directory
       Raises:
@@ -944,15 +944,15 @@ class RemotePeer(object):
       the remote host.
 
       Args:
-         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
-         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
-         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
-         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
-         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
-         sourceDir (String representing a directory on disk): Source directory
-         targetDir (String representing a directory on disk): Target directory
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied files should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         remoteUser: Name of the Cedar Backup user on the remote peer
+         localUser: Name of the Cedar Backup user on the current host
+         remoteHost: Hostname of the remote peer
+         rcpCommand: An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList: An rcp-compatible copy command to use for copying files, as for :any:`util.executeCommand`
+         sourceDir: Source directory
+         targetDir: Target directory
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
       Returns:
           Number of files copied from the source directory to the target directory
 
@@ -1018,16 +1018,16 @@ class RemotePeer(object):
       we're done.
 
       Args:
-         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
-         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
-         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
-         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
-         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
-         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
-         targetFile (String representing a file on disk, as an absolute path): Target file to create
-         ownership (Tuple of numeric ids ``uid, gid``): Owner and group that the copied should have
-         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
-         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+         remoteUser: Name of the Cedar Backup user on the remote peer
+         remoteHost: Hostname of the remote peer
+         localUser: Name of the Cedar Backup user on the current host
+         rcpCommand: An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList: An rcp-compatible copy command to use for copying files, as for :any:`util.executeCommand`
+         sourceFile: Source file to copy
+         targetFile: Target file to create
+         ownership: Owner and group that files should have, tuple of numeric ``(uid, gid)``
+         permissions: Unix permissions mode that the staged files should have, in octal like ``0640``
+         overwrite: Indicates whether it's OK to overwrite the target file
       Raises:
          IOError: If the target file already exists
          IOError: If there is an IO error copying the file
@@ -1078,14 +1078,14 @@ class RemotePeer(object):
       to get the associated uid/gid as an ownership tuple.
 
       Args:
-         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
-         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
-         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
-         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
-         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
-         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
-         targetFile (String representing a file on disk, as an absolute path): Target file to create
-         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+         remoteUser: Name of the Cedar Backup user on the remote peer
+         localUser: Name of the Cedar Backup user on the current host
+         remoteHost: Hostname of the remote peer
+         rcpCommand: An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList: An rcp-compatible copy command to use for copying files, as for :any:`util.executeCommand`
+         sourceFile: Source file to copy
+         targetFile: Target file to create
+         overwrite: Indicates whether it's OK to overwrite the target file
       Raises:
          IOError: If there is an IO error copying the file
          OSError: If there is an OS error changing permissions on the file
@@ -1116,12 +1116,12 @@ class RemotePeer(object):
       Executes a command on the peer via remote shell.
 
       Args:
-         remoteUser (String representing a username, valid on the remote host): Name of the Cedar Backup user on the remote peer
-         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
-         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
-         rshCommand (String representing a system command including required arguments): An rsh-compatible copy command to use for remote shells to the peer
-         rshCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rsh-compatible copy command to use for remote shells to the peer
-         remoteCommand (String command-line, with no special shell characters ($, <, etc.)): The command to be executed on the remote host
+         remoteUser: Name of the Cedar Backup user on the remote peer
+         localUser: Name of the Cedar Backup user on the current host
+         remoteHost: Hostname of the remote peer
+         rshCommand: An rsh-compatible copy command to use for remote shells to the peer
+         rshCommandList: An rsh-compatible copy command to use for remote shells to the peer, as for :any:`util.executeCommand`
+         remoteCommand: The command to be executed on the remote host, with no special shell characters
       Raises:
          IOError: If there is an error executing the remote command
       """
