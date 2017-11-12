@@ -1,3 +1,7 @@
+Version 3.1.11    unreleased
+
+	* Convert API documentation from Epydoc to Sphinx Napolean (Google docstrings).
+
 Version 3.1.10    11 Sep 2017
 
 	* Fix maintainer script util/validate to use onsgmls from the opensp package.
