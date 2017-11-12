@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'rebuild' action.
-@sort: executeRebuild
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -87,17 +86,13 @@ def executeRebuild(configPath, options, config):
    main difference is that while store only stores a single day's staging
    directory, the rebuild action operates on multiple staging directories.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there are problems reading or writing files.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there are problems reading or writing files
    """
    logger.debug("Executing the 'rebuild' action.")
    if sys.platform == "darwin":
@@ -139,10 +134,13 @@ def _findRebuildDirs(config):
    to find all of the staging directories between then and now that still exist
    and have a stage indicator.
 
-   @param config: Config object.
+   Args:
+      config: Config object
 
-   @return: Correct staging dir, as a dict mapping directory to date suffix.
-   @raise IOError: If we do not find at least one staging directory.
+   Returns:
+       Correct staging dir, as a dict mapping directory to date suffix
+   Raises:
+      IOError: If we do not find at least one staging directory
    """
    stagingDirs = {}
    start = deriveDayOfWeek(config.options.startingDay)

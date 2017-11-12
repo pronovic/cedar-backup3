@@ -46,16 +46,15 @@ accesses the DOM tree.  This is not so much to "protect" the other code from
 the DOM, but to standardize the way it's used.  It will also help extension
 authors write code that easily looks more like the rest of Cedar Backup.
 
-@sort: createInputDom, createOutputDom, serializeDom, isElement, readChildren,
-       readFirstChild, readStringList, readString, readInteger, readBoolean,
-       addContainerNode, addStringNode, addIntegerNode, addBooleanNode,
-       TRUE_BOOLEAN_VALUES, FALSE_BOOLEAN_VALUES, VALID_BOOLEAN_VALUES
+Module Attributes
+=================
 
-@var TRUE_BOOLEAN_VALUES: List of boolean values in XML representing C{True}.
-@var FALSE_BOOLEAN_VALUES: List of boolean values in XML representing C{False}.
-@var VALID_BOOLEAN_VALUES: List of valid boolean values in XML.
+Attributes:
+   TRUE_BOOLEAN_VALUES: List of boolean values in XML representing ``True``
+   FALSE_BOOLEAN_VALUES: List of boolean values in XML representing ``False``
+   VALID_BOOLEAN_VALUES: List of valid boolean values in XML
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 # pylint: disable=C0111,C0103,W0511,W0104,W0106
 
@@ -94,9 +93,12 @@ VALID_BOOLEAN_VALUES  = TRUE_BOOLEAN_VALUES + FALSE_BOOLEAN_VALUES
 def createInputDom(xmlData, name="cb_config"):
    """
    Creates a DOM tree based on reading an XML string.
-   @param name: Assumed base name of the document (root node name).
-   @return: Tuple (xmlDom, parentNode) for the parsed document
-   @raise ValueError: If the document can't be parsed.
+   Args:
+      name: Assumed base name of the document (root node name)
+   Returns:
+       Tuple (xmlDom, parentNode) for the parsed document
+   Raises:
+      ValueError: If the document can't be parsed
    """
    try:
       xmlDom = parseString(xmlData)
@@ -108,8 +110,10 @@ def createInputDom(xmlData, name="cb_config"):
 def createOutputDom(name="cb_config"):
    """
    Creates a DOM tree used for writing an XML document.
-   @param name: Base name of the document (root node name).
-   @return: Tuple (xmlDom, parentNode) for the new document
+   Args:
+      name: Base name of the document (root node name)
+   Returns:
+       Tuple (xmlDom, parentNode) for the new document
    """
    impl = getDOMImplementation()
    xmlDom = impl.createDocument(None, name, None)
@@ -134,16 +138,18 @@ def readChildren(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   Underneath, we use the Python C{getElementsByTagName} method, which is
+   Underneath, we use the Python ``getElementsByTagName`` method, which is
    pretty cool, but which (surprisingly?) returns a list of all children
    with a given name below the parent, at any level.  We just prune that
-   list to include only children whose C{parentNode} matches the passed-in
+   list to include only children whose ``parentNode`` matches the passed-in
    parent.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of nodes to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of nodes to search for
 
-   @return: List of child nodes with correct parent, or an empty list if
+   Returns:
+       List of child nodes with correct parent, or an empty list if
    no matching nodes are found.
    """
    lst = []
@@ -161,10 +167,12 @@ def readFirstChild(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: First properly-named child of parent, or C{None} if no matching nodes are found.
+   Returns:
+       First properly-named child of parent, or ``None`` if no matching nodes are found
    """
    result = readChildren(parent, name)
    if result is None or result == []:
@@ -179,17 +187,19 @@ def readStringList(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   First, we find all of the nodes using L{readChildren}, and then we
+   First, we find all of the nodes using :any:`readChildren`, and then we
    retrieve the "string contents" of each of those nodes.  The returned list
    has one entry per matching node.  We assume that string contents of a
-   given node belong to the first C{TEXT_NODE} child of that node.  Nodes
-   which have no C{TEXT_NODE} children are not represented in the returned
+   given node belong to the first ``TEXT_NODE`` child of that node.  Nodes
+   which have no ``TEXT_NODE`` children are not represented in the returned
    list.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: List of strings as described above, or C{None} if no matching nodes are found.
+   Returns:
+       List of strings as described above, or ``None`` if no matching nodes are found
    """
    lst = []
    result = readChildren(parent, name)
@@ -210,13 +220,15 @@ def readString(parent, name):
 
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.  We assume that string
-   contents of a given node belong to the first C{TEXT_NODE} child of that
+   contents of a given node belong to the first ``TEXT_NODE`` child of that
    node.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: String contents of node or C{None} if no matching nodes are found.
+   Returns:
+       String contents of node or ``None`` if no matching nodes are found
    """
    result = readStringList(parent, name)
    if result is None:
@@ -231,11 +243,14 @@ def readInteger(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: Integer contents of node or C{None} if no matching nodes are found.
-   @raise ValueError: If the string at the location can't be converted to an integer.
+   Returns:
+       Integer contents of node or ``None`` if no matching nodes are found
+   Raises:
+      ValueError: If the string at the location can't be converted to an integer
    """
    result = readString(parent, name)
    if result is None:
@@ -251,11 +266,14 @@ def readLong(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: Long integer contents of node or C{None} if no matching nodes are found.
-   @raise ValueError: If the string at the location can't be converted to an integer.
+   Returns:
+       Long integer contents of node or ``None`` if no matching nodes are found
+   Raises:
+      ValueError: If the string at the location can't be converted to an integer
    """
    result = readString(parent, name)
    if result is None:
@@ -271,11 +289,14 @@ def readFloat(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: Float contents of node or C{None} if no matching nodes are found.
-   @raise ValueError: If the string at the location can't be converted to a
+   Returns:
+       Float contents of node or ``None`` if no matching nodes are found
+   Raises:
+      ValueError: If the string at the location can't be converted to a
    float value.
    """
    result = readString(parent, name)
@@ -292,13 +313,16 @@ def readBoolean(parent, name):
    By "immediately beneath" the parent, we mean from among nodes that are
    direct children of the passed-in parent node.
 
-   The string value of the node must be one of the values in L{VALID_BOOLEAN_VALUES}.
+   The string value of the node must be one of the values in :any:`VALID_BOOLEAN_VALUES`.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: Boolean contents of node or C{None} if no matching nodes are found.
-   @raise ValueError: If the string at the location can't be converted to a boolean.
+   Returns:
+       Boolean contents of node or ``None`` if no matching nodes are found
+   Raises:
+      ValueError: If the string at the location can't be converted to a boolean
    """
    result = readString(parent, name)
    if result is None:
@@ -320,11 +344,13 @@ def addContainerNode(xmlDom, parentNode, nodeName):
    """
    Adds a container node as the next child of a parent node.
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    containerNode = xmlDom.createElement(nodeName)
    parentNode.appendChild(containerNode)
@@ -334,15 +360,17 @@ def addStringNode(xmlDom, parentNode, nodeName, nodeValue):
    """
    Adds a text node as the next child of a parent, to contain a string.
 
-   If the C{nodeValue} is None, then the node will be created, but will be
+   If the ``nodeValue`` is None, then the node will be created, but will be
    empty (i.e. will contain no text node child).
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
-   @param nodeValue: The value to put into the node.
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
+      nodeValue: The value to put into the node
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    containerNode = addContainerNode(xmlDom, parentNode, nodeName)
    if nodeValue is not None:
@@ -354,18 +382,20 @@ def addIntegerNode(xmlDom, parentNode, nodeName, nodeValue):
    """
    Adds a text node as the next child of a parent, to contain an integer.
 
-   If the C{nodeValue} is None, then the node will be created, but will be
+   If the ``nodeValue`` is None, then the node will be created, but will be
    empty (i.e. will contain no text node child).
 
    The integer will be converted to a string using "%d".  The result will be
-   added to the document via L{addStringNode}.
+   added to the document via :any:`addStringNode`.
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
-   @param nodeValue: The value to put into the node.
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
+      nodeValue: The value to put into the node
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    if nodeValue is None:
       return addStringNode(xmlDom, parentNode, nodeName, None)
@@ -376,18 +406,20 @@ def addLongNode(xmlDom, parentNode, nodeName, nodeValue):
    """
    Adds a text node as the next child of a parent, to contain a long integer.
 
-   If the C{nodeValue} is None, then the node will be created, but will be
+   If the ``nodeValue`` is None, then the node will be created, but will be
    empty (i.e. will contain no text node child).
 
    The integer will be converted to a string using "%d".  The result will be
-   added to the document via L{addStringNode}.
+   added to the document via :any:`addStringNode`.
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
-   @param nodeValue: The value to put into the node.
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
+      nodeValue: The value to put into the node
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    if nodeValue is None:
       return addStringNode(xmlDom, parentNode, nodeName, None)
@@ -398,19 +430,21 @@ def addBooleanNode(xmlDom, parentNode, nodeName, nodeValue):
    """
    Adds a text node as the next child of a parent, to contain a boolean.
 
-   If the C{nodeValue} is None, then the node will be created, but will be
+   If the ``nodeValue`` is None, then the node will be created, but will be
    empty (i.e. will contain no text node child).
 
-   Boolean C{True}, or anything else interpreted as C{True} by Python, will
+   Boolean ``True``, or anything else interpreted as ``True`` by Python, will
    be converted to a string "Y".  Anything else will be converted to a
-   string "N".  The result is added to the document via L{addStringNode}.
+   string "N".  The result is added to the document via :any:`addStringNode`.
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
-   @param nodeValue: The value to put into the node.
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
+      nodeValue: The value to put into the node
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    if nodeValue is None:
       return addStringNode(xmlDom, parentNode, nodeName, None)
@@ -428,9 +462,11 @@ def addBooleanNode(xmlDom, parentNode, nodeName, nodeValue):
 def serializeDom(xmlDom, indent=3):
    """
    Serializes a DOM tree and returns the result in a string.
-   @param xmlDom: XML DOM tree to serialize
-   @param indent: Number of spaces to indent, as an integer
-   @return: String form of DOM tree, pretty-printed.
+   Args:
+      xmlDom: XML DOM tree to serialize
+      indent: Number of spaces to indent, as an integer
+   Returns:
+       String form of DOM tree, pretty-printed
    """
    xmlBuffer = StringIO()
    serializer = Serializer(xmlBuffer, "UTF-8", indent=indent)
@@ -454,7 +490,7 @@ class Serializer(object):
    This code started out being called PrintVisitor, but I decided it makes more
    sense just calling it a serializer.  I've made nearly all of the methods
    private, and I've added a new high-level serialize() method rather than
-   having clients call C{visit()}.
+   having clients call ``visit()``.
 
    Anyway, as a consequence of my hacking with it, this can't quite be called a
    complete XML serializer any more.  I ripped out support for HTML and XHTML,
@@ -471,9 +507,10 @@ class Serializer(object):
    def __init__(self, stream=sys.stdout, encoding="UTF-8", indent=3):
       """
       Initialize a serializer.
-      @param stream: Stream to write output to.
-      @param encoding: Output encoding.
-      @param indent: Number of spaces to indent, as an integer
+      Args:
+         stream: Stream to write output to
+         encoding: Output encoding
+         indent: Number of spaces to indent, as an integer
       """
       self.stream = stream
       self.encoding = encoding
@@ -484,8 +521,10 @@ class Serializer(object):
    def serialize(self, xmlDom):
       """
       Serialize the passed-in XML document.
-      @param xmlDom: XML DOM tree to serialize
-      @raise ValueError: If there's an unknown node type in the document.
+      Args:
+         xmlDom: XML DOM tree to serialize
+      Raises:
+         ValueError: If there's an unknown node type in the document
       """
       self._visit(xmlDom)
       self.stream.write("\n")
@@ -502,7 +541,8 @@ class Serializer(object):
 
    def _visit(self, node):
       """
-      @raise ValueError: If there's an unknown node type in the document.
+      Raises:
+         ValueError: If there's an unknown node type in the document
       """
       if node.nodeType == Node.ELEMENT_NODE:
          return self._visitElement(node)

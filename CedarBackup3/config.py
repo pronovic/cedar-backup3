@@ -42,16 +42,16 @@ Summary
 =======
 
    Cedar Backup stores all of its configuration in an XML document typically
-   called C{cback3.conf}.  The standard location for this document is in
-   C{/etc}, but users can specify a different location if they want to.
+   called ``cback3.conf``.  The standard location for this document is in
+   ``/etc``, but users can specify a different location if they want to.
 
-   The C{Config} class is a Python object representation of a Cedar Backup XML
+   The ``Config`` class is a Python object representation of a Cedar Backup XML
    configuration file.  The representation is two-way: XML data can be used to
-   create a C{Config} object, and then changes to the object can be propogated
-   back to disk.  A C{Config} object can even be used to create a configuration
+   create a ``Config`` object, and then changes to the object can be propogated
+   back to disk.  A ``Config`` object can even be used to create a configuration
    file from scratch programmatically.
 
-   The C{Config} class is intended to be the only Python-language interface to
+   The ``Config`` class is intended to be the only Python-language interface to
    Cedar Backup configuration on disk.  Cedar Backup will use the class as its
    internal representation of configuration, and applications external to Cedar
    Backup itself (such as a hypothetical third-party configuration tool written
@@ -70,56 +70,56 @@ Backwards Compatibility
 XML Configuration Structure
 ===========================
 
-   A C{Config} object can either be created "empty", or can be created based on
+   A ``Config`` object can either be created "empty", or can be created based on
    XML input (either in the form of a string or read in from a file on disk).
-   Generally speaking, the XML input I{must} result in a C{Config} object which
-   passes the validations laid out below in the I{Validation} section.
+   Generally speaking, the XML input *must* result in a ``Config`` object which
+   passes the validations laid out below in the *Validation* section.
 
    An XML configuration file is composed of seven sections:
 
-      - I{reference}: specifies reference information about the file (author, revision, etc)
-      - I{extensions}: specifies mappings to Cedar Backup extensions (external code)
-      - I{options}: specifies global configuration options
-      - I{peers}: specifies the set of peers in a master's backup pool
-      - I{collect}: specifies configuration related to the collect action
-      - I{stage}: specifies configuration related to the stage action
-      - I{store}: specifies configuration related to the store action
-      - I{purge}: specifies configuration related to the purge action
+      - *reference*: specifies reference information about the file (author, revision, etc)
+      - *extensions*: specifies mappings to Cedar Backup extensions (external code)
+      - *options*: specifies global configuration options
+      - *peers*: specifies the set of peers in a master's backup pool
+      - *collect*: specifies configuration related to the collect action
+      - *stage*: specifies configuration related to the stage action
+      - *store*: specifies configuration related to the store action
+      - *purge*: specifies configuration related to the purge action
 
    Each section is represented by an class in this module, and then the overall
-   C{Config} class is a composition of the various other classes.
+   ``Config`` class is a composition of the various other classes.
 
    Any configuration section that is missing in the XML document (or has not
-   been filled into an "empty" document) will just be set to C{None} in the
+   been filled into an "empty" document) will just be set to ``None`` in the
    object representation.  The same goes for individual fields within each
    configuration section.  Keep in mind that the document might not be
    completely valid if some sections or fields aren't filled in - but that
-   won't matter until validation takes place (see the I{Validation} section
+   won't matter until validation takes place (see the *Validation* section
    below).
 
 Unicode vs. String Data
 =======================
 
    By default, all string data that comes out of XML documents in Python is
-   unicode data (i.e. C{u"whatever"}).  This is fine for many things, but when
+   unicode data (i.e. ``u"whatever"``).  This is fine for many things, but when
    it comes to filesystem paths, it can cause us some problems.  We really want
    strings to be encoded in the filesystem encoding rather than being unicode.
    So, most elements in configuration which represent filesystem paths are
-   coverted to plain strings using L{util.encodePath}.  The main exception is
-   the various C{absoluteExcludePath} and C{relativeExcludePath} lists.  These
-   are I{not} converted, because they are generally only used for filtering,
+   coverted to plain strings using :any:`util.encodePath`.  The main exception is
+   the various ``absoluteExcludePath`` and ``relativeExcludePath`` lists.  These
+   are *not* converted, because they are generally only used for filtering,
    not for filesystem operations.
 
 Validation
 ==========
 
-   There are two main levels of validation in the C{Config} class and its
+   There are two main levels of validation in the ``Config`` class and its
    children.  The first is field-level validation.  Field-level validation
    comes into play when a given field in an object is assigned to or updated.
-   We use Python's C{property} functionality to enforce specific validations on
+   We use Python's ``property`` functionality to enforce specific validations on
    field values, and in some places we even use customized list classes to
    enforce validations on list members.  You should expect to catch a
-   C{ValueError} exception when making assignments to configuration class
+   ``ValueError`` exception when making assignments to configuration class
    fields.
 
    The second level of validation is post-completion validation.  Certain
@@ -129,40 +129,40 @@ Validation
    have to do things in the right order to keep from throwing exceptions, etc.
 
    All of these post-completion validations are encapsulated in the
-   L{Config.validate} method.  This method can be called at any time by a
-   client, and will always be called immediately after creating a C{Config}
-   object from XML data and before exporting a C{Config} object to XML.  This
+   :any:`Config.validate` method.  This method can be called at any time by a
+   client, and will always be called immediately after creating a ``Config``
+   object from XML data and before exporting a ``Config`` object to XML.  This
    way, we get decent ease-of-use but we also don't accept or emit invalid
    configuration files.
 
-   The L{Config.validate} implementation actually takes two passes to
+   The :any:`Config.validate` implementation actually takes two passes to
    completely validate a configuration document.  The first pass at validation
    is to ensure that the proper sections are filled into the document.  There
    are default requirements, but the caller has the opportunity to override
    these defaults.
 
    The second pass at validation ensures that any filled-in section contains
-   valid data.  Any section which is not set to C{None} is validated according
+   valid data.  Any section which is not set to ``None`` is validated according
    to the rules for that section (see below).
 
-   I{Reference Validations}
+   *Reference Validations*
 
    No validations.
 
-   I{Extensions Validations}
+   *Extensions Validations*
 
-   The list of actions may be either C{None} or an empty list C{[]} if desired.
+   The list of actions may be either ``None`` or an empty list ``[]`` if desired.
    Each extended action must include a name, a module and a function.  Then, an
    extended action must include either an index or dependency information.
    Which one is required depends on which order mode is configured.
 
-   I{Options Validations}
+   *Options Validations*
 
    All fields must be filled in except the rsh command.  The rcp and rsh
    commands are used as default values for all remote peers.  Remote peers can
    also rely on the backup user as the default remote user name if they choose.
 
-   I{Peers Validations}
+   *Peers Validations*
 
    Local peers must be completely filled in, including both name and collect
    directory.  Remote peers must also fill in the name and collect directory,
@@ -170,66 +170,61 @@ Validation
    remote user is assumed to match the backup user from the options section and
    rcp command is taken directly from the options section.
 
-   I{Collect Validations}
+   *Collect Validations*
 
    The target directory must be filled in.  The collect mode, archive mode and
    ignore file are all optional.  The list of absolute paths to exclude and
-   patterns to exclude may be either C{None} or an empty list C{[]} if desired.
+   patterns to exclude may be either ``None`` or an empty list ``[]`` if desired.
 
    Each collect directory entry must contain an absolute path to collect, and
    then must either be able to take collect mode, archive mode and ignore file
-   configuration from the parent C{CollectConfig} object, or must set each
+   configuration from the parent ``CollectConfig`` object, or must set each
    value on its own.  The list of absolute paths to exclude, relative paths to
-   exclude and patterns to exclude may be either C{None} or an empty list C{[]}
+   exclude and patterns to exclude may be either ``None`` or an empty list ``[]``
    if desired.  Any list of absolute paths to exclude or patterns to exclude
-   will be combined with the same list in the C{CollectConfig} object to make
+   will be combined with the same list in the ``CollectConfig`` object to make
    the complete list for a given directory.
 
-   I{Stage Validations}
+   *Stage Validations*
 
    The target directory must be filled in.  There must be at least one peer
    (remote or local) between the two lists of peers.  A list with no entries
-   can be either C{None} or an empty list C{[]} if desired.
+   can be either ``None`` or an empty list ``[]`` if desired.
 
    If a set of peers is provided, this configuration completely overrides
    configuration in the peers configuration section, and the same validations
    apply.
 
-   I{Store Validations}
+   *Store Validations*
 
    The device type and drive speed are optional, and all other values are
    required (missing booleans will be set to defaults, which is OK).
 
-   The image writer functionality in the C{writer} module is supposed to be
-   able to handle a device speed of C{None}.  Any caller which needs a "real"
-   (non-C{None}) value for the device type can use C{DEFAULT_DEVICE_TYPE},
+   The image writer functionality in the ``writer`` module is supposed to be
+   able to handle a device speed of ``None``.  Any caller which needs a "real"
+   (non-``None``) value for the device type can use ``DEFAULT_DEVICE_TYPE``,
    which is guaranteed to be sensible.
 
-   I{Purge Validations}
+   *Purge Validations*
 
-   The list of purge directories may be either C{None} or an empty list C{[]}
+   The list of purge directories may be either ``None`` or an empty list ``[]``
    if desired.  All purge directories must contain a path and a retain days
    value.
 
-@sort: ActionDependencies, ActionHook, PreActionHook, PostActionHook,
-       ExtendedAction, CommandOverride, CollectFile, CollectDir, PurgeDir, LocalPeer,
-       RemotePeer, ReferenceConfig, ExtensionsConfig, OptionsConfig, PeersConfig,
-       CollectConfig, StageConfig, StoreConfig, PurgeConfig, Config,
-       DEFAULT_DEVICE_TYPE, DEFAULT_MEDIA_TYPE,
-       VALID_DEVICE_TYPES, VALID_MEDIA_TYPES,
-       VALID_COLLECT_MODES, VALID_ARCHIVE_MODES,
-       VALID_ORDER_MODES
+Module Attributes
+=================
 
-@var DEFAULT_DEVICE_TYPE: The default device type.
-@var DEFAULT_MEDIA_TYPE: The default media type.
-@var VALID_DEVICE_TYPES: List of valid device types.
-@var VALID_MEDIA_TYPES: List of valid media types.
-@var VALID_COLLECT_MODES: List of valid collect modes.
-@var VALID_COMPRESS_MODES: List of valid compress modes.
-@var VALID_ARCHIVE_MODES: List of valid archive modes.
-@var VALID_ORDER_MODES: List of valid extension order modes.
+Attributes:
+   DEFAULT_DEVICE_TYPE: The default device type
+   DEFAULT_MEDIA_TYPE: The default media type
+   VALID_DEVICE_TYPES: List of valid device types
+   VALID_MEDIA_TYPES: List of valid media types
+   VALID_COLLECT_MODES: List of valid collect modes
+   VALID_COMPRESS_MODES: List of valid compress modes
+   VALID_ARCHIVE_MODES: List of valid archive modes
+   VALID_ORDER_MODES: List of valid extension order modes
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -291,7 +286,7 @@ class ByteQuantity(object):
 
    A byte quantity has both a quantity and a byte-related unit.  Units are
    maintained using the constants from util.py.  If no units are provided,
-   C{UNIT_BYTES} is assumed.
+   ``UNIT_BYTES`` is assumed.
 
    The quantity is maintained internally as a string so that issues of
    precision can be avoided.  It really isn't possible to store a floating
@@ -305,18 +300,18 @@ class ByteQuantity(object):
    string format supported by Python is allowble.  However, it does not make
    sense to have a negative quantity of bytes in this context.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         quantity, units, bytes
    """
 
    def __init__(self, quantity=None, units=None):
       """
-      Constructor for the C{ByteQuantity} class.
+      Constructor for the ``ByteQuantity`` class.
 
-      @param quantity: Quantity of bytes, something interpretable as a float
-      @param units: Unit of bytes, one of VALID_BYTE_UNITS
+      Args:
+         quantity: Quantity of bytes, something interpretable as a float
+         units: Unit of bytes, one of VALID_BYTE_UNITS
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._quantity = None
       self._units = None
@@ -350,8 +345,10 @@ class ByteQuantity(object):
    def __cmp__(self, other):
       """
       Python 2-style comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -369,9 +366,10 @@ class ByteQuantity(object):
       """
       Property target used to set the quantity
       The value must be interpretable as a float if it is not None
-      @raise ValueError: If the value is an empty string.
-      @raise ValueError: If the value is not a valid floating point number
-      @raise ValueError: If the value is less than zero
+      Raises:
+         ValueError: If the value is an empty string
+         ValueError: If the value is not a valid floating point number
+         ValueError: If the value is less than zero
       """
       if value is None:
          self._quantity = None
@@ -393,8 +391,9 @@ class ByteQuantity(object):
    def _setUnits(self, value):
       """
       Property target used to set the units value.
-      If not C{None}, the units value must be one of the values in L{VALID_BYTE_UNITS}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the units value must be one of the values in :any:`VALID_BYTE_UNITS`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._units = UNIT_BYTES
@@ -440,20 +439,20 @@ class ActionDependencies(object):
 
    The following restrictions exist on data in this class:
 
-      - Any action name must be a non-empty string matching C{ACTION_NAME_REGEX}
+      - Any action name must be a non-empty string matching ``ACTION_NAME_REGEX``
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         beforeList, afterList
    """
 
    def __init__(self, beforeList=None, afterList=None):
       """
-      Constructor for the C{ActionDependencies} class.
+      Constructor for the ``ActionDependencies`` class.
 
-      @param beforeList: List of named actions that this action must be run before
-      @param afterList: List of named actions that this action must be run after
+      Args:
+         beforeList: List of named actions that this action must be run before
+         afterList: List of named actions that this action must be run after
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._beforeList = None
       self._afterList = None
@@ -487,8 +486,10 @@ class ActionDependencies(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -507,8 +508,9 @@ class ActionDependencies(object):
    def _setBeforeList(self, value):
       """
       Property target used to set the "run before" list.
-      Either the value must be C{None} or each element must be a string matching ACTION_NAME_REGEX.
-      @raise ValueError: If the value does not match the regular expression.
+      Either the value must be ``None`` or each element must be a string matching ACTION_NAME_REGEX.
+      Raises:
+         ValueError: If the value does not match the regular expression
       """
       if value is None:
          self._beforeList = None
@@ -530,8 +532,9 @@ class ActionDependencies(object):
    def _setAfterList(self, value):
       """
       Property target used to set the "run after" list.
-      Either the value must be C{None} or each element must be a string matching ACTION_NAME_REGEX.
-      @raise ValueError: If the value does not match the regular expression.
+      Either the value must be ``None`` or each element must be a string matching ACTION_NAME_REGEX.
+      Raises:
+         ValueError: If the value does not match the regular expression
       """
       if value is None:
          self._afterList = None
@@ -569,24 +572,24 @@ class ActionHook(object):
 
    The following restrictions exist on data in this class:
 
-      - The action name must be a non-empty string matching C{ACTION_NAME_REGEX}
+      - The action name must be a non-empty string matching ``ACTION_NAME_REGEX``
       - The shell command must be a non-empty string.
 
-   The internal C{before} and C{after} instance variables are always set to
+   The internal ``before`` and ``after`` instance variables are always set to
    False in this parent class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
-         command, before, after
    """
 
    def __init__(self, action=None, command=None):
       """
-      Constructor for the C{ActionHook} class.
+      Constructor for the ``ActionHook`` class.
 
-      @param action: Action this hook is associated with
-      @param command: Shell command to execute
+      Args:
+         action: Action this hook is associated with
+         command: Shell command to execute
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._action = None
       self._command = None
@@ -622,8 +625,10 @@ class ActionHook(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -652,9 +657,10 @@ class ActionHook(object):
    def _setAction(self, value):
       """
       Property target used to set the action name.
-      The value must be a non-empty string if it is not C{None}.
+      The value must be a non-empty string if it is not ``None``.
       It must also consist only of lower-case letters and digits.
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       pattern = re.compile(ACTION_NAME_REGEX)
       if value is not None:
@@ -673,8 +679,9 @@ class ActionHook(object):
    def _setCommand(self, value):
       """
       Property target used to set the command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -719,21 +726,21 @@ class PreActionHook(ActionHook):
       - The action name must be a non-empty string consisting of lower-case letters and digits.
       - The shell command must be a non-empty string.
 
-   The internal C{before} instance variable is always set to True in this
+   The internal ``before`` instance variable is always set to True in this
    class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
-         command, before, after
    """
 
    def __init__(self, action=None, command=None):
       """
-      Constructor for the C{PreActionHook} class.
+      Constructor for the ``PreActionHook`` class.
 
-      @param action: Action this hook is associated with
-      @param command: Shell command to execute
+      Args:
+         action: Action this hook is associated with
+         command: Shell command to execute
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       ActionHook.__init__(self, action, command)
       self._before = True
@@ -759,21 +766,21 @@ class PostActionHook(ActionHook):
       - The action name must be a non-empty string consisting of lower-case letters and digits.
       - The shell command must be a non-empty string.
 
-   The internal C{before} instance variable is always set to True in this
+   The internal ``before`` instance variable is always set to True in this
    class.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, action,
-         command, before, after
    """
 
    def __init__(self, action=None, command=None):
       """
-      Constructor for the C{PostActionHook} class.
+      Constructor for the ``PostActionHook`` class.
 
-      @param action: Action this hook is associated with
-      @param command: Shell command to execute
+      Args:
+         action: Action this hook is associated with
+         command: Shell command to execute
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       ActionHook.__init__(self, action, command)
       self._after = True
@@ -797,21 +804,21 @@ class BlankBehavior(object):
 
    The following restrictions exist on data in this class:
 
-      - The blanking mode must be a one of the values in L{VALID_BLANK_MODES}
+      - The blanking mode must be a one of the values in :any:`VALID_BLANK_MODES`
       - The blanking factor must be a positive floating point number
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         blankMode, blankFactor
    """
 
    def __init__(self, blankMode=None, blankFactor=None):
       """
-      Constructor for the C{BlankBehavior} class.
+      Constructor for the ``BlankBehavior`` class.
 
-      @param blankMode: Blanking mode
-      @param blankFactor: Blanking factor
+      Args:
+         blankMode: Blanking mode
+         blankFactor: Blanking factor
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._blankMode = None
       self._blankFactor = None
@@ -845,8 +852,10 @@ class BlankBehavior(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -865,8 +874,9 @@ class BlankBehavior(object):
    def _setBlankMode(self, value):
       """
       Property target used to set the blanking mode.
-      The value must be one of L{VALID_BLANK_MODES}.
-      @raise ValueError: If the value is not valid.
+      The value must be one of :any:`VALID_BLANK_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_BLANK_MODES:
@@ -882,10 +892,11 @@ class BlankBehavior(object):
    def _setBlankFactor(self, value):
       """
       Property target used to set the blanking factor.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
-      @raise ValueError: If the value is not a valid floating point number
-      @raise ValueError: If the value is less than zero
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
+         ValueError: If the value is not a valid floating point number
+         ValueError: If the value is less than zero
       """
       if value is not None:
          if len(value) < 1:
@@ -926,23 +937,23 @@ class ExtendedAction(object):
       - The module must be a non-empty string and a valid Python identifier.
       - The function must be an on-empty string and a valid Python identifier.
       - If set, the index must be a positive integer.
-      - If set, the dependencies attribute must be an C{ActionDependencies} object.
+      - If set, the dependencies attribute must be an ``ActionDependencies`` object.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name,
-         module, function, index, dependencies
    """
 
    def __init__(self, name=None, module=None, function=None, index=None, dependencies=None):
       """
-      Constructor for the C{ExtendedAction} class.
+      Constructor for the ``ExtendedAction`` class.
 
-      @param name: Name of the extended action
-      @param module: Name of the module containing the extended action function
-      @param function: Name of the extended action function
-      @param index: Index of action, used for execution ordering
-      @param dependencies: Dependencies for action, used for execution ordering
+      Args:
+         name: Name of the extended action
+         module: Name of the module containing the extended action function
+         function: Name of the extended action function
+         index: Index of action, used for execution ordering
+         dependencies: Dependencies for action, used for execution ordering
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._name = None
       self._module = None
@@ -982,8 +993,10 @@ class ExtendedAction(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1017,9 +1030,10 @@ class ExtendedAction(object):
    def _setName(self, value):
       """
       Property target used to set the action name.
-      The value must be a non-empty string if it is not C{None}.
+      The value must be a non-empty string if it is not ``None``.
       It must also consist only of lower-case letters and digits.
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       pattern = re.compile(ACTION_NAME_REGEX)
       if value is not None:
@@ -1038,9 +1052,10 @@ class ExtendedAction(object):
    def _setModule(self, value):
       """
       Property target used to set the module name.
-      The value must be a non-empty string if it is not C{None}.
+      The value must be a non-empty string if it is not ``None``.
       It must also be a valid Python identifier.
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       pattern = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)(\.[A-Za-z_][A-Za-z0-9_]*)*$")
       if value is not None:
@@ -1059,9 +1074,10 @@ class ExtendedAction(object):
    def _setFunction(self, value):
       """
       Property target used to set the function name.
-      The value must be a non-empty string if it is not C{None}.
+      The value must be a non-empty string if it is not ``None``.
       It must also be a valid Python identifier.
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       pattern = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
       if value is not None:
@@ -1081,7 +1097,8 @@ class ExtendedAction(object):
       """
       Property target used to set the action index.
       The value must be an integer >= 0.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._index = None
@@ -1103,14 +1120,15 @@ class ExtendedAction(object):
    def _setDependencies(self, value):
       """
       Property target used to set the action dependencies information.
-      If not C{None}, the value must be a C{ActionDependecies} object.
-      @raise ValueError: If the value is not a C{ActionDependencies} object.
+      If not ``None``, the value must be a ``ActionDependecies`` object.
+      Raises:
+         ValueError: If the value is not a ``ActionDependencies`` object
       """
       if value is None:
          self._dependencies = None
       else:
          if not isinstance(value, ActionDependencies):
-            raise ValueError("Value must be a C{ActionDependencies} object.")
+            raise ValueError("Value must be a ``ActionDependencies`` object.")
          self._dependencies = value
 
    def _getDependencies(self):
@@ -1140,20 +1158,20 @@ class CommandOverride(object):
 
       - The absolute path must be absolute
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         command, absolutePath
    """
 
    def __init__(self, command=None, absolutePath=None):
       """
-      Constructor for the C{CommandOverride} class.
+      Constructor for the ``CommandOverride`` class.
 
-      @param command: Name of command to be overridden.
-      @param absolutePath: Absolute path of the overrridden command.
+      Args:
+         command: Name of command to be overridden
+         absolutePath: Absolute path of the overrridden command
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._command = None
       self._absolutePath = None
@@ -1187,8 +1205,10 @@ class CommandOverride(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1207,8 +1227,9 @@ class CommandOverride(object):
    def _setCommand(self, value):
       """
       Property target used to set the command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -1224,10 +1245,11 @@ class CommandOverride(object):
    def _setAbsolutePath(self, value):
       """
       Property target used to set the absolute path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -1257,22 +1279,22 @@ class CollectFile(object):
    The following restrictions exist on data in this class:
 
       - Absolute paths must be absolute
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The archive mode must be one of the values in L{VALID_ARCHIVE_MODES}.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The archive mode must be one of the values in :any:`VALID_ARCHIVE_MODES`.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         absolutePath, collectMode, archiveMode
    """
 
    def __init__(self, absolutePath=None, collectMode=None, archiveMode=None):
       """
-      Constructor for the C{CollectFile} class.
+      Constructor for the ``CollectFile`` class.
 
-      @param absolutePath: Absolute path of the file to collect.
-      @param collectMode: Overridden collect mode for this file.
-      @param archiveMode: Overridden archive mode for this file.
+      Args:
+         absolutePath: Absolute path of the file to collect
+         collectMode: Overridden collect mode for this file
+         archiveMode: Overridden archive mode for this file
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._absolutePath = None
       self._collectMode = None
@@ -1308,8 +1330,10 @@ class CollectFile(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1333,10 +1357,11 @@ class CollectFile(object):
    def _setAbsolutePath(self, value):
       """
       Property target used to set the absolute path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -1352,8 +1377,9 @@ class CollectFile(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -1369,8 +1395,9 @@ class CollectFile(object):
    def _setArchiveMode(self, value):
       """
       Property target used to set the archive mode.
-      If not C{None}, the mode must be one of the values in L{VALID_ARCHIVE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_ARCHIVE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_ARCHIVE_MODES:
@@ -1401,38 +1428,37 @@ class CollectDir(object):
    The following restrictions exist on data in this class:
 
       - Absolute paths must be absolute
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The archive mode must be one of the values in L{VALID_ARCHIVE_MODES}.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The archive mode must be one of the values in :any:`VALID_ARCHIVE_MODES`.
       - The ignore file must be a non-empty string.
 
-   For the C{absoluteExcludePaths} list, validation is accomplished through the
-   L{util.AbsolutePathList} list implementation that overrides common list
+   For the ``absoluteExcludePaths`` list, validation is accomplished through the
+   :any:`util.AbsolutePathList` list implementation that overrides common list
    methods and transparently does the absolute path validation for us.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, absolutePath, collectMode,
-          archiveMode, ignoreFile, linkDepth, dereference, absoluteExcludePaths,
-          relativeExcludePaths, excludePatterns
    """
 
    def __init__(self, absolutePath=None, collectMode=None, archiveMode=None, ignoreFile=None,
                 absoluteExcludePaths=None, relativeExcludePaths=None, excludePatterns=None,
                 linkDepth=None, dereference=False, recursionLevel=None):
       """
-      Constructor for the C{CollectDir} class.
+      Constructor for the ``CollectDir`` class.
 
-      @param absolutePath: Absolute path of the directory to collect.
-      @param collectMode: Overridden collect mode for this directory.
-      @param archiveMode: Overridden archive mode for this directory.
-      @param ignoreFile: Overidden ignore file name for this directory.
-      @param linkDepth: Maximum at which soft links should be followed.
-      @param dereference: Whether to dereference links that are followed.
-      @param absoluteExcludePaths: List of absolute paths to exclude.
-      @param relativeExcludePaths: List of relative paths to exclude.
-      @param excludePatterns: List of regular expression patterns to exclude.
+      Args:
+         absolutePath: Absolute path of the directory to collect
+         collectMode: Overridden collect mode for this directory
+         archiveMode: Overridden archive mode for this directory
+         ignoreFile: Overidden ignore file name for this directory
+         linkDepth: Maximum at which soft links should be followed
+         dereference: Whether to dereference links that are followed
+         absoluteExcludePaths: List of absolute paths to exclude
+         relativeExcludePaths: List of relative paths to exclude
+         excludePatterns: List of regular expression patterns to exclude
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._absolutePath = None
       self._collectMode = None
@@ -1489,8 +1515,10 @@ class CollectDir(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1549,10 +1577,11 @@ class CollectDir(object):
    def _setAbsolutePath(self, value):
       """
       Property target used to set the absolute path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -1568,8 +1597,9 @@ class CollectDir(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -1585,8 +1615,9 @@ class CollectDir(object):
    def _setArchiveMode(self, value):
       """
       Property target used to set the archive mode.
-      If not C{None}, the mode must be one of the values in L{VALID_ARCHIVE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_ARCHIVE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_ARCHIVE_MODES:
@@ -1602,8 +1633,9 @@ class CollectDir(object):
    def _setIgnoreFile(self, value):
       """
       Property target used to set the ignore file.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -1620,7 +1652,8 @@ class CollectDir(object):
       """
       Property target used to set the link depth.
       The value must be an integer >= 0.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._linkDepth = None
@@ -1642,7 +1675,7 @@ class CollectDir(object):
    def _setDereference(self, value):
       """
       Property target used to set the dereference flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._dereference = True
@@ -1659,7 +1692,8 @@ class CollectDir(object):
       """
       Property target used to set the recursionLevel.
       The value must be an integer.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._recursionLevel = None
@@ -1679,9 +1713,10 @@ class CollectDir(object):
    def _setAbsoluteExcludePaths(self, value):
       """
       Property target used to set the absolute exclude paths list.
-      Either the value must be C{None} or each element must be an absolute path.
+      Either the value must be ``None`` or each element must be an absolute path.
       Elements do not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
+      Raises:
+         ValueError: If the value is not an absolute path
       """
       if value is None:
          self._absoluteExcludePaths = None
@@ -1770,17 +1805,18 @@ class PurgeDir(object):
       - The absolute path must be an absolute path
       - The retain days value must be an integer >= 0.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, absolutePath, retainDays
    """
 
    def __init__(self, absolutePath=None, retainDays=None):
       """
-      Constructor for the C{PurgeDir} class.
+      Constructor for the ``PurgeDir`` class.
 
-      @param absolutePath: Absolute path of the directory to be purged.
-      @param retainDays: Number of days content within directory should be retained.
+      Args:
+         absolutePath: Absolute path of the directory to be purged
+         retainDays: Number of days content within directory should be retained
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._absolutePath = None
       self._retainDays = None
@@ -1814,8 +1850,10 @@ class PurgeDir(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1834,10 +1872,11 @@ class PurgeDir(object):
    def _setAbsolutePath(self, value):
       """
       Property target used to set the absolute path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -1854,7 +1893,8 @@ class PurgeDir(object):
       """
       Property target used to set the retain days value.
       The value must be an integer >= 0.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._retainDays = None
@@ -1891,20 +1931,21 @@ class LocalPeer(object):
 
       - The peer name must be a non-empty string.
       - The collect directory must be an absolute path.
-      - The ignore failure mode must be one of the values in L{VALID_FAILURE_MODES}.
+      - The ignore failure mode must be one of the values in :any:`VALID_FAILURE_MODES`.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir
    """
 
    def __init__(self, name=None, collectDir=None, ignoreFailureMode=None):
       """
-      Constructor for the C{LocalPeer} class.
+      Constructor for the ``LocalPeer`` class.
 
-      @param name: Name of the peer, typically a valid hostname.
-      @param collectDir: Collect directory to stage files from on peer.
-      @param ignoreFailureMode: Ignore failure mode for peer.
+      Args:
+         name: Name of the peer, typically a valid hostname
+         collectDir: Collect directory to stage files from on peer
+         ignoreFailureMode: Ignore failure mode for peer
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._name = None
       self._collectDir = None
@@ -1940,8 +1981,10 @@ class LocalPeer(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1965,8 +2008,9 @@ class LocalPeer(object):
    def _setName(self, value):
       """
       Property target used to set the peer name.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -1982,10 +2026,11 @@ class LocalPeer(object):
    def _setCollectDir(self, value):
       """
       Property target used to set the collect directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -2001,8 +2046,9 @@ class LocalPeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not C{None}, the mode must be one of the values in L{VALID_FAILURE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_FAILURE_MODES:
@@ -2038,29 +2084,30 @@ class RemotePeer(object):
       - The rcp command must be a non-empty string.
       - The rsh command must be a non-empty string.
       - The cback command must be a non-empty string.
-      - Any managed action name must be a non-empty string matching C{ACTION_NAME_REGEX}
-      - The ignore failure mode must be one of the values in L{VALID_FAILURE_MODES}.
+      - Any managed action name must be a non-empty string matching ``ACTION_NAME_REGEX``
+      - The ignore failure mode must be one of the values in :any:`VALID_FAILURE_MODES`.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, name, collectDir, remoteUser, rcpCommand
    """
 
    def __init__(self, name=None, collectDir=None, remoteUser=None,
                 rcpCommand=None, rshCommand=None, cbackCommand=None,
                 managed=False, managedActions=None, ignoreFailureMode=None):
       """
-      Constructor for the C{RemotePeer} class.
+      Constructor for the ``RemotePeer`` class.
 
-      @param name: Name of the peer, must be a valid hostname.
-      @param collectDir: Collect directory to stage files from on peer.
-      @param remoteUser: Name of backup user on remote peer.
-      @param rcpCommand: Overridden rcp-compatible copy command for peer.
-      @param rshCommand: Overridden rsh-compatible remote shell command for peer.
-      @param cbackCommand: Overridden cback-compatible command to use on remote peer.
-      @param managed: Indicates whether this is a managed peer.
-      @param managedActions: Overridden set of actions that are managed on the peer.
-      @param ignoreFailureMode: Ignore failure mode for peer.
+      Args:
+         name: Name of the peer, must be a valid hostname
+         collectDir: Collect directory to stage files from on peer
+         remoteUser: Name of backup user on remote peer
+         rcpCommand: Overridden rcp-compatible copy command for peer
+         rshCommand: Overridden rsh-compatible remote shell command for peer
+         cbackCommand: Overridden cback-compatible command to use on remote peer
+         managed: Indicates whether this is a managed peer
+         managedActions: Overridden set of actions that are managed on the peer
+         ignoreFailureMode: Ignore failure mode for peer
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._name = None
       self._collectDir = None
@@ -2110,8 +2157,10 @@ class RemotePeer(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -2165,8 +2214,9 @@ class RemotePeer(object):
    def _setName(self, value):
       """
       Property target used to set the peer name.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2182,10 +2232,11 @@ class RemotePeer(object):
    def _setCollectDir(self, value):
       """
       Property target used to set the collect directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -2201,8 +2252,9 @@ class RemotePeer(object):
    def _setRemoteUser(self, value):
       """
       Property target used to set the remote user.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2218,8 +2270,9 @@ class RemotePeer(object):
    def _setRcpCommand(self, value):
       """
       Property target used to set the rcp command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2235,8 +2288,9 @@ class RemotePeer(object):
    def _setRshCommand(self, value):
       """
       Property target used to set the rsh command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2252,8 +2306,9 @@ class RemotePeer(object):
    def _setCbackCommand(self, value):
       """
       Property target used to set the cback command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2269,7 +2324,7 @@ class RemotePeer(object):
    def _setManaged(self, value):
       """
       Property target used to set the managed flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._managed = True
@@ -2307,8 +2362,9 @@ class RemotePeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not C{None}, the mode must be one of the values in L{VALID_FAILURE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_FAILURE_MODES:
@@ -2346,17 +2402,17 @@ class ReferenceConfig(object):
    configuration and exists mostly for backwards-compatibility with Cedar
    Backup 1.x.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, author, revision, description, generator
    """
 
    def __init__(self, author=None, revision=None, description=None, generator=None):
       """
-      Constructor for the C{ReferenceConfig} class.
+      Constructor for the ``ReferenceConfig`` class.
 
-      @param author: Author of the configuration file.
-      @param revision: Revision of the configuration file.
-      @param description: Description of the configuration file.
-      @param generator: Tool that generated the configuration file.
+      Args:
+         author: Author of the configuration file
+         revision: Revision of the configuration file
+         description: Description of the configuration file
+         generator: Tool that generated the configuration file
       """
       self._author = None
       self._revision = None
@@ -2394,8 +2450,10 @@ class ReferenceConfig(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -2498,16 +2556,16 @@ class ExtensionsConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - If set, the order mode must be one of the values in C{VALID_ORDER_MODES}
-      - The actions list must be a list of C{ExtendedAction} objects.
+      - If set, the order mode must be one of the values in ``VALID_ORDER_MODES``
+      - The actions list must be a list of ``ExtendedAction`` objects.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, orderMode, actions
    """
 
    def __init__(self, actions=None, orderMode=None):
       """
-      Constructor for the C{ExtensionsConfig} class.
-      @param actions: List of extended actions
+      Constructor for the ``ExtensionsConfig`` class.
+      Args:
+         actions: List of extended actions
       """
       self._orderMode = None
       self._actions = None
@@ -2541,8 +2599,10 @@ class ExtensionsConfig(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -2561,8 +2621,9 @@ class ExtensionsConfig(object):
    def _setOrderMode(self, value):
       """
       Property target used to set the order mode.
-      The value must be one of L{VALID_ORDER_MODES}.
-      @raise ValueError: If the value is not valid.
+      The value must be one of :any:`VALID_ORDER_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_ORDER_MODES:
@@ -2578,8 +2639,9 @@ class ExtensionsConfig(object):
    def _setActions(self, value):
       """
       Property target used to set the actions list.
-      Either the value must be C{None} or each element must be an C{ExtendedAction}.
-      @raise ValueError: If the value is not a C{ExtendedAction}
+      Either the value must be ``None`` or each element must be an ``ExtendedAction``.
+      Raises:
+         ValueError: If the value is not a ``ExtendedAction``
       """
       if value is None:
          self._actions = None
@@ -2618,15 +2680,13 @@ class OptionsConfig(object):
    The following restrictions exist on data in this class:
 
       - The working directory must be an absolute path.
-      - The starting day must be a day of the week in English, i.e. C{"monday"}, C{"tuesday"}, etc.
-      - All of the other values must be non-empty strings if they are set to something other than C{None}.
-      - The overrides list must be a list of C{CommandOverride} objects.
-      - The hooks list must be a list of C{ActionHook} objects.
+      - The starting day must be a day of the week in English, i.e. ``"monday"``, ``"tuesday"``, etc.
+      - All of the other values must be non-empty strings if they are set to something other than ``None``.
+      - The overrides list must be a list of ``CommandOverride`` objects.
+      - The hooks list must be a list of ``ActionHook`` objects.
       - The cback command must be a non-empty string.
-      - Any managed action name must be a non-empty string matching C{ACTION_NAME_REGEX}
+      - Any managed action name must be a non-empty string matching ``ACTION_NAME_REGEX``
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, startingDay, workingDir,
-         backupUser, backupGroup, rcpCommand, rshCommand, overrides
    """
 
    def __init__(self, startingDay=None, workingDir=None, backupUser=None,
@@ -2634,20 +2694,22 @@ class OptionsConfig(object):
                 hooks=None, rshCommand=None, cbackCommand=None,
                 managedActions=None):
       """
-      Constructor for the C{OptionsConfig} class.
+      Constructor for the ``OptionsConfig`` class.
 
-      @param startingDay: Day that starts the week.
-      @param workingDir: Working (temporary) directory to use for backups.
-      @param backupUser: Effective user that backups should run as.
-      @param backupGroup: Effective group that backups should run as.
-      @param rcpCommand: Default rcp-compatible copy command for staging.
-      @param rshCommand: Default rsh-compatible command to use for remote shells.
-      @param cbackCommand: Default cback-compatible command to use on managed remote peers.
-      @param overrides: List of configured command path overrides, if any.
-      @param hooks: List of configured pre- and post-action hooks.
-      @param managedActions: Default set of actions that are managed on remote peers.
+      Args:
+         startingDay: Day that starts the week
+         workingDir: Working (temporary) directory to use for backups
+         backupUser: Effective user that backups should run as
+         backupGroup: Effective group that backups should run as
+         rcpCommand: Default rcp-compatible copy command for staging
+         rshCommand: Default rsh-compatible command to use for remote shells
+         cbackCommand: Default cback-compatible command to use on managed remote peers
+         overrides: List of configured command path overrides, if any
+         hooks: List of configured pre- and post-action hooks
+         managedActions: Default set of actions that are managed on remote peers
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._startingDay = None
       self._workingDir = None
@@ -2701,8 +2763,10 @@ class OptionsConfig(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -2761,8 +2825,9 @@ class OptionsConfig(object):
    def addOverride(self, command, absolutePath):
       """
       If no override currently exists for the command, add one.
-      @param command: Name of command to be overridden.
-      @param absolutePath: Absolute path of the overrridden command.
+      Args:
+         command: Name of command to be overridden
+         absolutePath: Absolute path of the overrridden command
       """
       override = CommandOverride(command, absolutePath)
       if self.overrides is None:
@@ -2779,8 +2844,9 @@ class OptionsConfig(object):
    def replaceOverride(self, command, absolutePath):
       """
       If override currently exists for the command, replace it; otherwise add it.
-      @param command: Name of command to be overridden.
-      @param absolutePath: Absolute path of the overrridden command.
+      Args:
+         command: Name of command to be overridden
+         absolutePath: Absolute path of the overrridden command
       """
       override = CommandOverride(command, absolutePath)
       if self.overrides is None:
@@ -2798,9 +2864,10 @@ class OptionsConfig(object):
    def _setStartingDay(self, value):
       """
       Property target used to set the starting day.
-      If it is not C{None}, the value must be a valid English day of the week,
-      one of C{"monday"}, C{"tuesday"}, C{"wednesday"}, etc.
-      @raise ValueError: If the value is not a valid day of the week.
+      If it is not ``None``, the value must be a valid English day of the week,
+      one of ``"monday"``, ``"tuesday"``, ``"wednesday"``, etc.
+      Raises:
+         ValueError: If the value is not a valid day of the week
       """
       if value is not None:
          if value not in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", ]:
@@ -2816,10 +2883,11 @@ class OptionsConfig(object):
    def _setWorkingDir(self, value):
       """
       Property target used to set the working directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -2835,8 +2903,9 @@ class OptionsConfig(object):
    def _setBackupUser(self, value):
       """
       Property target used to set the backup user.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2852,8 +2921,9 @@ class OptionsConfig(object):
    def _setBackupGroup(self, value):
       """
       Property target used to set the backup group.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2869,8 +2939,9 @@ class OptionsConfig(object):
    def _setRcpCommand(self, value):
       """
       Property target used to set the rcp command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2886,8 +2957,9 @@ class OptionsConfig(object):
    def _setRshCommand(self, value):
       """
       Property target used to set the rsh command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2903,8 +2975,9 @@ class OptionsConfig(object):
    def _setCbackCommand(self, value):
       """
       Property target used to set the cback command.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -2920,8 +2993,9 @@ class OptionsConfig(object):
    def _setOverrides(self, value):
       """
       Property target used to set the command path overrides list.
-      Either the value must be C{None} or each element must be a C{CommandOverride}.
-      @raise ValueError: If the value is not a C{CommandOverride}
+      Either the value must be ``None`` or each element must be a ``CommandOverride``.
+      Raises:
+         ValueError: If the value is not a ``CommandOverride``
       """
       if value is None:
          self._overrides = None
@@ -2943,8 +3017,9 @@ class OptionsConfig(object):
    def _setHooks(self, value):
       """
       Property target used to set the pre- and post-action hooks list.
-      Either the value must be C{None} or each element must be an C{ActionHook}.
-      @raise ValueError: If the value is not a C{CommandOverride}
+      Either the value must be ``None`` or each element must be an ``ActionHook``.
+      Raises:
+         ValueError: If the value is not a ``CommandOverride``
       """
       if value is None:
          self._hooks = None
@@ -3016,22 +3091,23 @@ class PeersConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The list of local peers must contain only C{LocalPeer} objects
-      - The list of remote peers must contain only C{RemotePeer} objects
+      - The list of local peers must contain only ``LocalPeer`` objects
+      - The list of remote peers must contain only ``RemotePeer`` objects
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, localPeers, remotePeers
    """
 
    def __init__(self, localPeers=None, remotePeers=None):
       """
-      Constructor for the C{PeersConfig} class.
+      Constructor for the ``PeersConfig`` class.
 
-      @param localPeers: List of local peers.
-      @param remotePeers: List of remote peers.
+      Args:
+         localPeers: List of local peers
+         remotePeers: List of remote peers
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._localPeers = None
       self._remotePeers = None
@@ -3066,8 +3142,10 @@ class PeersConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -3086,7 +3164,8 @@ class PeersConfig(object):
    def hasPeers(self):
       """
       Indicates whether any peers are filled into this object.
-      @return: Boolean true if any local or remote peers are filled in, false otherwise.
+      Returns:
+          Boolean true if any local or remote peers are filled in, false otherwise
       """
       return ((self.localPeers is not None and len(self.localPeers) > 0) or
               (self.remotePeers is not None and len(self.remotePeers) > 0))
@@ -3094,8 +3173,9 @@ class PeersConfig(object):
    def _setLocalPeers(self, value):
       """
       Property target used to set the local peers list.
-      Either the value must be C{None} or each element must be a C{LocalPeer}.
-      @raise ValueError: If the value is not an absolute path.
+      Either the value must be ``None`` or each element must be a ``LocalPeer``.
+      Raises:
+         ValueError: If the value is not an absolute path
       """
       if value is None:
          self._localPeers = None
@@ -3117,8 +3197,9 @@ class PeersConfig(object):
    def _setRemotePeers(self, value):
       """
       Property target used to set the remote peers list.
-      Either the value must be C{None} or each element must be a C{RemotePeer}.
-      @raise ValueError: If the value is not a C{RemotePeer}
+      Either the value must be ``None`` or each element must be a ``RemotePeer``.
+      Raises:
+         ValueError: If the value is not a ``RemotePeer``
       """
       if value is None:
          self._remotePeers = None
@@ -3154,45 +3235,44 @@ class CollectConfig(object):
    The following restrictions exist on data in this class:
 
       - The target directory must be an absolute path.
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The archive mode must be one of the values in L{VALID_ARCHIVE_MODES}.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The archive mode must be one of the values in :any:`VALID_ARCHIVE_MODES`.
       - The ignore file must be a non-empty string.
-      - Each of the paths in C{absoluteExcludePaths} must be an absolute path
-      - The collect file list must be a list of C{CollectFile} objects.
-      - The collect directory list must be a list of C{CollectDir} objects.
+      - Each of the paths in ``absoluteExcludePaths`` must be an absolute path
+      - The collect file list must be a list of ``CollectFile`` objects.
+      - The collect directory list must be a list of ``CollectDir`` objects.
 
-   For the C{absoluteExcludePaths} list, validation is accomplished through the
-   L{util.AbsolutePathList} list implementation that overrides common list
+   For the ``absoluteExcludePaths`` list, validation is accomplished through the
+   :any:`util.AbsolutePathList` list implementation that overrides common list
    methods and transparently does the absolute path validation for us.
 
-   For the C{collectFiles} and C{collectDirs} list, validation is accomplished
-   through the L{util.ObjectTypeList} list implementation that overrides common
+   For the ``collectFiles`` and ``collectDirs`` list, validation is accomplished
+   through the :any:`util.ObjectTypeList` list implementation that overrides common
    list methods and transparently ensures that each element has an appropriate
    type.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir,
-          collectMode, archiveMode, ignoreFile, absoluteExcludePaths,
-          excludePatterns, collectFiles, collectDirs
    """
 
    def __init__(self, targetDir=None, collectMode=None, archiveMode=None, ignoreFile=None,
                 absoluteExcludePaths=None, excludePatterns=None, collectFiles=None,
                 collectDirs=None):
       """
-      Constructor for the C{CollectConfig} class.
+      Constructor for the ``CollectConfig`` class.
 
-      @param targetDir: Directory to collect files into.
-      @param collectMode: Default collect mode.
-      @param archiveMode: Default archive mode for collect files.
-      @param ignoreFile: Default ignore file name.
-      @param absoluteExcludePaths: List of absolute paths to exclude.
-      @param excludePatterns: List of regular expression patterns to exclude.
-      @param collectFiles: List of collect files.
-      @param collectDirs: List of collect directories.
+      Args:
+         targetDir: Directory to collect files into
+         collectMode: Default collect mode
+         archiveMode: Default archive mode for collect files
+         ignoreFile: Default ignore file name
+         absoluteExcludePaths: List of absolute paths to exclude
+         excludePatterns: List of regular expression patterns to exclude
+         collectFiles: List of collect files
+         collectDirs: List of collect directories
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._targetDir = None
       self._collectMode = None
@@ -3241,8 +3321,10 @@ class CollectConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -3291,10 +3373,11 @@ class CollectConfig(object):
    def _setTargetDir(self, value):
       """
       Property target used to set the target directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -3310,8 +3393,9 @@ class CollectConfig(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -3327,8 +3411,9 @@ class CollectConfig(object):
    def _setArchiveMode(self, value):
       """
       Property target used to set the archive mode.
-      If not C{None}, the mode must be one of L{VALID_ARCHIVE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of :any:`VALID_ARCHIVE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_ARCHIVE_MODES:
@@ -3344,9 +3429,10 @@ class CollectConfig(object):
    def _setIgnoreFile(self, value):
       """
       Property target used to set the ignore file.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
-      @raise ValueError: If the value cannot be encoded properly.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if len(value) < 1:
@@ -3362,9 +3448,10 @@ class CollectConfig(object):
    def _setAbsoluteExcludePaths(self, value):
       """
       Property target used to set the absolute exclude paths list.
-      Either the value must be C{None} or each element must be an absolute path.
+      Either the value must be ``None`` or each element must be an absolute path.
       Elements do not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
+      Raises:
+         ValueError: If the value is not an absolute path
       """
       if value is None:
          self._absoluteExcludePaths = None
@@ -3407,8 +3494,9 @@ class CollectConfig(object):
    def _setCollectFiles(self, value):
       """
       Property target used to set the collect files list.
-      Either the value must be C{None} or each element must be a C{CollectFile}.
-      @raise ValueError: If the value is not a C{CollectFile}
+      Either the value must be ``None`` or each element must be a ``CollectFile``.
+      Raises:
+         ValueError: If the value is not a ``CollectFile``
       """
       if value is None:
          self._collectFiles = None
@@ -3430,8 +3518,9 @@ class CollectConfig(object):
    def _setCollectDirs(self, value):
       """
       Property target used to set the collect dirs list.
-      Either the value must be C{None} or each element must be a C{CollectDir}.
-      @raise ValueError: If the value is not a C{CollectDir}
+      Either the value must be ``None`` or each element must be a ``CollectDir``.
+      Raises:
+         ValueError: If the value is not a ``CollectDir``
       """
       if value is None:
          self._collectDirs = None
@@ -3473,23 +3562,24 @@ class StageConfig(object):
    The following restrictions exist on data in this class:
 
       - The target directory must be an absolute path
-      - The list of local peers must contain only C{LocalPeer} objects
-      - The list of remote peers must contain only C{RemotePeer} objects
+      - The list of local peers must contain only ``LocalPeer`` objects
+      - The list of remote peers must contain only ``RemotePeer`` objects
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, targetDir, localPeers, remotePeers
    """
 
    def __init__(self, targetDir=None, localPeers=None, remotePeers=None):
       """
-      Constructor for the C{StageConfig} class.
+      Constructor for the ``StageConfig`` class.
 
-      @param targetDir: Directory to stage files into, by peer name.
-      @param localPeers: List of local peers.
-      @param remotePeers: List of remote peers.
+      Args:
+         targetDir: Directory to stage files into, by peer name
+         localPeers: List of local peers
+         remotePeers: List of remote peers
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._targetDir = None
       self._localPeers = None
@@ -3526,8 +3616,10 @@ class StageConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -3551,7 +3643,8 @@ class StageConfig(object):
    def hasPeers(self):
       """
       Indicates whether any peers are filled into this object.
-      @return: Boolean true if any local or remote peers are filled in, false otherwise.
+      Returns:
+          Boolean true if any local or remote peers are filled in, false otherwise
       """
       return ((self.localPeers is not None and len(self.localPeers) > 0) or
               (self.remotePeers is not None and len(self.remotePeers) > 0))
@@ -3559,10 +3652,11 @@ class StageConfig(object):
    def _setTargetDir(self, value):
       """
       Property target used to set the target directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -3578,8 +3672,9 @@ class StageConfig(object):
    def _setLocalPeers(self, value):
       """
       Property target used to set the local peers list.
-      Either the value must be C{None} or each element must be a C{LocalPeer}.
-      @raise ValueError: If the value is not an absolute path.
+      Either the value must be ``None`` or each element must be a ``LocalPeer``.
+      Raises:
+         ValueError: If the value is not an absolute path
       """
       if value is None:
          self._localPeers = None
@@ -3601,8 +3696,9 @@ class StageConfig(object):
    def _setRemotePeers(self, value):
       """
       Property target used to set the remote peers list.
-      Either the value must be C{None} or each element must be a C{RemotePeer}.
-      @raise ValueError: If the value is not a C{RemotePeer}
+      Either the value must be ``None`` or each element must be a ``RemotePeer``.
+      Raises:
+         ValueError: If the value is not a ``RemotePeer``
       """
       if value is None:
          self._remotePeers = None
@@ -3639,12 +3735,12 @@ class StoreConfig(object):
    The following restrictions exist on data in this class:
 
       - The source directory must be an absolute path.
-      - The media type must be one of the values in L{VALID_MEDIA_TYPES}.
-      - The device type must be one of the values in L{VALID_DEVICE_TYPES}.
+      - The media type must be one of the values in :any:`VALID_MEDIA_TYPES`.
+      - The device type must be one of the values in :any:`VALID_DEVICE_TYPES`.
       - The device path must be an absolute path.
-      - The SCSI id, if provided, must be in the form specified by L{validateScsiId}.
+      - The SCSI id, if provided, must be in the form specified by :any:`validateScsiId`.
       - The drive speed must be an integer >= 1
-      - The blanking behavior must be a C{BlankBehavior} object
+      - The blanking behavior must be a ``BlankBehavior`` object
       - The refresh media delay must be an integer >= 0
       - The eject delay must be an integer >= 0
 
@@ -3652,10 +3748,6 @@ class StoreConfig(object):
    number, it is stored as a string. This is done so that we can losslessly go
    back and forth between XML and object representations of configuration.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, sourceDir,
-          mediaType, deviceType, devicePath, deviceScsiId,
-          driveSpeed, checkData, checkMedia, warnMidnite, noEject,
-          blankBehavior, refreshMediaDelay, ejectDelay
    """
 
    def __init__(self, sourceDir=None, mediaType=None, deviceType=None,
@@ -3664,23 +3756,25 @@ class StoreConfig(object):
                 checkMedia=False, blankBehavior=None, refreshMediaDelay=None,
                 ejectDelay=None):
       """
-      Constructor for the C{StoreConfig} class.
+      Constructor for the ``StoreConfig`` class.
 
-      @param sourceDir: Directory whose contents should be written to media.
-      @param mediaType: Type of the media (see notes above).
-      @param deviceType: Type of the device (optional, see notes above).
-      @param devicePath: Filesystem device name for writer device, i.e. C{/dev/cdrw}.
-      @param deviceScsiId: SCSI id for writer device, i.e. C{[<method>:]scsibus,target,lun}.
-      @param driveSpeed: Speed of the drive, i.e. C{2} for 2x drive, etc.
-      @param checkData: Whether resulting image should be validated.
-      @param checkMedia: Whether media should be checked before being written to.
-      @param warnMidnite: Whether to generate warnings for crossing midnite.
-      @param noEject: Indicates that the writer device should not be ejected.
-      @param blankBehavior: Controls optimized blanking behavior.
-      @param refreshMediaDelay: Delay, in seconds, to add after refreshing media
-      @param ejectDelay: Delay, in seconds, to add after ejecting media before closing the tray
+      Args:
+         sourceDir: Directory whose contents should be written to media
+         mediaType: Type of the media (see notes above)
+         deviceType: Type of the device (optional, see notes above)
+         devicePath: Filesystem device name for writer device, i.e. ``/dev/cdrw``
+         deviceScsiId: SCSI id for writer device, i.e. ``[<method>:]scsibus,target,lun``
+         driveSpeed: Speed of the drive, i.e. ``2`` for 2x drive, etc
+         checkData: Whether resulting image should be validated
+         checkMedia: Whether media should be checked before being written to
+         warnMidnite: Whether to generate warnings for crossing midnite
+         noEject: Indicates that the writer device should not be ejected
+         blankBehavior: Controls optimized blanking behavior
+         refreshMediaDelay: Delay, in seconds, to add after refreshing media
+         ejectDelay: Delay, in seconds, to add after ejecting media before closing the tray
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._sourceDir = None
       self._mediaType = None
@@ -3741,8 +3835,10 @@ class StoreConfig(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -3816,10 +3912,11 @@ class StoreConfig(object):
    def _setSourceDir(self, value):
       """
       Property target used to set the source directory.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -3835,8 +3932,9 @@ class StoreConfig(object):
    def _setMediaType(self, value):
       """
       Property target used to set the media type.
-      The value must be one of L{VALID_MEDIA_TYPES}.
-      @raise ValueError: If the value is not valid.
+      The value must be one of :any:`VALID_MEDIA_TYPES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_MEDIA_TYPES:
@@ -3852,8 +3950,9 @@ class StoreConfig(object):
    def _setDeviceType(self, value):
       """
       Property target used to set the device type.
-      The value must be one of L{VALID_DEVICE_TYPES}.
-      @raise ValueError: If the value is not valid.
+      The value must be one of :any:`VALID_DEVICE_TYPES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_DEVICE_TYPES:
@@ -3869,10 +3968,11 @@ class StoreConfig(object):
    def _setDevicePath(self, value):
       """
       Property target used to set the device path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -3888,8 +3988,9 @@ class StoreConfig(object):
    def _setDeviceScsiId(self, value):
       """
       Property target used to set the SCSI id
-      The SCSI id must be valid per L{validateScsiId}.
-      @raise ValueError: If the value is not valid.
+      The SCSI id must be valid per :any:`validateScsiId`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._deviceScsiId = None
@@ -3905,8 +4006,9 @@ class StoreConfig(object):
    def _setDriveSpeed(self, value):
       """
       Property target used to set the drive speed.
-      The drive speed must be valid per L{validateDriveSpeed}.
-      @raise ValueError: If the value is not valid.
+      The drive speed must be valid per :any:`validateDriveSpeed`.
+      Raises:
+         ValueError: If the value is not valid
       """
       self._driveSpeed = validateDriveSpeed(value)
 
@@ -3919,7 +4021,7 @@ class StoreConfig(object):
    def _setCheckData(self, value):
       """
       Property target used to set the check data flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._checkData = True
@@ -3935,7 +4037,7 @@ class StoreConfig(object):
    def _setCheckMedia(self, value):
       """
       Property target used to set the check media flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._checkMedia = True
@@ -3951,7 +4053,7 @@ class StoreConfig(object):
    def _setWarnMidnite(self, value):
       """
       Property target used to set the midnite warning flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._warnMidnite = True
@@ -3967,7 +4069,7 @@ class StoreConfig(object):
    def _setNoEject(self, value):
       """
       Property target used to set the no-eject flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._noEject = True
@@ -3983,14 +4085,15 @@ class StoreConfig(object):
    def _setBlankBehavior(self, value):
       """
       Property target used to set blanking behavior configuration.
-      If not C{None}, the value must be a C{BlankBehavior} object.
-      @raise ValueError: If the value is not a C{BlankBehavior}
+      If not ``None``, the value must be a ``BlankBehavior`` object.
+      Raises:
+         ValueError: If the value is not a ``BlankBehavior``
       """
       if value is None:
          self._blankBehavior = None
       else:
          if not isinstance(value, BlankBehavior):
-            raise ValueError("Value must be a C{BlankBehavior} object.")
+            raise ValueError("Value must be a ``BlankBehavior`` object.")
          self._blankBehavior = value
 
    def _getBlankBehavior(self):
@@ -4003,7 +4106,8 @@ class StoreConfig(object):
       """
       Property target used to set the refreshMediaDelay.
       The value must be an integer >= 0.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._refreshMediaDelay = None
@@ -4028,7 +4132,8 @@ class StoreConfig(object):
       """
       Property target used to set the ejectDelay.
       The value must be an integer >= 0.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._ejectDelay = None
@@ -4076,22 +4181,23 @@ class PurgeConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The purge directory list must be a list of C{PurgeDir} objects.
+      - The purge directory list must be a list of ``PurgeDir`` objects.
 
-   For the C{purgeDirs} list, validation is accomplished through the
-   L{util.ObjectTypeList} list implementation that overrides common list
-   methods and transparently ensures that each element is a C{PurgeDir}.
+   For the ``purgeDirs`` list, validation is accomplished through the
+   :any:`util.ObjectTypeList` list implementation that overrides common list
+   methods and transparently ensures that each element is a ``PurgeDir``.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, purgeDirs
    """
 
    def __init__(self, purgeDirs=None):
       """
-      Constructor for the C{Purge} class.
-      @param purgeDirs: List of purge directories.
-      @raise ValueError: If one of the values is invalid.
+      Constructor for the ``Purge`` class.
+      Args:
+         purgeDirs: List of purge directories
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._purgeDirs = None
       self.purgeDirs = purgeDirs
@@ -4124,8 +4230,10 @@ class PurgeConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -4139,8 +4247,9 @@ class PurgeConfig(object):
    def _setPurgeDirs(self, value):
       """
       Property target used to set the purge dirs list.
-      Either the value must be C{None} or each element must be a C{PurgeDir}.
-      @raise ValueError: If the value is not a C{PurgeDir}
+      Either the value must be ``None`` or each element must be a ``PurgeDir``.
+      Raises:
+         ValueError: If the value is not a ``PurgeDir``
       """
       if value is None:
          self._purgeDirs = None
@@ -4176,39 +4285,33 @@ class Config(object):
    """
    Class representing a Cedar Backup XML configuration document.
 
-   The C{Config} class is a Python object representation of a Cedar Backup XML
+   The ``Config`` class is a Python object representation of a Cedar Backup XML
    configuration file.  It is intended to be the only Python-language interface
    to Cedar Backup configuration on disk for both Cedar Backup itself and for
    external applications.
 
    The object representation is two-way: XML data can be used to create a
-   C{Config} object, and then changes to the object can be propogated back to
-   disk.  A C{Config} object can even be used to create a configuration file
+   ``Config`` object, and then changes to the object can be propogated back to
+   disk.  A ``Config`` object can even be used to create a configuration file
    from scratch programmatically.
 
    This class and the classes it is composed from often use Python's
-   C{property} construct to validate input and limit access to values.  Some
+   ``property`` construct to validate input and limit access to values.  Some
    validations can only be done once a document is considered "complete"
    (see module notes for more details).
 
    Assignments to the various instance variables must match the expected
-   type, i.e. C{reference} must be a C{ReferenceConfig}.  The internal check
-   uses the built-in C{isinstance} function, so it should be OK to use
+   type, i.e. ``reference`` must be a ``ReferenceConfig``.  The internal check
+   uses the built-in ``isinstance`` function, so it should be OK to use
    subclasses if you want to.
 
-   If an instance variable is not set, its value will be C{None}.  When an
+   If an instance variable is not set, its value will be ``None``.  When an
    object is initialized without using an XML document, all of the values
-   will be C{None}.  Even when an object is initialized using XML, some of
-   the values might be C{None} because not every section is required.
+   will be ``None``.  Even when an object is initialized using XML, some of
+   the values might be ``None`` because not every section is required.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, extractXml, validate,
-          reference, extensions, options, collect, stage, store, purge,
-          _getReference, _setReference, _getExtensions, _setExtensions,
-          _getOptions, _setOptions, _getPeers, _setPeers, _getCollect,
-          _setCollect, _getStage, _setStage, _getStore, _setStore,
-          _getPurge, _setPurge
    """
 
    ##############
@@ -4219,36 +4322,32 @@ class Config(object):
       """
       Initializes a configuration object.
 
-      If you initialize the object without passing either C{xmlData} or
-      C{xmlPath}, then configuration will be empty and will be invalid until it
+      If you initialize the object without passing either ``xmlData`` or
+      ``xmlPath``, then configuration will be empty and will be invalid until it
       is filled in properly.
 
       No reference to the original XML data or original path is saved off by
       this class.  Once the data has been parsed (successfully or not) this
       original information is discarded.
 
-      Unless the C{validate} argument is C{False}, the L{Config.validate}
+      Unless the ``validate`` argument is ``False``, the :any:`Config.validate`
       method will be called (with its default arguments) against configuration
       after successfully parsing any passed-in XML.  Keep in mind that even if
-      C{validate} is C{False}, it might not be possible to parse the passed-in
+      ``validate`` is ``False``, it might not be possible to parse the passed-in
       XML document if lower-level validations fail.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to read in
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to read in
       invalid configuration from disk.
 
-      @param xmlData: XML data representing configuration.
-      @type xmlData: String data.
-
-      @param xmlPath: Path to an XML file on disk.
-      @type xmlPath: Absolute path to a file on disk.
-
-      @param validate: Validate the document after parsing it.
-      @type validate: Boolean true/false.
-
-      @raise ValueError: If both C{xmlData} and C{xmlPath} are passed-in.
-      @raise ValueError: If the XML data in C{xmlData} or C{xmlPath} cannot be parsed.
-      @raise ValueError: If the parsed configuration document is not valid.
+      Args:
+         xmlData (String data): XML data representing configuration
+         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+         validate (Boolean true/false): Validate the document after parsing it
+      Raises:
+         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+         ValueError: If the parsed configuration document is not valid
       """
       self._reference = None
       self._extensions = None
@@ -4319,8 +4418,10 @@ class Config(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -4374,14 +4475,15 @@ class Config(object):
    def _setReference(self, value):
       """
       Property target used to set the reference configuration value.
-      If not C{None}, the value must be a C{ReferenceConfig} object.
-      @raise ValueError: If the value is not a C{ReferenceConfig}
+      If not ``None``, the value must be a ``ReferenceConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``ReferenceConfig``
       """
       if value is None:
          self._reference = None
       else:
          if not isinstance(value, ReferenceConfig):
-            raise ValueError("Value must be a C{ReferenceConfig} object.")
+            raise ValueError("Value must be a ``ReferenceConfig`` object.")
          self._reference = value
 
    def _getReference(self):
@@ -4393,14 +4495,15 @@ class Config(object):
    def _setExtensions(self, value):
       """
       Property target used to set the extensions configuration value.
-      If not C{None}, the value must be a C{ExtensionsConfig} object.
-      @raise ValueError: If the value is not a C{ExtensionsConfig}
+      If not ``None``, the value must be a ``ExtensionsConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``ExtensionsConfig``
       """
       if value is None:
          self._extensions = None
       else:
          if not isinstance(value, ExtensionsConfig):
-            raise ValueError("Value must be a C{ExtensionsConfig} object.")
+            raise ValueError("Value must be a ``ExtensionsConfig`` object.")
          self._extensions = value
 
    def _getExtensions(self):
@@ -4412,14 +4515,15 @@ class Config(object):
    def _setOptions(self, value):
       """
       Property target used to set the options configuration value.
-      If not C{None}, the value must be an C{OptionsConfig} object.
-      @raise ValueError: If the value is not a C{OptionsConfig}
+      If not ``None``, the value must be an ``OptionsConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``OptionsConfig``
       """
       if value is None:
          self._options = None
       else:
          if not isinstance(value, OptionsConfig):
-            raise ValueError("Value must be a C{OptionsConfig} object.")
+            raise ValueError("Value must be a ``OptionsConfig`` object.")
          self._options = value
 
    def _getOptions(self):
@@ -4431,14 +4535,15 @@ class Config(object):
    def _setPeers(self, value):
       """
       Property target used to set the peers configuration value.
-      If not C{None}, the value must be an C{PeersConfig} object.
-      @raise ValueError: If the value is not a C{PeersConfig}
+      If not ``None``, the value must be an ``PeersConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``PeersConfig``
       """
       if value is None:
          self._peers = None
       else:
          if not isinstance(value, PeersConfig):
-            raise ValueError("Value must be a C{PeersConfig} object.")
+            raise ValueError("Value must be a ``PeersConfig`` object.")
          self._peers = value
 
    def _getPeers(self):
@@ -4450,14 +4555,15 @@ class Config(object):
    def _setCollect(self, value):
       """
       Property target used to set the collect configuration value.
-      If not C{None}, the value must be a C{CollectConfig} object.
-      @raise ValueError: If the value is not a C{CollectConfig}
+      If not ``None``, the value must be a ``CollectConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``CollectConfig``
       """
       if value is None:
          self._collect = None
       else:
          if not isinstance(value, CollectConfig):
-            raise ValueError("Value must be a C{CollectConfig} object.")
+            raise ValueError("Value must be a ``CollectConfig`` object.")
          self._collect = value
 
    def _getCollect(self):
@@ -4469,14 +4575,15 @@ class Config(object):
    def _setStage(self, value):
       """
       Property target used to set the stage configuration value.
-      If not C{None}, the value must be a C{StageConfig} object.
-      @raise ValueError: If the value is not a C{StageConfig}
+      If not ``None``, the value must be a ``StageConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``StageConfig``
       """
       if value is None:
          self._stage = None
       else:
          if not isinstance(value, StageConfig):
-            raise ValueError("Value must be a C{StageConfig} object.")
+            raise ValueError("Value must be a ``StageConfig`` object.")
          self._stage = value
 
    def _getStage(self):
@@ -4488,14 +4595,15 @@ class Config(object):
    def _setStore(self, value):
       """
       Property target used to set the store configuration value.
-      If not C{None}, the value must be a C{StoreConfig} object.
-      @raise ValueError: If the value is not a C{StoreConfig}
+      If not ``None``, the value must be a ``StoreConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``StoreConfig``
       """
       if value is None:
          self._store = None
       else:
          if not isinstance(value, StoreConfig):
-            raise ValueError("Value must be a C{StoreConfig} object.")
+            raise ValueError("Value must be a ``StoreConfig`` object.")
          self._store = value
 
    def _getStore(self):
@@ -4507,14 +4615,15 @@ class Config(object):
    def _setPurge(self, value):
       """
       Property target used to set the purge configuration value.
-      If not C{None}, the value must be a C{PurgeConfig} object.
-      @raise ValueError: If the value is not a C{PurgeConfig}
+      If not ``None``, the value must be a ``PurgeConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``PurgeConfig``
       """
       if value is None:
          self._purge = None
       else:
          if not isinstance(value, PurgeConfig):
-            raise ValueError("Value must be a C{PurgeConfig} object.")
+            raise ValueError("Value must be a ``PurgeConfig`` object.")
          self._purge = value
 
    def _getPurge(self):
@@ -4523,14 +4632,14 @@ class Config(object):
       """
       return self._purge
 
-   reference = property(_getReference, _setReference, None, "Reference configuration in terms of a C{ReferenceConfig} object.")
-   extensions = property(_getExtensions, _setExtensions, None, "Extensions configuration in terms of a C{ExtensionsConfig} object.")
-   options = property(_getOptions, _setOptions, None, "Options configuration in terms of a C{OptionsConfig} object.")
-   peers = property(_getPeers, _setPeers, None, "Peers configuration in terms of a C{PeersConfig} object.")
-   collect = property(_getCollect, _setCollect, None, "Collect configuration in terms of a C{CollectConfig} object.")
-   stage = property(_getStage, _setStage, None, "Stage configuration in terms of a C{StageConfig} object.")
-   store = property(_getStore, _setStore, None, "Store configuration in terms of a C{StoreConfig} object.")
-   purge = property(_getPurge, _setPurge, None, "Purge configuration in terms of a C{PurgeConfig} object.")
+   reference = property(_getReference, _setReference, None, "Reference configuration in terms of a ``ReferenceConfig`` object.")
+   extensions = property(_getExtensions, _setExtensions, None, "Extensions configuration in terms of a ``ExtensionsConfig`` object.")
+   options = property(_getOptions, _setOptions, None, "Options configuration in terms of a ``OptionsConfig`` object.")
+   peers = property(_getPeers, _setPeers, None, "Peers configuration in terms of a ``PeersConfig`` object.")
+   collect = property(_getCollect, _setCollect, None, "Collect configuration in terms of a ``CollectConfig`` object.")
+   stage = property(_getStage, _setStage, None, "Stage configuration in terms of a ``StageConfig`` object.")
+   store = property(_getStore, _setStore, None, "Store configuration in terms of a ``StoreConfig`` object.")
+   purge = property(_getPurge, _setPurge, None, "Purge configuration in terms of a ``PurgeConfig`` object.")
 
 
    #################
@@ -4541,30 +4650,29 @@ class Config(object):
       """
       Extracts configuration into an XML document.
 
-      If C{xmlPath} is not provided, then the XML document will be returned as
-      a string.  If C{xmlPath} is provided, then the XML document will be written
-      to the file and C{None} will be returned.
+      If ``xmlPath`` is not provided, then the XML document will be returned as
+      a string.  If ``xmlPath`` is provided, then the XML document will be written
+      to the file and ``None`` will be returned.
 
-      Unless the C{validate} parameter is C{False}, the L{Config.validate}
+      Unless the ``validate`` parameter is ``False``, the :any:`Config.validate`
       method will be called (with its default arguments) against the
       configuration before extracting the XML.  If configuration is not valid,
       then an XML document will not be extracted.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to write an
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to write an
       invalid configuration file to disk.
 
-      @param xmlPath: Path to an XML file to create on disk.
-      @type xmlPath: Absolute path to a file.
+      Args:
+         xmlPath (Absolute path to a file): Path to an XML file to create on disk
+         validate (Boolean true/false): Validate the document before extracting it
+      Returns:
+          XML string data or ``None`` as described above
 
-      @param validate: Validate the document before extracting it.
-      @type validate: Boolean true/false.
-
-      @return: XML string data or C{None} as described above.
-
-      @raise ValueError: If configuration within the object is not valid.
-      @raise IOError: If there is an error writing to the file.
-      @raise OSError: If there is an error writing to the file.
+      Raises:
+         ValueError: If configuration within the object is not valid
+         IOError: If there is an error writing to the file
+         OSError: If there is an error writing to the file
       """
       if validate:
          self.validate()
@@ -4585,19 +4693,21 @@ class Config(object):
       fully "complete" document but are not already taken care of by earlier
       validations.  It also provides some extra convenience functionality which
       might be useful to some people.  The process of validation is laid out in
-      the I{Validation} section in the class notes (above).
+      the *Validation* section in the class notes (above).
 
-      @param requireOneAction: Require at least one of the collect, stage, store or purge sections.
-      @param requireReference: Require the reference section.
-      @param requireExtensions: Require the extensions section.
-      @param requireOptions: Require the options section.
-      @param requirePeers: Require the peers section.
-      @param requireCollect: Require the collect section.
-      @param requireStage: Require the stage section.
-      @param requireStore: Require the store section.
-      @param requirePurge: Require the purge section.
+      Args:
+         requireOneAction: Require at least one of the collect, stage, store or purge sections
+         requireReference: Require the reference section
+         requireExtensions: Require the extensions section
+         requireOptions: Require the options section
+         requirePeers: Require the peers section
+         requireCollect: Require the collect section
+         requireStage: Require the stage section
+         requireStore: Require the store section
+         requirePurge: Require the purge section
 
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       if requireOneAction and (self.collect, self.stage, self.store, self.purge) == (None, None, None, None):
          raise ValueError("At least one of the collect, stage, store and purge sections is required.")
@@ -4628,7 +4738,7 @@ class Config(object):
       """
       Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (C{xmlDom}) and then
+      This method parses the XML document into a DOM tree (``xmlDom``) and then
       calls individual static methods to parse each of the individual
       configuration sections.
 
@@ -4636,12 +4746,12 @@ class Config(object):
       be parsed and whether any values which exist are valid.  We don't do much
       validation as to whether required elements actually exist unless we have
       to to make sense of the document (instead, that's the job of the
-      L{validate} method).
+      :any:`validate` method).
 
-      @param xmlData: XML data to be parsed
-      @type xmlData: String data
-
-      @raise ValueError: If the XML cannot be successfully parsed.
+      Args:
+         xmlData (String data): XML data to be parsed
+      Raises:
+         ValueError: If the XML cannot be successfully parsed
       """
       (xmlDom, parentNode) = createInputDom(xmlData)
       self._reference = Config._parseReference(parentNode)
@@ -4665,10 +4775,13 @@ class Config(object):
          description    //cb_config/reference/description
          generator      //cb_config/reference/generator
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{ReferenceConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``ReferenceConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       reference = None
       sectionNode = readFirstChild(parentNode, "reference")
@@ -4697,12 +4810,15 @@ class Config(object):
          index                //cb_config/extensions/action/index
          dependencies         //cb_config/extensions/action/depends
 
-      The extended actions are parsed by L{_parseExtendedActions}.
+      The extended actions are parsed by :any:`_parseExtendedActions`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{ExtensionsConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``ExtensionsConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       extensions = None
       sectionNode = readFirstChild(parentNode, "extensions")
@@ -4736,13 +4852,16 @@ class Config(object):
          overrides      //cb_config/options/override
          hooks          //cb_config/options/hook
 
-      The overrides are parsed by L{_parseOverrides} and the hooks are parsed
-      by L{_parseHooks}.
+      The overrides are parsed by :any:`_parseOverrides` and the hooks are parsed
+      by :any:`_parseHooks`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{OptionsConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``OptionsConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       options = None
       sectionNode = readFirstChild(parentNode, "options")
@@ -4772,12 +4891,15 @@ class Config(object):
          localPeers     //cb_config/stage/peer
          remotePeers    //cb_config/stage/peer
 
-      The individual peer entries are parsed by L{_parsePeerList}.
+      The individual peer entries are parsed by :any:`_parsePeerList`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{StageConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``StageConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       peers = None
       sectionNode = readFirstChild(parentNode, "peers")
@@ -4806,14 +4928,17 @@ class Config(object):
          collectFiles         //cb_config/collect/file
          collectDirs          //cb_config/collect/dir
 
-      The exclusions are parsed by L{_parseExclusions}, the collect files are
-      parsed by L{_parseCollectFiles}, and the directories are parsed by
-      L{_parseCollectDirs}.
+      The exclusions are parsed by :any:`_parseExclusions`, the collect files are
+      parsed by :any:`_parseCollectFiles`, and the directories are parsed by
+      :any:`_parseCollectDirs`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{CollectConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``CollectConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       collect = None
       sectionNode = readFirstChild(parentNode, "collect")
@@ -4843,12 +4968,15 @@ class Config(object):
          localPeers     //cb_config/stage/peer
          remotePeers    //cb_config/stage/peer
 
-      The individual peer entries are parsed by L{_parsePeerList}.
+      The individual peer entries are parsed by :any:`_parsePeerList`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{StageConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``StageConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       stage = None
       sectionNode = readFirstChild(parentNode, "stage")
@@ -4876,13 +5004,16 @@ class Config(object):
          warnMidnite       //cb_config/store/warn_midnite
          noEject           //cb_config/store/no_eject
 
-      Blanking behavior configuration is parsed by the C{_parseBlankBehavior}
+      Blanking behavior configuration is parsed by the ``_parseBlankBehavior``
       method.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{StoreConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``StoreConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       store = None
       sectionNode = readFirstChild(parentNode, "store")
@@ -4913,12 +5044,15 @@ class Config(object):
 
          purgeDirs     //cb_config/purge/dir
 
-      The individual directory entries are parsed by L{_parsePurgeDirs}.
+      The individual directory entries are parsed by :any:`_parsePurgeDirs`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{PurgeConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``PurgeConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       purge = None
       sectionNode = readFirstChild(parentNode, "purge")
@@ -4940,12 +5074,15 @@ class Config(object):
          index          index
          dependencies   depends
 
-      Dependency information is parsed by the C{_parseDependencies} method.
+      Dependency information is parsed by the ``_parseDependencies`` method.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of extended actions.
-      @raise ValueError: If the data at the location can't be read
+      Returns:
+          List of extended actions
+      Raises:
+         ValueError: If the data at the location can't be read
       """
       lst = []
       for entry in readChildren(parentNode, "action"):
@@ -4973,15 +5110,17 @@ class Config(object):
          patterns    exclude/pattern
 
       If there are none of some pattern (i.e. no relative path items) then
-      C{None} will be returned for that item in the tuple.
+      ``None`` will be returned for that item in the tuple.
 
       This method can be used to parse exclusions on both the collect
       configuration level and on the collect directory level within collect
       configuration.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: Tuple of (absolute, relative, patterns) exclusions.
+      Returns:
+          Tuple of (absolute, relative, patterns) exclusions
       """
       sectionNode = readFirstChild(parentNode, "exclude")
       if sectionNode is None:
@@ -4995,17 +5134,20 @@ class Config(object):
    @staticmethod
    def _parseOverrides(parentNode):
       """
-      Reads a list of C{CommandOverride} objects from immediately beneath the parent.
+      Reads a list of ``CommandOverride`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
          command                 command
          absolutePath            abs_path
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of C{CommandOverride} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``CommandOverride`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parentNode, "override"):
@@ -5021,17 +5163,20 @@ class Config(object):
    @staticmethod
    def _parseHooks(parentNode):
       """
-      Reads a list of C{ActionHook} objects from immediately beneath the parent.
+      Reads a list of ``ActionHook`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
          action                  action
          command                 command
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of C{ActionHook} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``ActionHook`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parentNode, "pre_action_hook"):
@@ -5053,23 +5198,26 @@ class Config(object):
    @staticmethod
    def _parseCollectFiles(parentNode):
       """
-      Reads a list of C{CollectFile} objects from immediately beneath the parent.
+      Reads a list of ``CollectFile`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
          absolutePath            abs_path
-         collectMode             mode I{or} collect_mode
+         collectMode             mode *or* collect_mode
          archiveMode             archive_mode
 
-      The collect mode is a special case.  Just a C{mode} tag is accepted, but
-      we prefer C{collect_mode} for consistency with the rest of the config
+      The collect mode is a special case.  Just a ``mode`` tag is accepted, but
+      we prefer ``collect_mode`` for consistency with the rest of the config
       file and to avoid confusion with the archive mode.  If both are provided,
-      only C{mode} will be used.
+      only ``mode`` will be used.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of C{CollectFile} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``CollectFile`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parentNode, "file"):
@@ -5088,22 +5236,22 @@ class Config(object):
    @staticmethod
    def _parseCollectDirs(parentNode):
       """
-      Reads a list of C{CollectDir} objects from immediately beneath the parent.
+      Reads a list of ``CollectDir`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
          absolutePath            abs_path
-         collectMode             mode I{or} collect_mode
+         collectMode             mode *or* collect_mode
          archiveMode             archive_mode
          ignoreFile              ignore_file
          linkDepth               link_depth
          dereference             dereference
          recursionLevel          recursion_level
 
-      The collect mode is a special case.  Just a C{mode} tag is accepted for
-      backwards compatibility, but we prefer C{collect_mode} for consistency
+      The collect mode is a special case.  Just a ``mode`` tag is accepted for
+      backwards compatibility, but we prefer ``collect_mode`` for consistency
       with the rest of the config file and to avoid confusion with the archive
-      mode.  If both are provided, only C{mode} will be used.
+      mode.  If both are provided, only ``mode`` will be used.
 
       We also read groups of the following items, one list element per
       item::
@@ -5112,12 +5260,15 @@ class Config(object):
          relativeExcludePaths    exclude/rel_path
          excludePatterns         exclude/pattern
 
-      The exclusions are parsed by L{_parseExclusions}.
+      The exclusions are parsed by :any:`_parseExclusions`.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of C{CollectDir} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``CollectDir`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parentNode, "dir"):
@@ -5141,17 +5292,20 @@ class Config(object):
    @staticmethod
    def _parsePurgeDirs(parentNode):
       """
-      Reads a list of C{PurgeDir} objects from immediately beneath the parent.
+      Reads a list of ``PurgeDir`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
          absolutePath            <baseExpr>/abs_path
          retainDays              <baseExpr>/retain_days
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: List of C{PurgeDir} objects or C{None} if none are found.
-      @raise ValueError: If the data at the location can't be read
+      Returns:
+          List of ``PurgeDir`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If the data at the location can't be read
       """
       lst = []
       for entry in readChildren(parentNode, "dir"):
@@ -5185,17 +5339,20 @@ class Config(object):
          managed        managed
          managedActions managed_actions
 
-      Additionally, the value in the C{type} field is used to determine whether
-      this entry is a remote peer.  If the type is C{"remote"}, it's a remote
-      peer, and if the type is C{"local"}, it's a remote peer.
+      Additionally, the value in the ``type`` field is used to determine whether
+      this entry is a remote peer.  If the type is ``"remote"``, it's a remote
+      peer, and if the type is ``"local"``, it's a remote peer.
 
-      If there are none of one type of peer (i.e. no local peers) then C{None}
+      If there are none of one type of peer (i.e. no local peers) then ``None``
       will be returned for that item in the tuple.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: Tuple of (local, remote) peer lists.
-      @raise ValueError: If the data at the location can't be read
+      Returns:
+          Tuple of (local, remote) peer lists
+      Raises:
+         ValueError: If the data at the location can't be read
       """
       localPeers = []
       remotePeers = []
@@ -5239,16 +5396,19 @@ class Config(object):
 
       Each of these fields is a comma-separated list of action names.
 
-      The result is placed into an C{ActionDependencies} object.
+      The result is placed into an ``ActionDependencies`` object.
 
-      If the dependencies parent node does not exist, C{None} will be returned.
-      Otherwise, an C{ActionDependencies} object will always be created, even
+      If the dependencies parent node does not exist, ``None`` will be returned.
+      Otherwise, an ``ActionDependencies`` object will always be created, even
       if it does not contain any actual dependencies in it.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{ActionDependencies} object or C{None}.
-      @raise ValueError: If the data at the location can't be read
+      Returns:
+          ``ActionDependencies`` object or ``None``
+      Raises:
+         ValueError: If the data at the location can't be read
       """
       sectionNode = readFirstChild(parentNode, "depends")
       if sectionNode is None:
@@ -5263,17 +5423,20 @@ class Config(object):
    @staticmethod
    def _parseBlankBehavior(parentNode):
       """
-      Reads a single C{BlankBehavior} object from immediately beneath the parent.
+      Reads a single ``BlankBehavior`` object from immediately beneath the parent.
 
       We read the following individual fields::
 
          blankMode     blank_behavior/mode
          blankFactor   blank_behavior/factor
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{BlankBehavior} object or C{None} if none if the section is not found
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``BlankBehavior`` object or ``None`` if none if the section is not found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       blankBehavior = None
       sectionNode = readFirstChild(parentNode, "blank_behavior")
@@ -5292,13 +5455,13 @@ class Config(object):
       """
       Internal method to extract configuration into an XML string.
 
-      This method assumes that the internal L{validate} method has been called
+      This method assumes that the internal :any:`validate` method has been called
       prior to extracting the XML, if the caller cares.  No validation will be
       done internally.
 
-      As a general rule, fields that are set to C{None} will be extracted into
+      As a general rule, fields that are set to ``None`` will be extracted into
       the document as empty tags.  The same goes for container tags that are
-      filled based on lists - if the list is empty or C{None}, the container
+      filled based on lists - if the list is empty or ``None``, the container
       tag will be empty.
       """
       (xmlDom, parentNode) = createOutputDom()
@@ -5326,11 +5489,12 @@ class Config(object):
          description    //cb_config/reference/description
          generator      //cb_config/reference/generator
 
-      If C{referenceConfig} is C{None}, then no container will be added.
+      If ``referenceConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param referenceConfig: Reference configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         referenceConfig: Reference configuration section to be added to the document
       """
       if referenceConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "reference")
@@ -5352,13 +5516,14 @@ class Config(object):
 
          actions        //cb_config/extensions/action
 
-      The extended action entries are added by L{_addExtendedAction}.
+      The extended action entries are added by :any:`_addExtendedAction`.
 
-      If C{extensionsConfig} is C{None}, then no container will be added.
+      If ``extensionsConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param extensionsConfig: Extensions configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         extensionsConfig: Extensions configuration section to be added to the document
       """
       if extensionsConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "extensions")
@@ -5390,14 +5555,15 @@ class Config(object):
          hooks          //cb_config/options/pre_action_hook
          hooks          //cb_config/options/post_action_hook
 
-      The individual override items are added by L{_addOverride}.  The
-      individual hook items are added by L{_addHook}.
+      The individual override items are added by :any:`_addOverride`.  The
+      individual hook items are added by :any:`_addHook`.
 
-      If C{optionsConfig} is C{None}, then no container will be added.
+      If ``optionsConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param optionsConfig: Options configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         optionsConfig: Options configuration section to be added to the document
       """
       if optionsConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "options")
@@ -5429,13 +5595,14 @@ class Config(object):
          remotePeers    //cb_config/peers/peer
 
       The individual local and remote peer entries are added by
-      L{_addLocalPeer} and L{_addRemotePeer}, respectively.
+      :any:`_addLocalPeer` and :any:`_addRemotePeer`, respectively.
 
-      If C{peersConfig} is C{None}, then no container will be added.
+      If ``peersConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param peersConfig: Peers configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         peersConfig: Peers configuration section to be added to the document
       """
       if peersConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "peers")
@@ -5466,14 +5633,15 @@ class Config(object):
          collectFiles         //cb_config/collect/file
          collectDirs          //cb_config/collect/dir
 
-      The individual collect files are added by L{_addCollectFile} and
-      individual collect directories are added by L{_addCollectDir}.
+      The individual collect files are added by :any:`_addCollectFile` and
+      individual collect directories are added by :any:`_addCollectDir`.
 
-      If C{collectConfig} is C{None}, then no container will be added.
+      If ``collectConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param collectConfig: Collect configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         collectConfig: Collect configuration section to be added to the document
       """
       if collectConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "collect")
@@ -5513,13 +5681,14 @@ class Config(object):
          remotePeers    //cb_config/stage/peer
 
       The individual local and remote peer entries are added by
-      L{_addLocalPeer} and L{_addRemotePeer}, respectively.
+      :any:`_addLocalPeer` and :any:`_addRemotePeer`, respectively.
 
-      If C{stageConfig} is C{None}, then no container will be added.
+      If ``stageConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param stageConfig: Stage configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         stageConfig: Stage configuration section to be added to the document
       """
       if stageConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "stage")
@@ -5551,14 +5720,15 @@ class Config(object):
          refreshMediaDelay //cb_config/store/refresh_media_delay
          ejectDelay        //cb_config/store/eject_delay
 
-      Blanking behavior configuration is added by the L{_addBlankBehavior}
+      Blanking behavior configuration is added by the :any:`_addBlankBehavior`
       method.
 
-      If C{storeConfig} is C{None}, then no container will be added.
+      If ``storeConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param storeConfig: Store configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         storeConfig: Store configuration section to be added to the document
       """
       if storeConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "store")
@@ -5585,13 +5755,14 @@ class Config(object):
 
          purgeDirs     //cb_config/purge/dir
 
-      The individual directory entries are added by L{_addPurgeDir}.
+      The individual directory entries are added by :any:`_addPurgeDir`.
 
-      If C{purgeConfig} is C{None}, then no container will be added.
+      If ``purgeConfig`` is ``None``, then no container will be added.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param purgeConfig: Purge configuration section to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         purgeConfig: Purge configuration section to be added to the document
       """
       if purgeConfig is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "purge")
@@ -5612,17 +5783,18 @@ class Config(object):
          index          action/index
          dependencies   action/depends
 
-      Dependencies are added by the L{_addDependencies} method.
+      Dependencies are added by the :any:`_addDependencies` method.
 
       The <action> node itself is created as the next child of the parent node.
       This method only adds one action node.  The parent must loop for each action
-      in the C{ExtensionsConfig} object.
+      in the ``ExtensionsConfig`` object.
 
-      If C{action} is C{None}, this method call will be a no-op.
+      If ``action`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param action: Purge directory to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         action: Purge directory to be added to the document
       """
       if action is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "action")
@@ -5644,13 +5816,14 @@ class Config(object):
 
       The <override> node itself is created as the next child of the parent
       node.  This method only adds one override node.  The parent must loop for
-      each override in the C{OptionsConfig} object.
+      each override in the ``OptionsConfig`` object.
 
-      If C{override} is C{None}, this method call will be a no-op.
+      If ``override`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param override: Command override to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         override: Command override to be added to the document
       """
       if override is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "override")
@@ -5662,14 +5835,14 @@ class Config(object):
       """
       Adds an action hook container as the next child of a parent.
 
-      The behavior varies depending on the value of the C{before} and C{after}
-      flags on the hook.  If the C{before} flag is set, it's a pre-action hook,
+      The behavior varies depending on the value of the ``before`` and ``after``
+      flags on the hook.  If the ``before`` flag is set, it's a pre-action hook,
       and we'll add the following fields::
 
          action                  pre_action_hook/action
          command                 pre_action_hook/command
 
-      If the C{after} flag is set, it's a post-action hook, and we'll add the
+      If the ``after`` flag is set, it's a post-action hook, and we'll add the
       following fields::
 
          action                  post_action_hook/action
@@ -5677,13 +5850,14 @@ class Config(object):
 
       The <pre_action_hook> or <post_action_hook> node itself is created as the
       next child of the parent node.  This method only adds one hook node.  The
-      parent must loop for each hook in the C{OptionsConfig} object.
+      parent must loop for each hook in the ``OptionsConfig`` object.
 
-      If C{hook} is C{None}, this method call will be a no-op.
+      If ``hook`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param hook: Command hook to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         hook: Command hook to be added to the document
       """
       if hook is not None:
          if hook.before:
@@ -5705,17 +5879,18 @@ class Config(object):
          archiveMode             dir/archive_mode
 
       Note that for consistency with collect directory handling we'll only emit
-      the preferred C{collect_mode} tag.
+      the preferred ``collect_mode`` tag.
 
       The <file> node itself is created as the next child of the parent node.
       This method only adds one collect file node.  The parent must loop
-      for each collect file in the C{CollectConfig} object.
+      for each collect file in the ``CollectConfig`` object.
 
-      If C{collectFile} is C{None}, this method call will be a no-op.
+      If ``collectFile`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param collectFile: Collect file to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         collectFile: Collect file to be added to the document
       """
       if collectFile is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "file")
@@ -5739,8 +5914,8 @@ class Config(object):
          recursionLevel          dir/recursion_level
 
       Note that an original XML document might have listed the collect mode
-      using the C{mode} tag, since we accept both C{collect_mode} and C{mode}.
-      However, here we'll only emit the preferred C{collect_mode} tag.
+      using the ``mode`` tag, since we accept both ``collect_mode`` and ``mode``.
+      However, here we'll only emit the preferred ``collect_mode`` tag.
 
       We also add groups of the following items, one list element per item::
 
@@ -5750,13 +5925,14 @@ class Config(object):
 
       The <dir> node itself is created as the next child of the parent node.
       This method only adds one collect directory node.  The parent must loop
-      for each collect directory in the C{CollectConfig} object.
+      for each collect directory in the ``CollectConfig`` object.
 
-      If C{collectDir} is C{None}, this method call will be a no-op.
+      If ``collectDir`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param collectDir: Collect directory to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         collectDir: Collect directory to be added to the document
       """
       if collectDir is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "dir")
@@ -5792,18 +5968,19 @@ class Config(object):
          collectDir          peer/collect_dir
          ignoreFailureMode   peer/ignore_failures
 
-      Additionally, C{peer/type} is filled in with C{"local"}, since this is a
+      Additionally, ``peer/type`` is filled in with ``"local"``, since this is a
       local peer.
 
       The <peer> node itself is created as the next child of the parent node.
       This method only adds one peer node.  The parent must loop for each peer
-      in the C{StageConfig} object.
+      in the ``StageConfig`` object.
 
-      If C{localPeer} is C{None}, this method call will be a no-op.
+      If ``localPeer`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param localPeer: Purge directory to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         localPeer: Purge directory to be added to the document
       """
       if localPeer is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "peer")
@@ -5830,18 +6007,19 @@ class Config(object):
          managed             peer/managed
          managedActions      peer/managed_actions
 
-      Additionally, C{peer/type} is filled in with C{"remote"}, since this is a
+      Additionally, ``peer/type`` is filled in with ``"remote"``, since this is a
       remote peer.
 
       The <peer> node itself is created as the next child of the parent node.
       This method only adds one peer node.  The parent must loop for each peer
-      in the C{StageConfig} object.
+      in the ``StageConfig`` object.
 
-      If C{remotePeer} is C{None}, this method call will be a no-op.
+      If ``remotePeer`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param remotePeer: Purge directory to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         remotePeer: Purge directory to be added to the document
       """
       if remotePeer is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "peer")
@@ -5869,13 +6047,14 @@ class Config(object):
 
       The <dir> node itself is created as the next child of the parent node.
       This method only adds one purge directory node.  The parent must loop for
-      each purge directory in the C{PurgeConfig} object.
+      each purge directory in the ``PurgeConfig`` object.
 
-      If C{purgeDir} is C{None}, this method call will be a no-op.
+      If ``purgeDir`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param purgeDir: Purge directory to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         purgeDir: Purge directory to be added to the document
       """
       if purgeDir is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "dir")
@@ -5892,11 +6071,12 @@ class Config(object):
          runBefore      depends/run_before
          runAfter       depends/run_after
 
-      If C{dependencies} is C{None}, this method call will be a no-op.
+      If ``dependencies`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param dependencies: C{ActionDependencies} object to be added to the document
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         dependencies: ``ActionDependencies`` object to be added to the document
       """
       if dependencies is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "depends")
@@ -5910,12 +6090,14 @@ class Config(object):
       """
       Creates a comma-separated string from a list of values.
 
-      As a special case, if C{valueList} is C{None}, then C{None} will be
+      As a special case, if ``valueList`` is ``None``, then ``None`` will be
       returned.
 
-      @param valueList: List of values to be placed into a string
+      Args:
+         valueList: List of values to be placed into a string
 
-      @return: Values from valueList as a comma-separated string.
+      Returns:
+          Values from valueList as a comma-separated string
       """
       if valueList is None:
          return None
@@ -5934,11 +6116,12 @@ class Config(object):
       The <blank_behavior> node itself is created as the next child of the
       parent node.
 
-      If C{blankBehavior} is C{None}, this method call will be a no-op.
+      If ``blankBehavior`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from L{createOutputDom}.
-      @param parentNode: Parent that the section should be appended to.
-      @param blankBehavior: Blanking behavior to be added to the document.
+      Args:
+         xmlDom: DOM tree as from :any:`createOutputDom`
+         parentNode: Parent that the section should be appended to
+         blankBehavior: Blanking behavior to be added to the document
       """
       if blankBehavior is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "blank_behavior")
@@ -5956,11 +6139,12 @@ class Config(object):
       documentation.
 
       This is the second pass at validation.  It ensures that any filled-in
-      section contains valid data.  Any sections which is not set to C{None} is
+      section contains valid data.  Any sections which is not set to ``None`` is
       validated per the rules for that section, laid out in the module
       documentation (above).
 
-      @raise ValueError: If configuration is invalid.
+      Raises:
+         ValueError: If configuration is invalid
       """
       self._validateReference()
       self._validateExtensions()
@@ -5975,7 +6159,8 @@ class Config(object):
       """
       Validates reference configuration.
       There are currently no reference-related validations.
-      @raise ValueError: If reference configuration is invalid.
+      Raises:
+         ValueError: If reference configuration is invalid
       """
       pass
 
@@ -5983,14 +6168,15 @@ class Config(object):
       """
       Validates extensions configuration.
 
-      The list of actions may be either C{None} or an empty list C{[]} if
+      The list of actions may be either ``None`` or an empty list ``[]`` if
       desired.  Each extended action must include a name, a module, and a
       function.
 
       Then, if the order mode is None or "index", an index is required; and if
       the order mode is "dependency", dependency information is required.
 
-      @raise ValueError: If reference configuration is invalid.
+      Raises:
+         ValueError: If reference configuration is invalid
       """
       if self.extensions is not None:
          if self.extensions.actions is not None:
@@ -6020,7 +6206,8 @@ class Config(object):
       can also rely on the backup user as the default remote user name if they
       choose.
 
-      @raise ValueError: If reference configuration is invalid.
+      Raises:
+         ValueError: If reference configuration is invalid
       """
       if self.options is not None:
          if self.options.startingDay is None:
@@ -6036,8 +6223,9 @@ class Config(object):
 
    def _validatePeers(self):
       """
-      Validates peers configuration per rules in L{_validatePeerList}.
-      @raise ValueError: If peers configuration is invalid.
+      Validates peers configuration per rules in :any:`_validatePeerList`.
+      Raises:
+         ValueError: If peers configuration is invalid
       """
       if self.peers is not None:
          self._validatePeerList(self.peers.localPeers, self.peers.remotePeers)
@@ -6048,19 +6236,20 @@ class Config(object):
 
       The target directory must be filled in.  The collect mode, archive mode,
       ignore file, and recursion level are all optional.  The list of absolute
-      paths to exclude and patterns to exclude may be either C{None} or an
-      empty list C{[]} if desired.
+      paths to exclude and patterns to exclude may be either ``None`` or an
+      empty list ``[]`` if desired.
 
       Each collect directory entry must contain an absolute path to collect,
       and then must either be able to take collect mode, archive mode and
-      ignore file configuration from the parent C{CollectConfig} object, or
+      ignore file configuration from the parent ``CollectConfig`` object, or
       must set each value on its own.  The list of absolute paths to exclude,
-      relative paths to exclude and patterns to exclude may be either C{None}
-      or an empty list C{[]} if desired.  Any list of absolute paths to exclude
+      relative paths to exclude and patterns to exclude may be either ``None``
+      or an empty list ``[]`` if desired.  Any list of absolute paths to exclude
       or patterns to exclude will be combined with the same list in the
-      C{CollectConfig} object to make the complete list for a given directory.
+      ``CollectConfig`` object to make the complete list for a given directory.
 
-      @raise ValueError: If collect configuration is invalid.
+      Raises:
+         ValueError: If collect configuration is invalid
       """
       if self.collect is not None:
          if self.collect.targetDir is None:
@@ -6096,9 +6285,10 @@ class Config(object):
       Peers are only required in this section if the peers configuration
       section is not filled in.  However, if any peers are filled in
       here, they override the peers configuration and must meet the
-      validation criteria in L{_validatePeerList}.
+      validation criteria in :any:`_validatePeerList`.
 
-      @raise ValueError: If stage configuration is invalid.
+      Raises:
+         ValueError: If stage configuration is invalid
       """
       if self.stage is not None:
          if self.stage.targetDir is None:
@@ -6122,16 +6312,17 @@ class Config(object):
       If blanking behavior is provided, then both a blanking mode and a
       blanking factor are required.
 
-      The image writer functionality in the C{writer} module is supposed to be
-      able to handle a device speed of C{None}.
+      The image writer functionality in the ``writer`` module is supposed to be
+      able to handle a device speed of ``None``.
 
-      Any caller which needs a "real" (non-C{None}) value for the device type
-      can use C{DEFAULT_DEVICE_TYPE}, which is guaranteed to be sensible.
+      Any caller which needs a "real" (non-``None``) value for the device type
+      can use ``DEFAULT_DEVICE_TYPE``, which is guaranteed to be sensible.
 
       This is also where we make sure that the media type -- which is already a
       valid type -- matches up properly with the device type.
 
-      @raise ValueError: If store configuration is invalid.
+      Raises:
+         ValueError: If store configuration is invalid
       """
       if self.store is not None:
          if self.store.sourceDir is None:
@@ -6154,11 +6345,12 @@ class Config(object):
       """
       Validates purge configuration.
 
-      The list of purge directories may be either C{None} or an empty list
-      C{[]} if desired.  All purge directories must contain a path and a retain
+      The list of purge directories may be either ``None`` or an empty list
+      ``[]`` if desired.  All purge directories must contain a path and a retain
       days value.
 
-      @raise ValueError: If purge configuration is invalid.
+      Raises:
+         ValueError: If purge configuration is invalid
       """
       if self.purge is not None:
          if self.purge.purgeDirs is not None:
@@ -6179,10 +6371,12 @@ class Config(object):
       options section and rcp command is taken directly from the options
       section.
 
-      @param localPeers: List of local peers
-      @param remotePeers: List of remote peers
+      Args:
+         localPeers: List of local peers
+         remotePeers: List of remote peers
 
-      @raise ValueError: If stage configuration is invalid.
+      Raises:
+         ValueError: If stage configuration is invalid
       """
       if localPeers is None and remotePeers is None:
          raise ValueError("Peer list must contain at least one backup peer.")
@@ -6237,10 +6431,12 @@ def readByteQuantity(parent, name):
    ends with "MB" or "GB", then the string before that is interpreted as
    megabytes or gigabytes.  Otherwise, it is intepreted as bytes.
 
-   @param parent: Parent node to search beneath.
-   @param name: Name of node to search for.
+   Args:
+      parent: Parent node to search beneath
+      name: Name of node to search for
 
-   @return: ByteQuantity parsed from XML document
+   Returns:
+       ByteQuantity parsed from XML document
    """
    data = readString(parent, name)
    if data is None:
@@ -6264,19 +6460,21 @@ def addByteQuantityNode(xmlDom, parentNode, nodeName, byteQuantity):
    """
    Adds a text node as the next child of a parent, to contain a byte size.
 
-   If the C{byteQuantity} is None, then the node will be created, but will
+   If the ``byteQuantity`` is None, then the node will be created, but will
    be empty (i.e. will contain no text node child).
 
    The size in bytes will be normalized.  If it is larger than 1.0 GB, it will
    be shown in GB ("1.0 GB").  If it is larger than 1.0 MB ("1.0 MB"), it will
    be shown in MB.  Otherwise, it will be shown in bytes ("423413").
 
-   @param xmlDom: DOM tree as from C{impl.createDocument()}.
-   @param parentNode: Parent node to create child for.
-   @param nodeName: Name of the new container node.
-   @param byteQuantity: ByteQuantity object to put into the XML document
+   Args:
+      xmlDom: DOM tree as from ``impl.createDocument()``
+      parentNode: Parent node to create child for
+      nodeName: Name of the new container node
+      byteQuantity: ByteQuantity object to put into the XML document
 
-   @return: Reference to the newly-created node.
+   Returns:
+       Reference to the newly-created node
    """
    if byteQuantity is None:
       byteString = None

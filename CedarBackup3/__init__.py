@@ -38,7 +38,7 @@ Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
 written in the Python programming language.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 

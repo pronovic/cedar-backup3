@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'collect' action.
-@sort: executeCollect
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -78,22 +77,18 @@ def executeCollect(configPath, options, config):
    """
    Executes the collect backup action.
 
-   @note: When the collect action is complete, we will write a collect
+   *Note:* When the collect action is complete, we will write a collect
    indicator to the collect directory, so it's obvious that the collect action
    has completed.  The stage process uses this indicator to decide whether a
    peer is ready to be staged.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise TarError: If there is a problem creating a tar file
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      TarError: If there is a problem creating a tar file
    """
    logger.debug("Executing the 'collect' action.")
    if config.options is None or config.collect is None:
@@ -164,13 +159,14 @@ def _collectFile(config, absolutePath, tarfilePath, collectMode, archiveMode, re
    The caller must decide what the collect and archive modes are, since they
    can be on both the collect configuration and the collect file itself.
 
-   @param config: Config object.
-   @param absolutePath: Absolute path of file to collect.
-   @param tarfilePath: Path to tarfile that should be created.
-   @param collectMode: Collect mode to use.
-   @param archiveMode: Archive mode to use.
-   @param resetDigest: Reset digest flag.
-   @param digestPath: Path to digest file on disk, if needed.
+   Args:
+      config: Config object
+      absolutePath: Absolute path of file to collect
+      tarfilePath: Path to tarfile that should be created
+      collectMode: Collect mode to use
+      archiveMode: Archive mode to use
+      resetDigest: Reset digest flag
+      digestPath: Path to digest file on disk, if needed
    """
    backupList = BackupFileList()
    backupList.addFile(absolutePath)
@@ -196,17 +192,18 @@ def _collectDirectory(config, absolutePath, collectMode, archiveMode,
    The caller must decide what the collect and archive modes are, since they
    can be on both the collect configuration and the collect directory itself.
 
-   @param config: Config object.
-   @param absolutePath: Absolute path of directory to collect.
-   @param collectMode: Collect mode to use.
-   @param archiveMode: Archive mode to use.
-   @param ignoreFile: Ignore file to use.
-   @param linkDepth: Link depth value to use.
-   @param dereference: Dereference flag to use.
-   @param resetDigest: Reset digest flag.
-   @param excludePaths: List of absolute paths to exclude.
-   @param excludePatterns: List of patterns to exclude.
-   @param recursionLevel: Recursion level (zero for no recursion)
+   Args:
+      config: Config object
+      absolutePath: Absolute path of directory to collect
+      collectMode: Collect mode to use
+      archiveMode: Archive mode to use
+      ignoreFile: Ignore file to use
+      linkDepth: Link depth value to use
+      dereference: Dereference flag to use
+      resetDigest: Reset digest flag
+      excludePaths: List of absolute paths to exclude
+      excludePatterns: List of patterns to exclude
+      recursionLevel: Recursion level (zero for no recursion)
    """
    if recursionLevel == 0:
       # Collect the actual directory because we're at recursion level 0
@@ -252,7 +249,7 @@ def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, a
    Execute the backup process for the indicated backup list.
 
    This function exists mainly to consolidate functionality between the
-   L{_collectFile} and L{_collectDirectory} functions.  Those functions build
+   :any:`_collectFile` and :any:`_collectDirectory` functions.  Those functions build
    the backup list; this function causes the backup to execute properly and
    also manages usage of the digest file on disk as explained in their
    comments.
@@ -261,14 +258,15 @@ def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, a
    that is being backed up.  This might little wasteful in terms of the number
    of files that we keep around, but it's consistent and easy to understand.
 
-   @param config: Config object.
-   @param backupList: List to execute backup for
-   @param absolutePath: Absolute path of directory or file to collect.
-   @param tarfilePath: Path to tarfile that should be created.
-   @param collectMode: Collect mode to use.
-   @param archiveMode: Archive mode to use.
-   @param resetDigest: Reset digest flag.
-   @param digestPath: Path to digest file on disk, if needed.
+   Args:
+      config: Config object
+      backupList: List to execute backup for
+      absolutePath: Absolute path of directory or file to collect
+      tarfilePath: Path to tarfile that should be created
+      collectMode: Collect mode to use
+      archiveMode: Archive mode to use
+      resetDigest: Reset digest flag
+      digestPath: Path to digest file on disk, if needed
    """
    if collectMode != 'incr':
       logger.debug("Collect mode is [%s]; no digest will be used.", collectMode)
@@ -310,9 +308,11 @@ def _loadDigest(digestPath):
    for some other reason), then an empty dictionary will be returned - but the
    condition will be logged.
 
-   @param digestPath: Path to the digest file on disk.
+   Args:
+      digestPath: Path to the digest file on disk
 
-   @return: Dictionary representing contents of digest path.
+   Returns:
+       Dictionary representing contents of digest path
    """
    if not os.path.isfile(digestPath):
       digest = {}
@@ -339,9 +339,10 @@ def _writeDigest(config, digest, digestPath):
    If we can't write the digest successfully for any reason, we'll log the
    condition but won't throw an exception.
 
-   @param config: Config object.
-   @param digest: Digest dictionary to write to disk.
-   @param digestPath: Path to the digest file on disk.
+   Args:
+      config: Config object
+      digest: Digest dictionary to write to disk
+      digestPath: Path to the digest file on disk
    """
    try:
       with open(digestPath, "wb") as f:
@@ -364,9 +365,11 @@ def _getCollectMode(config, item):
    """
    Gets the collect mode that should be used for a collect directory or file.
    If possible, use the one on the file or directory, otherwise take from collect section.
-   @param config: Config object.
-   @param item: C{CollectFile} or C{CollectDir} object
-   @return: Collect mode to use.
+   Args:
+      config: Config object
+      item: ``CollectFile`` or ``CollectDir`` object
+   Returns:
+       Collect mode to use
    """
    if item.collectMode is None:
       collectMode = config.collect.collectMode
@@ -384,9 +387,11 @@ def _getArchiveMode(config, item):
    """
    Gets the archive mode that should be used for a collect directory or file.
    If possible, use the one on the file or directory, otherwise take from collect section.
-   @param config: Config object.
-   @param item: C{CollectFile} or C{CollectDir} object
-   @return: Archive mode to use.
+   Args:
+      config: Config object
+      item: ``CollectFile`` or ``CollectDir`` object
+   Returns:
+       Archive mode to use
    """
    if item.archiveMode is None:
       archiveMode = config.collect.archiveMode
@@ -404,9 +409,11 @@ def _getIgnoreFile(config, item):
    """
    Gets the ignore file that should be used for a collect directory or file.
    If possible, use the one on the file or directory, otherwise take from collect section.
-   @param config: Config object.
-   @param item: C{CollectFile} or C{CollectDir} object
-   @return: Ignore file to use.
+   Args:
+      config: Config object
+      item: ``CollectFile`` or ``CollectDir`` object
+   Returns:
+       Ignore file to use
    """
    if item.ignoreFile is None:
       ignoreFile = config.collect.ignoreFile
@@ -424,8 +431,10 @@ def _getLinkDepth(item):
    """
    Gets the link depth that should be used for a collect directory.
    If possible, use the one on the directory, otherwise set a value of 0 (zero).
-   @param item: C{CollectDir} object
-   @return: Link depth to use.
+   Args:
+      item: ``CollectDir`` object
+   Returns:
+       Link depth to use
    """
    if item.linkDepth is None:
       linkDepth = 0
@@ -443,8 +452,10 @@ def _getDereference(item):
    """
    Gets the dereference flag that should be used for a collect directory.
    If possible, use the one on the directory, otherwise set a value of False.
-   @param item: C{CollectDir} object
-   @return: Dereference flag to use.
+   Args:
+      item: ``CollectDir`` object
+   Returns:
+       Dereference flag to use
    """
    if item.dereference is None:
       dereference = False
@@ -462,8 +473,10 @@ def _getRecursionLevel(item):
    """
    Gets the recursion level that should be used for a collect directory.
    If possible, use the one on the directory, otherwise set a value of 0 (zero).
-   @param item: C{CollectDir} object
-   @return: Recursion level to use.
+   Args:
+      item: ``CollectDir`` object
+   Returns:
+       Recursion level to use
    """
    if item.recursionLevel is None:
       recursionLevel = 0
@@ -480,9 +493,11 @@ def _getRecursionLevel(item):
 def _getDigestPath(config, absolutePath):
    """
    Gets the digest path associated with a collect directory or file.
-   @param config: Config object.
-   @param absolutePath: Absolute path to generate digest for
-   @return: Absolute path to the digest associated with the collect directory or file.
+   Args:
+      config: Config object
+      absolutePath: Absolute path to generate digest for
+   Returns:
+       Absolute path to the digest associated with the collect directory or file
    """
    normalized = buildNormalizedPath(absolutePath)
    filename = "%s.%s" % (normalized, DIGEST_EXTENSION)
@@ -498,10 +513,12 @@ def _getDigestPath(config, absolutePath):
 def _getTarfilePath(config, absolutePath, archiveMode):
    """
    Gets the tarfile path (including correct extension) associated with a collect directory.
-   @param config: Config object.
-   @param absolutePath: Absolute path to generate tarfile for
-   @param archiveMode: Archive mode to use for this tarfile.
-   @return: Absolute path to the tarfile associated with the collect directory.
+   Args:
+      config: Config object
+      absolutePath: Absolute path to generate tarfile for
+      archiveMode: Archive mode to use for this tarfile
+   Returns:
+       Absolute path to the tarfile associated with the collect directory
    """
    if archiveMode == 'tar':
       extension = "tar"
@@ -533,10 +550,12 @@ def _getExclusions(config, collectDir):
    backup for a given directory.  It is derived from the list of patterns from
    the collect configuration and from the collect directory itself.
 
-   @param config: Config object.
-   @param collectDir: Collect directory object.
+   Args:
+      config: Config object
+      collectDir: Collect directory object
 
-   @return: Tuple (files, patterns) indicating what to exclude.
+   Returns:
+       Tuple (files, patterns) indicating what to exclude
    """
    paths = []
    if config.collect.absoluteExcludePaths is not None:

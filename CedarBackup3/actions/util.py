@@ -37,8 +37,7 @@
 
 """
 Implements action-related utilities
-@sort: findDailyDirs
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -86,9 +85,11 @@ def findDailyDirs(stagingDir, indicatorFile):
    Returns a list of all daily staging directories that do not contain
    the indicated indicator file.
 
-   @param stagingDir: Configured staging directory (config.targetDir)
+   Args:
+      stagingDir: Configured staging directory (config.targetDir)
 
-   @return: List of absolute paths to daily staging directories.
+   Returns:
+       List of absolute paths to daily staging directories
    """
    results = FilesystemList()
    yearDirs = FilesystemList()
@@ -127,7 +128,7 @@ def createWriter(config):
    use.  Since all writers implement the same interface, there's no need for
    actions to care which one they're working with.
 
-   Currently, the C{cdwriter} and C{dvdwriter} device types are allowed.  An
+   Currently, the ``cdwriter`` and ``dvdwriter`` device types are allowed.  An
    exception will be raised if any other device type is used.
 
    This function also checks to make sure that the device isn't mounted before
@@ -135,12 +136,15 @@ def createWriter(config):
    device is mounted, we have problems with the backup.  We may as well do the
    check here first, before instantiating the writer.
 
-   @param config: Config object.
+   Args:
+      config: Config object
 
-   @return: Writer that can be used to write a directory to some media.
+   Returns:
+       Writer that can be used to write a directory to some media
 
-   @raise ValueError: If there is a problem getting the writer.
-   @raise IOError: If there is a problem creating the writer object.
+   Raises:
+      ValueError: If there is a problem getting the writer
+      IOError: If there is a problem creating the writer object
    """
    devicePath = config.store.devicePath
    deviceScsiId = config.store.deviceScsiId
@@ -167,11 +171,13 @@ def createWriter(config):
 def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
    """
    Writes an indicator file into a target directory.
-   @param targetDir: Target directory in which to write indicator
-   @param indicatorFile: Name of the indicator file
-   @param backupUser: User that indicator file should be owned by
-   @param backupGroup: Group that indicator file should be owned by
-   @raise IOException: If there is a problem writing the indicator file
+   Args:
+      targetDir: Target directory in which to write indicator
+      indicatorFile: Name of the indicator file
+      backupUser: User that indicator file should be owned by
+      backupGroup: Group that indicator file should be owned by
+   Raises:
+      IOException: If there is a problem writing the indicator file
    """
    filename = os.path.join(targetDir, indicatorFile)
    logger.debug("Writing indicator file [%s].", filename)
@@ -192,14 +198,17 @@ def getBackupFiles(targetDir):
    """
    Gets a list of backup files in a target directory.
 
-   Files that match INDICATOR_PATTERN (i.e. C{"cback.store"}, C{"cback.stage"},
+   Files that match INDICATOR_PATTERN (i.e. ``"cback.store"``, ``"cback.stage"``,
    etc.) are assumed to be indicator files and are ignored.
 
-   @param targetDir: Directory to look in
+   Args:
+      targetDir: Directory to look in
 
-   @return: List of backup files in the directory
+   Returns:
+       List of backup files in the directory
 
-   @raise ValueError: If the target directory does not exist
+   Raises:
+      ValueError: If the target directory does not exist
    """
    if not os.path.isdir(targetDir):
       raise ValueError("Target directory [%s] is not a directory or does not exist." % targetDir)
@@ -225,12 +234,14 @@ def checkMediaState(storeConfig):
    initialized.
 
    The check varies depending on whether the media is rewritable or not.  For
-   non-rewritable media, we also accept a C{None} media label, since this kind
+   non-rewritable media, we also accept a ``None`` media label, since this kind
    of media cannot safely be initialized.
 
-   @param storeConfig: Store configuration
+   Args:
+      storeConfig: Store configuration
 
-   @raise ValueError: If media is not initialized.
+   Raises:
+      ValueError: If media is not initialized
    """
    mediaLabel = readMediaLabel(storeConfig.devicePath)
    if storeConfig.mediaType in REWRITABLE_MEDIA_TYPES:
@@ -257,15 +268,17 @@ def initializeMediaState(config):
    This is done by writing an mostly-empty image (it contains a "Cedar Backup"
    directory) to the media with a known media label.
 
-   @note: Only rewritable media (CD-RW, DVD+RW) can be initialized.  It
+   *Note:* Only rewritable media (CD-RW, DVD+RW) can be initialized.  It
    doesn't make any sense to initialize media that cannot be rewritten (CD-R,
    DVD+R), since Cedar Backup would then not be able to use that media for a
    backup.
 
-   @param config: Cedar Backup configuration
+   Args:
+      config: Cedar Backup configuration
 
-   @raise ValueError: If media could not be initialized.
-   @raise ValueError: If the configured media type is not rewritable
+   Raises:
+      ValueError: If media could not be initialized
+      ValueError: If the configured media type is not rewritable
    """
    if not config.store.mediaType in REWRITABLE_MEDIA_TYPES:
       raise ValueError("Only rewritable media types can be initialized.")
@@ -291,7 +304,8 @@ def initializeMediaState(config):
 def buildMediaLabel():
    """
    Builds a media label to be used on Cedar Backup media.
-   @return: Media label as a string.
+   Returns:
+       Media label as a string
    """
    currentDate = time.strftime("%d-%b-%Y").upper()
    return "%s %s" % (MEDIA_LABEL_PREFIX, currentDate)
@@ -309,11 +323,13 @@ def _getDeviceType(config):
    """
    Gets the device type that should be used for storing.
 
-   Use the configured device type if not C{None}, otherwise use
-   L{config.DEFAULT_DEVICE_TYPE}.
+   Use the configured device type if not ``None``, otherwise use
+   :any:`config.DEFAULT_DEVICE_TYPE`.
 
-   @param config: Config object.
-   @return: Device type to be used.
+   Args:
+      config: Config object
+   Returns:
+       Device type to be used
    """
    if config.store.deviceType is None:
       deviceType = DEFAULT_DEVICE_TYPE
@@ -331,8 +347,8 @@ def _getMediaType(config):
    """
    Gets the media type that should be used for storing.
 
-   Use the configured media type if not C{None}, otherwise use
-   C{DEFAULT_MEDIA_TYPE}.
+   Use the configured media type if not ``None``, otherwise use
+   ``DEFAULT_MEDIA_TYPE``.
 
    Once we figure out what configuration value to use, we return a media type
    value that is valid in one of the supported writers::
@@ -344,10 +360,13 @@ def _getMediaType(config):
       MEDIA_DVDPLUSR
       MEDIA_DVDPLUSRW
 
-   @param config: Config object.
+   Args:
+      config: Config object
 
-   @return: Media type to be used as a writer media type value.
-   @raise ValueError: If the media type is not valid.
+   Returns:
+       Media type to be used as a writer media type value
+   Raises:
+      ValueError: If the media type is not valid
    """
    if config.store.mediaType is None:
       mediaType = DEFAULT_MEDIA_TYPE

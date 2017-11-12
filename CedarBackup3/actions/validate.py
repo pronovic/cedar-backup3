@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'validate' action.
-@sort: executeValidate
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -89,16 +88,12 @@ def executeValidate(configPath, options, config):
    Any reported problems will be logged at the ERROR level normally, or at the
    INFO level if the quiet flag is enabled.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: If some configuration value is invalid.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: If some configuration value is invalid
    """
    logger.debug("Executing the 'validate' action.")
    if options.quiet:
@@ -134,12 +129,14 @@ def _checkDir(path, writable, logfunc, prefix):
    The path must exist, must be a directory, must be readable and executable,
    and must optionally be writable.
 
-   @param path: Path to check.
-   @param writable: Check that path is writable.
-   @param logfunc: Function to use for logging errors.
-   @param prefix: Prefix to use on logged errors.
+   Args:
+      path: Path to check
+      writable: Check that path is writable
+      logfunc: Function to use for logging errors
+      prefix: Prefix to use on logged errors
 
-   @return: True if the directory is OK, False otherwise.
+   Returns:
+       True if the directory is OK, False otherwise
    """
    if not os.path.exists(path):
       logfunc("%s [%s] does not exist." % (prefix, path))
@@ -169,10 +166,12 @@ def _validateReference(config, logfunc):
 
    We only validate that reference configuration exists at all.
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, false otherwise.
+   Returns:
+       True if configuration is valid, false otherwise
    """
    valid = True
    if config.reference is None:
@@ -195,10 +194,12 @@ def _validateOptions(config, logfunc):
       - The working directory must exist and must be writable
       - The backup user and backup group must exist
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, false otherwise.
+   Returns:
+       True if configuration is valid, false otherwise
    """
    valid = True
    if config.options is None:
@@ -227,10 +228,12 @@ def _validateCollect(config, logfunc):
       - The target directory must exist and must be writable
       - Each of the individual collect directories must exist and must be readable
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, false otherwise.
+   Returns:
+       True if configuration is valid, false otherwise
    """
    valid = True
    if config.collect is not None:
@@ -254,15 +257,17 @@ def _validateStage(config, logfunc):
       - The target directory must exist and must be writable
       - Each local peer's collect directory must exist and must be readable
 
-   @note: We currently do not validate anything having to do with remote peers,
+   *Note:* We currently do not validate anything having to do with remote peers,
    since we don't have a straightforward way of doing it.  It would require
    adding an rsh command rather than just an rcp command to configuration, and
    that just doesn't seem worth it right now.
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, False otherwise.
+   Returns:
+       True if configuration is valid, False otherwise
    """
    valid = True
    if config.stage is not None:
@@ -286,10 +291,12 @@ def _validateStore(config, logfunc):
       - The source directory must exist and must be readable
       - The backup device (path and SCSI device) must be valid
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, False otherwise.
+   Returns:
+       True if configuration is valid, False otherwise
    """
    valid = True
    if config.store is not None:
@@ -314,10 +321,12 @@ def _validatePurge(config, logfunc):
 
       - Each purge directory must exist and must be writable
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, False otherwise.
+   Returns:
+       True if configuration is valid, False otherwise
    """
    valid = True
    if config.purge is not None:
@@ -339,10 +348,12 @@ def _validateExtensions(config, logfunc):
 
       - Each indicated extension function must exist.
 
-   @param config: Program configuration.
-   @param logfunc: Function to use for logging errors
+   Args:
+      config: Program configuration
+      logfunc: Function to use for logging errors
 
-   @return: True if configuration is valid, False otherwise.
+   Returns:
+       True if configuration is valid, False otherwise
    """
    valid = True
    if config.extensions is not None:

@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'purge' action.
-@sort: executePurge
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -77,16 +76,12 @@ def executePurge(configPath, options, config):
    list anything that's younger than the configured retain days value, and then
    purge from the filesystem what's left.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
    """
    logger.debug("Executing the 'purge' action.")
    if config.options is None or config.purge is None:

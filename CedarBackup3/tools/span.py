@@ -47,7 +47,7 @@ Most configuration is taken from the Cedar Backup configuration file,
 specifically the store section.  A few pieces of configuration are taken
 directly from the user.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -103,7 +103,8 @@ class SpanOptions(Options):
       """
       Validates command-line options represented by the object.
       There are no validations here, because we don't use any actions.
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       pass
 
@@ -118,30 +119,31 @@ class SpanOptions(Options):
 
 def cli():
    """
-   Implements the command-line interface for the C{cback3-span} script.
+   Implements the command-line interface for the ``cback3-span`` script.
 
    Essentially, this is the "main routine" for the cback3-span script.  It does
    all of the argument processing for the script, and then also implements the
    tool functionality.
 
-   This function looks pretty similiar to C{CedarBackup3.cli.cli()}.  It's not
+   This function looks pretty similiar to ``CedarBackup3.cli.cli()``.  It's not
    easy to refactor this code to make it reusable and also readable, so I've
    decided to just live with the duplication.
 
    A different error code is returned for each type of failure:
 
-      - C{1}: The Python interpreter version is < 3.4
-      - C{2}: Error processing command-line arguments
-      - C{3}: Error configuring logging
-      - C{4}: Error parsing indicated configuration file
-      - C{5}: Backup was interrupted with a CTRL-C or similar
-      - C{6}: Error executing other parts of the script
+      - ``1``: The Python interpreter version is < 3.4
+      - ``2``: Error processing command-line arguments
+      - ``3``: Error configuring logging
+      - ``4``: Error parsing indicated configuration file
+      - ``5``: Backup was interrupted with a CTRL-C or similar
+      - ``6``: Error executing other parts of the script
 
-   @note: This script uses print rather than logging to the INFO level, because
+   *Note:* This script uses print rather than logging to the INFO level, because
    it is interactive.  Underlying Cedar Backup functionality uses the logging
    mechanism exclusively.
 
-   @return: Error code as described above.
+   Returns:
+       Error code as described above
    """
    try:
       if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
@@ -227,8 +229,9 @@ def cli():
 def _usage(fd=sys.stderr):
    """
    Prints usage information for the cback3-span script.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write(" Usage: cback3-span [switches]\n")
@@ -261,8 +264,9 @@ def _usage(fd=sys.stderr):
 def _version(fd=sys.stdout):
    """
    Prints version information for the cback3-span script.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write(" Cedar Backup 'span' tool.\n")
@@ -284,8 +288,9 @@ def _version(fd=sys.stdout):
 def _diagnostics(fd=sys.stdout):
    """
    Prints runtime diagnostics information.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write("Diagnostics:\n")
@@ -303,13 +308,11 @@ def _executeAction(options, config):
    """
    Implements the guts of the cback3-span tool.
 
-   @param options: Program command-line options.
-   @type options: SpanOptions object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise Exception: Under many generic error conditions
+   Args:
+      options (SpanOptions object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      Exception: Under many generic error conditions
    """
    print("")
    print("================================================")
@@ -452,7 +455,7 @@ def _findDailyDirs(stagingDir):
    Returns a list of all daily staging directories that have not yet been
    stored.
 
-   The store indicator file C{cback.store} will be written to a daily staging
+   The store indicator file ``cback.store`` will be written to a daily staging
    directory once that directory is written to disc.  So, this function looks
    at each daily staging directory within the configured staging directory, and
    returns a list of those which do not contain the indicator file.
@@ -461,9 +464,11 @@ def _findDailyDirs(stagingDir):
    directories, and a BackupFileList containing all files among those staging
    directories.
 
-   @param stagingDir: Configured staging directory
+   Args:
+      stagingDir: Configured staging directory
 
-   @return: Tuple (staging dirs, backup file list)
+   Returns:
+       Tuple (staging dirs, backup file list)
    """
    results = findDailyDirs(stagingDir, STORE_INDICATOR)
    fileList = BackupFileList()
@@ -480,8 +485,9 @@ def _writeStoreIndicator(config, dailyDirs):
    """
    Writes a store indicator file into daily directories.
 
-   @param config: Config object.
-   @param dailyDirs: List of daily directories
+   Args:
+      config: Config object
+      dailyDirs: List of daily directories
    """
    for dailyDir in dailyDirs:
       writeIndicatorFile(dailyDir, STORE_INDICATOR,
@@ -497,8 +503,10 @@ def _getWriter(config):
    """
    Gets a writer and media capacity from store configuration.
    Returned is a writer and a media capacity in bytes.
-   @param config: Cedar Backup configuration
-   @return: Tuple of (writer, mediaCapacity)
+   Args:
+      config: Cedar Backup configuration
+   Returns:
+       Tuple of (writer, mediaCapacity)
    """
    writer = createWriter(config)
    mediaCapacity = convertSize(writer.media.capacity, UNIT_SECTORS, UNIT_BYTES)
@@ -512,9 +520,10 @@ def _getWriter(config):
 def _writeDisc(config, writer, spanItem):
    """
    Writes a span item to disc.
-   @param config: Cedar Backup configuration
-   @param writer: Writer to use
-   @param spanItem: Span item to write
+   Args:
+      config: Cedar Backup configuration
+      writer: Writer to use
+      spanItem: Span item to write
    """
    print("")
    _discInitializeImage(config, writer, spanItem)
@@ -526,9 +535,10 @@ def _writeDisc(config, writer, spanItem):
 def _discInitializeImage(config, writer, spanItem):
    """
    Initialize an ISO image for a span item.
-   @param config: Cedar Backup configuration
-   @param writer: Writer to use
-   @param spanItem: Span item to write
+   Args:
+      config: Cedar Backup configuration
+      writer: Writer to use
+      spanItem: Span item to write
    """
    complete = False
    while not complete:
@@ -553,8 +563,9 @@ def _discInitializeImage(config, writer, spanItem):
 def _discWriteImage(config, writer):
    """
    Writes a ISO image for a span item.
-   @param config: Cedar Backup configuration
-   @param writer: Writer to use
+   Args:
+      config: Cedar Backup configuration
+      writer: Writer to use
    """
    complete = False
    while not complete:
@@ -576,9 +587,10 @@ def _discWriteImage(config, writer):
 def _discConsistencyCheck(config, writer, spanItem):
    """
    Run a consistency check on an ISO image for a span item.
-   @param config: Cedar Backup configuration
-   @param writer: Writer to use
-   @param spanItem: Span item to write
+   Args:
+      config: Cedar Backup configuration
+      writer: Writer to use
+      spanItem: Span item to write
    """
    if config.store.checkData:
       complete = False
@@ -621,11 +633,13 @@ def _consistencyCheck(config, fileList):
 
    @warning: The implementation of this function is very UNIX-specific.
 
-   @param config: Config object.
-   @param fileList: BackupFileList whose contents to check against
+   Args:
+      config: Config object
+      fileList: BackupFileList whose contents to check against
 
-   @raise ValueError: If the check fails
-   @raise IOError: If there is a problem working with the media.
+   Raises:
+      ValueError: If the check fails
+      IOError: If there is a problem working with the media
    """
    logger.debug("Running consistency check.")
    mountPoint = tempfile.mkdtemp(dir=config.options.workingDir)
@@ -653,9 +667,11 @@ def _getYesNoAnswer(prompt, default):
    The default will be placed at the end of the prompt.
    A "Y" or "y" is considered yes, anything else no.
    A blank (empty) response results in the default.
-   @param prompt: Prompt to show.
-   @param default: Default to set if the result is blank
-   @return: Boolean true/false corresponding to Y/N
+   Args:
+      prompt: Prompt to show
+      default: Default to set if the result is blank
+   Returns:
+       Boolean true/false corresponding to Y/N
    """
    if default == "Y":
       prompt = "%s [Y/n]: " % prompt
@@ -675,10 +691,12 @@ def _getChoiceAnswer(prompt, default, validChoices):
    The default will be placed at the end of the prompt.
    The function loops until getting a valid choice.
    A blank (empty) response results in the default.
-   @param prompt: Prompt to show.
-   @param default: Default to set if the result is None or blank.
-   @param validChoices: List of valid choices (strings)
-   @return: Valid choice from user.
+   Args:
+      prompt: Prompt to show
+      default: Default to set if the result is None or blank
+      validChoices: List of valid choices (strings)
+   Returns:
+       Valid choice from user
    """
    prompt = "%s [%s]: " % (prompt, default)
    answer = input(prompt)
@@ -695,9 +713,11 @@ def _getFloat(prompt, default):
    The default will be placed at the end of the prompt.
    The function loops until getting a valid floating point number.
    A blank (empty) response results in the default.
-   @param prompt: Prompt to show.
-   @param default: Default to set if the result is None or blank.
-   @return: Floating point number from user
+   Args:
+      prompt: Prompt to show
+      default: Default to set if the result is None or blank
+   Returns:
+       Floating point number from user
    """
    prompt = "%s [%.2f]: " % (prompt, default)
    while True:
@@ -713,7 +733,8 @@ def _getFloat(prompt, default):
 def _getReturn(prompt):
    """
    Get a return key from the user.
-   @param prompt: Prompt to show.
+   Args:
+      prompt: Prompt to show
    """
    input(prompt)
 

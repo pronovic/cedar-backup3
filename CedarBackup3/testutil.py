@@ -45,15 +45,10 @@ useful within the source tree.
 
 Many of these functions are in here because they are "good enough" for unit
 test work but are not robust enough to be real public functions.  Others (like
-L{removedir}) do what they are supposed to, but I don't want responsibility for
+:any:`removedir`) do what they are supposed to, but I don't want responsibility for
 making them available to others.
 
-@sort: findResources, commandAvailable,
-       buildPath, removedir, extractTar, changeFileAge,
-       getMaskAsMode, getLogin, failUnlessAssignRaises, runningAsRoot,
-       platformDebian, platformMacOsX
-
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -139,10 +134,13 @@ def setupOverrides():
 def findResources(resources, dataDirs):
    """
    Returns a dictionary of locations for various resources.
-   @param resources: List of required resources.
-   @param dataDirs: List of data directories to search within for resources.
-   @return: Dictionary mapping resource name to resource path.
-   @raise Exception: If some resource cannot be found.
+   Args:
+      resources: List of required resources
+      dataDirs: List of data directories to search within for resources
+   Returns:
+       Dictionary mapping resource name to resource path
+   Raises:
+      Exception: If some resource cannot be found
    """
    mapping = { }
    for resource in resources:
@@ -164,8 +162,10 @@ def commandAvailable(command):
    """
    Indicates whether a command is available on $PATH somewhere.
    This should work on both Windows and UNIX platforms.
-   @param command: Commang to search for
-   @return: Boolean true/false depending on whether command is available.
+   Args:
+      command: Commang to search for
+   Returns:
+       Boolean true/false depending on whether command is available
    """
    if "PATH" in os.environ:
       for path in os.environ["PATH"].split(os.sep):
@@ -181,10 +181,13 @@ def commandAvailable(command):
 def buildPath(components):
    """
    Builds a complete path from a list of components.
-   For instance, constructs C{"/a/b/c"} from C{["/a", "b", "c",]}.
-   @param components: List of components.
-   @returns: String path constructed from components.
-   @raise ValueError: If a path cannot be encoded properly.
+   For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c",]``.
+   Args:
+      components: List of components
+   Returns:
+       String path constructed from components
+   Raises:
+      ValueError: If a path cannot be encoded properly
    """
    path = components[0]
    for component in components[1:]:
@@ -200,8 +203,10 @@ def removedir(tree):
    """
    Recursively removes an entire directory.
    This is basically taken from an example on python.com.
-   @param tree: Directory tree to remove.
-   @raise ValueError: If a path cannot be encoded properly.
+   Args:
+      tree: Directory tree to remove
+   Raises:
+      ValueError: If a path cannot be encoded properly
    """
    tree = encodePath(tree)
    for root, dirs, files in os.walk(tree, topdown=False):
@@ -227,9 +232,11 @@ def removedir(tree):
 def extractTar(tmpdir, filepath):
    """
    Extracts the indicated tar file to the indicated tmpdir.
-   @param tmpdir: Temp directory to extract to.
-   @param filepath: Path to tarfile to extract.
-   @raise ValueError: If a path cannot be encoded properly.
+   Args:
+      tmpdir: Temp directory to extract to
+      filepath: Path to tarfile to extract
+   Raises:
+      ValueError: If a path cannot be encoded properly
    """
    # pylint: disable=E1101
    tmpdir = encodePath(tmpdir)
@@ -249,20 +256,22 @@ def extractTar(tmpdir, filepath):
 
 def changeFileAge(filename, subtract=None):
    """
-   Changes a file age using the C{os.utime} function.
+   Changes a file age using the ``os.utime`` function.
 
-   @note: Some platforms don't seem to be able to set an age precisely.  As a
+   *Note:* Some platforms don't seem to be able to set an age precisely.  As a
    result, whereas we might have intended to set an age of 86400 seconds, we
    actually get an age of 86399.375 seconds.  When util.calculateFileAge()
    looks at that the file, it calculates an age of 0.999992766204 days, which
    then gets truncated down to zero whole days.  The tests get very confused.
    To work around this, I always subtract off one additional second as a fudge
-   factor.  That way, the file age will be I{at least} as old as requested
+   factor.  That way, the file age will be *at least* as old as requested
    later on.
 
-   @param filename: File to operate on.
-   @param subtract: Number of seconds to subtract from the current time.
-   @raise ValueError: If a path cannot be encoded properly.
+   Args:
+      filename: File to operate on
+      subtract: Number of seconds to subtract from the current time
+   Raises:
+      ValueError: If a path cannot be encoded properly
    """
    filename = encodePath(filename)
    newTime = time.time() - 1
@@ -279,7 +288,8 @@ def getMaskAsMode():
    """
    Returns the user's current umask inverted to a mode.
    A mode is mostly a bitwise inversion of a mask, i.e. mask 002 is mode 775.
-   @return: Umask converted to a mode, as an integer.
+   Returns:
+       Umask converted to a mode, as an integer
    """
    umask = os.umask(0o777)
    os.umask(umask)
@@ -305,8 +315,9 @@ def getLogin():
 def randomFilename(length, prefix=None, suffix=None):
    """
    Generates a random filename with the given length.
-   @param length: Length of filename.
-   @return Random filename.
+   Args:
+      length: Length of filename
+   @return Random filename
    """
    characters = [None] * length
    for i in range(length):
@@ -325,9 +336,9 @@ def randomFilename(length, prefix=None, suffix=None):
 # pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
    """
-   Equivalent of C{failUnlessRaises}, but used for property assignments instead.
+   Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 
-   It's nice to be able to use C{failUnlessRaises} to check that a method call
+   It's nice to be able to use ``failUnlessRaises`` to check that a method call
    raises the exception that you expect.  Unfortunately, this method can't be
    used to check Python propery assignments, even though these property
    assignments are actually implemented underneath as methods.
@@ -344,22 +355,23 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
 
       collectDir.absolutePath = absolutePath
 
-   fails with a C{ValueError} exception.  The failure message differentiates
+   fails with a ``ValueError`` exception.  The failure message differentiates
    between the case where no exception was raised and the case where the wrong
    exception was raised.
 
-   @note: Internally, the C{missed} and C{instead} variables are used rather
-   than directly calling C{testCase.fail} upon noticing a problem because the
+   *Note:* Internally, the ``missed`` and ``instead`` variables are used rather
+   than directly calling ``testCase.fail`` upon noticing a problem because the
    act of "failure" itself generates an exception that would be caught by the
-   general C{except} clause.
+   general ``except`` clause.
 
-   @param testCase: PyUnit test case object (i.e. self).
-   @param exception: Exception that is expected to be raised.
-   @param obj: Object whose property is to be assigned to.
-   @param prop: Name of the property, as a string.
-   @param value: Value that is to be assigned to the property.
+   Args:
+      testCase: PyUnit test case object (i.e. self)
+      exception: Exception that is expected to be raised
+      obj: Object whose property is to be assigned to
+      prop: Name of the property, as a string
+      value: Value that is to be assigned to the property
 
-   @see: C{unittest.TestCase.failUnlessRaises}
+   @see: ``unittest.TestCase.failUnlessRaises``
    """
    missed = False
    instead = None
@@ -388,14 +400,16 @@ def captureOutput(c):
    any of the output spoiling the test suite output.
 
    This function just creates a dummy file descriptor that can be used as a
-   target by the callable function, rather than C{stdout} or C{stderr}.
+   target by the callable function, rather than ``stdout`` or ``stderr``.
 
-   @note: This method assumes that C{callable} doesn't take any arguments
-   besides keyword argument C{fd} to specify the file descriptor.
+   *Note:* This method assumes that ``callable`` doesn't take any arguments
+   besides keyword argument ``fd`` to specify the file descriptor.
 
-   @param c: Callable function or method.
+   Args:
+      c: Callable function or method
 
-   @return: Output of function, as one big string.
+   Returns:
+       Output of function, as one big string
    """
    fd = StringIO()
    c(fd=fd)
@@ -411,7 +425,8 @@ def captureOutput(c):
 def _isPlatform(name):
    """
    Returns boolean indicating whether we're running on the indicated platform.
-   @param name: Platform name to check, currently one of "windows" or "macosx"
+   Args:
+      name: Platform name to check, currently one of "windows" or "macosx"
    """
    if name == "windows":
       return platform.platform(True, True).startswith("Windows")
@@ -465,7 +480,8 @@ def runningAsRoot():
 def availableLocales():
    """
    Returns a list of available locales on the system
-   @return: List of string locale names
+   Returns:
+       List of string locale names
    """
    locales = []
    output = executeCommand(["locale"], [ "-a", ], returnOutput=True, ignoreStderr=True)[1]

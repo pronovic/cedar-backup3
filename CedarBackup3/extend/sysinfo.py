@@ -41,23 +41,23 @@ Provides an extension to save off important system recovery information.
 This is a simple Cedar Backup extension used to save off important system
 recovery information.  It saves off three types of information:
 
-   - Currently-installed Debian packages via C{dpkg --get-selections}
-   - Disk partition information via C{fdisk -l}
-   - System-wide mounted filesystem contents, via C{ls -laR}
+   - Currently-installed Debian packages via ``dpkg --get-selections``
+   - Disk partition information via ``fdisk -l``
+   - System-wide mounted filesystem contents, via ``ls -laR``
 
 The saved-off information is placed into the collect directory and is
-compressed using C{bzip2} to save space.
+compressed using ``bzip2`` to save space.
 
 This extension relies on the options and collect configurations in the standard
 Cedar Backup configuration file, but requires no new configuration of its own.
 No public functions other than the action are exposed since all of this is
 pretty simple.
 
-@note: If the C{dpkg} or C{fdisk} commands cannot be found in their normal
+*Note:* If the ``dpkg`` or ``fdisk`` commands cannot be found in their normal
 locations or executed by the current user, those steps will be skipped and a
 note will be logged at the INFO level.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -100,17 +100,13 @@ def executeAction(configPath, options, config):
    """
    Executes the sysinfo backup action.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If the backup process fails for some reason.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If the backup process fails for some reason
    """
    logger.debug("Executing sysinfo extended action.")
    if config.options is None or config.collect is None:
@@ -122,12 +118,14 @@ def executeAction(configPath, options, config):
 
 def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
    """
-   Dumps a list of currently installed Debian packages via C{dpkg}.
-   @param targetDir: Directory to write output file into.
-   @param backupUser: User which should own the resulting file.
-   @param backupGroup: Group which should own the resulting file.
-   @param compress: Indicates whether to compress the output file.
-   @raise IOError: If the dump fails for some reason.
+   Dumps a list of currently installed Debian packages via ``dpkg``.
+   Args:
+      targetDir: Directory to write output file into
+      backupUser: User which should own the resulting file
+      backupGroup: Group which should own the resulting file
+      compress: Indicates whether to compress the output file
+   Raises:
+      IOError: If the dump fails for some reason
    """
    if not os.path.exists(DPKG_PATH):
       logger.info("Not executing Debian package dump since %s doesn't seem to exist.", DPKG_PATH)
@@ -146,12 +144,14 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
 
 def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
    """
-   Dumps information about the partition table via C{fdisk}.
-   @param targetDir: Directory to write output file into.
-   @param backupUser: User which should own the resulting file.
-   @param backupGroup: Group which should own the resulting file.
-   @param compress: Indicates whether to compress the output file.
-   @raise IOError: If the dump fails for some reason.
+   Dumps information about the partition table via ``fdisk``.
+   Args:
+      targetDir: Directory to write output file into
+      backupUser: User which should own the resulting file
+      backupGroup: Group which should own the resulting file
+      compress: Indicates whether to compress the output file
+   Raises:
+      IOError: If the dump fails for some reason
    """
    if not os.path.exists(FDISK_PATH):
       logger.info("Not executing partition table dump since %s doesn't seem to exist.", FDISK_PATH)
@@ -170,12 +170,14 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
 
 def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
    """
-   Dumps complete listing of filesystem contents via C{ls -laR}.
-   @param targetDir: Directory to write output file into.
-   @param backupUser: User which should own the resulting file.
-   @param backupGroup: Group which should own the resulting file.
-   @param compress: Indicates whether to compress the output file.
-   @raise IOError: If the dump fails for some reason.
+   Dumps complete listing of filesystem contents via ``ls -laR``.
+   Args:
+      targetDir: Directory to write output file into
+      backupUser: User which should own the resulting file
+      backupGroup: Group which should own the resulting file
+      compress: Indicates whether to compress the output file
+   Raises:
+      IOError: If the dump fails for some reason
    """
    (outputFile, filename) = _getOutputFile(targetDir, "ls-laR", compress)
    with outputFile:
@@ -190,14 +192,16 @@ def _getOutputFile(targetDir, name, compress=True):
    """
    Opens the output file used for saving a dump to the filesystem.
 
-   The filename will be C{name.txt} (or C{name.txt.bz2} if C{compress} is
-   C{True}), written in the target directory.
+   The filename will be ``name.txt`` (or ``name.txt.bz2`` if ``compress`` is
+   ``True``), written in the target directory.
 
-   @param targetDir: Target directory to write file in.
-   @param name: Name of the file to create.
-   @param compress: Indicates whether to write compressed output.
+   Args:
+      targetDir: Target directory to write file in
+      name: Name of the file to create
+      compress: Indicates whether to write compressed output
 
-   @return: Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
+   Returns:
+       Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
    filename = os.path.join(targetDir, "%s.txt" % name)
    if compress:

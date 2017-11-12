@@ -40,7 +40,7 @@ Provides an extension to encrypt staging directories.
 
 When this extension is executed, all backed-up files in the configured Cedar
 Backup staging directory will be encrypted using gpg.  Any directory which has
-already been encrypted (as indicated by the C{cback.encrypt} file) will be
+already been encrypted (as indicated by the ``cback.encrypt`` file) will be
 ignored.
 
 This extension requires a new configuration section <encrypt> and is intended
@@ -49,7 +49,7 @@ standard store action.  Aside from its own configuration, it requires the
 options and staging configuration sections in the standard Cedar Backup
 configuration file.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -93,21 +93,21 @@ class EncryptConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The encrypt mode must be one of the values in L{VALID_ENCRYPT_MODES}
+      - The encrypt mode must be one of the values in :any:`VALID_ENCRYPT_MODES`
       - The encrypt target value must be a non-empty string
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         encryptMode, encryptTarget
    """
 
    def __init__(self, encryptMode=None, encryptTarget=None):
       """
-      Constructor for the C{EncryptConfig} class.
+      Constructor for the ``EncryptConfig`` class.
 
-      @param encryptMode: Encryption mode
-      @param encryptTarget: Encryption target (for instance, GPG recipient)
+      Args:
+         encryptMode: Encryption mode
+         encryptTarget: Encryption target (for instance, GPG recipient)
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._encryptMode = None
       self._encryptTarget = None
@@ -142,8 +142,10 @@ class EncryptConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -162,8 +164,9 @@ class EncryptConfig(object):
    def _setEncryptMode(self, value):
       """
       Property target used to set the encrypt mode.
-      If not C{None}, the mode must be one of the values in L{VALID_ENCRYPT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_ENCRYPT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_ENCRYPT_MODES:
@@ -209,48 +212,42 @@ class LocalConfig(object):
    Backup configuration object.  Instead, it just knows how to parse and emit
    encrypt-specific configuration values.  Third parties who need to read and
    write configuration related to this extension should access it through the
-   constructor, C{validate} and C{addConfig} methods.
+   constructor, ``validate`` and ``addConfig`` methods.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         encrypt, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
       """
       Initializes a configuration object.
 
-      If you initialize the object without passing either C{xmlData} or
-      C{xmlPath} then configuration will be empty and will be invalid until it
+      If you initialize the object without passing either ``xmlData`` or
+      ``xmlPath`` then configuration will be empty and will be invalid until it
       is filled in properly.
 
       No reference to the original XML data or original path is saved off by
       this class.  Once the data has been parsed (successfully or not) this
       original information is discarded.
 
-      Unless the C{validate} argument is C{False}, the L{LocalConfig.validate}
+      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
       method will be called (with its default arguments) against configuration
       after successfully parsing any passed-in XML.  Keep in mind that even if
-      C{validate} is C{False}, it might not be possible to parse the passed-in
+      ``validate`` is ``False``, it might not be possible to parse the passed-in
       XML document if lower-level validations fail.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to read in
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to read in
       invalid configuration from disk.
 
-      @param xmlData: XML data representing configuration.
-      @type xmlData: String data.
-
-      @param xmlPath: Path to an XML file on disk.
-      @type xmlPath: Absolute path to a file on disk.
-
-      @param validate: Validate the document after parsing it.
-      @type validate: Boolean true/false.
-
-      @raise ValueError: If both C{xmlData} and C{xmlPath} are passed-in.
-      @raise ValueError: If the XML data in C{xmlData} or C{xmlPath} cannot be parsed.
-      @raise ValueError: If the parsed configuration document is not valid.
+      Args:
+         xmlData (String data): XML data representing configuration
+         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+         validate (Boolean true/false): Validate the document after parsing it
+      Raises:
+         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+         ValueError: If the parsed configuration document is not valid
       """
       self._encrypt = None
       self.encrypt = None
@@ -295,8 +292,10 @@ class LocalConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -310,14 +309,15 @@ class LocalConfig(object):
    def _setEncrypt(self, value):
       """
       Property target used to set the encrypt configuration value.
-      If not C{None}, the value must be a C{EncryptConfig} object.
-      @raise ValueError: If the value is not a C{EncryptConfig}
+      If not ``None``, the value must be a ``EncryptConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``EncryptConfig``
       """
       if value is None:
          self._encrypt = None
       else:
          if not isinstance(value, EncryptConfig):
-            raise ValueError("Value must be a C{EncryptConfig} object.")
+            raise ValueError("Value must be a ``EncryptConfig`` object.")
          self._encrypt = value
 
    def _getEncrypt(self):
@@ -326,7 +326,7 @@ class LocalConfig(object):
       """
       return self._encrypt
 
-   encrypt = property(_getEncrypt, _setEncrypt, None, "Encrypt configuration in terms of a C{EncryptConfig} object.")
+   encrypt = property(_getEncrypt, _setEncrypt, None, "Encrypt configuration in terms of a ``EncryptConfig`` object.")
 
    def validate(self):
       """
@@ -335,7 +335,8 @@ class LocalConfig(object):
       Encrypt configuration must be filled in.  Within that, both the encrypt
       mode and encrypt target must be filled in.
 
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       if self.encrypt is None:
          raise ValueError("Encrypt section is required.")
@@ -356,8 +357,9 @@ class LocalConfig(object):
          encryptMode    //cb_config/encrypt/encrypt_mode
          encryptTarget  //cb_config/encrypt/encrypt_target
 
-      @param xmlDom: DOM tree as from C{impl.createDocument()}.
-      @param parentNode: Parent that the section should be appended to.
+      Args:
+         xmlDom: DOM tree as from ``impl.createDocument()``
+         parentNode: Parent that the section should be appended to
       """
       if self.encrypt is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "encrypt")
@@ -368,13 +370,13 @@ class LocalConfig(object):
       """
       Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (C{xmlDom}) and then
+      This method parses the XML document into a DOM tree (``xmlDom``) and then
       calls a static method to parse the encrypt configuration section.
 
-      @param xmlData: XML data to be parsed
-      @type xmlData: String data
-
-      @raise ValueError: If the XML cannot be successfully parsed.
+      Args:
+         xmlData (String data): XML data to be parsed
+      Raises:
+         ValueError: If the XML cannot be successfully parsed
       """
       (xmlDom, parentNode) = createInputDom(xmlData)
       self._encrypt = LocalConfig._parseEncrypt(parentNode)
@@ -389,10 +391,13 @@ class LocalConfig(object):
          encryptMode    //cb_config/encrypt/encrypt_mode
          encryptTarget  //cb_config/encrypt/encrypt_target
 
-      @param parent: Parent node to search beneath.
+      Args:
+         parent: Parent node to search beneath
 
-      @return: C{EncryptConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``EncryptConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       encrypt = None
       section = readFirstChild(parent, "encrypt")
@@ -416,17 +421,13 @@ def executeAction(configPath, options, config):
    """
    Executes the encrypt backup action.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there are I/O problems reading or writing files
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there are I/O problems reading or writing files
    """
    logger.debug("Executing encrypt extended action.")
    if config.options is None or config.stage is None:
@@ -453,16 +454,18 @@ def _encryptDailyDir(dailyDir, encryptMode, encryptTarget, backupUser, backupGro
    Encrypts the contents of a daily staging directory.
 
    Indicator files are ignored.  All other files are encrypted.  The only valid
-   encrypt mode is C{"gpg"}.
+   encrypt mode is ``"gpg"``.
 
-   @param dailyDir: Daily directory to encrypt
-   @param encryptMode: Encryption mode (only "gpg" is allowed)
-   @param encryptTarget: Encryption target (GPG recipient for "gpg" mode)
-   @param backupUser: User that target files should be owned by
-   @param backupGroup: Group that target files should be owned by
+   Args:
+      dailyDir: Daily directory to encrypt
+      encryptMode: Encryption mode (only "gpg" is allowed)
+      encryptTarget: Encryption target (GPG recipient for "gpg" mode)
+      backupUser: User that target files should be owned by
+      backupGroup: Group that target files should be owned by
 
-   @raise ValueError: If the encrypt mode is not supported.
-   @raise ValueError: If the daily staging directory does not exist.
+   Raises:
+      ValueError: If the encrypt mode is not supported
+      ValueError: If the daily staging directory does not exist
    """
    logger.debug("Begin encrypting contents of [%s].", dailyDir)
    fileList = getBackupFiles(dailyDir) # ignores indicator files
@@ -480,22 +483,25 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
    Encrypts the source file using the indicated mode.
 
    The encrypted file will be owned by the indicated backup user and group.  If
-   C{removeSource} is C{True}, then the source file will be removed after it is
+   ``removeSource`` is ``True``, then the source file will be removed after it is
    successfully encrypted.
 
-   Currently, only the C{"gpg"} encrypt mode is supported.
+   Currently, only the ``"gpg"`` encrypt mode is supported.
 
-   @param sourcePath: Absolute path of the source file to encrypt
-   @param encryptMode: Encryption mode (only "gpg" is allowed)
-   @param encryptTarget: Encryption target (GPG recipient)
-   @param backupUser: User that target files should be owned by
-   @param backupGroup: Group that target files should be owned by
-   @param removeSource: Indicates whether to remove the source file
+   Args:
+      sourcePath: Absolute path of the source file to encrypt
+      encryptMode: Encryption mode (only "gpg" is allowed)
+      encryptTarget: Encryption target (GPG recipient)
+      backupUser: User that target files should be owned by
+      backupGroup: Group that target files should be owned by
+      removeSource: Indicates whether to remove the source file
 
-   @return: Path to the newly-created encrypted file.
+   Returns:
+       Path to the newly-created encrypted file
 
-   @raise ValueError: If an invalid encrypt mode is passed in.
-   @raise IOError: If there is a problem accessing, encrypting or removing the source file.
+   Raises:
+      ValueError: If an invalid encrypt mode is passed in
+      IOError: If there is a problem accessing, encrypting or removing the source file
    """
    if not os.path.exists(sourcePath):
       raise ValueError("Source path [%s] does not exist." % sourcePath)
@@ -523,15 +529,18 @@ def _encryptFileWithGpg(sourcePath, recipient):
    Encrypts the indicated source file using GPG.
 
    The encrypted file will be in GPG's binary output format and will have the
-   same name as the source file plus a C{".gpg"} extension.  The source file
+   same name as the source file plus a ``".gpg"`` extension.  The source file
    will not be modified or removed by this function call.
 
-   @param sourcePath: Absolute path of file to be encrypted.
-   @param recipient: Recipient name to be passed to GPG's C{"-r"} option
+   Args:
+      sourcePath: Absolute path of file to be encrypted
+      recipient: Recipient name to be passed to GPG's ``"-r"`` option
 
-   @return: Path to the newly-created encrypted file.
+   Returns:
+       Path to the newly-created encrypted file
 
-   @raise IOError: If there is a problem encrypting the file.
+   Raises:
+      IOError: If there is a problem encrypting the file
    """
    encryptedPath = "%s.gpg" % sourcePath
    command = resolveCommand(GPG_COMMAND)
@@ -553,8 +562,10 @@ def _confirmGpgRecipient(recipient):
    """
    Confirms that a recipient's public key is known to GPG.
    Throws an exception if there is a problem, or returns normally otherwise.
-   @param recipient: Recipient name
-   @raise IOError: If the recipient's public key is not known to GPG.
+   Args:
+      recipient: Recipient name
+   Raises:
+      IOError: If the recipient's public key is not known to GPG
    """
    command = resolveCommand(GPG_COMMAND)
    args = [ "--batch", "-k", recipient, ]  # should use --with-colons if the output will be parsed

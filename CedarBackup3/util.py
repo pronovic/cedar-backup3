@@ -41,34 +41,28 @@
 """
 Provides general-purpose utilities.
 
-@sort: AbsolutePathList, ObjectTypeList, RestrictedContentList, RegexMatchList,
-       RegexList, _Vertex, DirectedGraph, PathResolverSingleton,
-       sortDict, convertSize, getUidGid, changeOwnership, splitCommandLine,
-       resolveCommand, executeCommand, calculateFileAge, encodePath, nullDevice,
-       deriveDayOfWeek, isStartOfWeek, buildNormalizedPath,
-       ISO_SECTOR_SIZE, BYTES_PER_SECTOR,
-       BYTES_PER_KBYTE, BYTES_PER_MBYTE, BYTES_PER_GBYTE, KBYTES_PER_MBYTE, MBYTES_PER_GBYTE,
-       SECONDS_PER_MINUTE, MINUTES_PER_HOUR, HOURS_PER_DAY, SECONDS_PER_DAY,
-       UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES, UNIT_SECTORS
+Module Attributes
+=================
 
-@var ISO_SECTOR_SIZE: Size of an ISO image sector, in bytes.
-@var BYTES_PER_SECTOR: Number of bytes (B) per ISO sector.
-@var BYTES_PER_KBYTE: Number of bytes (B) per kilobyte (kB).
-@var BYTES_PER_MBYTE: Number of bytes (B) per megabyte (MB).
-@var BYTES_PER_GBYTE: Number of bytes (B) per megabyte (GB).
-@var KBYTES_PER_MBYTE: Number of kilobytes (kB) per megabyte (MB).
-@var MBYTES_PER_GBYTE: Number of megabytes (MB) per gigabyte (GB).
-@var SECONDS_PER_MINUTE: Number of seconds per minute.
-@var MINUTES_PER_HOUR: Number of minutes per hour.
-@var HOURS_PER_DAY: Number of hours per day.
-@var SECONDS_PER_DAY: Number of seconds per day.
-@var UNIT_BYTES: Constant representing the byte (B) unit for conversion.
-@var UNIT_KBYTES: Constant representing the kilobyte (kB) unit for conversion.
-@var UNIT_MBYTES: Constant representing the megabyte (MB) unit for conversion.
-@var UNIT_GBYTES: Constant representing the gigabyte (GB) unit for conversion.
-@var UNIT_SECTORS: Constant representing the ISO sector unit for conversion.
+Attributes:
+   ISO_SECTOR_SIZE: Size of an ISO image sector, in bytes
+   BYTES_PER_SECTOR: Number of bytes (B) per ISO sector
+   BYTES_PER_KBYTE: Number of bytes (B) per kilobyte (kB)
+   BYTES_PER_MBYTE: Number of bytes (B) per megabyte (MB)
+   BYTES_PER_GBYTE: Number of bytes (B) per megabyte (GB)
+   KBYTES_PER_MBYTE: Number of kilobytes (kB) per megabyte (MB)
+   MBYTES_PER_GBYTE: Number of megabytes (MB) per gigabyte (GB)
+   SECONDS_PER_MINUTE: Number of seconds per minute
+   MINUTES_PER_HOUR: Number of minutes per hour
+   HOURS_PER_DAY: Number of hours per day
+   SECONDS_PER_DAY: Number of seconds per day
+   UNIT_BYTES: Constant representing the byte (B) unit for conversion
+   UNIT_KBYTES: Constant representing the kilobyte (kB) unit for conversion
+   UNIT_MBYTES: Constant representing the megabyte (MB) unit for conversion
+   UNIT_GBYTES: Constant representing the gigabyte (GB) unit for conversion
+   UNIT_SECTORS: Constant representing the ISO sector unit for conversion
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -165,19 +159,21 @@ class UnorderedList(list):
    either list.  I've decided to go with option #1 for now.  I'll modify this
    code if I run into problems in the future.
 
-   We override the original C{__eq__}, C{__ne__}, C{__ge__}, C{__gt__},
-   C{__le__} and C{__lt__} list methods to change the definition of the various
+   We override the original ``__eq__``, ``__ne__``, ``__ge__``, ``__gt__``,
+   ``__le__`` and ``__lt__`` list methods to change the definition of the various
    comparison operators.  In all cases, the comparison is changed to return the
-   result of the original operation I{but instead comparing sorted lists}.
+   result of the original operation *but instead comparing sorted lists*.
    This is going to be quite a bit slower than a normal list, so you probably
    only want to use it on small lists.
    """
 
    def __eq__(self, other):
       """
-      Definition of C{==} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self == other}.
+      Definition of ``==`` operator for this class.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self == other``
       """
       if other is None:
          return False
@@ -187,9 +183,11 @@ class UnorderedList(list):
 
    def __ne__(self, other):
       """
-      Definition of C{!=} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self != other}.
+      Definition of ``!=`` operator for this class.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self != other``
       """
       if other is None:
          return True
@@ -200,8 +198,10 @@ class UnorderedList(list):
    def __ge__(self, other):
       """
       Definition of S{>=} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self >= other}.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self >= other``
       """
       if other is None:
          return True
@@ -211,9 +211,11 @@ class UnorderedList(list):
 
    def __gt__(self, other):
       """
-      Definition of C{>} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self > other}.
+      Definition of ``>`` operator for this class.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self > other``
       """
       if other is None:
          return True
@@ -224,8 +226,10 @@ class UnorderedList(list):
    def __le__(self, other):
       """
       Definition of S{<=} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self <= other}.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self <= other``
       """
       if other is None:
          return False
@@ -235,9 +239,11 @@ class UnorderedList(list):
 
    def __lt__(self, other):
       """
-      Definition of C{<} operator for this class.
-      @param other: Other object to compare to.
-      @return: True/false depending on whether C{self < other}.
+      Definition of ``<`` operator for this class.
+      Args:
+         other: Other object to compare to
+      Returns:
+          True/false depending on whether ``self < other``
       """
       if other is None:
          return False
@@ -279,10 +285,10 @@ class AbsolutePathList(UnorderedList):
 
    This is an unordered list.
 
-   We override the C{append}, C{insert} and C{extend} methods to ensure that
+   We override the ``append``, ``insert`` and ``extend`` methods to ensure that
    any item added to the list is an absolute path.
 
-   Each item added to the list is encoded using L{encodePath}.  If we don't do
+   Each item added to the list is encoded using :any:`encodePath`.  If we don't do
    this, we have problems trying certain operations between strings and unicode
    objects, particularly for "odd" filenames that can't be encoded in standard
    ASCII.
@@ -290,8 +296,9 @@ class AbsolutePathList(UnorderedList):
 
    def append(self, item):
       """
-      Overrides the standard C{append} method.
-      @raise ValueError: If item is not an absolute path.
+      Overrides the standard ``append`` method.
+      Raises:
+         ValueError: If item is not an absolute path
       """
       if not os.path.isabs(item):
          raise ValueError("Not an absolute path: [%s]" % item)
@@ -299,8 +306,9 @@ class AbsolutePathList(UnorderedList):
 
    def insert(self, index, item):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item is not an absolute path.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not an absolute path
       """
       if not os.path.isabs(item):
          raise ValueError("Not an absolute path: [%s]" % item)
@@ -308,8 +316,9 @@ class AbsolutePathList(UnorderedList):
 
    def extend(self, seq):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If any item is not an absolute path.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If any item is not an absolute path
       """
       for item in seq:
          if not os.path.isabs(item):
@@ -329,20 +338,21 @@ class ObjectTypeList(UnorderedList):
 
    This is an unordered list.
 
-   We override the C{append}, C{insert} and C{extend} methods to ensure that
+   We override the ``append``, ``insert`` and ``extend`` methods to ensure that
    any item added to the list matches the type that is requested.  The
-   comparison uses the built-in C{isinstance}, which should allow subclasses of
+   comparison uses the built-in ``isinstance``, which should allow subclasses of
    of the requested type to be added to the list as well.
 
-   The C{objectName} value will be used in exceptions, i.e. C{"Item must be a
-   CollectDir object."} if C{objectName} is C{"CollectDir"}.
+   The ``objectName`` value will be used in exceptions, i.e. C{"Item must be a
+   CollectDir object."} if ``objectName`` is ``"CollectDir"``.
    """
 
    def __init__(self, objectType, objectName):
       """
       Initializes a typed list for a particular type.
-      @param objectType: Type that the list elements must match.
-      @param objectName: Short string containing the "name" of the type.
+      Args:
+         objectType: Type that the list elements must match
+         objectName: Short string containing the "name" of the type
       """
       super(ObjectTypeList, self).__init__()
       self.objectType = objectType
@@ -350,8 +360,9 @@ class ObjectTypeList(UnorderedList):
 
    def append(self, item):
       """
-      Overrides the standard C{append} method.
-      @raise ValueError: If item does not match requested type.
+      Overrides the standard ``append`` method.
+      Raises:
+         ValueError: If item does not match requested type
       """
       if not isinstance(item, self.objectType):
          raise ValueError("Item must be a %s object." % self.objectName)
@@ -359,8 +370,9 @@ class ObjectTypeList(UnorderedList):
 
    def insert(self, index, item):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item does not match requested type.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item does not match requested type
       """
       if not isinstance(item, self.objectType):
          raise ValueError("Item must be a %s object." % self.objectName)
@@ -368,8 +380,9 @@ class ObjectTypeList(UnorderedList):
 
    def extend(self, seq):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item does not match requested type.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item does not match requested type
       """
       for item in seq:
          if not isinstance(item, self.objectType):
@@ -388,14 +401,14 @@ class RestrictedContentList(UnorderedList):
 
    This is an unordered list.
 
-   We override the C{append}, C{insert} and C{extend} methods to ensure that
+   We override the ``append``, ``insert`` and ``extend`` methods to ensure that
    any item added to the list is among the valid values.  We use a standard
    comparison, so pretty much anything can be in the list of valid values.
 
-   The C{valuesDescr} value will be used in exceptions, i.e. C{"Item must be
-   one of values in VALID_ACTIONS"} if C{valuesDescr} is C{"VALID_ACTIONS"}.
+   The ``valuesDescr`` value will be used in exceptions, i.e. C{"Item must be
+   one of values in VALID_ACTIONS"} if ``valuesDescr`` is ``"VALID_ACTIONS"``.
 
-   @note:  This class doesn't make any attempt to trap for nonsensical
+   *Note:*  This class doesn't make any attempt to trap for nonsensical
    arguments.  All of the values in the values list should be of the same type
    (i.e. strings).  Then, all list operations also need to be of that type
    (i.e. you should always insert or append just strings).  If you mix types --
@@ -406,9 +419,10 @@ class RestrictedContentList(UnorderedList):
    def __init__(self, valuesList, valuesDescr, prefix=None):
       """
       Initializes a list restricted to containing certain values.
-      @param valuesList: List of valid values.
-      @param valuesDescr: Short string describing list of values.
-      @param prefix: Prefix to use in error messages (None results in prefix "Item")
+      Args:
+         valuesList: List of valid values
+         valuesDescr: Short string describing list of values
+         prefix: Prefix to use in error messages (None results in prefix "Item")
       """
       super(RestrictedContentList, self).__init__()
       self.prefix = "Item"
@@ -418,8 +432,9 @@ class RestrictedContentList(UnorderedList):
 
    def append(self, item):
       """
-      Overrides the standard C{append} method.
-      @raise ValueError: If item is not in the values list.
+      Overrides the standard ``append`` method.
+      Raises:
+         ValueError: If item is not in the values list
       """
       if item not in self.valuesList:
          raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
@@ -427,8 +442,9 @@ class RestrictedContentList(UnorderedList):
 
    def insert(self, index, item):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item is not in the values list.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not in the values list
       """
       if item not in self.valuesList:
          raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
@@ -436,8 +452,9 @@ class RestrictedContentList(UnorderedList):
 
    def extend(self, seq):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item is not in the values list.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not in the values list
       """
       for item in seq:
          if item not in self.valuesList:
@@ -454,26 +471,27 @@ class RegexMatchList(UnorderedList):
    """
    Class representing a list containing only strings that match a regular expression.
 
-   If C{emptyAllowed} is passed in as C{False}, then empty strings are
+   If ``emptyAllowed`` is passed in as ``False``, then empty strings are
    explicitly disallowed, even if they happen to match the regular expression.
-   (C{None} values are always disallowed, since string operations are not
-   permitted on C{None}.)
+   (``None`` values are always disallowed, since string operations are not
+   permitted on ``None``.)
 
    This is an unordered list.
 
-   We override the C{append}, C{insert} and C{extend} methods to ensure that
+   We override the ``append``, ``insert`` and ``extend`` methods to ensure that
    any item added to the list matches the indicated regular expression.
 
-   @note: If you try to put values that are not strings into the list, you will
+   *Note:* If you try to put values that are not strings into the list, you will
    likely get either TypeError or AttributeError exceptions as a result.
    """
 
    def __init__(self, valuesRegex, emptyAllowed=True, prefix=None):
       """
       Initializes a list restricted to containing certain values.
-      @param valuesRegex: Regular expression that must be matched, as a string
-      @param emptyAllowed: Indicates whether empty or None values are allowed.
-      @param prefix: Prefix to use in error messages (None results in prefix "Item")
+      Args:
+         valuesRegex: Regular expression that must be matched, as a string
+         emptyAllowed: Indicates whether empty or None values are allowed
+         prefix: Prefix to use in error messages (None results in prefix "Item")
       """
       super(RegexMatchList, self).__init__()
       self.prefix = "Item"
@@ -484,10 +502,11 @@ class RegexMatchList(UnorderedList):
 
    def append(self, item):
       """
-      Overrides the standard C{append} method.
-      @raise ValueError: If item is None
-      @raise ValueError: If item is empty and empty values are not allowed
-      @raise ValueError: If item does not match the configured regular expression
+      Overrides the standard ``append`` method.
+      Raises:
+         ValueError: If item is None
+         ValueError: If item is empty and empty values are not allowed
+         ValueError: If item does not match the configured regular expression
       """
       if item is None or (not self.emptyAllowed and item == ""):
          raise ValueError("%s cannot be empty." % self.prefix)
@@ -497,10 +516,11 @@ class RegexMatchList(UnorderedList):
 
    def insert(self, index, item):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item is None
-      @raise ValueError: If item is empty and empty values are not allowed
-      @raise ValueError: If item does not match the configured regular expression
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is None
+         ValueError: If item is empty and empty values are not allowed
+         ValueError: If item does not match the configured regular expression
       """
       if item is None or (not self.emptyAllowed and item == ""):
          raise ValueError("%s cannot be empty." % self.prefix)
@@ -510,10 +530,11 @@ class RegexMatchList(UnorderedList):
 
    def extend(self, seq):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If any item is None
-      @raise ValueError: If any item is empty and empty values are not allowed
-      @raise ValueError: If any item does not match the configured regular expression
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If any item is None
+         ValueError: If any item is empty and empty values are not allowed
+         ValueError: If any item does not match the configured regular expression
       """
       for item in seq:
          if item is None or (not self.emptyAllowed and item == ""):
@@ -534,14 +555,15 @@ class RegexList(UnorderedList):
 
    This is an unordered list.
 
-   We override the C{append}, C{insert} and C{extend} methods to ensure that
+   We override the ``append``, ``insert`` and ``extend`` methods to ensure that
    any item added to the list is a valid regular expression.
    """
 
    def append(self, item):
       """
-      Overrides the standard C{append} method.
-      @raise ValueError: If item is not an absolute path.
+      Overrides the standard ``append`` method.
+      Raises:
+         ValueError: If item is not an absolute path
       """
       try:
          re.compile(item)
@@ -551,8 +573,9 @@ class RegexList(UnorderedList):
 
    def insert(self, index, item):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If item is not an absolute path.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not an absolute path
       """
       try:
          re.compile(item)
@@ -562,8 +585,9 @@ class RegexList(UnorderedList):
 
    def extend(self, seq):
       """
-      Overrides the standard C{insert} method.
-      @raise ValueError: If any item is not an absolute path.
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If any item is not an absolute path
       """
       for item in seq:
          try:
@@ -587,8 +611,9 @@ class _Vertex(object):
    def __init__(self, name):
       """
       Constructor.
-      @param name: Name of this graph vertex.
-      @type name: String value.
+      Args:
+         name (String value): Name of this graph vertex
+
       """
       self.name = name
       self.endpoints = []
@@ -600,9 +625,9 @@ class DirectedGraph(object):
    """
    Represents a directed graph.
 
-   A graph B{G=(V,E)} consists of a set of vertices B{V} together with a set
-   B{E} of vertex pairs or edges.  In a directed graph, each edge also has an
-   associated direction (from vertext B{v1} to vertex B{v2}).  A C{DirectedGraph}
+   A graph **G=(V,E)** consists of a set of vertices **V** together with a set
+   **E** of vertex pairs or edges.  In a directed graph, each edge also has an
+   associated direction (from vertext **v1** to vertex **v2**).  A ``DirectedGraph``
    object provides a way to construct a directed graph and execute a depth-
    first search.
 
@@ -625,8 +650,9 @@ class DirectedGraph(object):
       """
       Directed graph constructor.
 
-      @param name: Name of this graph.
-      @type name: String value.
+      Args:
+         name (String value): Name of this graph
+
       """
       if name is None or name == "":
          raise ValueError("Graph name must be non-empty.")
@@ -661,8 +687,10 @@ class DirectedGraph(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       # pylint: disable=W0212
       if other is None:
@@ -690,8 +718,10 @@ class DirectedGraph(object):
    def createVertex(self, name):
       """
       Creates a named vertex.
-      @param name: vertex name
-      @raise ValueError: If the vertex name is C{None} or empty.
+      Args:
+         name: vertex name
+      Raises:
+         ValueError: If the vertex name is ``None`` or empty
       """
       if name is None or name == "":
          raise ValueError("Vertex name must be non-empty.")
@@ -701,10 +731,12 @@ class DirectedGraph(object):
 
    def createEdge(self, start, finish):
       """
-      Adds an edge with an associated direction, from C{start} vertex to C{finish} vertex.
-      @param start: Name of start vertex.
-      @param finish: Name of finish vertex.
-      @raise ValueError: If one of the named vertices is unknown.
+      Adds an edge with an associated direction, from ``start`` vertex to ``finish`` vertex.
+      Args:
+         start: Name of start vertex
+         finish: Name of finish vertex
+      Raises:
+         ValueError: If one of the named vertices is unknown
       """
       try:
          startVertex = self._vertices[start]
@@ -732,14 +764,16 @@ class DirectedGraph(object):
       graph contains any cycles, it is not possible to determine a consistent
       ordering for the vertices.
 
-      @note: If a particular vertex has no edges, then its position in the
+      *Note:* If a particular vertex has no edges, then its position in the
       final list depends on the order in which the vertices were created in the
       graph.  If you're using this method to determine a dependency order, this
       makes sense: a vertex with no dependencies can go anywhere (and will).
 
-      @return: Ordering on the vertices so that all edges go from left to right.
+      Returns:
+          Ordering on the vertices so that all edges go from left to right
 
-      @raise ValueError: If a cycle is found in the graph.
+      Raises:
+         ValueError: If a cycle is found in the graph
       """
       ordering = []
       for key in self._vertices:
@@ -754,8 +788,9 @@ class DirectedGraph(object):
    def _topologicalSort(self, vertex, ordering):
       """
       Recursive depth first search function implementing topological sort.
-      @param vertex: Vertex to search
-      @param ordering: List of vertices in proper order
+      Args:
+         vertex: Vertex to search
+         ordering: List of vertices in proper order
       """
       vertex.state = self._DISCOVERED
       for endpoint in vertex.endpoints:
@@ -779,26 +814,26 @@ class PathResolverSingleton(object):
 
    Various functions throughout Cedar Backup (including extensions) need a way
    to resolve the path of executables that they use.  For instance, the image
-   functionality needs to find the C{mkisofs} executable, and the Subversion
-   extension needs to find the C{svnlook} executable.  Cedar Backup's original
-   behavior was to assume that the simple name (C{"svnlook"} or whatever) was
-   available on the caller's C{$PATH}, and to fail otherwise.   However, this
+   functionality needs to find the ``mkisofs`` executable, and the Subversion
+   extension needs to find the ``svnlook`` executable.  Cedar Backup's original
+   behavior was to assume that the simple name (``"svnlook"`` or whatever) was
+   available on the caller's ``$PATH``, and to fail otherwise.   However, this
    turns out to be less than ideal, since for instance the root user might not
-   always have executables like C{svnlook} in its path.
+   always have executables like ``svnlook`` in its path.
 
    One solution is to specify a path (either via an absolute path or some sort
    of path insertion or path appending mechanism) that would apply to the
-   C{executeCommand()} function.  This is not difficult to implement, but it
+   ``executeCommand()`` function.  This is not difficult to implement, but it
    seem like kind of a "big hammer" solution.  Besides that, it might also
    represent a security flaw (for instance, I prefer not to mess with root's
-   C{$PATH} on the application level if I don't have to).
+   ``$PATH`` on the application level if I don't have to).
 
    The alternative is to set up some sort of configuration for the path to
-   certain executables, i.e. "find C{svnlook} in C{/usr/local/bin/svnlook}" or
+   certain executables, i.e. "find ``svnlook`` in ``/usr/local/bin/svnlook``" or
    whatever.  This PathResolverSingleton aims to provide a good solution to the
    mapping problem.  Callers of all sorts (extensions or not) can get an
-   instance of the singleton.  Then, they call the C{lookup} method to try and
-   resolve the executable they are looking for.  Through the C{lookup} method,
+   instance of the singleton.  Then, they call the ``lookup`` method to try and
+   resolve the executable they are looking for.  Through the ``lookup`` method,
    the caller can also specify a default to use if a mapping is not found.
    This way, with no real effort on the part of the caller, behavior can neatly
    degrade to something equivalent to the current behavior if there is no
@@ -812,13 +847,14 @@ class PathResolverSingleton(object):
    meet their needs.
 
    The class should be initialized once through the constructor somewhere in
-   the main routine.  Then, the main routine should call the L{fill} method to
+   the main routine.  Then, the main routine should call the :any:`fill` method to
    fill in the resolver's internal structures.  Everyone else who needs to
-   resolve a path will get an instance of the class using L{getInstance} and
-   will then just call the L{lookup} method.
+   resolve a path will get an instance of the class using :any:`getInstance` and
+   will then just call the :any:`lookup` method.
 
-   @cvar _instance: Holds a reference to the singleton
-   @ivar _mapping: Internal mapping from resource name to path.
+   Attributes:
+      _instance: Holds a reference to the singleton
+      _mapping: Internal mapping from resource name to path
    """
 
    _instance = None     # Holds a reference to singleton instance
@@ -844,9 +880,11 @@ class PathResolverSingleton(object):
    def lookup(self, name, default=None):
       """
       Looks up name and returns the resolved path associated with the name.
-      @param name: Name of the path resource to resolve.
-      @param default: Default to return if resource cannot be resolved.
-      @return: Resolved path associated with name, or default if name can't be resolved.
+      Args:
+         name: Name of the path resource to resolve
+         default: Default to return if resource cannot be resolved
+      Returns:
+          Resolved path associated with name, or default if name can't be resolved
       """
       value = default
       if name in list(self._mapping.keys()):
@@ -857,8 +895,9 @@ class PathResolverSingleton(object):
    def fill(self, mapping):
       """
       Fills in the singleton's internal mapping from name to resource.
-      @param mapping: Mapping from resource name to path.
-      @type mapping: Dictionary mapping name to path, both as strings.
+      Args:
+         mapping (Dictionary mapping name to path, both as strings): Mapping from resource name to path
+
       """
       self._mapping = { }
       for key in list(mapping.keys()):
@@ -871,13 +910,13 @@ class PathResolverSingleton(object):
 
 class Pipe(Popen):
    """
-   Specialized pipe class for use by C{executeCommand}.
+   Specialized pipe class for use by ``executeCommand``.
 
-   The L{executeCommand} function needs a specialized way of interacting
-   with a pipe.  First, C{executeCommand} only reads from the pipe, and
-   never writes to it.  Second, C{executeCommand} needs a way to discard all
-   output written to C{stderr}, as a means of simulating the shell
-   C{2>/dev/null} construct.
+   The :any:`executeCommand` function needs a specialized way of interacting
+   with a pipe.  First, ``executeCommand`` only reads from the pipe, and
+   never writes to it.  Second, ``executeCommand`` needs a way to discard all
+   output written to ``stderr``, as a means of simulating the shell
+   ``2>/dev/null`` construct.
    """
    def __init__(self, cmd, bufsize=-1, ignoreStderr=False):
       stderr = STDOUT
@@ -899,13 +938,12 @@ class Diagnostics(object):
    Diagnostic information is information that is useful to get from users for
    debugging purposes.  I'm consolidating it all here into one object.
 
-   @sort: __init__, __repr__, __str__
    """
    # pylint: disable=R0201
 
    def __init__(self):
       """
-      Constructor for the C{Diagnostics} class.
+      Constructor for the ``Diagnostics`` class.
       """
 
    def __repr__(self):
@@ -923,7 +961,8 @@ class Diagnostics(object):
    def getValues(self):
       """
       Get a map containing all of the diagnostic values.
-      @return: Map from diagnostic name to diagnostic value.
+      Returns:
+          Map from diagnostic name to diagnostic value
       """
       values = {}
       values['version'] = self.version
@@ -937,9 +976,10 @@ class Diagnostics(object):
    def printDiagnostics(self, fd=sys.stdout, prefix=""):
       """
       Pretty-print diagnostic information to a file descriptor.
-      @param fd: File descriptor used to print information.
-      @param prefix: Prefix string (if any) to place onto printed lines
-      @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+      Args:
+         fd: File descriptor used to print information
+         prefix: Prefix string (if any) to place onto printed lines
+      *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
       """
       lines = self._buildDiagnosticLines(prefix)
       for line in lines:
@@ -948,8 +988,9 @@ class Diagnostics(object):
    def logDiagnostics(self, method, prefix=""):
       """
       Pretty-print diagnostic information using a logger method.
-      @param method: Logger method to use for logging (i.e. logger.info)
-      @param prefix: Prefix string (if any) to place onto printed lines
+      Args:
+         method: Logger method to use for logging (i.e. logger.info)
+         prefix: Prefix string (if any) to place onto printed lines
       """
       lines = self._buildDiagnosticLines(prefix)
       for line in lines:
@@ -958,8 +999,10 @@ class Diagnostics(object):
    def _buildDiagnosticLines(self, prefix=""):
       """
       Build a set of pretty-printed diagnostic lines.
-      @param prefix: Prefix string (if any) to place onto printed lines
-      @return: List of strings, not terminated by newlines.
+      Args:
+         prefix: Prefix string (if any) to place onto printed lines
+      Returns:
+          List of strings, not terminated by newlines
       """
       values = self.getValues()
       keys = list(values.keys())
@@ -1056,8 +1099,10 @@ class Diagnostics(object):
 def sortDict(d):
    """
    Returns the keys of the dictionary sorted by value.
-   @param d: Dictionary to operate on
-   @return: List of dictionary keys sorted in order by dictionary value.
+   Args:
+      d: Dictionary to operate on
+   Returns:
+       List of dictionary keys sorted in order by dictionary value
    """
    items = list(d.items())
    items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
@@ -1073,9 +1118,11 @@ def removeKeys(d, keys):
    Removes all of the keys from the dictionary.
    The dictionary is altered in-place.
    Each key must exist in the dictionary.
-   @param d: Dictionary to operate on
-   @param keys: List of keys to remove
-   @raise KeyError: If one of the keys does not exist
+   Args:
+      d: Dictionary to operate on
+      keys: List of keys to remove
+   Raises:
+      KeyError: If one of the keys does not exist
    """
    for key in keys:
       del d[key]
@@ -1095,23 +1142,20 @@ def convertSize(size, fromUnit, toUnit):
 
    The available units are:
 
-      - C{UNIT_BYTES} - Bytes
-      - C{UNIT_KBYTES} - Kilobytes, where 1 kB = 1024 B
-      - C{UNIT_MBYTES} - Megabytes, where 1 MB = 1024 kB
-      - C{UNIT_GBYTES} - Gigabytes, where 1 GB = 1024 MB
-      - C{UNIT_SECTORS} - Sectors, where 1 sector = 2048 B
+      - ``UNIT_BYTES`` - Bytes
+      - ``UNIT_KBYTES`` - Kilobytes, where 1 kB = 1024 B
+      - ``UNIT_MBYTES`` - Megabytes, where 1 MB = 1024 kB
+      - ``UNIT_GBYTES`` - Gigabytes, where 1 GB = 1024 MB
+      - ``UNIT_SECTORS`` - Sectors, where 1 sector = 2048 B
 
-   @param size: Size to convert
-   @type size: Integer or float value in units of C{fromUnit}
-
-   @param fromUnit: Unit to convert from
-   @type fromUnit: One of the units listed above
-
-   @param toUnit: Unit to convert to
-   @type toUnit: One of the units listed above
-
-   @return: Number converted to new unit, as a float.
-   @raise ValueError: If one of the units is invalid.
+   Args:
+      size (Integer or float value in units of ``fromUnit``): Size to convert
+      fromUnit (One of the units listed above): Unit to convert from
+      toUnit (One of the units listed above): Unit to convert to
+   Returns:
+       Number converted to new unit, as a float
+   Raises:
+      ValueError: If one of the units is invalid
    """
    if size is None:
       raise ValueError("Cannot convert size of None.")
@@ -1162,17 +1206,15 @@ def displayBytes(bytes, digits=2): # pylint: disable=W0622
 
    What comes out will be sensibly formatted.  The indicated number of digits
    will be listed after the decimal point, rounded based on whatever rules are
-   used by Python's standard C{%f} string format specifier. (Values less than 1
+   used by Python's standard ``%f`` string format specifier. (Values less than 1
    kB will be listed in bytes and will not have a decimal point, since the
    concept of a fractional byte is nonsensical.)
 
-   @param bytes: Byte quantity.
-   @type bytes: Integer number of bytes.
-
-   @param digits: Number of digits to display after the decimal point.
-   @type digits: Integer value, typically 2-5.
-
-   @return: String, formatted for sensible display.
+   Args:
+      bytes (Integer number of bytes): Byte quantity
+      digits (Integer value, typically 2-5): Number of digits to display after the decimal point
+   Returns:
+       String, formatted for sensible display
    """
    if bytes is None:
       raise ValueError("Cannot display byte value of None.")
@@ -1202,12 +1244,12 @@ def getFunctionReference(module, function):
 
    This does some hokey-pokey to get back a reference to a dynamically named
    function.  For instance, say you wanted to get a reference to the
-   C{os.path.isdir} function.  You could use::
+   ``os.path.isdir`` function.  You could use::
 
       myfunc = getFunctionReference("os.path", "isdir")
 
    Although we won't bomb out directly, behavior is pretty much undefined if
-   you pass in C{None} or C{""} for either C{module} or C{function}.
+   you pass in ``None`` or ``""`` for either ``module`` or ``function``.
 
    The only validation we enforce is that whatever we get back must be
    callable.
@@ -1215,16 +1257,15 @@ def getFunctionReference(module, function):
    I derived this code based on the internals of the Python unittest
    implementation.  I don't claim to completely understand how it works.
 
-   @param module: Name of module associated with function.
-   @type module: Something like "os.path" or "CedarBackup3.util"
+   Args:
+      module (Something like "os.path" or "CedarBackup3.util"): Name of module associated with function
+      function (Something like "isdir" or "getUidGid"): Name of function
+   Returns:
+       Reference to function associated with name
 
-   @param function: Name of function
-   @type function: Something like "isdir" or "getUidGid"
-
-   @return: Reference to function associated with name.
-
-   @raise ImportError: If the function cannot be found.
-   @raise ValueError: If the resulting reference is not callable.
+   Raises:
+      ImportError: If the function cannot be found
+      ValueError: If the resulting reference is not callable
 
    @copyright: Some of this code, prior to customization, was originally part
    of the Python 2.3 codebase.  Python code is copyright (c) 2001, 2002 Python
@@ -1262,14 +1303,13 @@ def getUidGid(user, group):
 
    This is a no-op if user/group functionality is not available on the platform.
 
-   @param user: User name
-   @type user: User name as a string
-
-   @param group: Group name
-   @type group: Group name as a string
-
-   @return: Tuple C{(uid, gid)} matching passed-in user and group.
-   @raise ValueError: If the ownership user/group values are invalid
+   Args:
+      user (User name as a string): User name
+      group (Group name as a string): Group name
+   Returns:
+       Tuple ``(uid, gid)`` matching passed-in user and group
+   Raises:
+      ValueError: If the ownership user/group values are invalid
    """
    if _UID_GID_AVAILABLE:
       try:
@@ -1292,12 +1332,13 @@ def changeOwnership(path, user, group):
    Changes ownership of path to match the user and group.
 
    This is a no-op if user/group functionality is not available on the
-   platform, or if the either passed-in user or group is C{None}.  Further, we
+   platform, or if the either passed-in user or group is ``None``.  Further, we
    won't even try to do it unless running as root, since it's unlikely to work.
 
-   @param path: Path whose ownership to change.
-   @param user: User which owns file.
-   @param group: Group which owns file.
+   Args:
+      path: Path whose ownership to change
+      user: User which owns file
+      group: Group which owns file
    """
    if _UID_GID_AVAILABLE:
       if user is None or group is None:
@@ -1334,19 +1375,20 @@ def splitCommandLine(commandLine):
    Unfortunately, there is no "standard" way to parse a command line string,
    and it's actually not an easy problem to solve portably (essentially, we
    have to emulate the shell argument-processing logic).  This code only
-   respects double quotes (C{"}) for grouping arguments, not single quotes
-   (C{'}).  Make sure you take this into account when building your command
+   respects double quotes (``"``) for grouping arguments, not single quotes
+   (``'``).  Make sure you take this into account when building your command
    line.
 
    Incidentally, I found this particular parsing method while digging around in
    Google Groups, and I tweaked it for my own use.
 
-   @param commandLine: Command line string
-   @type commandLine: String, i.e. "cback3 --verbose stage store"
+   Args:
+      commandLine (String, i.e. "cback3 --verbose stage store"): Command line string
+   Returns:
+       List of arguments, suitable for passing to ``popen2``
 
-   @return: List of arguments, suitable for passing to C{popen2}.
-
-   @raise ValueError: If the command line is None.
+   Raises:
+      ValueError: If the command line is None
    """
    if commandLine is None:
       raise ValueError("Cannot split command line of None.")
@@ -1370,13 +1412,13 @@ def resolveCommand(command):
 
    Ideally, we want to handle this configuration in a central location.  The
    Cedar Backup path resolver mechanism (a singleton called
-   L{PathResolverSingleton}) provides the central location to store the
+   :any:`PathResolverSingleton`) provides the central location to store the
    mappings.  This function wraps access to the singleton, and is what all
    functions (extensions or standard functionality) should call if they need to
    find a command.
 
    The passed-in command must actually be a list, in the standard form used by
-   all existing Cedar Backup code (something like C{["svnlook", ]}).  The
+   all existing Cedar Backup code (something like ``["svnlook", ]``).  The
    lookup will actually be done on the first element in the list, and the
    returned command will always be in list form as well.
 
@@ -1384,10 +1426,10 @@ def resolveCommand(command):
    command itself will be returned unchanged.  This way, we neatly fall back on
    default behavior if we have no sensible alternative.
 
-   @param command: Command to resolve.
-   @type command: List form of command, i.e. C{["svnlook", ]}.
-
-   @return: Path to command or just command itself if no mapping exists.
+   Args:
+      command (List form of command, i.e. ``["svnlook", ]``): Command to resolve
+   Returns:
+       Path to command or just command itself if no mapping exists
    """
    singleton = PathResolverSingleton.getInstance()
    name = command[0]
@@ -1404,76 +1446,66 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
    """
    Executes a shell command, hopefully in a safe way.
 
-   This function exists to replace direct calls to C{os.popen} in the Cedar
-   Backup code.  It's not safe to call a function such as C{os.popen()} with
+   This function exists to replace direct calls to ``os.popen`` in the Cedar
+   Backup code.  It's not safe to call a function such as ``os.popen()`` with
    untrusted arguments, since that can cause problems if the string contains
    non-safe variables or other constructs (imagine that the argument is
-   C{$WHATEVER}, but C{$WHATEVER} contains something like C{"; rm -fR ~/;
+   ``$WHATEVER``, but ``$WHATEVER`` contains something like C{"; rm -fR ~/;
    echo"} in the current environment).
 
    Instead, it's safer to pass a list of arguments in the style supported bt
-   C{popen2} or C{popen4}.  This function actually uses a specialized C{Pipe}
-   class implemented using either C{subprocess.Popen} or C{popen2.Popen4}.
+   ``popen2`` or ``popen4``.  This function actually uses a specialized ``Pipe``
+   class implemented using either ``subprocess.Popen`` or ``popen2.Popen4``.
 
    Under the normal case, this function will return a tuple of C{(status,
    None)} where the status is the wait-encoded return status of the call per
-   the C{popen2.Popen4} documentation.  If C{returnOutput} is passed in as
-   C{True}, the function will return a tuple of C{(status, output)} where
-   C{output} is a list of strings, one entry per line in the output from the
-   command.  Output is always logged to the C{outputLogger.info()} target,
+   the ``popen2.Popen4`` documentation.  If ``returnOutput`` is passed in as
+   ``True``, the function will return a tuple of ``(status, output)`` where
+   ``output`` is a list of strings, one entry per line in the output from the
+   command.  Output is always logged to the ``outputLogger.info()`` target,
    regardless of whether it's returned.
 
-   By default, C{stdout} and C{stderr} will be intermingled in the output.
-   However, if you pass in C{ignoreStderr=True}, then only C{stdout} will be
+   By default, ``stdout`` and ``stderr`` will be intermingled in the output.
+   However, if you pass in ``ignoreStderr=True``, then only ``stdout`` will be
    included in the output.
 
-   The C{doNotLog} parameter exists so that callers can force the function to
+   The ``doNotLog`` parameter exists so that callers can force the function to
    not log command output to the debug log.  Normally, you would want to log.
    However, if you're using this function to write huge output files (i.e.
-   database backups written to C{stdout}) then you might want to avoid putting
+   database backups written to ``stdout``) then you might want to avoid putting
    all that information into the debug log.
 
-   The C{outputFile} parameter exists to make it easier for a caller to push
+   The ``outputFile`` parameter exists to make it easier for a caller to push
    output into a file, i.e. as a substitute for redirection to a file.  If this
    value is passed in, each time a line of output is generated, it will be
-   written to the file using C{outputFile.write()}.  At the end, the file
-   descriptor will be flushed using C{outputFile.flush()}.  The caller
+   written to the file using ``outputFile.write()``.  At the end, the file
+   descriptor will be flushed using ``outputFile.flush()``.  The caller
    maintains responsibility for closing the file object appropriately.
 
-   @note: I know that it's a bit confusing that the command and the arguments
+   *Note:* I know that it's a bit confusing that the command and the arguments
    are both lists.  I could have just required the caller to pass in one big
    list.  However, I think it makes some sense to keep the command (the
-   constant part of what we're executing, i.e. C{"scp -B"}) separate from its
+   constant part of what we're executing, i.e. ``"scp -B"``) separate from its
    arguments, even if they both end up looking kind of similar.
 
-   @note: You cannot redirect output via shell constructs (i.e. C{>file},
-   C{2>/dev/null}, etc.) using this function.  The redirection string would be
+   *Note:* You cannot redirect output via shell constructs (i.e. ``>file``,
+   ``2>/dev/null``, etc.) using this function.  The redirection string would be
    passed to the command just like any other argument.  However, you can
-   implement the equivalent to redirection using C{ignoreStderr} and
-   C{outputFile}, as discussed above.
+   implement the equivalent to redirection using ``ignoreStderr`` and
+   ``outputFile``, as discussed above.
 
-   @note: The operating system environment is partially sanitized before
-   the command is invoked.  See L{sanitizeEnvironment} for details.
+   *Note:* The operating system environment is partially sanitized before
+   the command is invoked.  See :any:`sanitizeEnvironment` for details.
 
-   @param command: Shell command to execute
-   @type command: List of individual arguments that make up the command
-
-   @param args: List of arguments to the command
-   @type args: List of additional arguments to the command
-
-   @param returnOutput: Indicates whether to return the output of the command
-   @type returnOutput: Boolean C{True} or C{False}
-
-   @param ignoreStderr: Whether stderr should be discarded
-   @type ignoreStderr: Boolean True or False
-
-   @param doNotLog: Indicates that output should not be logged.
-   @type doNotLog: Boolean C{True} or C{False}
-
-   @param outputFile: File object that all output should be written to.
-   @type outputFile: File object as returned from C{open()} or C{file()}, configured for binary write
-
-   @return: Tuple of C{(result, output)} as described above.
+   Args:
+      command (List of individual arguments that make up the command): Shell command to execute
+      args (List of additional arguments to the command): List of arguments to the command
+      returnOutput (Boolean ``True`` or ``False``): Indicates whether to return the output of the command
+      ignoreStderr (Boolean True or False): Whether stderr should be discarded
+      doNotLog (Boolean ``True`` or ``False``): Indicates that output should not be logged
+      outputFile (File object as returned from ``open()`` or ``file()``, configured for binary write): File object that all output should be written to
+   Returns:
+       Tuple of ``(result, output)`` as described above
    """
    logger.debug("Executing command %s with args %s.", command, args)
    outputLogger.info("Executing command %s with args %s.", command, args)
@@ -1531,15 +1563,18 @@ def calculateFileAge(path):
    Calculates the age (in days) of a file.
 
    The "age" of a file is the amount of time since the file was last used, per
-   the most recent of the file's C{st_atime} and C{st_mtime} values.
+   the most recent of the file's ``st_atime`` and ``st_mtime`` values.
 
    Technically, we only intend this function to work with files, but it will
    probably work with anything on the filesystem.
 
-   @param path: Path to a file on disk.
+   Args:
+      path: Path to a file on disk
 
-   @return: Age of the file in days (possibly fractional).
-   @raise OSError: If the file doesn't exist.
+   Returns:
+       Age of the file in days (possibly fractional)
+   Raises:
+      OSError: If the file doesn't exist
    """
    currentTime = int(time.time())
    fileStats = os.stat(path)
@@ -1557,21 +1592,23 @@ def mount(devicePath, mountPoint, fsType):
    """
    Mounts the indicated device at the indicated mount point.
 
-   For instance, to mount a CD, you might use device path C{/dev/cdrw}, mount
-   point C{/media/cdrw} and filesystem type C{iso9660}.  You can safely use any
-   filesystem type that is supported by C{mount} on your platform.  If the type
-   is C{None}, we'll attempt to let C{mount} auto-detect it.  This may or may
+   For instance, to mount a CD, you might use device path ``/dev/cdrw``, mount
+   point ``/media/cdrw`` and filesystem type ``iso9660``.  You can safely use any
+   filesystem type that is supported by ``mount`` on your platform.  If the type
+   is ``None``, we'll attempt to let ``mount`` auto-detect it.  This may or may
    not work on all systems.
 
-   @note: This only works on platforms that have a concept of "mounting" a
-   filesystem through a command-line C{"mount"} command, like UNIXes.  It
+   *Note:* This only works on platforms that have a concept of "mounting" a
+   filesystem through a command-line ``"mount"`` command, like UNIXes.  It
    won't work on Windows.
 
-   @param devicePath: Path of device to be mounted.
-   @param mountPoint: Path that device should be mounted at.
-   @param fsType: Type of the filesystem assumed to be available via the device.
+   Args:
+      devicePath: Path of device to be mounted
+      mountPoint: Path that device should be mounted at
+      fsType: Type of the filesystem assumed to be available via the device
 
-   @raise IOError: If the device cannot be mounted.
+   Raises:
+      IOError: If the device cannot be mounted
    """
    if fsType is None:
       args = [ devicePath, mountPoint ]
@@ -1592,31 +1629,33 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
    Unmounts whatever device is mounted at the indicated mount point.
 
    Sometimes, it might not be possible to unmount the mount point immediately,
-   if there are still files open there.  Use the C{attempts} and C{waitSeconds}
+   if there are still files open there.  Use the ``attempts`` and ``waitSeconds``
    arguments to indicate how many unmount attempts to make and how many seconds
    to wait between attempts.  If you pass in zero attempts, no attempts will be
    made (duh).
 
    If the indicated mount point is not really a mount point per
-   C{os.path.ismount()}, then it will be ignored.  This seems to be a safer
-   check then looking through C{/etc/mtab}, since C{ismount()} is already in
+   ``os.path.ismount()``, then it will be ignored.  This seems to be a safer
+   check then looking through ``/etc/mtab``, since ``ismount()`` is already in
    the Python standard library and is documented as working on all POSIX
    systems.
 
-   If C{removeAfter} is C{True}, then the mount point will be removed using
-   C{os.rmdir()} after the unmount action succeeds.  If for some reason the
+   If ``removeAfter`` is ``True``, then the mount point will be removed using
+   ``os.rmdir()`` after the unmount action succeeds.  If for some reason the
    mount point is not a directory, then it will not be removed.
 
-   @note: This only works on platforms that have a concept of "mounting" a
-   filesystem through a command-line C{"mount"} command, like UNIXes.  It
+   *Note:* This only works on platforms that have a concept of "mounting" a
+   filesystem through a command-line ``"mount"`` command, like UNIXes.  It
    won't work on Windows.
 
-   @param mountPoint: Mount point to be unmounted.
-   @param removeAfter: Remove the mount point after unmounting it.
-   @param attempts: Number of times to attempt the unmount.
-   @param waitSeconds: Number of seconds to wait between repeated attempts.
+   Args:
+      mountPoint: Mount point to be unmounted
+      removeAfter: Remove the mount point after unmounting it
+      attempts: Number of times to attempt the unmount
+      waitSeconds: Number of seconds to wait between repeated attempts
 
-   @raise IOError: If the mount point is still mounted after attempts are exhausted.
+   Raises:
+      IOError: If the mount point is still mounted after attempts are exhausted
    """
    if os.path.ismount(mountPoint):
       for attempt in range(0, attempts):
@@ -1652,16 +1691,18 @@ def deviceMounted(devicePath):
    Indicates whether a specific filesystem device is currently mounted.
 
    We determine whether the device is mounted by looking through the system's
-   C{mtab} file.  This file shows every currently-mounted filesystem, ordered
-   by device.  We only do the check if the C{mtab} file exists and is readable.
+   ``mtab`` file.  This file shows every currently-mounted filesystem, ordered
+   by device.  We only do the check if the ``mtab`` file exists and is readable.
    Otherwise, we assume that the device is not mounted.
 
-   @note: This only works on platforms that have a concept of an mtab file
+   *Note:* This only works on platforms that have a concept of an mtab file
    to show mounted volumes, like UNIXes.  It won't work on Windows.
 
-   @param devicePath: Path of device to be checked
+   Args:
+      devicePath: Path of device to be checked
 
-   @return: True if device is mounted, false otherwise.
+   Returns:
+       True if device is mounted, false otherwise
    """
    if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
       realPath = os.path.realpath(devicePath)
@@ -1682,9 +1723,12 @@ def deviceMounted(devicePath):
 def encodePath(path):
    """
    Safely encodes a filesystem path as a Unicode string, converting bytes to fileystem encoding if necessary.
-   @param path: Path to encode
-   @return: Path, as a string, encoded appropriately
-   @raise ValueError: If the path cannot be encoded properly.
+   Args:
+      path: Path to encode
+   Returns:
+       Path, as a string, encoded appropriately
+   Raises:
+      ValueError: If the path cannot be encoded properly
    @see: http://lucumr.pocoo.org/2013/7/2/the-updated-guide-to-unicode/
    """
    if path is None:
@@ -1706,7 +1750,7 @@ def nullDevice():
    """
    Attempts to portably return the null device on this system.
 
-   The null device is something like C{/dev/null} on a UNIX system.  The name
+   The null device is something like ``/dev/null`` on a UNIX system.  The name
    varies on other platforms.
    """
    return os.devnull
@@ -1718,14 +1762,14 @@ def nullDevice():
 
 def deriveDayOfWeek(dayName):
    """
-   Converts English day name to numeric day of week as from C{time.localtime}.
+   Converts English day name to numeric day of week as from ``time.localtime``.
 
-   For instance, the day C{monday} would be converted to the number C{0}.
+   For instance, the day ``monday`` would be converted to the number ``0``.
 
-   @param dayName: Day of week to convert
-   @type dayName: string, i.e. C{"monday"}, C{"tuesday"}, etc.
-
-   @returns: Integer, where Monday is 0 and Sunday is 6; or -1 if no conversion is possible.
+   Args:
+      dayName (string, i.e. ``"monday"``, ``"tuesday"``, etc): Day of week to convert
+   Returns:
+       Integer, where Monday is 0 and Sunday is 6; or -1 if no conversion is possible
    """
    if dayName.lower() == "monday":
       return 0
@@ -1756,10 +1800,10 @@ def isStartOfWeek(startingDay):
    If the current day's English name matches the indicated starting day, then
    today is a starting day.
 
-   @param startingDay: Configured starting day.
-   @type startingDay: string, i.e. C{"monday"}, C{"tuesday"}, etc.
-
-   @return: Boolean indicating whether today is the starting day.
+   Args:
+      startingDay (string, i.e. ``"monday"``, ``"tuesday"``, etc): Configured starting day
+   Returns:
+       Boolean indicating whether today is the starting day
    """
    value = time.localtime().tm_wday == deriveDayOfWeek(startingDay)
    if value:
@@ -1780,26 +1824,29 @@ def buildNormalizedPath(path):
    A normalized path is a representation of a path that is also a valid file
    name.  To make a valid file name out of a complete path, we have to convert
    or remove some characters that are significant to the filesystem -- in
-   particular, the path separator and any leading C{'.'} character (which would
+   particular, the path separator and any leading ``'.'`` character (which would
    cause the file to be hidden in a file listing).
 
    Note that this is a one-way transformation -- you can't safely derive the
    original path from the normalized path.
 
    To normalize a path, we begin by looking at the first character.  If the
-   first character is C{'/'} or C{'\\'}, it gets removed.  If the first
-   character is C{'.'}, it gets converted to C{'_'}.  Then, we look through the
-   rest of the path and convert all remaining C{'/'} or C{'\\'} characters
-   C{'-'}, and all remaining whitespace characters to C{'_'}.
+   first character is ``'/'`` or ``'\\'``, it gets removed.  If the first
+   character is ``'.'``, it gets converted to ``'_'``.  Then, we look through the
+   rest of the path and convert all remaining ``'/'`` or ``'\\'`` characters
+   ``'-'``, and all remaining whitespace characters to ``'_'``.
 
-   As a special case, a path consisting only of a single C{'/'} or C{'\\'}
-   character will be converted to C{'-'}.
+   As a special case, a path consisting only of a single ``'/'`` or ``'\\'``
+   character will be converted to ``'-'``.
 
-   @param path: Path to normalize
+   Args:
+      path: Path to normalize
 
-   @return: Normalized path as described above.
+   Returns:
+       Normalized path as described above
 
-   @raise ValueError: If the path is None
+   Raises:
+      ValueError: If the path is None
    """
    if path is None:
       raise ValueError("Cannot normalize path None.")
@@ -1826,19 +1873,20 @@ def sanitizeEnvironment():
    """
    Sanitizes the operating system environment.
 
-   The operating system environment is contained in C{os.environ}.  This method
+   The operating system environment is contained in ``os.environ``.  This method
    sanitizes the contents of that dictionary.
 
-   Currently, all it does is reset the locale (removing C{$LC_*}) and set the
-   default language (C{$LANG}) to L{DEFAULT_LANGUAGE}.  This way, we can count
+   Currently, all it does is reset the locale (removing ``$LC_*``) and set the
+   default language (``$LANG``) to :any:`DEFAULT_LANGUAGE`.  This way, we can count
    on consistent localization regardless of what the end-user has configured.
    This is important for code that needs to parse program output.
 
-   The C{os.environ} dictionary is modifed in-place.  If C{$LANG} is already
+   The ``os.environ`` dictionary is modifed in-place.  If ``$LANG`` is already
    set to the proper value, it is not re-set, so we can avoid the memory leaks
    that are documented to occur on BSD-based systems.
 
-   @return: Copy of the sanitized environment.
+   Returns:
+       Copy of the sanitized environment
    """
    for var in LOCALE_VARS:
       if var in os.environ:
@@ -1856,9 +1904,11 @@ def sanitizeEnvironment():
 def dereferenceLink(path, absolute=True):
    """
    Deference a soft link, optionally normalizing it to an absolute path.
-   @param path: Path of link to dereference
-   @param absolute: Whether to normalize the result to an absolute path
-   @return: Dereferenced path, or original path if original is not a link.
+   Args:
+      path: Path of link to dereference
+      absolute: Whether to normalize the result to an absolute path
+   Returns:
+       Dereferenced path, or original path if original is not a link
    """
    if os.path.islink(path):
       result = os.readlink(path)
@@ -1880,10 +1930,12 @@ def checkUnique(prefix, values):
    duplicates, an exception is thrown.  All duplicate values are listed in
    the exception.
 
-   @param prefix: Prefix to use in the thrown exception
-   @param values: List of values to check
+   Args:
+      prefix: Prefix to use in the thrown exception
+      values: List of values to check
 
-   @raise ValueError: If there are duplicates in the list
+   Raises:
+      ValueError: If there are duplicates in the list
    """
    values.sort()
    duplicates = []
@@ -1903,11 +1955,13 @@ def parseCommaSeparatedString(commaString):
    Parses a list of values out of a comma-separated string.
 
    The items in the list are split by comma, and then have whitespace
-   stripped.  As a special case, if C{commaString} is C{None}, then C{None}
+   stripped.  As a special case, if ``commaString`` is ``None``, then ``None``
    will be returned.
 
-   @param commaString: List of values in comma-separated string format.
-   @return: Values from commaString split into a list, or C{None}.
+   Args:
+      commaString: List of values in comma-separated string format
+   Returns:
+       Values from commaString split into a list, or ``None``
    """
    if commaString is None:
       return None

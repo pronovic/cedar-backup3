@@ -26,7 +26,7 @@ This package provides official Cedar Backup extensions.  These are Cedar Backup
 actions that are not part of the "standard" set of Cedar Backup actions, but
 are officially supported along with Cedar Backup.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 

@@ -44,8 +44,8 @@ intended to be run either immediately before or immediately after the standard
 collect action.  Aside from its own configuration, it requires the options and
 collect configuration sections in the standard Cedar Backup configuration file.
 
-The backup is done via the C{mysqldump} command included with the MySQL
-product.  Output can be compressed using C{gzip} or C{bzip2}.  Administrators
+The backup is done via the ``mysqldump`` command included with the MySQL
+product.  Output can be compressed using ``gzip`` or ``bzip2``.  Administrators
 can configure the extension either to back up all databases or to back up only
 specific databases.  Note that this code always produces a full backup.  There
 is currently no facility for making incremental backups.  If/when someone has a
@@ -60,25 +60,25 @@ the best choice.
 
 The extension accepts a username and password in configuration.  However, you
 probably do not want to provide those values in Cedar Backup configuration.
-This is because Cedar Backup will provide these values to C{mysqldump} via the
-command-line C{--user} and C{--password} switches, which will be visible to
+This is because Cedar Backup will provide these values to ``mysqldump`` via the
+command-line ``--user`` and ``--password`` switches, which will be visible to
 other users in the process listing.
 
 Instead, you should configure the username and password in one of MySQL's
 configuration files.  Typically, that would be done by putting a stanza like
-this in C{/root/.my.cnf}::
+this in ``/root/.my.cnf``::
 
    [mysqldump]
    user     = root
    password = <secret>
 
-Regardless of whether you are using C{~/.my.cnf} or C{/etc/cback3.conf} to store
+Regardless of whether you are using ``~/.my.cnf`` or ``/etc/cback3.conf`` to store
 database login and password information, you should be careful about who is
 allowed to view that information.  Typically, this means locking down
 permissions so that only the file owner can read the file contents (i.e. use
-mode C{0600}).
+mode ``0600``).
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -122,24 +122,23 @@ class MysqlConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The compress mode must be one of the values in L{VALID_COMPRESS_MODES}.
+      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
       - The 'all' flag must be 'Y' if no databases are defined.
       - The 'all' flag must be 'N' if any databases are defined.
       - Any values in the databases list must be strings.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, user,
-         password, all, databases
    """
 
    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
       """
-      Constructor for the C{MysqlConfig} class.
+      Constructor for the ``MysqlConfig`` class.
 
-      @param user: User to execute backup as.
-      @param password: Password associated with user.
-      @param compressMode: Compress mode for backed-up files.
-      @param all: Indicates whether to back up all databases.
-      @param databases: List of databases to back up.
+      Args:
+         user: User to execute backup as
+         password: Password associated with user
+         compressMode: Compress mode for backed-up files
+         all: Indicates whether to back up all databases
+         databases: List of databases to back up
       """
       self._user = None
       self._password = None
@@ -179,8 +178,10 @@ class MysqlConfig(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -244,8 +245,9 @@ class MysqlConfig(object):
    def _setCompressMode(self, value):
       """
       Property target used to set the compress mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COMPRESS_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COMPRESS_MODES:
@@ -261,7 +263,7 @@ class MysqlConfig(object):
    def _setAll(self, value):
       """
       Property target used to set the 'all' flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._all = True
@@ -277,8 +279,9 @@ class MysqlConfig(object):
    def _setDatabases(self, value):
       """
       Property target used to set the databases list.
-      Either the value must be C{None} or each element must be a string.
-      @raise ValueError: If the value is not a string.
+      Either the value must be ``None`` or each element must be a string.
+      Raises:
+         ValueError: If the value is not a string
       """
       if value is None:
          self._databases = None
@@ -321,48 +324,42 @@ class LocalConfig(object):
    Backup configuration object.  Instead, it just knows how to parse and emit
    MySQL-specific configuration values.  Third parties who need to read and
    write configuration related to this extension should access it through the
-   constructor, C{validate} and C{addConfig} methods.
+   constructor, ``validate`` and ``addConfig`` methods.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__, mysql,
-         validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
       """
       Initializes a configuration object.
 
-      If you initialize the object without passing either C{xmlData} or
-      C{xmlPath} then configuration will be empty and will be invalid until it
+      If you initialize the object without passing either ``xmlData`` or
+      ``xmlPath`` then configuration will be empty and will be invalid until it
       is filled in properly.
 
       No reference to the original XML data or original path is saved off by
       this class.  Once the data has been parsed (successfully or not) this
       original information is discarded.
 
-      Unless the C{validate} argument is C{False}, the L{LocalConfig.validate}
+      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
       method will be called (with its default arguments) against configuration
       after successfully parsing any passed-in XML.  Keep in mind that even if
-      C{validate} is C{False}, it might not be possible to parse the passed-in
+      ``validate`` is ``False``, it might not be possible to parse the passed-in
       XML document if lower-level validations fail.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to read in
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to read in
       invalid configuration from disk.
 
-      @param xmlData: XML data representing configuration.
-      @type xmlData: String data.
-
-      @param xmlPath: Path to an XML file on disk.
-      @type xmlPath: Absolute path to a file on disk.
-
-      @param validate: Validate the document after parsing it.
-      @type validate: Boolean true/false.
-
-      @raise ValueError: If both C{xmlData} and C{xmlPath} are passed-in.
-      @raise ValueError: If the XML data in C{xmlData} or C{xmlPath} cannot be parsed.
-      @raise ValueError: If the parsed configuration document is not valid.
+      Args:
+         xmlData (String data): XML data representing configuration
+         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+         validate (Boolean true/false): Validate the document after parsing it
+      Raises:
+         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+         ValueError: If the parsed configuration document is not valid
       """
       self._mysql = None
       self.mysql = None
@@ -407,8 +404,10 @@ class LocalConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -422,14 +421,15 @@ class LocalConfig(object):
    def _setMysql(self, value):
       """
       Property target used to set the mysql configuration value.
-      If not C{None}, the value must be a C{MysqlConfig} object.
-      @raise ValueError: If the value is not a C{MysqlConfig}
+      If not ``None``, the value must be a ``MysqlConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``MysqlConfig``
       """
       if value is None:
          self._mysql = None
       else:
          if not isinstance(value, MysqlConfig):
-            raise ValueError("Value must be a C{MysqlConfig} object.")
+            raise ValueError("Value must be a ``MysqlConfig`` object.")
          self._mysql = value
 
    def _getMysql(self):
@@ -438,17 +438,18 @@ class LocalConfig(object):
       """
       return self._mysql
 
-   mysql = property(_getMysql, _setMysql, None, "Mysql configuration in terms of a C{MysqlConfig} object.")
+   mysql = property(_getMysql, _setMysql, None, "Mysql configuration in terms of a ``MysqlConfig`` object.")
 
    def validate(self):
       """
       Validates configuration represented by the object.
 
-      The compress mode must be filled in.  Then, if the 'all' flag I{is} set,
-      no databases are allowed, and if the 'all' flag is I{not} set, at least
+      The compress mode must be filled in.  Then, if the 'all' flag *is* set,
+      no databases are allowed, and if the 'all' flag is *not* set, at least
       one database is required.
 
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       if self.mysql is None:
          raise ValueError("Mysql section is required.")
@@ -480,8 +481,9 @@ class LocalConfig(object):
 
          database       //cb_config/mysql/database
 
-      @param xmlDom: DOM tree as from C{impl.createDocument()}.
-      @param parentNode: Parent that the section should be appended to.
+      Args:
+         xmlDom: DOM tree as from ``impl.createDocument()``
+         parentNode: Parent that the section should be appended to
       """
       if self.mysql is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "mysql")
@@ -497,13 +499,13 @@ class LocalConfig(object):
       """
       Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (C{xmlDom}) and then
+      This method parses the XML document into a DOM tree (``xmlDom``) and then
       calls a static method to parse the mysql configuration section.
 
-      @param xmlData: XML data to be parsed
-      @type xmlData: String data
-
-      @raise ValueError: If the XML cannot be successfully parsed.
+      Args:
+         xmlData (String data): XML data to be parsed
+      Raises:
+         ValueError: If the XML cannot be successfully parsed
       """
       (xmlDom, parentNode) = createInputDom(xmlData)
       self._mysql = LocalConfig._parseMysql(parentNode)
@@ -525,10 +527,13 @@ class LocalConfig(object):
 
          databases      //cb_config/mysql/database
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: C{MysqlConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``MysqlConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       mysql = None
       section = readFirstChild(parentNode, "mysql")
@@ -555,17 +560,13 @@ def executeAction(configPath, options, config):
    """
    Executes the MySQL backup action.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If a backup could not be written for some reason.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If a backup could not be written for some reason
    """
    logger.debug("Executing MySQL extended action.")
    if config.options is None or config.collect is None:
@@ -590,18 +591,21 @@ def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupG
    This internal method wraps the public method and adds some functionality,
    like figuring out a filename, etc.
 
-   @param targetDir:  Directory into which backups should be written.
-   @param compressMode: Compress mode to be used for backed-up files.
-   @param user: User to use for connecting to the database (if any).
-   @param password: Password associated with user (if any).
-   @param backupUser: User to own resulting file.
-   @param backupGroup: Group to own resulting file.
-   @param database: Name of database, or C{None} for all databases.
+   Args:
+      targetDir:  Directory into which backups should be written
+      compressMode: Compress mode to be used for backed-up files
+      user: User to use for connecting to the database (if any)
+      password: Password associated with user (if any)
+      backupUser: User to own resulting file
+      backupGroup: Group to own resulting file
+      database: Name of database, or ``None`` for all databases
 
-   @return: Name of the generated backup file.
+   Returns:
+       Name of the generated backup file
 
-   @raise ValueError: If some value is missing or invalid.
-   @raise IOError: If there is a problem executing the MySQL dump.
+   Raises:
+      ValueError: If some value is missing or invalid
+      IOError: If there is a problem executing the MySQL dump
    """
    (outputFile, filename) = _getOutputFile(targetDir, database, compressMode)
    with outputFile:
@@ -614,14 +618,16 @@ def _getOutputFile(targetDir, database, compressMode):
    """
    Opens the output file used for saving the MySQL dump.
 
-   The filename is either C{"mysqldump.txt"} or C{"mysqldump-<database>.txt"}.  The
-   C{".bz2"} extension is added if C{compress} is C{True}.
+   The filename is either ``"mysqldump.txt"`` or ``"mysqldump-<database>.txt"``.  The
+   ``".bz2"`` extension is added if ``compress`` is ``True``.
 
-   @param targetDir: Target directory to write file in.
-   @param database: Name of the database (if any)
-   @param compressMode: Compress mode to be used for backed-up files.
+   Args:
+      targetDir: Target directory to write file in
+      database: Name of the database (if any)
+      compressMode: Compress mode to be used for backed-up files
 
-   @return: Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
+   Returns:
+       Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
    if database is None:
       filename = os.path.join(targetDir, "mysqldump.txt")
@@ -649,12 +655,12 @@ def backupDatabase(user, password, backupFile, database=None):
 
    This function backs up either a named local MySQL database or all local
    MySQL databases, using the passed-in user and password (if provided) for
-   connectivity.  This function call I{always} results a full backup.  There is
+   connectivity.  This function call *always* results a full backup.  There is
    no facility for incremental backups.
 
    The backup data will be written into the passed-in backup file.  Normally,
-   this would be an object as returned from C{open()}, but it is possible to
-   use something like a C{GzipFile} to write compressed output.  The caller is
+   this would be an object as returned from ``open()``, but it is possible to
+   use something like a ``GzipFile`` to write compressed output.  The caller is
    responsible for closing the passed-in backup file.
 
    Often, the "root" database user will be used when backing up all databases.
@@ -664,12 +670,12 @@ def backupDatabase(user, password, backupFile, database=None):
 
    This function accepts a username and password.  However, you probably do not
    want to pass those values in.  This is because they will be provided to
-   C{mysqldump} via the command-line C{--user} and C{--password} switches,
+   ``mysqldump`` via the command-line ``--user`` and ``--password`` switches,
    which will be visible to other users in the process listing.
 
    Instead, you should configure the username and password in one of MySQL's
    configuration files.  Typically, this would be done by putting a stanza like
-   this in C{/root/.my.cnf}, to provide C{mysqldump} with the root database
+   this in ``/root/.my.cnf``, to provide ``mysqldump`` with the root database
    username and its password::
 
       [mysqldump]
@@ -677,24 +683,18 @@ def backupDatabase(user, password, backupFile, database=None):
       password = <secret>
 
    If you are executing this function as some system user other than root, then
-   the C{.my.cnf} file would be placed in the home directory of that user.  In
+   the ``.my.cnf`` file would be placed in the home directory of that user.  In
    either case, make sure to set restrictive permissions (typically, mode
-   C{0600}) on C{.my.cnf} to make sure that other users cannot read the file.
+   ``0600``) on ``.my.cnf`` to make sure that other users cannot read the file.
 
-   @param user: User to use for connecting to the database (if any)
-   @type user: String representing MySQL username, or C{None}
-
-   @param password: Password associated with user (if any)
-   @type password: String representing MySQL password, or C{None}
-
-   @param backupFile: File use for writing backup.
-   @type backupFile: Python file object as from C{open()} or C{file()}.
-
-   @param database: Name of the database to be backed up.
-   @type database: String representing database name, or C{None} for all databases.
-
-   @raise ValueError: If some value is missing or invalid.
-   @raise IOError: If there is a problem executing the MySQL dump.
+   Args:
+      user (String representing MySQL username, or ``None``): User to use for connecting to the database (if any)
+      password (String representing MySQL password, or ``None``): Password associated with user (if any)
+      backupFile (Python file object as from ``open()`` or ``file()``): File use for writing backup
+      database (String representing database name, or ``None`` for all databases): Name of the database to be backed up
+   Raises:
+      ValueError: If some value is missing or invalid
+      IOError: If there is a problem executing the MySQL dump
    """
    args = [ "-all", "--flush-logs", "--opt", ]
    if user is not None:

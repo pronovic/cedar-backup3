@@ -27,7 +27,7 @@ for the standard actions.  The code formerly in action.py was split into
 various other files in the CedarBackup3.actions package.  This mostly-empty
 file remains to preserve the Cedar Backup library interface.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################

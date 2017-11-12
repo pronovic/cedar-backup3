@@ -38,12 +38,14 @@
 """
 Provides backup peer-related objects and utility functions.
 
-@sort: LocalPeer, RemotePeer
+Module Attributes
+=================
 
-@var DEF_COLLECT_INDICATOR: Name of the default collect indicator file.
-@var DEF_STAGE_INDICATOR: Name of the default stage indicator file.
+Attributes:
+   DEF_COLLECT_INDICATOR: Name of the default collect indicator file
+   DEF_STAGE_INDICATOR: Name of the default stage indicator file
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -98,10 +100,8 @@ class LocalPeer(object):
    hostname) and a collect directory.
 
    The public methods other than the constructor are part of a "backup peer"
-   interface shared with the C{RemotePeer} class.
+   interface shared with the ``RemotePeer`` class.
 
-   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator,
-          _copyLocalDir, _copyLocalFile, name, collectDir
    """
 
    ##############
@@ -117,17 +117,13 @@ class LocalPeer(object):
       on this value since we could (potentially) be creating peer objects
       before an ongoing backup completed.
 
-      @param name: Name of the backup peer
-      @type name: String, typically a hostname
-
-      @param collectDir: Path to the peer's collect directory
-      @type collectDir: String representing an absolute local path on disk
-
-      @param ignoreFailureMode: Ignore failure mode for this peer
-      @type ignoreFailureMode: One of VALID_FAILURE_MODES
-
-      @raise ValueError: If the name is empty.
-      @raise ValueError: If collect directory is not an absolute path.
+      Args:
+         name (String, typically a hostname): Name of the backup peer
+         collectDir (String representing an absolute local path on disk): Path to the peer's collect directory
+         ignoreFailureMode (One of VALID_FAILURE_MODES): Ignore failure mode for this peer
+      Raises:
+         ValueError: If the name is empty
+         ValueError: If collect directory is not an absolute path
       """
       self._name = None
       self._collectDir = None
@@ -144,8 +140,9 @@ class LocalPeer(object):
    def _setName(self, value):
       """
       Property target used to set the peer name.
-      The value must be a non-empty string and cannot be C{None}.
-      @raise ValueError: If the value is an empty string or C{None}.
+      The value must be a non-empty string and cannot be ``None``.
+      Raises:
+         ValueError: If the value is an empty string or ``None``
       """
       if value is None or len(value) < 1:
          raise ValueError("Peer name must be a non-empty string.")
@@ -160,10 +157,11 @@ class LocalPeer(object):
    def _setCollectDir(self, value):
       """
       Property target used to set the collect directory.
-      The value must be an absolute path and cannot be C{None}.
+      The value must be an absolute path and cannot be ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is C{None} or is not an absolute path.
-      @raise ValueError: If a path cannot be encoded properly.
+      Raises:
+         ValueError: If the value is ``None`` or is not an absolute path
+         ValueError: If a path cannot be encoded properly
       """
       if value is None or not os.path.isabs(value):
          raise ValueError("Collect directory must be an absolute path.")
@@ -178,8 +176,9 @@ class LocalPeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not C{None}, the mode must be one of the values in L{VALID_FAILURE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_FAILURE_MODES:
@@ -209,29 +208,26 @@ class LocalPeer(object):
       method is called.  If passed in, ownership and permissions will be
       applied to the files that are copied.
 
-      @note: The caller is responsible for checking that the indicator exists,
+      *Note:* The caller is responsible for checking that the indicator exists,
       if they care.  This function only stages the files within the directory.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @param targetDir: Target directory to write data into
-      @type targetDir: String representing a directory on disk
+      Args:
+         targetDir (String representing a directory on disk): Target directory to write data into
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the staged files should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+      Returns:
+          Number of files copied from the source directory to the target directory
 
-      @param ownership: Owner and group that the staged files should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @return: Number of files copied from the source directory to the target directory.
-
-      @raise ValueError: If collect directory is not a directory or does not exist
-      @raise ValueError: If target directory is not a directory, does not exist or is not absolute.
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If there were no files to stage (i.e. the directory was empty)
-      @raise IOError: If there is an IO error copying a file.
-      @raise OSError: If there is an OS error copying or changing permissions on a file
+      Raises:
+         ValueError: If collect directory is not a directory or does not exist
+         ValueError: If target directory is not a directory, does not exist or is not absolute
+         ValueError: If a path cannot be encoded properly
+         IOError: If there were no files to stage (i.e. the directory was empty)
+         IOError: If there is an IO error copying a file
+         OSError: If there is an OS error copying or changing permissions on a file
       """
       targetDir = encodePath(targetDir)
       if not os.path.isabs(targetDir):
@@ -255,16 +251,17 @@ class LocalPeer(object):
       When a peer has completed collecting its backup files, it will write an
       empty indicator file into its collect directory.  This method checks to
       see whether that indicator has been written.  We're "stupid" here - if
-      the collect directory doesn't exist, you'll naturally get back C{False}.
+      the collect directory doesn't exist, you'll naturally get back ``False``.
 
       If you need to, you can override the name of the collect indicator file
       by passing in a different name.
 
-      @param collectIndicator: Name of the collect indicator file to check
-      @type collectIndicator: String representing name of a file in the collect directory
-
-      @return: Boolean true/false depending on whether the indicator exists.
-      @raise ValueError: If a path cannot be encoded properly.
+      Args:
+         collectIndicator (String representing name of a file in the collect directory): Name of the collect indicator file to check
+      Returns:
+          Boolean true/false depending on whether the indicator exists
+      Raises:
+         ValueError: If a path cannot be encoded properly
       """
       collectIndicator = encodePath(collectIndicator)
       if collectIndicator is None:
@@ -283,22 +280,18 @@ class LocalPeer(object):
       If you need to, you can override the name of the stage indicator file by
       passing in a different name.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid}
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid`
       function to get the associated uid/gid as an ownership tuple.
 
-      @param stageIndicator: Name of the indicator file to write
-      @type stageIndicator: String representing name of a file in the collect directory
-
-      @param ownership: Owner and group that the indicator file should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the indicator file should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @raise ValueError: If collect directory is not a directory or does not exist
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If there is an IO error creating the file.
-      @raise OSError: If there is an OS error creating or changing permissions on the file
+      Args:
+         stageIndicator (String representing name of a file in the collect directory): Name of the indicator file to write
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the indicator file should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the indicator file should have
+      Raises:
+         ValueError: If collect directory is not a directory or does not exist
+         ValueError: If a path cannot be encoded properly
+         IOError: If there is an IO error creating the file
+         OSError: If there is an OS error creating or changing permissions on the file
       """
       stageIndicator = encodePath(stageIndicator)
       if not os.path.exists(self.collectDir) or not os.path.isdir(self.collectDir):
@@ -326,27 +319,22 @@ class LocalPeer(object):
       allowed to be soft links to a directory, but besides that soft links are
       ignored.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid}
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid`
       function to get the associated uid/gid as an ownership tuple.
 
-      @param sourceDir: Source directory
-      @type sourceDir: String representing a directory on disk
+      Args:
+         sourceDir (String representing a directory on disk): Source directory
+         targetDir (String representing a directory on disk): Target directory
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied files should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+      Returns:
+          Number of files copied from the source directory to the target directory
 
-      @param targetDir: Target directory
-      @type targetDir: String representing a directory on disk
-
-      @param ownership: Owner and group that the copied files should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @return: Number of files copied from the source directory to the target directory.
-
-      @raise ValueError: If source or target is not a directory or does not exist.
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If there is an IO error copying the files.
-      @raise OSError: If there is an OS error copying or changing permissions on a files
+      Raises:
+         ValueError: If source or target is not a directory or does not exist
+         ValueError: If a path cannot be encoded properly
+         IOError: If there is an IO error copying the files
+         OSError: If there is an OS error copying or changing permissions on a files
       """
       filesCopied = 0
       sourceDir = encodePath(sourceDir)
@@ -363,37 +351,29 @@ class LocalPeer(object):
       """
       Copies a source file to a target file.
 
-      If the source file is C{None} then the target file will be created or
-      overwritten as an empty file.  If the target file is C{None}, this method
+      If the source file is ``None`` then the target file will be created or
+      overwritten as an empty file.  If the target file is ``None``, this method
       is a no-op.  Attempting to copy a soft link or a directory will result in
       an exception.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid}
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid`
       function to get the associated uid/gid as an ownership tuple.
 
-      @note: We will not overwrite a target file that exists when this method
+      *Note:* We will not overwrite a target file that exists when this method
       is invoked.  If the target already exists, we'll raise an exception.
 
-      @param sourceFile: Source file to copy
-      @type sourceFile: String representing a file on disk, as an absolute path
-
-      @param targetFile: Target file to create
-      @type targetFile: String representing a file on disk, as an absolute path
-
-      @param ownership: Owner and group that the copied should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @param overwrite: Indicates whether it's OK to overwrite the target file.
-      @type overwrite: Boolean true/false.
-
-      @raise ValueError: If the passed-in source file is not a regular file.
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If the target file already exists.
-      @raise IOError: If there is an IO error copying the file
-      @raise OSError: If there is an OS error copying or changing permissions on a file
+      Args:
+         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
+         targetFile (String representing a file on disk, as an absolute path): Target file to create
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+      Raises:
+         ValueError: If the passed-in source file is not a regular file
+         ValueError: If a path cannot be encoded properly
+         IOError: If the target file already exists
+         IOError: If there is an IO error copying the file
+         OSError: If there is an OS error copying or changing permissions on a file
       """
       targetFile = encodePath(targetFile)
       sourceFile = encodePath(sourceFile)
@@ -438,7 +418,7 @@ class RemotePeer(object):
 
    You can also set an optional local user value.  This username will be used
    as the local user for any remote copies that are required.  It can only be
-   used if the root user is executing the backup.  The root user will C{su} to
+   used if the root user is executing the backup.  The root user will ``su`` to
    the local user and execute the remote copies as that user.
 
    The copy method is associated with the peer and not with the actual request
@@ -446,12 +426,8 @@ class RemotePeer(object):
    different connect method.
 
    The public methods other than the constructor are part of a "backup peer"
-   interface shared with the C{LocalPeer} class.
+   interface shared with the ``LocalPeer`` class.
 
-   @sort: __init__, stagePeer, checkCollectIndicator, writeStageIndicator,
-          executeRemoteCommand, executeManagedAction, _getDirContents,
-          _copyRemoteDir, _copyRemoteFile, _pushLocalFile, name, collectDir,
-          remoteUser, rcpCommand, rshCommand, cbackCommand
    """
 
    ##############
@@ -464,40 +440,24 @@ class RemotePeer(object):
       """
       Initializes a remote backup peer.
 
-      @note: If provided, each command will eventually be parsed into a list of
-      strings suitable for passing to C{util.executeCommand} in order to avoid
+      *Note:* If provided, each command will eventually be parsed into a list of
+      strings suitable for passing to ``util.executeCommand`` in order to avoid
       security holes related to shell interpolation.   This parsing will be
-      done by the L{util.splitCommandLine} function.  See the documentation for
+      done by the :any:`util.splitCommandLine` function.  See the documentation for
       that function for some important notes about its limitations.
 
-      @param name: Name of the backup peer
-      @type name: String, must be a valid DNS hostname
-
-      @param collectDir: Path to the peer's collect directory
-      @type collectDir: String representing an absolute path on the remote peer
-
-      @param workingDir: Working directory that can be used to create temporary files, etc.
-      @type workingDir: String representing an absolute path on the current host.
-
-      @param remoteUser: Name of the Cedar Backup user on the remote peer
-      @type remoteUser: String representing a username, valid via remote shell to the peer
-
-      @param localUser: Name of the Cedar Backup user on the current host
-      @type localUser: String representing a username, valid on the current host
-
-      @param rcpCommand: An rcp-compatible copy command to use for copying files from the peer
-      @type rcpCommand: String representing a system command including required arguments
-
-      @param rshCommand: An rsh-compatible copy command to use for remote shells to the peer
-      @type rshCommand: String representing a system command including required arguments
-
-      @param cbackCommand: A chack-compatible command to use for executing managed actions
-      @type cbackCommand: String representing a system command including required arguments
-
-      @param ignoreFailureMode: Ignore failure mode for this peer
-      @type ignoreFailureMode: One of VALID_FAILURE_MODES
-
-      @raise ValueError: If collect directory is not an absolute path
+      Args:
+         name (String, must be a valid DNS hostname): Name of the backup peer
+         collectDir (String representing an absolute path on the remote peer): Path to the peer's collect directory
+         workingDir (String representing an absolute path on the current host): Working directory that can be used to create temporary files, etc
+         remoteUser (String representing a username, valid via remote shell to the peer): Name of the Cedar Backup user on the remote peer
+         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
+         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
+         rshCommand (String representing a system command including required arguments): An rsh-compatible copy command to use for remote shells to the peer
+         cbackCommand (String representing a system command including required arguments): A chack-compatible command to use for executing managed actions
+         ignoreFailureMode (One of VALID_FAILURE_MODES): Ignore failure mode for this peer
+      Raises:
+         ValueError: If collect directory is not an absolute path
       """
       self._name = None
       self._collectDir = None
@@ -528,8 +488,9 @@ class RemotePeer(object):
    def _setName(self, value):
       """
       Property target used to set the peer name.
-      The value must be a non-empty string and cannot be C{None}.
-      @raise ValueError: If the value is an empty string or C{None}.
+      The value must be a non-empty string and cannot be ``None``.
+      Raises:
+         ValueError: If the value is an empty string or ``None``
       """
       if value is None or len(value) < 1:
          raise ValueError("Peer name must be a non-empty string.")
@@ -544,10 +505,11 @@ class RemotePeer(object):
    def _setCollectDir(self, value):
       """
       Property target used to set the collect directory.
-      The value must be an absolute path and cannot be C{None}.
+      The value must be an absolute path and cannot be ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is C{None} or is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is ``None`` or is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -563,9 +525,10 @@ class RemotePeer(object):
    def _setWorkingDir(self, value):
       """
       Property target used to set the working directory.
-      The value must be an absolute path and cannot be C{None}.
-      @raise ValueError: If the value is C{None} or is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      The value must be an absolute path and cannot be ``None``.
+      Raises:
+         ValueError: If the value is ``None`` or is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -581,8 +544,9 @@ class RemotePeer(object):
    def _setRemoteUser(self, value):
       """
       Property target used to set the remote user.
-      The value must be a non-empty string and cannot be C{None}.
-      @raise ValueError: If the value is an empty string or C{None}.
+      The value must be a non-empty string and cannot be ``None``.
+      Raises:
+         ValueError: If the value is an empty string or ``None``
       """
       if value is None or len(value) < 1:
          raise ValueError("Peer remote user must be a non-empty string.")
@@ -597,8 +561,9 @@ class RemotePeer(object):
    def _setLocalUser(self, value):
       """
       Property target used to set the local user.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -615,17 +580,18 @@ class RemotePeer(object):
       """
       Property target to set the rcp command.
 
-      The value must be a non-empty string or C{None}.  Its value is stored in
+      The value must be a non-empty string or ``None``.  Its value is stored in
       the two forms: "raw" as provided by the client, and "parsed" into a list
-      suitable for being passed to L{util.executeCommand} via
-      L{util.splitCommandLine}.
+      suitable for being passed to :any:`util.executeCommand` via
+      :any:`util.splitCommandLine`.
 
       However, all the caller will ever see via the property is the actual
-      value they set (which includes seeing C{None}, even if we translate that
-      internally to C{DEF_RCP_COMMAND}).  Internally, we should always use
-      C{self._rcpCommandList} if we want the actual command list.
+      value they set (which includes seeing ``None``, even if we translate that
+      internally to ``DEF_RCP_COMMAND``).  Internally, we should always use
+      ``self._rcpCommandList`` if we want the actual command list.
 
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is None:
          self._rcpCommand = None
@@ -647,17 +613,18 @@ class RemotePeer(object):
       """
       Property target to set the rsh command.
 
-      The value must be a non-empty string or C{None}.  Its value is stored in
+      The value must be a non-empty string or ``None``.  Its value is stored in
       the two forms: "raw" as provided by the client, and "parsed" into a list
-      suitable for being passed to L{util.executeCommand} via
-      L{util.splitCommandLine}.
+      suitable for being passed to :any:`util.executeCommand` via
+      :any:`util.splitCommandLine`.
 
       However, all the caller will ever see via the property is the actual
-      value they set (which includes seeing C{None}, even if we translate that
-      internally to C{DEF_RSH_COMMAND}).  Internally, we should always use
-      C{self._rshCommandList} if we want the actual command list.
+      value they set (which includes seeing ``None``, even if we translate that
+      internally to ``DEF_RSH_COMMAND``).  Internally, we should always use
+      ``self._rshCommandList`` if we want the actual command list.
 
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is None:
          self._rshCommand = None
@@ -679,11 +646,12 @@ class RemotePeer(object):
       """
       Property target to set the cback command.
 
-      The value must be a non-empty string or C{None}.  Unlike the other
+      The value must be a non-empty string or ``None``.  Unlike the other
       command, this value is only stored in the "raw" form provided by the
       client.
 
-      @raise ValueError: If the value is an empty string.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is None:
          self._cbackCommand = None
@@ -702,8 +670,9 @@ class RemotePeer(object):
    def _setIgnoreFailureMode(self, value):
       """
       Property target used to set the ignoreFailure mode.
-      If not C{None}, the mode must be one of the values in L{VALID_FAILURE_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_FAILURE_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_FAILURE_MODES:
@@ -739,37 +708,34 @@ class RemotePeer(object):
       passed in, ownership and permissions will be applied to the files that
       are copied.
 
-      @note: The returned count of copied files might be inaccurate if some of
+      *Note:* The returned count of copied files might be inaccurate if some of
       the copied files already existed in the staging directory prior to the
       copy taking place.  We don't clear the staging directory first, because
       some extension might also be using it.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @note: Unlike the local peer version of this method, an I/O error might
+      *Note:* Unlike the local peer version of this method, an I/O error might
       or might not be raised if the directory is empty.  Since we're using a
       remote copy method, we just don't have the fine-grained control over our
       exceptions that's available when we can look directly at the filesystem,
       and we can't control whether the remote copy method thinks an empty
       directory is an error.
 
-      @param targetDir: Target directory to write data into
-      @type targetDir: String representing a directory on disk
+      Args:
+         targetDir (String representing a directory on disk): Target directory to write data into
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the staged files should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+      Returns:
+          Number of files copied from the source directory to the target directory
 
-      @param ownership: Owner and group that the staged files should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @return: Number of files copied from the source directory to the target directory.
-
-      @raise ValueError: If target directory is not a directory, does not exist or is not absolute.
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If there were no files to stage (i.e. the directory was empty)
-      @raise IOError: If there is an IO error copying a file.
-      @raise OSError: If there is an OS error copying or changing permissions on a file
+      Raises:
+         ValueError: If target directory is not a directory, does not exist or is not absolute
+         ValueError: If a path cannot be encoded properly
+         IOError: If there were no files to stage (i.e. the directory was empty)
+         IOError: If there is an IO error copying a file
+         OSError: If there is an OS error copying or changing permissions on a file
       """
       targetDir = encodePath(targetDir)
       if not os.path.isabs(targetDir):
@@ -793,22 +759,23 @@ class RemotePeer(object):
       When a peer has completed collecting its backup files, it will write an
       empty indicator file into its collect directory.  This method checks to
       see whether that indicator has been written.  If the remote copy command
-      fails, we return C{False} as if the file weren't there.
+      fails, we return ``False`` as if the file weren't there.
 
       If you need to, you can override the name of the collect indicator file
       by passing in a different name.
 
-      @note: Apparently, we can't count on all rcp-compatible implementations
+      *Note:* Apparently, we can't count on all rcp-compatible implementations
       to return sensible errors for some error conditions.  As an example, the
-      C{scp} command in Debian 'woody' returns a zero (normal) status even when
+      ``scp`` command in Debian 'woody' returns a zero (normal) status even when
       it can't find a host or if the login or path is invalid.  Because of
       this, the implementation of this method is rather convoluted.
 
-      @param collectIndicator: Name of the collect indicator file to check
-      @type collectIndicator: String representing name of a file in the collect directory
-
-      @return: Boolean true/false depending on whether the indicator exists.
-      @raise ValueError: If a path cannot be encoded properly.
+      Args:
+         collectIndicator (String representing name of a file in the collect directory): Name of the collect indicator file to check
+      Returns:
+          Boolean true/false depending on whether the indicator exists
+      Raises:
+         ValueError: If a path cannot be encoded properly
       """
       try:
          if collectIndicator is None:
@@ -853,15 +820,15 @@ class RemotePeer(object):
       If you need to, you can override the name of the stage indicator file by
       passing in a different name.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @param stageIndicator: Name of the indicator file to write
-      @type stageIndicator: String representing name of a file in the collect directory
-
-      @raise ValueError: If a path cannot be encoded properly.
-      @raise IOError: If there is an IO error creating the file.
-      @raise OSError: If there is an OS error creating or changing permissions on the file
+      Args:
+         stageIndicator (String representing name of a file in the collect directory): Name of the indicator file to write
+      Raises:
+         ValueError: If a path cannot be encoded properly
+         IOError: If there is an IO error creating the file
+         OSError: If there is an OS error creating or changing permissions on the file
       """
       stageIndicator = encodePath(stageIndicator)
       if stageIndicator is None:
@@ -887,10 +854,10 @@ class RemotePeer(object):
       """
       Executes a command on the peer via remote shell.
 
-      @param command: Command to execute
-      @type command: String command-line suitable for use with rsh.
-
-      @raise IOError: If there is an error executing the command on the remote peer.
+      Args:
+         command (String command-line suitable for use with rsh): Command to execute
+      Raises:
+         IOError: If there is an error executing the command on the remote peer
       """
       RemotePeer._executeRemoteCommand(self.remoteUser, self.localUser,
                                        self.name, self._rshCommand,
@@ -900,10 +867,12 @@ class RemotePeer(object):
       """
       Executes a managed action on this peer.
 
-      @param action: Name of the action to execute.
-      @param fullBackup: Whether a full backup should be executed.
+      Args:
+         action: Name of the action to execute
+         fullBackup: Whether a full backup should be executed
 
-      @raise IOError: If there is an error executing the action on the remote peer.
+      Raises:
+         IOError: If there is an error executing the action on the remote peer
       """
       try:
          command = RemotePeer._buildCbackCommand(self.cbackCommand, action, fullBackup)
@@ -922,14 +891,15 @@ class RemotePeer(object):
       """
       Returns the contents of a directory in terms of a Set.
 
-      The directory's contents are read as a L{FilesystemList} containing only
+      The directory's contents are read as a :any:`FilesystemList` containing only
       files, and then the list is converted into a set object for later use.
 
-      @param path: Directory path to get contents for
-      @type path: String representing a path on disk
-
-      @return: Set of files in the directory
-      @raise ValueError: If path is not a directory or does not exist.
+      Args:
+         path (String representing a path on disk): Directory path to get contents for
+      Returns:
+          Set of files in the directory
+      Raises:
+         ValueError: If path is not a directory or does not exist
       """
       contents = FilesystemList()
       contents.excludeDirs = True
@@ -949,15 +919,15 @@ class RemotePeer(object):
       the collect directory is dependent on the behavior of the specified rcp
       command.
 
-      @note: The returned count of copied files might be inaccurate if some of
+      *Note:* The returned count of copied files might be inaccurate if some of
       the copied files already existed in the staging directory prior to the
       copy taking place.  We don't clear the staging directory first, because
       some extension might also be using it.
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @note: We don't have a good way of knowing exactly what files we copied
+      *Note:* We don't have a good way of knowing exactly what files we copied
       down from the remote peer, unless we want to parse the output of the rcp
       command (ugh).  We could change permissions on everything in the target
       directory, but that's kind of ugly too.  Instead, we use Python's set
@@ -966,44 +936,29 @@ class RemotePeer(object):
       someone else is messing with the directory at the same time we're doing
       the remote copy - but it's about as good as we're going to get.
 
-      @note: Apparently, we can't count on all rcp-compatible implementations
+      *Note:* Apparently, we can't count on all rcp-compatible implementations
       to return sensible errors for some error conditions.  As an example, the
-      C{scp} command in Debian 'woody' returns a zero (normal) status even
+      ``scp`` command in Debian 'woody' returns a zero (normal) status even
       when it can't find a host or if the login or path is invalid.  We try
-      to work around this by issuing C{IOError} if we don't copy any files from
+      to work around this by issuing ``IOError`` if we don't copy any files from
       the remote host.
 
-      @param remoteUser: Name of the Cedar Backup user on the remote peer
-      @type remoteUser: String representing a username, valid via the copy command
+      Args:
+         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
+         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
+         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
+         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
+         sourceDir (String representing a directory on disk): Source directory
+         targetDir (String representing a directory on disk): Target directory
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied files should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+      Returns:
+          Number of files copied from the source directory to the target directory
 
-      @param localUser: Name of the Cedar Backup user on the current host
-      @type localUser: String representing a username, valid on the current host
-
-      @param remoteHost: Hostname of the remote peer
-      @type remoteHost: String representing a hostname, accessible via the copy command
-
-      @param rcpCommand: An rcp-compatible copy command to use for copying files from the peer
-      @type rcpCommand: String representing a system command including required arguments
-
-      @param rcpCommandList: An rcp-compatible copy command to use for copying files
-      @type rcpCommandList: Command as a list to be passed to L{util.executeCommand}
-
-      @param sourceDir: Source directory
-      @type sourceDir: String representing a directory on disk
-
-      @param targetDir: Target directory
-      @type targetDir: String representing a directory on disk
-
-      @param ownership: Owner and group that the copied files should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @return: Number of files copied from the source directory to the target directory.
-
-      @raise ValueError: If source or target is not a directory or does not exist.
-      @raise IOError: If there is an IO error copying the files.
+      Raises:
+         ValueError: If source or target is not a directory or does not exist
+         IOError: If there is an IO error copying the files
       """
       beforeSet = RemotePeer._getDirContents(targetDir)
       if localUser is not None:
@@ -1043,58 +998,40 @@ class RemotePeer(object):
       """
       Copies a remote source file to a target file.
 
-      @note: Internally, we have to go through and escape any spaces in the
+      *Note:* Internally, we have to go through and escape any spaces in the
       source path with double-backslash, otherwise things get screwed up.   It
       doesn't seem to be required in the target path. I hope this is portable
       to various different rcp methods, but I guess it might not be (all I have
       to test with is OpenSSH).
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @note: We will not overwrite a target file that exists when this method
+      *Note:* We will not overwrite a target file that exists when this method
       is invoked.  If the target already exists, we'll raise an exception.
 
-      @note: Apparently, we can't count on all rcp-compatible implementations
+      *Note:* Apparently, we can't count on all rcp-compatible implementations
       to return sensible errors for some error conditions.  As an example, the
-      C{scp} command in Debian 'woody' returns a zero (normal) status even when
+      ``scp`` command in Debian 'woody' returns a zero (normal) status even when
       it can't find a host or if the login or path is invalid.  We try to work
-      around this by issuing C{IOError} the target file does not exist when
+      around this by issuing ``IOError`` the target file does not exist when
       we're done.
 
-      @param remoteUser: Name of the Cedar Backup user on the remote peer
-      @type remoteUser: String representing a username, valid via the copy command
-
-      @param remoteHost: Hostname of the remote peer
-      @type remoteHost: String representing a hostname, accessible via the copy command
-
-      @param localUser: Name of the Cedar Backup user on the current host
-      @type localUser: String representing a username, valid on the current host
-
-      @param rcpCommand: An rcp-compatible copy command to use for copying files from the peer
-      @type rcpCommand: String representing a system command including required arguments
-
-      @param rcpCommandList: An rcp-compatible copy command to use for copying files
-      @type rcpCommandList: Command as a list to be passed to L{util.executeCommand}
-
-      @param sourceFile: Source file to copy
-      @type sourceFile: String representing a file on disk, as an absolute path
-
-      @param targetFile: Target file to create
-      @type targetFile: String representing a file on disk, as an absolute path
-
-      @param ownership: Owner and group that the copied should have
-      @type ownership: Tuple of numeric ids C{(uid, gid)}
-
-      @param permissions: Permissions that the staged files should have
-      @type permissions: UNIX permissions mode, specified in octal (i.e. C{0640}).
-
-      @param overwrite: Indicates whether it's OK to overwrite the target file.
-      @type overwrite: Boolean true/false.
-
-      @raise IOError: If the target file already exists.
-      @raise IOError: If there is an IO error copying the file
-      @raise OSError: If there is an OS error changing permissions on the file
+      Args:
+         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
+         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
+         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
+         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
+         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
+         targetFile (String representing a file on disk, as an absolute path): Target file to create
+         ownership (Tuple of numeric ids ``(uid, gid)``): Owner and group that the copied should have
+         permissions (UNIX permissions mode, specified in octal (i.e. ``0640``)): Permissions that the staged files should have
+         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+      Raises:
+         IOError: If the target file already exists
+         IOError: If there is an IO error copying the file
+         OSError: If there is an OS error changing permissions on the file
       """
       if not overwrite:
          if os.path.exists(targetFile):
@@ -1129,43 +1066,29 @@ class RemotePeer(object):
       """
       Copies a local source file to a remote host.
 
-      @note: We will not overwrite a target file that exists when this method
+      *Note:* We will not overwrite a target file that exists when this method
       is invoked.  If the target already exists, we'll raise an exception.
 
-      @note: Internally, we have to go through and escape any spaces in the
+      *Note:* Internally, we have to go through and escape any spaces in the
       source and target paths with double-backslash, otherwise things get
       screwed up.  I hope this is portable to various different rcp methods,
       but I guess it might not be (all I have to test with is OpenSSH).
 
-      @note: If you have user/group as strings, call the L{util.getUidGid} function
+      *Note:* If you have user/group as strings, call the :any:`util.getUidGid` function
       to get the associated uid/gid as an ownership tuple.
 
-      @param remoteUser: Name of the Cedar Backup user on the remote peer
-      @type remoteUser: String representing a username, valid via the copy command
-
-      @param localUser: Name of the Cedar Backup user on the current host
-      @type localUser: String representing a username, valid on the current host
-
-      @param remoteHost: Hostname of the remote peer
-      @type remoteHost: String representing a hostname, accessible via the copy command
-
-      @param rcpCommand: An rcp-compatible copy command to use for copying files from the peer
-      @type rcpCommand: String representing a system command including required arguments
-
-      @param rcpCommandList: An rcp-compatible copy command to use for copying files
-      @type rcpCommandList: Command as a list to be passed to L{util.executeCommand}
-
-      @param sourceFile: Source file to copy
-      @type sourceFile: String representing a file on disk, as an absolute path
-
-      @param targetFile: Target file to create
-      @type targetFile: String representing a file on disk, as an absolute path
-
-      @param overwrite: Indicates whether it's OK to overwrite the target file.
-      @type overwrite: Boolean true/false.
-
-      @raise IOError: If there is an IO error copying the file
-      @raise OSError: If there is an OS error changing permissions on the file
+      Args:
+         remoteUser (String representing a username, valid via the copy command): Name of the Cedar Backup user on the remote peer
+         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
+         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
+         rcpCommand (String representing a system command including required arguments): An rcp-compatible copy command to use for copying files from the peer
+         rcpCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rcp-compatible copy command to use for copying files
+         sourceFile (String representing a file on disk, as an absolute path): Source file to copy
+         targetFile (String representing a file on disk, as an absolute path): Target file to create
+         overwrite (Boolean true/false): Indicates whether it's OK to overwrite the target file
+      Raises:
+         IOError: If there is an IO error copying the file
+         OSError: If there is an OS error changing permissions on the file
       """
       if not overwrite:
          if os.path.exists(targetFile):
@@ -1192,25 +1115,15 @@ class RemotePeer(object):
       """
       Executes a command on the peer via remote shell.
 
-      @param remoteUser: Name of the Cedar Backup user on the remote peer
-      @type remoteUser: String representing a username, valid on the remote host
-
-      @param localUser: Name of the Cedar Backup user on the current host
-      @type localUser: String representing a username, valid on the current host
-
-      @param remoteHost: Hostname of the remote peer
-      @type remoteHost: String representing a hostname, accessible via the copy command
-
-      @param rshCommand: An rsh-compatible copy command to use for remote shells to the peer
-      @type rshCommand: String representing a system command including required arguments
-
-      @param rshCommandList: An rsh-compatible copy command to use for remote shells to the peer
-      @type rshCommandList: Command as a list to be passed to L{util.executeCommand}
-
-      @param remoteCommand: The command to be executed on the remote host
-      @type remoteCommand: String command-line, with no special shell characters ($, <, etc.)
-
-      @raise IOError: If there is an error executing the remote command
+      Args:
+         remoteUser (String representing a username, valid on the remote host): Name of the Cedar Backup user on the remote peer
+         localUser (String representing a username, valid on the current host): Name of the Cedar Backup user on the current host
+         remoteHost (String representing a hostname, accessible via the copy command): Hostname of the remote peer
+         rshCommand (String representing a system command including required arguments): An rsh-compatible copy command to use for remote shells to the peer
+         rshCommandList (Command as a list to be passed to :any:`util.executeCommand`): An rsh-compatible copy command to use for remote shells to the peer
+         remoteCommand (String command-line, with no special shell characters ($, <, etc.)): The command to be executed on the remote host
+      Raises:
+         IOError: If there is an error executing the remote command
       """
       actualCommand = "%s %s@%s '%s'" % (rshCommand, remoteUser, remoteHost, remoteCommand)
       if localUser is not None:
@@ -1233,14 +1146,17 @@ class RemotePeer(object):
       """
       Builds a Cedar Backup command line for the named action.
 
-      @note: If the cback command is None, then DEF_CBACK_COMMAND is used.
+      *Note:* If the cback command is None, then DEF_CBACK_COMMAND is used.
 
-      @param cbackCommand: cback command to execute, including required options
-      @param action: Name of the action to execute.
-      @param fullBackup: Whether a full backup should be executed.
+      Args:
+         cbackCommand: cback command to execute, including required options
+         action: Name of the action to execute
+         fullBackup: Whether a full backup should be executed
 
-      @return: String suitable for passing to L{_executeRemoteCommand} as remoteCommand.
-      @raise ValueError: If action is None.
+      Returns:
+          String suitable for passing to :any:`_executeRemoteCommand` as remoteCommand
+      Raises:
+         ValueError: If action is None
       """
       if action is None:
          raise ValueError("Action cannot be None.")

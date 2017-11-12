@@ -21,9 +21,7 @@
 
 """
 Provides common constants used by standard actions.
-@sort: DIR_TIME_FORMAT, DIGEST_EXTENSION, INDICATOR_PATTERN,
-       COLLECT_INDICATOR, STAGE_INDICATOR, STORE_INDICATOR
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################

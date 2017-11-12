@@ -27,7 +27,7 @@ support DVD hardware.  All of the writer functionality was moved to the
 writers/ package.  This mostly-empty file remains to preserve the Cedar Backup
 library interface.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################

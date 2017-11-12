@@ -25,7 +25,7 @@ Cedar Backup writers.
 This package consolidates all of the modules that implenent "image writer"
 functionality, including utilities and specific writer implementations.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 

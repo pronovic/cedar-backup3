@@ -32,7 +32,7 @@ high-level backup action, plus a module that provides shared constants.
 All of the public action function implement the Cedar Backup Extension
 Architecture Interface, i.e. the same interface that extensions implement.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 

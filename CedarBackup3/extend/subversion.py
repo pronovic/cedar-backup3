@@ -52,7 +52,7 @@ There are two different kinds of Subversion repositories at this writing: BDB
 (Berkeley Database) and FSFS (a "filesystem within a filesystem").  Although
 the repository type can be specified in configuration, that information is just
 kept around for reference.  It doesn't affect the backup.  Both kinds of
-repositories are backed up in the same way, using C{svnadmin dump} in an
+repositories are backed up in the same way, using ``svnadmin dump`` in an
 incremental mode.
 
 It turns out that FSFS repositories can also be backed up just like any
@@ -62,7 +62,7 @@ advantages and disadvantages (plus you will have to be careful to exclude
 the working directories Subversion uses when building an update to commit).
 Check the Subversion documentation for more information.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -116,8 +116,8 @@ class RepositoryDir(object):
    The following restrictions exist on data in this class:
 
       - The directory path must be absolute.
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The compress mode must be one of the values in L{VALID_COMPRESS_MODES}.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
 
    The repository type value is kept around just for reference.  It doesn't
    affect the behavior of the backup.
@@ -125,21 +125,20 @@ class RepositoryDir(object):
    Relative exclusions are allowed here.  However, there is no configured
    ignore file, because repository dir backups are not recursive.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         directoryPath, collectMode, compressMode
    """
 
    def __init__(self, repositoryType=None, directoryPath=None, collectMode=None, compressMode=None,
                 relativeExcludePaths=None, excludePatterns=None):
       """
-      Constructor for the C{RepositoryDir} class.
+      Constructor for the ``RepositoryDir`` class.
 
-      @param repositoryType: Type of repository, for reference
-      @param directoryPath: Absolute path of the Subversion parent directory
-      @param collectMode: Overridden collect mode for this directory.
-      @param compressMode: Overridden compression mode for this directory.
-      @param relativeExcludePaths: List of relative paths to exclude.
-      @param excludePatterns: List of regular expression patterns to exclude
+      Args:
+         repositoryType: Type of repository, for reference
+         directoryPath: Absolute path of the Subversion parent directory
+         collectMode: Overridden collect mode for this directory
+         compressMode: Overridden compression mode for this directory
+         relativeExcludePaths: List of relative paths to exclude
+         excludePatterns: List of regular expression patterns to exclude
       """
       self._repositoryType = None
       self._directoryPath = None
@@ -182,8 +181,10 @@ class RepositoryDir(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -235,10 +236,11 @@ class RepositoryDir(object):
    def _setDirectoryPath(self, value):
       """
       Property target used to set the directory path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -254,8 +256,9 @@ class RepositoryDir(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -271,8 +274,9 @@ class RepositoryDir(object):
    def _setCompressMode(self, value):
       """
       Property target used to set the compress mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COMPRESS_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COMPRESS_MODES:
@@ -349,24 +353,23 @@ class Repository(object):
    The following restrictions exist on data in this class:
 
       - The respository path must be absolute.
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The compress mode must be one of the values in L{VALID_COMPRESS_MODES}.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
 
    The repository type value is kept around just for reference.  It doesn't
    affect the behavior of the backup.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         repositoryPath, collectMode, compressMode
    """
 
    def __init__(self, repositoryType=None, repositoryPath=None, collectMode=None, compressMode=None):
       """
-      Constructor for the C{Repository} class.
+      Constructor for the ``Repository`` class.
 
-      @param repositoryType: Type of repository, for reference
-      @param repositoryPath: Absolute path to a Subversion repository on disk.
-      @param collectMode: Overridden collect mode for this directory.
-      @param compressMode: Overridden compression mode for this directory.
+      Args:
+         repositoryType: Type of repository, for reference
+         repositoryPath: Absolute path to a Subversion repository on disk
+         collectMode: Overridden collect mode for this directory
+         compressMode: Overridden compression mode for this directory
       """
       self._repositoryType = None
       self._repositoryPath = None
@@ -404,8 +407,10 @@ class Repository(object):
    def __cmp__(self, other):
       """
       Original Python 2 comparison operator.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -447,10 +452,11 @@ class Repository(object):
    def _setRepositoryPath(self, value):
       """
       Property target used to set the repository path.
-      The value must be an absolute path if it is not C{None}.
+      The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
-      @raise ValueError: If the value is not an absolute path.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value is not an absolute path
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if not os.path.isabs(value):
@@ -466,8 +472,9 @@ class Repository(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -483,8 +490,9 @@ class Repository(object):
    def _setCompressMode(self, value):
       """
       Property target used to set the compress mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COMPRESS_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COMPRESS_MODES:
@@ -517,31 +525,31 @@ class SubversionConfig(object):
 
    The following restrictions exist on data in this class:
 
-      - The collect mode must be one of the values in L{VALID_COLLECT_MODES}.
-      - The compress mode must be one of the values in L{VALID_COMPRESS_MODES}.
-      - The repositories list must be a list of C{Repository} objects.
-      - The repositoryDirs list must be a list of C{RepositoryDir} objects.
+      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+      - The repositories list must be a list of ``Repository`` objects.
+      - The repositoryDirs list must be a list of ``RepositoryDir`` objects.
 
    For the two lists, validation is accomplished through the
-   L{util.ObjectTypeList} list implementation that overrides common list
+   :any:`util.ObjectTypeList` list implementation that overrides common list
    methods and transparently ensures that each element has the correct type.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         collectMode, compressMode, repositories
    """
 
    def __init__(self, collectMode=None, compressMode=None, repositories=None, repositoryDirs=None):
       """
-      Constructor for the C{SubversionConfig} class.
+      Constructor for the ``SubversionConfig`` class.
 
-      @param collectMode: Default collect mode.
-      @param compressMode: Default compress mode.
-      @param repositories: List of Subversion repositories to back up.
-      @param repositoryDirs: List of Subversion parent directories to back up.
+      Args:
+         collectMode: Default collect mode
+         compressMode: Default compress mode
+         repositories: List of Subversion repositories to back up
+         repositoryDirs: List of Subversion parent directories to back up
 
-      @raise ValueError: If one of the values is invalid.
+      Raises:
+         ValueError: If one of the values is invalid
       """
       self._collectMode = None
       self._compressMode = None
@@ -580,8 +588,10 @@ class SubversionConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -610,8 +620,9 @@ class SubversionConfig(object):
    def _setCollectMode(self, value):
       """
       Property target used to set the collect mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COLLECT_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COLLECT_MODES:
@@ -627,8 +638,9 @@ class SubversionConfig(object):
    def _setCompressMode(self, value):
       """
       Property target used to set the compress mode.
-      If not C{None}, the mode must be one of the values in L{VALID_COMPRESS_MODES}.
-      @raise ValueError: If the value is not valid.
+      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is not None:
          if value not in VALID_COMPRESS_MODES:
@@ -644,8 +656,9 @@ class SubversionConfig(object):
    def _setRepositories(self, value):
       """
       Property target used to set the repositories list.
-      Either the value must be C{None} or each element must be a C{Repository}.
-      @raise ValueError: If the value is not a C{Repository}
+      Either the value must be ``None`` or each element must be a ``Repository``.
+      Raises:
+         ValueError: If the value is not a ``Repository``
       """
       if value is None:
          self._repositories = None
@@ -667,8 +680,9 @@ class SubversionConfig(object):
    def _setRepositoryDirs(self, value):
       """
       Property target used to set the repositoryDirs list.
-      Either the value must be C{None} or each element must be a C{Repository}.
-      @raise ValueError: If the value is not a C{Repository}
+      Either the value must be ``None`` or each element must be a ``Repository``.
+      Raises:
+         ValueError: If the value is not a ``Repository``
       """
       if value is None:
          self._repositoryDirs = None
@@ -707,48 +721,42 @@ class LocalConfig(object):
    Backup configuration object.  Instead, it just knows how to parse and emit
    Subversion-specific configuration values.  Third parties who need to read
    and write configuration related to this extension should access it through
-   the constructor, C{validate} and C{addConfig} methods.
+   the constructor, ``validate`` and ``addConfig`` methods.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__,
-         subversion, validate, addConfig
    """
 
    def __init__(self, xmlData=None, xmlPath=None, validate=True):
       """
       Initializes a configuration object.
 
-      If you initialize the object without passing either C{xmlData} or
-      C{xmlPath} then configuration will be empty and will be invalid until it
+      If you initialize the object without passing either ``xmlData`` or
+      ``xmlPath`` then configuration will be empty and will be invalid until it
       is filled in properly.
 
       No reference to the original XML data or original path is saved off by
       this class.  Once the data has been parsed (successfully or not) this
       original information is discarded.
 
-      Unless the C{validate} argument is C{False}, the L{LocalConfig.validate}
+      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
       method will be called (with its default arguments) against configuration
       after successfully parsing any passed-in XML.  Keep in mind that even if
-      C{validate} is C{False}, it might not be possible to parse the passed-in
+      ``validate`` is ``False``, it might not be possible to parse the passed-in
       XML document if lower-level validations fail.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to read in
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to read in
       invalid configuration from disk.
 
-      @param xmlData: XML data representing configuration.
-      @type xmlData: String data.
-
-      @param xmlPath: Path to an XML file on disk.
-      @type xmlPath: Absolute path to a file on disk.
-
-      @param validate: Validate the document after parsing it.
-      @type validate: Boolean true/false.
-
-      @raise ValueError: If both C{xmlData} and C{xmlPath} are passed-in.
-      @raise ValueError: If the XML data in C{xmlData} or C{xmlPath} cannot be parsed.
-      @raise ValueError: If the parsed configuration document is not valid.
+      Args:
+         xmlData (String data): XML data representing configuration
+         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+         validate (Boolean true/false): Validate the document after parsing it
+      Raises:
+         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+         ValueError: If the parsed configuration document is not valid
       """
       self._subversion = None
       self.subversion = None
@@ -793,8 +801,10 @@ class LocalConfig(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -808,14 +818,15 @@ class LocalConfig(object):
    def _setSubversion(self, value):
       """
       Property target used to set the subversion configuration value.
-      If not C{None}, the value must be a C{SubversionConfig} object.
-      @raise ValueError: If the value is not a C{SubversionConfig}
+      If not ``None``, the value must be a ``SubversionConfig`` object.
+      Raises:
+         ValueError: If the value is not a ``SubversionConfig``
       """
       if value is None:
          self._subversion = None
       else:
          if not isinstance(value, SubversionConfig):
-            raise ValueError("Value must be a C{SubversionConfig} object.")
+            raise ValueError("Value must be a ``SubversionConfig`` object.")
          self._subversion = value
 
    def _getSubversion(self):
@@ -824,7 +835,7 @@ class LocalConfig(object):
       """
       return self._subversion
 
-   subversion = property(_getSubversion, _setSubversion, None, "Subversion configuration in terms of a C{SubversionConfig} object.")
+   subversion = property(_getSubversion, _setSubversion, None, "Subversion configuration in terms of a ``SubversionConfig`` object.")
 
    def validate(self):
       """
@@ -836,9 +847,10 @@ class LocalConfig(object):
 
       Each repository must contain a repository path, and then must be either
       able to take collect mode and compress mode configuration from the parent
-      C{SubversionConfig} object, or must set each value on its own.
+      ``SubversionConfig`` object, or must set each value on its own.
 
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       if self.subversion is None:
          raise ValueError("Subversion section is required.")
@@ -880,8 +892,9 @@ class LocalConfig(object):
          repository     //cb_config/subversion/repository
          repository_dir //cb_config/subversion/repository_dir
 
-      @param xmlDom: DOM tree as from C{impl.createDocument()}.
-      @param parentNode: Parent that the section should be appended to.
+      Args:
+         xmlDom: DOM tree as from ``impl.createDocument()``
+         parentNode: Parent that the section should be appended to
       """
       if self.subversion is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "subversion")
@@ -898,13 +911,13 @@ class LocalConfig(object):
       """
       Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (C{xmlDom}) and then
+      This method parses the XML document into a DOM tree (``xmlDom``) and then
       calls a static method to parse the subversion configuration section.
 
-      @param xmlData: XML data to be parsed
-      @type xmlData: String data
-
-      @raise ValueError: If the XML cannot be successfully parsed.
+      Args:
+         xmlData (String data): XML data to be parsed
+      Raises:
+         ValueError: If the XML cannot be successfully parsed
       """
       (xmlDom, parentNode) = createInputDom(xmlData)
       self._subversion = LocalConfig._parseSubversion(parentNode)
@@ -925,13 +938,16 @@ class LocalConfig(object):
          repositories    //cb_config/subversion/repository
          repository_dirs //cb_config/subversion/repository_dir
 
-      The repositories are parsed by L{_parseRepositories}, and the repository
-      dirs are parsed by L{_parseRepositoryDirs}.
+      The repositories are parsed by :any:`_parseRepositories`, and the repository
+      dirs are parsed by :any:`_parseRepositoryDirs`.
 
-      @param parent: Parent node to search beneath.
+      Args:
+         parent: Parent node to search beneath
 
-      @return: C{SubversionConfig} object or C{None} if the section does not exist.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          ``SubversionConfig`` object or ``None`` if the section does not exist
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       subversion = None
       section = readFirstChild(parent, "subversion")
@@ -946,7 +962,7 @@ class LocalConfig(object):
    @staticmethod
    def _parseRepositories(parent):
       """
-      Reads a list of C{Repository} objects from immediately beneath the parent.
+      Reads a list of ``Repository`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
@@ -958,10 +974,13 @@ class LocalConfig(object):
       The type field is optional, and its value is kept around only for
       reference.
 
-      @param parent: Parent node to search beneath.
+      Args:
+         parent: Parent node to search beneath
 
-      @return: List of C{Repository} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``Repository`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parent, "repository"):
@@ -990,13 +1009,14 @@ class LocalConfig(object):
 
       The <repository> node itself is created as the next child of the parent
       node.  This method only adds one repository node.  The parent must loop
-      for each repository in the C{SubversionConfig} object.
+      for each repository in the ``SubversionConfig`` object.
 
-      If C{repository} is C{None}, this method call will be a no-op.
+      If ``repository`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from C{impl.createDocument()}.
-      @param parentNode: Parent that the section should be appended to.
-      @param repository: Repository to be added to the document.
+      Args:
+         xmlDom: DOM tree as from ``impl.createDocument()``
+         parentNode: Parent that the section should be appended to
+         repository: Repository to be added to the document
       """
       if repository is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "repository")
@@ -1008,7 +1028,7 @@ class LocalConfig(object):
    @staticmethod
    def _parseRepositoryDirs(parent):
       """
-      Reads a list of C{RepositoryDir} objects from immediately beneath the parent.
+      Reads a list of ``RepositoryDir`` objects from immediately beneath the parent.
 
       We read the following individual fields::
 
@@ -1023,15 +1043,18 @@ class LocalConfig(object):
          relativeExcludePaths    exclude/rel_path
          excludePatterns         exclude/pattern
 
-      The exclusions are parsed by L{_parseExclusions}.
+      The exclusions are parsed by :any:`_parseExclusions`.
 
       The type field is optional, and its value is kept around only for
       reference.
 
-      @param parent: Parent node to search beneath.
+      Args:
+         parent: Parent node to search beneath
 
-      @return: List of C{RepositoryDir} objects or C{None} if none are found.
-      @raise ValueError: If some filled-in value is invalid.
+      Returns:
+          List of ``RepositoryDir`` objects or ``None`` if none are found
+      Raises:
+         ValueError: If some filled-in value is invalid
       """
       lst = []
       for entry in readChildren(parent, "repository_dir"):
@@ -1058,11 +1081,13 @@ class LocalConfig(object):
          patterns    exclude/pattern
 
       If there are none of some pattern (i.e. no relative path items) then
-      C{None} will be returned for that item in the tuple.
+      ``None`` will be returned for that item in the tuple.
 
-      @param parentNode: Parent node to search beneath.
+      Args:
+         parentNode: Parent node to search beneath
 
-      @return: Tuple of (relative, patterns) exclusions.
+      Returns:
+          Tuple of (relative, patterns) exclusions
       """
       section = readFirstChild(parentNode, "exclude")
       if section is None:
@@ -1091,13 +1116,14 @@ class LocalConfig(object):
 
       The <repository_dir> node itself is created as the next child of the
       parent node.  This method only adds one repository node.  The parent must
-      loop for each repository dir in the C{SubversionConfig} object.
+      loop for each repository dir in the ``SubversionConfig`` object.
 
-      If C{repositoryDir} is C{None}, this method call will be a no-op.
+      If ``repositoryDir`` is ``None``, this method call will be a no-op.
 
-      @param xmlDom: DOM tree as from C{impl.createDocument()}.
-      @param parentNode: Parent that the section should be appended to.
-      @param repositoryDir: Repository dir to be added to the document.
+      Args:
+         xmlDom: DOM tree as from ``impl.createDocument()``
+         parentNode: Parent that the section should be appended to
+         repositoryDir: Repository dir to be added to the document
       """
       if repositoryDir is not None:
          sectionNode = addContainerNode(xmlDom, parentNode, "repository_dir")
@@ -1128,17 +1154,13 @@ def executeAction(configPath, options, config):
    """
    Executes the Subversion backup action.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If a backup could not be written for some reason.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If a backup could not be written for some reason
    """
    logger.debug("Executing Subversion extended action.")
    if config.options is None or config.collect is None:
@@ -1164,8 +1186,10 @@ def _getCollectMode(local, repository):
    """
    Gets the collect mode that should be used for a repository.
    Use repository's if possible, otherwise take from subversion section.
-   @param repository: Repository object.
-   @return: Collect mode to use.
+   Args:
+      repository: Repository object
+   Returns:
+       Collect mode to use
    """
    if repository.collectMode is None:
       collectMode = local.subversion.collectMode
@@ -1178,9 +1202,11 @@ def _getCompressMode(local, repository):
    """
    Gets the compress mode that should be used for a repository.
    Use repository's if possible, otherwise take from subversion section.
-   @param local: LocalConfig object.
-   @param repository: Repository object.
-   @return: Compress mode to use.
+   Args:
+      local: LocalConfig object
+      repository: Repository object
+   Returns:
+       Compress mode to use
    """
    if repository.compressMode is None:
       compressMode = local.subversion.compressMode
@@ -1192,9 +1218,11 @@ def _getCompressMode(local, repository):
 def _getRevisionPath(config, repository):
    """
    Gets the path to the revision file associated with a repository.
-   @param config: Config object.
-   @param repository: Repository object.
-   @return: Absolute path to the revision file associated with the repository.
+   Args:
+      config: Config object
+      repository: Repository object
+   Returns:
+       Absolute path to the revision file associated with the repository
    """
    normalized = buildNormalizedPath(repository.repositoryPath)
    filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
@@ -1205,12 +1233,14 @@ def _getRevisionPath(config, repository):
 def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevision):
    """
    Gets the backup file path (including correct extension) associated with a repository.
-   @param config: Config object.
-   @param repositoryPath: Path to the indicated repository
-   @param compressMode: Compress mode to use for this repository.
-   @param startRevision: Starting repository revision.
-   @param endRevision: Ending repository revision.
-   @return: Absolute path to the backup file associated with the repository.
+   Args:
+      config: Config object
+      repositoryPath: Path to the indicated repository
+      compressMode: Compress mode to use for this repository
+      startRevision: Starting repository revision
+      endRevision: Ending repository revision
+   Returns:
+       Absolute path to the backup file associated with the repository
    """
    normalizedPath = buildNormalizedPath(repositoryPath)
    filename = "svndump-%d:%d-%s.txt" % (startRevision, endRevision, normalizedPath)
@@ -1225,7 +1255,8 @@ def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevis
 def _getRepositoryPaths(repositoryDir):
    """
    Gets a list of child repository paths within a repository directory.
-   @param repositoryDir: RepositoryDirectory
+   Args:
+      repositoryDir: RepositoryDirectory
    """
    (excludePaths, excludePatterns) = _getExclusions(repositoryDir)
    fsList = FilesystemList()
@@ -1248,9 +1279,11 @@ def _getExclusions(repositoryDir):
    backup for a given directory.  It is derived from the repository directory's
    list of patterns.
 
-   @param repositoryDir: Repository directory object.
+   Args:
+      repositoryDir: Repository directory object
 
-   @return: Tuple (files, patterns) indicating what to exclude.
+   Returns:
+       Tuple (files, patterns) indicating what to exclude
    """
    paths = []
    if repositoryDir.relativeExcludePaths is not None:
@@ -1270,14 +1303,16 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    This internal method wraps the public methods and adds some functionality
    to work better with the extended action itself.
 
-   @param config: Cedar Backup configuration.
-   @param local: Local configuration
-   @param todayIsStart: Indicates whether today is start of week
-   @param fullBackup: Full backup flag
-   @param repository: Repository to operate on
+   Args:
+      config: Cedar Backup configuration
+      local: Local configuration
+      todayIsStart: Indicates whether today is start of week
+      fullBackup: Full backup flag
+      repository: Repository to operate on
 
-   @raise ValueError: If some value is missing or invalid.
-   @raise IOError: If there is a problem executing the Subversion dump.
+   Raises:
+      ValueError: If some value is missing or invalid
+      IOError: If there is a problem executing the Subversion dump
    """
    logger.debug("Working with repository [%s]", repository.repositoryPath)
    logger.debug("Repository type is [%s]", repository.repositoryType)
@@ -1317,14 +1352,16 @@ def _getOutputFile(backupPath, compressMode):
    """
    Opens the output file used for saving the Subversion dump.
 
-   If the compress mode is "gzip", we'll open a C{GzipFile}, and if the
-   compress mode is "bzip2", we'll open a C{BZ2File}.  Otherwise, we'll just
-   return an object from the normal C{open()} method.
+   If the compress mode is "gzip", we'll open a ``GzipFile``, and if the
+   compress mode is "bzip2", we'll open a ``BZ2File``.  Otherwise, we'll just
+   return an object from the normal ``open()`` method.
 
-   @param backupPath: Path to file to open.
-   @param compressMode: Compress mode of file ("none", "gzip", "bzip").
+   Args:
+      backupPath: Path to file to open
+      compressMode: Compress mode of file ("none", "gzip", "bzip")
 
-   @return: Output file object, opened in binary mode for use with executeCommand()
+   Returns:
+       Output file object, opened in binary mode for use with executeCommand()
    """
    if compressMode == "gzip":
       return GzipFile(backupPath, "wb")
@@ -1343,9 +1380,11 @@ def _loadLastRevision(revisionPath):
    up too much, because anyone using this will presumably be adding 1 to the
    revision, so they don't duplicate any backups.
 
-   @param revisionPath: Path to the revision file on disk.
+   Args:
+      revisionPath: Path to the revision file on disk
 
-   @return: Integer representing last backed-up revision, -1 on error or if none can be read.
+   Returns:
+       Integer representing last backed-up revision, -1 on error or if none can be read
    """
    if not os.path.isfile(revisionPath):
       startRevision = -1
@@ -1367,9 +1406,10 @@ def _writeLastRevision(config, revisionPath, endRevision):
    If we can't write the revision file successfully for any reason, we'll log
    the condition but won't throw an exception.
 
-   @param config: Config object.
-   @param revisionPath: Path to the revision file on disk.
-   @param endRevision: Last revision backed up on this run.
+   Args:
+      config: Config object
+      revisionPath: Path to the revision file on disk
+      endRevision: Last revision backed up on this run
    """
    try:
       with open(revisionPath, "wb") as f:
@@ -1394,31 +1434,25 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
    youngest revision in the database will be used as the endpoint.
 
    The backup data will be written into the passed-in back file.  Normally,
-   this would be an object as returned from C{open}, but it is possible to use
-   something like a C{GzipFile} to write compressed output.  The caller is
+   this would be an object as returned from ``open``, but it is possible to use
+   something like a ``GzipFile`` to write compressed output.  The caller is
    responsible for closing the passed-in backup file.
 
-   @note: This function should either be run as root or as the owner of the
+   *Note:* This function should either be run as root or as the owner of the
    Subversion repository.
 
-   @note: It is apparently I{not} a good idea to interrupt this function.
+   *Note:* It is apparently *not* a good idea to interrupt this function.
    Sometimes, this leaves the repository in a "wedged" state, which requires
-   recovery using C{svnadmin recover}.
+   recovery using ``svnadmin recover``.
 
-   @param repositoryPath: Path to Subversion repository to back up
-   @type repositoryPath: String path representing Subversion repository on disk.
-
-   @param backupFile: Python file object to use for writing backup.
-   @type backupFile: Python file object as from C{open()} or C{file()}.
-
-   @param startRevision: Starting repository revision to back up (for incremental backups)
-   @type startRevision: Integer value >= 0.
-
-   @param endRevision: Ending repository revision to back up (for incremental backups)
-   @type endRevision: Integer value >= 0.
-
-   @raise ValueError: If some value is missing or invalid.
-   @raise IOError: If there is a problem executing the Subversion dump.
+   Args:
+      repositoryPath (String path representing Subversion repository on disk): Path to Subversion repository to back up
+      backupFile (Python file object as from ``open()`` or ``file()``): Python file object to use for writing backup
+      startRevision (Integer value >= 0): Starting repository revision to back up (for incremental backups)
+      endRevision (Integer value >= 0): Ending repository revision to back up (for incremental backups)
+   Raises:
+      ValueError: If some value is missing or invalid
+      IOError: If there is a problem executing the Subversion dump
    """
    if startRevision is None:
       startRevision = 0
@@ -1444,18 +1478,19 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
 
 def getYoungestRevision(repositoryPath):
    """
-   Gets the youngest (newest) revision in a Subversion repository using C{svnlook}.
+   Gets the youngest (newest) revision in a Subversion repository using ``svnlook``.
 
-   @note: This function should either be run as root or as the owner of the
+   *Note:* This function should either be run as root or as the owner of the
    Subversion repository.
 
-   @param repositoryPath: Path to Subversion repository to look in.
-   @type repositoryPath: String path representing Subversion repository on disk.
+   Args:
+      repositoryPath (String path representing Subversion repository on disk): Path to Subversion repository to look in
+   Returns:
+       Youngest revision as an integer
 
-   @return: Youngest revision as an integer.
-
-   @raise ValueError: If there is a problem parsing the C{svnlook} output.
-   @raise IOError: If there is a problem executing the C{svnlook} command.
+   Raises:
+      ValueError: If there is a problem parsing the ``svnlook`` output
+      IOError: If there is a problem executing the ``svnlook`` command
    """
    args = [ 'youngest', repositoryPath, ]
    command = resolveCommand(SVNLOOK_COMMAND)
@@ -1475,12 +1510,12 @@ class BDBRepository(Repository):
 
    """
    Class representing Subversion BDB (Berkeley Database) repository configuration.
-   This object is deprecated.  Use a simple L{Repository} instead.
+   This object is deprecated.  Use a simple :any:`Repository` instead.
    """
 
    def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
       """
-      Constructor for the C{BDBRepository} class.
+      Constructor for the ``BDBRepository`` class.
       """
       super(BDBRepository, self).__init__("BDB", repositoryPath, collectMode, compressMode)
 
@@ -1495,12 +1530,12 @@ class FSFSRepository(Repository):
 
    """
    Class representing Subversion FSFS repository configuration.
-   This object is deprecated.  Use a simple L{Repository} instead.
+   This object is deprecated.  Use a simple :any:`Repository` instead.
    """
 
    def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
       """
-      Constructor for the C{FSFSRepository} class.
+      Constructor for the ``FSFSRepository`` class.
       """
       super(FSFSRepository, self).__init__("FSFS", repositoryPath, collectMode, compressMode)
 
@@ -1514,7 +1549,7 @@ class FSFSRepository(Repository):
 def backupBDBRepository(repositoryPath, backupFile, startRevision=None, endRevision=None):
    """
    Backs up an individual Subversion BDB repository.
-   This function is deprecated.  Use L{backupRepository} instead.
+   This function is deprecated.  Use :any:`backupRepository` instead.
    """
    return backupRepository(repositoryPath, backupFile, startRevision, endRevision)
 
@@ -1522,7 +1557,7 @@ def backupBDBRepository(repositoryPath, backupFile, startRevision=None, endRevis
 def backupFSFSRepository(repositoryPath, backupFile, startRevision=None, endRevision=None):
    """
    Backs up an individual Subversion FSFS repository.
-   This function is deprecated.  Use L{backupRepository} instead.
+   This function is deprecated.  Use :any:`backupRepository` instead.
    """
    return backupRepository(repositoryPath, backupFile, startRevision, endRevision)
 

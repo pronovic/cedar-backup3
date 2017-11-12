@@ -18,16 +18,18 @@
 """
 Provides location to maintain version information.
 
-@sort: AUTHOR, EMAIL, COPYRIGHT, VERSION, DATE, URL
+Module Attributes
+=================
 
-@var AUTHOR: Author of software.
-@var EMAIL: Email address of author.
-@var COPYRIGHT: Copyright date.
-@var VERSION: Software version.
-@var DATE: Software release date.
-@var URL: URL of Cedar Backup webpage.
+Attributes:
+   AUTHOR: Author of software
+   EMAIL: Email address of author
+   COPYRIGHT: Copyright date
+   VERSION: Software version
+   DATE: Software release date
+   URL: URL of Cedar Backup webpage
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 AUTHOR      = "Kenneth J. Pronovici"

@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'stage' action.
-@sort: executeStage
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -78,10 +77,10 @@ def executeStage(configPath, options, config):
    """
    Executes the stage backup action.
 
-   @note: The daily directory is derived once and then we stick with it, just
+   *Note:* The daily directory is derived once and then we stick with it, just
    in case a backup happens to span midnite.
 
-   @note: As portions of the stage action is complete, we will write various
+   *Note:* As portions of the stage action is complete, we will write various
    indicator files so that it's obvious what actions have been completed.  Each
    peer gets a stage indicator in its collect directory, and then the master
    gets a stage indicator in its daily staging directory.  The store process
@@ -89,17 +88,13 @@ def executeStage(configPath, options, config):
    be stored.  Currently, nothing uses the indicator at each peer, and it
    exists for reference only.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there are problems reading or writing files.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there are problems reading or writing files
    """
    logger.debug("Executing the 'stage' action.")
    if config.options is None or config.stage is None:
@@ -151,14 +146,16 @@ def _createStagingDirs(config, dailyDir, peers):
    Creates staging directories as required.
 
    The main staging directory is the passed in daily directory, something like
-   C{staging/2002/05/23}.  Then, individual peers get their own directories,
-   i.e. C{staging/2002/05/23/host}.
+   ``staging/2002/05/23``.  Then, individual peers get their own directories,
+   i.e. ``staging/2002/05/23/host``.
 
-   @param config: Config object.
-   @param dailyDir: Daily staging directory.
-   @param peers: List of all configured peers.
+   Args:
+      config: Config object
+      dailyDir: Daily staging directory
+      peers: List of all configured peers
 
-   @return: Dictionary mapping peer name to staging directory.
+   Returns:
+       Dictionary mapping peer name to staging directory
    """
    mapping = {}
    if os.path.isdir(dailyDir):
@@ -197,10 +194,12 @@ def _createStagingDirs(config, dailyDir, peers):
 def _getIgnoreFailuresFlag(options, config, peer):
    """
    Gets the ignore failures flag based on options, configuration, and peer.
-   @param options: Options object
-   @param config: Configuration object
-   @param peer: Peer to check
-   @return: Whether to ignore stage failures for this peer
+   Args:
+      options: Options object
+      config: Configuration object
+      peer: Peer to check
+   Returns:
+       Whether to ignore stage failures for this peer
    """
    logger.debug("Ignore failure mode for this peer: %s", peer.ignoreFailureMode)
    if peer.ignoreFailureMode is None or peer.ignoreFailureMode == "none":
@@ -222,13 +221,15 @@ def _getDailyDir(config):
    """
    Gets the daily staging directory.
 
-   This is just a directory in the form C{staging/YYYY/MM/DD}, i.e.
-   C{staging/2000/10/07}, except it will be an absolute path based on
-   C{config.stage.targetDir}.
+   This is just a directory in the form ``staging/YYYY/MM/DD``, i.e.
+   ``staging/2000/10/07``, except it will be an absolute path based on
+   ``config.stage.targetDir``.
 
-   @param config: Config object
+   Args:
+      config: Config object
 
-   @return: Path of daily staging directory.
+   Returns:
+       Path of daily staging directory
    """
    dailyDir = os.path.join(config.stage.targetDir, time.strftime(DIR_TIME_FORMAT))
    logger.debug("Daily staging directory is [%s].", dailyDir)
@@ -241,9 +242,11 @@ def _getDailyDir(config):
 
 def _getLocalPeers(config):
    """
-   Return a list of L{LocalPeer} objects based on configuration.
-   @param config: Config object.
-   @return: List of L{LocalPeer} objects.
+   Return a list of :any:`LocalPeer` objects based on configuration.
+   Args:
+      config: Config object
+   Returns:
+       List of :any:`LocalPeer` objects
    """
    localPeers = []
    configPeers = None
@@ -267,9 +270,11 @@ def _getLocalPeers(config):
 
 def _getRemotePeers(config):
    """
-   Return a list of L{RemotePeer} objects based on configuration.
-   @param config: Config object.
-   @return: List of L{RemotePeer} objects.
+   Return a list of :any:`RemotePeer` objects based on configuration.
+   Args:
+      config: Config object
+   Returns:
+       List of :any:`RemotePeer` objects
    """
    remotePeers = []
    configPeers = None
@@ -300,9 +305,11 @@ def _getRemoteUser(config, remotePeer):
    """
    Gets the remote user associated with a remote peer.
    Use peer's if possible, otherwise take from options section.
-   @param config: Config object.
-   @param remotePeer: Configuration-style remote peer object.
-   @return: Name of remote user associated with remote peer.
+   Args:
+      config: Config object
+      remotePeer: Configuration-style remote peer object
+   Returns:
+       Name of remote user associated with remote peer
    """
    if remotePeer.remoteUser is None:
       return config.options.backupUser
@@ -316,8 +323,10 @@ def _getRemoteUser(config, remotePeer):
 def _getLocalUser(config):
    """
    Gets the remote user associated with a remote peer.
-   @param config: Config object.
-   @return: Name of local user that should be used
+   Args:
+      config: Config object
+   Returns:
+       Name of local user that should be used
    """
    if not isRunningAsRoot():
       return None
@@ -332,9 +341,11 @@ def _getRcpCommand(config, remotePeer):
    """
    Gets the RCP command associated with a remote peer.
    Use peer's if possible, otherwise take from options section.
-   @param config: Config object.
-   @param remotePeer: Configuration-style remote peer object.
-   @return: RCP command associated with remote peer.
+   Args:
+      config: Config object
+      remotePeer: Configuration-style remote peer object
+   Returns:
+       RCP command associated with remote peer
    """
    if remotePeer.rcpCommand is None:
       return config.options.rcpCommand

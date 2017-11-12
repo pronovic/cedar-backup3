@@ -37,8 +37,7 @@
 
 """
 Implements the standard 'initialize' action.
-@sort: executeInitialize
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -77,14 +76,11 @@ def executeInitialize(configPath, options, config):
    device so that Cedar Backup can recognize it later.  This is an optional
    step; it's only required if checkMedia is set on the store configuration.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
 
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
    """
    logger.debug("Executing the 'initialize' action.")
    if config.options is None or config.store is None:

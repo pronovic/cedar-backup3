@@ -60,18 +60,19 @@ Backwards Compatibility
    simple arguments rather than switches (which is a much more standard command
    line format).  Old 1.x command lines are generally no longer valid.
 
-@var DEFAULT_CONFIG: The default configuration file.
-@var DEFAULT_LOGFILE: The default log file path.
-@var DEFAULT_OWNERSHIP: Default ownership for the logfile.
-@var DEFAULT_MODE: Default file permissions mode on the logfile.
-@var VALID_ACTIONS: List of valid actions.
-@var COMBINE_ACTIONS: List of actions which can be combined with other actions.
-@var NONCOMBINE_ACTIONS: List of actions which cannot be combined with other actions.
+Module Attributes
+=================
 
-@sort: cli, Options, DEFAULT_CONFIG, DEFAULT_LOGFILE, DEFAULT_OWNERSHIP,
-       DEFAULT_MODE, VALID_ACTIONS, COMBINE_ACTIONS, NONCOMBINE_ACTIONS
+Attributes:
+   DEFAULT_CONFIG: The default configuration file
+   DEFAULT_LOGFILE: The default log file path
+   DEFAULT_OWNERSHIP: Default ownership for the logfile
+   DEFAULT_MODE: Default file permissions mode on the logfile
+   VALID_ACTIONS: List of valid actions
+   COMBINE_ACTIONS: List of actions which can be combined with other actions
+   NONCOMBINE_ACTIONS: List of actions which cannot be combined with other actions
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -148,7 +149,7 @@ LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
 
 def cli():
    """
-   Implements the command-line interface for the C{cback3} script.
+   Implements the command-line interface for the ``cback3`` script.
 
    Essentially, this is the "main routine" for the cback3 script.  It does all
    of the argument processing for the script, and then sets about executing the
@@ -159,9 +160,9 @@ def cli():
    configured extended actions (which makes action list verification a two-
    step process).
 
-   The C{'all'} action has a special meaning: it means that the built-in set of
+   The ``'all'`` action has a special meaning: it means that the built-in set of
    actions (collect, stage, store, purge) will all be executed, in that order.
-   Extended actions will be ignored as part of the C{'all'} action.
+   Extended actions will be ignored as part of the ``'all'`` action.
 
    Raised exceptions always result in an immediate return.  Otherwise, we
    generally return when all specified actions have been completed.  Actions
@@ -169,22 +170,23 @@ def cli():
 
    A different error code is returned for each type of failure:
 
-      - C{1}: The Python interpreter version is < 3.4
-      - C{2}: Error processing command-line arguments
-      - C{3}: Error configuring logging
-      - C{4}: Error parsing indicated configuration file
-      - C{5}: Backup was interrupted with a CTRL-C or similar
-      - C{6}: Error executing specified backup actions
+      - ``1``: The Python interpreter version is < 3.4
+      - ``2``: Error processing command-line arguments
+      - ``3``: Error configuring logging
+      - ``4``: Error parsing indicated configuration file
+      - ``5``: Backup was interrupted with a CTRL-C or similar
+      - ``6``: Error executing specified backup actions
 
-   @note: This function contains a good amount of logging at the INFO level,
+   *Note:* This function contains a good amount of logging at the INFO level,
    because this is the right place to document high-level flow of control (i.e.
    what the command-line options were, what config file was being used, etc.)
 
-   @note: We assume that anything that I{must} be seen on the screen is logged
+   *Note:* We assume that anything that *must* be seen on the screen is logged
    at the ERROR level.  Errors that occur before logging can be configured are
-   written to C{sys.stderr}.
+   written to ``sys.stderr``.
 
-   @return: Error code as described above.
+   Returns:
+       Error code as described above
    """
    try:
       if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
@@ -300,12 +302,13 @@ class _ActionItem(object):
    objects (config.ActionHook), which are then executed at the appropriate time
    (if set).
 
-   @note: The comparison operators for this class have been implemented to only
+   *Note:* The comparison operators for this class have been implemented to only
    compare based on the index and SORT_ORDER value, and ignore all other
    values.  This is so that the action set list can be easily sorted first by
    type (_ActionItem before _ManagedActionItem) and then by index within type.
 
-   @cvar SORT_ORDER: Defines a sort order to order properly between types.
+   Attributes:
+      SORT_ORDER: Defines a sort order to order properly between types
    """
 
    SORT_ORDER = 0
@@ -314,14 +317,15 @@ class _ActionItem(object):
       """
       Default constructor.
 
-      It's OK to pass C{None} for C{index}, C{preHooks} or C{postHooks}, but not
-      for C{name}.
+      It's OK to pass ``None`` for ``index``, ``preHooks`` or ``postHooks``, but not
+      for ``name``.
 
-      @param index: Index of the item (or C{None}).
-      @param name: Name of the action that is being executed.
-      @param preHooks: List of pre-action hooks in terms of an C{ActionHook} object, or C{None}.
-      @param postHooks: List of post-action hooks in terms of an C{ActionHook} object, or C{None}.
-      @param function: Reference to function associated with item.
+      Args:
+         index: Index of the item (or ``None``)
+         name: Name of the action that is being executed
+         preHooks: List of pre-action hooks in terms of an ``ActionHook`` object, or ``None``
+         postHooks: List of post-action hooks in terms of an ``ActionHook`` object, or ``None``
+         function: Reference to function associated with item
       """
       self.index = index
       self.name = name
@@ -345,8 +349,10 @@ class _ActionItem(object):
       """
       Original Python 2 comparison operator.
       The only thing we compare is the item's index.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -369,11 +375,13 @@ class _ActionItem(object):
 
       See class notes for more details on how the action is executed.
 
-      @param configPath: Path to configuration file on disk.
-      @param options: Command-line options to be passed to action.
-      @param config: Parsed configuration to be passed to action.
+      Args:
+         configPath: Path to configuration file on disk
+         options: Command-line options to be passed to action
+         config: Parsed configuration to be passed to action
 
-      @raise Exception: If there is a problem executing the action.
+      Raises:
+         Exception: If there is a problem executing the action
       """
       logger.debug("Executing [%s] action.", self.name)
       if self.preHooks is not None:
@@ -387,9 +395,10 @@ class _ActionItem(object):
    def _executeAction(self, configPath, options, config):
       """
       Executes the action, specifically the function associated with the action.
-      @param configPath: Path to configuration file on disk.
-      @param options: Command-line options to be passed to action.
-      @param config: Parsed configuration to be passed to action.
+      Args:
+         configPath: Path to configuration file on disk
+         options: Command-line options to be passed to action
+         config: Parsed configuration to be passed to action
       """
       name = "%s.%s" % (self.function.__module__, self.function.__name__)
       logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
@@ -397,9 +406,10 @@ class _ActionItem(object):
 
    def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
       """
-      Executes a hook command via L{util.executeCommand()}.
-      @param type: String describing the type of hook, for logging.
-      @param hook: Hook, in terms of a C{ActionHook} object.
+      Executes a hook command via :any:`util.executeCommand`.
+      Args:
+         type: String describing the type of hook, for logging
+         hook: Hook, in terms of a ``ActionHook`` object
       """
       fields = splitCommandLine(hook.command)
       logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
@@ -425,12 +435,13 @@ class _ManagedActionItem(object):
    on the full-backup flag.  All other configuration takes place on the remote
    peer itself.
 
-   @note: The comparison operators for this class have been implemented to only
+   *Note:* The comparison operators for this class have been implemented to only
    compare based on the index and SORT_ORDER value, and ignore all other
    values.  This is so that the action set list can be easily sorted first by
    type (_ActionItem before _ManagedActionItem) and then by index within type.
 
-   @cvar SORT_ORDER: Defines a sort order to order properly between types.
+   Attributes:
+      SORT_ORDER: Defines a sort order to order properly between types
    """
 
    SORT_ORDER = 1
@@ -439,9 +450,10 @@ class _ManagedActionItem(object):
       """
       Default constructor.
 
-      @param index: Index of the item (or C{None}).
-      @param name: Name of the action that is being executed.
-      @param remotePeers: List of remote peers on which to execute the action.
+      Args:
+         index: Index of the item (or ``None``)
+         name: Name of the action that is being executed
+         remotePeers: List of remote peers on which to execute the action
       """
       self.index = index
       self.name = name
@@ -463,8 +475,10 @@ class _ManagedActionItem(object):
       """
       Original Python 2 comparison operator.
       The only thing we compare is the item's index.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -486,19 +500,21 @@ class _ManagedActionItem(object):
       """
       Executes the managed action associated with an item.
 
-      @note: Only options.full is actually used.  The rest of the arguments
+      *Note:* Only options.full is actually used.  The rest of the arguments
       exist to satisfy the ActionItem iterface.
 
-      @note: Errors here result in a message logged to ERROR, but no thrown
+      *Note:* Errors here result in a message logged to ERROR, but no thrown
       exception.  The analogy is the stage action where a problem with one host
       should not kill the entire backup.  Since we're logging an error, the
       administrator will get an email.
 
-      @param configPath: Path to configuration file on disk.
-      @param options: Command-line options to be passed to action.
-      @param config: Parsed configuration to be passed to action.
+      Args:
+         configPath: Path to configuration file on disk
+         options: Command-line options to be passed to action
+         config: Parsed configuration to be passed to action
 
-      @raise Exception: If there is a problem executing the action.
+      Raises:
+         Exception: If there is a problem executing the action
       """
       for peer in self.remotePeers:
          logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
@@ -519,7 +535,7 @@ class _ActionSet(object):
    This class does four different things.  First, it ensures that the actions
    specified on the command-line are sensible.  The command-line can only list
    either built-in actions or extended actions specified in configuration.
-   Also, certain actions (in L{NONCOMBINE_ACTIONS}) cannot be combined with
+   Also, certain actions (in :any:`NONCOMBINE_ACTIONS`) cannot be combined with
    other actions.
 
    Second, the class enforces an execution order on the specified actions.  Any
@@ -535,39 +551,40 @@ class _ActionSet(object):
    Finally, the class properly interleaves local and managed actions so that
    the same action gets executed first locally and then on managed peers.
 
-   @sort: __init__, executeActions
    """
 
    def __init__(self, actions, extensions, options, peers, managed, local):
       """
-      Constructor for the C{_ActionSet} class.
+      Constructor for the ``_ActionSet`` class.
 
       This is kind of ugly, because the constructor has to set up a lot of data
       before being able to do anything useful.  The following data structures
       are initialized based on the input:
 
-         - C{extensionNames}: List of extensions available in configuration
-         - C{preHookMap}: Mapping from action name to list of C{PreActionHook}
-         - C{postHookMap}: Mapping from action name to list of C{PostActionHook}
-         - C{functionMap}: Mapping from action name to Python function
-         - C{indexMap}: Mapping from action name to execution index
-         - C{peerMap}: Mapping from action name to set of C{RemotePeer}
-         - C{actionMap}: Mapping from action name to C{_ActionItem}
+         - ``extensionNames``: List of extensions available in configuration
+         - ``preHookMap``: Mapping from action name to list of ``PreActionHook``
+         - ``postHookMap``: Mapping from action name to list of ``PostActionHook``
+         - ``functionMap``: Mapping from action name to Python function
+         - ``indexMap``: Mapping from action name to execution index
+         - ``peerMap``: Mapping from action name to set of ``RemotePeer``
+         - ``actionMap``: Mapping from action name to ``_ActionItem``
 
       Once these data structures are set up, the command line is validated to
       make sure only valid actions have been requested, and in a sensible
-      combination.  Then, all of the data is used to build C{self.actionSet},
-      the set action items to be executed by C{executeActions()}.  This list
-      might contain either C{_ActionItem} or C{_ManagedActionItem}.
+      combination.  Then, all of the data is used to build ``self.actionSet``,
+      the set action items to be executed by ``executeActions()``.  This list
+      might contain either ``_ActionItem`` or ``_ManagedActionItem``.
 
-      @param actions: Names of actions specified on the command-line.
-      @param extensions: Extended action configuration (i.e. config.extensions)
-      @param options: Options configuration (i.e. config.options)
-      @param peers: Peers configuration (i.e. config.peers)
-      @param managed: Whether to include managed actions in the set
-      @param local: Whether to include local actions in the set
+      Args:
+         actions: Names of actions specified on the command-line
+         extensions: Extended action configuration (i.e. config.extensions)
+         options: Options configuration (i.e. config.options)
+         peers: Peers configuration (i.e. config.peers)
+         managed: Whether to include managed actions in the set
+         local: Whether to include local actions in the set
 
-      @raise ValueError: If one of the specified actions is invalid.
+      Raises:
+         ValueError: If one of the specified actions is invalid
       """
       extensionNames = _ActionSet._deriveExtensionNames(extensions)
       (preHookMap, postHookMap) = _ActionSet._buildHookMaps(options.hooks)
@@ -583,8 +600,10 @@ class _ActionSet(object):
    def _deriveExtensionNames(extensions):
       """
       Builds a list of extended actions that are available in configuration.
-      @param extensions: Extended action configuration (i.e. config.extensions)
-      @return: List of extended action names.
+      Args:
+         extensions: Extended action configuration (i.e. config.extensions)
+      Returns:
+          List of extended action names
       """
       extensionNames = []
       if extensions is not None and extensions.actions is not None:
@@ -595,9 +614,11 @@ class _ActionSet(object):
    @staticmethod
    def _buildHookMaps(hooks):
       """
-      Build two mappings from action name to configured C{ActionHook}.
-      @param hooks: List of pre- and post-action hooks (i.e. config.options.hooks)
-      @return: Tuple of (pre hook dictionary, post hook dictionary).
+      Build two mappings from action name to configured ``ActionHook``.
+      Args:
+         hooks: List of pre- and post-action hooks (i.e. config.options.hooks)
+      Returns:
+          Tuple of (pre hook dictionary, post hook dictionary)
       """
       preHookMap = {}
       postHookMap = {}
@@ -617,8 +638,10 @@ class _ActionSet(object):
    def _buildFunctionMap(extensions):
       """
       Builds a mapping from named action to action function.
-      @param extensions: Extended action configuration (i.e. config.extensions)
-      @return: Dictionary mapping action to function.
+      Args:
+         extensions: Extended action configuration (i.e. config.extensions)
+      Returns:
+          Dictionary mapping action to function
       """
       functionMap = {}
       functionMap['rebuild'] = executeRebuild
@@ -638,17 +661,19 @@ class _ActionSet(object):
       """
       Builds a mapping from action name to proper execution index.
 
-      If extensions configuration is C{None}, or there are no configured
+      If extensions configuration is ``None``, or there are no configured
       extended actions, the ordering dictionary will only include the built-in
       actions and their standard indices.
 
-      Otherwise, if the extensions order mode is C{None} or C{"index"}, actions
+      Otherwise, if the extensions order mode is ``None`` or ``"index"``, actions
       will scheduled by explicit index; and if the extensions order mode is
-      C{"dependency"}, actions will be scheduled using a dependency graph.
+      ``"dependency"``, actions will be scheduled using a dependency graph.
 
-      @param extensions: Extended action configuration (i.e. config.extensions)
+      Args:
+         extensions: Extended action configuration (i.e. config.extensions)
 
-      @return: Dictionary mapping action name to integer execution index.
+      Returns:
+          Dictionary mapping action name to integer execution index
       """
       indexMap = {}
       if extensions is None or extensions.actions is None or extensions.actions == []:
@@ -725,28 +750,30 @@ class _ActionSet(object):
       """
       Builds a mapping from action name to list of action items.
 
-      We build either C{_ActionItem} or C{_ManagedActionItem} objects here.
+      We build either ``_ActionItem`` or ``_ManagedActionItem`` objects here.
 
-      In most cases, the mapping from action name to C{_ActionItem} is 1:1.
+      In most cases, the mapping from action name to ``_ActionItem`` is 1:1.
       The exception is the "all" action, which is a special case.  However, a
       list is returned in all cases, just for consistency later.  Each
-      C{_ActionItem} will be created with a proper function reference and index
+      ``_ActionItem`` will be created with a proper function reference and index
       value for execution ordering.
 
-      The mapping from action name to C{_ManagedActionItem} is always 1:1.
+      The mapping from action name to ``_ManagedActionItem`` is always 1:1.
       Each managed action item contains a list of peers which the action should
       be executed.
 
-      @param managed: Whether to include managed actions in the set
-      @param local: Whether to include local actions in the set
-      @param extensionNames: List of valid extended action names
-      @param functionMap: Dictionary mapping action name to Python function
-      @param indexMap: Dictionary mapping action name to integer execution index
-      @param preHookMap: Dictionary mapping action name to pre hooks (if any) for the action
-      @param postHookMap: Dictionary mapping action name to post hooks (if any) for the action
-      @param peerMap: Dictionary mapping action name to list of remote peers on which to execute the action
+      Args:
+         managed: Whether to include managed actions in the set
+         local: Whether to include local actions in the set
+         extensionNames: List of valid extended action names
+         functionMap: Dictionary mapping action name to Python function
+         indexMap: Dictionary mapping action name to integer execution index
+         preHookMap: Dictionary mapping action name to pre hooks (if any) for the action
+         postHookMap: Dictionary mapping action name to post hooks (if any) for the action
+         peerMap: Dictionary mapping action name to list of remote peers on which to execute the action
 
-      @return: Dictionary mapping action name to list of C{_ActionItem} objects.
+      Returns:
+          Dictionary mapping action name to list of ``_ActionItem`` objects
       """
       actionMap = {}
       for name in extensionNames + VALID_ACTIONS:
@@ -772,8 +799,9 @@ class _ActionSet(object):
       are no managed peers, the mapping will be empty.  Only managed actions
       will be listed in the mapping.
 
-      @param options: Option configuration (i.e. config.options)
-      @param peers: Peers configuration (i.e. config.peers)
+      Args:
+         options: Option configuration (i.e. config.options)
+         peers: Peers configuration (i.e. config.peers)
       """
       peerMap = {}
       if peers is not None:
@@ -799,10 +827,11 @@ class _ActionSet(object):
    def _deriveHooks(action, preHookDict, postHookDict):
       """
       Derive pre- and post-action hooks, if any, associated with named action.
-      @param action: Name of action to look up
-      @param preHookDict: Dictionary mapping pre-action hooks to action name
-      @param postHookDict: Dictionary mapping post-action hooks to action name
-      @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook.
+      Args:
+         action: Name of action to look up
+         preHookDict: Dictionary mapping pre-action hooks to action name
+         postHookDict: Dictionary mapping post-action hooks to action name
+      @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook
       """
       preHooks = None
       postHooks = None
@@ -819,12 +848,14 @@ class _ActionSet(object):
 
       Any specified action must either be a built-in action or must be among
       the extended actions defined in configuration.  The actions from within
-      L{NONCOMBINE_ACTIONS} may not be combined with other actions.
+      :any:`NONCOMBINE_ACTIONS` may not be combined with other actions.
 
-      @param actions: Names of actions specified on the command-line.
-      @param extensionNames: Names of extensions specified in configuration.
+      Args:
+         actions: Names of actions specified on the command-line
+         extensionNames: Names of extensions specified in configuration
 
-      @raise ValueError: If one or more configured actions are not valid.
+      Raises:
+         ValueError: If one or more configured actions are not valid
       """
       if actions is None or actions == []:
          raise ValueError("No actions specified.")
@@ -840,16 +871,18 @@ class _ActionSet(object):
       """
       Build set of actions to be executed.
 
-      The set of actions is built in the proper order, so C{executeActions} can
+      The set of actions is built in the proper order, so ``executeActions`` can
       spin through the set without thinking about it.  Since we've already validated
       that the set of actions is sensible, we don't take any precautions here to
       make sure things are combined properly.  If the action is listed, it will
       be "scheduled" for execution.
 
-      @param actions: Names of actions specified on the command-line.
-      @param actionMap: Dictionary mapping action name to C{_ActionItem} object.
+      Args:
+         actions: Names of actions specified on the command-line
+         actionMap: Dictionary mapping action name to ``_ActionItem`` object
 
-      @return: Set of action items in proper order.
+      Returns:
+          Set of action items in proper order
       """
       actionSet = []
       for action in actions:
@@ -866,11 +899,13 @@ class _ActionSet(object):
       values.  We also pass in the config path so that extension modules can
       re-parse configuration if they want to, to add in extra information.
 
-      @param configPath: Path to configuration file on disk.
-      @param options: Command-line options to be passed to action functions.
-      @param config: Parsed configuration to be passed to action functions.
+      Args:
+         configPath: Path to configuration file on disk
+         options: Command-line options to be passed to action functions
+         config: Parsed configuration to be passed to action functions
 
-      @raise Exception: If there is a problem executing the actions.
+      Raises:
+         Exception: If there is a problem executing the actions
       """
       logger.debug("Executing local actions.")
       for actionItem in self.actionSet:
@@ -881,9 +916,11 @@ class _ActionSet(object):
       """
       Gets the remote user associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
-      @param options: OptionsConfig object, as from config.options
-      @param remotePeer: Configuration-style remote peer object.
-      @return: Name of remote user associated with remote peer.
+      Args:
+         options: OptionsConfig object, as from config.options
+         remotePeer: Configuration-style remote peer object
+      Returns:
+          Name of remote user associated with remote peer
       """
       if remotePeer.remoteUser is None:
          return options.backupUser
@@ -894,9 +931,11 @@ class _ActionSet(object):
       """
       Gets the RSH command associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
-      @param options: OptionsConfig object, as from config.options
-      @param remotePeer: Configuration-style remote peer object.
-      @return: RSH command associated with remote peer.
+      Args:
+         options: OptionsConfig object, as from config.options
+         remotePeer: Configuration-style remote peer object
+      Returns:
+          RSH command associated with remote peer
       """
       if remotePeer.rshCommand is None:
          return options.rshCommand
@@ -907,9 +946,11 @@ class _ActionSet(object):
       """
       Gets the cback command associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
-      @param options: OptionsConfig object, as from config.options
-      @param remotePeer: Configuration-style remote peer object.
-      @return: cback command associated with remote peer.
+      Args:
+         options: OptionsConfig object, as from config.options
+         remotePeer: Configuration-style remote peer object
+      Returns:
+          cback command associated with remote peer
       """
       if remotePeer.cbackCommand is None:
          return options.cbackCommand
@@ -920,9 +961,11 @@ class _ActionSet(object):
       """
       Gets the managed actions list associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
-      @param options: OptionsConfig object, as from config.options
-      @param remotePeer: Configuration-style remote peer object.
-      @return: Set of managed actions associated with remote peer.
+      Args:
+         options: OptionsConfig object, as from config.options
+         remotePeer: Configuration-style remote peer object
+      Returns:
+          Set of managed actions associated with remote peer
       """
       if remotePeer.managedActions is None:
          return options.managedActions
@@ -940,8 +983,9 @@ class _ActionSet(object):
 def _usage(fd=sys.stderr):
    """
    Prints usage information for the cback3 script.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write(" Usage: cback3 [switches] action(s)\n")
@@ -994,8 +1038,9 @@ def _usage(fd=sys.stderr):
 def _version(fd=sys.stdout):
    """
    Prints version information for the cback3 script.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write(" Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
@@ -1016,8 +1061,9 @@ def _version(fd=sys.stdout):
 def _diagnostics(fd=sys.stdout):
    """
    Prints runtime diagnostics information.
-   @param fd: File descriptor used to print information.
-   @note: The C{fd} is used rather than C{print} to facilitate unit testing.
+   Args:
+      fd: File descriptor used to print information
+   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
    fd.write("\n")
    fd.write("Diagnostics:\n")
@@ -1036,30 +1082,30 @@ def setupLogging(options):
 
    There are two kinds of logging: flow logging and output logging.  Output
    logging contains information about system commands executed by Cedar Backup,
-   for instance the calls to C{mkisofs} or C{mount}, etc.  Flow logging
+   for instance the calls to ``mkisofs`` or ``mount``, etc.  Flow logging
    contains error and informational messages used to understand program flow.
    Flow log messages and output log messages are written to two different
-   loggers target (C{CedarBackup3.log} and C{CedarBackup3.output}).  Flow log
+   loggers target (``CedarBackup3.log`` and ``CedarBackup3.output``).  Flow log
    messages are written at the ERROR, INFO and DEBUG log levels, while output
    log messages are generally only written at the INFO log level.
 
-   By default, output logging is disabled.  When the C{options.output} or
-   C{options.debug} flags are set, output logging will be written to the
+   By default, output logging is disabled.  When the ``options.output`` or
+   ``options.debug`` flags are set, output logging will be written to the
    configured logfile.  Output logging is never written to the screen.
 
    By default, flow logging is enabled at the ERROR level to the screen and at
-   the INFO level to the configured logfile.  If the C{options.quiet} flag is
+   the INFO level to the configured logfile.  If the ``options.quiet`` flag is
    set, flow logging is enabled at the INFO level to the configured logfile
-   only (i.e. no output will be sent to the screen).  If the C{options.verbose}
+   only (i.e. no output will be sent to the screen).  If the ``options.verbose``
    flag is set, flow logging is enabled at the INFO level to both the screen
-   and the configured logfile.  If the C{options.debug} flag is set, flow
+   and the configured logfile.  If the ``options.debug`` flag is set, flow
    logging is enabled at the DEBUG level to both the screen and the configured
    logfile.
 
-   @param options: Command-line options.
-   @type options: L{Options} object
-
-   @return: Path to logfile on disk.
+   Args:
+      options (:any:`Options` object): Command-line options
+   Returns:
+       Path to logfile on disk
    """
    logfile = _setupLogfile(options)
    _setupFlowLogging(logfile, options)
@@ -1077,17 +1123,19 @@ def _setupLogfile(options):
    and/or mode are set in the options.  We ignore errors setting the indicated
    user and group.
 
-   @note: This function is vulnerable to a race condition.  If the log file
+   *Note:* This function is vulnerable to a race condition.  If the log file
    does not exist when the function is run, it will attempt to create the file
-   as safely as possible (using C{O_CREAT}).  If two processes attempt to
+   as safely as possible (using ``O_CREAT``).  If two processes attempt to
    create the file at the same time, then one of them will fail.  In practice,
    this shouldn't really be a problem, but it might happen occassionally if two
    instances of cback3 run concurrently or if cback3 collides with logrotate or
    something.
 
-   @param options: Command-line options.
+   Args:
+      options: Command-line options
 
-   @return: Path to logfile on disk.
+   Returns:
+       Path to logfile on disk
    """
    if options.logfile is None:
       logfile = DEFAULT_LOGFILE
@@ -1114,8 +1162,9 @@ def _setupLogfile(options):
 def _setupFlowLogging(logfile, options):
    """
    Sets up flow logging.
-   @param logfile: Path to logfile on disk.
-   @param options: Command-line options.
+   Args:
+      logfile: Path to logfile on disk
+      options: Command-line options
    """
    flowLogger = logging.getLogger("CedarBackup3.log")
    flowLogger.setLevel(logging.DEBUG)    # let the logger see all messages
@@ -1125,8 +1174,9 @@ def _setupFlowLogging(logfile, options):
 def _setupOutputLogging(logfile, options):
    """
    Sets up command output logging.
-   @param logfile: Path to logfile on disk.
-   @param options: Command-line options.
+   Args:
+      logfile: Path to logfile on disk
+      options: Command-line options
    """
    outputLogger = logging.getLogger("CedarBackup3.output")
    outputLogger.setLevel(logging.DEBUG)      # let the logger see all messages
@@ -1135,9 +1185,10 @@ def _setupOutputLogging(logfile, options):
 def _setupDiskFlowLogging(flowLogger, logfile, options):
    """
    Sets up on-disk flow logging.
-   @param flowLogger: Python flow logger object.
-   @param logfile: Path to logfile on disk.
-   @param options: Command-line options.
+   Args:
+      flowLogger: Python flow logger object
+      logfile: Path to logfile on disk
+      options: Command-line options
    """
    formatter = logging.Formatter(fmt=DISK_LOG_FORMAT, datefmt=DATE_FORMAT)
    handler = logging.FileHandler(logfile, mode="a")
@@ -1151,8 +1202,9 @@ def _setupDiskFlowLogging(flowLogger, logfile, options):
 def _setupScreenFlowLogging(flowLogger, options):
    """
    Sets up on-screen flow logging.
-   @param flowLogger: Python flow logger object.
-   @param options: Command-line options.
+   Args:
+      flowLogger: Python flow logger object
+      options: Command-line options
    """
    formatter = logging.Formatter(fmt=SCREEN_LOG_FORMAT)
    handler = logging.StreamHandler(SCREEN_LOG_STREAM)
@@ -1171,9 +1223,10 @@ def _setupScreenFlowLogging(flowLogger, options):
 def _setupDiskOutputLogging(outputLogger, logfile, options):
    """
    Sets up on-disk command output logging.
-   @param outputLogger: Python command output logger object.
-   @param logfile: Path to logfile on disk.
-   @param options: Command-line options.
+   Args:
+      outputLogger: Python command output logger object
+      logfile: Path to logfile on disk
+      options: Command-line options
    """
    formatter = logging.Formatter(fmt=DISK_OUTPUT_FORMAT, datefmt=DATE_FORMAT)
    handler = logging.FileHandler(logfile, mode="a")
@@ -1194,13 +1247,14 @@ def setupPathResolver(config):
    Set up the path resolver singleton based on configuration.
 
    Cedar Backup's path resolver is implemented in terms of a singleton, the
-   L{PathResolverSingleton} class.  This function takes options configuration,
+   :any:`PathResolverSingleton` class.  This function takes options configuration,
    converts it into the dictionary form needed by the singleton, and then
    initializes the singleton.  After that, any function that needs to resolve
    the path of a command can use the singleton.
 
-   @param config: Configuration
-   @type config: L{Config} object
+   Args:
+      config (:any:`Config` object): Configuration
+
    """
    mapping = {}
    if config.options.overrides is not None:
@@ -1224,21 +1278,21 @@ class Options(object):
    """
    Class representing command-line options for the cback3 script.
 
-   The C{Options} class is a Python object representation of the command-line
+   The ``Options`` class is a Python object representation of the command-line
    options of the cback3 script.
 
    The object representation is two-way: a command line string or a list of
-   command line arguments can be used to create an C{Options} object, and then
+   command line arguments can be used to create an ``Options`` object, and then
    changes to the object can be propogated back to a list of command-line
-   arguments or to a command-line string.  An C{Options} object can even be
+   arguments or to a command-line string.  An ``Options`` object can even be
    created from scratch programmatically (if you have a need for that).
 
-   There are two main levels of validation in the C{Options} class.  The first
+   There are two main levels of validation in the ``Options`` class.  The first
    is field-level validation.  Field-level validation comes into play when a
    given field in an object is assigned to or updated.  We use Python's
-   C{property} functionality to enforce specific validations on field values,
+   ``property`` functionality to enforce specific validations on field values,
    and in some places we even use customized list classes to enforce
-   validations on list members.  You should expect to catch a C{ValueError}
+   validations on list members.  You should expect to catch a ``ValueError``
    exception when making assignments to fields if you are programmatically
    filling an object.
 
@@ -1250,15 +1304,14 @@ class Options(object):
    throwing exceptions, etc.
 
    All of these post-completion validations are encapsulated in the
-   L{Options.validate} method.  This method can be called at any time by a
-   client, and will always be called immediately after creating a C{Options}
-   object from a command line and before exporting a C{Options} object back to
+   :any:`Options.validate` method.  This method can be called at any time by a
+   client, and will always be called immediately after creating a ``Options``
+   object from a command line and before exporting a ``Options`` object back to
    a command line.  This way, we get acceptable ease-of-use but we also don't
    accept or emit invalid command lines.
 
-   @note: Lists within this class are "unordered" for equality comparisons.
+   *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   @sort: __init__, __repr__, __str__, __cmp__, __eq__, __lt__, __gt__
    """
 
    ##############
@@ -1269,8 +1322,8 @@ class Options(object):
       """
       Initializes an options object.
 
-      If you initialize the object without passing either C{argumentList} or
-      C{argumentString}, the object will be empty and will be invalid until it
+      If you initialize the object without passing either ``argumentList`` or
+      ``argumentString``, the object will be empty and will be invalid until it
       is filled in properly.
 
       No reference to the original arguments is saved off by this class.  Once
@@ -1278,40 +1331,36 @@ class Options(object):
       is discarded.
 
       The argument list is assumed to be a list of arguments, not including the
-      name of the command, something like C{sys.argv[1:]}.  If you pass
-      C{sys.argv} instead, things are not going to work.
+      name of the command, something like ``sys.argv[1:]``.  If you pass
+      ``sys.argv`` instead, things are not going to work.
 
       The argument string will be parsed into an argument list by the
-      L{util.splitCommandLine} function (see the documentation for that
+      :any:`util.splitCommandLine` function (see the documentation for that
       function for some important notes about its limitations).  There is an
-      assumption that the resulting list will be equivalent to C{sys.argv[1:]},
-      just like C{argumentList}.
+      assumption that the resulting list will be equivalent to ``sys.argv[1:]``,
+      just like ``argumentList``.
 
-      Unless the C{validate} argument is C{False}, the L{Options.validate}
+      Unless the ``validate`` argument is ``False``, the :any:`Options.validate`
       method will be called (with its default arguments) after successfully
       parsing any passed-in command line.  This validation ensures that
       appropriate actions, etc. have been specified.  Keep in mind that even if
-      C{validate} is C{False}, it might not be possible to parse the passed-in
+      ``validate`` is ``False``, it might not be possible to parse the passed-in
       command line, so an exception might still be raised.
 
-      @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback3 script.
+      *Note:* The command line format is specified by the :any:`_usage` function.
+      Call :any:`_usage` to see a usage statement for the cback3 script.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to read in
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to read in
       invalid command line arguments.
 
-      @param argumentList: Command line for a program.
-      @type argumentList: List of arguments, i.e. C{sys.argv}
-
-      @param argumentString: Command line for a program.
-      @type argumentString: String, i.e. "cback3 --verbose stage store"
-
-      @param validate: Validate the command line after parsing it.
-      @type validate: Boolean true/false.
-
-      @raise getopt.GetoptError: If the command-line arguments could not be parsed.
-      @raise ValueError: If the command-line arguments are invalid.
+      Args:
+         argumentList (List of arguments, i.e. ``sys.argv``): Command line for a program
+         argumentString (String, i.e. "cback3 --verbose stage store"): Command line for a program
+         validate (Boolean true/false): Validate the command line after parsing it
+      Raises:
+         getopt.GetoptError: If the command-line arguments could not be parsed
+         ValueError: If the command-line arguments are invalid
       """
       self._help = False
       self._version = False
@@ -1377,8 +1426,10 @@ class Options(object):
       """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
-      @param other: Other object to compare to.
-      @return: -1/0/1 depending on whether self is C{<}, C{=} or C{>} other.
+      Args:
+         other: Other object to compare to
+      Returns:
+          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
       if other is None:
          return 1
@@ -1472,7 +1523,7 @@ class Options(object):
    def _setHelp(self, value):
       """
       Property target used to set the help flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._help = True
@@ -1488,7 +1539,7 @@ class Options(object):
    def _setVersion(self, value):
       """
       Property target used to set the version flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._version = True
@@ -1504,7 +1555,7 @@ class Options(object):
    def _setVerbose(self, value):
       """
       Property target used to set the verbose flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._verbose = True
@@ -1520,7 +1571,7 @@ class Options(object):
    def _setQuiet(self, value):
       """
       Property target used to set the quiet flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._quiet = True
@@ -1551,7 +1602,7 @@ class Options(object):
    def _setFull(self, value):
       """
       Property target used to set the full flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._full = True
@@ -1567,7 +1618,7 @@ class Options(object):
    def _setManaged(self, value):
       """
       Property target used to set the managed flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._managed = True
@@ -1583,7 +1634,7 @@ class Options(object):
    def _setManagedOnly(self, value):
       """
       Property target used to set the managedOnly flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._managedOnly = True
@@ -1599,7 +1650,8 @@ class Options(object):
    def _setLogfile(self, value):
       """
       Property target used to set the logfile parameter.
-      @raise ValueError: If the value cannot be encoded properly.
+      Raises:
+         ValueError: If the value cannot be encoded properly
       """
       if value is not None:
          if len(value) < 1:
@@ -1615,10 +1667,11 @@ class Options(object):
    def _setOwner(self, value):
       """
       Property target used to set the owner parameter.
-      If not C{None}, the owner must be a C{(user,group)} tuple or list.
+      If not ``None``, the owner must be a ``(user,group)`` tuple or list.
       Strings (and inherited children of strings) are explicitly disallowed.
       The value will be normalized to a tuple.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._owner = None
@@ -1634,7 +1687,7 @@ class Options(object):
    def _getOwner(self):
       """
       Property target used to get the owner parameter.
-      The parameter is a tuple of C{(user, group)}.
+      The parameter is a tuple of ``(user, group)``.
       """
       return self._owner
 
@@ -1665,7 +1718,7 @@ class Options(object):
    def _setOutput(self, value):
       """
       Property target used to set the output flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._output = True
@@ -1681,7 +1734,7 @@ class Options(object):
    def _setDebug(self, value):
       """
       Property target used to set the debug flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._debug = True
@@ -1697,7 +1750,7 @@ class Options(object):
    def _setStacktrace(self, value):
       """
       Property target used to set the stacktrace flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._stacktrace = True
@@ -1713,7 +1766,7 @@ class Options(object):
    def _setDiagnostics(self, value):
       """
       Property target used to set the diagnostics flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._diagnostics = True
@@ -1730,7 +1783,8 @@ class Options(object):
       """
       Property target used to set the actions list.
       We don't restrict the contents of actions.  They're validated somewhere else.
-      @raise ValueError: If the value is not valid.
+      Raises:
+         ValueError: If the value is not valid
       """
       if value is None:
          self._actions = None
@@ -1749,21 +1803,21 @@ class Options(object):
       """
       return self._actions
 
-   help = property(_getHelp, _setHelp, None, "Command-line help (C{-h,--help}) flag.")
-   version = property(_getVersion, _setVersion, None, "Command-line version (C{-V,--version}) flag.")
-   verbose = property(_getVerbose, _setVerbose, None, "Command-line verbose (C{-b,--verbose}) flag.")
-   quiet = property(_getQuiet, _setQuiet, None, "Command-line quiet (C{-q,--quiet}) flag.")
-   config = property(_getConfig, _setConfig, None, "Command-line configuration file (C{-c,--config}) parameter.")
-   full = property(_getFull, _setFull, None, "Command-line full-backup (C{-f,--full}) flag.")
-   managed = property(_getManaged, _setManaged, None, "Command-line managed (C{-M,--managed}) flag.")
-   managedOnly = property(_getManagedOnly, _setManagedOnly, None, "Command-line managed-only (C{-N,--managed-only}) flag.")
-   logfile = property(_getLogfile, _setLogfile, None, "Command-line logfile (C{-l,--logfile}) parameter.")
-   owner = property(_getOwner, _setOwner, None, "Command-line owner (C{-o,--owner}) parameter, as tuple C{(user,group)}.")
-   mode = property(_getMode, _setMode, None, "Command-line mode (C{-m,--mode}) parameter.")
-   output = property(_getOutput, _setOutput, None, "Command-line output (C{-O,--output}) flag.")
-   debug = property(_getDebug, _setDebug, None, "Command-line debug (C{-d,--debug}) flag.")
-   stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (C{-s,--stack}) flag.")
-   diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (C{-D,--diagnostics}) flag.")
+   help = property(_getHelp, _setHelp, None, "Command-line help (``-h,--help``) flag.")
+   version = property(_getVersion, _setVersion, None, "Command-line version (``-V,--version``) flag.")
+   verbose = property(_getVerbose, _setVerbose, None, "Command-line verbose (``-b,--verbose``) flag.")
+   quiet = property(_getQuiet, _setQuiet, None, "Command-line quiet (``-q,--quiet``) flag.")
+   config = property(_getConfig, _setConfig, None, "Command-line configuration file (``-c,--config``) parameter.")
+   full = property(_getFull, _setFull, None, "Command-line full-backup (``-f,--full``) flag.")
+   managed = property(_getManaged, _setManaged, None, "Command-line managed (``-M,--managed``) flag.")
+   managedOnly = property(_getManagedOnly, _setManagedOnly, None, "Command-line managed-only (``-N,--managed-only``) flag.")
+   logfile = property(_getLogfile, _setLogfile, None, "Command-line logfile (``-l,--logfile``) parameter.")
+   owner = property(_getOwner, _setOwner, None, "Command-line owner (``-o,--owner``) parameter, as tuple ``(user,group)``.")
+   mode = property(_getMode, _setMode, None, "Command-line mode (``-m,--mode``) parameter.")
+   output = property(_getOutput, _setOutput, None, "Command-line output (``-O,--output``) flag.")
+   debug = property(_getDebug, _setDebug, None, "Command-line debug (``-d,--debug``) flag.")
+   stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (``-s,--stack``) flag.")
+   diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (``-D,--diagnostics``) flag.")
    actions = property(_getActions, _setActions, None, "Command-line actions list.")
 
 
@@ -1775,15 +1829,16 @@ class Options(object):
       """
       Validates command-line options represented by the object.
 
-      Unless C{--help} or C{--version} are supplied, at least one action must
+      Unless ``--help`` or ``--version`` are supplied, at least one action must
       be specified.  Other validations (as for allowed values for particular
       options) will be taken care of at assignment time by the properties
       functionality.
 
-      @note: The command line format is specified by the L{_usage} function.
-      Call L{_usage} to see a usage statement for the cback3 script.
+      *Note:* The command line format is specified by the :any:`_usage` function.
+      Call :any:`_usage` to see a usage statement for the cback3 script.
 
-      @raise ValueError: If one of the validations fails.
+      Raises:
+         ValueError: If one of the validations fails
       """
       if not self.help and not self.version and not self.diagnostics:
          if self.actions is None or len(self.actions) == 0:
@@ -1800,23 +1855,24 @@ class Options(object):
       argument list.   Besides that, the argument list is normalized to use the
       long option names (i.e. --version rather than -V).  The resulting list
       will be suitable for passing back to the constructor in the
-      C{argumentList} parameter.  Unlike L{buildArgumentString}, string
+      ``argumentList`` parameter.  Unlike :any:`buildArgumentString`, string
       arguments are not quoted here, because there is no need for it.
 
-      Unless the C{validate} parameter is C{False}, the L{Options.validate}
+      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
       method will be called (with its default arguments) against the
       options before extracting the command line.  If the options are not valid,
       then an argument list will not be extracted.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to extract an
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to extract an
       invalid command line.
 
-      @param validate: Validate the options before extracting the command line.
-      @type validate: Boolean true/false.
-
-      @return: List representation of command-line arguments.
-      @raise ValueError: If options within the object are invalid.
+      Args:
+         validate (Boolean true/false): Validate the options before extracting the command line
+      Returns:
+          List representation of command-line arguments
+      Raises:
+         ValueError: If options within the object are invalid
       """
       if validate:
          self.validate()
@@ -1868,24 +1924,25 @@ class Options(object):
       initialized with a command-line) is not preserved in this generated
       argument string.   Besides that, the argument string is normalized to use
       the long option names (i.e. --version rather than -V) and to quote all
-      string arguments with double quotes (C{"}).  The resulting string will be
-      suitable for passing back to the constructor in the C{argumentString}
+      string arguments with double quotes (``"``).  The resulting string will be
+      suitable for passing back to the constructor in the ``argumentString``
       parameter.
 
-      Unless the C{validate} parameter is C{False}, the L{Options.validate}
+      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
       method will be called (with its default arguments) against the options
       before extracting the command line.  If the options are not valid, then
       an argument string will not be extracted.
 
-      @note: It is strongly suggested that the C{validate} option always be set
-      to C{True} (the default) unless there is a specific need to extract an
+      *Note:* It is strongly suggested that the ``validate`` option always be set
+      to ``True`` (the default) unless there is a specific need to extract an
       invalid command line.
 
-      @param validate: Validate the options before extracting the command line.
-      @type validate: Boolean true/false.
-
-      @return: String representation of command-line arguments.
-      @raise ValueError: If options within the object are invalid.
+      Args:
+         validate (Boolean true/false): Validate the options before extracting the command line
+      Returns:
+          String representation of command-line arguments
+      Raises:
+         ValueError: If options within the object are invalid
       """
       if validate:
          self.validate()
@@ -1933,18 +1990,18 @@ class Options(object):
       can be parsed and whether any values which exist are valid.  We don't do
       any validation as to whether required elements exist or whether elements
       exist in the proper combination (instead, that's the job of the
-      L{validate} method).
+      :any:`validate` method).
 
       For any of the options which supply parameters, if the option is
-      duplicated with long and short switches (i.e. C{-l} and a C{--logfile})
+      duplicated with long and short switches (i.e. ``-l`` and a ``--logfile``)
       then the long switch is used.  If the same option is duplicated with the
       same switch (long or short), then the last entry on the command line is
       used.
 
-      @param argumentList: List of arguments to a command.
-      @type argumentList: List of arguments to a command, i.e. C{sys.argv[1:]}
-
-      @raise ValueError: If the argument list cannot be successfully parsed.
+      Args:
+         argumentList (List of arguments to a command, i.e. ``sys.argv[1:]``): List of arguments to a command
+      Raises:
+         ValueError: If the argument list cannot be successfully parsed
       """
       switches = { }
       opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)

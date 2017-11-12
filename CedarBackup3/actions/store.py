@@ -37,9 +37,8 @@
 
 """
 Implements the standard 'store' action.
-@sort: executeStore, writeImage, writeStoreIndicator, consistencyCheck
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
-@author: Dmitry Rutsky <rutsky@inbox.ru>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Dmitry Rutsky <rutsky@inbox.ru>
 """
 
 
@@ -82,25 +81,21 @@ def executeStore(configPath, options, config):
    """
    Executes the store backup action.
 
-   @note: The rebuild action and the store action are very similar.  The
+   *Note:* The rebuild action and the store action are very similar.  The
    main difference is that while store only stores a single day's staging
    directory, the rebuild action operates on multiple staging directories.
 
-   @note: When the store action is complete, we will write a store indicator to
+   *Note:* When the store action is complete, we will write a store indicator to
    the daily staging directory we used, so it's obvious that the store action
    has completed.
 
-   @param configPath: Path to configuration file on disk.
-   @type configPath: String representing a path on disk.
-
-   @param options: Program command-line options.
-   @type options: Options object.
-
-   @param config: Program configuration.
-   @type config: Config object.
-
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there are problems reading or writing files.
+   Args:
+      configPath (String representing a path on disk): Path to configuration file on disk
+      options (Options object): Program command-line options
+      config (Config object): Program configuration
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there are problems reading or writing files
    """
    logger.debug("Executing the 'store' action.")
    if sys.platform == "darwin":
@@ -135,19 +130,21 @@ def writeImage(config, newDisc, stagingDirs):
    Builds and writes an ISO image containing the indicated stage directories.
 
    The generated image will contain each of the staging directories listed in
-   C{stagingDirs}.  The directories will be placed into the image at the root by
-   date, so staging directory C{/opt/stage/2005/02/10} will be placed into the
-   disc at C{/2005/02/10}.
+   ``stagingDirs``.  The directories will be placed into the image at the root by
+   date, so staging directory ``/opt/stage/2005/02/10`` will be placed into the
+   disc at ``/2005/02/10``.
 
-   @note: This function is implemented in terms of L{writeImageBlankSafe}.  The
-   C{newDisc} flag is passed in for both C{rebuildMedia} and C{todayIsStart}.
+   *Note:* This function is implemented in terms of :any:`writeImageBlankSafe`.  The
+   ``newDisc`` flag is passed in for both ``rebuildMedia`` and ``todayIsStart``.
 
-   @param config: Config object.
-   @param newDisc: Indicates whether the disc should be re-initialized
-   @param stagingDirs: Dictionary mapping directory path to date suffix.
+   Args:
+      config: Config object
+      newDisc: Indicates whether the disc should be re-initialized
+      stagingDirs: Dictionary mapping directory path to date suffix
 
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there is a problem writing the image to disc.
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there is a problem writing the image to disc
    """
    writeImageBlankSafe(config, newDisc, newDisc, None, stagingDirs)
 
@@ -161,16 +158,16 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
    Builds and writes an ISO image containing the indicated stage directories.
 
    The generated image will contain each of the staging directories listed in
-   C{stagingDirs}.  The directories will be placed into the image at the root by
-   date, so staging directory C{/opt/stage/2005/02/10} will be placed into the
-   disc at C{/2005/02/10}.  The media will always be written with a media
+   ``stagingDirs``.  The directories will be placed into the image at the root by
+   date, so staging directory ``/opt/stage/2005/02/10`` will be placed into the
+   disc at ``/2005/02/10``.  The media will always be written with a media
    label specific to Cedar Backup.
 
-   This function is similar to L{writeImage}, but tries to implement a smarter
+   This function is similar to :any:`writeImage`, but tries to implement a smarter
    blanking strategy.
 
-   First, the media is always blanked if the C{rebuildMedia} flag is true.
-   Then, if C{rebuildMedia} is false, blanking behavior and C{todayIsStart}
+   First, the media is always blanked if the ``rebuildMedia`` flag is true.
+   Then, if ``rebuildMedia`` is false, blanking behavior and ``todayIsStart``
    come into effect::
 
       If no blanking behavior is specified, and it is the start of the week,
@@ -191,14 +188,16 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
    The blanking factor will vary from setup to setup, and will probably
    require some experimentation to get it right.
 
-   @param config: Config object.
-   @param rebuildMedia: Indicates whether media should be rebuilt
-   @param todayIsStart: Indicates whether today is the starting day of the week
-   @param blankBehavior: Blank behavior from configuration, or C{None} to use default behavior
-   @param stagingDirs: Dictionary mapping directory path to date suffix.
+   Args:
+      config: Config object
+      rebuildMedia: Indicates whether media should be rebuilt
+      todayIsStart: Indicates whether today is the starting day of the week
+      blankBehavior: Blank behavior from configuration, or ``None`` to use default behavior
+      stagingDirs: Dictionary mapping directory path to date suffix
 
-   @raise ValueError: Under many generic error conditions
-   @raise IOError: If there is a problem writing the image to disc.
+   Raises:
+      ValueError: Under many generic error conditions
+      IOError: If there is a problem writing the image to disc
    """
    mediaLabel = buildMediaLabel()
    writer = createWriter(config)
@@ -215,14 +214,16 @@ def _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior):
    """
    Gets a value for the newDisc flag based on blanking factor rules.
 
-   The blanking factor rules are described above by L{writeImageBlankSafe}.
+   The blanking factor rules are described above by :any:`writeImageBlankSafe`.
 
-   @param writer: Previously configured image writer containing image entries
-   @param rebuildMedia: Indicates whether media should be rebuilt
-   @param todayIsStart: Indicates whether today is the starting day of the week
-   @param blankBehavior: Blank behavior from configuration, or C{None} to use default behavior
+   Args:
+      writer: Previously configured image writer containing image entries
+      rebuildMedia: Indicates whether media should be rebuilt
+      todayIsStart: Indicates whether today is the starting day of the week
+      blankBehavior: Blank behavior from configuration, or ``None`` to use default behavior
 
-   @return: newDisc flag to be set on writer.
+   Returns:
+       newDisc flag to be set on writer
    """
    newDisc = False
    if rebuildMedia:
@@ -266,8 +267,9 @@ def writeStoreIndicator(config, stagingDirs):
    The store indicator is written into each of the staging directories when
    either a store or rebuild action has written the staging directory to disc.
 
-   @param config: Config object.
-   @param stagingDirs: Dictionary mapping directory path to date suffix.
+   Args:
+      config: Config object
+      stagingDirs: Dictionary mapping directory path to date suffix
    """
    for stagingDir in list(stagingDirs.keys()):
       writeIndicatorFile(stagingDir, STORE_INDICATOR,
@@ -291,19 +293,21 @@ def consistencyCheck(config, stagingDirs):
    The function mounts the device at a temporary mount point in the working
    directory, and then compares the indicated staging directories in the
    staging directory and on the media.  The comparison is done via
-   functionality in C{filesystem.py}.
+   functionality in ``filesystem.py``.
 
    If no exceptions are thrown, there were no problems with the consistency
    check.  A positive confirmation of "no problems" is also written to the log
-   with C{info} priority.
+   with ``info`` priority.
 
    @warning: The implementation of this function is very UNIX-specific.
 
-   @param config: Config object.
-   @param stagingDirs: Dictionary mapping directory path to date suffix.
+   Args:
+      config: Config object
+      stagingDirs: Dictionary mapping directory path to date suffix
 
-   @raise ValueError: If the two directories are not equivalent.
-   @raise IOError: If there is a problem working with the media.
+   Raises:
+      ValueError: If the two directories are not equivalent
+      IOError: If there is a problem working with the media
    """
    logger.debug("Running consistency check.")
    mountPoint = tempfile.mkdtemp(dir=config.options.workingDir)
@@ -339,26 +343,29 @@ def _findCorrectDailyDir(options, config):
    that directory is found, it's good enough.  If it's not found, I'll look for
    a valid directory from the day before or day after I{which has not yet been
    staged, according to the stage indicator file}.  The first one I find, I'll
-   use.  If I use a directory other than for the current day I{and}
-   C{config.store.warnMidnite} is set, a warning will be put in the log.
+   use.  If I use a directory other than for the current day *and*
+   ``config.store.warnMidnite`` is set, a warning will be put in the log.
 
-   There is one exception to this rule.  If the C{options.full} flag is set,
+   There is one exception to this rule.  If the ``options.full`` flag is set,
    then the special "span midnite" logic will be disabled and any existing
    store indicator will be ignored.  I did this because I think that most users
-   who run C{cback3 --full store} twice in a row expect the command to generate
+   who run ``cback3 --full store`` twice in a row expect the command to generate
    two identical discs.  With the other rule in place, running that command
    twice in a row could result in an error ("no unstored directory exists") or
    could even cause a completely unexpected directory to be written to disc (if
    some previous day's contents had not yet been written).
 
-   @note: This code is probably longer and more verbose than it needs to be,
+   *Note:* This code is probably longer and more verbose than it needs to be,
    but at least it's straightforward.
 
-   @param options: Options object.
-   @param config: Config object.
+   Args:
+      options: Options object
+      config: Config object
 
-   @return: Correct staging dir, as a dict mapping directory to date suffix.
-   @raise IOError: If the staging directory cannot be found.
+   Returns:
+       Correct staging dir, as a dict mapping directory to date suffix
+   Raises:
+      IOError: If the staging directory cannot be found
    """
    oneDay = datetime.timedelta(days=1)
    today = datetime.date.today()

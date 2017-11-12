@@ -58,9 +58,7 @@ number of collect-directory tarfiles onto a disc), worst-fit is probably the
 best choice if the goal is to include as many of the collect directories as
 possible.
 
-@sort: firstFit, bestFit, worstFit, alternateFit
-
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 #######################################################################
@@ -95,19 +93,17 @@ def firstFit(items, capacity):
 
    The function assumes that the list of items may be used destructively, if
    needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass C{items.copy()} if they
+   list, if this is not required.  Callers should pass ``items.copy()`` if they
    do not want their version of the list modified.
 
    The function returns a list of chosen items and the unitless amount of
    capacity used by the items.
 
-   @param items: Items to operate on
-   @type items: dictionary, keyed on item, of C{(item, size)} tuples, item as string and size as integer
-
-   @param capacity: Capacity of container to fit to
-   @type capacity: integer
-
-   @returns: Tuple C{(items, used)} as described above
+   Args:
+      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      capacity (integer): Capacity of container to fit to
+   Returns:
+       Tuple ``(items, used)`` as described above
    """
 
    # Use dict since insert into dict is faster than list append
@@ -159,19 +155,17 @@ def bestFit(items, capacity):
 
    The function assumes that the list of items may be used destructively, if
    needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass C{items.copy()} if they
+   list, if this is not required.  Callers should pass ``items.copy()`` if they
    do not want their version of the list modified.
 
    The function returns a list of chosen items and the unitless amount of
    capacity used by the items.
 
-   @param items: Items to operate on
-   @type items: dictionary, keyed on item, of C{(item, size)} tuples, item as string and size as integer
-
-   @param capacity: Capacity of container to fit to
-   @type capacity: integer
-
-   @returns: Tuple C{(items, used)} as described above
+   Args:
+      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      capacity (integer): Capacity of container to fit to
+   Returns:
+       Tuple ``(items, used)`` as described above
    """
 
    # Use dict since insert into dict is faster than list append
@@ -228,19 +222,17 @@ def worstFit(items, capacity):
 
    The function assumes that the list of items may be used destructively, if
    needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass C{items.copy()} if they
+   list, if this is not required.  Callers should pass ``items.copy()`` if they
    do not want their version of the list modified.
 
    The function returns a list of chosen items and the unitless amount of
    capacity used by the items.
 
-   @param items: Items to operate on
-   @type items: dictionary, keyed on item, of C{(item, size)} tuples, item as string and size as integer
-
-   @param capacity: Capacity of container to fit to
-   @type capacity: integer
-
-   @returns: Tuple C{(items, used)} as described above
+   Args:
+      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      capacity (integer): Capacity of container to fit to
+   Returns:
+       Tuple ``(items, used)`` as described above
    """
 
    # Use dict since insert into dict is faster than list append
@@ -299,19 +291,17 @@ def alternateFit(items, capacity):
 
    The function assumes that the list of items may be used destructively, if
    needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass C{items.copy()} if they
+   list, if this is not required.  Callers should pass ``items.copy()`` if they
    do not want their version of the list modified.
 
    The function returns a list of chosen items and the unitless amount of
    capacity used by the items.
 
-   @param items: Items to operate on
-   @type items: dictionary, keyed on item, of C{(item, size)} tuples, item as string and size as integer
-
-   @param capacity: Capacity of container to fit to
-   @type capacity: integer
-
-   @returns: Tuple C{(items, used)} as described above
+   Args:
+      items (dictionary, keyed on item, of ``(item, size)`` tuples, item as string and size as integer): Items to operate on
+      capacity (integer): Capacity of container to fit to
+   Returns:
+       Tuple ``(items, used)`` as described above
    """
 
    # Use dict since insert into dict is faster than list append

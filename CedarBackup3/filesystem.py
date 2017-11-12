@@ -37,8 +37,7 @@
 
 """
 Provides filesystem-related objects.
-@sort: FilesystemList, BackupFileList, PurgeItemList
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 
@@ -89,29 +88,25 @@ class FilesystemList(list):
    non-recursively, i.e. the link to a directory is backed up, but not the
    contents of that link (we don't want to deal with recursive loops, etc.).
 
-   The custom methods such as L{addFile} will only add items if they exist on
+   The custom methods such as :any:`addFile` will only add items if they exist on
    the filesystem and do not match any exclusions that are already in place.
    However, since a FilesystemList is a subclass of Python's standard list
    class, callers can also add items to the list in the usual way, using
-   methods like C{append()} or C{insert()}.  No validations apply to items
+   methods like ``append()`` or ``insert()``.  No validations apply to items
    added to the list in this way; however, many list-manipulation methods deal
    "gracefully" with items that don't exist in the filesystem, often by
    ignoring them.
 
    Once a list has been created, callers can remove individual items from the
-   list using standard methods like C{pop()} or C{remove()} or they can use
+   list using standard methods like ``pop()`` or ``remove()`` or they can use
    custom methods to remove specific types of entries or entries which match a
    particular pattern.
 
-   @note: Regular expression patterns that apply to paths are assumed to be
+   *Note:* Regular expression patterns that apply to paths are assumed to be
    bounded at front and back by the beginning and end of the string, i.e. they
-   are treated as if they begin with C{^} and end with C{$}.  This is true
+   are treated as if they begin with ``^`` and end with ``$``.  This is true
    whether we are matching a complete path or a basename.
 
-   @sort: __init__, addFile, addDir, addDirContents, removeFiles, removeDirs,
-          removeLinks, removeMatch, removeInvalid, normalize,
-          excludeFiles, excludeDirs, excludeLinks, excludePaths,
-          excludePatterns, excludeBasenamePatterns, ignoreFile
    """
 
 
@@ -145,7 +140,7 @@ class FilesystemList(list):
    def _setExcludeFiles(self, value):
       """
       Property target used to set the exclude files flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._excludeFiles = True
@@ -161,7 +156,7 @@ class FilesystemList(list):
    def _setExcludeDirs(self, value):
       """
       Property target used to set the exclude directories flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._excludeDirs = True
@@ -177,7 +172,7 @@ class FilesystemList(list):
    def _setExcludeLinks(self, value):
       """
       Property target used to set the exclude soft links flag.
-      No validations, but we normalize the value to C{True} or C{False}.
+      No validations, but we normalize the value to ``True`` or ``False``.
       """
       if value:
          self._excludeLinks = True
@@ -193,9 +188,10 @@ class FilesystemList(list):
    def _setExcludePaths(self, value):
       """
       Property target used to set the exclude paths list.
-      A C{None} value is converted to an empty list.
+      A ``None`` value is converted to an empty list.
       Elements do not have to exist on disk at the time of assignment.
-      @raise ValueError: If any list element is not an absolute path.
+      Raises:
+         ValueError: If any list element is not an absolute path
       """
       self._excludePaths = AbsolutePathList()
       if value is not None:
@@ -210,7 +206,7 @@ class FilesystemList(list):
    def _setExcludePatterns(self, value):
       """
       Property target used to set the exclude patterns list.
-      A C{None} value is converted to an empty list.
+      A ``None`` value is converted to an empty list.
       """
       self._excludePatterns = RegexList()
       if value is not None:
@@ -225,7 +221,7 @@ class FilesystemList(list):
    def _setExcludeBasenamePatterns(self, value):
       """
       Property target used to set the exclude basename patterns list.
-      A C{None} value is converted to an empty list.
+      A ``None`` value is converted to an empty list.
       """
       self._excludeBasenamePatterns = RegexList()
       if value is not None:
@@ -240,8 +236,9 @@ class FilesystemList(list):
    def _setIgnoreFile(self, value):
       """
       Property target used to set the ignore file.
-      The value must be a non-empty string if it is not C{None}.
-      @raise ValueError: If the value is an empty string.
+      The value must be a non-empty string if it is not ``None``.
+      Raises:
+         ValueError: If the value is an empty string
       """
       if value is not None:
          if len(value) < 1:
@@ -276,13 +273,14 @@ class FilesystemList(list):
       The path must exist and must be a file or a link to an existing file.  It
       will be added to the list subject to any exclusions that are in place.
 
-      @param path: File path to be added to the list
-      @type path: String representing a path on disk
+      Args:
+         path (String representing a path on disk): File path to be added to the list
+      Returns:
+          Number of items added to the list
 
-      @return: Number of items added to the list.
-
-      @raise ValueError: If path is not a file or does not exist.
-      @raise ValueError: If the path could not be encoded properly.
+      Raises:
+         ValueError: If path is not a file or does not exist
+         ValueError: If the path could not be encoded properly
       """
       path = encodePath(path)
       if not os.path.exists(path) or not os.path.isfile(path):
@@ -317,16 +315,17 @@ class FilesystemList(list):
 
       The path must exist and must be a directory or a link to an existing
       directory.  It will be added to the list subject to any exclusions that
-      are in place.  The L{ignoreFile} does not apply to this method, only to
-      L{addDirContents}.
+      are in place.  The :any:`ignoreFile` does not apply to this method, only to
+      :any:`addDirContents`.
 
-      @param path: Directory path to be added to the list
-      @type path: String representing a path on disk
+      Args:
+         path (String representing a path on disk): Directory path to be added to the list
+      Returns:
+          Number of items added to the list
 
-      @return: Number of items added to the list.
-
-      @raise ValueError: If path is not a directory or does not exist.
-      @raise ValueError: If the path could not be encoded properly.
+      Raises:
+         ValueError: If path is not a directory or does not exist
+         ValueError: If the path could not be encoded properly
       """
       path = encodePath(path)
       path = normalizeDir(path)
@@ -364,50 +363,43 @@ class FilesystemList(list):
       The contents of the directory (as well as the directory path itself) will
       be recursively added to the list, subject to any exclusions that are in
       place.  If you only want the directory and its immediate contents to be
-      added, then pass in C{recursive=False}.
+      added, then pass in ``recursive=False``.
 
-      @note: If a directory's absolute path matches an exclude pattern or path,
+      *Note:* If a directory's absolute path matches an exclude pattern or path,
       or if the directory contains the configured ignore file, then the
       directory and all of its contents will be recursively excluded from the
       list.
 
-      @note: If the passed-in directory happens to be a soft link, it will be
+      *Note:* If the passed-in directory happens to be a soft link, it will be
       recursed.  However, the linkDepth parameter controls whether any soft
-      links I{within} the directory will be recursed.  The link depth is
+      links *within* the directory will be recursed.  The link depth is
       maximum depth of the tree at which soft links should be followed.  So, a
       depth of 0 does not follow any soft links, a depth of 1 follows only
       links within the passed-in directory, a depth of 2 follows the links at
       the next level down, etc.
 
-      @note: Any invalid soft links (i.e.  soft links that point to
+      *Note:* Any invalid soft links (i.e.  soft links that point to
       non-existent items) will be silently ignored.
 
-      @note: The L{excludeDirs} flag only controls whether any given directory
+      *Note:* The :any:`excludeDirs` flag only controls whether any given directory
       path itself is added to the list once it has been discovered.  It does
-      I{not} modify any behavior related to directory recursion.
+      *not* modify any behavior related to directory recursion.
 
-      @note: If you call this method I{on a link to a directory} that link will
+      *Note:* If you call this method *on a link to a directory* that link will
       never be dereferenced (it may, however, be followed).
 
-      @param path: Directory path whose contents should be added to the list
-      @type path: String representing a path on disk
+      Args:
+         path (String representing a path on disk): Directory path whose contents should be added to the list
+         recursive (Boolean value): Indicates whether directory contents should be added recursively
+         addSelf (Boolean value): Indicates whether the directory itself should be added to the list
+         linkDepth (Integer value, where zero means not to follow any soft links): Maximum depth of the tree at which soft links should be followed
+         dereference (Boolean value): Indicates whether soft links, if followed, should be dereferenced
+      Returns:
+          Number of items recursively added to the list
 
-      @param recursive: Indicates whether directory contents should be added recursively.
-      @type recursive: Boolean value
-
-      @param addSelf: Indicates whether the directory itself should be added to the list.
-      @type addSelf: Boolean value
-
-      @param linkDepth: Maximum depth of the tree at which soft links should be followed
-      @type linkDepth: Integer value, where zero means not to follow any soft links
-
-      @param dereference: Indicates whether soft links, if followed, should be dereferenced
-      @type dereference: Boolean value
-
-      @return: Number of items recursively added to the list
-
-      @raise ValueError: If path is not a directory or does not exist.
-      @raise ValueError: If the path could not be encoded properly.
+      Raises:
+         ValueError: If path is not a directory or does not exist
+         ValueError: If the path could not be encoded properly
       """
       path = encodePath(path)
       path = normalizeDir(path)
@@ -415,21 +407,21 @@ class FilesystemList(list):
 
    def _addDirContentsInternal(self, path, includePath=True, recursive=True, linkDepth=0, dereference=False):
       """
-      Internal implementation of C{addDirContents}.
+      Internal implementation of ``addDirContents``.
 
       This internal implementation exists due to some refactoring.  Basically,
       some subclasses have a need to add the contents of a directory, but not
-      the directory itself.  This is different than the standard C{FilesystemList}
+      the directory itself.  This is different than the standard ``FilesystemList``
       behavior and actually ends up making a special case out of the first
       call in the recursive chain.  Since I don't want to expose the modified
-      interface, C{addDirContents} ends up being wholly implemented in terms
+      interface, ``addDirContents`` ends up being wholly implemented in terms
       of this method.
 
       The linkDepth parameter controls whether soft links are followed when we
       are adding the contents recursively.  Any recursive calls reduce the
       value by one.  If the value zero or less, then soft links will just be
       added as directories, but will not be followed.  This means that links
-      are followed to a I{constant depth} starting from the top-most directory.
+      are followed to a *constant depth* starting from the top-most directory.
 
       There is one difference between soft links and directories: soft links
       that are added recursively are not placed into the list explicitly.  This
@@ -437,18 +429,21 @@ class FilesystemList(list):
       gets a little confused (it has a link and a directory with the same
       name).
 
-      @note: If you call this method I{on a link to a directory} that link will
+      *Note:* If you call this method *on a link to a directory* that link will
       never be dereferenced (it may, however, be followed).
 
-      @param path: Directory path whose contents should be added to the list.
-      @param includePath: Indicates whether to include the path as well as contents.
-      @param recursive: Indicates whether directory contents should be added recursively.
-      @param linkDepth: Depth of soft links that should be followed
-      @param dereference: Indicates whether soft links, if followed, should be dereferenced
+      Args:
+         path: Directory path whose contents should be added to the list
+         includePath: Indicates whether to include the path as well as contents
+         recursive: Indicates whether directory contents should be added recursively
+         linkDepth: Depth of soft links that should be followed
+         dereference: Indicates whether soft links, if followed, should be dereferenced
 
-      @return: Number of items recursively added to the list
+      Returns:
+          Number of items recursively added to the list
 
-      @raise ValueError: If path is not a directory or does not exist.
+      Raises:
+         ValueError: If path is not a directory or does not exist
       """
       added = 0
       if not os.path.exists(path) or not os.path.isdir(path):
@@ -513,20 +508,23 @@ class FilesystemList(list):
       """
       Removes file entries from the list.
 
-      If C{pattern} is not passed in or is C{None}, then all file entries will
+      If ``pattern`` is not passed in or is ``None``, then all file entries will
       be removed from the list.  Otherwise, only those file entries matching
       the pattern will be removed.  Any entry which does not exist on disk
-      will be ignored (use L{removeInvalid} to purge those entries).
+      will be ignored (use :any:`removeInvalid` to purge those entries).
 
       This method might be fairly slow for large lists, since it must check the
       type of each item in the list.  If you know ahead of time that you want
-      to exclude all files, then you will be better off setting L{excludeFiles}
-      to C{True} before adding items to the list.
+      to exclude all files, then you will be better off setting :any:`excludeFiles`
+      to ``True`` before adding items to the list.
 
-      @param pattern: Regular expression pattern representing entries to remove
+      Args:
+         pattern: Regular expression pattern representing entries to remove
 
-      @return: Number of entries removed
-      @raise ValueError: If the passed-in pattern is not a valid regular expression.
+      Returns:
+          Number of entries removed
+      Raises:
+         ValueError: If the passed-in pattern is not a valid regular expression
       """
       removed = 0
       if pattern is None:
@@ -554,22 +552,25 @@ class FilesystemList(list):
       """
       Removes directory entries from the list.
 
-      If C{pattern} is not passed in or is C{None}, then all directory entries
+      If ``pattern`` is not passed in or is ``None``, then all directory entries
       will be removed from the list.  Otherwise, only those directory entries
       matching the pattern will be removed.  Any entry which does not exist on
-      disk will be ignored (use L{removeInvalid} to purge those entries).
+      disk will be ignored (use :any:`removeInvalid` to purge those entries).
 
       This method might be fairly slow for large lists, since it must check the
       type of each item in the list.  If you know ahead of time that you want
       to exclude all directories, then you will be better off setting
-      L{excludeDirs} to C{True} before adding items to the list (note that this
-      will not prevent you from recursively adding the I{contents} of
+      :any:`excludeDirs` to ``True`` before adding items to the list (note that this
+      will not prevent you from recursively adding the *contents* of
       directories).
 
-      @param pattern: Regular expression pattern representing entries to remove
+      Args:
+         pattern: Regular expression pattern representing entries to remove
 
-      @return: Number of entries removed
-      @raise ValueError: If the passed-in pattern is not a valid regular expression.
+      Returns:
+          Number of entries removed
+      Raises:
+         ValueError: If the passed-in pattern is not a valid regular expression
       """
       removed = 0
       if pattern is None:
@@ -597,20 +598,23 @@ class FilesystemList(list):
       """
       Removes soft link entries from the list.
 
-      If C{pattern} is not passed in or is C{None}, then all soft link entries
+      If ``pattern`` is not passed in or is ``None``, then all soft link entries
       will be removed from the list.  Otherwise, only those soft link entries
       matching the pattern will be removed.  Any entry which does not exist on
-      disk will be ignored (use L{removeInvalid} to purge those entries).
+      disk will be ignored (use :any:`removeInvalid` to purge those entries).
 
       This method might be fairly slow for large lists, since it must check the
       type of each item in the list.  If you know ahead of time that you want
       to exclude all soft links, then you will be better off setting
-      L{excludeLinks} to C{True} before adding items to the list.
+      :any:`excludeLinks` to ``True`` before adding items to the list.
 
-      @param pattern: Regular expression pattern representing entries to remove
+      Args:
+         pattern: Regular expression pattern representing entries to remove
 
-      @return: Number of entries removed
-      @raise ValueError: If the passed-in pattern is not a valid regular expression.
+      Returns:
+          Number of entries removed
+      Raises:
+         ValueError: If the passed-in pattern is not a valid regular expression
       """
       removed = 0
       if pattern is None:
@@ -639,21 +643,24 @@ class FilesystemList(list):
       Removes from the list all entries matching a pattern.
 
       This method removes from the list all entries which match the passed in
-      C{pattern}.  Since there is no need to check the type of each entry, it
-      is faster to call this method than to call the L{removeFiles},
-      L{removeDirs} or L{removeLinks} methods individually.  If you know which
+      ``pattern``.  Since there is no need to check the type of each entry, it
+      is faster to call this method than to call the :any:`removeFiles`,
+      :any:`removeDirs` or :any:`removeLinks` methods individually.  If you know which
       patterns you will want to remove ahead of time, you may be better off
-      setting L{excludePatterns} or L{excludeBasenamePatterns} before adding
+      setting :any:`excludePatterns` or :any:`excludeBasenamePatterns` before adding
       items to the list.
 
-      @note: Unlike when using the exclude lists, the pattern here is I{not}
+      *Note:* Unlike when using the exclude lists, the pattern here is *not*
       bounded at the front and the back of the string.  You can use any pattern
       you want.
 
-      @param pattern: Regular expression pattern representing entries to remove
+      Args:
+         pattern: Regular expression pattern representing entries to remove
 
-      @return: Number of entries removed.
-      @raise ValueError: If the passed-in pattern is not a valid regular expression.
+      Returns:
+          Number of entries removed
+      Raises:
+         ValueError: If the passed-in pattern is not a valid regular expression
       """
       try:
          pattern = encodePath(pattern)  # use same encoding as filenames
@@ -677,7 +684,8 @@ class FilesystemList(list):
       exist on disk in some form.  No attention is paid to whether the entries
       are files or directories.
 
-      @return: Number of entries removed.
+      Returns:
+          Number of entries removed
       """
       removed = 0
       for entry in self[:]:
@@ -706,7 +714,8 @@ class FilesystemList(list):
    def verify(self):
       """
       Verifies that all entries in the list exist on disk.
-      @return: C{True} if all entries exist, C{False} otherwise.
+      Returns:
+          ``True`` if all entries exist, ``False`` otherwise
       """
       for entry in self:
          if not os.path.exists(entry):
@@ -722,14 +731,15 @@ class FilesystemList(list):
 
 class SpanItem(object): # pylint: disable=R0903
    """
-   Item returned by L{BackupFileList.generateSpan}.
+   Item returned by :any:`BackupFileList.generateSpan`.
    """
    def __init__(self, fileList, size, capacity, utilization):
       """
       Create object.
-      @param fileList: List of files
-      @param size: Size (in bytes) of files
-      @param utilization: Utilization, as a percentage (0-100)
+      Args:
+         fileList: List of files
+         size: Size (in bytes) of files
+         utilization: Utilization, as a percentage (0-100)
       """
       self.fileList = fileList
       self.size = size
@@ -750,16 +760,14 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
    """
    List of files to be backed up.
 
-   A BackupFileList is a L{FilesystemList} containing a list of files to be
+   A BackupFileList is a :any:`FilesystemList` containing a list of files to be
    backed up.  It only contains files, not directories (soft links are treated
    like files).  On top of the generic functionality provided by
-   L{FilesystemList}, this class adds functionality to keep a hash (checksum)
+   :any:`FilesystemList`, this class adds functionality to keep a hash (checksum)
    for each file in the list, and it also provides a method to calculate the
    total size of the files in the list and a way to export the list into tar
    form.
 
-   @sort: __init__, addDir, totalSize, generateSizeMap, generateDigestMap,
-          generateFitted, generateTarfile, removeUnchanged
    """
 
    ##############
@@ -788,13 +796,14 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       passed-in path is both a directory and a link.  All of the superclass's
       existing validations and restrictions apply.
 
-      @param path: Directory path to be added to the list
-      @type path: String representing a path on disk
+      Args:
+         path (String representing a path on disk): Directory path to be added to the list
+      Returns:
+          Number of items added to the list
 
-      @return: Number of items added to the list.
-
-      @raise ValueError: If path is not a directory or does not exist.
-      @raise ValueError: If the path could not be encoded properly.
+      Raises:
+         ValueError: If path is not a directory or does not exist
+         ValueError: If the path could not be encoded properly
       """
       path = encodePath(path)
       path = normalizeDir(path)
@@ -814,7 +823,8 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Only files are counted.
       Soft links that point at files are ignored.
       Entries which do not exist on disk are ignored.
-      @return: Total size, in bytes
+      Returns:
+          Total size, in bytes
       """
       total = 0.0
       for entry in self:
@@ -827,7 +837,8 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Generates a mapping from file to file size in bytes.
       The mapping does include soft links, which are listed with size zero.
       Entries which do not exist on disk are ignored.
-      @return: Dictionary mapping file to file size
+      Returns:
+          Dictionary mapping file to file size
       """
       table = { }
       for entry in self:
@@ -851,15 +862,15 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Soft links are ignored.  We would end up generating a digest for the file
       that the soft link points at, which doesn't make any sense.
 
-      If C{stripPrefix} is passed in, then that prefix will be stripped from
+      If ``stripPrefix`` is passed in, then that prefix will be stripped from
       each key when the map is generated.  This can be useful in generating two
       "relative" digest maps to be compared to one another.
 
-      @param stripPrefix: Common prefix to be stripped from paths
-      @type stripPrefix: String with any contents
-
-      @return: Dictionary mapping file to digest value
-      @see: L{removeUnchanged}
+      Args:
+         stripPrefix (String with any contents): Common prefix to be stripped from paths
+      Returns:
+          Dictionary mapping file to digest value
+      @see: :any:`removeUnchanged`
       """
       table = { }
       if stripPrefix is not None:
@@ -887,7 +898,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       hashing <http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/259109>}
       Python Cookbook recipe describes how to incrementally generate a hash
       value by reading in chunks of data rather than reading the file all at
-      once.  The recipe relies on the the C{update()} method of the various
+      once.  The recipe relies on the the ``update()`` method of the various
       Python hashing algorithms.
 
       In my tests using a 110 MB file on CD, the original implementation
@@ -902,10 +913,13 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       until I have evidence that shows it's worthwhile making the read size
       configurable.
 
-      @param path: Path to generate digest for.
+      Args:
+         path: Path to generate digest for
 
-      @return: ASCII-safe SHA digest for the file.
-      @raise OSError: If the file cannot be opened.
+      Returns:
+          ASCII-safe SHA digest for the file
+      Raises:
+         OSError: If the file cannot be opened
       """
       # pylint: disable=C0103,E1101
       s = hashlib.sha1()
@@ -933,14 +947,13 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       default, the first fit algorithm is used, but you can also choose
       from best fit, worst fit and alternate fit.
 
-      @param capacity: Maximum capacity among the files in the new list
-      @type capacity: Integer, in bytes
-
-      @param algorithm: Knapsack (fit) algorithm to use
-      @type algorithm: One of "first_fit", "best_fit", "worst_fit", "alternate_fit"
-
-      @return: Copy of list with total size no larger than indicated capacity
-      @raise ValueError: If the algorithm is invalid.
+      Args:
+         capacity (Integer, in bytes): Maximum capacity among the files in the new list
+         algorithm (One of "first_fit", "best_fit", "worst_fit", "alternate_fit"): Knapsack (fit) algorithm to use
+      Returns:
+          Copy of list with total size no larger than indicated capacity
+      Raises:
+         ValueError: If the algorithm is invalid
       """
       table = self._getKnapsackTable()
       function = BackupFileList._getKnapsackFunction(algorithm)
@@ -958,20 +971,19 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       default, the first fit algorithm is used, but you can also choose
       from best fit, worst fit and alternate fit.
 
-      @note: If any of your items are larger than the capacity, then it won't
+      *Note:* If any of your items are larger than the capacity, then it won't
       be possible to find a solution.  In this case, a value error will be
       raised.
 
-      @param capacity: Maximum capacity among the files in the new list
-      @type capacity: Integer, in bytes
+      Args:
+         capacity (Integer, in bytes): Maximum capacity among the files in the new list
+         algorithm (One of "first_fit", "best_fit", "worst_fit", "alternate_fit"): Knapsack (fit) algorithm to use
+      Returns:
+          List of :any:`SpanItem` objects
 
-      @param algorithm: Knapsack (fit) algorithm to use
-      @type algorithm: One of "first_fit", "best_fit", "worst_fit", "alternate_fit"
-
-      @return: List of L{SpanItem} objects.
-
-      @raise ValueError: If the algorithm is invalid.
-      @raise ValueError: If it's not possible to fit some items
+      Raises:
+         ValueError: If the algorithm is invalid
+         ValueError: If it's not possible to fit some items
       """
       spanItems = []
       function = BackupFileList._getKnapsackFunction(algorithm)
@@ -992,7 +1004,8 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
    def _getKnapsackTable(self, capacity=None):
       """
       Converts the list into the form needed by the knapsack algorithms.
-      @return: Dictionary mapping file name to tuple of (file path, file size).
+      Returns:
+          Dictionary mapping file name to tuple of (file path, file size)
       """
       table = { }
       for entry in self:
@@ -1011,9 +1024,12 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       """
       Returns a reference to the function associated with an algorithm name.
       Algorithm name must be one of "first_fit", "best_fit", "worst_fit", "alternate_fit"
-      @param algorithm: Name of the algorithm
-      @return: Reference to knapsack function
-      @raise ValueError: If the algorithm name is unknown.
+      Args:
+         algorithm: Name of the algorithm
+      Returns:
+          Reference to knapsack function
+      Raises:
+         ValueError: If the algorithm name is unknown
       """
       if algorithm == "first_fit":
          return firstFit
@@ -1031,61 +1047,55 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Creates a tar file containing the files in the list.
 
       By default, this method will create uncompressed tar files.  If you pass
-      in mode C{'targz'}, then it will create gzipped tar files, and if you
-      pass in mode C{'tarbz2'}, then it will create bzipped tar files.
+      in mode ``'targz'``, then it will create gzipped tar files, and if you
+      pass in mode ``'tarbz2'``, then it will create bzipped tar files.
 
       The tar file will be created as a GNU tar archive, which enables extended
       file name lengths, etc.  Since GNU tar is so prevalent, I've decided that
       the extra functionality out-weighs the disadvantage of not being
       "standard".
 
-      If you pass in C{flat=True}, then a "flat" archive will be created, and
+      If you pass in ``flat=True``, then a "flat" archive will be created, and
       all of the files will be added to the root of the archive.  So, the file
-      C{/tmp/something/whatever.txt} would be added as just C{whatever.txt}.
+      ``/tmp/something/whatever.txt`` would be added as just ``whatever.txt``.
 
       By default, the whole method call fails if there are problems adding any
       of the files to the archive, resulting in an exception.  Under these
       circumstances, callers are advised that they might want to call
-      L{removeInvalid()} and then attempt to extract the tar file a second
+      :any:`removeInvalid` and then attempt to extract the tar file a second
       time, since the most common cause of failures is a missing file (a file
       that existed when the list was built, but is gone again by the time the
       tar file is built).
 
-      If you want to, you can pass in C{ignore=True}, and the method will
+      If you want to, you can pass in ``ignore=True``, and the method will
       ignore errors encountered when adding individual files to the archive
       (but not errors opening and closing the archive itself).
 
       We'll always attempt to remove the tarfile from disk if an exception will
       be thrown.
 
-      @note: No validation is done as to whether the entries in the list are
+      *Note:* No validation is done as to whether the entries in the list are
       files, since only files or soft links should be in an object like this.
       However, to be safe, everything is explicitly added to the tar archive
       non-recursively so it's safe to include soft links to directories.
 
-      @note: The Python C{tarfile} module, which is used internally here, is
+      *Note:* The Python ``tarfile`` module, which is used internally here, is
       supposed to deal properly with long filenames and links.  In my testing,
       I have found that it appears to be able to add long really long filenames
       to archives, but doesn't do a good job reading them back out, even out of
       an archive it created.  Fortunately, all Cedar Backup does is add files
       to archives.
 
-      @param path: Path of tar file to create on disk
-      @type path: String representing a path on disk
-
-      @param mode: Tar creation mode
-      @type mode: One of either C{'tar'}, C{'targz'} or C{'tarbz2'}
-
-      @param ignore: Indicates whether to ignore certain errors.
-      @type ignore: Boolean
-
-      @param flat: Creates "flat" archive by putting all items in root
-      @type flat: Boolean
-
-      @raise ValueError: If mode is not valid
-      @raise ValueError: If list is empty
-      @raise ValueError: If the path could not be encoded properly.
-      @raise TarError: If there is a problem creating the tar file
+      Args:
+         path (String representing a path on disk): Path of tar file to create on disk
+         mode (One of either ``'tar'``, ``'targz'`` or ``'tarbz2'``): Tar creation mode
+         ignore (Boolean): Indicates whether to ignore certain errors
+         flat (Boolean): Creates "flat" archive by putting all items in root
+      Raises:
+         ValueError: If mode is not valid
+         ValueError: If list is empty
+         ValueError: If the path could not be encoded properly
+         TarError: If there is a problem creating the tar file
       """
       # pylint: disable=E1101
       path = encodePath(path)
@@ -1134,48 +1144,46 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       """
       Removes unchanged entries from the list.
 
-      This method relies on a digest map as returned from L{generateDigestMap}.
-      For each entry in C{digestMap}, if the entry also exists in the current
-      list I{and} the entry in the current list has the same digest value as in
+      This method relies on a digest map as returned from :any:`generateDigestMap`.
+      For each entry in ``digestMap``, if the entry also exists in the current
+      list *and* the entry in the current list has the same digest value as in
       the map, the entry in the current list will be removed.
 
       This method offers a convenient way for callers to filter unneeded
       entries from a list.  The idea is that a caller will capture a digest map
-      from C{generateDigestMap} at some point in time (perhaps the beginning of
-      the week), and will save off that map using C{pickle} or some other
+      from ``generateDigestMap`` at some point in time (perhaps the beginning of
+      the week), and will save off that map using ``pickle`` or some other
       method.  Then, the caller could use this method sometime in the future to
       filter out any unchanged files based on the saved-off map.
 
-      If C{captureDigest} is passed-in as C{True}, then digest information will
+      If ``captureDigest`` is passed-in as ``True``, then digest information will
       be captured for the entire list before the removal step occurs using the
-      same rules as in L{generateDigestMap}.  The check will involve a lookup
+      same rules as in :any:`generateDigestMap`.  The check will involve a lookup
       into the complete digest map.
 
-      If C{captureDigest} is passed in as C{False}, we will only generate a
+      If ``captureDigest`` is passed in as ``False``, we will only generate a
       digest value for files we actually need to check, and we'll ignore any
       entry in the list which isn't a file that currently exists on disk.
 
-      The return value varies depending on C{captureDigest}, as well.  To
-      preserve backwards compatibility, if C{captureDigest} is C{False}, then
+      The return value varies depending on ``captureDigest``, as well.  To
+      preserve backwards compatibility, if ``captureDigest`` is ``False``, then
       we'll just return a single value representing the number of entries
       removed.  Otherwise, we'll return a tuple of C{(entries removed, digest
       map)}.  The returned digest map will be in exactly the form returned by
-      L{generateDigestMap}.
+      :any:`generateDigestMap`.
 
-      @note: For performance reasons, this method actually ends up rebuilding
+      *Note:* For performance reasons, this method actually ends up rebuilding
       the list from scratch.  First, we build a temporary dictionary containing
       all of the items from the original list.  Then, we remove items as needed
       from the dictionary (which is faster than the equivalent operation on a
       list).  Finally, we replace the contents of the current list based on the
       keys left in the dictionary.  This should be transparent to the caller.
 
-      @param digestMap: Dictionary mapping file name to digest value.
-      @type digestMap: Map as returned from L{generateDigestMap}.
-
-      @param captureDigest: Indicates that digest information should be captured.
-      @type captureDigest: Boolean
-
-      @return: Results as discussed above (format varies based on arguments)
+      Args:
+         digestMap (Map as returned from :any:`generateDigestMap`): Dictionary mapping file name to digest value
+         captureDigest (Boolean): Indicates that digest information should be captured
+      Returns:
+          Results as discussed above (format varies based on arguments)
       """
       if captureDigest:
          removed = 0
@@ -1227,15 +1235,15 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
    """
    List of files and directories to be purged.
 
-   A PurgeItemList is a L{FilesystemList} containing a list of files and
+   A PurgeItemList is a :any:`FilesystemList` containing a list of files and
    directories to be purged.  On top of the generic functionality provided by
-   L{FilesystemList}, this class adds functionality to remove items that are
+   :any:`FilesystemList`, this class adds functionality to remove items that are
    too young to be purged, and to actually remove each item in the list from
    the filesystem.
 
    The other main difference is that when you add a directory's contents to a
    purge item list, the directory itself is not added to the list.  This way,
-   if someone asks to purge within in C{/opt/backup/collect}, that directory
+   if someone asks to purge within in ``/opt/backup/collect``, that directory
    doesn't get removed once all of the files within it is gone.
    """
 
@@ -1257,56 +1265,51 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Adds the contents of a directory to the list.
 
       The path must exist and must be a directory or a link to a directory.
-      The contents of the directory (but I{not} the directory path itself) will
+      The contents of the directory (but *not* the directory path itself) will
       be recursively added to the list, subject to any exclusions that are in
       place.  If you only want the directory and its contents to be added, then
-      pass in C{recursive=False}.
+      pass in ``recursive=False``.
 
-      @note: If a directory's absolute path matches an exclude pattern or path,
+      *Note:* If a directory's absolute path matches an exclude pattern or path,
       or if the directory contains the configured ignore file, then the
       directory and all of its contents will be recursively excluded from the
       list.
 
-      @note: If the passed-in directory happens to be a soft link, it will be
+      *Note:* If the passed-in directory happens to be a soft link, it will be
       recursed.  However, the linkDepth parameter controls whether any soft
-      links I{within} the directory will be recursed.  The link depth is
+      links *within* the directory will be recursed.  The link depth is
       maximum depth of the tree at which soft links should be followed.  So, a
       depth of 0 does not follow any soft links, a depth of 1 follows only
       links within the passed-in directory, a depth of 2 follows the links at
       the next level down, etc.
 
-      @note: Any invalid soft links (i.e.  soft links that point to
+      *Note:* Any invalid soft links (i.e.  soft links that point to
       non-existent items) will be silently ignored.
 
-      @note: The L{excludeDirs} flag only controls whether any given soft link
+      *Note:* The :any:`excludeDirs` flag only controls whether any given soft link
       path itself is added to the list once it has been discovered.  It does
-      I{not} modify any behavior related to directory recursion.
+      *not* modify any behavior related to directory recursion.
 
-      @note: The L{excludeDirs} flag only controls whether any given directory
+      *Note:* The :any:`excludeDirs` flag only controls whether any given directory
       path itself is added to the list once it has been discovered.  It does
-      I{not} modify any behavior related to directory recursion.
+      *not* modify any behavior related to directory recursion.
 
-      @note: If you call this method I{on a link to a directory} that link will
+      *Note:* If you call this method *on a link to a directory* that link will
       never be dereferenced (it may, however, be followed).
 
-      @param path: Directory path whose contents should be added to the list
-      @type path: String representing a path on disk
+      Args:
+         path (String representing a path on disk): Directory path whose contents should be added to the list
+         recursive (Boolean value): Indicates whether directory contents should be added recursively
+         addSelf: Ignored in this subclass
 
-      @param recursive: Indicates whether directory contents should be added recursively.
-      @type recursive: Boolean value
+         linkDepth (Integer value, where zero means not to follow any soft links): Depth of soft links that should be followed
+         dereference (Boolean value): Indicates whether soft links, if followed, should be dereferenced
+      Returns:
+          Number of items recursively added to the list
 
-      @param addSelf: Ignored in this subclass.
-
-      @param linkDepth: Depth of soft links that should be followed
-      @type linkDepth: Integer value, where zero means not to follow any soft links
-
-      @param dereference: Indicates whether soft links, if followed, should be dereferenced
-      @type dereference: Boolean value
-
-      @return: Number of items recursively added to the list
-
-      @raise ValueError: If path is not a directory or does not exist.
-      @raise ValueError: If the path could not be encoded properly.
+      Raises:
+         ValueError: If path is not a directory or does not exist
+         ValueError: If the path could not be encoded properly
       """
       path = encodePath(path)
       path = normalizeDir(path)
@@ -1321,27 +1324,27 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       """
       Removes from the list files younger than a certain age (in days).
 
-      Any file whose "age" in days is less than (C{<}) the value of the
-      C{daysOld} parameter will be removed from the list so that it will not be
-      purged later when L{purgeItems} is called.  Directories and soft links
+      Any file whose "age" in days is less than (``<``) the value of the
+      ``daysOld`` parameter will be removed from the list so that it will not be
+      purged later when :any:`purgeItems` is called.  Directories and soft links
       will be ignored.
 
       The "age" of a file is the amount of time since the file was last used,
-      per the most recent of the file's C{st_atime} and C{st_mtime} values.
+      per the most recent of the file's ``st_atime`` and ``st_mtime`` values.
 
-      @note: Some people find the "sense" of this method confusing or
+      *Note:* Some people find the "sense" of this method confusing or
       "backwards".  Keep in mind that this method is used to remove items
-      I{from the list}, not from the filesystem!  It removes from the list
-      those items that you would I{not} want to purge because they are too
-      young.  As an example, passing in C{daysOld} of zero (0) would remove
+      *from the list*, not from the filesystem!  It removes from the list
+      those items that you would *not* want to purge because they are too
+      young.  As an example, passing in ``daysOld`` of zero (0) would remove
       from the list no files, which would result in purging all of the files
       later.  I would be happy to make a synonym of this method with an
       easier-to-understand "sense", if someone can suggest one.
 
-      @param daysOld: Minimum age of files that are to be kept in the list.
-      @type daysOld: Integer value >= 0.
-
-      @return: Number of entries removed
+      Args:
+         daysOld (Integer value >= 0): Minimum age of files that are to be kept in the list
+      Returns:
+          Number of entries removed
       """
       removed = 0
       daysOld = int(daysOld)
@@ -1365,14 +1368,15 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Purges all items in the list.
 
       Every item in the list will be purged.  Directories in the list will
-      I{not} be purged recursively, and hence will only be removed if they are
+      *not* be purged recursively, and hence will only be removed if they are
       empty.  Errors will be ignored.
 
       To faciliate easy removal of directories that will end up being empty,
       the delete process happens in two passes: files first (including soft
       links), then directories.
 
-      @return: Tuple containing count of (files, dirs) removed
+      Returns:
+          Tuple containing count of (files, dirs) removed
       """
       files = 0
       dirs = 0
@@ -1410,12 +1414,12 @@ def normalizeDir(path):
    For our purposes, a directory name is normalized by removing the trailing
    path separator, if any.  This is important because we want directories to
    appear within lists in a consistent way, although from the user's
-   perspective passing in C{/path/to/dir/} and C{/path/to/dir} are equivalent.
+   perspective passing in ``/path/to/dir/`` and ``/path/to/dir`` are equivalent.
 
-   @param path: Path to be normalized.
-   @type path: String representing a path on disk
-
-   @return: Normalized path, which should be equivalent to the original.
+   Args:
+      path (String representing a path on disk): Path to be normalized
+   Returns:
+       Normalized path, which should be equivalent to the original
    """
    if path != os.sep and path[-1:] == os.sep:
       return path[:-1]
@@ -1435,33 +1439,29 @@ def compareContents(path1, path2, verbose=False):
    file has exactly the same contents in both directories.
 
    This is all relatively simple to implement through the magic of
-   L{BackupFileList.generateDigestMap}, which knows how to strip a path prefix
+   :any:`BackupFileList.generateDigestMap`, which knows how to strip a path prefix
    off the front of each entry in the mapping it generates.  This makes our
    comparison as simple as creating a list for each path, then generating a
    digest map for each path and comparing the two.
 
    If no exception is thrown, the two directories are considered identical.
 
-   If the C{verbose} flag is C{True}, then an alternate (but slower) method is
+   If the ``verbose`` flag is ``True``, then an alternate (but slower) method is
    used so that any thrown exception can indicate exactly which file caused the
-   comparison to fail.  The thrown C{ValueError} exception distinguishes
+   comparison to fail.  The thrown ``ValueError`` exception distinguishes
    between the directories containing different files, and containing the same
    files with differing content.
 
-   @note: Symlinks are I{not} followed for the purposes of this comparison.
+   *Note:* Symlinks are *not* followed for the purposes of this comparison.
 
-   @param path1: First path to compare.
-   @type path1: String representing a path on disk
-
-   @param path2: First path to compare.
-   @type path2: String representing a path on disk
-
-   @param verbose: Indicates whether a verbose response should be given.
-   @type verbose: Boolean
-
-   @raise ValueError: If a directory doesn't exist or can't be read.
-   @raise ValueError: If the two directories are not equivalent.
-   @raise IOError: If there is an unusual problem reading the directories.
+   Args:
+      path1 (String representing a path on disk): First path to compare
+      path2 (String representing a path on disk): First path to compare
+      verbose (Boolean): Indicates whether a verbose response should be given
+   Raises:
+      ValueError: If a directory doesn't exist or can't be read
+      ValueError: If the two directories are not equivalent
+      IOError: If there is an unusual problem reading the directories
    """
    try:
       path1List = BackupFileList()
@@ -1479,16 +1479,12 @@ def compareDigestMaps(digest1, digest2, verbose=False):
    """
    Compares two digest maps and throws an exception if they differ.
 
-   @param digest1: First digest to compare.
-   @type digest1: Digest as returned from BackupFileList.generateDigestMap()
-
-   @param digest2: Second digest to compare.
-   @type digest2: Digest as returned from BackupFileList.generateDigestMap()
-
-   @param verbose: Indicates whether a verbose response should be given.
-   @type verbose: Boolean
-
-   @raise ValueError: If the two directories are not equivalent.
+   Args:
+      digest1 (Digest as returned from BackupFileList.generateDigestMap()): First digest to compare
+      digest2 (Digest as returned from BackupFileList.generateDigestMap()): Second digest to compare
+      verbose (Boolean): Indicates whether a verbose response should be given
+   Raises:
+      ValueError: If the two directories are not equivalent
    """
    if not verbose:
       if digest1 != digest2:

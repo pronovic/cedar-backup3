@@ -44,7 +44,7 @@ utilities called wodim and genisoimage. I want there to be one single place
 where Cedar Backup is patched for Debian, rather than having to maintain a
 variety of patches in different places.
 
-@author: Kenneth J. Pronovici <pronovic@ieee.org>
+:author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
 ########################################################################
@@ -85,8 +85,9 @@ def customizeOverrides(config, platform=PLATFORM):
    override with the same name.  That way, the user still has a way to choose
    their own version of the command if they want.
 
-   @param config: Configuration to modify
-   @param platform: Platform that is in use
+   Args:
+      config: Configuration to modify
+      platform: Platform that is in use
    """
    if platform == "debian":
       logger.info("Overriding cdrecord for Debian platform: %s", DEBIAN_CDRECORD)
