@@ -42,7 +42,7 @@ Code Coverage
 =============
 
    This module contains individual tests for most of the public functions and
-   classes implemented in peer.py, including the C{LocalPeer} and C{RemotePeer}
+   classes implemented in peer.py, including the ``LocalPeer`` and ``RemotePeer``
    classes.
 
    Unfortunately, some of the code can't be tested.  In particular, the stage
@@ -59,7 +59,7 @@ Naming Conventions
    functionality, and I prefer to avoid using overly descriptive (read: long)
    test names, as well.  Instead, I use lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_010}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_010``.
    Each method has a docstring describing what it's supposed to accomplish.  I
    feel that this makes it easier to judge how important a given failure is,
    and also makes it somewhat easier to diagnose and fix individual problems.
@@ -176,7 +176,7 @@ class TestLocalPeer(unittest.TestCase):
       return stat.S_IMODE(os.stat(self.buildPath(components)).st_mode)
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
 
@@ -529,7 +529,7 @@ class TestLocalPeer(unittest.TestCase):
    def testStagePeer_006(self):
       """
       Attempt to stage files with empty collect directory.
-      @note: This test assumes that scp returns an error if the directory is empty.
+      *Note:* This test assumes that scp returns an error if the directory is empty.
       """
       self.extractTar("tree2")
       name = "peer1"
@@ -720,7 +720,7 @@ class TestRemotePeer(unittest.TestCase):
       return stat.S_IMODE(os.stat(self.buildPath(components)).st_mode)
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
 
@@ -1369,7 +1369,7 @@ class TestRemotePeer(unittest.TestCase):
    def testStagePeer_009(self):
       """
       Attempt to stage files with empty collect directory.
-      @note: This test assumes that scp returns an error if the directory is empty.
+      *Note:* This test assumes that scp returns an error if the directory is empty.
       """
       name = REMOTE_HOST
       collectDir = self.buildPath(["collect", ])
@@ -1389,7 +1389,7 @@ class TestRemotePeer(unittest.TestCase):
       """
       Attempt to stage files with empty collect directory, with a target
       directory that contains spaces.
-      @note: This test assumes that scp returns an error if the directory is empty.
+      *Note:* This test assumes that scp returns an error if the directory is empty.
       """
       name = REMOTE_HOST
       collectDir = self.buildPath(["collect", ])
@@ -1463,7 +1463,7 @@ class TestRemotePeer(unittest.TestCase):
    def testStagePeer_013(self):
       """
       Attempt to stage files with non-empty collect directory containing links and directories.
-      @note: We assume that scp copies the files even though it returns an error due to directories.
+      *Note:* We assume that scp copies the files even though it returns an error due to directories.
       """
       self.extractTar("tree9")
       name = REMOTE_HOST

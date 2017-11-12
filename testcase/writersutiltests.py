@@ -60,7 +60,7 @@ Naming Conventions
    functionality, and I prefer to avoid using overly descriptive (read: long)
    test names, as well.  Instead, I use lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_010}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_010``.
    Each method has a docstring describing what it's supposed to accomplish.  I
    feel that this makes it easier to judge how important a given failure is,
    and also makes it somewhat easier to diagnose and fix individual problems.
@@ -76,11 +76,11 @@ Full vs. Reduced Tests
    want to run all of the tests, set WRITERSUTILTESTS_FULL to "Y" in the environment.
 
    In this module, there are three dependencies: the system must have
-   C{mkisofs} installed, the kernel must allow ISO images to be mounted
+   ``mkisofs`` installed, the kernel must allow ISO images to be mounted
    in-place via a loopback mechanism, and the current user must be allowed (via
-   C{sudo}) to mount and unmount such loopback filesystems.  See documentation
-   by the L{TestIsoImage.mountImage} and L{TestIsoImage.unmountImage} methods
-   for more information on what C{sudo} access is required.
+   ``sudo``) to mount and unmount such loopback filesystems.  See documentation
+   by the :any:`TestIsoImage.mountImage` and :any:`TestIsoImage.unmountImage` methods
+   for more information on what ``sudo`` access is required.
 
 @author Kenneth J. Pronovici <pronovic@ieee.org>
 """
@@ -369,14 +369,16 @@ class TestIsoImage(unittest.TestCase):
 
    def mountImage(self, imagePath):
       """
-      Mounts an ISO image at C{self.tmpdir/mnt} using loopback.
+      Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
 
       This function chooses the correct operating system-specific function and
       calls it.  If there is no operating-system-specific function, we fall
       back to the generic function, which uses 'sudo mount'.
 
-      @return: Path the image is mounted at.
-      @raise IOError: If the command cannot be executed.
+      Returns:
+          Path the image is mounted at
+      Raises:
+         IOError: If the command cannot be executed
       """
       if platformMacOsX():
          return self.mountImageDarwin(imagePath)
@@ -385,18 +387,20 @@ class TestIsoImage(unittest.TestCase):
 
    def mountImageDarwin(self, imagePath):
       """
-      Mounts an ISO image at C{self.tmpdir/mnt} using Darwin's C{hdiutil} program.
+      Mounts an ISO image at ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
 
-      Darwin (Mac OS X) uses the C{hdiutil} program to mount volumes.  The
+      Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
       mount command doesn't really exist (or rather, doesn't know what to do
       with ISO 9660 volumes).
 
-      @note: According to the manpage, the mountpoint path can't be any longer
+      *Note:* According to the manpage, the mountpoint path can't be any longer
       than MNAMELEN characters (currently 90?) so you might have problems with
       this depending on how your test environment is set up.
 
-      @return: Path the image is mounted at.
-      @raise IOError: If the command cannot be executed.
+      Returns:
+          Path the image is mounted at
+      Raises:
+         IOError: If the command cannot be executed
       """
       mountPath = self.buildPath([ "mnt", ])
       os.mkdir(mountPath)
@@ -409,7 +413,7 @@ class TestIsoImage(unittest.TestCase):
 
    def mountImageGeneric(self, imagePath):
       """
-      Mounts an ISO image at C{self.tmpdir/mnt} using loopback.
+      Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
 
       Note that this will fail unless the user has been granted permissions via
       sudo, using something like this:
@@ -417,10 +421,12 @@ class TestIsoImage(unittest.TestCase):
          Cmnd_Alias LOOPMOUNT = /bin/mount -d -t iso9660 -o loop * *
 
       Keep in mind that this entry is a security hole, so you might not want to
-      keep it in C{/etc/sudoers} all of the time.
+      keep it in ``/etc/sudoers`` all of the time.
 
-      @return: Path the image is mounted at.
-      @raise IOError: If the command cannot be executed.
+      Returns:
+          Path the image is mounted at
+      Raises:
+         IOError: If the command cannot be executed
       """
       mountPath = self.buildPath([ "mnt", ])
       os.mkdir(mountPath)
@@ -433,13 +439,14 @@ class TestIsoImage(unittest.TestCase):
 
    def unmountImage(self):
       """
-      Unmounts an ISO image from C{self.tmpdir/mnt}.
+      Unmounts an ISO image from ``self.tmpdir/mnt``.
 
       This function chooses the correct operating system-specific function and
       calls it.  If there is no operating-system-specific function, we fall
       back to the generic function, which uses 'sudo unmount'.
 
-      @raise IOError: If the command cannot be executed.
+      Raises:
+         IOError: If the command cannot be executed
       """
       if platformMacOsX():
          self.unmountImageDarwin()
@@ -448,17 +455,18 @@ class TestIsoImage(unittest.TestCase):
 
    def unmountImageDarwin(self):
       """
-      Unmounts an ISO image from C{self.tmpdir/mnt} using Darwin's C{hdiutil} program.
+      Unmounts an ISO image from ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
 
-      Darwin (Mac OS X) uses the C{hdiutil} program to mount volumes.  The
+      Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
       mount command doesn't really exist (or rather, doesn't know what to do
       with ISO 9660 volumes).
 
-      @note: According to the manpage, the mountpoint path can't be any longer
+      *Note:* According to the manpage, the mountpoint path can't be any longer
       than MNAMELEN characters (currently 90?) so you might have problems with
       this depending on how your test environment is set up.
 
-      @raise IOError: If the command cannot be executed.
+      Raises:
+         IOError: If the command cannot be executed
       """
       mountPath = self.buildPath([ "mnt", ])
       args = [ "detach", mountPath, ]
@@ -469,7 +477,7 @@ class TestIsoImage(unittest.TestCase):
 
    def unmountImageGeneric(self):
       """
-      Unmounts an ISO image from C{self.tmpdir/mnt}.
+      Unmounts an ISO image from ``self.tmpdir/mnt``.
 
       Sometimes, multiple tries are needed because the ISO filesystem is still
       in use.  We try twice with a 1-second pause between attempts.  If this
@@ -483,9 +491,10 @@ class TestIsoImage(unittest.TestCase):
          Cmnd_Alias LOOPUNMOUNT  = /bin/umount -d -t iso9660 *
 
       Keep in mind that this entry is a security hole, so you might not want to
-      keep it in C{/etc/sudoers} all of the time.
+      keep it in ``/etc/sudoers`` all of the time.
 
-      @raise IOError: If the command cannot be executed.
+      Raises:
+         IOError: If the command cannot be executed
       """
       mountPath = self.buildPath([ "mnt", ])
       args = [ "umount", "-d", "-t", "iso9660", mountPath, ]

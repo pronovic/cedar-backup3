@@ -69,7 +69,7 @@ Naming Conventions
    I prefer to avoid large unit tests which validate more than one piece of
    functionality.  Instead, I create lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_023}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_023``.
    Each method then has a docstring describing what it's supposed to
    accomplish.  I feel that this makes it easier to judge the extent of a
    problem when one exists.
@@ -175,7 +175,7 @@ class TestFilesystemList(unittest.TestCase):
       return ".*%s.*" % path.replace("\\", "\\\\")
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
 

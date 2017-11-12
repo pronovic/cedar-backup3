@@ -51,7 +51,7 @@ Naming Conventions
    functionality, and I prefer to avoid using overly descriptive (read: long)
    test names, as well.  Instead, I use lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_010}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_010``.
    Each method has a docstring describing what it's supposed to accomplish.  I
    feel that this makes it easier to judge how important a given failure is,
    and also makes it somewhat easier to diagnose and fix individual problems.
@@ -124,7 +124,7 @@ class TestPercentageQuantity(unittest.TestCase):
    ##################
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
 
@@ -316,7 +316,7 @@ class TestCapacityConfig(unittest.TestCase):
    ##################
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
 
@@ -542,22 +542,23 @@ class TestLocalConfig(unittest.TestCase):
    ##################
 
    def failUnlessAssignRaises(self, exception, obj, prop, value):
-      """Equivalent of L{failUnlessRaises}, but used for property assignments instead."""
+      """Equivalent of :any:`failUnlessRaises`, but used for property assignments instead."""
       failUnlessAssignRaises(self, exception, obj, prop, value)
 
    def validateAddConfig(self, origConfig):
       """
-      Validates that document dumped from C{LocalConfig.addConfig} results in
+      Validates that document dumped from ``LocalConfig.addConfig`` results in
       identical object.
 
       We dump a document containing just the capacity configuration, and then
-      make sure that if we push that document back into the C{LocalConfig}
+      make sure that if we push that document back into the ``LocalConfig``
       object, that the resulting object matches the original.
 
-      The C{self.failUnlessEqual} method is used for the validation, so if the
+      The ``self.failUnlessEqual`` method is used for the validation, so if the
       method call returns normally, everything is OK.
 
-      @param origConfig: Original configuration.
+      Args:
+         origConfig: Original configuration
       """
       (xmlDom, parentNode) = createOutputDom()
       origConfig.addConfig(xmlDom, parentNode)

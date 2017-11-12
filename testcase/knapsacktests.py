@@ -42,8 +42,8 @@ Code Coverage
 =============
 
    This module contains individual tests for each of the public functions
-   implemented in knapsack.py: C{firstFit()}, C{bestFit()}, C{worstFit()} and
-   C{alternateFit()}.
+   implemented in knapsack.py: ``firstFit()``, ``bestFit()``, ``worstFit()`` and
+   ``alternateFit()``.
 
    Note that the tests for each function are pretty much identical and so
    there's pretty much code duplication.  In production code, I would argue
@@ -58,7 +58,7 @@ Naming Conventions
    functionality, and I prefer to avoid using overly descriptive (read: long)
    test names, as well.  Instead, I use lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_010}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_010``.
    Each method has a docstring describing what it's supposed to accomplish.  I
    feel that this makes it easier to judge how important a given failure is,
    and also makes it somewhat easier to diagnose and fix individual problems.
@@ -133,10 +133,10 @@ def buildItemDict(origDict):
    tuples.  This function converts a simple item/size dictionary to a knapsack
    dictionary.  It exists for convenience.
 
-   @param origDict: Dictionary to convert
-   @type origDict: Simple dictionary mapping item to size, like C{ITEMS_02}
-
-   @return: Dictionary suitable for passing to a knapsack function.
+   Args:
+      origDict (Simple dictionary mapping item to size, like ``ITEMS_02``): Dictionary to convert
+   Returns:
+       Dictionary suitable for passing to a knapsack function
    """
    itemDict = { }
    for key in list(origDict.keys()):

@@ -68,7 +68,7 @@ Naming Conventions
    functionality, and I prefer to avoid using overly descriptive (read: long)
    test names, as well.  Instead, I use lots of very small tests that each
    validate one specific thing.  These small tests are then named with an index
-   number, yielding something like C{testAddDir_001} or C{testValidate_010}.
+   number, yielding something like ``testAddDir_001`` or ``testValidate_010``.
    Each method has a docstring describing what it's supposed to accomplish.  I
    feel that this makes it easier to judge how important a given failure is,
    and also makes it somewhat easier to diagnose and fix individual problems.
@@ -142,7 +142,7 @@ class TestMediaDefinition(unittest.TestCase):
 
    def testConstructor_002(self):
       """
-      Test the constructor with the C{MEDIA_CDR_74} media type.
+      Test the constructor with the ``MEDIA_CDR_74`` media type.
       """
       media = MediaDefinition(MEDIA_CDR_74)
       self.assertEqual(MEDIA_CDR_74, media.mediaType)
@@ -153,7 +153,7 @@ class TestMediaDefinition(unittest.TestCase):
 
    def testConstructor_003(self):
       """
-      Test the constructor with the C{MEDIA_CDRW_74} media type.
+      Test the constructor with the ``MEDIA_CDRW_74`` media type.
       """
       media = MediaDefinition(MEDIA_CDRW_74)
       self.assertEqual(MEDIA_CDRW_74, media.mediaType)
@@ -164,7 +164,7 @@ class TestMediaDefinition(unittest.TestCase):
 
    def testConstructor_004(self):
       """
-      Test the constructor with the C{MEDIA_CDR_80} media type.
+      Test the constructor with the ``MEDIA_CDR_80`` media type.
       """
       media = MediaDefinition(MEDIA_CDR_80)
       self.assertEqual(MEDIA_CDR_80, media.mediaType)
@@ -175,7 +175,7 @@ class TestMediaDefinition(unittest.TestCase):
 
    def testConstructor_005(self):
       """
-      Test the constructor with the C{MEDIA_CDRW_80} media type.
+      Test the constructor with the ``MEDIA_CDRW_80`` media type.
       """
       media = MediaDefinition(MEDIA_CDRW_80)
       self.assertEqual(MEDIA_CDRW_80, media.mediaType)
@@ -228,9 +228,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_001(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and exists.
+      Test the constructor with device ``/dev/null``, which is writable and exists.
       Use a valid non-ATA SCSI id and defaults for the remaining arguments.  Make sure
-      that C{unittest=True}
+      that ``unittest=True``
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -243,9 +243,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_002(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and exists.
+      Test the constructor with device ``/dev/null``, which is writable and exists.
       Use a valid ATA SCSI id and defaults for the remaining arguments.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="ATA:0,0,0", unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -258,9 +258,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_003(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and exists.
+      Test the constructor with device ``/dev/null``, which is writable and exists.
       Use a valid ATAPI SCSI id and defaults for the remaining arguments.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="ATAPI:0,0,0", unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -273,31 +273,31 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_004(self):
       """
-      Test the constructor with device C{/dev/null} (which is writable and exists).
+      Test the constructor with device ``/dev/null`` (which is writable and exists).
       Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
-      C{unittest=False}.
+      ``unittest=False``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=False)
 
    def testConstructor_005(self):
       """
-      Test the constructor with device C{/dev/null} (which is writable and exists).
+      Test the constructor with device ``/dev/null`` (which is writable and exists).
       Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
-      C{unittest=True}.
+      ``unittest=True``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=True)
 
    def testConstructor_006(self):
       """
       Test the constructor with a non-absolute device path.  Use a valid SCSI
-      id and defaults for the remaining arguments.  Make sure that C{unittest=False}.
+      id and defaults for the remaining arguments.  Make sure that ``unittest=False``.
       """
       self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=False)
 
    def testConstructor_007(self):
       """
       Test the constructor with a non-absolute device path.  Use a valid SCSI
-      id and defaults for the remaining arguments.  Make sure that C{unittest=True}.
+      id and defaults for the remaining arguments.  Make sure that ``unittest=True``.
       """
       self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=True)
 
@@ -305,7 +305,7 @@ class TestCdWriter(unittest.TestCase):
       """
       Test the constructor with an absolute device path that does not exist.
       Use a valid SCSI id and defaults for the remaining arguments.  Make sure
-      that C{unittest=False}.
+      that ``unittest=False``.
       """
       self.assertRaises(ValueError, CdWriter, device="/bogus", scsiId="0,0,0", unittest=False)
 
@@ -313,7 +313,7 @@ class TestCdWriter(unittest.TestCase):
       """
       Test the constructor with an absolute device path that does not exist.
       Use a valid SCSI id and defaults for the remaining arguments.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/bogus", scsiId="0,0,0", unittest=True)
       self.assertEqual("/bogus", writer.device)
@@ -326,25 +326,25 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_010(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
-      sure that C{unittest=False}.
+      sure that ``unittest=False``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=False)
 
    def testConstructor_011(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
-      sure that C{unittest=True}.
+      sure that ``unittest=True``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=True)
 
    def testConstructor_012(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a value of 1 for the drive speed.  Make
-      sure that C{unittest=True}.
+      sure that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=1, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -357,9 +357,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_013(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a value of 5 for the drive speed.  Make
-      sure that C{unittest=True}.
+      sure that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=5, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -372,25 +372,25 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_014(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and an invalid media type.  Make sure that
-      C{unittest=False}.
+      ``unittest=False``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=False)
 
    def testConstructor_015(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and an invalid media type.  Make sure that
-      C{unittest=True}.
+      ``unittest=True``.
       """
       self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=True)
 
    def testConstructor_016(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a media type of MEDIA_CDR_74.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_74, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -403,9 +403,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_017(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_74.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_74, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -418,9 +418,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_018(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a media type of MEDIA_CDR_80.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_80, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -433,9 +433,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_019(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_80.  Make sure
-      that C{unittest=True}.
+      that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_80, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -448,9 +448,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_020(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
-      sure that C{unittest=True}.
+      sure that ``unittest=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, unittest=True)
       self.assertEqual("/dev/null", writer.device)
@@ -463,9 +463,9 @@ class TestCdWriter(unittest.TestCase):
 
    def testConstructor_021(self):
       """
-      Test the constructor with device C{/dev/null}, which is writable and
+      Test the constructor with device ``/dev/null``, which is writable and
       exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
-      sure that C{unittest=True}.  Use C{noEject=True}.
+      sure that ``unittest=True``.  Use ``noEject=True``.
       """
       writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, noEject=True, unittest=True)
       self.assertEqual("/dev/null", writer.device)
