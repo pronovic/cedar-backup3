@@ -6,8 +6,8 @@ Cedar Backup is a software package designed to manage system backups for a pool
 of local and remote machines. The project was originally maintained at 
 [SourceForge](http://sourceforge.net/projects/cedar-backup/), 
 and historical releases still exist there. The project was moved to BitBucket in
-mid-2015, and revision control was converted from Subversion to Mercurial 
-at the same time.
+mid-2015, and from there to GitHub in mid-2019 when BitBucket retired their
+Mercurial hosting service.
 
 Cedar Backup understands how to back up filesystem data as well as MySQL and
 PostgreSQL databases and Subversion repositories. It can also be easily extended 
