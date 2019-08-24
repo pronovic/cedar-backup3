@@ -19,7 +19,7 @@ written in the Python 3 programming language.
 
 For more information, see the Cedar Backup web site:
 
-   https://bitbucket.org/cedarsolutions/cedar-backup3
+   https://github.com/cedarsolutions/cedar-backup3
 
 This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
 conversion of release 2, with minimal additional functionality. 
