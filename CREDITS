@@ -21,8 +21,8 @@ Most of the source code in this project was written by Kenneth J.
 Pronovici.  Some portions have been based on other pieces of open-source
 software, as indicated in the source code itself.
 
-Unless otherwise indicated, all Cedar Backup source code is Copyright 
-(c) 2004-2011,2013-2016 Kenneth J. Pronovici and is released under the GNU
+Unless otherwise indicated, all Cedar Backup source code is Copyright (c)
+2004-2011,2013-2017,2019 Kenneth J. Pronovici and is released under the GNU
 General Public License, version 2.  The contents of the GNU General Public
 License can be found in the LICENSE file, or can be downloaded from
 http://www.gnu.org/.

@@ -72,7 +72,7 @@ Most users will want to look at the multiple-page HTML version.
 ## Package Distributions
 
 Cedar Backup is primarily distributed as a Python 3 source package.  You can
-download the latest release from the BitBucket download page.
+download the latest release from GitHub.
 
 Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'

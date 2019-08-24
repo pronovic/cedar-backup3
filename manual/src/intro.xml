@@ -179,8 +179,8 @@
 
       <para>
          If you experience a problem, your best bet is to file an issue in
-         the issue tracker at BitBucket.
-         <footnote><para>See <ulink url="https://bitbucket.org/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
+         the issue tracker at GitHub.
+         <footnote><para>See <ulink url="https://github.com/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
          When the source code was hosted at SourceForge, there was a mailing
          list.  However, it was very lightly used in the last years before I
          abandoned SourceForge, and I have decided not to replace it.

@@ -3253,7 +3253,7 @@
             but the disc that is created is not usable, please report this as a
             bug.
             <footnote id="cedar-config-foot-bugs"><para>
-            See <ulink url="https://bitbucket.org/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
+            See <ulink url="https://github.com/cedarsolutions/cedar-backup3/issues"/>.</para></footnote>
             To be safe, always enable the consistency check option in the
             store configuration section.</emphasis>
          </para>

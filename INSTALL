@@ -15,7 +15,7 @@
 
 This module is distributed in standard Python distutils form.  Use:
 
-   python setup.py --help 
+   python3 setup.py --help 
 
 For more information on how to install it.  You must have a Python
 interpreter version 3.4 or better to use these modules.  Some external
@@ -24,7 +24,7 @@ for more details.
 
 In the simplest case, you will probably just use:
 
-   python setup.py install
+   python3 setup.py install
 
 to install to your standard Python site-packages directory.  Note that on 
 UNIX systems, you will probably need to do this as root.
@@ -35,9 +35,9 @@ installed by setup.py.  You may put them wherever you would like.
 You may wish to run the unit tests before actually installing anything.
 Run them like so:
 
-   python util/test.py
+   python3 util/test.py
 
 If any unit test reports a failure on your system, please email me the
-output from the unit test, so I can fix the problem.  Please make sure
-to include the diagnostic information printed out at the beginning of
-the test run.
+output from the unit test or file an issue at GitHub, so I can fix the
+problem.  Please make sure to include the diagnostic information printed
+out at the beginning of the test run.

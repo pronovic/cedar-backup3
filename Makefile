@@ -56,7 +56,6 @@ VERSION           = `cat $(PACKAGE)/release.py | grep '^VERSION' | awk -F\" '{pr
 URL               = `cat $(PACKAGE)/release.py | grep URL | awk -F\" '{print $$2}'`
 
 DOC_DIR           = doc
-BITBUCKET_DIR     = ../gwt/CedarCommon/BitBucketSite
 DIST_DIR          = build
 MANUAL_SRC        = manual
 SPHINX_SRC        = sphinx
@@ -212,14 +211,14 @@ debdist: sdist
 debdistclean: 
 	@$(RM) -f $(SDIST_DIR)/$(PACKAGE_LC)_$(VERSION).orig.tar.gz 
 
-# This layout matches the htdocs/docs tree for the website
-htmldoc: htmldocs
-htmldocs: docdist
-docdist: doc
-	@$(MKDIR) -p $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
-	@$(CP) $(CHANGELOG_FILE) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
-	@$(CP) -r $(MANUAL_DIR) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
-	@$(CP) -r $(INTERFACE_DIR) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
+# Not sure how we're going to handle the gh-pages branch yet
+#htmldoc: htmldocs
+#htmldocs: docdist
+#docdist: doc
+	#@$(MKDIR) -p $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
+	#@$(CP) $(CHANGELOG_FILE) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
+	#@$(CP) -r $(MANUAL_DIR) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
+	#@$(CP) -r $(INTERFACE_DIR) $(BITBUCKET_DIR)/docs/$(PACKAGE_LC)/
 
 
 ##################################
