@@ -49,7 +49,7 @@ instance: the `IsoImage` class represents an ISO CD image;
 the `CdWriter` class represents a CD-R/CD-RW writer device; and the
 `FilesystemList` class represents a list of files and directories on a
 filesystem.  For more information, see the 
-[public interface documentation](https://cedarsolutions.github.io/cedar-backup3/docs/interface/index.html), 
+[public interface documentation](https://cedarsolutions.github.io/cedar-backup3/docs/interface), 
 generated from the source code using [Sphinx Napolean](http://www.sphinx-doc.org/en/stable/ext/napoleon.html).
 
 ## Documentation
