@@ -486,6 +486,6 @@ def availableLocales():
    locales = []
    output = executeCommand(["locale"], [ "-a", ], returnOutput=True, ignoreStderr=True)[1]
    for line in output:
-      locales.append(line.rstrip())
+      locales.append(line.rstrip()) # pylint: disable=E1101
    return locales
 

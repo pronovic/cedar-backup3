@@ -268,6 +268,7 @@ class UnorderedList(list):
       else:
          typeinfo = type(value)
       try:
+         # pylint: disable=R0124
          x = value < value
       except TypeError:
          value = repr(value)
@@ -1678,7 +1679,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
                time.sleep(waitSeconds)
       else:
          if os.path.ismount(mountPoint):
-            raise IOError("Unable to unmount [%s] after %d attempts.", mountPoint, attempts)
+            raise IOError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
          logger.info("Mount point [%s] seems to have finally gone away.", mountPoint)
       if os.path.isdir(mountPoint) and removeAfter:
          logger.debug("Removing mount point [%s].", mountPoint)
