@@ -44,7 +44,7 @@ VALIDATE          = util/validate
 
 VIRTUALENV        = util/virtualenv
 PYTHON_INSTALL    = .python
-PYTHON_VERSION    = 3.5
+PYTHON_VERSION    = 3.7
 PYTHON            = $(PYTHON_INSTALL)/bin/python
 PYLINT            = $(PYTHON_INSTALL)/bin/pylint
 COVERAGE          = $(PYTHON_INSTALL)/bin/coverage
