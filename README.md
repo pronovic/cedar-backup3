@@ -28,8 +28,8 @@ on a regular basis. Cedar Backup isn't for you if you want to back
 up your huge MP3 collection every night, or if you want to back up a few hundred
 machines. However, if you administer a small set of machines and you want to
 run daily incremental backups for things like system configuration, current
-email, small web sites, Subversion or Mercurial repositories, or small MySQL
-databases, then Cedar Backup is probably worth your time.
+email, small web sites, source code repositories, or small databases, then 
+Cedar Backup is probably worth your time.
 
 Cedar Backup has been developed on a 
 [Debian GNU/Linux](http://www.debian.org/)
@@ -85,7 +85,7 @@ included with their distribution can use the Cedar Solutions APT source.  See th
 ## Support
 
 If you think you have found a bug or you would like to request an enhancement,
-file an issue on the BitBucket issue tracker.
+file an issue on the GitHub issue tracker.
 
 ## Contributing Improvements
 
@@ -95,7 +95,7 @@ requesting enhancements, updating documentation, submitting patches, and
 beta-testing entire releases or individual bug fixes.  As a result, Cedar
 Backup has evolved into a much more flexible platform than it would otherwise
 have been.  If you are interested in contributing, drop an email 
-to support@cedar-solutions.com.
+to support@cedar-solutions.com or submit a PR at GitHub.
 
 ## Migrating from Version 2 to Version 3
 
@@ -104,9 +104,8 @@ is the targeted Python interpreter.  Cedar Backup version 2 was designed for
 Python 2, while version 3 is a conversion of the original code to Python 3.
 Other than that, both versions are functionally equivalent.  The configuration
 format is unchanged, and you can mix-and-match masters and clients of different
-versions in the same backup pool.  Both versions will be fully supported until
-around the time of the Python 2 end-of-life in 2020, but you should plan to
-migrate sooner than that if possible.
+versions in the same backup pool.  However, version 2 is no longer maintained, 
+so you should convert as soon as possible.
 
 A major design goal for version 3 was to facilitate easy migration testing for
 users, by making it possible to install version 3 on the same server where
