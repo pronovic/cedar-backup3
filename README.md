@@ -4,10 +4,9 @@
 
 Cedar Backup is a software package designed to manage system backups for a pool
 of local and remote machines. The project was originally maintained at 
-[SourceForge](http://sourceforge.net/projects/cedar-backup/), 
-and historical releases still exist there. The project was moved to BitBucket in
-mid-2015, and from there to GitHub in mid-2019 when BitBucket retired their
-Mercurial hosting service.
+SourceForge, and historical releases still exist there. The project was moved 
+to BitBucket in mid-2015, and from there to GitHub in mid-2019 when BitBucket 
+retired their Mercurial hosting service.
 
 Cedar Backup understands how to back up filesystem data as well as MySQL and
 PostgreSQL databases and Subversion repositories. It can also be easily extended 
@@ -49,12 +48,12 @@ instance: the `IsoImage` class represents an ISO CD image;
 the `CdWriter` class represents a CD-R/CD-RW writer device; and the
 `FilesystemList` class represents a list of files and directories on a
 filesystem.  For more information, see the 
-[public interface documentation](https://cedarsolutions.github.io/cedar-backup3/docs/interface), 
+[public interface documentation](https://pronovic.github.io/cedar-backup3/docs/interface), 
 generated from the source code using [Sphinx Napolean](http://www.sphinx-doc.org/en/stable/ext/napoleon.html).
 
 ## Documentation
 
-See the [Changelog](https://github.com/cedarsolutions/cedar-backup3/blob/master/Changelog) for
+See the [Changelog](https://github.com/pronovic/cedar-backup3/blob/master/Changelog) for
 recent changes.
 
 The Cedar Backup Software Manual documents the process of setting up and using
@@ -64,8 +63,8 @@ data, and how to get support.
 
 The following versions of the manual are available:
 
-* [Single-page HTML](https://cedarsolutions.github.io/cedar-backup3/docs/manual/manual.html)
-* [Multiple-page HTML](https://cedarsolutions.github.io/cedar-backup3/docs/manual/index.html)
+* [Single-page HTML](https://pronovic.github.io/cedar-backup3/docs/manual/manual.html)
+* [Multiple-page HTML](https://pronovic.github.io/cedar-backup3/docs/manual/index.html)
 
 Most users will want to look at the multiple-page HTML version.
 
@@ -94,8 +93,7 @@ users have helped out by reporting unit test failures, making suggestions,
 requesting enhancements, updating documentation, submitting patches, and
 beta-testing entire releases or individual bug fixes.  As a result, Cedar
 Backup has evolved into a much more flexible platform than it would otherwise
-have been.  If you are interested in contributing, drop an email 
-to support@cedar-solutions.com or submit a PR at GitHub.
+have been.  If you are interested in contributing, submit a PR at GitHub.
 
 ## Migrating from Version 2 to Version 3
 
