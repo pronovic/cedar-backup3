@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "cedar-backup3"
+name = "CedarBackup3"
 version = "3.3.0"
 description = "Implements local and remote backups to CD/DVD media"
 keywords = [ 'local', 'remote', 'backup', 'scp' ]
 authors = ["Kenneth J. Pronovici <pronovic@ieee.org>"]
 license = "GPL-2.0-only"
 readme = "PyPI.md"
-homepage = "https://cedar-backup3.readthedocs.io"
+homepage = "https://github.com/pronovic/cedar-backup3"
 repository = "https://github.com/pronovic/cedar-backup3"
 include = ["LICENSE" ]
 classifiers=[
