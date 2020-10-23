@@ -12,7 +12,7 @@ since ~2005.)
 
 This project uses [Poetry](https://python-poetry.org/) to manage Python packaging and dependencies.  Most day-to-day tasks (such as running unit tests from the command line) are orchestrated through Poetry.  
 
-A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).  Python 3 type hinting is validated using [MyPy](https://pypi.org/project/mypy/).
+A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).
 
 ## Pre-Commit Hooks
 
@@ -128,7 +128,7 @@ Usage: run <command>
 - run install: Setup the virtualenv via Poetry and install pre-commit hooks
 - run activate: Print command needed to activate the Poetry virtualenv
 - run requirements: Regenerate the docs/requirements.txt file
-- run checks: Run the PyLint and MyPy code checkers
+- run checks: Run the PyLint code checker
 - run format: Run the Black code formatter
 - run test: Run the unit tests
 - run test -c: Run the unit tests with coverage
@@ -206,7 +206,7 @@ Still on the **Sources** tab, find the **Exclude files** box.  Enter the
 following, and click **Apply**:
 
 ```
-.coverage;.coveragerc;.github;.htmlcov;.idea;.isort.cfg;.mypyrc;.mypy_cache;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run
+.coverage;.coveragerc;.github;.htmlcov;.idea;.isort.cfg;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run
 ```
 
 On the **Dependencies** tab, select the Python SDK you configured above as the
@@ -237,11 +237,11 @@ choose **Run 'pytest in tests'**.  Make sure that all of the tests pass.
 ### External Tools
 
 Optionally, you might want to set up external tools in IntelliJ for some of
-common developer tasks: code reformatting and the PyLint and MyPy checks.  One
-nice advantage of doing this is that you can configure an output filter, which
-makes the Pylint and MyPy errors clickable in IntelliJ.  To set up external
-tools, go to IntelliJ preferences and find **Tools > External Tools**.  Add the
-tools as described below.
+common developer tasks: code reformatting and the PyLint checks.  One nice
+advantage of doing this is that you can configure an output filter, which makes
+the Pylint errors clickable in IntelliJ.  To set up external tools, go to
+IntelliJ preferences and find **Tools > External Tools**.  Add the tools as
+described below.
 
 #### Format Code
 
@@ -258,22 +258,6 @@ tools as described below.
 |Make console active on message in stdout|_Unchecked_|
 |Make console active on message in stderr|_Unchecked_|
 |Output filters|_Empty_|
-
-#### Run MyPy Checks
-
-|Field|Value|
-|-----|-----|
-|Name|`Run MyPy Checks`|
-|Description|`Run the MyPy code checks`|
-|Group|`Developer Tools`|
-|Program|`$ProjectFileDir$/run`|
-|Arguments|`mypy`|
-|Working directory|`$ProjectFileDir$`|
-|Synchronize files after execution|_Unchecked_|
-|Open console for tool outout|_Checked_|
-|Make console active on message in stdout|_Checked_|
-|Make console active on message in stderr|_Checked_|
-|Output filters|`$FILE_PATH$:$LINE$:$COLUMN$:.*`|
 
 #### Run Pylint Checks
 

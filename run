@@ -28,16 +28,6 @@ run_pylint() {
    poetry run pylint --rcfile=.pylintrc src/CedarBackup3 tests
 }
 
-# Run the MyPy code checker
-run_mypy() {
-   poetry run which mypy > /dev/null
-   if [ $? != 0 ]; then
-      run_install
-   fi
-
-   poetry run mypy --config-file=.mypyrc src/CedarBackup3 tests
-}
-
 # Run the black code formatter
 run_black() {
    poetry run which black > /dev/null
@@ -171,12 +161,8 @@ case $1 in
    *lint)
       run_pylint
       ;;
-   mypy)
-      run_mypy
-      ;;
    check*)
       run_pylint
-      run_mypy
       ;;
    black)
       run_black
@@ -213,7 +199,7 @@ case $1 in
       echo "- run install: Setup the virtualenv via Poetry and install pre-commit hooks"
       echo "- run activate: Print command needed to activate the Poetry virtualenv"
       echo "- run requirements: Regenerate the docs/requirements.txt file"
-      echo "- run checks: Run the PyLint and MyPy code checkers"
+      echo "- run checks: Run the PyLint code checker"
       echo "- run format: Run the Black code formatter"
       echo "- run test: Run the unit tests"
       echo "- run test -c: Run the unit tests with coverage"

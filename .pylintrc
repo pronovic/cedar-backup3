@@ -1,26 +1,3 @@
-# vim: set ft=config:
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-#              C E D A R
-#          S O L U T I O N S       "Software done right."
-#           S O F T W A R E
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Project  : Cedar Backup, release 3
-# Purpose  : Pylint configuration for most source code.
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# lint Python modules using external checkers.
-# 
-# This is the main checker controling the other ones and the reports
-# generation. It is itself both a raw checker and an astng checker in order
-# to:
-# * handle message activation / deactivation at the module level
-# * handle some basic but necessary stats'data (number of classes, methods...)
-# 
 [MASTER]
 
 # Specify a configuration file.
