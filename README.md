@@ -40,19 +40,13 @@ just about any UNIX-like operating system. In particular, full Cedar
 Backup functionality is known to work on Debian and SuSE Linux, and client 
 functionality is also known to work on FreeBSD and OS X systems.
 
-## Library Code
+## Developer Documentation
 
-The Cedar Backup version 3 has been designed as both an application and a
-library of backup-related functionality.  The `CedarBackup3` Python 
-package contains a variety of useful backup-related classes and functions.  For
-instance: the `IsoImage` class represents an ISO CD image;
-the `CdWriter` class represents a CD-R/CD-RW writer device; and the
-`FilesystemList` class represents a list of files and directories on a
-filesystem.  For more information, see the 
-[public interface documentation](https://cedarsolutions.github.io/cedar-backup3/docs/interface), 
-generated from the source code using [Sphinx Napolean](http://www.sphinx-doc.org/en/stable/ext/napoleon.html).
+Developer documentation is found in [DEVELOPER.md](DEVELOPER.md).  See that
+file for notes about how the code is structured, how to set up a development
+environment, etc.
 
-## Documentation
+## End User Documentation
 
 See the [Changelog](https://github.com/cedarsolutions/cedar-backup3/blob/master/Changelog) for
 recent changes.
@@ -68,6 +62,18 @@ The following versions of the manual are available:
 * [Multiple-page HTML](https://cedarsolutions.github.io/cedar-backup3/docs/manual/index.html)
 
 Most users will want to look at the multiple-page HTML version.
+
+## Library Code
+
+The Cedar Backup version 3 has been designed as both an application and a
+library of backup-related functionality.  The `CedarBackup3` Python 
+package contains a variety of useful backup-related classes and functions.  For
+instance: the `IsoImage` class represents an ISO CD image;
+the `CdWriter` class represents a CD-R/CD-RW writer device; and the
+`FilesystemList` class represents a list of files and directories on a
+filesystem.  For more information, see the 
+[public interface documentation](https://cedarsolutions.github.io/cedar-backup3/docs/interface), 
+generated from the source code using [Sphinx Napolean](http://www.sphinx-doc.org/en/stable/ext/napoleon.html).
 
 ## Package Distributions
 
@@ -94,8 +100,7 @@ users have helped out by reporting unit test failures, making suggestions,
 requesting enhancements, updating documentation, submitting patches, and
 beta-testing entire releases or individual bug fixes.  As a result, Cedar
 Backup has evolved into a much more flexible platform than it would otherwise
-have been.  If you are interested in contributing, drop an email 
-to support@cedar-solutions.com or submit a PR at GitHub.
+have been.  If you are interested in contributing, submit a PR at GitHub.
 
 ## Migrating from Version 2 to Version 3
 

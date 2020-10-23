@@ -1,3 +1,11 @@
+# Cedar Backup v3
+
+![](https://img.shields.io/pypi/l/cedar-backup3.svg)
+![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
+![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
+![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
+![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
+
 Cedar Backup is a software package designed to manage system backups for a
 pool of local and remote machines.  Cedar Backup understands how to back up
 filesystem data as well as MySQL and PostgreSQL databases and Subversion
@@ -16,10 +24,6 @@ rather than relying on physical media.
 Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
 written in the Python 3 programming language.
-
-For more information, see the Cedar Backup web site:
-
-   https://github.com/cedarsolutions/cedar-backup3
 
 This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
 conversion of release 2, with minimal additional functionality. 
