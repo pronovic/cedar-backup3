@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cedar-backup3"
-version = "3.2.0"
+version = "3.3.0"
 description = "Implements local and remote backups to CD/DVD media"
 keywords = [ 'local', 'remote', 'backup', 'scp' ]
 authors = ["Kenneth J. Pronovici <pronovic@ieee.org>"]
