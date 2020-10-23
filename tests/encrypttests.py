@@ -114,7 +114,7 @@ from CedarBackup3.extend.encrypt import _encryptFileWithGpg, _encryptFile, _encr
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "encrypt.conf.1", "encrypt.conf.2", "tree1.tar.gz", "tree2.tar.gz",
               "tree8.tar.gz", "tree15.tar.gz", "tree16.tar.gz", "tree17.tar.gz",
               "tree18.tar.gz", "tree19.tar.gz", "tree20.tar.gz", ]

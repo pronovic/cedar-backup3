@@ -113,7 +113,7 @@ MB700 = (700.0*1024.0*1024.0)    # 700 MB
 ILEAD = (11400.0*2048.0)         # Initial lead-in
 SLEAD = (6900.0*2048.0)          # Session lead-in
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "tree9.tar.gz", ]
 
 SUDO_CMD = [ "sudo", ]

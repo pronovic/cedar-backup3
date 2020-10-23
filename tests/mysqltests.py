@@ -114,7 +114,7 @@ from CedarBackup3.extend.mysql import LocalConfig, MysqlConfig
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "mysql.conf.1", "mysql.conf.2", "mysql.conf.3", "mysql.conf.4", "mysql.conf.5", ]
 
 

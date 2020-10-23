@@ -115,7 +115,7 @@ from CedarBackup3.extend.subversion import Repository, RepositoryDir, BDBReposit
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "subversion.conf.1", "subversion.conf.2", "subversion.conf.3", "subversion.conf.4",
               "subversion.conf.5", "subversion.conf.6", "subversion.conf.7", ]
 

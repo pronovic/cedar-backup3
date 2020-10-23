@@ -106,7 +106,7 @@ from CedarBackup3.util import executeCommand
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "tree9.tar.gz", ]
 
 SUDO_CMD = [ "sudo", ]

@@ -103,7 +103,7 @@ from CedarBackup3.extend.mbox import LocalConfig, MboxConfig, MboxFile, MboxDir
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "mbox.conf.1", "mbox.conf.2", "mbox.conf.3", "mbox.conf.4", ]
 
 

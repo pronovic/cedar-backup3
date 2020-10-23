@@ -107,7 +107,7 @@ from CedarBackup3.filesystem import FilesystemList, BackupFileList, PurgeItemLis
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data" ]
+DATA_DIRS = [ "./data", "./tests/data" ]
 RESOURCES = [ "tree1.tar.gz", "tree2.tar.gz", "tree3.tar.gz", "tree4.tar.gz", "tree5.tar.gz",
               "tree6.tar.gz", "tree7.tar.gz", "tree8.tar.gz", "tree9.tar.gz", "tree10.tar.gz",
               "tree11.tar.gz", "tree12.tar.gz", "tree13.tar.gz", "tree22.tar.gz", ]

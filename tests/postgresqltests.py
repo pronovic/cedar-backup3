@@ -114,7 +114,7 @@ from CedarBackup3.extend.postgresql import LocalConfig, PostgresqlConfig
 # Module-wide configuration and constants
 #######################################################################
 
-DATA_DIRS = [ "./data", "./testcase/data", ]
+DATA_DIRS = [ "./data", "./tests/data", ]
 RESOURCES = [ "postgresql.conf.1", "postgresql.conf.2", "postgresql.conf.3", "postgresql.conf.4", "postgresql.conf.5", ]
 
 

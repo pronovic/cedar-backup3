@@ -112,9 +112,9 @@ def main():
 
    # Check for the correct CedarBackup3 location and import utilities
    try:
-      if os.path.exists(os.path.join(".", "CedarBackup3", "filesystem.py")):
+      if os.path.exists(os.path.join(".", "src", "CedarBackup3", "filesystem.py")):
          sys.path.insert(0, ".")
-      elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "CedarBackup3", "filesystem.py")):
+      elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(os.path.join("..", "src", "CedarBackup3", "filesystem.py")):
          sys.path.insert(0, "..")
       else:
          print("WARNING: CedarBackup3 modules were not found in the expected")
@@ -130,36 +130,36 @@ def main():
 
    # Import the unit test modules
    try:
-      if os.path.exists(os.path.join(".", "testcase", "filesystemtests.py")):
+      if os.path.exists(os.path.join(".", "tests", "filesystemtests.py")):
          sys.path.insert(0, ".")
-      elif os.path.basename(os.getcwd()) == "testcase" and os.path.exists(os.path.join("..", "testcase", "filesystemtests.py")):
+      elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(os.path.join("..", "tests", "filesystemtests.py")):
          sys.path.insert(0, "..")
       else:
          print("WARNING: CedarBackup3 unit test modules were not found in")
          print("the expected location.  If the import succeeds, you may be")
          print("using an unexpected version of the test suite.")
          print("")
-      from testcase import utiltests
-      from testcase import knapsacktests
-      from testcase import filesystemtests
-      from testcase import peertests
-      from testcase import actionsutiltests
-      from testcase import writersutiltests
-      from testcase import cdwritertests
-      from testcase import dvdwritertests
-      from testcase import configtests
-      from testcase import clitests
-      from testcase import mysqltests
-      from testcase import postgresqltests
-      from testcase import subversiontests
-      from testcase import mboxtests
-      from testcase import encrypttests
-      from testcase import amazons3tests
-      from testcase import splittests
-      from testcase import spantests
-      from testcase import synctests
-      from testcase import capacitytests
-      from testcase import customizetests
+      from tests import utiltests
+      from tests import knapsacktests
+      from tests import filesystemtests
+      from tests import peertests
+      from tests import actionsutiltests
+      from tests import writersutiltests
+      from tests import cdwritertests
+      from tests import dvdwritertests
+      from tests import configtests
+      from tests import clitests
+      from tests import mysqltests
+      from tests import postgresqltests
+      from tests import subversiontests
+      from tests import mboxtests
+      from tests import encrypttests
+      from tests import amazons3tests
+      from tests import splittests
+      from tests import spantests
+      from tests import synctests
+      from tests import capacitytests
+      from tests import customizetests
    except ImportError as e:
       print(("Failed to import CedarBackup3 unit test module: %s" % e))
       print("You must either run the unit tests from the CedarBackup3 source")
