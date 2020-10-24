@@ -81,8 +81,8 @@ Full vs. Reduced Tests
 
 # Import standard modules
 import unittest
-from CedarBackup3.knapsack import firstFit, bestFit, worstFit, alternateFit
 
+from CedarBackup3.knapsack import alternateFit, bestFit, firstFit, worstFit
 
 #######################################################################
 # Module-wide configuration and constants
@@ -2556,4 +2556,3 @@ def suite():
    tests = [ ]
    tests.append(unittest.makeSuite(TestKnapsack, 'test'))
    return unittest.TestSuite(tests)
-

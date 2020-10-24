@@ -341,4 +341,3 @@ def alternateFit(items, capacity):
 
    # Return results
    return (list(included.keys()), used)
-

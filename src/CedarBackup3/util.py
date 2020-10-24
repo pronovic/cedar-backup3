@@ -70,17 +70,19 @@ Attributes:
 # Imported modules
 ########################################################################
 
-import sys
+import collections
+import logging
 import math
 import os
 import re
+import sys
 import time
-import logging
-from subprocess import Popen, STDOUT, PIPE
+from decimal import Decimal
 from functools import total_ordering
 from numbers import Real
-from decimal import Decimal
-import collections
+from subprocess import PIPE, STDOUT, Popen
+
+from CedarBackup3.release import DATE, VERSION
 
 try:
    import pwd
@@ -89,7 +91,6 @@ try:
 except ImportError:
    _UID_GID_AVAILABLE = False
 
-from CedarBackup3.release import VERSION, DATE
 
 
 ########################################################################
@@ -1977,4 +1978,3 @@ def parseCommaSeparatedString(commaString):
          if len(item) > 0:
             pass2.append(item)
       return pass2
-

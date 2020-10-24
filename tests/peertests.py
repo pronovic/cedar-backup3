@@ -91,14 +91,20 @@ Full vs. Reduced Tests
 # Import standard modules
 import os
 import stat
-import unittest
 import tempfile
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup3.testutil import getMaskAsMode, getLogin, runningAsRoot, failUnlessAssignRaises
-from CedarBackup3.peer import LocalPeer, RemotePeer
-from CedarBackup3.peer import DEF_RCP_COMMAND, DEF_RSH_COMMAND
-from CedarBackup3.peer import DEF_COLLECT_INDICATOR, DEF_STAGE_INDICATOR
+import unittest
 
+from CedarBackup3.peer import DEF_COLLECT_INDICATOR, DEF_RCP_COMMAND, DEF_RSH_COMMAND, DEF_STAGE_INDICATOR, LocalPeer, RemotePeer
+from CedarBackup3.testutil import (
+    buildPath,
+    extractTar,
+    failUnlessAssignRaises,
+    findResources,
+    getLogin,
+    getMaskAsMode,
+    removedir,
+    runningAsRoot,
+)
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1587,4 +1593,3 @@ def suite():
       tests.append(unittest.makeSuite(TestLocalPeer, 'test'))
       tests.append(unittest.makeSuite(TestRemotePeer, 'testBasic'))
       return unittest.TestSuite(tests)
-

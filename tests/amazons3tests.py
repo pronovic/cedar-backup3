@@ -82,18 +82,17 @@ Testing XML Extraction
 # Import modules and do runtime validations
 ########################################################################
 
+import tempfile
 # System modules
 import unittest
-import tempfile
 
-# Cedar Backup modules
-from CedarBackup3.util import UNIT_BYTES, UNIT_MBYTES, UNIT_GBYTES
 from CedarBackup3.config import ByteQuantity
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises
-from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.amazons3 import LocalConfig, AmazonS3Config
+from CedarBackup3.extend.amazons3 import AmazonS3Config, LocalConfig
+from CedarBackup3.testutil import buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
 from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles
-
+# Cedar Backup modules
+from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_MBYTES
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
 # Module-wide configuration and constants
@@ -959,4 +958,3 @@ def suite():
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
    tests.append(unittest.makeSuite(TestTool, 'test'))
    return unittest.TestSuite(tests)
-

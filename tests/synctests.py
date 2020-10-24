@@ -77,10 +77,9 @@ Full vs. Reduced Tests
 
 import unittest
 from getopt import GetoptError
-from CedarBackup3.testutil import failUnlessAssignRaises, captureOutput
-from CedarBackup3.tools.amazons3 import _usage, _version
-from CedarBackup3.tools.amazons3 import Options
 
+from CedarBackup3.testutil import captureOutput, failUnlessAssignRaises
+from CedarBackup3.tools.amazons3 import Options, _usage, _version
 
 #######################################################################
 # Test Case Classes
@@ -3532,4 +3531,3 @@ def suite():
    tests.append(unittest.makeSuite(TestFunctions, 'test'))
    tests.append(unittest.makeSuite(TestOptions, 'test'))
    return unittest.TestSuite(tests)
-

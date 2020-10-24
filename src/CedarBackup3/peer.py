@@ -53,17 +53,15 @@ Attributes:
 # Imported modules
 ########################################################################
 
+import logging
 # System modules
 import os
-import logging
 import shutil
 
+from CedarBackup3.config import VALID_FAILURE_MODES
 # Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.util import resolveCommand, executeCommand, isRunningAsRoot
-from CedarBackup3.util import splitCommandLine, encodePath
-from CedarBackup3.config import VALID_FAILURE_MODES
-
+from CedarBackup3.util import encodePath, executeCommand, isRunningAsRoot, resolveCommand, splitCommandLine
 
 ########################################################################
 # Module-wide constants and variables
@@ -1166,4 +1164,3 @@ class RemotePeer(object):
          return "%s --full %s" % (cbackCommand, action)
       else:
          return "%s %s" % (cbackCommand, action)
-

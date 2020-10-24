@@ -92,12 +92,11 @@ Full vs. Reduced Tests
 # System modules
 import unittest
 
+from CedarBackup3.extend.capacity import ByteQuantity, CapacityConfig, LocalConfig, PercentageQuantity
+from CedarBackup3.testutil import failUnlessAssignRaises, findResources
 # Cedar Backup modules
-from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.capacity import LocalConfig, CapacityConfig, ByteQuantity, PercentageQuantity
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -893,4 +892,3 @@ def suite():
    tests.append(unittest.makeSuite(TestCapacityConfig, 'test'))
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
    return unittest.TestSuite(tests)
-

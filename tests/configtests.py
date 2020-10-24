@@ -98,15 +98,33 @@ Full vs. Reduced Tests
 ########################################################################
 
 import unittest
-from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
-from CedarBackup3.config import ActionHook, PreActionHook, PostActionHook, CommandOverride
-from CedarBackup3.config import ExtendedAction, ActionDependencies, BlankBehavior
-from CedarBackup3.config import CollectFile, CollectDir, PurgeDir, LocalPeer, RemotePeer
-from CedarBackup3.config import ReferenceConfig, ExtensionsConfig, OptionsConfig, PeersConfig
-from CedarBackup3.config import CollectConfig, StageConfig, StoreConfig, PurgeConfig, Config
-from CedarBackup3.config import ByteQuantity
 
+from CedarBackup3.config import (
+    ActionDependencies,
+    ActionHook,
+    BlankBehavior,
+    ByteQuantity,
+    CollectConfig,
+    CollectDir,
+    CollectFile,
+    CommandOverride,
+    Config,
+    ExtendedAction,
+    ExtensionsConfig,
+    LocalPeer,
+    OptionsConfig,
+    PeersConfig,
+    PostActionHook,
+    PreActionHook,
+    PurgeConfig,
+    PurgeDir,
+    ReferenceConfig,
+    RemotePeer,
+    StageConfig,
+    StoreConfig,
+)
+from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 
 #######################################################################
 # Module-wide configuration and constants
@@ -13050,4 +13068,3 @@ def suite():
    tests.append(unittest.makeSuite(TestPurgeConfig, 'test'))
    tests.append(unittest.makeSuite(TestConfig, 'test'))
    return unittest.TestSuite(tests)
-

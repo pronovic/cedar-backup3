@@ -45,19 +45,26 @@ Provides filesystem-related objects.
 # Imported modules
 ########################################################################
 
+import hashlib
+import logging
+import math
 # System modules
 import os
 import re
-import math
-import logging
 import tarfile
-import hashlib
 
 # Cedar Backup modules
-from CedarBackup3.knapsack import firstFit, bestFit, worstFit, alternateFit
-from CedarBackup3.util import AbsolutePathList, UnorderedList, RegexList
-from CedarBackup3.util import removeKeys, displayBytes, calculateFileAge, encodePath, dereferenceLink
-
+from CedarBackup3.knapsack import alternateFit, bestFit, firstFit, worstFit
+from CedarBackup3.util import (
+    AbsolutePathList,
+    RegexList,
+    UnorderedList,
+    calculateFileAge,
+    dereferenceLink,
+    displayBytes,
+    encodePath,
+    removeKeys,
+)
 
 ########################################################################
 # Module-wide variables
@@ -1497,4 +1504,3 @@ def compareDigestMaps(digest1, digest2, verbose=False):
       for key in list1:
          if digest1[key] != digest2[key]:
             raise ValueError("File contents for [%s] vary between directories." % key)
-

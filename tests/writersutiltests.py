@@ -91,16 +91,14 @@ Full vs. Reduced Tests
 ########################################################################
 
 import os
-import unittest
 import tempfile
 import time
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup3.testutil import platformMacOsX
-from CedarBackup3.testutil import setupOverrides
-from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed, IsoImage
-from CedarBackup3.util import executeCommand
+import unittest
 
+from CedarBackup3.filesystem import FilesystemList
+from CedarBackup3.testutil import buildPath, extractTar, findResources, platformMacOsX, removedir, setupOverrides
+from CedarBackup3.util import executeCommand
+from CedarBackup3.writers.util import IsoImage, validateDriveSpeed, validateScsiId
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1692,4 +1690,3 @@ def suite():
       tests.append(unittest.makeSuite(TestIsoImage, 'testUtilityMethods'))
       tests.append(unittest.makeSuite(TestIsoImage, 'testAddEntry'))
       return unittest.TestSuite(tests)
-

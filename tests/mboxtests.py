@@ -93,11 +93,10 @@ Full vs. Reduced Tests
 # System modules
 import unittest
 
+from CedarBackup3.extend.mbox import LocalConfig, MboxConfig, MboxDir, MboxFile
 # Cedar Backup modules
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.testutil import failUnlessAssignRaises, findResources
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.mbox import LocalConfig, MboxConfig, MboxFile, MboxDir
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -2231,4 +2230,3 @@ def suite():
    tests.append(unittest.makeSuite(TestMboxConfig, 'test'))
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
    return unittest.TestSuite(tests)
-

@@ -36,9 +36,8 @@ file remains to preserve the Cedar Backup library interface.
 
 # pylint: disable=W0611
 from CedarBackup3.actions.collect import executeCollect
-from CedarBackup3.actions.stage import executeStage
-from CedarBackup3.actions.store import executeStore
 from CedarBackup3.actions.purge import executePurge
 from CedarBackup3.actions.rebuild import executeRebuild
+from CedarBackup3.actions.stage import executeStage
+from CedarBackup3.actions.store import executeStore
 from CedarBackup3.actions.validate import executeValidate
-

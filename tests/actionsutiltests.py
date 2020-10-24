@@ -73,12 +73,12 @@ Full vs. Reduced Tests
 ########################################################################
 
 import os
-import unittest
 import tempfile
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
+import unittest
+
 from CedarBackup3.actions.util import findDailyDirs, writeIndicatorFile
 from CedarBackup3.extend.encrypt import ENCRYPT_INDICATOR
-
+from CedarBackup3.testutil import buildPath, extractTar, findResources, removedir
 
 #######################################################################
 # Module-wide configuration and constants
@@ -258,4 +258,3 @@ def suite():
    tests = [ ]
    tests.append(unittest.makeSuite(TestFunctions, 'test'))
    return unittest.TestSuite(tests)
-

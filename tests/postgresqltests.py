@@ -104,11 +104,10 @@ Full vs. Reduced Tests
 # System modules
 import unittest
 
-# Cedar Backup modules
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
-from CedarBackup3.xmlutil import createOutputDom, serializeDom
 from CedarBackup3.extend.postgresql import LocalConfig, PostgresqlConfig
-
+# Cedar Backup modules
+from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1009,4 +1008,3 @@ def suite():
    tests.append(unittest.makeSuite(TestPostgresqlConfig, 'test'))
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
    return unittest.TestSuite(tests)
-

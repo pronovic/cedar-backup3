@@ -88,14 +88,11 @@ Full vs. Reduced Tests
 ########################################################################
 
 import os
-import unittest
 import tempfile
+import unittest
 
-from CedarBackup3.writers.dvdwriter import MediaDefinition, MediaCapacity, DvdWriter
-from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW
-
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
-
+from CedarBackup3.testutil import buildPath, extractTar, findResources, removedir
+from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, DvdWriter, MediaCapacity, MediaDefinition
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1096,4 +1093,3 @@ def suite():
    tests.append(unittest.makeSuite(TestMediaCapacity, 'test'))
    tests.append(unittest.makeSuite(TestDvdWriter, 'test'))
    return unittest.TestSuite(tests)
-

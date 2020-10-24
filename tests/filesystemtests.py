@@ -90,18 +90,24 @@ Full vs. Reduced Tests
 # Import modules and do runtime validations
 ########################################################################
 
-import os
-import unittest
-import tempfile
-import tarfile
 import hashlib
+import os
+import tarfile
+import tempfile
+import unittest
 
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, changeFileAge, randomFilename
-from CedarBackup3.testutil import platformMacOsX
-from CedarBackup3.testutil import failUnlessAssignRaises
+from CedarBackup3.filesystem import BackupFileList, FilesystemList, PurgeItemList, compareContents, normalizeDir
+from CedarBackup3.testutil import (
+    buildPath,
+    changeFileAge,
+    extractTar,
+    failUnlessAssignRaises,
+    findResources,
+    platformMacOsX,
+    randomFilename,
+    removedir,
+)
 from CedarBackup3.util import encodePath
-from CedarBackup3.filesystem import FilesystemList, BackupFileList, PurgeItemList, normalizeDir, compareContents
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -20167,4 +20173,3 @@ def suite():
    tests.append(unittest.makeSuite(TestPurgeItemList, 'test'))
    tests.append(unittest.makeSuite(TestFunctions, 'test'))
    return unittest.TestSuite(tests)
-

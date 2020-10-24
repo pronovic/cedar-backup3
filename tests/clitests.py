@@ -76,17 +76,23 @@ Full vs. Reduced Tests
 ########################################################################
 
 import unittest
-from os.path import isdir, isfile, islink, isabs, exists
 from getopt import GetoptError
-from CedarBackup3.testutil import failUnlessAssignRaises, captureOutput
-from CedarBackup3.config import OptionsConfig, PeersConfig, ExtensionsConfig
-from CedarBackup3.config import LocalPeer, RemotePeer
-from CedarBackup3.config import ExtendedAction, ActionDependencies, PreActionHook, PostActionHook
-from CedarBackup3.cli import _usage, _version, _diagnostics
-from CedarBackup3.cli import Options
-from CedarBackup3.cli import _ActionSet
-from CedarBackup3.action import executeCollect, executeStage, executeStore, executePurge, executeRebuild, executeValidate
+from os.path import exists, isabs, isdir, isfile, islink
 
+from CedarBackup3.action import executeCollect, executePurge, executeRebuild, executeStage, executeStore, executeValidate
+from CedarBackup3.cli import Options, _ActionSet, _diagnostics, _usage, _version
+from CedarBackup3.config import (
+    ActionDependencies,
+    ExtendedAction,
+    ExtensionsConfig,
+    LocalPeer,
+    OptionsConfig,
+    PeersConfig,
+    PostActionHook,
+    PreActionHook,
+    RemotePeer,
+)
+from CedarBackup3.testutil import captureOutput, failUnlessAssignRaises
 
 #######################################################################
 # Test Case Classes
@@ -13318,4 +13324,3 @@ def suite():
    tests.append(unittest.makeSuite(TestOptions, 'test'))
    tests.append(unittest.makeSuite(TestActionSet, 'test'))
    return unittest.TestSuite(tests)
-

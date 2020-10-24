@@ -62,18 +62,14 @@ Attributes:
 # Imported modules
 ########################################################################
 
+import logging
+import re
 # System modules
 import sys
-import re
-import logging
 from io import StringIO
-
+from xml.dom.minidom import Node, getDOMImplementation, parseString
 # XML-related modules
 from xml.parsers.expat import ExpatError
-from xml.dom.minidom import Node
-from xml.dom.minidom import getDOMImplementation
-from xml.dom.minidom import parseString
-
 
 ########################################################################
 # Module-wide constants and variables
@@ -784,4 +780,3 @@ def _translateCDATA(characters, encoding='UTF-8', prev_chars='', markupSafe=0):
       new_string = XML_ILLEGAL_CHAR_PATTERN.subn(lambda m: '&#%i;' % ord(m.group()), new_string)[0]
    new_string = _encodeText(new_string, encoding)
    return new_string
-

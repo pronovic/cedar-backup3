@@ -73,23 +73,45 @@ Full vs. Reduced Tests
 # Import modules and do runtime validations
 ########################################################################
 
-import sys
-import unittest
-import tempfile
-import time
 import logging
 import os
+import sys
+import tempfile
+import time
+import unittest
 from os.path import isdir
 
-from CedarBackup3.testutil import findResources, removedir, extractTar, buildPath, captureOutput
-from CedarBackup3.util import UnorderedList, AbsolutePathList, ObjectTypeList
-from CedarBackup3.util import RestrictedContentList, RegexMatchList, RegexList
-from CedarBackup3.util import DirectedGraph, PathResolverSingleton, Diagnostics, parseCommaSeparatedString
-from CedarBackup3.util import sortDict, resolveCommand, executeCommand, getFunctionReference, encodePath
-from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_SECTORS, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.util import displayBytes, deriveDayOfWeek, isStartOfWeek, dereferenceLink
-from CedarBackup3.util import buildNormalizedPath, splitCommandLine, nullDevice
-
+from CedarBackup3.testutil import buildPath, captureOutput, extractTar, findResources, removedir
+from CedarBackup3.util import (
+    UNIT_BYTES,
+    UNIT_GBYTES,
+    UNIT_KBYTES,
+    UNIT_MBYTES,
+    UNIT_SECTORS,
+    AbsolutePathList,
+    Diagnostics,
+    DirectedGraph,
+    ObjectTypeList,
+    PathResolverSingleton,
+    RegexList,
+    RegexMatchList,
+    RestrictedContentList,
+    UnorderedList,
+    buildNormalizedPath,
+    convertSize,
+    dereferenceLink,
+    deriveDayOfWeek,
+    displayBytes,
+    encodePath,
+    executeCommand,
+    getFunctionReference,
+    isStartOfWeek,
+    nullDevice,
+    parseCommaSeparatedString,
+    resolveCommand,
+    sortDict,
+    splitCommandLine,
+)
 
 #######################################################################
 # Module-wide configuration and constants
@@ -4031,4 +4053,3 @@ def suite():
    tests.append(unittest.makeSuite(TestDiagnostics, 'test'))
    tests.append(unittest.makeSuite(TestFunctions, 'test'))
    return unittest.TestSuite(tests)
-

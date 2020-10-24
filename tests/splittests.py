@@ -98,19 +98,16 @@ Full vs. Reduced Tests
 # Import modules and do runtime validations
 ########################################################################
 
-# System modules
-import unittest
 import os
 import tempfile
+# System modules
+import unittest
 
+from CedarBackup3.extend.split import ByteQuantity, LocalConfig, SplitConfig, _splitDailyDir, _splitFile
+from CedarBackup3.testutil import availableLocales, buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
 # Cedar Backup modules
-from CedarBackup3.util import UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar
-from CedarBackup3.testutil import failUnlessAssignRaises, availableLocales
+from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.split import LocalConfig, SplitConfig, ByteQuantity
-from CedarBackup3.extend.split import _splitFile, _splitDailyDir
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1095,4 +1092,3 @@ def suite():
       tests.append(unittest.makeSuite(TestSplitConfig, 'test'))
       tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
       return unittest.TestSuite(tests)
-

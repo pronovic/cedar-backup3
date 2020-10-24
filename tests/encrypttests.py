@@ -97,18 +97,16 @@ Full vs. Reduced Tests
 # Import modules and do runtime validations
 ########################################################################
 
-# System modules
-import unittest
 import os
 import tempfile
+# System modules
+import unittest
 
+from CedarBackup3.extend.encrypt import EncryptConfig, LocalConfig, _encryptDailyDir, _encryptFile, _encryptFileWithGpg
 # Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.testutil import findResources, buildPath, removedir, extractTar, failUnlessAssignRaises
+from CedarBackup3.testutil import buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.encrypt import LocalConfig, EncryptConfig
-from CedarBackup3.extend.encrypt import _encryptFileWithGpg, _encryptFile, _encryptDailyDir
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1126,4 +1124,3 @@ def suite():
       tests.append(unittest.makeSuite(TestEncryptConfig, 'test'))
       tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
       return unittest.TestSuite(tests)
-

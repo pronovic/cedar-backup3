@@ -104,12 +104,10 @@ Full vs. Reduced Tests
 # System modules
 import unittest
 
+from CedarBackup3.extend.subversion import BDBRepository, FSFSRepository, LocalConfig, Repository, RepositoryDir, SubversionConfig
 # Cedar Backup modules
-from CedarBackup3.testutil import findResources, failUnlessAssignRaises
+from CedarBackup3.testutil import failUnlessAssignRaises, findResources
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
-from CedarBackup3.extend.subversion import LocalConfig, SubversionConfig
-from CedarBackup3.extend.subversion import Repository, RepositoryDir, BDBRepository, FSFSRepository
-
 
 #######################################################################
 # Module-wide configuration and constants
@@ -2622,4 +2620,3 @@ def suite():
    tests.append(unittest.makeSuite(TestSubversionConfig, 'test'))
    tests.append(unittest.makeSuite(TestLocalConfig, 'test'))
    return unittest.TestSuite(tests)
-

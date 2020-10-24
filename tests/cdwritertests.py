@@ -100,9 +100,15 @@ Full vs. Reduced Tests
 
 import unittest
 
-from CedarBackup3.writers.cdwriter import MediaDefinition, MediaCapacity, CdWriter
-from CedarBackup3.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80
-
+from CedarBackup3.writers.cdwriter import (
+    MEDIA_CDR_74,
+    MEDIA_CDR_80,
+    MEDIA_CDRW_74,
+    MEDIA_CDRW_80,
+    CdWriter,
+    MediaCapacity,
+    MediaDefinition,
+)
 
 #######################################################################
 # Module-wide configuration and constants
@@ -1710,4 +1716,3 @@ def suite():
    tests.append(unittest.makeSuite(TestMediaCapacity, 'test'))
    tests.append(unittest.makeSuite(TestCdWriter, 'test'))
    return unittest.TestSuite(tests)
-

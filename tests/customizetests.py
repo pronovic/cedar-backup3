@@ -47,10 +47,8 @@ Unit tests for CedarBackup3/customize.py.
 
 import unittest
 
+from CedarBackup3.config import CommandOverride, Config, OptionsConfig
 from CedarBackup3.customize import PLATFORM, customizeOverrides
-from CedarBackup3.config import Config, OptionsConfig, CommandOverride
-
-
 
 #######################################################################
 # Test Case Classes
@@ -197,4 +195,3 @@ def suite():
    tests = [ ]
    tests.append(unittest.makeSuite(TestFunctions, 'test'))
    return unittest.TestSuite(tests)
-

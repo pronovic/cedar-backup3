@@ -56,22 +56,21 @@ making them available to others.
 # Imported modules
 ########################################################################
 
-import sys
+import getpass
+import logging
 import os
+import platform
+import random
+import string  # pylint: disable=W0402
+import sys
 import tarfile
 import time
-import getpass
-import random
-import string # pylint: disable=W0402
-import platform
-import logging
 from io import StringIO
 
-from CedarBackup3.util import encodePath, executeCommand
+from CedarBackup3.cli import setupPathResolver
 from CedarBackup3.config import Config, OptionsConfig
 from CedarBackup3.customize import customizeOverrides
-from CedarBackup3.cli import setupPathResolver
-
+from CedarBackup3.util import encodePath, executeCommand
 
 ########################################################################
 # Public functions
@@ -488,4 +487,3 @@ def availableLocales():
    for line in output:
       locales.append(line.rstrip()) # pylint: disable=E1101
    return locales
-

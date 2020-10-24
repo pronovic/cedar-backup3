@@ -231,22 +231,46 @@ Attributes:
 # Imported modules
 ########################################################################
 
+import logging
 # System modules
 import os
 import re
-import logging
 from functools import total_ordering
 
+from CedarBackup3.util import (
+    UNIT_BYTES,
+    UNIT_GBYTES,
+    UNIT_KBYTES,
+    UNIT_MBYTES,
+    AbsolutePathList,
+    ObjectTypeList,
+    RegexList,
+    RegexMatchList,
+    UnorderedList,
+    checkUnique,
+    convertSize,
+    displayBytes,
+    encodePath,
+    parseCommaSeparatedString,
+)
 # Cedar Backup modules
-from CedarBackup3.writers.util import validateScsiId, validateDriveSpeed
-from CedarBackup3.util import UnorderedList, AbsolutePathList, ObjectTypeList, parseCommaSeparatedString
-from CedarBackup3.util import RegexMatchList, RegexList, encodePath, checkUnique
-from CedarBackup3.util import convertSize, displayBytes, UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES
-from CedarBackup3.xmlutil import isElement, readChildren, readFirstChild
-from CedarBackup3.xmlutil import readStringList, readString, readInteger, readBoolean
-from CedarBackup3.xmlutil import addContainerNode, addStringNode, addIntegerNode, addBooleanNode
-from CedarBackup3.xmlutil import createInputDom, createOutputDom, serializeDom
-
+from CedarBackup3.writers.util import validateDriveSpeed, validateScsiId
+from CedarBackup3.xmlutil import (
+    addBooleanNode,
+    addContainerNode,
+    addIntegerNode,
+    addStringNode,
+    createInputDom,
+    createOutputDom,
+    isElement,
+    readBoolean,
+    readChildren,
+    readFirstChild,
+    readInteger,
+    readString,
+    readStringList,
+    serializeDom,
+)
 
 ########################################################################
 # Module-wide constants and variables

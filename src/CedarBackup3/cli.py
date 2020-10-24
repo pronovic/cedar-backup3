@@ -79,29 +79,36 @@ Attributes:
 # Imported modules
 ########################################################################
 
+import getopt
+import logging
+import os
 # System modules
 import sys
-import os
-import logging
-import getopt
 from functools import total_ordering
 
-# Cedar Backup modules
-from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
-from CedarBackup3.customize import customizeOverrides
-from CedarBackup3.util import DirectedGraph, PathResolverSingleton
-from CedarBackup3.util import sortDict, splitCommandLine, executeCommand, getFunctionReference
-from CedarBackup3.util import getUidGid, encodePath, Diagnostics
-from CedarBackup3.config import Config
-from CedarBackup3.peer import RemotePeer
 from CedarBackup3.actions.collect import executeCollect
-from CedarBackup3.actions.stage import executeStage
-from CedarBackup3.actions.store import executeStore
+from CedarBackup3.actions.initialize import executeInitialize
 from CedarBackup3.actions.purge import executePurge
 from CedarBackup3.actions.rebuild import executeRebuild
+from CedarBackup3.actions.stage import executeStage
+from CedarBackup3.actions.store import executeStore
 from CedarBackup3.actions.validate import executeValidate
-from CedarBackup3.actions.initialize import executeInitialize
-
+from CedarBackup3.config import Config
+from CedarBackup3.customize import customizeOverrides
+from CedarBackup3.peer import RemotePeer
+# Cedar Backup modules
+from CedarBackup3.release import AUTHOR, COPYRIGHT, DATE, EMAIL, VERSION
+from CedarBackup3.util import (
+    Diagnostics,
+    DirectedGraph,
+    PathResolverSingleton,
+    encodePath,
+    executeCommand,
+    getFunctionReference,
+    getUidGid,
+    sortDict,
+    splitCommandLine,
+)
 
 ########################################################################
 # Module-wide constants and variables
@@ -2054,4 +2061,3 @@ class Options(object):
 if __name__ == "__main__":
    result = cli()
    sys.exit(result)
-
