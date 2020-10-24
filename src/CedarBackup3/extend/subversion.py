@@ -69,7 +69,6 @@ Check the Subversion documentation for more information.
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import logging
 import pickle
@@ -77,7 +76,6 @@ from bz2 import BZ2File
 from gzip import GzipFile
 from functools import total_ordering
 
-# Cedar Backup modules
 from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode
 from CedarBackup3.xmlutil import isElement, readChildren, readFirstChild, readString, readStringList
 from CedarBackup3.config import VALID_COLLECT_MODES, VALID_COMPRESS_MODES
@@ -94,8 +92,8 @@ from CedarBackup3.util import ObjectTypeList, encodePath, changeOwnership
 
 logger = logging.getLogger("CedarBackup3.log.extend.subversion")
 
-SVNLOOK_COMMAND      = ["svnlook"]
-SVNADMIN_COMMAND     = ["svnadmin"]
+SVNLOOK_COMMAND = ["svnlook"]
+SVNADMIN_COMMAND = ["svnadmin"]
 
 REVISION_PATH_EXTENSION = "svnlast"
 
@@ -104,10 +102,11 @@ REVISION_PATH_EXTENSION = "svnlast"
 # RepositoryDir class definition
 ########################################################################
 
+
 @total_ordering
 class RepositoryDir(object):
 
-   """
+    """
    Class representing Subversion repository directory.
 
    A repository directory is a directory that contains one or more Subversion
@@ -127,9 +126,16 @@ class RepositoryDir(object):
 
    """
 
-   def __init__(self, repositoryType=None, directoryPath=None, collectMode=None, compressMode=None,
-                relativeExcludePaths=None, excludePatterns=None):
-      """
+    def __init__(
+        self,
+        repositoryType=None,
+        directoryPath=None,
+        collectMode=None,
+        compressMode=None,
+        relativeExcludePaths=None,
+        excludePatterns=None,
+    ):
+        """
       Constructor for the ``RepositoryDir`` class.
 
       Args:
@@ -140,101 +146,107 @@ class RepositoryDir(object):
          relativeExcludePaths: List of relative paths to exclude
          excludePatterns: List of regular expression patterns to exclude
       """
-      self._repositoryType = None
-      self._directoryPath = None
-      self._collectMode = None
-      self._compressMode = None
-      self._relativeExcludePaths = None
-      self._excludePatterns = None
-      self.repositoryType = repositoryType
-      self.directoryPath = directoryPath
-      self.collectMode = collectMode
-      self.compressMode = compressMode
-      self.relativeExcludePaths = relativeExcludePaths
-      self.excludePatterns = excludePatterns
+        self._repositoryType = None
+        self._directoryPath = None
+        self._collectMode = None
+        self._compressMode = None
+        self._relativeExcludePaths = None
+        self._excludePatterns = None
+        self.repositoryType = repositoryType
+        self.directoryPath = directoryPath
+        self.collectMode = collectMode
+        self.compressMode = compressMode
+        self.relativeExcludePaths = relativeExcludePaths
+        self.excludePatterns = excludePatterns
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "RepositoryDir(%s, %s, %s, %s, %s, %s)" % (self.repositoryType, self.directoryPath, self.collectMode,
-                                                        self.compressMode, self.relativeExcludePaths, self.excludePatterns)
+        return "RepositoryDir(%s, %s, %s, %s, %s, %s)" % (
+            self.repositoryType,
+            self.directoryPath,
+            self.collectMode,
+            self.compressMode,
+            self.relativeExcludePaths,
+            self.excludePatterns,
+        )
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Args:
          other: Other object to compare to
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.repositoryType != other.repositoryType:
-         if str(self.repositoryType or "") < str(other.repositoryType or ""):
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.directoryPath != other.directoryPath:
-         if str(self.directoryPath or "") < str(other.directoryPath or ""):
-            return -1
-         else:
-            return 1
-      if self.collectMode != other.collectMode:
-         if str(self.collectMode or "") < str(other.collectMode or ""):
-            return -1
-         else:
-            return 1
-      if self.compressMode != other.compressMode:
-         if str(self.compressMode or "") < str(other.compressMode or ""):
-            return -1
-         else:
-            return 1
-      if self.relativeExcludePaths != other.relativeExcludePaths:
-         if self.relativeExcludePaths < other.relativeExcludePaths:
-            return -1
-         else:
-            return 1
-      if self.excludePatterns != other.excludePatterns:
-         if self.excludePatterns < other.excludePatterns:
-            return -1
-         else:
-            return 1
-      return 0
+        if self.repositoryType != other.repositoryType:
+            if str(self.repositoryType or "") < str(other.repositoryType or ""):
+                return -1
+            else:
+                return 1
+        if self.directoryPath != other.directoryPath:
+            if str(self.directoryPath or "") < str(other.directoryPath or ""):
+                return -1
+            else:
+                return 1
+        if self.collectMode != other.collectMode:
+            if str(self.collectMode or "") < str(other.collectMode or ""):
+                return -1
+            else:
+                return 1
+        if self.compressMode != other.compressMode:
+            if str(self.compressMode or "") < str(other.compressMode or ""):
+                return -1
+            else:
+                return 1
+        if self.relativeExcludePaths != other.relativeExcludePaths:
+            if self.relativeExcludePaths < other.relativeExcludePaths:
+                return -1
+            else:
+                return 1
+        if self.excludePatterns != other.excludePatterns:
+            if self.excludePatterns < other.excludePatterns:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setRepositoryType(self, value):
-      """
+    def _setRepositoryType(self, value):
+        """
       Property target used to set the repository type.
       There is no validation; this value is kept around just for reference.
       """
-      self._repositoryType = value
+        self._repositoryType = value
 
-   def _getRepositoryType(self):
-      """
+    def _getRepositoryType(self):
+        """
       Property target used to get the repository type.
       """
-      return self._repositoryType
+        return self._repositoryType
 
-   def _setDirectoryPath(self, value):
-      """
+    def _setDirectoryPath(self, value):
+        """
       Property target used to set the directory path.
       The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
@@ -242,112 +254,113 @@ class RepositoryDir(object):
          ValueError: If the value is not an absolute path
          ValueError: If the value cannot be encoded properly
       """
-      if value is not None:
-         if not os.path.isabs(value):
-            raise ValueError("Repository path must be an absolute path.")
-      self._directoryPath = encodePath(value)
+        if value is not None:
+            if not os.path.isabs(value):
+                raise ValueError("Repository path must be an absolute path.")
+        self._directoryPath = encodePath(value)
 
-   def _getDirectoryPath(self):
-      """
+    def _getDirectoryPath(self):
+        """
       Property target used to get the repository path.
       """
-      return self._directoryPath
+        return self._directoryPath
 
-   def _setCollectMode(self, value):
-      """
+    def _setCollectMode(self, value):
+        """
       Property target used to set the collect mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COLLECT_MODES:
-            raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
-      self._collectMode = value
+        if value is not None:
+            if value not in VALID_COLLECT_MODES:
+                raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
+        self._collectMode = value
 
-   def _getCollectMode(self):
-      """
+    def _getCollectMode(self):
+        """
       Property target used to get the collect mode.
       """
-      return self._collectMode
+        return self._collectMode
 
-   def _setCompressMode(self, value):
-      """
+    def _setCompressMode(self, value):
+        """
       Property target used to set the compress mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COMPRESS_MODES:
-            raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
-      self._compressMode = value
+        if value is not None:
+            if value not in VALID_COMPRESS_MODES:
+                raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
+        self._compressMode = value
 
-   def _getCompressMode(self):
-      """
+    def _getCompressMode(self):
+        """
       Property target used to get the compress mode.
       """
-      return self._compressMode
+        return self._compressMode
 
-   def _setRelativeExcludePaths(self, value):
-      """
+    def _setRelativeExcludePaths(self, value):
+        """
       Property target used to set the relative exclude paths list.
       Elements do not have to exist on disk at the time of assignment.
       """
-      if value is None:
-         self._relativeExcludePaths = None
-      else:
-         try:
-            saved = self._relativeExcludePaths
-            self._relativeExcludePaths = UnorderedList()
-            self._relativeExcludePaths.extend(value)
-         except Exception as e:
-            self._relativeExcludePaths = saved
-            raise e
+        if value is None:
+            self._relativeExcludePaths = None
+        else:
+            try:
+                saved = self._relativeExcludePaths
+                self._relativeExcludePaths = UnorderedList()
+                self._relativeExcludePaths.extend(value)
+            except Exception as e:
+                self._relativeExcludePaths = saved
+                raise e
 
-   def _getRelativeExcludePaths(self):
-      """
+    def _getRelativeExcludePaths(self):
+        """
       Property target used to get the relative exclude paths list.
       """
-      return self._relativeExcludePaths
+        return self._relativeExcludePaths
 
-   def _setExcludePatterns(self, value):
-      """
+    def _setExcludePatterns(self, value):
+        """
       Property target used to set the exclude patterns list.
       """
-      if value is None:
-         self._excludePatterns = None
-      else:
-         try:
-            saved = self._excludePatterns
-            self._excludePatterns = RegexList()
-            self._excludePatterns.extend(value)
-         except Exception as e:
-            self._excludePatterns = saved
-            raise e
+        if value is None:
+            self._excludePatterns = None
+        else:
+            try:
+                saved = self._excludePatterns
+                self._excludePatterns = RegexList()
+                self._excludePatterns.extend(value)
+            except Exception as e:
+                self._excludePatterns = saved
+                raise e
 
-   def _getExcludePatterns(self):
-      """
+    def _getExcludePatterns(self):
+        """
       Property target used to get the exclude patterns list.
       """
-      return self._excludePatterns
+        return self._excludePatterns
 
-   repositoryType = property(_getRepositoryType, _setRepositoryType, None, doc="Type of this repository, for reference.")
-   directoryPath = property(_getDirectoryPath, _setDirectoryPath, None, doc="Absolute path of the Subversion parent directory.")
-   collectMode = property(_getCollectMode, _setCollectMode, None, doc="Overridden collect mode for this repository.")
-   compressMode = property(_getCompressMode, _setCompressMode, None, doc="Overridden compress mode for this repository.")
-   relativeExcludePaths = property(_getRelativeExcludePaths, _setRelativeExcludePaths, None, "List of relative paths to exclude.")
-   excludePatterns = property(_getExcludePatterns, _setExcludePatterns, None, "List of regular expression patterns to exclude.")
+    repositoryType = property(_getRepositoryType, _setRepositoryType, None, doc="Type of this repository, for reference.")
+    directoryPath = property(_getDirectoryPath, _setDirectoryPath, None, doc="Absolute path of the Subversion parent directory.")
+    collectMode = property(_getCollectMode, _setCollectMode, None, doc="Overridden collect mode for this repository.")
+    compressMode = property(_getCompressMode, _setCompressMode, None, doc="Overridden compress mode for this repository.")
+    relativeExcludePaths = property(_getRelativeExcludePaths, _setRelativeExcludePaths, None, "List of relative paths to exclude.")
+    excludePatterns = property(_getExcludePatterns, _setExcludePatterns, None, "List of regular expression patterns to exclude.")
 
 
 ########################################################################
 # Repository class definition
 ########################################################################
 
+
 @total_ordering
 class Repository(object):
 
-   """
+    """
    Class representing generic Subversion repository configuration..
 
    The following restrictions exist on data in this class:
@@ -361,8 +374,8 @@ class Repository(object):
 
    """
 
-   def __init__(self, repositoryType=None, repositoryPath=None, collectMode=None, compressMode=None):
-      """
+    def __init__(self, repositoryType=None, repositoryPath=None, collectMode=None, compressMode=None):
+        """
       Constructor for the ``Repository`` class.
 
       Args:
@@ -371,86 +384,86 @@ class Repository(object):
          collectMode: Overridden collect mode for this directory
          compressMode: Overridden compression mode for this directory
       """
-      self._repositoryType = None
-      self._repositoryPath = None
-      self._collectMode = None
-      self._compressMode = None
-      self.repositoryType = repositoryType
-      self.repositoryPath = repositoryPath
-      self.collectMode = collectMode
-      self.compressMode = compressMode
+        self._repositoryType = None
+        self._repositoryPath = None
+        self._collectMode = None
+        self._compressMode = None
+        self.repositoryType = repositoryType
+        self.repositoryPath = repositoryPath
+        self.collectMode = collectMode
+        self.compressMode = compressMode
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "Repository(%s, %s, %s, %s)" % (self.repositoryType, self.repositoryPath, self.collectMode, self.compressMode)
+        return "Repository(%s, %s, %s, %s)" % (self.repositoryType, self.repositoryPath, self.collectMode, self.compressMode)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Args:
          other: Other object to compare to
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.repositoryType != other.repositoryType:
-         if str(self.repositoryType or "") < str(other.repositoryType or ""):
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.repositoryPath != other.repositoryPath:
-         if str(self.repositoryPath or "") < str(other.repositoryPath or ""):
-            return -1
-         else:
-            return 1
-      if self.collectMode != other.collectMode:
-         if str(self.collectMode or "") < str(other.collectMode or ""):
-            return -1
-         else:
-            return 1
-      if self.compressMode != other.compressMode:
-         if str(self.compressMode or "") < str(other.compressMode or ""):
-            return -1
-         else:
-            return 1
-      return 0
+        if self.repositoryType != other.repositoryType:
+            if str(self.repositoryType or "") < str(other.repositoryType or ""):
+                return -1
+            else:
+                return 1
+        if self.repositoryPath != other.repositoryPath:
+            if str(self.repositoryPath or "") < str(other.repositoryPath or ""):
+                return -1
+            else:
+                return 1
+        if self.collectMode != other.collectMode:
+            if str(self.collectMode or "") < str(other.collectMode or ""):
+                return -1
+            else:
+                return 1
+        if self.compressMode != other.compressMode:
+            if str(self.compressMode or "") < str(other.compressMode or ""):
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setRepositoryType(self, value):
-      """
+    def _setRepositoryType(self, value):
+        """
       Property target used to set the repository type.
       There is no validation; this value is kept around just for reference.
       """
-      self._repositoryType = value
+        self._repositoryType = value
 
-   def _getRepositoryType(self):
-      """
+    def _getRepositoryType(self):
+        """
       Property target used to get the repository type.
       """
-      return self._repositoryType
+        return self._repositoryType
 
-   def _setRepositoryPath(self, value):
-      """
+    def _setRepositoryPath(self, value):
+        """
       Property target used to set the repository path.
       The value must be an absolute path if it is not ``None``.
       It does not have to exist on disk at the time of assignment.
@@ -458,67 +471,68 @@ class Repository(object):
          ValueError: If the value is not an absolute path
          ValueError: If the value cannot be encoded properly
       """
-      if value is not None:
-         if not os.path.isabs(value):
-            raise ValueError("Repository path must be an absolute path.")
-      self._repositoryPath = encodePath(value)
+        if value is not None:
+            if not os.path.isabs(value):
+                raise ValueError("Repository path must be an absolute path.")
+        self._repositoryPath = encodePath(value)
 
-   def _getRepositoryPath(self):
-      """
+    def _getRepositoryPath(self):
+        """
       Property target used to get the repository path.
       """
-      return self._repositoryPath
+        return self._repositoryPath
 
-   def _setCollectMode(self, value):
-      """
+    def _setCollectMode(self, value):
+        """
       Property target used to set the collect mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COLLECT_MODES:
-            raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
-      self._collectMode = value
+        if value is not None:
+            if value not in VALID_COLLECT_MODES:
+                raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
+        self._collectMode = value
 
-   def _getCollectMode(self):
-      """
+    def _getCollectMode(self):
+        """
       Property target used to get the collect mode.
       """
-      return self._collectMode
+        return self._collectMode
 
-   def _setCompressMode(self, value):
-      """
+    def _setCompressMode(self, value):
+        """
       Property target used to set the compress mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COMPRESS_MODES:
-            raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
-      self._compressMode = value
+        if value is not None:
+            if value not in VALID_COMPRESS_MODES:
+                raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
+        self._compressMode = value
 
-   def _getCompressMode(self):
-      """
+    def _getCompressMode(self):
+        """
       Property target used to get the compress mode.
       """
-      return self._compressMode
+        return self._compressMode
 
-   repositoryType = property(_getRepositoryType, _setRepositoryType, None, doc="Type of this repository, for reference.")
-   repositoryPath = property(_getRepositoryPath, _setRepositoryPath, None, doc="Path to the repository to collect.")
-   collectMode = property(_getCollectMode, _setCollectMode, None, doc="Overridden collect mode for this repository.")
-   compressMode = property(_getCompressMode, _setCompressMode, None, doc="Overridden compress mode for this repository.")
+    repositoryType = property(_getRepositoryType, _setRepositoryType, None, doc="Type of this repository, for reference.")
+    repositoryPath = property(_getRepositoryPath, _setRepositoryPath, None, doc="Path to the repository to collect.")
+    collectMode = property(_getCollectMode, _setCollectMode, None, doc="Overridden collect mode for this repository.")
+    compressMode = property(_getCompressMode, _setCompressMode, None, doc="Overridden compress mode for this repository.")
 
 
 ########################################################################
 # SubversionConfig class definition
 ########################################################################
 
+
 @total_ordering
 class SubversionConfig(object):
 
-   """
+    """
    Class representing Subversion configuration.
 
    Subversion configuration is used for backing up Subversion repositories.
@@ -538,8 +552,8 @@ class SubversionConfig(object):
 
    """
 
-   def __init__(self, collectMode=None, compressMode=None, repositories=None, repositoryDirs=None):
-      """
+    def __init__(self, collectMode=None, compressMode=None, repositories=None, repositoryDirs=None):
+        """
       Constructor for the ``SubversionConfig`` class.
 
       Args:
@@ -551,41 +565,41 @@ class SubversionConfig(object):
       Raises:
          ValueError: If one of the values is invalid
       """
-      self._collectMode = None
-      self._compressMode = None
-      self._repositories = None
-      self._repositoryDirs = None
-      self.collectMode = collectMode
-      self.compressMode = compressMode
-      self.repositories = repositories
-      self.repositoryDirs = repositoryDirs
+        self._collectMode = None
+        self._compressMode = None
+        self._repositories = None
+        self._repositoryDirs = None
+        self.collectMode = collectMode
+        self.compressMode = compressMode
+        self.repositories = repositories
+        self.repositoryDirs = repositoryDirs
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "SubversionConfig(%s, %s, %s, %s)" % (self.collectMode, self.compressMode, self.repositories, self.repositoryDirs)
+        return "SubversionConfig(%s, %s, %s, %s)" % (self.collectMode, self.compressMode, self.repositories, self.repositoryDirs)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       Args:
@@ -593,128 +607,129 @@ class SubversionConfig(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.collectMode != other.collectMode:
-         if str(self.collectMode or "") < str(other.collectMode or ""):
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.compressMode != other.compressMode:
-         if str(self.compressMode or "") < str(other.compressMode or ""):
-            return -1
-         else:
-            return 1
-      if self.repositories != other.repositories:
-         if self.repositories < other.repositories:
-            return -1
-         else:
-            return 1
-      if self.repositoryDirs != other.repositoryDirs:
-         if self.repositoryDirs < other.repositoryDirs:
-            return -1
-         else:
-            return 1
-      return 0
+        if self.collectMode != other.collectMode:
+            if str(self.collectMode or "") < str(other.collectMode or ""):
+                return -1
+            else:
+                return 1
+        if self.compressMode != other.compressMode:
+            if str(self.compressMode or "") < str(other.compressMode or ""):
+                return -1
+            else:
+                return 1
+        if self.repositories != other.repositories:
+            if self.repositories < other.repositories:
+                return -1
+            else:
+                return 1
+        if self.repositoryDirs != other.repositoryDirs:
+            if self.repositoryDirs < other.repositoryDirs:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setCollectMode(self, value):
-      """
+    def _setCollectMode(self, value):
+        """
       Property target used to set the collect mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COLLECT_MODES:
-            raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
-      self._collectMode = value
+        if value is not None:
+            if value not in VALID_COLLECT_MODES:
+                raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
+        self._collectMode = value
 
-   def _getCollectMode(self):
-      """
+    def _getCollectMode(self):
+        """
       Property target used to get the collect mode.
       """
-      return self._collectMode
+        return self._collectMode
 
-   def _setCompressMode(self, value):
-      """
+    def _setCompressMode(self, value):
+        """
       Property target used to set the compress mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COMPRESS_MODES:
-            raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
-      self._compressMode = value
+        if value is not None:
+            if value not in VALID_COMPRESS_MODES:
+                raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
+        self._compressMode = value
 
-   def _getCompressMode(self):
-      """
+    def _getCompressMode(self):
+        """
       Property target used to get the compress mode.
       """
-      return self._compressMode
+        return self._compressMode
 
-   def _setRepositories(self, value):
-      """
+    def _setRepositories(self, value):
+        """
       Property target used to set the repositories list.
       Either the value must be ``None`` or each element must be a ``Repository``.
       Raises:
          ValueError: If the value is not a ``Repository``
       """
-      if value is None:
-         self._repositories = None
-      else:
-         try:
-            saved = self._repositories
-            self._repositories = ObjectTypeList(Repository, "Repository")
-            self._repositories.extend(value)
-         except Exception as e:
-            self._repositories = saved
-            raise e
+        if value is None:
+            self._repositories = None
+        else:
+            try:
+                saved = self._repositories
+                self._repositories = ObjectTypeList(Repository, "Repository")
+                self._repositories.extend(value)
+            except Exception as e:
+                self._repositories = saved
+                raise e
 
-   def _getRepositories(self):
-      """
+    def _getRepositories(self):
+        """
       Property target used to get the repositories list.
       """
-      return self._repositories
+        return self._repositories
 
-   def _setRepositoryDirs(self, value):
-      """
+    def _setRepositoryDirs(self, value):
+        """
       Property target used to set the repositoryDirs list.
       Either the value must be ``None`` or each element must be a ``Repository``.
       Raises:
          ValueError: If the value is not a ``Repository``
       """
-      if value is None:
-         self._repositoryDirs = None
-      else:
-         try:
-            saved = self._repositoryDirs
-            self._repositoryDirs = ObjectTypeList(RepositoryDir, "RepositoryDir")
-            self._repositoryDirs.extend(value)
-         except Exception as e:
-            self._repositoryDirs = saved
-            raise e
+        if value is None:
+            self._repositoryDirs = None
+        else:
+            try:
+                saved = self._repositoryDirs
+                self._repositoryDirs = ObjectTypeList(RepositoryDir, "RepositoryDir")
+                self._repositoryDirs.extend(value)
+            except Exception as e:
+                self._repositoryDirs = saved
+                raise e
 
-   def _getRepositoryDirs(self):
-      """
+    def _getRepositoryDirs(self):
+        """
       Property target used to get the repositoryDirs list.
       """
-      return self._repositoryDirs
+        return self._repositoryDirs
 
-   collectMode = property(_getCollectMode, _setCollectMode, None, doc="Default collect mode.")
-   compressMode = property(_getCompressMode, _setCompressMode, None, doc="Default compress mode.")
-   repositories = property(_getRepositories, _setRepositories, None, doc="List of Subversion repositories to back up.")
-   repositoryDirs = property(_getRepositoryDirs, _setRepositoryDirs, None, doc="List of Subversion parent directories to back up.")
+    collectMode = property(_getCollectMode, _setCollectMode, None, doc="Default collect mode.")
+    compressMode = property(_getCompressMode, _setCompressMode, None, doc="Default compress mode.")
+    repositories = property(_getRepositories, _setRepositories, None, doc="List of Subversion repositories to back up.")
+    repositoryDirs = property(_getRepositoryDirs, _setRepositoryDirs, None, doc="List of Subversion parent directories to back up.")
 
 
 ########################################################################
 # LocalConfig class definition
 ########################################################################
 
+
 @total_ordering
 class LocalConfig(object):
 
-   """
+    """
    Class representing this extension's configuration document.
 
    This is not a general-purpose configuration object like the main Cedar
@@ -727,8 +742,8 @@ class LocalConfig(object):
 
    """
 
-   def __init__(self, xmlData=None, xmlPath=None, validate=True):
-      """
+    def __init__(self, xmlData=None, xmlPath=None, validate=True):
+        """
       Initializes a configuration object.
 
       If you initialize the object without passing either ``xmlData`` or
@@ -758,47 +773,47 @@ class LocalConfig(object):
          ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
          ValueError: If the parsed configuration document is not valid
       """
-      self._subversion = None
-      self.subversion = None
-      if xmlData is not None and xmlPath is not None:
-         raise ValueError("Use either xmlData or xmlPath, but not both.")
-      if xmlData is not None:
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
-      elif xmlPath is not None:
-         with open(xmlPath) as f:
-            xmlData = f.read()
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
+        self._subversion = None
+        self.subversion = None
+        if xmlData is not None and xmlPath is not None:
+            raise ValueError("Use either xmlData or xmlPath, but not both.")
+        if xmlData is not None:
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
+        elif xmlPath is not None:
+            with open(xmlPath) as f:
+                xmlData = f.read()
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "LocalConfig(%s)" % (self.subversion)
+        return "LocalConfig(%s)" % (self.subversion)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       Args:
@@ -806,39 +821,41 @@ class LocalConfig(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.subversion != other.subversion:
-         if self.subversion < other.subversion:
-            return -1
-         else:
+        if other is None:
             return 1
-      return 0
+        if self.subversion != other.subversion:
+            if self.subversion < other.subversion:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setSubversion(self, value):
-      """
+    def _setSubversion(self, value):
+        """
       Property target used to set the subversion configuration value.
       If not ``None``, the value must be a ``SubversionConfig`` object.
       Raises:
          ValueError: If the value is not a ``SubversionConfig``
       """
-      if value is None:
-         self._subversion = None
-      else:
-         if not isinstance(value, SubversionConfig):
-            raise ValueError("Value must be a ``SubversionConfig`` object.")
-         self._subversion = value
+        if value is None:
+            self._subversion = None
+        else:
+            if not isinstance(value, SubversionConfig):
+                raise ValueError("Value must be a ``SubversionConfig`` object.")
+            self._subversion = value
 
-   def _getSubversion(self):
-      """
+    def _getSubversion(self):
+        """
       Property target used to get the subversion configuration value.
       """
-      return self._subversion
+        return self._subversion
 
-   subversion = property(_getSubversion, _setSubversion, None, "Subversion configuration in terms of a ``SubversionConfig`` object.")
+    subversion = property(
+        _getSubversion, _setSubversion, None, "Subversion configuration in terms of a ``SubversionConfig`` object."
+    )
 
-   def validate(self):
-      """
+    def validate(self):
+        """
       Validates configuration represented by the object.
 
       Subversion configuration must be filled in.  Within that, the collect
@@ -852,30 +869,31 @@ class LocalConfig(object):
       Raises:
          ValueError: If one of the validations fails
       """
-      if self.subversion is None:
-         raise ValueError("Subversion section is required.")
-      if ((self.subversion.repositories is None or len(self.subversion.repositories) < 1) and
-          (self.subversion.repositoryDirs is None or len(self.subversion.repositoryDirs) <1)):
-         raise ValueError("At least one Subversion repository must be configured.")
-      if self.subversion.repositories is not None:
-         for repository in self.subversion.repositories:
-            if repository.repositoryPath is None:
-               raise ValueError("Each repository must set a repository path.")
-            if self.subversion.collectMode is None and repository.collectMode is None:
-               raise ValueError("Collect mode must either be set in parent section or individual repository.")
-            if self.subversion.compressMode is None and repository.compressMode is None:
-               raise ValueError("Compress mode must either be set in parent section or individual repository.")
-      if self.subversion.repositoryDirs is not None:
-         for repositoryDir in self.subversion.repositoryDirs:
-            if repositoryDir.directoryPath is None:
-               raise ValueError("Each repository directory must set a directory path.")
-            if self.subversion.collectMode is None and repositoryDir.collectMode is None:
-               raise ValueError("Collect mode must either be set in parent section or repository directory.")
-            if self.subversion.compressMode is None and repositoryDir.compressMode is None:
-               raise ValueError("Compress mode must either be set in parent section or repository directory.")
+        if self.subversion is None:
+            raise ValueError("Subversion section is required.")
+        if (self.subversion.repositories is None or len(self.subversion.repositories) < 1) and (
+            self.subversion.repositoryDirs is None or len(self.subversion.repositoryDirs) < 1
+        ):
+            raise ValueError("At least one Subversion repository must be configured.")
+        if self.subversion.repositories is not None:
+            for repository in self.subversion.repositories:
+                if repository.repositoryPath is None:
+                    raise ValueError("Each repository must set a repository path.")
+                if self.subversion.collectMode is None and repository.collectMode is None:
+                    raise ValueError("Collect mode must either be set in parent section or individual repository.")
+                if self.subversion.compressMode is None and repository.compressMode is None:
+                    raise ValueError("Compress mode must either be set in parent section or individual repository.")
+        if self.subversion.repositoryDirs is not None:
+            for repositoryDir in self.subversion.repositoryDirs:
+                if repositoryDir.directoryPath is None:
+                    raise ValueError("Each repository directory must set a directory path.")
+                if self.subversion.collectMode is None and repositoryDir.collectMode is None:
+                    raise ValueError("Collect mode must either be set in parent section or repository directory.")
+                if self.subversion.compressMode is None and repositoryDir.compressMode is None:
+                    raise ValueError("Compress mode must either be set in parent section or repository directory.")
 
-   def addConfig(self, xmlDom, parentNode):
-      """
+    def addConfig(self, xmlDom, parentNode):
+        """
       Adds a <subversion> configuration section as the next child of a parent.
 
       Third parties should use this function to write configuration related to
@@ -896,19 +914,19 @@ class LocalConfig(object):
          xmlDom: DOM tree as from ``impl.createDocument()``
          parentNode: Parent that the section should be appended to
       """
-      if self.subversion is not None:
-         sectionNode = addContainerNode(xmlDom, parentNode, "subversion")
-         addStringNode(xmlDom, sectionNode, "collect_mode", self.subversion.collectMode)
-         addStringNode(xmlDom, sectionNode, "compress_mode", self.subversion.compressMode)
-         if self.subversion.repositories is not None:
-            for repository in self.subversion.repositories:
-               LocalConfig._addRepository(xmlDom, sectionNode, repository)
-         if self.subversion.repositoryDirs is not None:
-            for repositoryDir in self.subversion.repositoryDirs:
-               LocalConfig._addRepositoryDir(xmlDom, sectionNode, repositoryDir)
+        if self.subversion is not None:
+            sectionNode = addContainerNode(xmlDom, parentNode, "subversion")
+            addStringNode(xmlDom, sectionNode, "collect_mode", self.subversion.collectMode)
+            addStringNode(xmlDom, sectionNode, "compress_mode", self.subversion.compressMode)
+            if self.subversion.repositories is not None:
+                for repository in self.subversion.repositories:
+                    LocalConfig._addRepository(xmlDom, sectionNode, repository)
+            if self.subversion.repositoryDirs is not None:
+                for repositoryDir in self.subversion.repositoryDirs:
+                    LocalConfig._addRepositoryDir(xmlDom, sectionNode, repositoryDir)
 
-   def _parseXmlData(self, xmlData):
-      """
+    def _parseXmlData(self, xmlData):
+        """
       Internal method to parse an XML string into the object.
 
       This method parses the XML document into a DOM tree (``xmlDom``) and then
@@ -919,12 +937,12 @@ class LocalConfig(object):
       Raises:
          ValueError: If the XML cannot be successfully parsed
       """
-      (xmlDom, parentNode) = createInputDom(xmlData)
-      self._subversion = LocalConfig._parseSubversion(parentNode)
+        (xmlDom, parentNode) = createInputDom(xmlData)
+        self._subversion = LocalConfig._parseSubversion(parentNode)
 
-   @staticmethod
-   def _parseSubversion(parent):
-      """
+    @staticmethod
+    def _parseSubversion(parent):
+        """
       Parses a subversion configuration section.
 
       We read the following individual fields::
@@ -949,19 +967,19 @@ class LocalConfig(object):
       Raises:
          ValueError: If some filled-in value is invalid
       """
-      subversion = None
-      section = readFirstChild(parent, "subversion")
-      if section is not None:
-         subversion = SubversionConfig()
-         subversion.collectMode = readString(section, "collect_mode")
-         subversion.compressMode = readString(section, "compress_mode")
-         subversion.repositories = LocalConfig._parseRepositories(section)
-         subversion.repositoryDirs = LocalConfig._parseRepositoryDirs(section)
-      return subversion
+        subversion = None
+        section = readFirstChild(parent, "subversion")
+        if section is not None:
+            subversion = SubversionConfig()
+            subversion.collectMode = readString(section, "collect_mode")
+            subversion.compressMode = readString(section, "compress_mode")
+            subversion.repositories = LocalConfig._parseRepositories(section)
+            subversion.repositoryDirs = LocalConfig._parseRepositoryDirs(section)
+        return subversion
 
-   @staticmethod
-   def _parseRepositories(parent):
-      """
+    @staticmethod
+    def _parseRepositories(parent):
+        """
       Reads a list of ``Repository`` objects from immediately beneath the parent.
 
       We read the following individual fields::
@@ -982,22 +1000,22 @@ class LocalConfig(object):
       Raises:
          ValueError: If some filled-in value is invalid
       """
-      lst = []
-      for entry in readChildren(parent, "repository"):
-         if isElement(entry):
-            repository = Repository()
-            repository.repositoryType = readString(entry, "type")
-            repository.repositoryPath = readString(entry, "abs_path")
-            repository.collectMode = readString(entry, "collect_mode")
-            repository.compressMode = readString(entry, "compress_mode")
-            lst.append(repository)
-      if lst == []:
-         lst = None
-      return lst
+        lst = []
+        for entry in readChildren(parent, "repository"):
+            if isElement(entry):
+                repository = Repository()
+                repository.repositoryType = readString(entry, "type")
+                repository.repositoryPath = readString(entry, "abs_path")
+                repository.collectMode = readString(entry, "collect_mode")
+                repository.compressMode = readString(entry, "compress_mode")
+                lst.append(repository)
+        if lst == []:
+            lst = None
+        return lst
 
-   @staticmethod
-   def _addRepository(xmlDom, parentNode, repository):
-      """
+    @staticmethod
+    def _addRepository(xmlDom, parentNode, repository):
+        """
       Adds a repository container as the next child of a parent.
 
       We add the following fields to the document::
@@ -1018,16 +1036,16 @@ class LocalConfig(object):
          parentNode: Parent that the section should be appended to
          repository: Repository to be added to the document
       """
-      if repository is not None:
-         sectionNode = addContainerNode(xmlDom, parentNode, "repository")
-         addStringNode(xmlDom, sectionNode, "type", repository.repositoryType)
-         addStringNode(xmlDom, sectionNode, "abs_path", repository.repositoryPath)
-         addStringNode(xmlDom, sectionNode, "collect_mode", repository.collectMode)
-         addStringNode(xmlDom, sectionNode, "compress_mode", repository.compressMode)
+        if repository is not None:
+            sectionNode = addContainerNode(xmlDom, parentNode, "repository")
+            addStringNode(xmlDom, sectionNode, "type", repository.repositoryType)
+            addStringNode(xmlDom, sectionNode, "abs_path", repository.repositoryPath)
+            addStringNode(xmlDom, sectionNode, "collect_mode", repository.collectMode)
+            addStringNode(xmlDom, sectionNode, "compress_mode", repository.compressMode)
 
-   @staticmethod
-   def _parseRepositoryDirs(parent):
-      """
+    @staticmethod
+    def _parseRepositoryDirs(parent):
+        """
       Reads a list of ``RepositoryDir`` objects from immediately beneath the parent.
 
       We read the following individual fields::
@@ -1056,23 +1074,23 @@ class LocalConfig(object):
       Raises:
          ValueError: If some filled-in value is invalid
       """
-      lst = []
-      for entry in readChildren(parent, "repository_dir"):
-         if isElement(entry):
-            repositoryDir = RepositoryDir()
-            repositoryDir.repositoryType = readString(entry, "type")
-            repositoryDir.directoryPath = readString(entry, "abs_path")
-            repositoryDir.collectMode = readString(entry, "collect_mode")
-            repositoryDir.compressMode = readString(entry, "compress_mode")
-            (repositoryDir.relativeExcludePaths, repositoryDir.excludePatterns) = LocalConfig._parseExclusions(entry)
-            lst.append(repositoryDir)
-      if lst == []:
-         lst = None
-      return lst
+        lst = []
+        for entry in readChildren(parent, "repository_dir"):
+            if isElement(entry):
+                repositoryDir = RepositoryDir()
+                repositoryDir.repositoryType = readString(entry, "type")
+                repositoryDir.directoryPath = readString(entry, "abs_path")
+                repositoryDir.collectMode = readString(entry, "collect_mode")
+                repositoryDir.compressMode = readString(entry, "compress_mode")
+                (repositoryDir.relativeExcludePaths, repositoryDir.excludePatterns) = LocalConfig._parseExclusions(entry)
+                lst.append(repositoryDir)
+        if lst == []:
+            lst = None
+        return lst
 
-   @staticmethod
-   def _parseExclusions(parentNode):
-      """
+    @staticmethod
+    def _parseExclusions(parentNode):
+        """
       Reads exclusions data from immediately beneath the parent.
 
       We read groups of the following items, one list element per item::
@@ -1089,17 +1107,17 @@ class LocalConfig(object):
       Returns:
           Tuple of (relative, patterns) exclusions
       """
-      section = readFirstChild(parentNode, "exclude")
-      if section is None:
-         return (None, None)
-      else:
-         relative = readStringList(section, "rel_path")
-         patterns = readStringList(section, "pattern")
-         return (relative, patterns)
+        section = readFirstChild(parentNode, "exclude")
+        if section is None:
+            return (None, None)
+        else:
+            relative = readStringList(section, "rel_path")
+            patterns = readStringList(section, "pattern")
+            return (relative, patterns)
 
-   @staticmethod
-   def _addRepositoryDir(xmlDom, parentNode, repositoryDir):
-      """
+    @staticmethod
+    def _addRepositoryDir(xmlDom, parentNode, repositoryDir):
+        """
       Adds a repository dir container as the next child of a parent.
 
       We add the following fields to the document::
@@ -1125,21 +1143,22 @@ class LocalConfig(object):
          parentNode: Parent that the section should be appended to
          repositoryDir: Repository dir to be added to the document
       """
-      if repositoryDir is not None:
-         sectionNode = addContainerNode(xmlDom, parentNode, "repository_dir")
-         addStringNode(xmlDom, sectionNode, "type", repositoryDir.repositoryType)
-         addStringNode(xmlDom, sectionNode, "abs_path", repositoryDir.directoryPath)
-         addStringNode(xmlDom, sectionNode, "collect_mode", repositoryDir.collectMode)
-         addStringNode(xmlDom, sectionNode, "compress_mode", repositoryDir.compressMode)
-         if ((repositoryDir.relativeExcludePaths is not None and repositoryDir.relativeExcludePaths != []) or
-             (repositoryDir.excludePatterns is not None and repositoryDir.excludePatterns != [])):
-            excludeNode = addContainerNode(xmlDom, sectionNode, "exclude")
-            if repositoryDir.relativeExcludePaths is not None:
-               for relativePath in repositoryDir.relativeExcludePaths:
-                  addStringNode(xmlDom, excludeNode, "rel_path", relativePath)
-            if repositoryDir.excludePatterns is not None:
-               for pattern in repositoryDir.excludePatterns:
-                  addStringNode(xmlDom, excludeNode, "pattern", pattern)
+        if repositoryDir is not None:
+            sectionNode = addContainerNode(xmlDom, parentNode, "repository_dir")
+            addStringNode(xmlDom, sectionNode, "type", repositoryDir.repositoryType)
+            addStringNode(xmlDom, sectionNode, "abs_path", repositoryDir.directoryPath)
+            addStringNode(xmlDom, sectionNode, "collect_mode", repositoryDir.collectMode)
+            addStringNode(xmlDom, sectionNode, "compress_mode", repositoryDir.compressMode)
+            if (repositoryDir.relativeExcludePaths is not None and repositoryDir.relativeExcludePaths != []) or (
+                repositoryDir.excludePatterns is not None and repositoryDir.excludePatterns != []
+            ):
+                excludeNode = addContainerNode(xmlDom, sectionNode, "exclude")
+                if repositoryDir.relativeExcludePaths is not None:
+                    for relativePath in repositoryDir.relativeExcludePaths:
+                        addStringNode(xmlDom, excludeNode, "rel_path", relativePath)
+                if repositoryDir.excludePatterns is not None:
+                    for pattern in repositoryDir.excludePatterns:
+                        addStringNode(xmlDom, excludeNode, "pattern", pattern)
 
 
 ########################################################################
@@ -1150,8 +1169,9 @@ class LocalConfig(object):
 # executeAction() function
 ###########################
 
+
 def executeAction(configPath, options, config):
-   """
+    """
    Executes the Subversion backup action.
 
    Args:
@@ -1162,28 +1182,30 @@ def executeAction(configPath, options, config):
       ValueError: Under many generic error conditions
       IOError: If a backup could not be written for some reason
    """
-   logger.debug("Executing Subversion extended action.")
-   if config.options is None or config.collect is None:
-      raise ValueError("Cedar Backup configuration is not properly filled in.")
-   local = LocalConfig(xmlPath=configPath)
-   todayIsStart = isStartOfWeek(config.options.startingDay)
-   fullBackup = options.full or todayIsStart
-   logger.debug("Full backup flag is [%s]", fullBackup)
-   if local.subversion.repositories is not None:
-      for repository in local.subversion.repositories:
-         _backupRepository(config, local, todayIsStart, fullBackup, repository)
-   if local.subversion.repositoryDirs is not None:
-      for repositoryDir in local.subversion.repositoryDirs:
-         logger.debug("Working with repository directory [%s].", repositoryDir.directoryPath)
-         for repositoryPath in _getRepositoryPaths(repositoryDir):
-            repository = Repository(repositoryDir.repositoryType, repositoryPath,
-                                    repositoryDir.collectMode, repositoryDir.compressMode)
+    logger.debug("Executing Subversion extended action.")
+    if config.options is None or config.collect is None:
+        raise ValueError("Cedar Backup configuration is not properly filled in.")
+    local = LocalConfig(xmlPath=configPath)
+    todayIsStart = isStartOfWeek(config.options.startingDay)
+    fullBackup = options.full or todayIsStart
+    logger.debug("Full backup flag is [%s]", fullBackup)
+    if local.subversion.repositories is not None:
+        for repository in local.subversion.repositories:
             _backupRepository(config, local, todayIsStart, fullBackup, repository)
-         logger.info("Completed backing up Subversion repository directory [%s].", repositoryDir.directoryPath)
-   logger.info("Executed the Subversion extended action successfully.")
+    if local.subversion.repositoryDirs is not None:
+        for repositoryDir in local.subversion.repositoryDirs:
+            logger.debug("Working with repository directory [%s].", repositoryDir.directoryPath)
+            for repositoryPath in _getRepositoryPaths(repositoryDir):
+                repository = Repository(
+                    repositoryDir.repositoryType, repositoryPath, repositoryDir.collectMode, repositoryDir.compressMode
+                )
+                _backupRepository(config, local, todayIsStart, fullBackup, repository)
+            logger.info("Completed backing up Subversion repository directory [%s].", repositoryDir.directoryPath)
+    logger.info("Executed the Subversion extended action successfully.")
+
 
 def _getCollectMode(local, repository):
-   """
+    """
    Gets the collect mode that should be used for a repository.
    Use repository's if possible, otherwise take from subversion section.
    Args:
@@ -1191,15 +1213,16 @@ def _getCollectMode(local, repository):
    Returns:
        Collect mode to use
    """
-   if repository.collectMode is None:
-      collectMode = local.subversion.collectMode
-   else:
-      collectMode = repository.collectMode
-   logger.debug("Collect mode is [%s]", collectMode)
-   return collectMode
+    if repository.collectMode is None:
+        collectMode = local.subversion.collectMode
+    else:
+        collectMode = repository.collectMode
+    logger.debug("Collect mode is [%s]", collectMode)
+    return collectMode
+
 
 def _getCompressMode(local, repository):
-   """
+    """
    Gets the compress mode that should be used for a repository.
    Use repository's if possible, otherwise take from subversion section.
    Args:
@@ -1208,15 +1231,16 @@ def _getCompressMode(local, repository):
    Returns:
        Compress mode to use
    """
-   if repository.compressMode is None:
-      compressMode = local.subversion.compressMode
-   else:
-      compressMode = repository.compressMode
-   logger.debug("Compress mode is [%s]", compressMode)
-   return compressMode
+    if repository.compressMode is None:
+        compressMode = local.subversion.compressMode
+    else:
+        compressMode = repository.compressMode
+    logger.debug("Compress mode is [%s]", compressMode)
+    return compressMode
+
 
 def _getRevisionPath(config, repository):
-   """
+    """
    Gets the path to the revision file associated with a repository.
    Args:
       config: Config object
@@ -1224,14 +1248,15 @@ def _getRevisionPath(config, repository):
    Returns:
        Absolute path to the revision file associated with the repository
    """
-   normalized = buildNormalizedPath(repository.repositoryPath)
-   filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
-   revisionPath = os.path.join(config.options.workingDir, filename)
-   logger.debug("Revision file path is [%s]", revisionPath)
-   return revisionPath
+    normalized = buildNormalizedPath(repository.repositoryPath)
+    filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
+    revisionPath = os.path.join(config.options.workingDir, filename)
+    logger.debug("Revision file path is [%s]", revisionPath)
+    return revisionPath
+
 
 def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevision):
-   """
+    """
    Gets the backup file path (including correct extension) associated with a repository.
    Args:
       config: Config object
@@ -1242,33 +1267,35 @@ def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevis
    Returns:
        Absolute path to the backup file associated with the repository
    """
-   normalizedPath = buildNormalizedPath(repositoryPath)
-   filename = "svndump-%d:%d-%s.txt" % (startRevision, endRevision, normalizedPath)
-   if compressMode == 'gzip':
-      filename = "%s.gz" % filename
-   elif compressMode == 'bzip2':
-      filename = "%s.bz2" % filename
-   backupPath = os.path.join(config.collect.targetDir, filename)
-   logger.debug("Backup file path is [%s]", backupPath)
-   return backupPath
+    normalizedPath = buildNormalizedPath(repositoryPath)
+    filename = "svndump-%d:%d-%s.txt" % (startRevision, endRevision, normalizedPath)
+    if compressMode == "gzip":
+        filename = "%s.gz" % filename
+    elif compressMode == "bzip2":
+        filename = "%s.bz2" % filename
+    backupPath = os.path.join(config.collect.targetDir, filename)
+    logger.debug("Backup file path is [%s]", backupPath)
+    return backupPath
+
 
 def _getRepositoryPaths(repositoryDir):
-   """
+    """
    Gets a list of child repository paths within a repository directory.
    Args:
       repositoryDir: RepositoryDirectory
    """
-   (excludePaths, excludePatterns) = _getExclusions(repositoryDir)
-   fsList = FilesystemList()
-   fsList.excludeFiles = True
-   fsList.excludeLinks = True
-   fsList.excludePaths = excludePaths
-   fsList.excludePatterns = excludePatterns
-   fsList.addDirContents(path=repositoryDir.directoryPath, recursive=False, addSelf=False)
-   return fsList
+    (excludePaths, excludePatterns) = _getExclusions(repositoryDir)
+    fsList = FilesystemList()
+    fsList.excludeFiles = True
+    fsList.excludeLinks = True
+    fsList.excludePaths = excludePaths
+    fsList.excludePatterns = excludePatterns
+    fsList.addDirContents(path=repositoryDir.directoryPath, recursive=False, addSelf=False)
+    return fsList
+
 
 def _getExclusions(repositoryDir):
-   """
+    """
    Gets exclusions (file and patterns) associated with an repository directory.
 
    The returned files value is a list of absolute paths to be excluded from the
@@ -1285,19 +1312,20 @@ def _getExclusions(repositoryDir):
    Returns:
        Tuple (files, patterns) indicating what to exclude
    """
-   paths = []
-   if repositoryDir.relativeExcludePaths is not None:
-      for relativePath in repositoryDir.relativeExcludePaths:
-         paths.append(os.path.join(repositoryDir.directoryPath, relativePath))
-   patterns = []
-   if repositoryDir.excludePatterns is not None:
-      patterns.extend(repositoryDir.excludePatterns)
-   logger.debug("Exclude paths: %s", paths)
-   logger.debug("Exclude patterns: %s", patterns)
-   return(paths, patterns)
+    paths = []
+    if repositoryDir.relativeExcludePaths is not None:
+        for relativePath in repositoryDir.relativeExcludePaths:
+            paths.append(os.path.join(repositoryDir.directoryPath, relativePath))
+    patterns = []
+    if repositoryDir.excludePatterns is not None:
+        patterns.extend(repositoryDir.excludePatterns)
+    logger.debug("Exclude paths: %s", paths)
+    logger.debug("Exclude patterns: %s", patterns)
+    return (paths, patterns)
+
 
 def _backupRepository(config, local, todayIsStart, fullBackup, repository):
-   """
+    """
    Backs up an individual Subversion repository.
 
    This internal method wraps the public methods and adds some functionality
@@ -1314,42 +1342,43 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
       ValueError: If some value is missing or invalid
       IOError: If there is a problem executing the Subversion dump
    """
-   logger.debug("Working with repository [%s]", repository.repositoryPath)
-   logger.debug("Repository type is [%s]", repository.repositoryType)
-   collectMode = _getCollectMode(local, repository)
-   compressMode = _getCompressMode(local, repository)
-   revisionPath = _getRevisionPath(config, repository)
-   if not (fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart)):
-      logger.debug("Repository will not be backed up, per collect mode.")
-      return
-   logger.debug("Repository meets criteria to be backed up today.")
-   if collectMode != "incr" or fullBackup:
-      startRevision = 0
-      endRevision = getYoungestRevision(repository.repositoryPath)
-      logger.debug("Using full backup, revision: (%d, %d).", startRevision, endRevision)
-   else:
-      if fullBackup:
-         startRevision = 0
-         endRevision = getYoungestRevision(repository.repositoryPath)
-      else:
-         startRevision = _loadLastRevision(revisionPath) + 1
-         endRevision = getYoungestRevision(repository.repositoryPath)
-         if startRevision > endRevision:
-            logger.info("No need to back up repository [%s]; no new revisions.", repository.repositoryPath)
-            return
-      logger.debug("Using incremental backup, revision: (%d, %d).", startRevision, endRevision)
-   backupPath = _getBackupPath(config, repository.repositoryPath, compressMode, startRevision, endRevision)
-   with _getOutputFile(backupPath, compressMode) as outputFile:
-      backupRepository(repository.repositoryPath, outputFile, startRevision, endRevision)
-   if not os.path.exists(backupPath):
-      raise IOError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
-   changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
-   if collectMode == "incr":
-      _writeLastRevision(config, revisionPath, endRevision)
-   logger.info("Completed backing up Subversion repository [%s].", repository.repositoryPath)
+    logger.debug("Working with repository [%s]", repository.repositoryPath)
+    logger.debug("Repository type is [%s]", repository.repositoryType)
+    collectMode = _getCollectMode(local, repository)
+    compressMode = _getCompressMode(local, repository)
+    revisionPath = _getRevisionPath(config, repository)
+    if not (fullBackup or (collectMode in ["daily", "incr"]) or (collectMode == "weekly" and todayIsStart)):
+        logger.debug("Repository will not be backed up, per collect mode.")
+        return
+    logger.debug("Repository meets criteria to be backed up today.")
+    if collectMode != "incr" or fullBackup:
+        startRevision = 0
+        endRevision = getYoungestRevision(repository.repositoryPath)
+        logger.debug("Using full backup, revision: (%d, %d).", startRevision, endRevision)
+    else:
+        if fullBackup:
+            startRevision = 0
+            endRevision = getYoungestRevision(repository.repositoryPath)
+        else:
+            startRevision = _loadLastRevision(revisionPath) + 1
+            endRevision = getYoungestRevision(repository.repositoryPath)
+            if startRevision > endRevision:
+                logger.info("No need to back up repository [%s]; no new revisions.", repository.repositoryPath)
+                return
+        logger.debug("Using incremental backup, revision: (%d, %d).", startRevision, endRevision)
+    backupPath = _getBackupPath(config, repository.repositoryPath, compressMode, startRevision, endRevision)
+    with _getOutputFile(backupPath, compressMode) as outputFile:
+        backupRepository(repository.repositoryPath, outputFile, startRevision, endRevision)
+    if not os.path.exists(backupPath):
+        raise IOError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
+    changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
+    if collectMode == "incr":
+        _writeLastRevision(config, revisionPath, endRevision)
+    logger.info("Completed backing up Subversion repository [%s].", repository.repositoryPath)
+
 
 def _getOutputFile(backupPath, compressMode):
-   """
+    """
    Opens the output file used for saving the Subversion dump.
 
    If the compress mode is "gzip", we'll open a ``GzipFile``, and if the
@@ -1363,15 +1392,16 @@ def _getOutputFile(backupPath, compressMode):
    Returns:
        Output file object, opened in binary mode for use with executeCommand()
    """
-   if compressMode == "gzip":
-      return GzipFile(backupPath, "wb")
-   elif compressMode == "bzip2":
-      return BZ2File(backupPath, "wb")
-   else:
-      return open(backupPath, "wb")
+    if compressMode == "gzip":
+        return GzipFile(backupPath, "wb")
+    elif compressMode == "bzip2":
+        return BZ2File(backupPath, "wb")
+    else:
+        return open(backupPath, "wb")
+
 
 def _loadLastRevision(revisionPath):
-   """
+    """
    Loads the indicated revision file from disk into an integer.
 
    If we can't load the revision file successfully (either because it doesn't
@@ -1386,21 +1416,22 @@ def _loadLastRevision(revisionPath):
    Returns:
        Integer representing last backed-up revision, -1 on error or if none can be read
    """
-   if not os.path.isfile(revisionPath):
-      startRevision = -1
-      logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
-   else:
-      try:
-         with open(revisionPath, "rb") as f:
-            startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
-         logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
-      except Exception as e:
-         startRevision = -1
-         logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
-   return startRevision
+    if not os.path.isfile(revisionPath):
+        startRevision = -1
+        logger.debug("Revision file [%s] does not exist on disk.", revisionPath)
+    else:
+        try:
+            with open(revisionPath, "rb") as f:
+                startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+            logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
+        except Exception as e:
+            startRevision = -1
+            logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
+    return startRevision
+
 
 def _writeLastRevision(config, revisionPath, endRevision):
-   """
+    """
    Writes the end revision to the indicated revision file on disk.
 
    If we can't write the revision file successfully for any reason, we'll log
@@ -1411,21 +1442,22 @@ def _writeLastRevision(config, revisionPath, endRevision):
       revisionPath: Path to the revision file on disk
       endRevision: Last revision backed up on this run
    """
-   try:
-      with open(revisionPath, "wb") as f:
-         pickle.dump(endRevision, f, 0, fix_imports=True)
-      changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
-      logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
-   except Exception as e:
-      logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
+    try:
+        with open(revisionPath, "wb") as f:
+            pickle.dump(endRevision, f, 0, fix_imports=True)
+        changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
+        logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
+    except Exception as e:
+        logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 
 ##############################
 # backupRepository() function
 ##############################
 
+
 def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision=None):
-   """
+    """
    Backs up an individual Subversion repository.
 
    The starting and ending revision values control an incremental backup.  If
@@ -1454,30 +1486,31 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
       ValueError: If some value is missing or invalid
       IOError: If there is a problem executing the Subversion dump
    """
-   if startRevision is None:
-      startRevision = 0
-   if endRevision is None:
-      endRevision = getYoungestRevision(repositoryPath)
-   if int(startRevision) < 0:
-      raise ValueError("Start revision must be >= 0.")
-   if int(endRevision) < 0:
-      raise ValueError("End revision must be >= 0.")
-   if startRevision > endRevision:
-      raise ValueError("Start revision must be <= end revision.")
-   args = ["dump", "--quiet", "-r%s:%s" % (startRevision, endRevision), "--incremental", repositoryPath]
-   command = resolveCommand(SVNADMIN_COMMAND)
-   result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
-   if result != 0:
-      raise IOError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
-   logger.debug("Completed dumping subversion repository [%s].", repositoryPath)
+    if startRevision is None:
+        startRevision = 0
+    if endRevision is None:
+        endRevision = getYoungestRevision(repositoryPath)
+    if int(startRevision) < 0:
+        raise ValueError("Start revision must be >= 0.")
+    if int(endRevision) < 0:
+        raise ValueError("End revision must be >= 0.")
+    if startRevision > endRevision:
+        raise ValueError("Start revision must be <= end revision.")
+    args = ["dump", "--quiet", "-r%s:%s" % (startRevision, endRevision), "--incremental", repositoryPath]
+    command = resolveCommand(SVNADMIN_COMMAND)
+    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
+    if result != 0:
+        raise IOError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
+    logger.debug("Completed dumping subversion repository [%s].", repositoryPath)
 
 
 #################################
 # getYoungestRevision() function
 #################################
 
+
 def getYoungestRevision(repositoryPath):
-   """
+    """
    Gets the youngest (newest) revision in a Subversion repository using ``svnlook``.
 
    *Note:* This function should either be run as root or as the owner of the
@@ -1492,72 +1525,72 @@ def getYoungestRevision(repositoryPath):
       ValueError: If there is a problem parsing the ``svnlook`` output
       IOError: If there is a problem executing the ``svnlook`` command
    """
-   args = ['youngest', repositoryPath]
-   command = resolveCommand(SVNLOOK_COMMAND)
-   (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-   if result != 0:
-      raise IOError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
-   if len(output) != 1:
-      raise ValueError("Unable to parse 'svnlook youngest' output.")
-   return int(output[0])
+    args = ["youngest", repositoryPath]
+    command = resolveCommand(SVNLOOK_COMMAND)
+    (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+    if result != 0:
+        raise IOError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
+    if len(output) != 1:
+        raise ValueError("Unable to parse 'svnlook youngest' output.")
+    return int(output[0])
 
 
 ########################################################################
 # Deprecated functionality
 ########################################################################
 
+
 class BDBRepository(Repository):
 
-   """
+    """
    Class representing Subversion BDB (Berkeley Database) repository configuration.
    This object is deprecated.  Use a simple :any:`Repository` instead.
    """
 
-   def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
-      """
+    def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
+        """
       Constructor for the ``BDBRepository`` class.
       """
-      super(BDBRepository, self).__init__("BDB", repositoryPath, collectMode, compressMode)
+        super(BDBRepository, self).__init__("BDB", repositoryPath, collectMode, compressMode)
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "BDBRepository(%s, %s, %s)" % (self.repositoryPath, self.collectMode, self.compressMode)
+        return "BDBRepository(%s, %s, %s)" % (self.repositoryPath, self.collectMode, self.compressMode)
 
 
 class FSFSRepository(Repository):
 
-   """
+    """
    Class representing Subversion FSFS repository configuration.
    This object is deprecated.  Use a simple :any:`Repository` instead.
    """
 
-   def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
-      """
+    def __init__(self, repositoryPath=None, collectMode=None, compressMode=None):
+        """
       Constructor for the ``FSFSRepository`` class.
       """
-      super(FSFSRepository, self).__init__("FSFS", repositoryPath, collectMode, compressMode)
+        super(FSFSRepository, self).__init__("FSFS", repositoryPath, collectMode, compressMode)
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "FSFSRepository(%s, %s, %s)" % (self.repositoryPath, self.collectMode, self.compressMode)
+        return "FSFSRepository(%s, %s, %s)" % (self.repositoryPath, self.collectMode, self.compressMode)
 
 
 def backupBDBRepository(repositoryPath, backupFile, startRevision=None, endRevision=None):
-   """
+    """
    Backs up an individual Subversion BDB repository.
    This function is deprecated.  Use :any:`backupRepository` instead.
    """
-   return backupRepository(repositoryPath, backupFile, startRevision, endRevision)
+    return backupRepository(repositoryPath, backupFile, startRevision, endRevision)
 
 
 def backupFSFSRepository(repositoryPath, backupFile, startRevision=None, endRevision=None):
-   """
+    """
    Backs up an individual Subversion FSFS repository.
    This function is deprecated.  Use :any:`backupRepository` instead.
    """
-   return backupRepository(repositoryPath, backupFile, startRevision, endRevision)
-
+    return backupRepository(repositoryPath, backupFile, startRevision, endRevision)

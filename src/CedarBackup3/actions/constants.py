@@ -28,11 +28,10 @@ Provides common constants used by standard actions.
 # Module-wide constants and variables
 ########################################################################
 
-DIR_TIME_FORMAT      = "%Y/%m/%d"
-DIGEST_EXTENSION     = "sha"
+DIR_TIME_FORMAT = "%Y/%m/%d"
+DIGEST_EXTENSION = "sha"
 
-INDICATOR_PATTERN    = [r"cback\..*"]
-COLLECT_INDICATOR    = "cback.collect"
-STAGE_INDICATOR      = "cback.stage"
-STORE_INDICATOR      = "cback.store"
-
+INDICATOR_PATTERN = [r"cback\..*"]
+COLLECT_INDICATOR = "cback.collect"
+STAGE_INDICATOR = "cback.stage"
+STORE_INDICATOR = "cback.store"

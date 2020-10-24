@@ -45,11 +45,9 @@ Implements the standard 'validate' action.
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import logging
 
-# Cedar Backup modules
 from CedarBackup3.util import getUidGid, getFunctionReference
 from CedarBackup3.actions.util import createWriter
 
@@ -71,7 +69,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.validate")
 
 # pylint: disable=W0613
 def executeValidate(configPath, options, config):
-   """
+    """
    Executes the validate action.
 
    This action validates each of the individual sections in the config file.
@@ -95,23 +93,23 @@ def executeValidate(configPath, options, config):
    Raises:
       ValueError: If some configuration value is invalid
    """
-   logger.debug("Executing the 'validate' action.")
-   if options.quiet:
-      logfunc = logger.info   # info so it goes to the log
-   else:
-      logfunc = logger.error  # error so it goes to the screen
-   valid = True
-   valid &= _validateReference(config, logfunc)
-   valid &= _validateOptions(config, logfunc)
-   valid &= _validateCollect(config, logfunc)
-   valid &= _validateStage(config, logfunc)
-   valid &= _validateStore(config, logfunc)
-   valid &= _validatePurge(config, logfunc)
-   valid &= _validateExtensions(config, logfunc)
-   if valid:
-      logfunc("Configuration is valid.")
-   else:
-      logfunc("Configuration is not valid.")
+    logger.debug("Executing the 'validate' action.")
+    if options.quiet:
+        logfunc = logger.info  # info so it goes to the log
+    else:
+        logfunc = logger.error  # error so it goes to the screen
+    valid = True
+    valid &= _validateReference(config, logfunc)
+    valid &= _validateOptions(config, logfunc)
+    valid &= _validateCollect(config, logfunc)
+    valid &= _validateStage(config, logfunc)
+    valid &= _validateStore(config, logfunc)
+    valid &= _validatePurge(config, logfunc)
+    valid &= _validateExtensions(config, logfunc)
+    if valid:
+        logfunc("Configuration is valid.")
+    else:
+        logfunc("Configuration is not valid.")
 
 
 ########################################################################
@@ -122,8 +120,9 @@ def executeValidate(configPath, options, config):
 # _checkDir() function
 #######################
 
+
 def _checkDir(path, writable, logfunc, prefix):
-   """
+    """
    Checks that the indicated directory is OK.
 
    The path must exist, must be a directory, must be readable and executable,
@@ -138,30 +137,31 @@ def _checkDir(path, writable, logfunc, prefix):
    Returns:
        True if the directory is OK, False otherwise
    """
-   if not os.path.exists(path):
-      logfunc("%s [%s] does not exist." % (prefix, path))
-      return False
-   if not os.path.isdir(path):
-      logfunc("%s [%s] is not a directory." % (prefix, path))
-      return False
-   if not os.access(path, os.R_OK):
-      logfunc("%s [%s] is not readable." % (prefix, path))
-      return False
-   if not os.access(path, os.X_OK):
-      logfunc("%s [%s] is not executable." % (prefix, path))
-      return False
-   if writable and not os.access(path, os.W_OK):
-      logfunc("%s [%s] is not writable." % (prefix, path))
-      return False
-   return True
+    if not os.path.exists(path):
+        logfunc("%s [%s] does not exist." % (prefix, path))
+        return False
+    if not os.path.isdir(path):
+        logfunc("%s [%s] is not a directory." % (prefix, path))
+        return False
+    if not os.access(path, os.R_OK):
+        logfunc("%s [%s] is not readable." % (prefix, path))
+        return False
+    if not os.access(path, os.X_OK):
+        logfunc("%s [%s] is not executable." % (prefix, path))
+        return False
+    if writable and not os.access(path, os.W_OK):
+        logfunc("%s [%s] is not writable." % (prefix, path))
+        return False
+    return True
 
 
 ################################
 # _validateReference() function
 ################################
 
+
 def _validateReference(config, logfunc):
-   """
+    """
    Execute runtime validations on reference configuration.
 
    We only validate that reference configuration exists at all.
@@ -173,19 +173,20 @@ def _validateReference(config, logfunc):
    Returns:
        True if configuration is valid, false otherwise
    """
-   valid = True
-   if config.reference is None:
-      logfunc("Required reference configuration does not exist.")
-      valid = False
-   return valid
+    valid = True
+    if config.reference is None:
+        logfunc("Required reference configuration does not exist.")
+        valid = False
+    return valid
 
 
 ##############################
 # _validateOptions() function
 ##############################
 
+
 def _validateOptions(config, logfunc):
-   """
+    """
    Execute runtime validations on options configuration.
 
    The following validations are enforced:
@@ -201,26 +202,27 @@ def _validateOptions(config, logfunc):
    Returns:
        True if configuration is valid, false otherwise
    """
-   valid = True
-   if config.options is None:
-      logfunc("Required options configuration does not exist.")
-      valid = False
-   else:
-      valid &= _checkDir(config.options.workingDir, True, logfunc, "Working directory")
-      try:
-         getUidGid(config.options.backupUser, config.options.backupGroup)
-      except ValueError:
-         logfunc("Backup user:group [%s:%s] invalid." % (config.options.backupUser, config.options.backupGroup))
-         valid = False
-   return valid
+    valid = True
+    if config.options is None:
+        logfunc("Required options configuration does not exist.")
+        valid = False
+    else:
+        valid &= _checkDir(config.options.workingDir, True, logfunc, "Working directory")
+        try:
+            getUidGid(config.options.backupUser, config.options.backupGroup)
+        except ValueError:
+            logfunc("Backup user:group [%s:%s] invalid." % (config.options.backupUser, config.options.backupGroup))
+            valid = False
+    return valid
 
 
 ##############################
 # _validateCollect() function
 ##############################
 
+
 def _validateCollect(config, logfunc):
-   """
+    """
    Execute runtime validations on collect configuration.
 
    The following validations are enforced:
@@ -235,21 +237,22 @@ def _validateCollect(config, logfunc):
    Returns:
        True if configuration is valid, false otherwise
    """
-   valid = True
-   if config.collect is not None:
-      valid &= _checkDir(config.collect.targetDir, True, logfunc, "Collect target directory")
-      if config.collect.collectDirs is not None:
-         for collectDir in config.collect.collectDirs:
-            valid &= _checkDir(collectDir.absolutePath, False, logfunc, "Collect directory")
-   return valid
+    valid = True
+    if config.collect is not None:
+        valid &= _checkDir(config.collect.targetDir, True, logfunc, "Collect target directory")
+        if config.collect.collectDirs is not None:
+            for collectDir in config.collect.collectDirs:
+                valid &= _checkDir(collectDir.absolutePath, False, logfunc, "Collect directory")
+    return valid
 
 
 ############################
 # _validateStage() function
 ############################
 
+
 def _validateStage(config, logfunc):
-   """
+    """
    Execute runtime validations on stage configuration.
 
    The following validations are enforced:
@@ -269,21 +272,22 @@ def _validateStage(config, logfunc):
    Returns:
        True if configuration is valid, False otherwise
    """
-   valid = True
-   if config.stage is not None:
-      valid &= _checkDir(config.stage.targetDir, True, logfunc, "Stage target dir ")
-      if config.stage.localPeers is not None:
-         for peer in config.stage.localPeers:
-            valid &= _checkDir(peer.collectDir, False, logfunc, "Local peer collect dir ")
-   return valid
+    valid = True
+    if config.stage is not None:
+        valid &= _checkDir(config.stage.targetDir, True, logfunc, "Stage target dir ")
+        if config.stage.localPeers is not None:
+            for peer in config.stage.localPeers:
+                valid &= _checkDir(peer.collectDir, False, logfunc, "Local peer collect dir ")
+    return valid
 
 
 ############################
 # _validateStore() function
 ############################
 
+
 def _validateStore(config, logfunc):
-   """
+    """
    Execute runtime validations on store configuration.
 
    The following validations are enforced:
@@ -298,23 +302,24 @@ def _validateStore(config, logfunc):
    Returns:
        True if configuration is valid, False otherwise
    """
-   valid = True
-   if config.store is not None:
-      valid &= _checkDir(config.store.sourceDir, False, logfunc, "Store source directory")
-      try:
-         createWriter(config)
-      except ValueError:
-         logfunc("Backup device [%s] [%s] is not valid." % (config.store.devicePath, config.store.deviceScsiId))
-         valid = False
-   return valid
+    valid = True
+    if config.store is not None:
+        valid &= _checkDir(config.store.sourceDir, False, logfunc, "Store source directory")
+        try:
+            createWriter(config)
+        except ValueError:
+            logfunc("Backup device [%s] [%s] is not valid." % (config.store.devicePath, config.store.deviceScsiId))
+            valid = False
+    return valid
 
 
 ############################
 # _validatePurge() function
 ############################
 
+
 def _validatePurge(config, logfunc):
-   """
+    """
    Execute runtime validations on purge configuration.
 
    The following validations are enforced:
@@ -328,20 +333,21 @@ def _validatePurge(config, logfunc):
    Returns:
        True if configuration is valid, False otherwise
    """
-   valid = True
-   if config.purge is not None:
-      if config.purge.purgeDirs is not None:
-         for purgeDir in config.purge.purgeDirs:
-            valid &= _checkDir(purgeDir.absolutePath, True, logfunc, "Purge directory")
-   return valid
+    valid = True
+    if config.purge is not None:
+        if config.purge.purgeDirs is not None:
+            for purgeDir in config.purge.purgeDirs:
+                valid &= _checkDir(purgeDir.absolutePath, True, logfunc, "Purge directory")
+    return valid
 
 
 #################################
 # _validateExtensions() function
 #################################
 
+
 def _validateExtensions(config, logfunc):
-   """
+    """
    Execute runtime validations on extensions configuration.
 
    The following validations are enforced:
@@ -355,17 +361,16 @@ def _validateExtensions(config, logfunc):
    Returns:
        True if configuration is valid, False otherwise
    """
-   valid = True
-   if config.extensions is not None:
-      if config.extensions.actions is not None:
-         for action in config.extensions.actions:
-            try:
-               getFunctionReference(action.module, action.function)
-            except ImportError:
-               logfunc("Unable to find function [%s.%s]." % (action.module, action.function))
-               valid = False
-            except ValueError:
-               logfunc("Function [%s.%s] is not callable." % (action.module, action.function))
-               valid = False
-   return valid
-
+    valid = True
+    if config.extensions is not None:
+        if config.extensions.actions is not None:
+            for action in config.extensions.actions:
+                try:
+                    getFunctionReference(action.module, action.function)
+                except ImportError:
+                    logfunc("Unable to find function [%s.%s]." % (action.module, action.function))
+                    valid = False
+                except ValueError:
+                    logfunc("Function [%s.%s] is not callable." % (action.module, action.function))
+                    valid = False
+    return valid

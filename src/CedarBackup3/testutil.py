@@ -80,8 +80,9 @@ from CedarBackup3.util import encodePath, executeCommand
 # setupDebugLogger() function
 ##############################
 
+
 def setupDebugLogger():
-   """
+    """
    Sets up a screen logger for debugging purposes.
 
    Normally, the CLI functionality configures the logger so that
@@ -90,21 +91,22 @@ def setupDebugLogger():
    and output -- dumped to the screen.  This function takes care
    of that.
    """
-   logger = logging.getLogger("CedarBackup3")
-   logger.setLevel(logging.DEBUG)    # let the logger see all messages
-   formatter = logging.Formatter(fmt="%(message)s")
-   handler = logging.StreamHandler(stream=sys.stdout)
-   handler.setFormatter(formatter)
-   handler.setLevel(logging.DEBUG)
-   logger.addHandler(handler)
+    logger = logging.getLogger("CedarBackup3")
+    logger.setLevel(logging.DEBUG)  # let the logger see all messages
+    formatter = logging.Formatter(fmt="%(message)s")
+    handler = logging.StreamHandler(stream=sys.stdout)
+    handler.setFormatter(formatter)
+    handler.setLevel(logging.DEBUG)
+    logger.addHandler(handler)
 
 
 #################
 # setupOverrides
 #################
 
+
 def setupOverrides():
-   """
+    """
    Set up any platform-specific overrides that might be required.
 
    When packages are built, this is done manually (hardcoded) in customize.py
@@ -117,21 +119,22 @@ def setupOverrides():
    to set up the custom overrides so that platform-specific unit tests continue
    to work.
    """
-   config = Config()
-   config.options = OptionsConfig()
-   if platformDebian():
-      customizeOverrides(config, platform="debian")
-   else:
-      customizeOverrides(config, platform="standard")
-   setupPathResolver(config)
+    config = Config()
+    config.options = OptionsConfig()
+    if platformDebian():
+        customizeOverrides(config, platform="debian")
+    else:
+        customizeOverrides(config, platform="standard")
+    setupPathResolver(config)
 
 
 ###########################
 # findResources() function
 ###########################
 
+
 def findResources(resources, dataDirs):
-   """
+    """
    Returns a dictionary of locations for various resources.
    Args:
       resources: List of required resources
@@ -141,24 +144,25 @@ def findResources(resources, dataDirs):
    Raises:
       Exception: If some resource cannot be found
    """
-   mapping = {}
-   for resource in resources:
-      for resourceDir in dataDirs:
-         path = os.path.join(resourceDir, resource)
-         if os.path.exists(path):
-            mapping[resource] = path
-            break
-      else:
-         raise Exception("Unable to find resource [%s]." % resource)
-   return mapping
+    mapping = {}
+    for resource in resources:
+        for resourceDir in dataDirs:
+            path = os.path.join(resourceDir, resource)
+            if os.path.exists(path):
+                mapping[resource] = path
+                break
+        else:
+            raise Exception("Unable to find resource [%s]." % resource)
+    return mapping
 
 
 ##############################
 # commandAvailable() function
 ##############################
 
+
 def commandAvailable(command):
-   """
+    """
    Indicates whether a command is available on $PATH somewhere.
    This should work on both Windows and UNIX platforms.
    Args:
@@ -166,19 +170,20 @@ def commandAvailable(command):
    Returns:
        Boolean true/false depending on whether command is available
    """
-   if "PATH" in os.environ:
-      for path in os.environ["PATH"].split(os.sep):
-         if os.path.exists(os.path.join(path, command)):
-            return True
-   return False
+    if "PATH" in os.environ:
+        for path in os.environ["PATH"].split(os.sep):
+            if os.path.exists(os.path.join(path, command)):
+                return True
+    return False
 
 
 #######################
 # buildPath() function
 #######################
 
+
 def buildPath(components):
-   """
+    """
    Builds a complete path from a list of components.
    For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c",]``.
    Args:
@@ -188,18 +193,19 @@ def buildPath(components):
    Raises:
       ValueError: If a path cannot be encoded properly
    """
-   path = components[0]
-   for component in components[1:]:
-      path = os.path.join(path, component)
-   return encodePath(path)
+    path = components[0]
+    for component in components[1:]:
+        path = os.path.join(path, component)
+    return encodePath(path)
 
 
 #######################
 # removedir() function
 #######################
 
+
 def removedir(tree):
-   """
+    """
    Recursively removes an entire directory.
    This is basically taken from an example on python.com.
    Args:
@@ -207,29 +213,30 @@ def removedir(tree):
    Raises:
       ValueError: If a path cannot be encoded properly
    """
-   tree = encodePath(tree)
-   for root, dirs, files in os.walk(tree, topdown=False):
-      for name in files:
-         path = os.path.join(root, name)
-         if os.path.islink(path):
-            os.remove(path)
-         elif os.path.isfile(path):
-            os.remove(path)
-      for name in dirs:
-         path = os.path.join(root, name)
-         if os.path.islink(path):
-            os.remove(path)
-         elif os.path.isdir(path):
-            os.rmdir(path)
-   os.rmdir(tree)
+    tree = encodePath(tree)
+    for root, dirs, files in os.walk(tree, topdown=False):
+        for name in files:
+            path = os.path.join(root, name)
+            if os.path.islink(path):
+                os.remove(path)
+            elif os.path.isfile(path):
+                os.remove(path)
+        for name in dirs:
+            path = os.path.join(root, name)
+            if os.path.islink(path):
+                os.remove(path)
+            elif os.path.isdir(path):
+                os.rmdir(path)
+    os.rmdir(tree)
 
 
 ########################
 # extractTar() function
 ########################
 
+
 def extractTar(tmpdir, filepath):
-   """
+    """
    Extracts the indicated tar file to the indicated tmpdir.
    Args:
       tmpdir: Temp directory to extract to
@@ -237,24 +244,25 @@ def extractTar(tmpdir, filepath):
    Raises:
       ValueError: If a path cannot be encoded properly
    """
-   # pylint: disable=E1101
-   tmpdir = encodePath(tmpdir)
-   filepath = encodePath(filepath)
-   with tarfile.open(filepath) as tar:
-      try:
-         tar.format = tarfile.GNU_FORMAT
-      except AttributeError:
-         tar.posix = False
-      for tarinfo in tar:
-         tar.extract(tarinfo, tmpdir)
+    # pylint: disable=E1101
+    tmpdir = encodePath(tmpdir)
+    filepath = encodePath(filepath)
+    with tarfile.open(filepath) as tar:
+        try:
+            tar.format = tarfile.GNU_FORMAT
+        except AttributeError:
+            tar.posix = False
+        for tarinfo in tar:
+            tar.extract(tarinfo, tmpdir)
 
 
 ###########################
 # changeFileAge() function
 ###########################
 
+
 def changeFileAge(filename, subtract=None):
-   """
+    """
    Changes a file age using the ``os.utime`` function.
 
    *Note:* Some platforms don't seem to be able to set an age precisely.  As a
@@ -272,60 +280,63 @@ def changeFileAge(filename, subtract=None):
    Raises:
       ValueError: If a path cannot be encoded properly
    """
-   filename = encodePath(filename)
-   newTime = time.time() - 1
-   if subtract is not None:
-      newTime -= subtract
-   os.utime(filename, (newTime, newTime))
+    filename = encodePath(filename)
+    newTime = time.time() - 1
+    if subtract is not None:
+        newTime -= subtract
+    os.utime(filename, (newTime, newTime))
 
 
 ###########################
 # getMaskAsMode() function
 ###########################
 
+
 def getMaskAsMode():
-   """
+    """
    Returns the user's current umask inverted to a mode.
    A mode is mostly a bitwise inversion of a mask, i.e. mask 002 is mode 775.
    Returns:
        Umask converted to a mode, as an integer
    """
-   umask = os.umask(0o777)
-   os.umask(umask)
-   return int(~umask & 0o777)  # invert, then use only lower bytes
+    umask = os.umask(0o777)
+    os.umask(umask)
+    return int(~umask & 0o777)  # invert, then use only lower bytes
 
 
 ######################
 # getLogin() function
 ######################
 
+
 def getLogin():
-   """
+    """
    Returns the name of the currently-logged in user.  This might fail under
    some circumstances - but if it does, our tests would fail anyway.
    """
-   return getpass.getuser()
+    return getpass.getuser()
 
 
 ############################
 # randomFilename() function
 ############################
 
+
 def randomFilename(length, prefix=None, suffix=None):
-   """
+    """
    Generates a random filename with the given length.
    Args:
       length: Length of filename
    @return Random filename
    """
-   characters = [None] * length
-   for i in range(length):
-      characters[i] = random.choice(string.ascii_uppercase)
-   if prefix is None:
-      prefix = ""
-   if suffix is None:
-      suffix = ""
-   return "%s%s%s" % (prefix, "".join(characters), suffix)
+    characters = [None] * length
+    for i in range(length):
+        characters[i] = random.choice(string.ascii_uppercase)
+    if prefix is None:
+        prefix = ""
+    if suffix is None:
+        suffix = ""
+    return "%s%s%s" % (prefix, "".join(characters), suffix)
 
 
 ####################################
@@ -334,7 +345,7 @@ def randomFilename(length, prefix=None, suffix=None):
 
 # pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
-   """
+    """
    Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 
    It's nice to be able to use ``failUnlessRaises`` to check that a method call
@@ -372,26 +383,28 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
 
    @see: ``unittest.TestCase.failUnlessRaises``
    """
-   missed = False
-   instead = None
-   try:
-      exec("obj.%s = value" % prop)    # pylint: disable=W0122
-      missed = True
-   except exception: pass
-   except Exception as e:
-      instead = e
-   if missed:
-      testCase.fail("Expected assignment to raise %s, but got no exception." % (exception.__name__))
-   if instead is not None:
-      testCase.fail("Expected assignment to raise %s, but got %s instead." % (ValueError, instead.__class__.__name__))
+    missed = False
+    instead = None
+    try:
+        exec("obj.%s = value" % prop)  # pylint: disable=W0122
+        missed = True
+    except exception:
+        pass
+    except Exception as e:
+        instead = e
+    if missed:
+        testCase.fail("Expected assignment to raise %s, but got no exception." % (exception.__name__))
+    if instead is not None:
+        testCase.fail("Expected assignment to raise %s, but got %s instead." % (ValueError, instead.__class__.__name__))
 
 
 ###########################
 # captureOutput() function
 ###########################
 
+
 def captureOutput(c):
-   """
+    """
    Captures the output (stdout, stderr) of a function or a method.
 
    Some of our functions don't do anything other than just print output.  We
@@ -410,80 +423,85 @@ def captureOutput(c):
    Returns:
        Output of function, as one big string
    """
-   fd = StringIO()
-   c(fd=fd)
-   result = fd.getvalue()
-   fd.close()
-   return result
+    fd = StringIO()
+    c(fd=fd)
+    result = fd.getvalue()
+    fd.close()
+    return result
 
 
 #########################
 # _isPlatform() function
 #########################
 
+
 def _isPlatform(name):
-   """
+    """
    Returns boolean indicating whether we're running on the indicated platform.
    Args:
       name: Platform name to check, currently one of "windows" or "macosx"
    """
-   if name == "windows":
-      return platform.platform(True, True).startswith("Windows")
-   elif name == "macosx":
-      return sys.platform == "darwin"
-   elif name == "debian":
-      return platform.platform(False, False).find("debian") > 0
-   elif name == "cygwin":
-      return platform.platform(True, True).startswith("CYGWIN")
-   else:
-      raise ValueError("Unknown platform [%s]." % name)
+    if name == "windows":
+        return platform.platform(True, True).startswith("Windows")
+    elif name == "macosx":
+        return sys.platform == "darwin"
+    elif name == "debian":
+        return platform.platform(False, False).find("debian") > 0
+    elif name == "cygwin":
+        return platform.platform(True, True).startswith("CYGWIN")
+    else:
+        raise ValueError("Unknown platform [%s]." % name)
 
 
 ############################
 # platformDebian() function
 ############################
 
+
 def platformDebian():
-   """
+    """
    Returns boolean indicating whether this is the Debian platform.
    """
-   return _isPlatform("debian")
+    return _isPlatform("debian")
 
 
 ############################
 # platformMacOsX() function
 ############################
 
+
 def platformMacOsX():
-   """
+    """
    Returns boolean indicating whether this is the Mac OS X platform.
    """
-   return _isPlatform("macosx")
+    return _isPlatform("macosx")
 
 
 ###########################
 # runningAsRoot() function
 ###########################
 
+
 def runningAsRoot():
-   """
+    """
    Returns boolean indicating whether the effective user id is root.
    """
-   return os.geteuid() == 0
+    return os.geteuid() == 0
 
 
 ##############################
 # availableLocales() function
 ##############################
 
+
 def availableLocales():
-   """
+    """
    Returns a list of available locales on the system
    Returns:
        List of string locale names
    """
-   locales = []
-   output = executeCommand(["locale"], ["-a"], returnOutput=True, ignoreStderr=True)[1]
-   for line in output:
-      locales.append(line.rstrip()) # pylint: disable=E1101
-   return locales
+    locales = []
+    output = executeCommand(["locale"], ["-a"], returnOutput=True, ignoreStderr=True)[1]
+    for line in output:
+        locales.append(line.rstrip())  # pylint: disable=E1101
+    return locales

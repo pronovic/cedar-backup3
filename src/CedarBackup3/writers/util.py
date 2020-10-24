@@ -45,12 +45,10 @@ Provides utilities related to image writers.
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import re
 import logging
 
-# Cedar Backup modules
 from CedarBackup3.util import resolveCommand, executeCommand
 from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_SECTORS, encodePath
 
@@ -61,8 +59,8 @@ from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_SECTORS, encodePath
 
 logger = logging.getLogger("CedarBackup3.log.writers.util")
 
-MKISOFS_COMMAND      = ["mkisofs"]
-VOLNAME_COMMAND      = ["volname"]
+MKISOFS_COMMAND = ["mkisofs"]
+VOLNAME_COMMAND = ["volname"]
 
 
 ########################################################################
@@ -73,8 +71,9 @@ VOLNAME_COMMAND      = ["volname"]
 # validateDevice() function
 ############################
 
+
 def validateDevice(device, unittest=False):
-   """
+    """
    Validates a configured device.
    The device must be an absolute path, must exist, and must be writable.
    The unittest flag turns off validation of the device on disk.
@@ -87,24 +86,25 @@ def validateDevice(device, unittest=False):
       ValueError: If the device value is invalid
       ValueError: If some path cannot be encoded properly
    """
-   if device is None:
-      raise ValueError("Device must be filled in.")
-   device = encodePath(device)
-   if not os.path.isabs(device):
-      raise ValueError("Backup device must be an absolute path.")
-   if not unittest and not os.path.exists(device):
-      raise ValueError("Backup device must exist on disk.")
-   if not unittest and not os.access(device, os.W_OK):
-      raise ValueError("Backup device is not writable by the current user.")
-   return device
+    if device is None:
+        raise ValueError("Device must be filled in.")
+    device = encodePath(device)
+    if not os.path.isabs(device):
+        raise ValueError("Backup device must be an absolute path.")
+    if not unittest and not os.path.exists(device):
+        raise ValueError("Backup device must exist on disk.")
+    if not unittest and not os.access(device, os.W_OK):
+        raise ValueError("Backup device is not writable by the current user.")
+    return device
 
 
 ############################
 # validateScsiId() function
 ############################
 
+
 def validateScsiId(scsiId):
-   """
+    """
    Validates a SCSI id string.
    SCSI id must be a string in the form ``[<method>:]scsibus,target,lun``.
    For Mac OS X (Darwin), we also accept the form ``IO.*Services[/N]``.
@@ -116,21 +116,22 @@ def validateScsiId(scsiId):
    Raises:
       ValueError: If the SCSI id string is invalid
    """
-   if scsiId is not None:
-      pattern = re.compile(r"^\s*(.*:)?\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*$")
-      if not pattern.search(scsiId):
-         pattern = re.compile(r"^\s*IO.*Services(\/[0-9][0-9]*)?\s*$")
-         if not pattern.search(scsiId):
-            raise ValueError("SCSI id is not in a valid form.")
-   return scsiId
+    if scsiId is not None:
+        pattern = re.compile(r"^\s*(.*:)?\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*$")
+        if not pattern.search(scsiId):
+            pattern = re.compile(r"^\s*IO.*Services(\/[0-9][0-9]*)?\s*$")
+            if not pattern.search(scsiId):
+                raise ValueError("SCSI id is not in a valid form.")
+    return scsiId
 
 
 ################################
 # validateDriveSpeed() function
 ################################
 
+
 def validateDriveSpeed(driveSpeed):
-   """
+    """
    Validates a drive speed value.
    Drive speed must be an integer which is >= 1.
    *Note:* For consistency, if ``None`` is passed in, ``None`` will be returned.
@@ -141,15 +142,15 @@ def validateDriveSpeed(driveSpeed):
    Raises:
       ValueError: If the drive speed value is invalid
    """
-   if driveSpeed is None:
-      return None
-   try:
-      intSpeed = int(driveSpeed)
-   except TypeError:
-      raise ValueError("Drive speed must be an integer >= 1.")
-   if intSpeed < 1:
-      raise ValueError("Drive speed must an integer >= 1.")
-   return intSpeed
+    if driveSpeed is None:
+        return None
+    try:
+        intSpeed = int(driveSpeed)
+    except TypeError:
+        raise ValueError("Drive speed must be an integer >= 1.")
+    if intSpeed < 1:
+        raise ValueError("Drive speed must an integer >= 1.")
+    return intSpeed
 
 
 ########################################################################
@@ -160,8 +161,9 @@ def validateDriveSpeed(driveSpeed):
 # readMediaLabel() function
 ############################
 
+
 def readMediaLabel(devicePath):
-   """
+    """
    Reads the media label (volume name) from the indicated device.
    The volume name is read using the ``volname`` command.
    Args:
@@ -169,27 +171,28 @@ def readMediaLabel(devicePath):
    Returns:
        Media label as a string, or None if there is no name or it could not be read
    """
-   args = [devicePath]
-   command = resolveCommand(VOLNAME_COMMAND)
-   (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-   if result != 0:
-      return None
-   if output is None or len(output) < 1:
-      return None
-   return output[0].rstrip()
+    args = [devicePath]
+    command = resolveCommand(VOLNAME_COMMAND)
+    (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+    if result != 0:
+        return None
+    if output is None or len(output) < 1:
+        return None
+    return output[0].rstrip()
 
 
 ########################################################################
 # IsoImage class definition
 ########################################################################
 
+
 class IsoImage(object):
 
-   ######################
-   # Class documentation
-   ######################
+    ######################
+    # Class documentation
+    ######################
 
-   """
+    """
    Represents an ISO filesystem image.
 
    **Summary**
@@ -240,12 +243,12 @@ class IsoImage(object):
 
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self, device=None, boundaries=None, graftPoint=None):
-      """
+    def __init__(self, device=None, boundaries=None, graftPoint=None):
+        """
       Initializes an empty ISO image object.
 
       Only the most commonly-used configuration items can be set using this
@@ -266,216 +269,216 @@ class IsoImage(object):
          boundaries: Session boundaries as required by ``mkisofs``, or ``None``
          graftPoint (String representing a graft point path (see :any:`addEntry`)): Default graft point for this page
       """
-      self._device = None
-      self._boundaries = None
-      self._graftPoint = None
-      self._useRockRidge = True
-      self._applicationId = None
-      self._biblioFile = None
-      self._publisherId = None
-      self._preparerId = None
-      self._volumeId = None
-      self.entries = {}
-      self.device = device
-      self.boundaries = boundaries
-      self.graftPoint = graftPoint
-      self.useRockRidge = True
-      self.applicationId = None
-      self.biblioFile = None
-      self.publisherId = None
-      self.preparerId = None
-      self.volumeId = None
-      logger.debug("Created new ISO image object.")
+        self._device = None
+        self._boundaries = None
+        self._graftPoint = None
+        self._useRockRidge = True
+        self._applicationId = None
+        self._biblioFile = None
+        self._publisherId = None
+        self._preparerId = None
+        self._volumeId = None
+        self.entries = {}
+        self.device = device
+        self.boundaries = boundaries
+        self.graftPoint = graftPoint
+        self.useRockRidge = True
+        self.applicationId = None
+        self.biblioFile = None
+        self.publisherId = None
+        self.preparerId = None
+        self.volumeId = None
+        logger.debug("Created new ISO image object.")
 
+    #############
+    # Properties
+    #############
 
-   #############
-   # Properties
-   #############
-
-   def _setDevice(self, value):
-      """
+    def _setDevice(self, value):
+        """
       Property target used to set the device value.
       If not ``None``, the value can be either an absolute path or a SCSI id.
       Raises:
          ValueError: If the value is not valid
       """
-      try:
-         if value is None:
-            self._device = None
-         else:
-            if os.path.isabs(value):
-               self._device = value
+        try:
+            if value is None:
+                self._device = None
             else:
-               self._device = validateScsiId(value)
-      except ValueError:
-         raise ValueError("Device must either be an absolute path or a valid SCSI id.")
+                if os.path.isabs(value):
+                    self._device = value
+                else:
+                    self._device = validateScsiId(value)
+        except ValueError:
+            raise ValueError("Device must either be an absolute path or a valid SCSI id.")
 
-   def _getDevice(self):
-      """
+    def _getDevice(self):
+        """
       Property target used to get the device value.
       """
-      return self._device
+        return self._device
 
-   def _setBoundaries(self, value):
-      """
+    def _setBoundaries(self, value):
+        """
       Property target used to set the boundaries tuple.
       If not ``None``, the value must be a tuple of two integers.
       Raises:
          ValueError: If the tuple values are not integers
          IndexError: If the tuple does not contain enough elements
       """
-      if value is None:
-         self._boundaries = None
-      else:
-         self._boundaries = (int(value[0]), int(value[1]))
+        if value is None:
+            self._boundaries = None
+        else:
+            self._boundaries = (int(value[0]), int(value[1]))
 
-   def _getBoundaries(self):
-      """
+    def _getBoundaries(self):
+        """
       Property target used to get the boundaries value.
       """
-      return self._boundaries
+        return self._boundaries
 
-   def _setGraftPoint(self, value):
-      """
+    def _setGraftPoint(self, value):
+        """
       Property target used to set the graft point.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The graft point must be a non-empty string.")
-      self._graftPoint = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The graft point must be a non-empty string.")
+        self._graftPoint = value
 
-   def _getGraftPoint(self):
-      """
+    def _getGraftPoint(self):
+        """
       Property target used to get the graft point.
       """
-      return self._graftPoint
+        return self._graftPoint
 
-   def _setUseRockRidge(self, value):
-      """
+    def _setUseRockRidge(self, value):
+        """
       Property target used to set the use RockRidge flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._useRockRidge = True
-      else:
-         self._useRockRidge = False
+        if value:
+            self._useRockRidge = True
+        else:
+            self._useRockRidge = False
 
-   def _getUseRockRidge(self):
-      """
+    def _getUseRockRidge(self):
+        """
       Property target used to get the use RockRidge flag.
       """
-      return self._useRockRidge
+        return self._useRockRidge
 
-   def _setApplicationId(self, value):
-      """
+    def _setApplicationId(self, value):
+        """
       Property target used to set the application id.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The application id must be a non-empty string.")
-      self._applicationId = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The application id must be a non-empty string.")
+        self._applicationId = value
 
-   def _getApplicationId(self):
-      """
+    def _getApplicationId(self):
+        """
       Property target used to get the application id.
       """
-      return self._applicationId
+        return self._applicationId
 
-   def _setBiblioFile(self, value):
-      """
+    def _setBiblioFile(self, value):
+        """
       Property target used to set the biblio file.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The biblio file must be a non-empty string.")
-      self._biblioFile = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The biblio file must be a non-empty string.")
+        self._biblioFile = value
 
-   def _getBiblioFile(self):
-      """
+    def _getBiblioFile(self):
+        """
       Property target used to get the biblio file.
       """
-      return self._biblioFile
+        return self._biblioFile
 
-   def _setPublisherId(self, value):
-      """
+    def _setPublisherId(self, value):
+        """
       Property target used to set the publisher id.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The publisher id must be a non-empty string.")
-      self._publisherId = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The publisher id must be a non-empty string.")
+        self._publisherId = value
 
-   def _getPublisherId(self):
-      """
+    def _getPublisherId(self):
+        """
       Property target used to get the publisher id.
       """
-      return self._publisherId
+        return self._publisherId
 
-   def _setPreparerId(self, value):
-      """
+    def _setPreparerId(self, value):
+        """
       Property target used to set the preparer id.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The preparer id must be a non-empty string.")
-      self._preparerId = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The preparer id must be a non-empty string.")
+        self._preparerId = value
 
-   def _getPreparerId(self):
-      """
+    def _getPreparerId(self):
+        """
       Property target used to get the preparer id.
       """
-      return self._preparerId
+        return self._preparerId
 
-   def _setVolumeId(self, value):
-      """
+    def _setVolumeId(self, value):
+        """
       Property target used to set the volume id.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The volume id must be a non-empty string.")
-      self._volumeId = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The volume id must be a non-empty string.")
+        self._volumeId = value
 
-   def _getVolumeId(self):
-      """
+    def _getVolumeId(self):
+        """
       Property target used to get the volume id.
       """
-      return self._volumeId
+        return self._volumeId
 
-   device = property(_getDevice, _setDevice, None, "Device that image will be written to (device path or SCSI id).")
-   boundaries = property(_getBoundaries, _setBoundaries, None, "Session boundaries as required by ``mkisofs``.")
-   graftPoint = property(_getGraftPoint, _setGraftPoint, None, "Default image-wide graft point (see :any:`addEntry` for details).")
-   useRockRidge = property(_getUseRockRidge, _setUseRockRidge, None, "Indicates whether to use RockRidge (default is ``True``).")
-   applicationId = property(_getApplicationId, _setApplicationId, None, "Optionally specifies the ISO header application id value.")
-   biblioFile = property(_getBiblioFile, _setBiblioFile, None, "Optionally specifies the ISO bibliographic file name.")
-   publisherId = property(_getPublisherId, _setPublisherId, None, "Optionally specifies the ISO header publisher id value.")
-   preparerId = property(_getPreparerId, _setPreparerId, None, "Optionally specifies the ISO header preparer id value.")
-   volumeId = property(_getVolumeId, _setVolumeId, None, "Optionally specifies the ISO header volume id value.")
+    device = property(_getDevice, _setDevice, None, "Device that image will be written to (device path or SCSI id).")
+    boundaries = property(_getBoundaries, _setBoundaries, None, "Session boundaries as required by ``mkisofs``.")
+    graftPoint = property(_getGraftPoint, _setGraftPoint, None, "Default image-wide graft point (see :any:`addEntry` for details).")
+    useRockRidge = property(_getUseRockRidge, _setUseRockRidge, None, "Indicates whether to use RockRidge (default is ``True``).")
+    applicationId = property(
+        _getApplicationId, _setApplicationId, None, "Optionally specifies the ISO header application id value."
+    )
+    biblioFile = property(_getBiblioFile, _setBiblioFile, None, "Optionally specifies the ISO bibliographic file name.")
+    publisherId = property(_getPublisherId, _setPublisherId, None, "Optionally specifies the ISO header publisher id value.")
+    preparerId = property(_getPreparerId, _setPreparerId, None, "Optionally specifies the ISO header preparer id value.")
+    volumeId = property(_getVolumeId, _setVolumeId, None, "Optionally specifies the ISO header volume id value.")
 
+    #########################
+    # General public methods
+    #########################
 
-   #########################
-   # General public methods
-   #########################
-
-   def addEntry(self, path, graftPoint=None, override=False, contentsOnly=False):
-      """
+    def addEntry(self, path, graftPoint=None, override=False, contentsOnly=False):
+        """
       Adds an individual file or directory into the ISO image.
 
       The path must exist and must be a file or a directory.  By default, the
@@ -518,40 +521,40 @@ class IsoImage(object):
          ValueError: If the path has already been added, and override is not set
          ValueError: If a path cannot be encoded properly
       """
-      path = encodePath(path)
-      if not override:
-         if path in list(self.entries.keys()):
-            raise ValueError("Path has already been added to the image.")
-      if os.path.islink(path):
-         raise ValueError("Path must not be a link.")
-      if os.path.isdir(path):
-         if graftPoint is not None:
-            if contentsOnly:
-               self.entries[path] = graftPoint
+        path = encodePath(path)
+        if not override:
+            if path in list(self.entries.keys()):
+                raise ValueError("Path has already been added to the image.")
+        if os.path.islink(path):
+            raise ValueError("Path must not be a link.")
+        if os.path.isdir(path):
+            if graftPoint is not None:
+                if contentsOnly:
+                    self.entries[path] = graftPoint
+                else:
+                    self.entries[path] = os.path.join(graftPoint, os.path.basename(path))
+            elif self.graftPoint is not None:
+                if contentsOnly:
+                    self.entries[path] = self.graftPoint
+                else:
+                    self.entries[path] = os.path.join(self.graftPoint, os.path.basename(path))
             else:
-               self.entries[path] = os.path.join(graftPoint, os.path.basename(path))
-         elif self.graftPoint is not None:
-            if contentsOnly:
-               self.entries[path] = self.graftPoint
+                if contentsOnly:
+                    self.entries[path] = None
+                else:
+                    self.entries[path] = os.path.basename(path)
+        elif os.path.isfile(path):
+            if graftPoint is not None:
+                self.entries[path] = graftPoint
+            elif self.graftPoint is not None:
+                self.entries[path] = self.graftPoint
             else:
-               self.entries[path] = os.path.join(self.graftPoint, os.path.basename(path))
-         else:
-            if contentsOnly:
-               self.entries[path] = None
-            else:
-               self.entries[path] = os.path.basename(path)
-      elif os.path.isfile(path):
-         if graftPoint is not None:
-            self.entries[path] = graftPoint
-         elif self.graftPoint is not None:
-            self.entries[path] = self.graftPoint
-         else:
-            self.entries[path] = None
-      else:
-         raise ValueError("Path must be a file or a directory.")
+                self.entries[path] = None
+        else:
+            raise ValueError("Path must be a file or a directory.")
 
-   def getEstimatedSize(self):
-      """
+    def getEstimatedSize(self):
+        """
       Returns the estimated size (in bytes) of the ISO image.
 
       This is implemented via the ``-print-size`` option to ``mkisofs``, so it
@@ -566,34 +569,34 @@ class IsoImage(object):
          IOError: If there is a problem calling ``mkisofs``
          ValueError: If there are no filesystem entries in the image
       """
-      if len(list(self.entries.keys())) == 0:
-         raise ValueError("Image does not contain any entries.")
-      return self._getEstimatedSize(self.entries)
+        if len(list(self.entries.keys())) == 0:
+            raise ValueError("Image does not contain any entries.")
+        return self._getEstimatedSize(self.entries)
 
-   def _getEstimatedSize(self, entries):
-      """
+    def _getEstimatedSize(self, entries):
+        """
       Returns the estimated size (in bytes) for the passed-in entries dictionary.
       Returns:
           Estimated size of the image, in bytes
       Raises:
          IOError: If there is a problem calling ``mkisofs``
       """
-      args = self._buildSizeArgs(entries)
-      command = resolveCommand(MKISOFS_COMMAND)
-      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-      if result != 0:
-         raise IOError("Error (%d) executing mkisofs command to estimate size." % result)
-      if len(output) != 1:
-         raise IOError("Unable to parse mkisofs output.")
-      try:
-         sectors = float(output[0])
-         size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
-         return size
-      except:
-         raise IOError("Unable to parse mkisofs output.")
+        args = self._buildSizeArgs(entries)
+        command = resolveCommand(MKISOFS_COMMAND)
+        (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+        if result != 0:
+            raise IOError("Error (%d) executing mkisofs command to estimate size." % result)
+        if len(output) != 1:
+            raise IOError("Unable to parse mkisofs output.")
+        try:
+            sectors = float(output[0])
+            size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
+            return size
+        except:
+            raise IOError("Unable to parse mkisofs output.")
 
-   def writeImage(self, imagePath):
-      """
+    def writeImage(self, imagePath):
+        """
       Writes this image to disk using the image path.
 
       Args:
@@ -603,23 +606,22 @@ class IsoImage(object):
          ValueError: If there are no filesystem entries in the image
          ValueError: If a path cannot be encoded properly
       """
-      imagePath = encodePath(imagePath)
-      if len(list(self.entries.keys())) == 0:
-         raise ValueError("Image does not contain any entries.")
-      args = self._buildWriteArgs(self.entries, imagePath)
-      command = resolveCommand(MKISOFS_COMMAND)
-      (result, output) = executeCommand(command, args, returnOutput=False)
-      if result != 0:
-         raise IOError("Error (%d) executing mkisofs command to build image." % result)
+        imagePath = encodePath(imagePath)
+        if len(list(self.entries.keys())) == 0:
+            raise ValueError("Image does not contain any entries.")
+        args = self._buildWriteArgs(self.entries, imagePath)
+        command = resolveCommand(MKISOFS_COMMAND)
+        (result, output) = executeCommand(command, args, returnOutput=False)
+        if result != 0:
+            raise IOError("Error (%d) executing mkisofs command to build image." % result)
 
+    #########################################
+    # Methods used to build mkisofs commands
+    #########################################
 
-   #########################################
-   # Methods used to build mkisofs commands
-   #########################################
-
-   @staticmethod
-   def _buildDirEntries(entries):
-      """
+    @staticmethod
+    def _buildDirEntries(entries):
+        """
       Uses an entries dictionary to build a list of directory locations for use
       by ``mkisofs``.
 
@@ -634,16 +636,16 @@ class IsoImage(object):
       Returns:
           List of directory locations for use by ``mkisofs``
       """
-      dirEntries = []
-      for key in list(entries.keys()):
-         if entries[key] is None:
-            dirEntries.append(key)
-         else:
-            dirEntries.append("%s/=%s" % (entries[key].strip("/"), key))
-      return dirEntries
+        dirEntries = []
+        for key in list(entries.keys()):
+            if entries[key] is None:
+                dirEntries.append(key)
+            else:
+                dirEntries.append("%s/=%s" % (entries[key].strip("/"), key))
+        return dirEntries
 
-   def _buildGeneralArgs(self):
-      """
+    def _buildGeneralArgs(self):
+        """
       Builds a list of general arguments to be passed to a ``mkisofs`` command.
 
       The various instance variables (``applicationId``, etc.) are filled into
@@ -655,26 +657,26 @@ class IsoImage(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      if self.applicationId is not None:
-         args.append("-A")
-         args.append(self.applicationId)
-      if self.biblioFile is not None:
-         args.append("-biblio")
-         args.append(self.biblioFile)
-      if self.publisherId is not None:
-         args.append("-publisher")
-         args.append(self.publisherId)
-      if self.preparerId is not None:
-         args.append("-p")
-         args.append(self.preparerId)
-      if self.volumeId is not None:
-         args.append("-V")
-         args.append(self.volumeId)
-      return args
+        args = []
+        if self.applicationId is not None:
+            args.append("-A")
+            args.append(self.applicationId)
+        if self.biblioFile is not None:
+            args.append("-biblio")
+            args.append(self.biblioFile)
+        if self.publisherId is not None:
+            args.append("-publisher")
+            args.append(self.publisherId)
+        if self.preparerId is not None:
+            args.append("-p")
+            args.append(self.preparerId)
+        if self.volumeId is not None:
+            args.append("-V")
+            args.append(self.volumeId)
+        return args
 
-   def _buildSizeArgs(self, entries):
-      """
+    def _buildSizeArgs(self, entries):
+        """
       Builds a list of arguments to be passed to a ``mkisofs`` command.
 
       The various instance variables (``applicationId``, etc.) are filled into
@@ -692,21 +694,21 @@ class IsoImage(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = self._buildGeneralArgs()
-      args.append("-print-size")
-      args.append("-graft-points")
-      if self.useRockRidge:
-         args.append("-r")
-      if self.device is not None and self.boundaries is not None:
-         args.append("-C")
-         args.append("%d,%d" % (self.boundaries[0], self.boundaries[1]))
-         args.append("-M")
-         args.append(self.device)
-      args.extend(self._buildDirEntries(entries))
-      return args
+        args = self._buildGeneralArgs()
+        args.append("-print-size")
+        args.append("-graft-points")
+        if self.useRockRidge:
+            args.append("-r")
+        if self.device is not None and self.boundaries is not None:
+            args.append("-C")
+            args.append("%d,%d" % (self.boundaries[0], self.boundaries[1]))
+            args.append("-M")
+            args.append(self.device)
+        args.extend(self._buildDirEntries(entries))
+        return args
 
-   def _buildWriteArgs(self, entries, imagePath):
-      """
+    def _buildWriteArgs(self, entries, imagePath):
+        """
       Builds a list of arguments to be passed to a ``mkisofs`` command.
 
       The various instance variables (``applicationId``, etc.) are filled into
@@ -724,17 +726,16 @@ class IsoImage(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = self._buildGeneralArgs()
-      args.append("-graft-points")
-      if self.useRockRidge:
-         args.append("-r")
-      args.append("-o")
-      args.append(imagePath)
-      if self.device is not None and self.boundaries is not None:
-         args.append("-C")
-         args.append("%d,%d" % (self.boundaries[0], self.boundaries[1]))
-         args.append("-M")
-         args.append(self.device)
-      args.extend(self._buildDirEntries(entries))
-      return args
-
+        args = self._buildGeneralArgs()
+        args.append("-graft-points")
+        if self.useRockRidge:
+            args.append("-r")
+        args.append("-o")
+        args.append(imagePath)
+        if self.device is not None and self.boundaries is not None:
+            args.append("-C")
+            args.append("%d,%d" % (self.boundaries[0], self.boundaries[1]))
+            args.append("-M")
+            args.append(self.device)
+        args.extend(self._buildDirEntries(entries))
+        return args

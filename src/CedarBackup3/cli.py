@@ -82,7 +82,6 @@ Attributes:
 import getopt
 import logging
 import os
-# System modules
 import sys
 from functools import total_ordering
 
@@ -96,7 +95,6 @@ from CedarBackup3.actions.validate import executeValidate
 from CedarBackup3.config import Config
 from CedarBackup3.customize import customizeOverrides
 from CedarBackup3.peer import RemotePeer
-# Cedar Backup modules
 from CedarBackup3.release import AUTHOR, COPYRIGHT, DATE, EMAIL, VERSION
 from CedarBackup3.util import (
     Diagnostics,
@@ -116,34 +114,47 @@ from CedarBackup3.util import (
 
 logger = logging.getLogger("CedarBackup3.log.cli")
 
-DISK_LOG_FORMAT    = "%(asctime)s --> [%(levelname)-7s] %(message)s"
+DISK_LOG_FORMAT = "%(asctime)s --> [%(levelname)-7s] %(message)s"
 DISK_OUTPUT_FORMAT = "%(message)s"
-SCREEN_LOG_FORMAT  = "%(message)s"
-SCREEN_LOG_STREAM  = sys.stdout
-DATE_FORMAT        = "%Y-%m-%dT%H:%M:%S %Z"
+SCREEN_LOG_FORMAT = "%(message)s"
+SCREEN_LOG_STREAM = sys.stdout
+DATE_FORMAT = "%Y-%m-%dT%H:%M:%S %Z"
 
-DEFAULT_CONFIG     = "/etc/cback3.conf"
-DEFAULT_LOGFILE    = "/var/log/cback3.log"
-DEFAULT_OWNERSHIP  = ["root", "adm"]
-DEFAULT_MODE       = 0o640
+DEFAULT_CONFIG = "/etc/cback3.conf"
+DEFAULT_LOGFILE = "/var/log/cback3.log"
+DEFAULT_OWNERSHIP = ["root", "adm"]
+DEFAULT_MODE = 0o640
 
-REBUILD_INDEX      = 0        # can't run with anything else, anyway
-VALIDATE_INDEX     = 0        # can't run with anything else, anyway
-INITIALIZE_INDEX   = 0        # can't run with anything else, anyway
-COLLECT_INDEX      = 100
-STAGE_INDEX        = 200
-STORE_INDEX        = 300
-PURGE_INDEX        = 400
+REBUILD_INDEX = 0  # can't run with anything else, anyway
+VALIDATE_INDEX = 0  # can't run with anything else, anyway
+INITIALIZE_INDEX = 0  # can't run with anything else, anyway
+COLLECT_INDEX = 100
+STAGE_INDEX = 200
+STORE_INDEX = 300
+PURGE_INDEX = 400
 
-VALID_ACTIONS      = ["collect", "stage", "store", "purge", "rebuild", "validate", "initialize", "all"]
-COMBINE_ACTIONS    = ["collect", "stage", "store", "purge"]
+VALID_ACTIONS = ["collect", "stage", "store", "purge", "rebuild", "validate", "initialize", "all"]
+COMBINE_ACTIONS = ["collect", "stage", "store", "purge"]
 NONCOMBINE_ACTIONS = ["rebuild", "validate", "initialize", "all"]
 
-SHORT_SWITCHES     = "hVbqc:fMNl:o:m:OdsD"
-LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
-                       'config=', 'full', 'managed', 'managed-only',
-                       'logfile=', 'owner=', 'mode=',
-                       'output', 'debug', 'stack', 'diagnostics', ]
+SHORT_SWITCHES = "hVbqc:fMNl:o:m:OdsD"
+LONG_SWITCHES = [
+    "help",
+    "version",
+    "verbose",
+    "quiet",
+    "config=",
+    "full",
+    "managed",
+    "managed-only",
+    "logfile=",
+    "owner=",
+    "mode=",
+    "output",
+    "debug",
+    "stack",
+    "diagnostics",
+]
 
 
 #######################################################################
@@ -154,8 +165,9 @@ LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
 # cli() function
 #################
 
+
 def cli():
-   """
+    """
    Implements the command-line interface for the ``cback3`` script.
 
    Essentially, this is the "main routine" for the cback3 script.  It does all
@@ -195,92 +207,91 @@ def cli():
    Returns:
        Error code as described above
    """
-   try:
-      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
-         sys.stderr.write("Python 3 version 3.4 or greater required.\n")
-         return 1
-   except:
-      # sys.version_info isn't available before 2.0
-      sys.stderr.write("Python 3 version 3.4 or greater required.\n")
-      return 1
+    try:
+        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
+            sys.stderr.write("Python 3 version 3.4 or greater required.\n")
+            return 1
+    except:
+        # sys.version_info isn't available before 2.0
+        sys.stderr.write("Python 3 version 3.4 or greater required.\n")
+        return 1
 
-   try:
-      options = Options(argumentList=sys.argv[1:])
-      logger.info("Specified command-line actions: %s", options.actions)
-   except Exception as e:
-      _usage()
-      sys.stderr.write(" *** Error: %s\n" % e)
-      return 2
+    try:
+        options = Options(argumentList=sys.argv[1:])
+        logger.info("Specified command-line actions: %s", options.actions)
+    except Exception as e:
+        _usage()
+        sys.stderr.write(" *** Error: %s\n" % e)
+        return 2
 
-   if options.help:
-      _usage()
-      return 0
-   if options.version:
-      _version()
-      return 0
-   if options.diagnostics:
-      _diagnostics()
-      return 0
+    if options.help:
+        _usage()
+        return 0
+    if options.version:
+        _version()
+        return 0
+    if options.diagnostics:
+        _diagnostics()
+        return 0
 
-   if options.stacktrace:
-      logfile = setupLogging(options)
-   else:
-      try:
-         logfile = setupLogging(options)
-      except Exception as e:
-         sys.stderr.write("Error setting up logging: %s\n" % e)
-         return 3
+    if options.stacktrace:
+        logfile = setupLogging(options)
+    else:
+        try:
+            logfile = setupLogging(options)
+        except Exception as e:
+            sys.stderr.write("Error setting up logging: %s\n" % e)
+            return 3
 
-   logger.info("Cedar Backup run started.")
-   logger.info("Options were [%s]", options)
-   logger.info("Logfile is [%s]", logfile)
-   Diagnostics().logDiagnostics(method=logger.info)
+    logger.info("Cedar Backup run started.")
+    logger.info("Options were [%s]", options)
+    logger.info("Logfile is [%s]", logfile)
+    Diagnostics().logDiagnostics(method=logger.info)
 
-   if options.config is None:
-      logger.debug("Using default configuration file.")
-      configPath = DEFAULT_CONFIG
-   else:
-      logger.debug("Using user-supplied configuration file.")
-      configPath = options.config
+    if options.config is None:
+        logger.debug("Using default configuration file.")
+        configPath = DEFAULT_CONFIG
+    else:
+        logger.debug("Using user-supplied configuration file.")
+        configPath = options.config
 
-   executeLocal = True
-   executeManaged = False
-   if options.managedOnly:
-      executeLocal = False
-      executeManaged = True
-   if options.managed:
-      executeManaged = True
-   logger.debug("Execute local actions: %s", executeLocal)
-   logger.debug("Execute managed actions: %s", executeManaged)
+    executeLocal = True
+    executeManaged = False
+    if options.managedOnly:
+        executeLocal = False
+        executeManaged = True
+    if options.managed:
+        executeManaged = True
+    logger.debug("Execute local actions: %s", executeLocal)
+    logger.debug("Execute managed actions: %s", executeManaged)
 
-   try:
-      logger.info("Configuration path is [%s]", configPath)
-      config = Config(xmlPath=configPath)
-      customizeOverrides(config)
-      setupPathResolver(config)
-      actionSet = _ActionSet(options.actions, config.extensions, config.options,
-                             config.peers, executeManaged, executeLocal)
-   except Exception as e:
-      logger.error("Error reading or handling configuration: %s", e)
-      logger.info("Cedar Backup run completed with status 4.")
-      return 4
+    try:
+        logger.info("Configuration path is [%s]", configPath)
+        config = Config(xmlPath=configPath)
+        customizeOverrides(config)
+        setupPathResolver(config)
+        actionSet = _ActionSet(options.actions, config.extensions, config.options, config.peers, executeManaged, executeLocal)
+    except Exception as e:
+        logger.error("Error reading or handling configuration: %s", e)
+        logger.info("Cedar Backup run completed with status 4.")
+        return 4
 
-   if options.stacktrace:
-      actionSet.executeActions(configPath, options, config)
-   else:
-      try:
-         actionSet.executeActions(configPath, options, config)
-      except KeyboardInterrupt:
-         logger.error("Backup interrupted.")
-         logger.info("Cedar Backup run completed with status 5.")
-         return 5
-      except Exception as e:
-         logger.error("Error executing backup: %s", e)
-         logger.info("Cedar Backup run completed with status 6.")
-         return 6
+    if options.stacktrace:
+        actionSet.executeActions(configPath, options, config)
+    else:
+        try:
+            actionSet.executeActions(configPath, options, config)
+        except KeyboardInterrupt:
+            logger.error("Backup interrupted.")
+            logger.info("Cedar Backup run completed with status 5.")
+            return 5
+        except Exception as e:
+            logger.error("Error executing backup: %s", e)
+            logger.info("Cedar Backup run completed with status 6.")
+            return 6
 
-   logger.info("Cedar Backup run completed with status 0.")
-   return 0
+    logger.info("Cedar Backup run completed with status 0.")
+    return 0
 
 
 ########################################################################
@@ -291,10 +302,11 @@ def cli():
 # _ActionItem class
 ####################
 
+
 @total_ordering
 class _ActionItem(object):
 
-   """
+    """
    Class representing a single action to be executed.
 
    This class represents a single named action to be executed, and understands
@@ -318,10 +330,10 @@ class _ActionItem(object):
       SORT_ORDER: Defines a sort order to order properly between types
    """
 
-   SORT_ORDER = 0
+    SORT_ORDER = 0
 
-   def __init__(self, index, name, preHooks, postHooks, function):
-      """
+    def __init__(self, index, name, preHooks, postHooks, function):
+        """
       Default constructor.
 
       It's OK to pass ``None`` for ``index``, ``preHooks`` or ``postHooks``, but not
@@ -334,26 +346,26 @@ class _ActionItem(object):
          postHooks: List of post-action hooks in terms of an ``ActionHook`` object, or ``None``
          function: Reference to function associated with item
       """
-      self.index = index
-      self.name = name
-      self.preHooks = preHooks
-      self.postHooks = postHooks
-      self.function = function
+        self.index = index
+        self.name = name
+        self.preHooks = preHooks
+        self.postHooks = postHooks
+        self.function = function
 
-   def __eq__(self, other):
-      """Equals operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       The only thing we compare is the item's index.
       Args:
@@ -361,23 +373,23 @@ class _ActionItem(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.index != other.index:
-         if int(self.index or 0) < int(other.index or 0):
-            return -1
-         else:
+        if other is None:
             return 1
-      else:
-         if self.SORT_ORDER != other.SORT_ORDER:
-            if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
-               return -1
+        if self.index != other.index:
+            if int(self.index or 0) < int(other.index or 0):
+                return -1
             else:
-               return 1
-      return 0
+                return 1
+        else:
+            if self.SORT_ORDER != other.SORT_ORDER:
+                if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
+                    return -1
+                else:
+                    return 1
+        return 0
 
-   def executeAction(self, configPath, options, config):
-      """
+    def executeAction(self, configPath, options, config):
+        """
       Executes the action associated with an item, including hooks.
 
       See class notes for more details on how the action is executed.
@@ -390,49 +402,50 @@ class _ActionItem(object):
       Raises:
          Exception: If there is a problem executing the action
       """
-      logger.debug("Executing [%s] action.", self.name)
-      if self.preHooks is not None:
-         for hook in self.preHooks:
-            self._executeHook("pre-action", hook)
-      self._executeAction(configPath, options, config)
-      if self.postHooks is not None:
-         for hook in self.postHooks:
-            self._executeHook("post-action", hook)
+        logger.debug("Executing [%s] action.", self.name)
+        if self.preHooks is not None:
+            for hook in self.preHooks:
+                self._executeHook("pre-action", hook)
+        self._executeAction(configPath, options, config)
+        if self.postHooks is not None:
+            for hook in self.postHooks:
+                self._executeHook("post-action", hook)
 
-   def _executeAction(self, configPath, options, config):
-      """
+    def _executeAction(self, configPath, options, config):
+        """
       Executes the action, specifically the function associated with the action.
       Args:
          configPath: Path to configuration file on disk
          options: Command-line options to be passed to action
          config: Parsed configuration to be passed to action
       """
-      name = "%s.%s" % (self.function.__module__, self.function.__name__)
-      logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
-      self.function(configPath, options, config)
+        name = "%s.%s" % (self.function.__module__, self.function.__name__)
+        logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
+        self.function(configPath, options, config)
 
-   def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
-      """
+    def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
+        """
       Executes a hook command via :any:`util.executeCommand`.
       Args:
          type: String describing the type of hook, for logging
          hook: Hook, in terms of a ``ActionHook`` object
       """
-      fields = splitCommandLine(hook.command)
-      logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
-      result = executeCommand(command=fields[0:1], args=fields[1:])[0]
-      if result != 0:
-         raise IOError("Error (%d) executing %s hook for action [%s]: %s" % (result, type, hook.action, fields[0:1]))
+        fields = splitCommandLine(hook.command)
+        logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
+        result = executeCommand(command=fields[0:1], args=fields[1:])[0]
+        if result != 0:
+            raise IOError("Error (%d) executing %s hook for action [%s]: %s" % (result, type, hook.action, fields[0:1]))
 
 
 ###########################
 # _ManagedActionItem class
 ###########################
 
+
 @total_ordering
 class _ManagedActionItem(object):
 
-   """
+    """
    Class representing a single action to be executed on a managed peer.
 
    This class represents a single named action to be executed, and understands
@@ -451,10 +464,10 @@ class _ManagedActionItem(object):
       SORT_ORDER: Defines a sort order to order properly between types
    """
 
-   SORT_ORDER = 1
+    SORT_ORDER = 1
 
-   def __init__(self, index, name, remotePeers):
-      """
+    def __init__(self, index, name, remotePeers):
+        """
       Default constructor.
 
       Args:
@@ -462,24 +475,24 @@ class _ManagedActionItem(object):
          name: Name of the action that is being executed
          remotePeers: List of remote peers on which to execute the action
       """
-      self.index = index
-      self.name = name
-      self.remotePeers = remotePeers
+        self.index = index
+        self.name = name
+        self.remotePeers = remotePeers
 
-   def __eq__(self, other):
-      """Equals operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       The only thing we compare is the item's index.
       Args:
@@ -487,24 +500,24 @@ class _ManagedActionItem(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.index != other.index:
-         if int(self.index or 0) < int(other.index or 0):
-            return -1
-         else:
+        if other is None:
             return 1
-      else:
-         if self.SORT_ORDER != other.SORT_ORDER:
-            if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
-               return -1
+        if self.index != other.index:
+            if int(self.index or 0) < int(other.index or 0):
+                return -1
             else:
-               return 1
-      return 0
+                return 1
+        else:
+            if self.SORT_ORDER != other.SORT_ORDER:
+                if int(self.SORT_ORDER or 0) < int(other.SORT_ORDER or 0):
+                    return -1
+                else:
+                    return 1
+        return 0
 
-   # pylint: disable=W0613
-   def executeAction(self, configPath, options, config):
-      """
+    # pylint: disable=W0613
+    def executeAction(self, configPath, options, config):
+        """
       Executes the managed action associated with an item.
 
       *Note:* Only options.full is actually used.  The rest of the arguments
@@ -523,20 +536,22 @@ class _ManagedActionItem(object):
       Raises:
          Exception: If there is a problem executing the action
       """
-      for peer in self.remotePeers:
-         logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
-         try:
-            peer.executeManagedAction(self.name, options.full)
-         except IOError as e:
-            logger.error(e)   # log the message and go on, so we don't kill the backup
+        for peer in self.remotePeers:
+            logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
+            try:
+                peer.executeManagedAction(self.name, options.full)
+            except IOError as e:
+                logger.error(e)  # log the message and go on, so we don't kill the backup
+
 
 ###################
 # _ActionSet class
 ###################
 
+
 class _ActionSet(object):
 
-   """
+    """
    Class representing a set of local actions to be executed.
 
    This class does four different things.  First, it ensures that the actions
@@ -560,8 +575,8 @@ class _ActionSet(object):
 
    """
 
-   def __init__(self, actions, extensions, options, peers, managed, local):
-      """
+    def __init__(self, actions, extensions, options, peers, managed, local):
+        """
       Constructor for the ``_ActionSet`` class.
 
       This is kind of ugly, because the constructor has to set up a lot of data
@@ -593,79 +608,80 @@ class _ActionSet(object):
       Raises:
          ValueError: If one of the specified actions is invalid
       """
-      extensionNames = _ActionSet._deriveExtensionNames(extensions)
-      (preHookMap, postHookMap) = _ActionSet._buildHookMaps(options.hooks)
-      functionMap = _ActionSet._buildFunctionMap(extensions)
-      indexMap = _ActionSet._buildIndexMap(extensions)
-      peerMap = _ActionSet._buildPeerMap(options, peers)
-      actionMap = _ActionSet._buildActionMap(managed, local, extensionNames, functionMap,
-                                             indexMap, preHookMap, postHookMap, peerMap)
-      _ActionSet._validateActions(actions, extensionNames)
-      self.actionSet = _ActionSet._buildActionSet(actions, actionMap)
+        extensionNames = _ActionSet._deriveExtensionNames(extensions)
+        (preHookMap, postHookMap) = _ActionSet._buildHookMaps(options.hooks)
+        functionMap = _ActionSet._buildFunctionMap(extensions)
+        indexMap = _ActionSet._buildIndexMap(extensions)
+        peerMap = _ActionSet._buildPeerMap(options, peers)
+        actionMap = _ActionSet._buildActionMap(
+            managed, local, extensionNames, functionMap, indexMap, preHookMap, postHookMap, peerMap
+        )
+        _ActionSet._validateActions(actions, extensionNames)
+        self.actionSet = _ActionSet._buildActionSet(actions, actionMap)
 
-   @staticmethod
-   def _deriveExtensionNames(extensions):
-      """
+    @staticmethod
+    def _deriveExtensionNames(extensions):
+        """
       Builds a list of extended actions that are available in configuration.
       Args:
          extensions: Extended action configuration (i.e. config.extensions)
       Returns:
           List of extended action names
       """
-      extensionNames = []
-      if extensions is not None and extensions.actions is not None:
-         for action in extensions.actions:
-            extensionNames.append(action.name)
-      return extensionNames
+        extensionNames = []
+        if extensions is not None and extensions.actions is not None:
+            for action in extensions.actions:
+                extensionNames.append(action.name)
+        return extensionNames
 
-   @staticmethod
-   def _buildHookMaps(hooks):
-      """
+    @staticmethod
+    def _buildHookMaps(hooks):
+        """
       Build two mappings from action name to configured ``ActionHook``.
       Args:
          hooks: List of pre- and post-action hooks (i.e. config.options.hooks)
       Returns:
           Tuple of (pre hook dictionary, post hook dictionary)
       """
-      preHookMap = {}
-      postHookMap = {}
-      if hooks is not None:
-         for hook in hooks:
-            if hook.before:
-               if not hook.action in preHookMap:
-                  preHookMap[hook.action] = []
-               preHookMap[hook.action].append(hook)
-            elif hook.after:
-               if not hook.action in postHookMap:
-                  postHookMap[hook.action] = []
-               postHookMap[hook.action].append(hook)
-      return (preHookMap, postHookMap)
+        preHookMap = {}
+        postHookMap = {}
+        if hooks is not None:
+            for hook in hooks:
+                if hook.before:
+                    if not hook.action in preHookMap:
+                        preHookMap[hook.action] = []
+                    preHookMap[hook.action].append(hook)
+                elif hook.after:
+                    if not hook.action in postHookMap:
+                        postHookMap[hook.action] = []
+                    postHookMap[hook.action].append(hook)
+        return (preHookMap, postHookMap)
 
-   @staticmethod
-   def _buildFunctionMap(extensions):
-      """
+    @staticmethod
+    def _buildFunctionMap(extensions):
+        """
       Builds a mapping from named action to action function.
       Args:
          extensions: Extended action configuration (i.e. config.extensions)
       Returns:
           Dictionary mapping action to function
       """
-      functionMap = {}
-      functionMap['rebuild'] = executeRebuild
-      functionMap['validate'] = executeValidate
-      functionMap['initialize'] = executeInitialize
-      functionMap['collect'] = executeCollect
-      functionMap['stage'] = executeStage
-      functionMap['store'] = executeStore
-      functionMap['purge'] = executePurge
-      if extensions is not None and extensions.actions is not None:
-         for action in extensions.actions:
-            functionMap[action.name] = getFunctionReference(action.module, action.function)
-      return functionMap
+        functionMap = {}
+        functionMap["rebuild"] = executeRebuild
+        functionMap["validate"] = executeValidate
+        functionMap["initialize"] = executeInitialize
+        functionMap["collect"] = executeCollect
+        functionMap["stage"] = executeStage
+        functionMap["store"] = executeStore
+        functionMap["purge"] = executePurge
+        if extensions is not None and extensions.actions is not None:
+            for action in extensions.actions:
+                functionMap[action.name] = getFunctionReference(action.module, action.function)
+        return functionMap
 
-   @staticmethod
-   def _buildIndexMap(extensions):
-      """
+    @staticmethod
+    def _buildIndexMap(extensions):
+        """
       Builds a mapping from action name to proper execution index.
 
       If extensions configuration is ``None``, or there are no configured
@@ -682,79 +698,79 @@ class _ActionSet(object):
       Returns:
           Dictionary mapping action name to integer execution index
       """
-      indexMap = {}
-      if extensions is None or extensions.actions is None or extensions.actions == []:
-         logger.info("Action ordering will use 'index' order mode.")
-         indexMap['rebuild'] = REBUILD_INDEX
-         indexMap['validate'] = VALIDATE_INDEX
-         indexMap['initialize'] = INITIALIZE_INDEX
-         indexMap['collect'] = COLLECT_INDEX
-         indexMap['stage'] = STAGE_INDEX
-         indexMap['store'] = STORE_INDEX
-         indexMap['purge'] = PURGE_INDEX
-         logger.debug("Completed filling in action indices for built-in actions.")
-         logger.info("Action order will be: %s", sortDict(indexMap))
-      else:
-         if extensions.orderMode is None or extensions.orderMode == "index":
+        indexMap = {}
+        if extensions is None or extensions.actions is None or extensions.actions == []:
             logger.info("Action ordering will use 'index' order mode.")
-            indexMap['rebuild'] = REBUILD_INDEX
-            indexMap['validate'] = VALIDATE_INDEX
-            indexMap['initialize'] = INITIALIZE_INDEX
-            indexMap['collect'] = COLLECT_INDEX
-            indexMap['stage'] = STAGE_INDEX
-            indexMap['store'] = STORE_INDEX
-            indexMap['purge'] = PURGE_INDEX
+            indexMap["rebuild"] = REBUILD_INDEX
+            indexMap["validate"] = VALIDATE_INDEX
+            indexMap["initialize"] = INITIALIZE_INDEX
+            indexMap["collect"] = COLLECT_INDEX
+            indexMap["stage"] = STAGE_INDEX
+            indexMap["store"] = STORE_INDEX
+            indexMap["purge"] = PURGE_INDEX
             logger.debug("Completed filling in action indices for built-in actions.")
-            for action in extensions.actions:
-               indexMap[action.name] = action.index
-            logger.debug("Completed filling in action indices for extended actions.")
             logger.info("Action order will be: %s", sortDict(indexMap))
-         else:
-            logger.info("Action ordering will use 'dependency' order mode.")
-            graph = DirectedGraph("dependencies")
-            graph.createVertex("rebuild")
-            graph.createVertex("validate")
-            graph.createVertex("initialize")
-            graph.createVertex("collect")
-            graph.createVertex("stage")
-            graph.createVertex("store")
-            graph.createVertex("purge")
-            for action in extensions.actions:
-               graph.createVertex(action.name)
-            graph.createEdge("collect", "stage")   # Collect must run before stage, store or purge
-            graph.createEdge("collect", "store")
-            graph.createEdge("collect", "purge")
-            graph.createEdge("stage", "store")     # Stage must run before store or purge
-            graph.createEdge("stage", "purge")
-            graph.createEdge("store", "purge")     # Store must run before purge
-            for action in extensions.actions:
-               if action.dependencies.beforeList is not None:
-                  for vertex in action.dependencies.beforeList:
-                     try:
-                        graph.createEdge(action.name, vertex)   # actions that this action must be run before
-                     except ValueError:
-                        logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                        raise ValueError("Unable to determine proper action order due to invalid dependency.")
-               if action.dependencies.afterList is not None:
-                  for vertex in action.dependencies.afterList:
-                     try:
-                        graph.createEdge(vertex, action.name)   # actions that this action must be run after
-                     except ValueError:
-                        logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                        raise ValueError("Unable to determine proper action order due to invalid dependency.")
-            try:
-               ordering = graph.topologicalSort()
-               indexMap = dict([(ordering[i], i+1) for i in range(0, len(ordering))])
-               logger.info("Action order will be: %s", ordering)
-            except ValueError:
-               logger.error("Unable to determine proper action order due to dependency recursion.")
-               logger.error("Extensions configuration is invalid (check for loops).")
-               raise ValueError("Unable to determine proper action order due to dependency recursion.")
-      return indexMap
+        else:
+            if extensions.orderMode is None or extensions.orderMode == "index":
+                logger.info("Action ordering will use 'index' order mode.")
+                indexMap["rebuild"] = REBUILD_INDEX
+                indexMap["validate"] = VALIDATE_INDEX
+                indexMap["initialize"] = INITIALIZE_INDEX
+                indexMap["collect"] = COLLECT_INDEX
+                indexMap["stage"] = STAGE_INDEX
+                indexMap["store"] = STORE_INDEX
+                indexMap["purge"] = PURGE_INDEX
+                logger.debug("Completed filling in action indices for built-in actions.")
+                for action in extensions.actions:
+                    indexMap[action.name] = action.index
+                logger.debug("Completed filling in action indices for extended actions.")
+                logger.info("Action order will be: %s", sortDict(indexMap))
+            else:
+                logger.info("Action ordering will use 'dependency' order mode.")
+                graph = DirectedGraph("dependencies")
+                graph.createVertex("rebuild")
+                graph.createVertex("validate")
+                graph.createVertex("initialize")
+                graph.createVertex("collect")
+                graph.createVertex("stage")
+                graph.createVertex("store")
+                graph.createVertex("purge")
+                for action in extensions.actions:
+                    graph.createVertex(action.name)
+                graph.createEdge("collect", "stage")  # Collect must run before stage, store or purge
+                graph.createEdge("collect", "store")
+                graph.createEdge("collect", "purge")
+                graph.createEdge("stage", "store")  # Stage must run before store or purge
+                graph.createEdge("stage", "purge")
+                graph.createEdge("store", "purge")  # Store must run before purge
+                for action in extensions.actions:
+                    if action.dependencies.beforeList is not None:
+                        for vertex in action.dependencies.beforeList:
+                            try:
+                                graph.createEdge(action.name, vertex)  # actions that this action must be run before
+                            except ValueError:
+                                logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
+                    if action.dependencies.afterList is not None:
+                        for vertex in action.dependencies.afterList:
+                            try:
+                                graph.createEdge(vertex, action.name)  # actions that this action must be run after
+                            except ValueError:
+                                logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
+                try:
+                    ordering = graph.topologicalSort()
+                    indexMap = dict([(ordering[i], i + 1) for i in range(0, len(ordering))])
+                    logger.info("Action order will be: %s", ordering)
+                except ValueError:
+                    logger.error("Unable to determine proper action order due to dependency recursion.")
+                    logger.error("Extensions configuration is invalid (check for loops).")
+                    raise ValueError("Unable to determine proper action order due to dependency recursion.")
+        return indexMap
 
-   @staticmethod
-   def _buildActionMap(managed, local, extensionNames, functionMap, indexMap, preHookMap, postHookMap, peerMap):
-      """
+    @staticmethod
+    def _buildActionMap(managed, local, extensionNames, functionMap, indexMap, preHookMap, postHookMap, peerMap):
+        """
       Builds a mapping from action name to list of action items.
 
       We build either ``_ActionItem`` or ``_ManagedActionItem`` objects here.
@@ -782,24 +798,24 @@ class _ActionSet(object):
       Returns:
           Dictionary mapping action name to list of ``_ActionItem`` objects
       """
-      actionMap = {}
-      for name in extensionNames + VALID_ACTIONS:
-         if name != 'all': # do this one later
-            function = functionMap[name]
-            index = indexMap[name]
-            actionMap[name] = []
-            if local:
-               (preHooks, postHooks) = _ActionSet._deriveHooks(name, preHookMap, postHookMap)
-               actionMap[name].append(_ActionItem(index, name, preHooks, postHooks, function))
-            if managed:
-               if name in peerMap:
-                  actionMap[name].append(_ManagedActionItem(index, name, peerMap[name]))
-      actionMap['all'] = actionMap['collect'] + actionMap['stage'] + actionMap['store'] + actionMap['purge']
-      return actionMap
+        actionMap = {}
+        for name in extensionNames + VALID_ACTIONS:
+            if name != "all":  # do this one later
+                function = functionMap[name]
+                index = indexMap[name]
+                actionMap[name] = []
+                if local:
+                    (preHooks, postHooks) = _ActionSet._deriveHooks(name, preHookMap, postHookMap)
+                    actionMap[name].append(_ActionItem(index, name, preHooks, postHooks, function))
+                if managed:
+                    if name in peerMap:
+                        actionMap[name].append(_ManagedActionItem(index, name, peerMap[name]))
+        actionMap["all"] = actionMap["collect"] + actionMap["stage"] + actionMap["store"] + actionMap["purge"]
+        return actionMap
 
-   @staticmethod
-   def _buildPeerMap(options, peers):
-      """
+    @staticmethod
+    def _buildPeerMap(options, peers):
+        """
       Build a mapping from action name to list of remote peers.
 
       There will be one entry in the mapping for each managed action.  If there
@@ -810,29 +826,30 @@ class _ActionSet(object):
          options: Option configuration (i.e. config.options)
          peers: Peers configuration (i.e. config.peers)
       """
-      peerMap = {}
-      if peers is not None:
-         if peers.remotePeers is not None:
-            for peer in peers.remotePeers:
-               if peer.managed:
-                  remoteUser = _ActionSet._getRemoteUser(options, peer)
-                  rshCommand = _ActionSet._getRshCommand(options, peer)
-                  cbackCommand = _ActionSet._getCbackCommand(options, peer)
-                  managedActions = _ActionSet._getManagedActions(options, peer)
-                  remotePeer = RemotePeer(peer.name, None, options.workingDir, remoteUser, None,
-                                          options.backupUser, rshCommand, cbackCommand)
-                  if managedActions is not None:
-                     for managedAction in managedActions:
-                        if managedAction in peerMap:
-                           if remotePeer not in peerMap[managedAction]:
-                              peerMap[managedAction].append(remotePeer)
-                        else:
-                           peerMap[managedAction] = [ remotePeer]
-      return peerMap
+        peerMap = {}
+        if peers is not None:
+            if peers.remotePeers is not None:
+                for peer in peers.remotePeers:
+                    if peer.managed:
+                        remoteUser = _ActionSet._getRemoteUser(options, peer)
+                        rshCommand = _ActionSet._getRshCommand(options, peer)
+                        cbackCommand = _ActionSet._getCbackCommand(options, peer)
+                        managedActions = _ActionSet._getManagedActions(options, peer)
+                        remotePeer = RemotePeer(
+                            peer.name, None, options.workingDir, remoteUser, None, options.backupUser, rshCommand, cbackCommand
+                        )
+                        if managedActions is not None:
+                            for managedAction in managedActions:
+                                if managedAction in peerMap:
+                                    if remotePeer not in peerMap[managedAction]:
+                                        peerMap[managedAction].append(remotePeer)
+                                else:
+                                    peerMap[managedAction] = [remotePeer]
+        return peerMap
 
-   @staticmethod
-   def _deriveHooks(action, preHookDict, postHookDict):
-      """
+    @staticmethod
+    def _deriveHooks(action, preHookDict, postHookDict):
+        """
       Derive pre- and post-action hooks, if any, associated with named action.
       Args:
          action: Name of action to look up
@@ -840,17 +857,17 @@ class _ActionSet(object):
          postHookDict: Dictionary mapping post-action hooks to action name
       @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook
       """
-      preHooks = None
-      postHooks = None
-      if action in preHookDict:
-         preHooks = preHookDict[action]
-      if action in postHookDict:
-         postHooks = postHookDict[action]
-      return (preHooks, postHooks)
+        preHooks = None
+        postHooks = None
+        if action in preHookDict:
+            preHooks = preHookDict[action]
+        if action in postHookDict:
+            postHooks = postHookDict[action]
+        return (preHooks, postHooks)
 
-   @staticmethod
-   def _validateActions(actions, extensionNames):
-      """
+    @staticmethod
+    def _validateActions(actions, extensionNames):
+        """
       Validate that the set of specified actions is sensible.
 
       Any specified action must either be a built-in action or must be among
@@ -864,18 +881,18 @@ class _ActionSet(object):
       Raises:
          ValueError: If one or more configured actions are not valid
       """
-      if actions is None or actions == []:
-         raise ValueError("No actions specified.")
-      for action in actions:
-         if action not in VALID_ACTIONS and action not in extensionNames:
-            raise ValueError("Action [%s] is not a valid action or extended action." % action)
-      for action in NONCOMBINE_ACTIONS:
-         if action in actions and actions != [action]:
-            raise ValueError("Action [%s] may not be combined with other actions." % action)
+        if actions is None or actions == []:
+            raise ValueError("No actions specified.")
+        for action in actions:
+            if action not in VALID_ACTIONS and action not in extensionNames:
+                raise ValueError("Action [%s] is not a valid action or extended action." % action)
+        for action in NONCOMBINE_ACTIONS:
+            if action in actions and actions != [action]:
+                raise ValueError("Action [%s] may not be combined with other actions." % action)
 
-   @staticmethod
-   def _buildActionSet(actions, actionMap):
-      """
+    @staticmethod
+    def _buildActionSet(actions, actionMap):
+        """
       Build set of actions to be executed.
 
       The set of actions is built in the proper order, so ``executeActions`` can
@@ -891,14 +908,14 @@ class _ActionSet(object):
       Returns:
           Set of action items in proper order
       """
-      actionSet = []
-      for action in actions:
-         actionSet.extend(actionMap[action])
-      actionSet.sort()  # sort the actions in order by index
-      return actionSet
+        actionSet = []
+        for action in actions:
+            actionSet.extend(actionMap[action])
+        actionSet.sort()  # sort the actions in order by index
+        return actionSet
 
-   def executeActions(self, configPath, options, config):
-      """
+    def executeActions(self, configPath, options, config):
+        """
       Executes all actions and extended actions, in the proper order.
 
       Each action (whether built-in or extension) is executed in an identical
@@ -914,13 +931,13 @@ class _ActionSet(object):
       Raises:
          Exception: If there is a problem executing the actions
       """
-      logger.debug("Executing local actions.")
-      for actionItem in self.actionSet:
-         actionItem.executeAction(configPath, options, config)
+        logger.debug("Executing local actions.")
+        for actionItem in self.actionSet:
+            actionItem.executeAction(configPath, options, config)
 
-   @staticmethod
-   def _getRemoteUser(options, remotePeer):
-      """
+    @staticmethod
+    def _getRemoteUser(options, remotePeer):
+        """
       Gets the remote user associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
       Args:
@@ -929,13 +946,13 @@ class _ActionSet(object):
       Returns:
           Name of remote user associated with remote peer
       """
-      if remotePeer.remoteUser is None:
-         return options.backupUser
-      return remotePeer.remoteUser
+        if remotePeer.remoteUser is None:
+            return options.backupUser
+        return remotePeer.remoteUser
 
-   @staticmethod
-   def _getRshCommand(options, remotePeer):
-      """
+    @staticmethod
+    def _getRshCommand(options, remotePeer):
+        """
       Gets the RSH command associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
       Args:
@@ -944,13 +961,13 @@ class _ActionSet(object):
       Returns:
           RSH command associated with remote peer
       """
-      if remotePeer.rshCommand is None:
-         return options.rshCommand
-      return remotePeer.rshCommand
+        if remotePeer.rshCommand is None:
+            return options.rshCommand
+        return remotePeer.rshCommand
 
-   @staticmethod
-   def _getCbackCommand(options, remotePeer):
-      """
+    @staticmethod
+    def _getCbackCommand(options, remotePeer):
+        """
       Gets the cback command associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
       Args:
@@ -959,13 +976,13 @@ class _ActionSet(object):
       Returns:
           cback command associated with remote peer
       """
-      if remotePeer.cbackCommand is None:
-         return options.cbackCommand
-      return remotePeer.cbackCommand
+        if remotePeer.cbackCommand is None:
+            return options.cbackCommand
+        return remotePeer.cbackCommand
 
-   @staticmethod
-   def _getManagedActions(options, remotePeer):
-      """
+    @staticmethod
+    def _getManagedActions(options, remotePeer):
+        """
       Gets the managed actions list associated with a remote peer.
       Use peer's if possible, otherwise take from options section.
       Args:
@@ -974,9 +991,9 @@ class _ActionSet(object):
       Returns:
           Set of managed actions associated with remote peer
       """
-      if remotePeer.managedActions is None:
-         return options.managedActions
-      return remotePeer.managedActions
+        if remotePeer.managedActions is None:
+            return options.managedActions
+        return remotePeer.managedActions
 
 
 #######################################################################
@@ -987,104 +1004,112 @@ class _ActionSet(object):
 # _usage() function
 ####################
 
+
 def _usage(fd=sys.stderr):
-   """
+    """
    Prints usage information for the cback3 script.
    Args:
       fd: File descriptor used to print information
    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
-   fd.write("\n")
-   fd.write(" Usage: cback3 [switches] action(s)\n")
-   fd.write("\n")
-   fd.write(" The following switches are accepted:\n")
-   fd.write("\n")
-   fd.write("   -h, --help         Display this usage/help listing\n")
-   fd.write("   -V, --version      Display version information\n")
-   fd.write("   -b, --verbose      Print verbose output as well as logging to disk\n")
-   fd.write("   -q, --quiet        Run quietly (display no output to the screen)\n")
-   fd.write("   -c, --config       Path to config file (default: %s)\n" % DEFAULT_CONFIG)
-   fd.write("   -f, --full         Perform a full backup, regardless of configuration\n")
-   fd.write("   -M, --managed      Include managed clients when executing actions\n")
-   fd.write("   -N, --managed-only Include ONLY managed clients when executing actions\n")
-   fd.write("   -l, --logfile      Path to logfile (default: %s)\n" % DEFAULT_LOGFILE)
-   fd.write("   -o, --owner        Logfile ownership, user:group (default: %s:%s)\n" % (DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1]))
-   fd.write("   -m, --mode         Octal logfile permissions mode (default: %o)\n" % DEFAULT_MODE)
-   fd.write("   -O, --output       Record some sub-command (i.e. cdrecord) output to the log\n")
-   fd.write("   -d, --debug        Write debugging information to the log (implies --output)\n")
-   fd.write("   -s, --stack        Dump a Python stack trace instead of swallowing exceptions\n") # exactly 80 characters in width!
-   fd.write("   -D, --diagnostics  Print runtime diagnostics to the screen and exit\n")
-   fd.write("\n")
-   fd.write(" The following actions may be specified:\n")
-   fd.write("\n")
-   fd.write("   all                Take all normal actions (collect, stage, store, purge)\n")
-   fd.write("   collect            Take the collect action\n")
-   fd.write("   stage              Take the stage action\n")
-   fd.write("   store              Take the store action\n")
-   fd.write("   purge              Take the purge action\n")
-   fd.write("   rebuild            Rebuild \"this week's\" disc if possible\n")
-   fd.write("   validate           Validate configuration only\n")
-   fd.write("   initialize         Initialize media for use with Cedar Backup\n")
-   fd.write("\n")
-   fd.write(" You may also specify extended actions that have been defined in\n")
-   fd.write(" configuration.\n")
-   fd.write("\n")
-   fd.write(" You must specify at least one action to take.  More than one of\n")
-   fd.write(" the \"collect\", \"stage\", \"store\" or \"purge\" actions and/or\n")
-   fd.write(" extended actions may be specified in any arbitrary order; they\n")
-   fd.write(" will be executed in a sensible order.  The \"all\", \"rebuild\",\n")
-   fd.write(" \"validate\", and \"initialize\" actions may not be combined with\n")
-   fd.write(" other actions.\n")
-   fd.write("\n")
+    fd.write("\n")
+    fd.write(" Usage: cback3 [switches] action(s)\n")
+    fd.write("\n")
+    fd.write(" The following switches are accepted:\n")
+    fd.write("\n")
+    fd.write("   -h, --help         Display this usage/help listing\n")
+    fd.write("   -V, --version      Display version information\n")
+    fd.write("   -b, --verbose      Print verbose output as well as logging to disk\n")
+    fd.write("   -q, --quiet        Run quietly (display no output to the screen)\n")
+    fd.write("   -c, --config       Path to config file (default: %s)\n" % DEFAULT_CONFIG)
+    fd.write("   -f, --full         Perform a full backup, regardless of configuration\n")
+    fd.write("   -M, --managed      Include managed clients when executing actions\n")
+    fd.write("   -N, --managed-only Include ONLY managed clients when executing actions\n")
+    fd.write("   -l, --logfile      Path to logfile (default: %s)\n" % DEFAULT_LOGFILE)
+    fd.write(
+        "   -o, --owner        Logfile ownership, user:group (default: %s:%s)\n" % (DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
+    )
+    fd.write("   -m, --mode         Octal logfile permissions mode (default: %o)\n" % DEFAULT_MODE)
+    fd.write("   -O, --output       Record some sub-command (i.e. cdrecord) output to the log\n")
+    fd.write("   -d, --debug        Write debugging information to the log (implies --output)\n")
+    fd.write(
+        "   -s, --stack        Dump a Python stack trace instead of swallowing exceptions\n"
+    )  # exactly 80 characters in width!
+    fd.write("   -D, --diagnostics  Print runtime diagnostics to the screen and exit\n")
+    fd.write("\n")
+    fd.write(" The following actions may be specified:\n")
+    fd.write("\n")
+    fd.write("   all                Take all normal actions (collect, stage, store, purge)\n")
+    fd.write("   collect            Take the collect action\n")
+    fd.write("   stage              Take the stage action\n")
+    fd.write("   store              Take the store action\n")
+    fd.write("   purge              Take the purge action\n")
+    fd.write('   rebuild            Rebuild "this week\'s" disc if possible\n')
+    fd.write("   validate           Validate configuration only\n")
+    fd.write("   initialize         Initialize media for use with Cedar Backup\n")
+    fd.write("\n")
+    fd.write(" You may also specify extended actions that have been defined in\n")
+    fd.write(" configuration.\n")
+    fd.write("\n")
+    fd.write(" You must specify at least one action to take.  More than one of\n")
+    fd.write(' the "collect", "stage", "store" or "purge" actions and/or\n')
+    fd.write(" extended actions may be specified in any arbitrary order; they\n")
+    fd.write(' will be executed in a sensible order.  The "all", "rebuild",\n')
+    fd.write(' "validate", and "initialize" actions may not be combined with\n')
+    fd.write(" other actions.\n")
+    fd.write("\n")
 
 
 ######################
 # _version() function
 ######################
 
+
 def _version(fd=sys.stdout):
-   """
+    """
    Prints version information for the cback3 script.
    Args:
       fd: File descriptor used to print information
    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
-   fd.write("\n")
-   fd.write(" Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
-   fd.write("\n")
-   fd.write(" Copyright (c) %s %s <%s>.\n" % (COPYRIGHT, AUTHOR, EMAIL))
-   fd.write(" See CREDITS for a list of included code and other contributors.\n")
-   fd.write(" This is free software; there is NO warranty.  See the\n")
-   fd.write(" GNU General Public License version 2 for copying conditions.\n")
-   fd.write("\n")
-   fd.write(" Use the --help option for usage information.\n")
-   fd.write("\n")
+    fd.write("\n")
+    fd.write(" Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
+    fd.write("\n")
+    fd.write(" Copyright (c) %s %s <%s>.\n" % (COPYRIGHT, AUTHOR, EMAIL))
+    fd.write(" See CREDITS for a list of included code and other contributors.\n")
+    fd.write(" This is free software; there is NO warranty.  See the\n")
+    fd.write(" GNU General Public License version 2 for copying conditions.\n")
+    fd.write("\n")
+    fd.write(" Use the --help option for usage information.\n")
+    fd.write("\n")
 
 
 ##########################
 # _diagnostics() function
 ##########################
 
+
 def _diagnostics(fd=sys.stdout):
-   """
+    """
    Prints runtime diagnostics information.
    Args:
       fd: File descriptor used to print information
    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
    """
-   fd.write("\n")
-   fd.write("Diagnostics:\n")
-   fd.write("\n")
-   Diagnostics().printDiagnostics(fd=fd, prefix="   ")
-   fd.write("\n")
+    fd.write("\n")
+    fd.write("Diagnostics:\n")
+    fd.write("\n")
+    Diagnostics().printDiagnostics(fd=fd, prefix="   ")
+    fd.write("\n")
 
 
 ##########################
 # setupLogging() function
 ##########################
 
+
 def setupLogging(options):
-   """
+    """
    Set up logging based on command-line options.
 
    There are two kinds of logging: flow logging and output logging.  Output
@@ -1114,13 +1139,14 @@ def setupLogging(options):
    Returns:
        Path to logfile on disk
    """
-   logfile = _setupLogfile(options)
-   _setupFlowLogging(logfile, options)
-   _setupOutputLogging(logfile, options)
-   return logfile
+    logfile = _setupLogfile(options)
+    _setupFlowLogging(logfile, options)
+    _setupOutputLogging(logfile, options)
+    return logfile
+
 
 def _setupLogfile(options):
-   """
+    """
    Sets up and creates logfile as needed.
 
    If the logfile already exists on disk, it will be left as-is, under the
@@ -1144,113 +1170,120 @@ def _setupLogfile(options):
    Returns:
        Path to logfile on disk
    """
-   if options.logfile is None:
-      logfile = DEFAULT_LOGFILE
-   else:
-      logfile = options.logfile
-   if not os.path.exists(logfile):
-      mode = DEFAULT_MODE if options.mode is None else options.mode
-      orig = os.umask(0) # Per os.open(), "When computing mode, the current umask value is first masked out"
-      try:
-         fd = os.open(logfile, os.O_RDWR|os.O_CREAT|os.O_APPEND, mode)
-         with os.fdopen(fd, "a+") as f:
-            f.write("")
-      finally:
-         os.umask(orig)
-      try:
-         if options.owner is None or len(options.owner) < 2:
-            (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
-         else:
-            (uid, gid) = getUidGid(options.owner[0], options.owner[1])
-         os.chown(logfile, uid, gid)
-      except: pass
-   return logfile
+    if options.logfile is None:
+        logfile = DEFAULT_LOGFILE
+    else:
+        logfile = options.logfile
+    if not os.path.exists(logfile):
+        mode = DEFAULT_MODE if options.mode is None else options.mode
+        orig = os.umask(0)  # Per os.open(), "When computing mode, the current umask value is first masked out"
+        try:
+            fd = os.open(logfile, os.O_RDWR | os.O_CREAT | os.O_APPEND, mode)
+            with os.fdopen(fd, "a+") as f:
+                f.write("")
+        finally:
+            os.umask(orig)
+        try:
+            if options.owner is None or len(options.owner) < 2:
+                (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
+            else:
+                (uid, gid) = getUidGid(options.owner[0], options.owner[1])
+            os.chown(logfile, uid, gid)
+        except:
+            pass
+    return logfile
+
 
 def _setupFlowLogging(logfile, options):
-   """
+    """
    Sets up flow logging.
    Args:
       logfile: Path to logfile on disk
       options: Command-line options
    """
-   flowLogger = logging.getLogger("CedarBackup3.log")
-   flowLogger.setLevel(logging.DEBUG)    # let the logger see all messages
-   _setupDiskFlowLogging(flowLogger, logfile, options)
-   _setupScreenFlowLogging(flowLogger, options)
+    flowLogger = logging.getLogger("CedarBackup3.log")
+    flowLogger.setLevel(logging.DEBUG)  # let the logger see all messages
+    _setupDiskFlowLogging(flowLogger, logfile, options)
+    _setupScreenFlowLogging(flowLogger, options)
+
 
 def _setupOutputLogging(logfile, options):
-   """
+    """
    Sets up command output logging.
    Args:
       logfile: Path to logfile on disk
       options: Command-line options
    """
-   outputLogger = logging.getLogger("CedarBackup3.output")
-   outputLogger.setLevel(logging.DEBUG)      # let the logger see all messages
-   _setupDiskOutputLogging(outputLogger, logfile, options)
+    outputLogger = logging.getLogger("CedarBackup3.output")
+    outputLogger.setLevel(logging.DEBUG)  # let the logger see all messages
+    _setupDiskOutputLogging(outputLogger, logfile, options)
+
 
 def _setupDiskFlowLogging(flowLogger, logfile, options):
-   """
+    """
    Sets up on-disk flow logging.
    Args:
       flowLogger: Python flow logger object
       logfile: Path to logfile on disk
       options: Command-line options
    """
-   formatter = logging.Formatter(fmt=DISK_LOG_FORMAT, datefmt=DATE_FORMAT)
-   handler = logging.FileHandler(logfile, mode="a")
-   handler.setFormatter(formatter)
-   if options.debug:
-      handler.setLevel(logging.DEBUG)
-   else:
-      handler.setLevel(logging.INFO)
-   flowLogger.addHandler(handler)
+    formatter = logging.Formatter(fmt=DISK_LOG_FORMAT, datefmt=DATE_FORMAT)
+    handler = logging.FileHandler(logfile, mode="a")
+    handler.setFormatter(formatter)
+    if options.debug:
+        handler.setLevel(logging.DEBUG)
+    else:
+        handler.setLevel(logging.INFO)
+    flowLogger.addHandler(handler)
+
 
 def _setupScreenFlowLogging(flowLogger, options):
-   """
+    """
    Sets up on-screen flow logging.
    Args:
       flowLogger: Python flow logger object
       options: Command-line options
    """
-   formatter = logging.Formatter(fmt=SCREEN_LOG_FORMAT)
-   handler = logging.StreamHandler(SCREEN_LOG_STREAM)
-   handler.setFormatter(formatter)
-   if options.quiet:
-      handler.setLevel(logging.CRITICAL)  # effectively turn it off
-   elif options.verbose:
-      if options.debug:
-         handler.setLevel(logging.DEBUG)
-      else:
-         handler.setLevel(logging.INFO)
-   else:
-      handler.setLevel(logging.ERROR)
-   flowLogger.addHandler(handler)
+    formatter = logging.Formatter(fmt=SCREEN_LOG_FORMAT)
+    handler = logging.StreamHandler(SCREEN_LOG_STREAM)
+    handler.setFormatter(formatter)
+    if options.quiet:
+        handler.setLevel(logging.CRITICAL)  # effectively turn it off
+    elif options.verbose:
+        if options.debug:
+            handler.setLevel(logging.DEBUG)
+        else:
+            handler.setLevel(logging.INFO)
+    else:
+        handler.setLevel(logging.ERROR)
+    flowLogger.addHandler(handler)
+
 
 def _setupDiskOutputLogging(outputLogger, logfile, options):
-   """
+    """
    Sets up on-disk command output logging.
    Args:
       outputLogger: Python command output logger object
       logfile: Path to logfile on disk
       options: Command-line options
    """
-   formatter = logging.Formatter(fmt=DISK_OUTPUT_FORMAT, datefmt=DATE_FORMAT)
-   handler = logging.FileHandler(logfile, mode="a")
-   handler.setFormatter(formatter)
-   if options.debug or options.output:
-      handler.setLevel(logging.DEBUG)
-   else:
-      handler.setLevel(logging.CRITICAL)  # effectively turn it off
-   outputLogger.addHandler(handler)
+    formatter = logging.Formatter(fmt=DISK_OUTPUT_FORMAT, datefmt=DATE_FORMAT)
+    handler = logging.FileHandler(logfile, mode="a")
+    handler.setFormatter(formatter)
+    if options.debug or options.output:
+        handler.setLevel(logging.DEBUG)
+    else:
+        handler.setLevel(logging.CRITICAL)  # effectively turn it off
+    outputLogger.addHandler(handler)
 
 
 ###############################
 # setupPathResolver() function
 ###############################
 
+
 def setupPathResolver(config):
-   """
+    """
    Set up the path resolver singleton based on configuration.
 
    Cedar Backup's path resolver is implemented in terms of a singleton, the
@@ -1263,26 +1296,27 @@ def setupPathResolver(config):
       config (:any:`Config` object): Configuration
 
    """
-   mapping = {}
-   if config.options.overrides is not None:
-      for override in config.options.overrides:
-         mapping[override.command] = override.absolutePath
-   singleton = PathResolverSingleton()
-   singleton.fill(mapping)
+    mapping = {}
+    if config.options.overrides is not None:
+        for override in config.options.overrides:
+            mapping[override.command] = override.absolutePath
+    singleton = PathResolverSingleton()
+    singleton.fill(mapping)
 
 
 #########################################################################
 # Options class definition
 ########################################################################
 
+
 @total_ordering
 class Options(object):
 
-   ######################
-   # Class documentation
-   ######################
+    ######################
+    # Class documentation
+    ######################
 
-   """
+    """
    Class representing command-line options for the cback3 script.
 
    The ``Options`` class is a Python object representation of the command-line
@@ -1321,12 +1355,12 @@ class Options(object):
 
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self, argumentList=None, argumentString=None, validate=True):
-      """
+    def __init__(self, argumentList=None, argumentString=None, validate=True):
+        """
       Initializes an options object.
 
       If you initialize the object without passing either ``argumentList`` or
@@ -1369,68 +1403,66 @@ class Options(object):
          getopt.GetoptError: If the command-line arguments could not be parsed
          ValueError: If the command-line arguments are invalid
       """
-      self._help = False
-      self._version = False
-      self._verbose = False
-      self._quiet = False
-      self._config = None
-      self._full = False
-      self._managed = False
-      self._managedOnly = False
-      self._logfile = None
-      self._owner = None
-      self._mode = None
-      self._output = False
-      self._debug = False
-      self._stacktrace = False
-      self._diagnostics = False
-      self._actions = None
-      self.actions = []    # initialize to an empty list; remainder are OK
-      if argumentList is not None and argumentString is not None:
-         raise ValueError("Use either argumentList or argumentString, but not both.")
-      if argumentString is not None:
-         argumentList = splitCommandLine(argumentString)
-      if argumentList is not None:
-         self._parseArgumentList(argumentList)
-         if validate:
-            self.validate()
+        self._help = False
+        self._version = False
+        self._verbose = False
+        self._quiet = False
+        self._config = None
+        self._full = False
+        self._managed = False
+        self._managedOnly = False
+        self._logfile = None
+        self._owner = None
+        self._mode = None
+        self._output = False
+        self._debug = False
+        self._stacktrace = False
+        self._diagnostics = False
+        self._actions = None
+        self.actions = []  # initialize to an empty list; remainder are OK
+        if argumentList is not None and argumentString is not None:
+            raise ValueError("Use either argumentList or argumentString, but not both.")
+        if argumentString is not None:
+            argumentList = splitCommandLine(argumentString)
+        if argumentList is not None:
+            self._parseArgumentList(argumentList)
+            if validate:
+                self.validate()
 
+    #########################
+    # String representations
+    #########################
 
-   #########################
-   # String representations
-   #########################
-
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return self.buildArgumentString(validate=False)
+        return self.buildArgumentString(validate=False)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
+    #############################
+    # Standard comparison method
+    #############################
 
-   #############################
-   # Standard comparison method
-   #############################
+    def __eq__(self, other):
+        """Equals operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __eq__(self, other):
-      """Equals operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __lt__(self, other):
+        """Less-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __lt__(self, other):
-      """Less-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __gt__(self, other):
+        """Greater-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __gt__(self, other):
-      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
-
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       Args:
@@ -1438,241 +1470,240 @@ class Options(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.help != other.help:
-         if self.help < other.help:
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.version != other.version:
-         if self.version < other.version:
-            return -1
-         else:
-            return 1
-      if self.verbose != other.verbose:
-         if self.verbose < other.verbose:
-            return -1
-         else:
-            return 1
-      if self.quiet != other.quiet:
-         if self.quiet < other.quiet:
-            return -1
-         else:
-            return 1
-      if self.config != other.config:
-         if self.config < other.config:
-            return -1
-         else:
-            return 1
-      if self.full != other.full:
-         if self.full < other.full:
-            return -1
-         else:
-            return 1
-      if self.managed != other.managed:
-         if self.managed < other.managed:
-            return -1
-         else:
-            return 1
-      if self.managedOnly != other.managedOnly:
-         if self.managedOnly < other.managedOnly:
-            return -1
-         else:
-            return 1
-      if self.logfile != other.logfile:
-         if str(self.logfile or "") < str(other.logfile or ""):
-            return -1
-         else:
-            return 1
-      if self.owner != other.owner:
-         if str(self.owner or "") < str(other.owner or ""):
-            return -1
-         else:
-            return 1
-      if self.mode != other.mode:
-         if int(self.mode or 0) < int(other.mode or 0):
-            return -1
-         else:
-            return 1
-      if self.output != other.output:
-         if self.output < other.output:
-            return -1
-         else:
-            return 1
-      if self.debug != other.debug:
-         if self.debug < other.debug:
-            return -1
-         else:
-            return 1
-      if self.stacktrace != other.stacktrace:
-         if self.stacktrace < other.stacktrace:
-            return -1
-         else:
-            return 1
-      if self.diagnostics != other.diagnostics:
-         if self.diagnostics < other.diagnostics:
-            return -1
-         else:
-            return 1
-      if self.actions != other.actions:
-         if self.actions < other.actions:
-            return -1
-         else:
-            return 1
-      return 0
+        if self.help != other.help:
+            if self.help < other.help:
+                return -1
+            else:
+                return 1
+        if self.version != other.version:
+            if self.version < other.version:
+                return -1
+            else:
+                return 1
+        if self.verbose != other.verbose:
+            if self.verbose < other.verbose:
+                return -1
+            else:
+                return 1
+        if self.quiet != other.quiet:
+            if self.quiet < other.quiet:
+                return -1
+            else:
+                return 1
+        if self.config != other.config:
+            if self.config < other.config:
+                return -1
+            else:
+                return 1
+        if self.full != other.full:
+            if self.full < other.full:
+                return -1
+            else:
+                return 1
+        if self.managed != other.managed:
+            if self.managed < other.managed:
+                return -1
+            else:
+                return 1
+        if self.managedOnly != other.managedOnly:
+            if self.managedOnly < other.managedOnly:
+                return -1
+            else:
+                return 1
+        if self.logfile != other.logfile:
+            if str(self.logfile or "") < str(other.logfile or ""):
+                return -1
+            else:
+                return 1
+        if self.owner != other.owner:
+            if str(self.owner or "") < str(other.owner or ""):
+                return -1
+            else:
+                return 1
+        if self.mode != other.mode:
+            if int(self.mode or 0) < int(other.mode or 0):
+                return -1
+            else:
+                return 1
+        if self.output != other.output:
+            if self.output < other.output:
+                return -1
+            else:
+                return 1
+        if self.debug != other.debug:
+            if self.debug < other.debug:
+                return -1
+            else:
+                return 1
+        if self.stacktrace != other.stacktrace:
+            if self.stacktrace < other.stacktrace:
+                return -1
+            else:
+                return 1
+        if self.diagnostics != other.diagnostics:
+            if self.diagnostics < other.diagnostics:
+                return -1
+            else:
+                return 1
+        if self.actions != other.actions:
+            if self.actions < other.actions:
+                return -1
+            else:
+                return 1
+        return 0
 
+    #############
+    # Properties
+    #############
 
-   #############
-   # Properties
-   #############
-
-   def _setHelp(self, value):
-      """
+    def _setHelp(self, value):
+        """
       Property target used to set the help flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._help = True
-      else:
-         self._help = False
+        if value:
+            self._help = True
+        else:
+            self._help = False
 
-   def _getHelp(self):
-      """
+    def _getHelp(self):
+        """
       Property target used to get the help flag.
       """
-      return self._help
+        return self._help
 
-   def _setVersion(self, value):
-      """
+    def _setVersion(self, value):
+        """
       Property target used to set the version flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._version = True
-      else:
-         self._version = False
+        if value:
+            self._version = True
+        else:
+            self._version = False
 
-   def _getVersion(self):
-      """
+    def _getVersion(self):
+        """
       Property target used to get the version flag.
       """
-      return self._version
+        return self._version
 
-   def _setVerbose(self, value):
-      """
+    def _setVerbose(self, value):
+        """
       Property target used to set the verbose flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._verbose = True
-      else:
-         self._verbose = False
+        if value:
+            self._verbose = True
+        else:
+            self._verbose = False
 
-   def _getVerbose(self):
-      """
+    def _getVerbose(self):
+        """
       Property target used to get the verbose flag.
       """
-      return self._verbose
+        return self._verbose
 
-   def _setQuiet(self, value):
-      """
+    def _setQuiet(self, value):
+        """
       Property target used to set the quiet flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._quiet = True
-      else:
-         self._quiet = False
+        if value:
+            self._quiet = True
+        else:
+            self._quiet = False
 
-   def _getQuiet(self):
-      """
+    def _getQuiet(self):
+        """
       Property target used to get the quiet flag.
       """
-      return self._quiet
+        return self._quiet
 
-   def _setConfig(self, value):
-      """
+    def _setConfig(self, value):
+        """
       Property target used to set the config parameter.
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The config parameter must be a non-empty string.")
-      self._config = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The config parameter must be a non-empty string.")
+        self._config = value
 
-   def _getConfig(self):
-      """
+    def _getConfig(self):
+        """
       Property target used to get the config parameter.
       """
-      return self._config
+        return self._config
 
-   def _setFull(self, value):
-      """
+    def _setFull(self, value):
+        """
       Property target used to set the full flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._full = True
-      else:
-         self._full = False
+        if value:
+            self._full = True
+        else:
+            self._full = False
 
-   def _getFull(self):
-      """
+    def _getFull(self):
+        """
       Property target used to get the full flag.
       """
-      return self._full
+        return self._full
 
-   def _setManaged(self, value):
-      """
+    def _setManaged(self, value):
+        """
       Property target used to set the managed flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._managed = True
-      else:
-         self._managed = False
+        if value:
+            self._managed = True
+        else:
+            self._managed = False
 
-   def _getManaged(self):
-      """
+    def _getManaged(self):
+        """
       Property target used to get the managed flag.
       """
-      return self._managed
+        return self._managed
 
-   def _setManagedOnly(self, value):
-      """
+    def _setManagedOnly(self, value):
+        """
       Property target used to set the managedOnly flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._managedOnly = True
-      else:
-         self._managedOnly = False
+        if value:
+            self._managedOnly = True
+        else:
+            self._managedOnly = False
 
-   def _getManagedOnly(self):
-      """
+    def _getManagedOnly(self):
+        """
       Property target used to get the managedOnly flag.
       """
-      return self._managedOnly
+        return self._managedOnly
 
-   def _setLogfile(self, value):
-      """
+    def _setLogfile(self, value):
+        """
       Property target used to set the logfile parameter.
       Raises:
          ValueError: If the value cannot be encoded properly
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The logfile parameter must be a non-empty string.")
-      self._logfile = encodePath(value)
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The logfile parameter must be a non-empty string.")
+        self._logfile = encodePath(value)
 
-   def _getLogfile(self):
-      """
+    def _getLogfile(self):
+        """
       Property target used to get the logfile parameter.
       """
-      return self._logfile
+        return self._logfile
 
-   def _setOwner(self, value):
-      """
+    def _setOwner(self, value):
+        """
       Property target used to set the owner parameter.
       If not ``None``, the owner must be a ``(user,group)`` tuple or list.
       Strings (and inherited children of strings) are explicitly disallowed.
@@ -1680,160 +1711,159 @@ class Options(object):
       Raises:
          ValueError: If the value is not valid
       """
-      if value is None:
-         self._owner = None
-      else:
-         if isinstance(value, str):
-            raise ValueError("Must specify user and group tuple for owner parameter.")
-         if len(value) != 2:
-            raise ValueError("Must specify user and group tuple for owner parameter.")
-         if len(value[0]) < 1 or len(value[1]) < 1:
-            raise ValueError("User and group tuple values must be non-empty strings.")
-         self._owner = (value[0], value[1])
+        if value is None:
+            self._owner = None
+        else:
+            if isinstance(value, str):
+                raise ValueError("Must specify user and group tuple for owner parameter.")
+            if len(value) != 2:
+                raise ValueError("Must specify user and group tuple for owner parameter.")
+            if len(value[0]) < 1 or len(value[1]) < 1:
+                raise ValueError("User and group tuple values must be non-empty strings.")
+            self._owner = (value[0], value[1])
 
-   def _getOwner(self):
-      """
+    def _getOwner(self):
+        """
       Property target used to get the owner parameter.
       The parameter is a tuple of ``(user, group)``.
       """
-      return self._owner
+        return self._owner
 
-   def _setMode(self, value):
-      """
+    def _setMode(self, value):
+        """
       Property target used to set the mode parameter.
       """
-      if value is None:
-         self._mode = None
-      else:
-         try:
-            if isinstance(value, str):
-               value = int(value, 8)
-            else:
-               value = int(value)
-         except TypeError:
-            raise ValueError("Mode must be an octal integer >= 0, i.e. 644.")
-         if value < 0:
-            raise ValueError("Mode must be an octal integer >= 0. i.e. 644.")
-         self._mode = value
+        if value is None:
+            self._mode = None
+        else:
+            try:
+                if isinstance(value, str):
+                    value = int(value, 8)
+                else:
+                    value = int(value)
+            except TypeError:
+                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.")
+            if value < 0:
+                raise ValueError("Mode must be an octal integer >= 0. i.e. 644.")
+            self._mode = value
 
-   def _getMode(self):
-      """
+    def _getMode(self):
+        """
       Property target used to get the mode parameter.
       """
-      return self._mode
+        return self._mode
 
-   def _setOutput(self, value):
-      """
+    def _setOutput(self, value):
+        """
       Property target used to set the output flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._output = True
-      else:
-         self._output = False
+        if value:
+            self._output = True
+        else:
+            self._output = False
 
-   def _getOutput(self):
-      """
+    def _getOutput(self):
+        """
       Property target used to get the output flag.
       """
-      return self._output
+        return self._output
 
-   def _setDebug(self, value):
-      """
+    def _setDebug(self, value):
+        """
       Property target used to set the debug flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._debug = True
-      else:
-         self._debug = False
+        if value:
+            self._debug = True
+        else:
+            self._debug = False
 
-   def _getDebug(self):
-      """
+    def _getDebug(self):
+        """
       Property target used to get the debug flag.
       """
-      return self._debug
+        return self._debug
 
-   def _setStacktrace(self, value):
-      """
+    def _setStacktrace(self, value):
+        """
       Property target used to set the stacktrace flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._stacktrace = True
-      else:
-         self._stacktrace = False
+        if value:
+            self._stacktrace = True
+        else:
+            self._stacktrace = False
 
-   def _getStacktrace(self):
-      """
+    def _getStacktrace(self):
+        """
       Property target used to get the stacktrace flag.
       """
-      return self._stacktrace
+        return self._stacktrace
 
-   def _setDiagnostics(self, value):
-      """
+    def _setDiagnostics(self, value):
+        """
       Property target used to set the diagnostics flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._diagnostics = True
-      else:
-         self._diagnostics = False
+        if value:
+            self._diagnostics = True
+        else:
+            self._diagnostics = False
 
-   def _getDiagnostics(self):
-      """
+    def _getDiagnostics(self):
+        """
       Property target used to get the diagnostics flag.
       """
-      return self._diagnostics
+        return self._diagnostics
 
-   def _setActions(self, value):
-      """
+    def _setActions(self, value):
+        """
       Property target used to set the actions list.
       We don't restrict the contents of actions.  They're validated somewhere else.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is None:
-         self._actions = None
-      else:
-         try:
-            saved = self._actions
-            self._actions = []
-            self._actions.extend(value)
-         except Exception as e:
-            self._actions = saved
-            raise e
+        if value is None:
+            self._actions = None
+        else:
+            try:
+                saved = self._actions
+                self._actions = []
+                self._actions.extend(value)
+            except Exception as e:
+                self._actions = saved
+                raise e
 
-   def _getActions(self):
-      """
+    def _getActions(self):
+        """
       Property target used to get the actions list.
       """
-      return self._actions
+        return self._actions
 
-   help = property(_getHelp, _setHelp, None, "Command-line help (``-h,--help``) flag.")
-   version = property(_getVersion, _setVersion, None, "Command-line version (``-V,--version``) flag.")
-   verbose = property(_getVerbose, _setVerbose, None, "Command-line verbose (``-b,--verbose``) flag.")
-   quiet = property(_getQuiet, _setQuiet, None, "Command-line quiet (``-q,--quiet``) flag.")
-   config = property(_getConfig, _setConfig, None, "Command-line configuration file (``-c,--config``) parameter.")
-   full = property(_getFull, _setFull, None, "Command-line full-backup (``-f,--full``) flag.")
-   managed = property(_getManaged, _setManaged, None, "Command-line managed (``-M,--managed``) flag.")
-   managedOnly = property(_getManagedOnly, _setManagedOnly, None, "Command-line managed-only (``-N,--managed-only``) flag.")
-   logfile = property(_getLogfile, _setLogfile, None, "Command-line logfile (``-l,--logfile``) parameter.")
-   owner = property(_getOwner, _setOwner, None, "Command-line owner (``-o,--owner``) parameter, as tuple ``(user,group)``.")
-   mode = property(_getMode, _setMode, None, "Command-line mode (``-m,--mode``) parameter.")
-   output = property(_getOutput, _setOutput, None, "Command-line output (``-O,--output``) flag.")
-   debug = property(_getDebug, _setDebug, None, "Command-line debug (``-d,--debug``) flag.")
-   stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (``-s,--stack``) flag.")
-   diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (``-D,--diagnostics``) flag.")
-   actions = property(_getActions, _setActions, None, "Command-line actions list.")
+    help = property(_getHelp, _setHelp, None, "Command-line help (``-h,--help``) flag.")
+    version = property(_getVersion, _setVersion, None, "Command-line version (``-V,--version``) flag.")
+    verbose = property(_getVerbose, _setVerbose, None, "Command-line verbose (``-b,--verbose``) flag.")
+    quiet = property(_getQuiet, _setQuiet, None, "Command-line quiet (``-q,--quiet``) flag.")
+    config = property(_getConfig, _setConfig, None, "Command-line configuration file (``-c,--config``) parameter.")
+    full = property(_getFull, _setFull, None, "Command-line full-backup (``-f,--full``) flag.")
+    managed = property(_getManaged, _setManaged, None, "Command-line managed (``-M,--managed``) flag.")
+    managedOnly = property(_getManagedOnly, _setManagedOnly, None, "Command-line managed-only (``-N,--managed-only``) flag.")
+    logfile = property(_getLogfile, _setLogfile, None, "Command-line logfile (``-l,--logfile``) parameter.")
+    owner = property(_getOwner, _setOwner, None, "Command-line owner (``-o,--owner``) parameter, as tuple ``(user,group)``.")
+    mode = property(_getMode, _setMode, None, "Command-line mode (``-m,--mode``) parameter.")
+    output = property(_getOutput, _setOutput, None, "Command-line output (``-O,--output``) flag.")
+    debug = property(_getDebug, _setDebug, None, "Command-line debug (``-d,--debug``) flag.")
+    stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (``-s,--stack``) flag.")
+    diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (``-D,--diagnostics``) flag.")
+    actions = property(_getActions, _setActions, None, "Command-line actions list.")
 
+    ##################
+    # Utility methods
+    ##################
 
-   ##################
-   # Utility methods
-   ##################
-
-   def validate(self):
-      """
+    def validate(self):
+        """
       Validates command-line options represented by the object.
 
       Unless ``--help`` or ``--version`` are supplied, at least one action must
@@ -1847,14 +1877,14 @@ class Options(object):
       Raises:
          ValueError: If one of the validations fails
       """
-      if not self.help and not self.version and not self.diagnostics:
-         if self.actions is None or len(self.actions) == 0:
-            raise ValueError("At least one action must be specified.")
-      if self.managed and self.managedOnly:
-         raise ValueError("The --managed and --managed-only options may not be combined.")
+        if not self.help and not self.version and not self.diagnostics:
+            if self.actions is None or len(self.actions) == 0:
+                raise ValueError("At least one action must be specified.")
+        if self.managed and self.managedOnly:
+            raise ValueError("The --managed and --managed-only options may not be combined.")
 
-   def buildArgumentList(self, validate=True):
-      """
+    def buildArgumentList(self, validate=True):
+        """
       Extracts options into a list of command line arguments.
 
       The original order of the various arguments (if, indeed, the object was
@@ -1881,50 +1911,50 @@ class Options(object):
       Raises:
          ValueError: If options within the object are invalid
       """
-      if validate:
-         self.validate()
-      argumentList = []
-      if self._help:
-         argumentList.append("--help")
-      if self.version:
-         argumentList.append("--version")
-      if self.verbose:
-         argumentList.append("--verbose")
-      if self.quiet:
-         argumentList.append("--quiet")
-      if self.config is not None:
-         argumentList.append("--config")
-         argumentList.append(self.config)
-      if self.full:
-         argumentList.append("--full")
-      if self.managed:
-         argumentList.append("--managed")
-      if self.managedOnly:
-         argumentList.append("--managed-only")
-      if self.logfile is not None:
-         argumentList.append("--logfile")
-         argumentList.append(self.logfile)
-      if self.owner is not None:
-         argumentList.append("--owner")
-         argumentList.append("%s:%s" % (self.owner[0], self.owner[1]))
-      if self.mode is not None:
-         argumentList.append("--mode")
-         argumentList.append("%o" % self.mode)
-      if self.output:
-         argumentList.append("--output")
-      if self.debug:
-         argumentList.append("--debug")
-      if self.stacktrace:
-         argumentList.append("--stack")
-      if self.diagnostics:
-         argumentList.append("--diagnostics")
-      if self.actions is not None:
-         for action in self.actions:
-            argumentList.append(action)
-      return argumentList
+        if validate:
+            self.validate()
+        argumentList = []
+        if self._help:
+            argumentList.append("--help")
+        if self.version:
+            argumentList.append("--version")
+        if self.verbose:
+            argumentList.append("--verbose")
+        if self.quiet:
+            argumentList.append("--quiet")
+        if self.config is not None:
+            argumentList.append("--config")
+            argumentList.append(self.config)
+        if self.full:
+            argumentList.append("--full")
+        if self.managed:
+            argumentList.append("--managed")
+        if self.managedOnly:
+            argumentList.append("--managed-only")
+        if self.logfile is not None:
+            argumentList.append("--logfile")
+            argumentList.append(self.logfile)
+        if self.owner is not None:
+            argumentList.append("--owner")
+            argumentList.append("%s:%s" % (self.owner[0], self.owner[1]))
+        if self.mode is not None:
+            argumentList.append("--mode")
+            argumentList.append("%o" % self.mode)
+        if self.output:
+            argumentList.append("--output")
+        if self.debug:
+            argumentList.append("--debug")
+        if self.stacktrace:
+            argumentList.append("--stack")
+        if self.diagnostics:
+            argumentList.append("--diagnostics")
+        if self.actions is not None:
+            for action in self.actions:
+                argumentList.append(action)
+        return argumentList
 
-   def buildArgumentString(self, validate=True):
-      """
+    def buildArgumentString(self, validate=True):
+        """
       Extracts options into a string of command-line arguments.
 
       The original order of the various arguments (if, indeed, the object was
@@ -1951,46 +1981,46 @@ class Options(object):
       Raises:
          ValueError: If options within the object are invalid
       """
-      if validate:
-         self.validate()
-      argumentString = ""
-      if self._help:
-         argumentString += "--help "
-      if self.version:
-         argumentString += "--version "
-      if self.verbose:
-         argumentString += "--verbose "
-      if self.quiet:
-         argumentString += "--quiet "
-      if self.config is not None:
-         argumentString += "--config \"%s\" " % self.config
-      if self.full:
-         argumentString += "--full "
-      if self.managed:
-         argumentString += "--managed "
-      if self.managedOnly:
-         argumentString += "--managed-only "
-      if self.logfile is not None:
-         argumentString += "--logfile \"%s\" " % self.logfile
-      if self.owner is not None:
-         argumentString += "--owner \"%s:%s\" " % (self.owner[0], self.owner[1])
-      if self.mode is not None:
-         argumentString += "--mode %o " % self.mode
-      if self.output:
-         argumentString += "--output "
-      if self.debug:
-         argumentString += "--debug "
-      if self.stacktrace:
-         argumentString += "--stack "
-      if self.diagnostics:
-         argumentString += "--diagnostics "
-      if self.actions is not None:
-         for action in self.actions:
-            argumentString +=  "\"%s\" " % action
-      return argumentString
+        if validate:
+            self.validate()
+        argumentString = ""
+        if self._help:
+            argumentString += "--help "
+        if self.version:
+            argumentString += "--version "
+        if self.verbose:
+            argumentString += "--verbose "
+        if self.quiet:
+            argumentString += "--quiet "
+        if self.config is not None:
+            argumentString += '--config "%s" ' % self.config
+        if self.full:
+            argumentString += "--full "
+        if self.managed:
+            argumentString += "--managed "
+        if self.managedOnly:
+            argumentString += "--managed-only "
+        if self.logfile is not None:
+            argumentString += '--logfile "%s" ' % self.logfile
+        if self.owner is not None:
+            argumentString += '--owner "%s:%s" ' % (self.owner[0], self.owner[1])
+        if self.mode is not None:
+            argumentString += "--mode %o " % self.mode
+        if self.output:
+            argumentString += "--output "
+        if self.debug:
+            argumentString += "--debug "
+        if self.stacktrace:
+            argumentString += "--stack "
+        if self.diagnostics:
+            argumentString += "--diagnostics "
+        if self.actions is not None:
+            for action in self.actions:
+                argumentString += '"%s" ' % action
+        return argumentString
 
-   def _parseArgumentList(self, argumentList):
-      """
+    def _parseArgumentList(self, argumentList):
+        """
       Internal method to parse a list of command-line arguments.
 
       Most of the validation we do here has to do with whether the arguments
@@ -2010,48 +2040,48 @@ class Options(object):
       Raises:
          ValueError: If the argument list cannot be successfully parsed
       """
-      switches = {}
-      opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
-      for o, a in opts:  # push the switches into a hash
-         switches[o] = a
-      if "-h" in switches or "--help" in switches:
-         self.help = True
-      if "-V" in switches or "--version" in switches:
-         self.version = True
-      if "-b" in switches or "--verbose" in switches:
-         self.verbose = True
-      if "-q" in switches or "--quiet" in switches:
-         self.quiet = True
-      if "-c" in switches:
-         self.config = switches["-c"]
-      if "--config" in switches:
-         self.config = switches["--config"]
-      if "-f" in switches or "--full" in switches:
-         self.full = True
-      if "-M" in switches or "--managed" in switches:
-         self.managed = True
-      if "-N" in switches or "--managed-only" in switches:
-         self.managedOnly = True
-      if "-l" in switches:
-         self.logfile = switches["-l"]
-      if "--logfile" in switches:
-         self.logfile = switches["--logfile"]
-      if "-o" in switches:
-         self.owner = switches["-o"].split(":", 1)
-      if "--owner" in switches:
-         self.owner = switches["--owner"].split(":", 1)
-      if "-m" in switches:
-         self.mode = switches["-m"]
-      if "--mode" in switches:
-         self.mode = switches["--mode"]
-      if "-O" in switches or "--output" in switches:
-         self.output = True
-      if "-d" in switches or "--debug" in switches:
-         self.debug = True
-      if "-s" in switches or "--stack" in switches:
-         self.stacktrace = True
-      if "-D" in switches or "--diagnostics" in switches:
-         self.diagnostics = True
+        switches = {}
+        opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
+        for o, a in opts:  # push the switches into a hash
+            switches[o] = a
+        if "-h" in switches or "--help" in switches:
+            self.help = True
+        if "-V" in switches or "--version" in switches:
+            self.version = True
+        if "-b" in switches or "--verbose" in switches:
+            self.verbose = True
+        if "-q" in switches or "--quiet" in switches:
+            self.quiet = True
+        if "-c" in switches:
+            self.config = switches["-c"]
+        if "--config" in switches:
+            self.config = switches["--config"]
+        if "-f" in switches or "--full" in switches:
+            self.full = True
+        if "-M" in switches or "--managed" in switches:
+            self.managed = True
+        if "-N" in switches or "--managed-only" in switches:
+            self.managedOnly = True
+        if "-l" in switches:
+            self.logfile = switches["-l"]
+        if "--logfile" in switches:
+            self.logfile = switches["--logfile"]
+        if "-o" in switches:
+            self.owner = switches["-o"].split(":", 1)
+        if "--owner" in switches:
+            self.owner = switches["--owner"].split(":", 1)
+        if "-m" in switches:
+            self.mode = switches["-m"]
+        if "--mode" in switches:
+            self.mode = switches["--mode"]
+        if "-O" in switches or "--output" in switches:
+            self.output = True
+        if "-d" in switches or "--debug" in switches:
+            self.debug = True
+        if "-s" in switches or "--stack" in switches:
+            self.stacktrace = True
+        if "-D" in switches or "--diagnostics" in switches:
+            self.diagnostics = True
 
 
 #########################################################################
@@ -2059,5 +2089,5 @@ class Options(object):
 ########################################################################
 
 if __name__ == "__main__":
-   result = cli()
-   sys.exit(result)
+    result = cli()
+    sys.exit(result)

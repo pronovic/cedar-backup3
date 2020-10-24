@@ -83,7 +83,6 @@ if run on Windows.
 # Imported modules
 ########################################################################
 
-# System modules
 import sys
 import os
 import logging
@@ -93,7 +92,6 @@ import json
 import shutil
 from functools import total_ordering
 
-# Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList, BackupFileList
 from CedarBackup3.util import resolveCommand, executeCommand, isRunningAsRoot, changeOwnership, isStartOfWeek
 from CedarBackup3.util import displayBytes, UNIT_BYTES
@@ -110,8 +108,8 @@ from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityN
 
 logger = logging.getLogger("CedarBackup3.log.extend.amazons3")
 
-SU_COMMAND    = ["su"]
-AWS_COMMAND   = ["aws"]
+SU_COMMAND = ["su"]
+AWS_COMMAND = ["aws"]
 
 STORE_INDICATOR = "cback.amazons3"
 
@@ -120,10 +118,11 @@ STORE_INDICATOR = "cback.amazons3"
 # AmazonS3Config class definition
 ########################################################################
 
+
 @total_ordering
 class AmazonS3Config(object):
 
-   """
+    """
    Class representing Amazon S3 configuration.
 
    Amazon S3 configuration is used for storing backup data in Amazon's S3 cloud
@@ -138,9 +137,10 @@ class AmazonS3Config(object):
 
    """
 
-   def __init__(self, warnMidnite=None, s3Bucket=None, encryptCommand=None,
-                fullBackupSizeLimit=None, incrementalBackupSizeLimit=None):
-      """
+    def __init__(
+        self, warnMidnite=None, s3Bucket=None, encryptCommand=None, fullBackupSizeLimit=None, incrementalBackupSizeLimit=None
+    ):
+        """
       Constructor for the ``AmazonS3Config`` class.
 
       Args:
@@ -153,184 +153,195 @@ class AmazonS3Config(object):
       Raises:
          ValueError: If one of the values is invalid
       """
-      self._warnMidnite = None
-      self._s3Bucket = None
-      self._encryptCommand = None
-      self._fullBackupSizeLimit = None
-      self._incrementalBackupSizeLimit = None
-      self.warnMidnite = warnMidnite
-      self.s3Bucket = s3Bucket
-      self.encryptCommand = encryptCommand
-      self.fullBackupSizeLimit = fullBackupSizeLimit
-      self.incrementalBackupSizeLimit = incrementalBackupSizeLimit
+        self._warnMidnite = None
+        self._s3Bucket = None
+        self._encryptCommand = None
+        self._fullBackupSizeLimit = None
+        self._incrementalBackupSizeLimit = None
+        self.warnMidnite = warnMidnite
+        self.s3Bucket = s3Bucket
+        self.encryptCommand = encryptCommand
+        self.fullBackupSizeLimit = fullBackupSizeLimit
+        self.incrementalBackupSizeLimit = incrementalBackupSizeLimit
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "AmazonS3Config(%s, %s, %s, %s, %s)" % (self.warnMidnite, self.s3Bucket, self.encryptCommand,
-                                                     self.fullBackupSizeLimit, self.incrementalBackupSizeLimit)
+        return "AmazonS3Config(%s, %s, %s, %s, %s)" % (
+            self.warnMidnite,
+            self.s3Bucket,
+            self.encryptCommand,
+            self.fullBackupSizeLimit,
+            self.incrementalBackupSizeLimit,
+        )
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Args:
          other: Other object to compare to
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.warnMidnite != other.warnMidnite:
-         if self.warnMidnite < other.warnMidnite:
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.s3Bucket != other.s3Bucket:
-         if str(self.s3Bucket or "") < str(other.s3Bucket or ""):
-            return -1
-         else:
-            return 1
-      if self.encryptCommand != other.encryptCommand:
-         if str(self.encryptCommand or "") < str(other.encryptCommand or ""):
-            return -1
-         else:
-            return 1
-      if self.fullBackupSizeLimit != other.fullBackupSizeLimit:
-         if (self.fullBackupSizeLimit or ByteQuantity()) < (other.fullBackupSizeLimit or ByteQuantity()):
-            return -1
-         else:
-            return 1
-      if self.incrementalBackupSizeLimit != other.incrementalBackupSizeLimit:
-         if (self.incrementalBackupSizeLimit or ByteQuantity()) < (other.incrementalBackupSizeLimit or ByteQuantity()):
-            return -1
-         else:
-            return 1
-      return 0
+        if self.warnMidnite != other.warnMidnite:
+            if self.warnMidnite < other.warnMidnite:
+                return -1
+            else:
+                return 1
+        if self.s3Bucket != other.s3Bucket:
+            if str(self.s3Bucket or "") < str(other.s3Bucket or ""):
+                return -1
+            else:
+                return 1
+        if self.encryptCommand != other.encryptCommand:
+            if str(self.encryptCommand or "") < str(other.encryptCommand or ""):
+                return -1
+            else:
+                return 1
+        if self.fullBackupSizeLimit != other.fullBackupSizeLimit:
+            if (self.fullBackupSizeLimit or ByteQuantity()) < (other.fullBackupSizeLimit or ByteQuantity()):
+                return -1
+            else:
+                return 1
+        if self.incrementalBackupSizeLimit != other.incrementalBackupSizeLimit:
+            if (self.incrementalBackupSizeLimit or ByteQuantity()) < (other.incrementalBackupSizeLimit or ByteQuantity()):
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setWarnMidnite(self, value):
-      """
+    def _setWarnMidnite(self, value):
+        """
       Property target used to set the midnite warning flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._warnMidnite = True
-      else:
-         self._warnMidnite = False
+        if value:
+            self._warnMidnite = True
+        else:
+            self._warnMidnite = False
 
-   def _getWarnMidnite(self):
-      """
+    def _getWarnMidnite(self):
+        """
       Property target used to get the midnite warning flag.
       """
-      return self._warnMidnite
+        return self._warnMidnite
 
-   def _setS3Bucket(self, value):
-      """
+    def _setS3Bucket(self, value):
+        """
       Property target used to set the S3 bucket.
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("S3 bucket must be non-empty string.")
-      self._s3Bucket = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("S3 bucket must be non-empty string.")
+        self._s3Bucket = value
 
-   def _getS3Bucket(self):
-      """
+    def _getS3Bucket(self):
+        """
       Property target used to get the S3 bucket.
       """
-      return self._s3Bucket
+        return self._s3Bucket
 
-   def _setEncryptCommand(self, value):
-      """
+    def _setEncryptCommand(self, value):
+        """
       Property target used to set the encrypt command.
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("Encrypt command must be non-empty string.")
-      self._encryptCommand = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("Encrypt command must be non-empty string.")
+        self._encryptCommand = value
 
-   def _getEncryptCommand(self):
-      """
+    def _getEncryptCommand(self):
+        """
       Property target used to get the encrypt command.
       """
-      return self._encryptCommand
+        return self._encryptCommand
 
-   def _setFullBackupSizeLimit(self, value):
-      """
+    def _setFullBackupSizeLimit(self, value):
+        """
       Property target used to set the full backup size limit.
       The value must be an integer >= 0.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is None:
-         self._fullBackupSizeLimit = None
-      else:
-         if isinstance(value, ByteQuantity):
-            self._fullBackupSizeLimit = value
-         else:
-            self._fullBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
+        if value is None:
+            self._fullBackupSizeLimit = None
+        else:
+            if isinstance(value, ByteQuantity):
+                self._fullBackupSizeLimit = value
+            else:
+                self._fullBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
 
-   def _getFullBackupSizeLimit(self):
-      """
+    def _getFullBackupSizeLimit(self):
+        """
       Property target used to get the full backup size limit.
       """
-      return self._fullBackupSizeLimit
+        return self._fullBackupSizeLimit
 
-   def _setIncrementalBackupSizeLimit(self, value):
-      """
+    def _setIncrementalBackupSizeLimit(self, value):
+        """
       Property target used to set the incremental backup size limit.
       The value must be an integer >= 0.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is None:
-         self._incrementalBackupSizeLimit = None
-      else:
-         if isinstance(value, ByteQuantity):
-            self._incrementalBackupSizeLimit = value
-         else:
-            self._incrementalBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
+        if value is None:
+            self._incrementalBackupSizeLimit = None
+        else:
+            if isinstance(value, ByteQuantity):
+                self._incrementalBackupSizeLimit = value
+            else:
+                self._incrementalBackupSizeLimit = ByteQuantity(value, UNIT_BYTES)
 
-   def _getIncrementalBackupSizeLimit(self):
-      """
+    def _getIncrementalBackupSizeLimit(self):
+        """
       Property target used to get the incremental backup size limit.
       """
-      return self._incrementalBackupSizeLimit
+        return self._incrementalBackupSizeLimit
 
-   warnMidnite = property(_getWarnMidnite, _setWarnMidnite, None, "Whether to generate warnings for crossing midnite.")
-   s3Bucket = property(_getS3Bucket, _setS3Bucket, None, doc="Amazon S3 Bucket in which to store data")
-   encryptCommand = property(_getEncryptCommand, _setEncryptCommand, None, doc="Command used to encrypt data before upload to S3")
-   fullBackupSizeLimit = property(_getFullBackupSizeLimit, _setFullBackupSizeLimit, None,
-                                  doc="Maximum size of a full backup, as a ByteQuantity")
-   incrementalBackupSizeLimit = property(_getIncrementalBackupSizeLimit, _setIncrementalBackupSizeLimit, None,
-                                         doc="Maximum size of an incremental backup, as a ByteQuantity")
+    warnMidnite = property(_getWarnMidnite, _setWarnMidnite, None, "Whether to generate warnings for crossing midnite.")
+    s3Bucket = property(_getS3Bucket, _setS3Bucket, None, doc="Amazon S3 Bucket in which to store data")
+    encryptCommand = property(_getEncryptCommand, _setEncryptCommand, None, doc="Command used to encrypt data before upload to S3")
+    fullBackupSizeLimit = property(
+        _getFullBackupSizeLimit, _setFullBackupSizeLimit, None, doc="Maximum size of a full backup, as a ByteQuantity"
+    )
+    incrementalBackupSizeLimit = property(
+        _getIncrementalBackupSizeLimit,
+        _setIncrementalBackupSizeLimit,
+        None,
+        doc="Maximum size of an incremental backup, as a ByteQuantity",
+    )
 
 
 ########################################################################
 # LocalConfig class definition
 ########################################################################
 
+
 @total_ordering
 class LocalConfig(object):
 
-   """
+    """
    Class representing this extension's configuration document.
 
    This is not a general-purpose configuration object like the main Cedar
@@ -343,8 +354,8 @@ class LocalConfig(object):
 
    """
 
-   def __init__(self, xmlData=None, xmlPath=None, validate=True):
-      """
+    def __init__(self, xmlData=None, xmlPath=None, validate=True):
+        """
       Initializes a configuration object.
 
       If you initialize the object without passing either ``xmlData`` or
@@ -374,47 +385,47 @@ class LocalConfig(object):
          ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
          ValueError: If the parsed configuration document is not valid
       """
-      self._amazons3 = None
-      self.amazons3 = None
-      if xmlData is not None and xmlPath is not None:
-         raise ValueError("Use either xmlData or xmlPath, but not both.")
-      if xmlData is not None:
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
-      elif xmlPath is not None:
-         with open(xmlPath) as f:
-            xmlData = f.read()
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
+        self._amazons3 = None
+        self.amazons3 = None
+        if xmlData is not None and xmlPath is not None:
+            raise ValueError("Use either xmlData or xmlPath, but not both.")
+        if xmlData is not None:
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
+        elif xmlPath is not None:
+            with open(xmlPath) as f:
+                xmlData = f.read()
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "LocalConfig(%s)" % (self.amazons3)
+        return "LocalConfig(%s)" % (self.amazons3)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       Args:
@@ -422,39 +433,39 @@ class LocalConfig(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.amazons3 != other.amazons3:
-         if self.amazons3 < other.amazons3:
-            return -1
-         else:
+        if other is None:
             return 1
-      return 0
+        if self.amazons3 != other.amazons3:
+            if self.amazons3 < other.amazons3:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setAmazonS3(self, value):
-      """
+    def _setAmazonS3(self, value):
+        """
       Property target used to set the amazons3 configuration value.
       If not ``None``, the value must be a ``AmazonS3Config`` object.
       Raises:
          ValueError: If the value is not a ``AmazonS3Config``
       """
-      if value is None:
-         self._amazons3 = None
-      else:
-         if not isinstance(value, AmazonS3Config):
-            raise ValueError("Value must be a ``AmazonS3Config`` object.")
-         self._amazons3 = value
+        if value is None:
+            self._amazons3 = None
+        else:
+            if not isinstance(value, AmazonS3Config):
+                raise ValueError("Value must be a ``AmazonS3Config`` object.")
+            self._amazons3 = value
 
-   def _getAmazonS3(self):
-      """
+    def _getAmazonS3(self):
+        """
       Property target used to get the amazons3 configuration value.
       """
-      return self._amazons3
+        return self._amazons3
 
-   amazons3 = property(_getAmazonS3, _setAmazonS3, None, "AmazonS3 configuration in terms of a ``AmazonS3Config`` object.")
+    amazons3 = property(_getAmazonS3, _setAmazonS3, None, "AmazonS3 configuration in terms of a ``AmazonS3Config`` object.")
 
-   def validate(self):
-      """
+    def validate(self):
+        """
       Validates configuration represented by the object.
 
       AmazonS3 configuration must be filled in.  Within that, the s3Bucket target must be filled in
@@ -462,13 +473,13 @@ class LocalConfig(object):
       Raises:
          ValueError: If one of the validations fails
       """
-      if self.amazons3 is None:
-         raise ValueError("AmazonS3 section is required.")
-      if self.amazons3.s3Bucket is None:
-         raise ValueError("AmazonS3 s3Bucket must be set.")
+        if self.amazons3 is None:
+            raise ValueError("AmazonS3 section is required.")
+        if self.amazons3.s3Bucket is None:
+            raise ValueError("AmazonS3 s3Bucket must be set.")
 
-   def addConfig(self, xmlDom, parentNode):
-      """
+    def addConfig(self, xmlDom, parentNode):
+        """
       Adds an <amazons3> configuration section as the next child of a parent.
 
       Third parties should use this function to write configuration related to
@@ -486,16 +497,16 @@ class LocalConfig(object):
          xmlDom: DOM tree as from ``impl.createDocument()``
          parentNode: Parent that the section should be appended to
       """
-      if self.amazons3 is not None:
-         sectionNode = addContainerNode(xmlDom, parentNode, "amazons3")
-         addBooleanNode(xmlDom, sectionNode, "warn_midnite", self.amazons3.warnMidnite)
-         addStringNode(xmlDom, sectionNode, "s3_bucket", self.amazons3.s3Bucket)
-         addStringNode(xmlDom, sectionNode, "encrypt", self.amazons3.encryptCommand)
-         addByteQuantityNode(xmlDom, sectionNode, "full_size_limit", self.amazons3.fullBackupSizeLimit)
-         addByteQuantityNode(xmlDom, sectionNode, "incr_size_limit", self.amazons3.incrementalBackupSizeLimit)
+        if self.amazons3 is not None:
+            sectionNode = addContainerNode(xmlDom, parentNode, "amazons3")
+            addBooleanNode(xmlDom, sectionNode, "warn_midnite", self.amazons3.warnMidnite)
+            addStringNode(xmlDom, sectionNode, "s3_bucket", self.amazons3.s3Bucket)
+            addStringNode(xmlDom, sectionNode, "encrypt", self.amazons3.encryptCommand)
+            addByteQuantityNode(xmlDom, sectionNode, "full_size_limit", self.amazons3.fullBackupSizeLimit)
+            addByteQuantityNode(xmlDom, sectionNode, "incr_size_limit", self.amazons3.incrementalBackupSizeLimit)
 
-   def _parseXmlData(self, xmlData):
-      """
+    def _parseXmlData(self, xmlData):
+        """
       Internal method to parse an XML string into the object.
 
       This method parses the XML document into a DOM tree (``xmlDom``) and then
@@ -506,12 +517,12 @@ class LocalConfig(object):
       Raises:
          ValueError: If the XML cannot be successfully parsed
       """
-      (xmlDom, parentNode) = createInputDom(xmlData)
-      self._amazons3 = LocalConfig._parseAmazonS3(parentNode)
+        (xmlDom, parentNode) = createInputDom(xmlData)
+        self._amazons3 = LocalConfig._parseAmazonS3(parentNode)
 
-   @staticmethod
-   def _parseAmazonS3(parent):
-      """
+    @staticmethod
+    def _parseAmazonS3(parent):
+        """
       Parses an amazons3 configuration section.
 
       We read the following individual fields::
@@ -530,16 +541,16 @@ class LocalConfig(object):
       Raises:
          ValueError: If some filled-in value is invalid
       """
-      amazons3 = None
-      section = readFirstChild(parent, "amazons3")
-      if section is not None:
-         amazons3 = AmazonS3Config()
-         amazons3.warnMidnite = readBoolean(section, "warn_midnite")
-         amazons3.s3Bucket = readString(section, "s3_bucket")
-         amazons3.encryptCommand = readString(section, "encrypt")
-         amazons3.fullBackupSizeLimit = readByteQuantity(section, "full_size_limit")
-         amazons3.incrementalBackupSizeLimit = readByteQuantity(section, "incr_size_limit")
-      return amazons3
+        amazons3 = None
+        section = readFirstChild(parent, "amazons3")
+        if section is not None:
+            amazons3 = AmazonS3Config()
+            amazons3.warnMidnite = readBoolean(section, "warn_midnite")
+            amazons3.s3Bucket = readString(section, "s3_bucket")
+            amazons3.encryptCommand = readString(section, "encrypt")
+            amazons3.fullBackupSizeLimit = readByteQuantity(section, "full_size_limit")
+            amazons3.incrementalBackupSizeLimit = readByteQuantity(section, "incr_size_limit")
+        return amazons3
 
 
 ########################################################################
@@ -550,8 +561,9 @@ class LocalConfig(object):
 # executeAction() function
 ###########################
 
+
 def executeAction(configPath, options, config):
-   """
+    """
    Executes the amazons3 backup action.
 
    Args:
@@ -562,21 +574,21 @@ def executeAction(configPath, options, config):
       ValueError: Under many generic error conditions
       IOError: If there are I/O problems reading or writing files
    """
-   logger.debug("Executing amazons3 extended action.")
-   if not isRunningAsRoot():
-      logger.error("Error: the amazons3 extended action must be run as root.")
-      raise ValueError("The amazons3 extended action must be run as root.")
-   if sys.platform == "win32":
-      logger.error("Error: the amazons3 extended action is not supported on Windows.")
-      raise ValueError("The amazons3 extended action is not supported on Windows.")
-   if config.options is None or config.stage is None:
-      raise ValueError("Cedar Backup configuration is not properly filled in.")
-   local = LocalConfig(xmlPath=configPath)
-   stagingDirs = _findCorrectDailyDir(options, config, local)
-   _applySizeLimits(options, config, local, stagingDirs)
-   _writeToAmazonS3(config, local, stagingDirs)
-   _writeStoreIndicator(config, stagingDirs)
-   logger.info("Executed the amazons3 extended action successfully.")
+    logger.debug("Executing amazons3 extended action.")
+    if not isRunningAsRoot():
+        logger.error("Error: the amazons3 extended action must be run as root.")
+        raise ValueError("The amazons3 extended action must be run as root.")
+    if sys.platform == "win32":
+        logger.error("Error: the amazons3 extended action is not supported on Windows.")
+        raise ValueError("The amazons3 extended action is not supported on Windows.")
+    if config.options is None or config.stage is None:
+        raise ValueError("Cedar Backup configuration is not properly filled in.")
+    local = LocalConfig(xmlPath=configPath)
+    stagingDirs = _findCorrectDailyDir(options, config, local)
+    _applySizeLimits(options, config, local, stagingDirs)
+    _writeToAmazonS3(config, local, stagingDirs)
+    _writeStoreIndicator(config, stagingDirs)
+    logger.info("Executed the amazons3 extended action successfully.")
 
 
 ########################################################################
@@ -587,8 +599,9 @@ def executeAction(configPath, options, config):
 # _findCorrectDailyDir()
 #########################
 
+
 def _findCorrectDailyDir(options, config, local):
-   """
+    """
    Finds the correct daily staging directory to be written to Amazon S3.
 
    This is substantially similar to the same function in store.py.  The
@@ -604,50 +617,51 @@ def _findCorrectDailyDir(options, config, local):
    Raises:
       IOError: If the staging directory cannot be found
    """
-   oneDay = datetime.timedelta(days=1)
-   today = datetime.date.today()
-   yesterday = today - oneDay
-   tomorrow = today + oneDay
-   todayDate = today.strftime(DIR_TIME_FORMAT)
-   yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
-   tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
-   todayPath = os.path.join(config.stage.targetDir, todayDate)
-   yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
-   tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
-   todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
-   yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
-   tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
-   todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
-   yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
-   tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
-   if options.full:
-      if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
-         logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
-         return {todayPath:todayDate}
-      raise IOError("Unable to find staging directory to process (only tried today due to full option).")
-   else:
-      if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
-         logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
-         return {todayPath:todayDate}
-      elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
-         logger.info("Amazon S3 process will use previous day's staging directory [%s]", yesterdayPath)
-         if local.amazons3.warnMidnite:
-            logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
-         return {yesterdayPath:yesterdayDate}
-      elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
-         logger.info("Amazon S3 process will use next day's staging directory [%s]", tomorrowPath)
-         if local.amazons3.warnMidnite:
-            logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
-         return {tomorrowPath:tomorrowDate}
-      raise IOError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
+    oneDay = datetime.timedelta(days=1)
+    today = datetime.date.today()
+    yesterday = today - oneDay
+    tomorrow = today + oneDay
+    todayDate = today.strftime(DIR_TIME_FORMAT)
+    yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
+    tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
+    todayPath = os.path.join(config.stage.targetDir, todayDate)
+    yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
+    tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
+    todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
+    yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
+    tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
+    todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
+    yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
+    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
+    if options.full:
+        if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
+            logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
+            return {todayPath: todayDate}
+        raise IOError("Unable to find staging directory to process (only tried today due to full option).")
+    else:
+        if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
+            logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
+            return {todayPath: todayDate}
+        elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
+            logger.info("Amazon S3 process will use previous day's staging directory [%s]", yesterdayPath)
+            if local.amazons3.warnMidnite:
+                logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
+            return {yesterdayPath: yesterdayDate}
+        elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
+            logger.info("Amazon S3 process will use next day's staging directory [%s]", tomorrowPath)
+            if local.amazons3.warnMidnite:
+                logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
+            return {tomorrowPath: tomorrowDate}
+        raise IOError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
 
 
 ##############################
 # _applySizeLimits() function
 ##############################
 
+
 def _applySizeLimits(options, config, local, stagingDirs):
-   """
+    """
    Apply size limits, throwing an exception if any limits are exceeded.
 
    Size limits are optional.  If a limit is set to None, it does not apply.
@@ -665,34 +679,35 @@ def _applySizeLimits(options, config, local, stagingDirs):
       ValueError: Under many generic error conditions
       ValueError: If a size limit has been exceeded
    """
-   if options.full or isStartOfWeek(config.options.startingDay):
-      logger.debug("Using Amazon S3 size limit for full backups.")
-      limit = local.amazons3.fullBackupSizeLimit
-   else:
-      logger.debug("Using Amazon S3 size limit for incremental backups.")
-      limit = local.amazons3.incrementalBackupSizeLimit
-   if limit is None:
-      logger.debug("No Amazon S3 size limit will be applied.")
-   else:
-      logger.debug("Amazon S3 size limit is: %s", limit)
-      contents = BackupFileList()
-      for stagingDir in stagingDirs:
-         contents.addDirContents(stagingDir)
-      total = contents.totalSize()
-      logger.debug("Amazon S3 backup size is: %s", displayBytes(total))
-      if total > limit:
-         logger.error("Amazon S3 size limit exceeded: %s > %s", displayBytes(total), limit)
-         raise ValueError("Amazon S3 size limit exceeded: %s > %s" % (displayBytes(total), limit))
-      else:
-         logger.info("Total size does not exceed Amazon S3 size limit, so backup can continue.")
+    if options.full or isStartOfWeek(config.options.startingDay):
+        logger.debug("Using Amazon S3 size limit for full backups.")
+        limit = local.amazons3.fullBackupSizeLimit
+    else:
+        logger.debug("Using Amazon S3 size limit for incremental backups.")
+        limit = local.amazons3.incrementalBackupSizeLimit
+    if limit is None:
+        logger.debug("No Amazon S3 size limit will be applied.")
+    else:
+        logger.debug("Amazon S3 size limit is: %s", limit)
+        contents = BackupFileList()
+        for stagingDir in stagingDirs:
+            contents.addDirContents(stagingDir)
+        total = contents.totalSize()
+        logger.debug("Amazon S3 backup size is: %s", displayBytes(total))
+        if total > limit:
+            logger.error("Amazon S3 size limit exceeded: %s > %s", displayBytes(total), limit)
+            raise ValueError("Amazon S3 size limit exceeded: %s > %s" % (displayBytes(total), limit))
+        else:
+            logger.info("Total size does not exceed Amazon S3 size limit, so backup can continue.")
 
 
 ##############################
 # _writeToAmazonS3() function
 ##############################
 
+
 def _writeToAmazonS3(config, local, stagingDirs):
-   """
+    """
    Writes the indicated staging directories to an Amazon S3 bucket.
 
    Each of the staging directories listed in ``stagingDirs`` will be written to
@@ -710,161 +725,163 @@ def _writeToAmazonS3(config, local, stagingDirs):
       ValueError: Under many generic error conditions
       IOError: If there is a problem writing to Amazon S3
    """
-   for stagingDir in list(stagingDirs.keys()):
-      logger.debug("Storing stage directory to Amazon S3 [%s].", stagingDir)
-      dateSuffix = stagingDirs[stagingDir]
-      s3BucketUrl = "s3://%s/%s" % (local.amazons3.s3Bucket, dateSuffix)
-      logger.debug("S3 bucket URL is [%s]", s3BucketUrl)
-      _clearExistingBackup(config, s3BucketUrl)
-      if local.amazons3.encryptCommand is None:
-         logger.debug("Encryption is disabled; files will be uploaded in cleartext.")
-         _uploadStagingDir(config, stagingDir, s3BucketUrl)
-         _verifyUpload(config, stagingDir, s3BucketUrl)
-      else:
-         logger.debug("Encryption is enabled; files will be uploaded after being encrypted.")
-         encryptedDir = tempfile.mkdtemp(dir=config.options.workingDir)
-         changeOwnership(encryptedDir, config.options.backupUser, config.options.backupGroup)
-         try:
-            _encryptStagingDir(config, local, stagingDir, encryptedDir)
-            _uploadStagingDir(config, encryptedDir, s3BucketUrl)
-            _verifyUpload(config, encryptedDir, s3BucketUrl)
-         finally:
-            if os.path.exists(encryptedDir):
-               shutil.rmtree(encryptedDir)
+    for stagingDir in list(stagingDirs.keys()):
+        logger.debug("Storing stage directory to Amazon S3 [%s].", stagingDir)
+        dateSuffix = stagingDirs[stagingDir]
+        s3BucketUrl = "s3://%s/%s" % (local.amazons3.s3Bucket, dateSuffix)
+        logger.debug("S3 bucket URL is [%s]", s3BucketUrl)
+        _clearExistingBackup(config, s3BucketUrl)
+        if local.amazons3.encryptCommand is None:
+            logger.debug("Encryption is disabled; files will be uploaded in cleartext.")
+            _uploadStagingDir(config, stagingDir, s3BucketUrl)
+            _verifyUpload(config, stagingDir, s3BucketUrl)
+        else:
+            logger.debug("Encryption is enabled; files will be uploaded after being encrypted.")
+            encryptedDir = tempfile.mkdtemp(dir=config.options.workingDir)
+            changeOwnership(encryptedDir, config.options.backupUser, config.options.backupGroup)
+            try:
+                _encryptStagingDir(config, local, stagingDir, encryptedDir)
+                _uploadStagingDir(config, encryptedDir, s3BucketUrl)
+                _verifyUpload(config, encryptedDir, s3BucketUrl)
+            finally:
+                if os.path.exists(encryptedDir):
+                    shutil.rmtree(encryptedDir)
 
 
 ##################################
 # _writeStoreIndicator() function
 ##################################
 
+
 def _writeStoreIndicator(config, stagingDirs):
-   """
+    """
    Writes a store indicator file into staging directories.
    Args:
       config: Config object
       stagingDirs: Dictionary mapping directory path to date suffix
    """
-   for stagingDir in list(stagingDirs.keys()):
-      writeIndicatorFile(stagingDir, STORE_INDICATOR,
-                         config.options.backupUser,
-                         config.options.backupGroup)
+    for stagingDir in list(stagingDirs.keys()):
+        writeIndicatorFile(stagingDir, STORE_INDICATOR, config.options.backupUser, config.options.backupGroup)
 
 
 ##################################
 # _clearExistingBackup() function
 ##################################
 
+
 def _clearExistingBackup(config, s3BucketUrl):
-   """
+    """
    Clear any existing backup files for an S3 bucket URL.
    Args:
       config: Config object
       s3BucketUrl: S3 bucket URL associated with the staging directory
    """
-   suCommand = resolveCommand(SU_COMMAND)
-   awsCommand = resolveCommand(AWS_COMMAND)
-   actualCommand = "%s s3 rm --recursive %s/" % (awsCommand[0], s3BucketUrl)
-   result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
-   if result != 0:
-      raise IOError("Error [%d] calling AWS CLI to clear existing backup for [%s]." % (result, s3BucketUrl))
-   logger.debug("Completed clearing any existing backup in S3 for [%s]", s3BucketUrl)
+    suCommand = resolveCommand(SU_COMMAND)
+    awsCommand = resolveCommand(AWS_COMMAND)
+    actualCommand = "%s s3 rm --recursive %s/" % (awsCommand[0], s3BucketUrl)
+    result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
+    if result != 0:
+        raise IOError("Error [%d] calling AWS CLI to clear existing backup for [%s]." % (result, s3BucketUrl))
+    logger.debug("Completed clearing any existing backup in S3 for [%s]", s3BucketUrl)
 
 
 ###############################
 # _uploadStagingDir() function
 ###############################
 
+
 def _uploadStagingDir(config, stagingDir, s3BucketUrl):
-   """
+    """
    Upload the contents of a staging directory out to the Amazon S3 cloud.
    Args:
       config: Config object
       stagingDir: Staging directory to upload
       s3BucketUrl: S3 bucket URL associated with the staging directory
    """
-   # The version of awscli in Debian stretch (1.11.13-1) has a problem
-   # uploading empty files, due to running with Python 3 rather than Python 2
-   # as the upstream maintainers intended.  To work around this, I'm explicitly
-   # excluding files like cback.stage, cback.collect, etc. which should be the
-   # only empty files we ever try to copy.  See: https://github.com/aws/aws-cli/issues/2403
-   suCommand = resolveCommand(SU_COMMAND)
-   awsCommand = resolveCommand(AWS_COMMAND)
-   actualCommand = "%s s3 cp --recursive --exclude \"*cback.*\" %s/ %s/" % (awsCommand[0], stagingDir, s3BucketUrl)
-   result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
-   if result != 0:
-      raise IOError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
-   logger.debug("Completed uploading staging dir [%s] to [%s]", stagingDir, s3BucketUrl)
+    # The version of awscli in Debian stretch (1.11.13-1) has a problem
+    # uploading empty files, due to running with Python 3 rather than Python 2
+    # as the upstream maintainers intended.  To work around this, I'm explicitly
+    # excluding files like cback.stage, cback.collect, etc. which should be the
+    # only empty files we ever try to copy.  See: https://github.com/aws/aws-cli/issues/2403
+    suCommand = resolveCommand(SU_COMMAND)
+    awsCommand = resolveCommand(AWS_COMMAND)
+    actualCommand = '%s s3 cp --recursive --exclude "*cback.*" %s/ %s/' % (awsCommand[0], stagingDir, s3BucketUrl)
+    result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
+    if result != 0:
+        raise IOError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
+    logger.debug("Completed uploading staging dir [%s] to [%s]", stagingDir, s3BucketUrl)
 
 
 ###########################
 # _verifyUpload() function
 ###########################
 
+
 def _verifyUpload(config, stagingDir, s3BucketUrl):
-   """
+    """
    Verify that a staging directory was properly uploaded to the Amazon S3 cloud.
    Args:
       config: Config object
       stagingDir: Staging directory to verify
       s3BucketUrl: S3 bucket URL associated with the staging directory
    """
-   (bucket, prefix) = s3BucketUrl.replace("s3://", "").split("/", 1)
-   suCommand = resolveCommand(SU_COMMAND)
-   awsCommand = resolveCommand(AWS_COMMAND)
-   query = "Contents[].{Key: Key, Size: Size}"
-   actualCommand = "%s s3api list-objects --bucket %s --prefix %s --query '%s'" % (awsCommand[0], bucket, prefix, query)
-   (result, data) = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand], returnOutput=True)
-   if result != 0:
-      raise IOError("Error [%d] calling AWS CLI verify upload to [%s]." % (result, s3BucketUrl))
-   contents = {}
-   for entry in json.loads("".join(data)):
-      key = entry["Key"].replace(prefix, "")
-      size = int(entry["Size"])
-      contents[key] = size
-   files = FilesystemList()
-   files.excludeBasenamePatterns = [r"cback\..*"]  # because these are excluded from the upload
-   files.addDirContents(stagingDir)
-   for entry in files:
-      if os.path.isfile(entry):
-         key = entry.replace(stagingDir, "")
-         size = int(os.stat(entry).st_size)
-         if not key in contents:
-            raise IOError("File was apparently not uploaded: [%s]" % entry)
-         else:
-            if size != contents[key]:
-               raise IOError("File size differs [%s], expected %s bytes but got %s bytes" % (entry, size, contents[key]))
-   logger.debug("Completed verifying upload from [%s] to [%s].", stagingDir, s3BucketUrl)
+    (bucket, prefix) = s3BucketUrl.replace("s3://", "").split("/", 1)
+    suCommand = resolveCommand(SU_COMMAND)
+    awsCommand = resolveCommand(AWS_COMMAND)
+    query = "Contents[].{Key: Key, Size: Size}"
+    actualCommand = "%s s3api list-objects --bucket %s --prefix %s --query '%s'" % (awsCommand[0], bucket, prefix, query)
+    (result, data) = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand], returnOutput=True)
+    if result != 0:
+        raise IOError("Error [%d] calling AWS CLI verify upload to [%s]." % (result, s3BucketUrl))
+    contents = {}
+    for entry in json.loads("".join(data)):
+        key = entry["Key"].replace(prefix, "")
+        size = int(entry["Size"])
+        contents[key] = size
+    files = FilesystemList()
+    files.excludeBasenamePatterns = [r"cback\..*"]  # because these are excluded from the upload
+    files.addDirContents(stagingDir)
+    for entry in files:
+        if os.path.isfile(entry):
+            key = entry.replace(stagingDir, "")
+            size = int(os.stat(entry).st_size)
+            if not key in contents:
+                raise IOError("File was apparently not uploaded: [%s]" % entry)
+            else:
+                if size != contents[key]:
+                    raise IOError("File size differs [%s], expected %s bytes but got %s bytes" % (entry, size, contents[key]))
+    logger.debug("Completed verifying upload from [%s] to [%s].", stagingDir, s3BucketUrl)
 
 
 ################################
 # _encryptStagingDir() function
 ################################
 
+
 def _encryptStagingDir(config, local, stagingDir, encryptedDir):
-   """
+    """
    Encrypt a staging directory, creating a new directory in the process.
    Args:
       config: Config object
       stagingDir: Staging directory to use as source
       encryptedDir: Target directory into which encrypted files should be written
    """
-   suCommand = resolveCommand(SU_COMMAND)
-   files = FilesystemList()
-   files.addDirContents(stagingDir)
-   for cleartext in files:
-      if os.path.isfile(cleartext):
-         encrypted = "%s%s" % (encryptedDir, cleartext.replace(stagingDir, ""))
-         if int(os.stat(cleartext).st_size) == 0:
-            with open(encrypted, 'a') as f:
-               f.close() # don't bother encrypting empty files
-         else:
-            actualCommand = local.amazons3.encryptCommand.replace("${input}", cleartext).replace("${output}", encrypted)
-            subdir = os.path.dirname(encrypted)
-            if not os.path.isdir(subdir):
-               os.makedirs(subdir)
-               changeOwnership(subdir, config.options.backupUser, config.options.backupGroup)
-            result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
-            if result != 0:
-               raise IOError("Error [%d] encrypting [%s]." % (result, cleartext))
-   logger.debug("Completed encrypting staging directory [%s] into [%s]", stagingDir, encryptedDir)
-
+    suCommand = resolveCommand(SU_COMMAND)
+    files = FilesystemList()
+    files.addDirContents(stagingDir)
+    for cleartext in files:
+        if os.path.isfile(cleartext):
+            encrypted = "%s%s" % (encryptedDir, cleartext.replace(stagingDir, ""))
+            if int(os.stat(cleartext).st_size) == 0:
+                with open(encrypted, "a") as f:
+                    f.close()  # don't bother encrypting empty files
+            else:
+                actualCommand = local.amazons3.encryptCommand.replace("${input}", cleartext).replace("${output}", encrypted)
+                subdir = os.path.dirname(encrypted)
+                if not os.path.isdir(subdir):
+                    os.makedirs(subdir)
+                    changeOwnership(subdir, config.options.backupUser, config.options.backupGroup)
+                result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
+                if result != 0:
+                    raise IOError("Error [%d] encrypting [%s]." % (result, cleartext))
+    logger.debug("Completed encrypting staging directory [%s] into [%s]", stagingDir, encryptedDir)

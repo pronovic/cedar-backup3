@@ -23,4 +23,4 @@
 This causes the test directory to be a package.
 """
 
-__all__ = [ ]
+__all__ = []

@@ -93,163 +93,188 @@ import unittest
 # main() function
 ##################
 
+
 def main():
 
-   """
+    """
    Main routine for program.
    @return: Integer 0 upon success, integer 1 upon failure.
    """
 
-   # Check the Python version.  We require 3.4 or greater.
-   try:
-      if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
-         print("Python 3 version 3.4 or greater required, sorry.")
-         return 1
-   except:
-      # sys.version_info isn't available before 2.0
-      print("Python 3 version 3.4 or greater required, sorry.")
-      return 1
+    # Check the Python version.  We require 3.4 or greater.
+    try:
+        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
+            print("Python 3 version 3.4 or greater required, sorry.")
+            return 1
+    except:
+        # sys.version_info isn't available before 2.0
+        print("Python 3 version 3.4 or greater required, sorry.")
+        return 1
 
-   # Check for the correct CedarBackup3 location and import utilities
-   try:
-      if os.path.exists(os.path.join(".", "src", "CedarBackup3", "filesystem.py")):
-         sys.path.insert(0, ".")
-      elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(os.path.join("..", "src", "CedarBackup3", "filesystem.py")):
-         sys.path.insert(0, "..")
-      else:
-         print("WARNING: CedarBackup3 modules were not found in the expected")
-         print("location.  If the import succeeds, you may be using an")
-         print("unexpected version of CedarBackup3.")
-         print("")
-      from CedarBackup3.util import nullDevice, Diagnostics
-   except ImportError as e:
-      print(("Failed to import CedarBackup3 util module: %s" % e))
-      print("You must either run the unit tests from the CedarBackup3 source")
-      print("tree, or properly set the PYTHONPATH enviroment variable.")
-      return 1
+    # Check for the correct CedarBackup3 location and import utilities
+    try:
+        if os.path.exists(os.path.join(".", "src", "CedarBackup3", "filesystem.py")):
+            sys.path.insert(0, ".")
+        elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(
+            os.path.join("..", "src", "CedarBackup3", "filesystem.py")
+        ):
+            sys.path.insert(0, "..")
+        else:
+            print("WARNING: CedarBackup3 modules were not found in the expected")
+            print("location.  If the import succeeds, you may be using an")
+            print("unexpected version of CedarBackup3.")
+            print("")
+        from CedarBackup3.util import nullDevice, Diagnostics
+    except ImportError as e:
+        print(("Failed to import CedarBackup3 util module: %s" % e))
+        print("You must either run the unit tests from the CedarBackup3 source")
+        print("tree, or properly set the PYTHONPATH enviroment variable.")
+        return 1
 
-   # Import the unit test modules
-   try:
-      if os.path.exists(os.path.join(".", "tests", "filesystemtests.py")):
-         sys.path.insert(0, ".")
-      elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(os.path.join("..", "tests", "filesystemtests.py")):
-         sys.path.insert(0, "..")
-      else:
-         print("WARNING: CedarBackup3 unit test modules were not found in")
-         print("the expected location.  If the import succeeds, you may be")
-         print("using an unexpected version of the test suite.")
-         print("")
-      from tests import utiltests
-      from tests import knapsacktests
-      from tests import filesystemtests
-      from tests import peertests
-      from tests import actionsutiltests
-      from tests import writersutiltests
-      from tests import cdwritertests
-      from tests import dvdwritertests
-      from tests import configtests
-      from tests import clitests
-      from tests import mysqltests
-      from tests import postgresqltests
-      from tests import subversiontests
-      from tests import mboxtests
-      from tests import encrypttests
-      from tests import amazons3tests
-      from tests import splittests
-      from tests import spantests
-      from tests import synctests
-      from tests import capacitytests
-      from tests import customizetests
-   except ImportError as e:
-      print(("Failed to import CedarBackup3 unit test module: %s" % e))
-      print("You must either run the unit tests from the CedarBackup3 source")
-      print("tree, or properly set the PYTHONPATH enviroment variable.")
-      return 1
+    # Import the unit test modules
+    try:
+        if os.path.exists(os.path.join(".", "tests", "filesystemtests.py")):
+            sys.path.insert(0, ".")
+        elif os.path.basename(os.getcwd()) == "tests" and os.path.exists(os.path.join("..", "tests", "filesystemtests.py")):
+            sys.path.insert(0, "..")
+        else:
+            print("WARNING: CedarBackup3 unit test modules were not found in")
+            print("the expected location.  If the import succeeds, you may be")
+            print("using an unexpected version of the test suite.")
+            print("")
+        from tests import utiltests
+        from tests import knapsacktests
+        from tests import filesystemtests
+        from tests import peertests
+        from tests import actionsutiltests
+        from tests import writersutiltests
+        from tests import cdwritertests
+        from tests import dvdwritertests
+        from tests import configtests
+        from tests import clitests
+        from tests import mysqltests
+        from tests import postgresqltests
+        from tests import subversiontests
+        from tests import mboxtests
+        from tests import encrypttests
+        from tests import amazons3tests
+        from tests import splittests
+        from tests import spantests
+        from tests import synctests
+        from tests import capacitytests
+        from tests import customizetests
+    except ImportError as e:
+        print(("Failed to import CedarBackup3 unit test module: %s" % e))
+        print("You must either run the unit tests from the CedarBackup3 source")
+        print("tree, or properly set the PYTHONPATH enviroment variable.")
+        return 1
 
-   # Get a list of program arguments
-   args = sys.argv[1:]
+    # Get a list of program arguments
+    args = sys.argv[1:]
 
-   # Set verbosity for the test runner
-   if "verbose" in args:
-      verbosity = 2   # prints each test name
-      args.remove("verbose")
-   else:
-      verbosity = 1   # prints a . for each test
+    # Set verbosity for the test runner
+    if "verbose" in args:
+        verbosity = 2  # prints each test name
+        args.remove("verbose")
+    else:
+        verbosity = 1  # prints a . for each test
 
-   # Set up logging, where "debug" sends all output to stderr
-   if "debug" in args:
-      handler = logging.StreamHandler(sys.stdout)
-      handler.setLevel(logging.DEBUG)
-      logger = logging.getLogger("CedarBackup3")
-      logger.setLevel(logging.DEBUG)
-      logger.addHandler(handler)
-      args.remove("debug")
-   else:
-      devnull = nullDevice()
-      handler = logging.FileHandler(filename=devnull)
-      handler.setLevel(logging.NOTSET)
-      logger = logging.getLogger("CedarBackup3")
-      logger.setLevel(logging.NOTSET)
-      logger.addHandler(handler)
+    # Set up logging, where "debug" sends all output to stderr
+    if "debug" in args:
+        handler = logging.StreamHandler(sys.stdout)
+        handler.setLevel(logging.DEBUG)
+        logger = logging.getLogger("CedarBackup3")
+        logger.setLevel(logging.DEBUG)
+        logger.addHandler(handler)
+        args.remove("debug")
+    else:
+        devnull = nullDevice()
+        handler = logging.FileHandler(filename=devnull)
+        handler.setLevel(logging.NOTSET)
+        logger = logging.getLogger("CedarBackup3")
+        logger.setLevel(logging.NOTSET)
+        logger.addHandler(handler)
 
-   # Set flags in the environment to control tests
-   if "full" in args:
-      full = True
-      os.environ["PEERTESTS_FULL"] = "Y"
-      os.environ["WRITERSUTILTESTS_FULL"] = "Y"
-      os.environ["ENCRYPTTESTS_FULL"] = "Y"
-      os.environ["SPLITTESTS_FULL"] = "Y"
-      args.remove("full") # remainder of list will be specific tests to run, if any
-   else:
-      full = False
-      os.environ["PEERTESTS_FULL"] = "N"
-      os.environ["WRITERSUTILTESTS_FULL"] = "N"
-      os.environ["ENCRYPTTESTS_FULL"] = "N"
-      os.environ["SPLITTESTS_FULL"] = "N"
+    # Set flags in the environment to control tests
+    if "full" in args:
+        full = True
+        os.environ["PEERTESTS_FULL"] = "Y"
+        os.environ["WRITERSUTILTESTS_FULL"] = "Y"
+        os.environ["ENCRYPTTESTS_FULL"] = "Y"
+        os.environ["SPLITTESTS_FULL"] = "Y"
+        args.remove("full")  # remainder of list will be specific tests to run, if any
+    else:
+        full = False
+        os.environ["PEERTESTS_FULL"] = "N"
+        os.environ["WRITERSUTILTESTS_FULL"] = "N"
+        os.environ["ENCRYPTTESTS_FULL"] = "N"
+        os.environ["SPLITTESTS_FULL"] = "N"
 
-   # Print a starting banner
-   print("\n*** Running CedarBackup3 unit tests.")
-   if not full:
-      print("*** Using reduced feature set suite with minimum system requirements.")
+    # Print a starting banner
+    print("\n*** Running CedarBackup3 unit tests.")
+    if not full:
+        print("*** Using reduced feature set suite with minimum system requirements.")
 
-   # Make a list of tests to run
-   unittests = { }
-   if args == [] or "util" in args: unittests["util"] = utiltests.suite()
-   if args == [] or "knapsack" in args: unittests["knapsack"] = knapsacktests.suite()
-   if args == [] or "filesystem" in args: unittests["filesystem"] = filesystemtests.suite()
-   if args == [] or "peer" in args: unittests["peer"] = peertests.suite()
-   if args == [] or "actionsutil" in args: unittests["actionsutil"] = actionsutiltests.suite()
-   if args == [] or "writersutil" in args: unittests["writersutil"] = writersutiltests.suite()
-   if args == [] or "cdwriter" in args: unittests["cdwriter"] = cdwritertests.suite()
-   if args == [] or "dvdwriter" in args: unittests["dvdwriter"] = dvdwritertests.suite()
-   if args == [] or "config" in args: unittests["config"] = configtests.suite()
-   if args == [] or "cli" in args: unittests["cli"] = clitests.suite()
-   if args == [] or "mysql" in args: unittests["mysql"] = mysqltests.suite()
-   if args == [] or "postgresql" in args: unittests["postgresql"] = postgresqltests.suite()
-   if args == [] or "subversion" in args: unittests["subversion"] = subversiontests.suite()
-   if args == [] or "mbox" in args: unittests["mbox"] = mboxtests.suite()
-   if args == [] or "split" in args: unittests["split"] = splittests.suite()
-   if args == [] or "encrypt" in args: unittests["encrypt"] = encrypttests.suite()
-   if args == [] or "amazons3" in args: unittests["amazons3"] = amazons3tests.suite()
-   if args == [] or "span" in args: unittests["span"] = spantests.suite()
-   if args == [] or "sync" in args: unittests["sync"] = synctests.suite()
-   if args == [] or "capacity" in args: unittests["capacity"] = capacitytests.suite()
-   if args == [] or "customize" in args: unittests["customize"] = customizetests.suite()
-   if args != []: print(("*** Executing specific tests: %s" % list(unittests.keys())))
+    # Make a list of tests to run
+    unittests = {}
+    if args == [] or "util" in args:
+        unittests["util"] = utiltests.suite()
+    if args == [] or "knapsack" in args:
+        unittests["knapsack"] = knapsacktests.suite()
+    if args == [] or "filesystem" in args:
+        unittests["filesystem"] = filesystemtests.suite()
+    if args == [] or "peer" in args:
+        unittests["peer"] = peertests.suite()
+    if args == [] or "actionsutil" in args:
+        unittests["actionsutil"] = actionsutiltests.suite()
+    if args == [] or "writersutil" in args:
+        unittests["writersutil"] = writersutiltests.suite()
+    if args == [] or "cdwriter" in args:
+        unittests["cdwriter"] = cdwritertests.suite()
+    if args == [] or "dvdwriter" in args:
+        unittests["dvdwriter"] = dvdwritertests.suite()
+    if args == [] or "config" in args:
+        unittests["config"] = configtests.suite()
+    if args == [] or "cli" in args:
+        unittests["cli"] = clitests.suite()
+    if args == [] or "mysql" in args:
+        unittests["mysql"] = mysqltests.suite()
+    if args == [] or "postgresql" in args:
+        unittests["postgresql"] = postgresqltests.suite()
+    if args == [] or "subversion" in args:
+        unittests["subversion"] = subversiontests.suite()
+    if args == [] or "mbox" in args:
+        unittests["mbox"] = mboxtests.suite()
+    if args == [] or "split" in args:
+        unittests["split"] = splittests.suite()
+    if args == [] or "encrypt" in args:
+        unittests["encrypt"] = encrypttests.suite()
+    if args == [] or "amazons3" in args:
+        unittests["amazons3"] = amazons3tests.suite()
+    if args == [] or "span" in args:
+        unittests["span"] = spantests.suite()
+    if args == [] or "sync" in args:
+        unittests["sync"] = synctests.suite()
+    if args == [] or "capacity" in args:
+        unittests["capacity"] = capacitytests.suite()
+    if args == [] or "customize" in args:
+        unittests["customize"] = customizetests.suite()
+    if args != []:
+        print(("*** Executing specific tests: %s" % list(unittests.keys())))
 
-   # Print some diagnostic information
-   print("")
-   Diagnostics().printDiagnostics(prefix="*** ")
+    # Print some diagnostic information
+    print("")
+    Diagnostics().printDiagnostics(prefix="*** ")
 
-   # Create and run the test suite
-   print("")
-   suite = unittest.TestSuite(list(unittests.values()))
-   suiteResult = unittest.TextTestRunner(verbosity=verbosity).run(suite)
-   print("")
-   if not suiteResult.wasSuccessful():
-      return 1
-   else:
-      return 0
+    # Create and run the test suite
+    print("")
+    suite = unittest.TestSuite(list(unittests.values()))
+    suiteResult = unittest.TextTestRunner(verbosity=verbosity).run(suite)
+    print("")
+    if not suiteResult.wasSuccessful():
+        return 1
+    else:
+        return 0
 
 
 ########################################################################
@@ -257,7 +282,6 @@ def main():
 ########################################################################
 
 # Run the main routine if the module is executed rather than sourced
-if __name__ == '__main__':
-   result = main()
-   sys.exit(result)
-
+if __name__ == "__main__":
+    result = main()
+    sys.exit(result)

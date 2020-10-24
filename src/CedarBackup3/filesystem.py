@@ -48,12 +48,10 @@ Provides filesystem-related objects.
 import hashlib
 import logging
 import math
-# System modules
 import os
 import re
 import tarfile
 
-# Cedar Backup modules
 from CedarBackup3.knapsack import alternateFit, bestFit, firstFit, worstFit
 from CedarBackup3.util import (
     AbsolutePathList,
@@ -77,13 +75,14 @@ logger = logging.getLogger("CedarBackup3.log.filesystem")
 # FilesystemList class definition
 ########################################################################
 
+
 class FilesystemList(list):
 
-   ######################
-   # Class documentation
-   ######################
+    ######################
+    # Class documentation
+    ######################
 
-   """
+    """
    Represents a list of filesystem items.
 
    This is a generic class that represents a list of filesystem items.  Callers
@@ -116,165 +115,170 @@ class FilesystemList(list):
 
    """
 
+    ##############
+    # Constructor
+    ##############
 
-   ##############
-   # Constructor
-   ##############
+    def __init__(self):
+        """Initializes a list with no configured exclusions."""
+        list.__init__(self)
+        self._excludeFiles = False
+        self._excludeDirs = False
+        self._excludeLinks = False
+        self._excludePaths = None
+        self._excludePatterns = None
+        self._excludeBasenamePatterns = None
+        self._ignoreFile = None
+        self.excludeFiles = False
+        self.excludeLinks = False
+        self.excludeDirs = False
+        self.excludePaths = []
+        self.excludePatterns = RegexList()
+        self.excludeBasenamePatterns = RegexList()
+        self.ignoreFile = None
 
-   def __init__(self):
-      """Initializes a list with no configured exclusions."""
-      list.__init__(self)
-      self._excludeFiles = False
-      self._excludeDirs = False
-      self._excludeLinks = False
-      self._excludePaths = None
-      self._excludePatterns = None
-      self._excludeBasenamePatterns = None
-      self._ignoreFile = None
-      self.excludeFiles = False
-      self.excludeLinks = False
-      self.excludeDirs = False
-      self.excludePaths = []
-      self.excludePatterns = RegexList()
-      self.excludeBasenamePatterns = RegexList()
-      self.ignoreFile = None
+    #############
+    # Properties
+    #############
 
-
-   #############
-   # Properties
-   #############
-
-   def _setExcludeFiles(self, value):
-      """
+    def _setExcludeFiles(self, value):
+        """
       Property target used to set the exclude files flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._excludeFiles = True
-      else:
-         self._excludeFiles = False
+        if value:
+            self._excludeFiles = True
+        else:
+            self._excludeFiles = False
 
-   def _getExcludeFiles(self):
-      """
+    def _getExcludeFiles(self):
+        """
       Property target used to get the exclude files flag.
       """
-      return self._excludeFiles
+        return self._excludeFiles
 
-   def _setExcludeDirs(self, value):
-      """
+    def _setExcludeDirs(self, value):
+        """
       Property target used to set the exclude directories flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._excludeDirs = True
-      else:
-         self._excludeDirs = False
+        if value:
+            self._excludeDirs = True
+        else:
+            self._excludeDirs = False
 
-   def _getExcludeDirs(self):
-      """
+    def _getExcludeDirs(self):
+        """
       Property target used to get the exclude directories flag.
       """
-      return self._excludeDirs
+        return self._excludeDirs
 
-   def _setExcludeLinks(self, value):
-      """
+    def _setExcludeLinks(self, value):
+        """
       Property target used to set the exclude soft links flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._excludeLinks = True
-      else:
-         self._excludeLinks = False
+        if value:
+            self._excludeLinks = True
+        else:
+            self._excludeLinks = False
 
-   def _getExcludeLinks(self):
-      """
+    def _getExcludeLinks(self):
+        """
       Property target used to get the exclude soft links flag.
       """
-      return self._excludeLinks
+        return self._excludeLinks
 
-   def _setExcludePaths(self, value):
-      """
+    def _setExcludePaths(self, value):
+        """
       Property target used to set the exclude paths list.
       A ``None`` value is converted to an empty list.
       Elements do not have to exist on disk at the time of assignment.
       Raises:
          ValueError: If any list element is not an absolute path
       """
-      self._excludePaths = AbsolutePathList()
-      if value is not None:
-         self._excludePaths.extend(value)
+        self._excludePaths = AbsolutePathList()
+        if value is not None:
+            self._excludePaths.extend(value)
 
-   def _getExcludePaths(self):
-      """
+    def _getExcludePaths(self):
+        """
       Property target used to get the absolute exclude paths list.
       """
-      return self._excludePaths
+        return self._excludePaths
 
-   def _setExcludePatterns(self, value):
-      """
+    def _setExcludePatterns(self, value):
+        """
       Property target used to set the exclude patterns list.
       A ``None`` value is converted to an empty list.
       """
-      self._excludePatterns = RegexList()
-      if value is not None:
-         self._excludePatterns.extend(value)
+        self._excludePatterns = RegexList()
+        if value is not None:
+            self._excludePatterns.extend(value)
 
-   def _getExcludePatterns(self):
-      """
+    def _getExcludePatterns(self):
+        """
       Property target used to get the exclude patterns list.
       """
-      return self._excludePatterns
+        return self._excludePatterns
 
-   def _setExcludeBasenamePatterns(self, value):
-      """
+    def _setExcludeBasenamePatterns(self, value):
+        """
       Property target used to set the exclude basename patterns list.
       A ``None`` value is converted to an empty list.
       """
-      self._excludeBasenamePatterns = RegexList()
-      if value is not None:
-         self._excludeBasenamePatterns.extend(value)
+        self._excludeBasenamePatterns = RegexList()
+        if value is not None:
+            self._excludeBasenamePatterns.extend(value)
 
-   def _getExcludeBasenamePatterns(self):
-      """
+    def _getExcludeBasenamePatterns(self):
+        """
       Property target used to get the exclude basename patterns list.
       """
-      return self._excludeBasenamePatterns
+        return self._excludeBasenamePatterns
 
-   def _setIgnoreFile(self, value):
-      """
+    def _setIgnoreFile(self, value):
+        """
       Property target used to set the ignore file.
       The value must be a non-empty string if it is not ``None``.
       Raises:
          ValueError: If the value is an empty string
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("The ignore file must be a non-empty string.")
-      self._ignoreFile = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("The ignore file must be a non-empty string.")
+        self._ignoreFile = value
 
-   def _getIgnoreFile(self):
-      """
+    def _getIgnoreFile(self):
+        """
       Property target used to get the ignore file.
       """
-      return self._ignoreFile
+        return self._ignoreFile
 
-   excludeFiles = property(_getExcludeFiles, _setExcludeFiles, None, "Boolean indicating whether files should be excluded.")
-   excludeDirs = property(_getExcludeDirs, _setExcludeDirs, None, "Boolean indicating whether directories should be excluded.")
-   excludeLinks = property(_getExcludeLinks, _setExcludeLinks, None, "Boolean indicating whether soft links should be excluded.")
-   excludePaths = property(_getExcludePaths, _setExcludePaths, None, "List of absolute paths to be excluded.")
-   excludePatterns = property(_getExcludePatterns, _setExcludePatterns, None,
-                              "List of regular expression patterns (matching complete path) to be excluded.")
-   excludeBasenamePatterns = property(_getExcludeBasenamePatterns, _setExcludeBasenamePatterns,
-                                      None, "List of regular expression patterns (matching basename) to be excluded.")
-   ignoreFile = property(_getIgnoreFile, _setIgnoreFile, None, "Name of file which will cause directory contents to be ignored.")
+    excludeFiles = property(_getExcludeFiles, _setExcludeFiles, None, "Boolean indicating whether files should be excluded.")
+    excludeDirs = property(_getExcludeDirs, _setExcludeDirs, None, "Boolean indicating whether directories should be excluded.")
+    excludeLinks = property(_getExcludeLinks, _setExcludeLinks, None, "Boolean indicating whether soft links should be excluded.")
+    excludePaths = property(_getExcludePaths, _setExcludePaths, None, "List of absolute paths to be excluded.")
+    excludePatterns = property(
+        _getExcludePatterns,
+        _setExcludePatterns,
+        None,
+        "List of regular expression patterns (matching complete path) to be excluded.",
+    )
+    excludeBasenamePatterns = property(
+        _getExcludeBasenamePatterns,
+        _setExcludeBasenamePatterns,
+        None,
+        "List of regular expression patterns (matching basename) to be excluded.",
+    )
+    ignoreFile = property(_getIgnoreFile, _setIgnoreFile, None, "Name of file which will cause directory contents to be ignored.")
 
+    ##############
+    # Add methods
+    ##############
 
-   ##############
-   # Add methods
-   ##############
-
-   def addFile(self, path):
-      """
+    def addFile(self, path):
+        """
       Adds a file to the list.
 
       The path must exist and must be a file or a link to an existing file.  It
@@ -289,35 +293,35 @@ class FilesystemList(list):
          ValueError: If path is not a file or does not exist
          ValueError: If the path could not be encoded properly
       """
-      path = encodePath(path)
-      if not os.path.exists(path) or not os.path.isfile(path):
-         logger.debug("Path [%s] is not a file or does not exist on disk.", path)
-         raise ValueError("Path is not a file or does not exist on disk.")
-      if self.excludeLinks and os.path.islink(path):
-         logger.debug("Path [%s] is excluded based on excludeLinks.", path)
-         return 0
-      if self.excludeFiles:
-         logger.debug("Path [%s] is excluded based on excludeFiles.", path)
-         return 0
-      if path in self.excludePaths:
-         logger.debug("Path [%s] is excluded based on excludePaths.", path)
-         return 0
-      for pattern in self.excludePatterns:
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(path): # safe to assume all are valid due to RegexList
-            logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+        path = encodePath(path)
+        if not os.path.exists(path) or not os.path.isfile(path):
+            logger.debug("Path [%s] is not a file or does not exist on disk.", path)
+            raise ValueError("Path is not a file or does not exist on disk.")
+        if self.excludeLinks and os.path.islink(path):
+            logger.debug("Path [%s] is excluded based on excludeLinks.", path)
             return 0
-      for pattern in self.excludeBasenamePatterns: # safe to assume all are valid due to RegexList
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
-            logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+        if self.excludeFiles:
+            logger.debug("Path [%s] is excluded based on excludeFiles.", path)
             return 0
-      self.append(path)
-      logger.debug("Added file to list: [%s]", path)
-      return 1
+        if path in self.excludePaths:
+            logger.debug("Path [%s] is excluded based on excludePaths.", path)
+            return 0
+        for pattern in self.excludePatterns:
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(path):  # safe to assume all are valid due to RegexList
+                logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+                return 0
+        for pattern in self.excludeBasenamePatterns:  # safe to assume all are valid due to RegexList
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
+                logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+                return 0
+        self.append(path)
+        logger.debug("Added file to list: [%s]", path)
+        return 1
 
-   def addDir(self, path):
-      """
+    def addDir(self, path):
+        """
       Adds a directory to the list.
 
       The path must exist and must be a directory or a link to an existing
@@ -334,36 +338,36 @@ class FilesystemList(list):
          ValueError: If path is not a directory or does not exist
          ValueError: If the path could not be encoded properly
       """
-      path = encodePath(path)
-      path = normalizeDir(path)
-      if not os.path.exists(path) or not os.path.isdir(path):
-         logger.debug("Path [%s] is not a directory or does not exist on disk.", path)
-         raise ValueError("Path is not a directory or does not exist on disk.")
-      if self.excludeLinks and os.path.islink(path):
-         logger.debug("Path [%s] is excluded based on excludeLinks.", path)
-         return 0
-      if self.excludeDirs:
-         logger.debug("Path [%s] is excluded based on excludeDirs.", path)
-         return 0
-      if path in self.excludePaths:
-         logger.debug("Path [%s] is excluded based on excludePaths.", path)
-         return 0
-      for pattern in self.excludePatterns: # safe to assume all are valid due to RegexList
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(path):
-            logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+        path = encodePath(path)
+        path = normalizeDir(path)
+        if not os.path.exists(path) or not os.path.isdir(path):
+            logger.debug("Path [%s] is not a directory or does not exist on disk.", path)
+            raise ValueError("Path is not a directory or does not exist on disk.")
+        if self.excludeLinks and os.path.islink(path):
+            logger.debug("Path [%s] is excluded based on excludeLinks.", path)
             return 0
-      for pattern in self.excludeBasenamePatterns: # safe to assume all are valid due to RegexList
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
-            logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+        if self.excludeDirs:
+            logger.debug("Path [%s] is excluded based on excludeDirs.", path)
             return 0
-      self.append(path)
-      logger.debug("Added directory to list: [%s]", path)
-      return 1
+        if path in self.excludePaths:
+            logger.debug("Path [%s] is excluded based on excludePaths.", path)
+            return 0
+        for pattern in self.excludePatterns:  # safe to assume all are valid due to RegexList
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(path):
+                logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+                return 0
+        for pattern in self.excludeBasenamePatterns:  # safe to assume all are valid due to RegexList
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
+                logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+                return 0
+        self.append(path)
+        logger.debug("Added directory to list: [%s]", path)
+        return 1
 
-   def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
-      """
+    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
+        """
       Adds the contents of a directory to the list.
 
       The path must exist and must be a directory or a link to a directory.
@@ -408,12 +412,12 @@ class FilesystemList(list):
          ValueError: If path is not a directory or does not exist
          ValueError: If the path could not be encoded properly
       """
-      path = encodePath(path)
-      path = normalizeDir(path)
-      return self._addDirContentsInternal(path, addSelf, recursive, linkDepth, dereference)
+        path = encodePath(path)
+        path = normalizeDir(path)
+        return self._addDirContentsInternal(path, addSelf, recursive, linkDepth, dereference)
 
-   def _addDirContentsInternal(self, path, includePath=True, recursive=True, linkDepth=0, dereference=False):
-      """
+    def _addDirContentsInternal(self, path, includePath=True, recursive=True, linkDepth=0, dereference=False):
+        """
       Internal implementation of ``addDirContents``.
 
       This internal implementation exists due to some refactoring.  Basically,
@@ -452,67 +456,66 @@ class FilesystemList(list):
       Raises:
          ValueError: If path is not a directory or does not exist
       """
-      added = 0
-      if not os.path.exists(path) or not os.path.isdir(path):
-         logger.debug("Path [%s] is not a directory or does not exist on disk.", path)
-         raise ValueError("Path is not a directory or does not exist on disk.")
-      if path in self.excludePaths:
-         logger.debug("Path [%s] is excluded based on excludePaths.", path)
-         return added
-      for pattern in self.excludePatterns: # safe to assume all are valid due to RegexList
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(path):
-            logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+        added = 0
+        if not os.path.exists(path) or not os.path.isdir(path):
+            logger.debug("Path [%s] is not a directory or does not exist on disk.", path)
+            raise ValueError("Path is not a directory or does not exist on disk.")
+        if path in self.excludePaths:
+            logger.debug("Path [%s] is excluded based on excludePaths.", path)
             return added
-      for pattern in self.excludeBasenamePatterns: # safe to assume all are valid due to RegexList
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
-            logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+        for pattern in self.excludePatterns:  # safe to assume all are valid due to RegexList
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(path):
+                logger.debug("Path [%s] is excluded based on pattern [%s].", path, pattern)
+                return added
+        for pattern in self.excludeBasenamePatterns:  # safe to assume all are valid due to RegexList
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
+                logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
+                return added
+        if self.ignoreFile is not None and os.path.exists(os.path.join(path, self.ignoreFile)):
+            logger.debug("Path [%s] is excluded based on ignore file.", path)
             return added
-      if self.ignoreFile is not None and os.path.exists(os.path.join(path, self.ignoreFile)):
-         logger.debug("Path [%s] is excluded based on ignore file.", path)
-         return added
-      if includePath:
-         added += self.addDir(path)    # could actually be excluded by addDir, yet
-      for entry in os.listdir(path):
-         entrypath = os.path.join(path, entry)
-         if os.path.isfile(entrypath):
-            if linkDepth > 0 and dereference:
-               derefpath = dereferenceLink(entrypath)
-               if derefpath != entrypath:
-                  added += self.addFile(derefpath)
-            added += self.addFile(entrypath)
-         elif os.path.isdir(entrypath):
-            if os.path.islink(entrypath):
-               if recursive:
-                  if linkDepth > 0:
-                     newDepth = linkDepth - 1
-                     if dereference:
-                        derefpath = dereferenceLink(entrypath)
-                        if derefpath != entrypath:
-                           added += self._addDirContentsInternal(derefpath, True, recursive, newDepth, dereference)
+        if includePath:
+            added += self.addDir(path)  # could actually be excluded by addDir, yet
+        for entry in os.listdir(path):
+            entrypath = os.path.join(path, entry)
+            if os.path.isfile(entrypath):
+                if linkDepth > 0 and dereference:
+                    derefpath = dereferenceLink(entrypath)
+                    if derefpath != entrypath:
+                        added += self.addFile(derefpath)
+                added += self.addFile(entrypath)
+            elif os.path.isdir(entrypath):
+                if os.path.islink(entrypath):
+                    if recursive:
+                        if linkDepth > 0:
+                            newDepth = linkDepth - 1
+                            if dereference:
+                                derefpath = dereferenceLink(entrypath)
+                                if derefpath != entrypath:
+                                    added += self._addDirContentsInternal(derefpath, True, recursive, newDepth, dereference)
+                                added += self.addDir(entrypath)
+                            else:
+                                added += self._addDirContentsInternal(entrypath, False, recursive, newDepth, dereference)
+                        else:
+                            added += self.addDir(entrypath)
+                    else:
                         added += self.addDir(entrypath)
-                     else:
-                        added += self._addDirContentsInternal(entrypath, False, recursive, newDepth, dereference)
-                  else:
-                     added += self.addDir(entrypath)
-               else:
-                  added += self.addDir(entrypath)
-            else:
-               if recursive:
-                  newDepth = linkDepth - 1
-                  added += self._addDirContentsInternal(entrypath, True, recursive, newDepth, dereference)
-               else:
-                  added += self.addDir(entrypath)
-      return added
+                else:
+                    if recursive:
+                        newDepth = linkDepth - 1
+                        added += self._addDirContentsInternal(entrypath, True, recursive, newDepth, dereference)
+                    else:
+                        added += self.addDir(entrypath)
+        return added
 
+    #################
+    # Remove methods
+    #################
 
-   #################
-   # Remove methods
-   #################
-
-   def removeFiles(self, pattern=None):
-      """
+    def removeFiles(self, pattern=None):
+        """
       Removes file entries from the list.
 
       If ``pattern`` is not passed in or is ``None``, then all file entries will
@@ -533,30 +536,30 @@ class FilesystemList(list):
       Raises:
          ValueError: If the passed-in pattern is not a valid regular expression
       """
-      removed = 0
-      if pattern is None:
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.isfile(entry):
-               self.remove(entry)
-               logger.debug("Removed path [%s] from list.", entry)
-               removed += 1
-      else:
-         try:
-            pattern = encodePath(pattern)  # use same encoding as filenames
-            compiled = re.compile(pattern)
-         except re.error:
-            raise ValueError("Pattern is not a valid regular expression.")
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.isfile(entry):
-               if compiled.match(entry):
-                  self.remove(entry)
-                  logger.debug("Removed path [%s] from list.", entry)
-                  removed += 1
-      logger.debug("Removed a total of %d entries.", removed)
-      return removed
+        removed = 0
+        if pattern is None:
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.isfile(entry):
+                    self.remove(entry)
+                    logger.debug("Removed path [%s] from list.", entry)
+                    removed += 1
+        else:
+            try:
+                pattern = encodePath(pattern)  # use same encoding as filenames
+                compiled = re.compile(pattern)
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.isfile(entry):
+                    if compiled.match(entry):
+                        self.remove(entry)
+                        logger.debug("Removed path [%s] from list.", entry)
+                        removed += 1
+        logger.debug("Removed a total of %d entries.", removed)
+        return removed
 
-   def removeDirs(self, pattern=None):
-      """
+    def removeDirs(self, pattern=None):
+        """
       Removes directory entries from the list.
 
       If ``pattern`` is not passed in or is ``None``, then all directory entries
@@ -579,30 +582,30 @@ class FilesystemList(list):
       Raises:
          ValueError: If the passed-in pattern is not a valid regular expression
       """
-      removed = 0
-      if pattern is None:
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.isdir(entry):
-               self.remove(entry)
-               logger.debug("Removed path [%s] from list.", entry)
-               removed += 1
-      else:
-         try:
-            pattern = encodePath(pattern)  # use same encoding as filenames
-            compiled = re.compile(pattern)
-         except re.error:
-            raise ValueError("Pattern is not a valid regular expression.")
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.isdir(entry):
-               if compiled.match(entry):
-                  self.remove(entry)
-                  logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
-                  removed += 1
-      logger.debug("Removed a total of %d entries.", removed)
-      return removed
+        removed = 0
+        if pattern is None:
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.isdir(entry):
+                    self.remove(entry)
+                    logger.debug("Removed path [%s] from list.", entry)
+                    removed += 1
+        else:
+            try:
+                pattern = encodePath(pattern)  # use same encoding as filenames
+                compiled = re.compile(pattern)
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.isdir(entry):
+                    if compiled.match(entry):
+                        self.remove(entry)
+                        logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
+                        removed += 1
+        logger.debug("Removed a total of %d entries.", removed)
+        return removed
 
-   def removeLinks(self, pattern=None):
-      """
+    def removeLinks(self, pattern=None):
+        """
       Removes soft link entries from the list.
 
       If ``pattern`` is not passed in or is ``None``, then all soft link entries
@@ -623,30 +626,30 @@ class FilesystemList(list):
       Raises:
          ValueError: If the passed-in pattern is not a valid regular expression
       """
-      removed = 0
-      if pattern is None:
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.islink(entry):
-               self.remove(entry)
-               logger.debug("Removed path [%s] from list.", entry)
-               removed += 1
-      else:
-         try:
-            pattern = encodePath(pattern)  # use same encoding as filenames
-            compiled = re.compile(pattern)
-         except re.error:
-            raise ValueError("Pattern is not a valid regular expression.")
-         for entry in self[:]:
-            if os.path.exists(entry) and os.path.islink(entry):
-               if compiled.match(entry):
-                  self.remove(entry)
-                  logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
-                  removed += 1
-      logger.debug("Removed a total of %d entries.", removed)
-      return removed
+        removed = 0
+        if pattern is None:
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.islink(entry):
+                    self.remove(entry)
+                    logger.debug("Removed path [%s] from list.", entry)
+                    removed += 1
+        else:
+            try:
+                pattern = encodePath(pattern)  # use same encoding as filenames
+                compiled = re.compile(pattern)
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
+            for entry in self[:]:
+                if os.path.exists(entry) and os.path.islink(entry):
+                    if compiled.match(entry):
+                        self.remove(entry)
+                        logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
+                        removed += 1
+        logger.debug("Removed a total of %d entries.", removed)
+        return removed
 
-   def removeMatch(self, pattern):
-      """
+    def removeMatch(self, pattern):
+        """
       Removes from the list all entries matching a pattern.
 
       This method removes from the list all entries which match the passed in
@@ -669,22 +672,22 @@ class FilesystemList(list):
       Raises:
          ValueError: If the passed-in pattern is not a valid regular expression
       """
-      try:
-         pattern = encodePath(pattern)  # use same encoding as filenames
-         compiled = re.compile(pattern)
-      except re.error:
-         raise ValueError("Pattern is not a valid regular expression.")
-      removed = 0
-      for entry in self[:]:
-         if compiled.match(entry):
-            self.remove(entry)
-            logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
-            removed += 1
-      logger.debug("Removed a total of %d entries.", removed)
-      return removed
+        try:
+            pattern = encodePath(pattern)  # use same encoding as filenames
+            compiled = re.compile(pattern)
+        except re.error:
+            raise ValueError("Pattern is not a valid regular expression.")
+        removed = 0
+        for entry in self[:]:
+            if compiled.match(entry):
+                self.remove(entry)
+                logger.debug("Removed path [%s] from list based on pattern [%s].", entry, pattern)
+                removed += 1
+        logger.debug("Removed a total of %d entries.", removed)
+        return removed
 
-   def removeInvalid(self):
-      """
+    def removeInvalid(self):
+        """
       Removes from the list all entries that do not exist on disk.
 
       This method removes from the list all entries which do not currently
@@ -694,77 +697,79 @@ class FilesystemList(list):
       Returns:
           Number of entries removed
       """
-      removed = 0
-      for entry in self[:]:
-         if not os.path.exists(entry):
-            self.remove(entry)
-            logger.debug("Removed path [%s] from list.", entry)
-            removed += 1
-      logger.debug("Removed a total of %d entries.", removed)
-      return removed
+        removed = 0
+        for entry in self[:]:
+            if not os.path.exists(entry):
+                self.remove(entry)
+                logger.debug("Removed path [%s] from list.", entry)
+                removed += 1
+        logger.debug("Removed a total of %d entries.", removed)
+        return removed
 
+    ##################
+    # Utility methods
+    ##################
 
-   ##################
-   # Utility methods
-   ##################
+    def normalize(self):
+        """Normalizes the list, ensuring that each entry is unique."""
+        orig = len(self)
+        self.sort()
+        dups = list(filter(lambda x, self=self: self[x] == self[x + 1], list(range(0, len(self) - 1))))
+        items = list(map(lambda x, self=self: self[x], dups))
+        list(map(self.remove, items))
+        new = len(self)
+        logger.debug("Completed normalizing list; removed %d items (%d originally, %d now).", new - orig, orig, new)
 
-   def normalize(self):
-      """Normalizes the list, ensuring that each entry is unique."""
-      orig = len(self)
-      self.sort()
-      dups = list(filter(lambda x, self=self: self[x] == self[x+1], list(range(0, len(self) - 1))))
-      items = list(map(lambda x, self=self: self[x], dups))
-      list(map(self.remove, items))
-      new = len(self)
-      logger.debug("Completed normalizing list; removed %d items (%d originally, %d now).", new-orig, orig, new)
-
-   def verify(self):
-      """
+    def verify(self):
+        """
       Verifies that all entries in the list exist on disk.
       Returns:
           ``True`` if all entries exist, ``False`` otherwise
       """
-      for entry in self:
-         if not os.path.exists(entry):
-            logger.debug("Path [%s] is invalid; list is not valid.", entry)
-            return False
-      logger.debug("All entries in list are valid.")
-      return True
+        for entry in self:
+            if not os.path.exists(entry):
+                logger.debug("Path [%s] is invalid; list is not valid.", entry)
+                return False
+        logger.debug("All entries in list are valid.")
+        return True
 
 
 ########################################################################
 # SpanItem class definition
 ########################################################################
 
-class SpanItem(object): # pylint: disable=R0903
-   """
+
+class SpanItem(object):  # pylint: disable=R0903
+    """
    Item returned by :any:`BackupFileList.generateSpan`.
    """
-   def __init__(self, fileList, size, capacity, utilization):
-      """
+
+    def __init__(self, fileList, size, capacity, utilization):
+        """
       Create object.
       Args:
          fileList: List of files
          size: Size (in bytes) of files
          utilization: Utilization, as a percentage (0-100)
       """
-      self.fileList = fileList
-      self.size = size
-      self.capacity = capacity
-      self.utilization = utilization
+        self.fileList = fileList
+        self.size = size
+        self.capacity = capacity
+        self.utilization = utilization
 
 
 ########################################################################
 # BackupFileList class definition
 ########################################################################
 
-class BackupFileList(FilesystemList): # pylint: disable=R0904
 
-   ######################
-   # Class documentation
-   ######################
+class BackupFileList(FilesystemList):  # pylint: disable=R0904
 
-   """
+    ######################
+    # Class documentation
+    ######################
+
+    """
    List of files to be backed up.
 
    A BackupFileList is a :any:`FilesystemList` containing a list of files to be
@@ -777,21 +782,20 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
 
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self):
-      """Initializes a list with no configured exclusions."""
-      FilesystemList.__init__(self)
+    def __init__(self):
+        """Initializes a list with no configured exclusions."""
+        FilesystemList.__init__(self)
 
+    ################################
+    # Overridden superclass methods
+    ################################
 
-   ################################
-   # Overridden superclass methods
-   ################################
-
-   def addDir(self, path):
-      """
+    def addDir(self, path):
+        """
       Adds a directory to the list.
 
       Note that this class does not allow directories to be added by themselves
@@ -812,20 +816,19 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
          ValueError: If path is not a directory or does not exist
          ValueError: If the path could not be encoded properly
       """
-      path = encodePath(path)
-      path = normalizeDir(path)
-      if os.path.isdir(path) and not os.path.islink(path):
-         return 0
-      else:
-         return FilesystemList.addDir(self, path)
+        path = encodePath(path)
+        path = normalizeDir(path)
+        if os.path.isdir(path) and not os.path.islink(path):
+            return 0
+        else:
+            return FilesystemList.addDir(self, path)
 
+    ##################
+    # Utility methods
+    ##################
 
-   ##################
-   # Utility methods
-   ##################
-
-   def totalSize(self):
-      """
+    def totalSize(self):
+        """
       Returns the total size among all files in the list.
       Only files are counted.
       Soft links that point at files are ignored.
@@ -833,30 +836,30 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Returns:
           Total size, in bytes
       """
-      total = 0.0
-      for entry in self:
-         if os.path.isfile(entry) and not os.path.islink(entry):
-            total += float(os.stat(entry).st_size)
-      return total
+        total = 0.0
+        for entry in self:
+            if os.path.isfile(entry) and not os.path.islink(entry):
+                total += float(os.stat(entry).st_size)
+        return total
 
-   def generateSizeMap(self):
-      """
+    def generateSizeMap(self):
+        """
       Generates a mapping from file to file size in bytes.
       The mapping does include soft links, which are listed with size zero.
       Entries which do not exist on disk are ignored.
       Returns:
           Dictionary mapping file to file size
       """
-      table = {}
-      for entry in self:
-         if os.path.islink(entry):
-            table[entry] = 0.0
-         elif os.path.isfile(entry):
-            table[entry] = float(os.stat(entry).st_size)
-      return table
+        table = {}
+        for entry in self:
+            if os.path.islink(entry):
+                table[entry] = 0.0
+            elif os.path.isfile(entry):
+                table[entry] = float(os.stat(entry).st_size)
+        return table
 
-   def generateDigestMap(self, stripPrefix=None):
-      """
+    def generateDigestMap(self, stripPrefix=None):
+        """
       Generates a mapping from file to file digest.
 
       Currently, the digest is an SHA hash, which should be pretty secure.  In
@@ -879,20 +882,20 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
           Dictionary mapping file to digest value
       @see: :any:`removeUnchanged`
       """
-      table = {}
-      if stripPrefix is not None:
-         for entry in self:
-            if os.path.isfile(entry) and not os.path.islink(entry):
-               table[entry.replace(stripPrefix, "", 1)] = BackupFileList._generateDigest(entry)
-      else:
-         for entry in self:
-            if os.path.isfile(entry) and not os.path.islink(entry):
-               table[entry] = BackupFileList._generateDigest(entry)
-      return table
+        table = {}
+        if stripPrefix is not None:
+            for entry in self:
+                if os.path.isfile(entry) and not os.path.islink(entry):
+                    table[entry.replace(stripPrefix, "", 1)] = BackupFileList._generateDigest(entry)
+        else:
+            for entry in self:
+                if os.path.isfile(entry) and not os.path.islink(entry):
+                    table[entry] = BackupFileList._generateDigest(entry)
+        return table
 
-   @staticmethod
-   def _generateDigest(path):
-      """
+    @staticmethod
+    def _generateDigest(path):
+        """
       Generates an SHA digest for a given file on disk.
 
       The original code for this function used this simplistic implementation,
@@ -928,20 +931,20 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Raises:
          OSError: If the file cannot be opened
       """
-      # pylint: disable=C0103,E1101
-      s = hashlib.sha1()
-      with open(path, mode="rb") as f:
-         readBytes = 4096  # see notes above
-         while readBytes > 0:
-            readString = f.read(readBytes)
-            s.update(readString)
-            readBytes = len(readString)
-      digest = s.hexdigest()
-      logger.debug("Generated digest [%s] for file [%s].", digest, path)
-      return digest
+        # pylint: disable=C0103,E1101
+        s = hashlib.sha1()
+        with open(path, mode="rb") as f:
+            readBytes = 4096  # see notes above
+            while readBytes > 0:
+                readString = f.read(readBytes)
+                s.update(readString)
+                readBytes = len(readString)
+        digest = s.hexdigest()
+        logger.debug("Generated digest [%s] for file [%s].", digest, path)
+        return digest
 
-   def generateFitted(self, capacity, algorithm="worst_fit"):
-      """
+    def generateFitted(self, capacity, algorithm="worst_fit"):
+        """
       Generates a list of items that fit in the indicated capacity.
 
       Sometimes, callers would like to include every item in a list, but are
@@ -962,12 +965,12 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Raises:
          ValueError: If the algorithm is invalid
       """
-      table = self._getKnapsackTable()
-      function = BackupFileList._getKnapsackFunction(algorithm)
-      return function(table, capacity)[0]
+        table = self._getKnapsackTable()
+        function = BackupFileList._getKnapsackFunction(algorithm)
+        return function(table, capacity)[0]
 
-   def generateSpan(self, capacity, algorithm="worst_fit"):
-      """
+    def generateSpan(self, capacity, algorithm="worst_fit"):
+        """
       Splits the list of items into sub-lists that fit in a given capacity.
 
       Sometimes, callers need split to a backup file list into a set of smaller
@@ -992,43 +995,43 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
          ValueError: If the algorithm is invalid
          ValueError: If it's not possible to fit some items
       """
-      spanItems = []
-      function = BackupFileList._getKnapsackFunction(algorithm)
-      table = self._getKnapsackTable(capacity)
-      iteration = 0
-      while len(table) > 0:
-         iteration += 1
-         fit = function(table, capacity)
-         if len(fit[0]) == 0:
-            # Should never happen due to validations in _convertToKnapsackForm(), but let's be safe
-            raise ValueError("After iteration %d, unable to add any new items." % iteration)
-         removeKeys(table, fit[0])
-         utilization = (float(fit[1])/float(capacity))*100.0
-         item = SpanItem(fit[0], fit[1], capacity, utilization)
-         spanItems.append(item)
-      return spanItems
+        spanItems = []
+        function = BackupFileList._getKnapsackFunction(algorithm)
+        table = self._getKnapsackTable(capacity)
+        iteration = 0
+        while len(table) > 0:
+            iteration += 1
+            fit = function(table, capacity)
+            if len(fit[0]) == 0:
+                # Should never happen due to validations in _convertToKnapsackForm(), but let's be safe
+                raise ValueError("After iteration %d, unable to add any new items." % iteration)
+            removeKeys(table, fit[0])
+            utilization = (float(fit[1]) / float(capacity)) * 100.0
+            item = SpanItem(fit[0], fit[1], capacity, utilization)
+            spanItems.append(item)
+        return spanItems
 
-   def _getKnapsackTable(self, capacity=None):
-      """
+    def _getKnapsackTable(self, capacity=None):
+        """
       Converts the list into the form needed by the knapsack algorithms.
       Returns:
           Dictionary mapping file name to tuple of (file path, file size)
       """
-      table = {}
-      for entry in self:
-         if os.path.islink(entry):
-            table[entry] = (entry, 0.0)
-         elif os.path.isfile(entry):
-            size = float(os.stat(entry).st_size)
-            if capacity is not None:
-               if size > capacity:
-                  raise ValueError("File [%s] cannot fit in capacity %s." % (entry, displayBytes(capacity)))
-            table[entry] = (entry, size)
-      return table
+        table = {}
+        for entry in self:
+            if os.path.islink(entry):
+                table[entry] = (entry, 0.0)
+            elif os.path.isfile(entry):
+                size = float(os.stat(entry).st_size)
+                if capacity is not None:
+                    if size > capacity:
+                        raise ValueError("File [%s] cannot fit in capacity %s." % (entry, displayBytes(capacity)))
+                table[entry] = (entry, size)
+        return table
 
-   @staticmethod
-   def _getKnapsackFunction(algorithm):
-      """
+    @staticmethod
+    def _getKnapsackFunction(algorithm):
+        """
       Returns a reference to the function associated with an algorithm name.
       Algorithm name must be one of "first_fit", "best_fit", "worst_fit", "alternate_fit"
       Args:
@@ -1038,19 +1041,19 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Raises:
          ValueError: If the algorithm name is unknown
       """
-      if algorithm == "first_fit":
-         return firstFit
-      elif algorithm == "best_fit":
-         return bestFit
-      elif algorithm == "worst_fit":
-         return worstFit
-      elif algorithm == "alternate_fit":
-         return alternateFit
-      else:
-         raise ValueError("Algorithm [%s] is invalid." % algorithm)
+        if algorithm == "first_fit":
+            return firstFit
+        elif algorithm == "best_fit":
+            return bestFit
+        elif algorithm == "worst_fit":
+            return worstFit
+        elif algorithm == "alternate_fit":
+            return alternateFit
+        else:
+            raise ValueError("Algorithm [%s] is invalid." % algorithm)
 
-   def generateTarfile(self, path, mode='tar', ignore=False, flat=False):
-      """
+    def generateTarfile(self, path, mode="tar", ignore=False, flat=False):
+        """
       Creates a tar file containing the files in the list.
 
       By default, this method will create uncompressed tar files.  If you pass
@@ -1104,51 +1107,64 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
          ValueError: If the path could not be encoded properly
          TarError: If there is a problem creating the tar file
       """
-      # pylint: disable=E1101
-      path = encodePath(path)
-      if len(self) == 0: raise ValueError("Empty list cannot be used to generate tarfile.")
-      if mode == 'tar': tarmode = "w:"
-      elif mode == 'targz': tarmode = "w:gz"
-      elif mode == 'tarbz2': tarmode = "w:bz2"
-      else: raise ValueError("Mode [%s] is not valid." % mode)
-      try:
-         tar = tarfile.open(path, tarmode)
-         try:
-            tar.format = tarfile.GNU_FORMAT
-         except AttributeError:
-            tar.posix = False
-         for entry in self:
+        # pylint: disable=E1101
+        path = encodePath(path)
+        if len(self) == 0:
+            raise ValueError("Empty list cannot be used to generate tarfile.")
+        if mode == "tar":
+            tarmode = "w:"
+        elif mode == "targz":
+            tarmode = "w:gz"
+        elif mode == "tarbz2":
+            tarmode = "w:bz2"
+        else:
+            raise ValueError("Mode [%s] is not valid." % mode)
+        try:
+            tar = tarfile.open(path, tarmode)
             try:
-               if flat:
-                  tar.add(entry, arcname=os.path.basename(entry), recursive=False)
-               else:
-                  tar.add(entry, recursive=False)
-            except tarfile.TarError as e:
-               if not ignore:
-                  raise e
-               logger.info("Unable to add file [%s]; going on anyway.", entry)
-            except OSError as e:
-               if not ignore:
-                  raise tarfile.TarError(e)
-               logger.info("Unable to add file [%s]; going on anyway.", entry)
-         tar.close()
-      except tarfile.ReadError as e:
-         try: tar.close()
-         except: pass
-         if os.path.exists(path):
-            try: os.remove(path)
-            except: pass
-         raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
-      except tarfile.TarError as e:
-         try: tar.close()
-         except: pass
-         if os.path.exists(path):
-            try: os.remove(path)
-            except: pass
-         raise e
+                tar.format = tarfile.GNU_FORMAT
+            except AttributeError:
+                tar.posix = False
+            for entry in self:
+                try:
+                    if flat:
+                        tar.add(entry, arcname=os.path.basename(entry), recursive=False)
+                    else:
+                        tar.add(entry, recursive=False)
+                except tarfile.TarError as e:
+                    if not ignore:
+                        raise e
+                    logger.info("Unable to add file [%s]; going on anyway.", entry)
+                except OSError as e:
+                    if not ignore:
+                        raise tarfile.TarError(e)
+                    logger.info("Unable to add file [%s]; going on anyway.", entry)
+            tar.close()
+        except tarfile.ReadError as e:
+            try:
+                tar.close()
+            except:
+                pass
+            if os.path.exists(path):
+                try:
+                    os.remove(path)
+                except:
+                    pass
+            raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
+        except tarfile.TarError as e:
+            try:
+                tar.close()
+            except:
+                pass
+            if os.path.exists(path):
+                try:
+                    os.remove(path)
+                except:
+                    pass
+            raise e
 
-   def removeUnchanged(self, digestMap, captureDigest=False):
-      """
+    def removeUnchanged(self, digestMap, captureDigest=False):
+        """
       Removes unchanged entries from the list.
 
       This method relies on a digest map as returned from :any:`generateDigestMap`.
@@ -1192,54 +1208,55 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Returns:
           Results as discussed above (format varies based on arguments)
       """
-      if captureDigest:
-         removed = 0
-         table = {}
-         captured = {}
-         for entry in self:
-            if os.path.isfile(entry) and not os.path.islink(entry):
-               table[entry] = BackupFileList._generateDigest(entry)
-               captured[entry] = table[entry]
-            else:
-               table[entry] = None
-         for entry in list(digestMap.keys()):
-            if entry in table:
-               if table[entry] is not None:  # equivalent to file/link check in other case
-                  digest = table[entry]
-                  if digest == digestMap[entry]:
-                     removed += 1
-                     del table[entry]
-                     logger.debug("Discarded unchanged file [%s].", entry)
-         self[:] = list(table.keys())
-         return (removed, captured)
-      else:
-         removed = 0
-         table = {}
-         for entry in self:
-            table[entry] = None
-         for entry in list(digestMap.keys()):
-            if entry in table:
-               if os.path.isfile(entry) and not os.path.islink(entry):
-                  digest = BackupFileList._generateDigest(entry)
-                  if digest == digestMap[entry]:
-                     removed += 1
-                     del table[entry]
-                     logger.debug("Discarded unchanged file [%s].", entry)
-         self[:] = list(table.keys())
-         return removed
+        if captureDigest:
+            removed = 0
+            table = {}
+            captured = {}
+            for entry in self:
+                if os.path.isfile(entry) and not os.path.islink(entry):
+                    table[entry] = BackupFileList._generateDigest(entry)
+                    captured[entry] = table[entry]
+                else:
+                    table[entry] = None
+            for entry in list(digestMap.keys()):
+                if entry in table:
+                    if table[entry] is not None:  # equivalent to file/link check in other case
+                        digest = table[entry]
+                        if digest == digestMap[entry]:
+                            removed += 1
+                            del table[entry]
+                            logger.debug("Discarded unchanged file [%s].", entry)
+            self[:] = list(table.keys())
+            return (removed, captured)
+        else:
+            removed = 0
+            table = {}
+            for entry in self:
+                table[entry] = None
+            for entry in list(digestMap.keys()):
+                if entry in table:
+                    if os.path.isfile(entry) and not os.path.islink(entry):
+                        digest = BackupFileList._generateDigest(entry)
+                        if digest == digestMap[entry]:
+                            removed += 1
+                            del table[entry]
+                            logger.debug("Discarded unchanged file [%s].", entry)
+            self[:] = list(table.keys())
+            return removed
 
 
 ########################################################################
 # PurgeItemList class definition
 ########################################################################
 
-class PurgeItemList(FilesystemList): # pylint: disable=R0904
 
-   ######################
-   # Class documentation
-   ######################
+class PurgeItemList(FilesystemList):  # pylint: disable=R0904
 
-   """
+    ######################
+    # Class documentation
+    ######################
+
+    """
    List of files and directories to be purged.
 
    A PurgeItemList is a :any:`FilesystemList` containing a list of files and
@@ -1254,21 +1271,20 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
    doesn't get removed once all of the files within it is gone.
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self):
-      """Initializes a list with no configured exclusions."""
-      FilesystemList.__init__(self)
+    def __init__(self):
+        """Initializes a list with no configured exclusions."""
+        FilesystemList.__init__(self)
 
+    ##############
+    # Add methods
+    ##############
 
-   ##############
-   # Add methods
-   ##############
-
-   def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
-      """
+    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
+        """
       Adds the contents of a directory to the list.
 
       The path must exist and must be a directory or a link to a directory.
@@ -1318,17 +1334,16 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
          ValueError: If path is not a directory or does not exist
          ValueError: If the path could not be encoded properly
       """
-      path = encodePath(path)
-      path = normalizeDir(path)
-      return super(PurgeItemList, self)._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
+        path = encodePath(path)
+        path = normalizeDir(path)
+        return super(PurgeItemList, self)._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
 
+    ##################
+    # Utility methods
+    ##################
 
-   ##################
-   # Utility methods
-   ##################
-
-   def removeYoungFiles(self, daysOld):
-      """
+    def removeYoungFiles(self, daysOld):
+        """
       Removes from the list files younger than a certain age (in days).
 
       Any file whose "age" in days is less than (``<``) the value of the
@@ -1353,25 +1368,26 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Returns:
           Number of entries removed
       """
-      removed = 0
-      daysOld = int(daysOld)
-      if daysOld < 0:
-         raise ValueError("Days old value must be an integer >= 0.")
-      for entry in self[:]:
-         if os.path.isfile(entry) and not os.path.islink(entry):
-            try:
-               ageInDays = calculateFileAge(entry)
-               ageInWholeDays = math.floor(ageInDays)
-               if ageInWholeDays < 0: ageInWholeDays = 0
-               if ageInWholeDays < daysOld:
-                  removed += 1
-                  self.remove(entry)
-            except OSError:
-               pass
-      return removed
+        removed = 0
+        daysOld = int(daysOld)
+        if daysOld < 0:
+            raise ValueError("Days old value must be an integer >= 0.")
+        for entry in self[:]:
+            if os.path.isfile(entry) and not os.path.islink(entry):
+                try:
+                    ageInDays = calculateFileAge(entry)
+                    ageInWholeDays = math.floor(ageInDays)
+                    if ageInWholeDays < 0:
+                        ageInWholeDays = 0
+                    if ageInWholeDays < daysOld:
+                        removed += 1
+                        self.remove(entry)
+                except OSError:
+                    pass
+        return removed
 
-   def purgeItems(self):
-      """
+    def purgeItems(self):
+        """
       Purges all items in the list.
 
       Every item in the list will be purged.  Directories in the list will
@@ -1385,25 +1401,25 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
       Returns:
           Tuple containing count of (files, dirs) removed
       """
-      files = 0
-      dirs = 0
-      for entry in self:
-         if os.path.exists(entry) and (os.path.isfile(entry) or os.path.islink(entry)):
-            try:
-               os.remove(entry)
-               files += 1
-               logger.debug("Purged file [%s].", entry)
-            except OSError:
-               pass
-      for entry in self:
-         if os.path.exists(entry) and os.path.isdir(entry) and not os.path.islink(entry):
-            try:
-               os.rmdir(entry)
-               dirs += 1
-               logger.debug("Purged empty directory [%s].", entry)
-            except OSError:
-               pass
-      return (files, dirs)
+        files = 0
+        dirs = 0
+        for entry in self:
+            if os.path.exists(entry) and (os.path.isfile(entry) or os.path.islink(entry)):
+                try:
+                    os.remove(entry)
+                    files += 1
+                    logger.debug("Purged file [%s].", entry)
+                except OSError:
+                    pass
+        for entry in self:
+            if os.path.exists(entry) and os.path.isdir(entry) and not os.path.islink(entry):
+                try:
+                    os.rmdir(entry)
+                    dirs += 1
+                    logger.debug("Purged empty directory [%s].", entry)
+                except OSError:
+                    pass
+        return (files, dirs)
 
 
 ########################################################################
@@ -1414,8 +1430,9 @@ class PurgeItemList(FilesystemList): # pylint: disable=R0904
 # normalizeDir() function
 ##########################
 
+
 def normalizeDir(path):
-   """
+    """
    Normalizes a directory name.
 
    For our purposes, a directory name is normalized by removing the trailing
@@ -1428,17 +1445,18 @@ def normalizeDir(path):
    Returns:
        Normalized path, which should be equivalent to the original
    """
-   if path != os.sep and path[-1:] == os.sep:
-      return path[:-1]
-   return path
+    if path != os.sep and path[-1:] == os.sep:
+        return path[:-1]
+    return path
 
 
 #############################
 # compareContents() function
 #############################
 
+
 def compareContents(path1, path2, verbose=False):
-   """
+    """
    Compares the contents of two directories to see if they are equivalent.
 
    The two directories are recursively compared.  First, we check whether they
@@ -1470,20 +1488,21 @@ def compareContents(path1, path2, verbose=False):
       ValueError: If the two directories are not equivalent
       IOError: If there is an unusual problem reading the directories
    """
-   try:
-      path1List = BackupFileList()
-      path1List.addDirContents(path1)
-      path1Digest = path1List.generateDigestMap(stripPrefix=normalizeDir(path1))
-      path2List = BackupFileList()
-      path2List.addDirContents(path2)
-      path2Digest = path2List.generateDigestMap(stripPrefix=normalizeDir(path2))
-      compareDigestMaps(path1Digest, path2Digest, verbose)
-   except IOError as e:
-      logger.error("I/O error encountered during consistency check.")
-      raise e
+    try:
+        path1List = BackupFileList()
+        path1List.addDirContents(path1)
+        path1Digest = path1List.generateDigestMap(stripPrefix=normalizeDir(path1))
+        path2List = BackupFileList()
+        path2List.addDirContents(path2)
+        path2Digest = path2List.generateDigestMap(stripPrefix=normalizeDir(path2))
+        compareDigestMaps(path1Digest, path2Digest, verbose)
+    except IOError as e:
+        logger.error("I/O error encountered during consistency check.")
+        raise e
+
 
 def compareDigestMaps(digest1, digest2, verbose=False):
-   """
+    """
    Compares two digest maps and throws an exception if they differ.
 
    Args:
@@ -1493,14 +1512,14 @@ def compareDigestMaps(digest1, digest2, verbose=False):
    Raises:
       ValueError: If the two directories are not equivalent
    """
-   if not verbose:
-      if digest1 != digest2:
-         raise ValueError("Consistency check failed.")
-   else:
-      list1 = UnorderedList(list(digest1.keys()))
-      list2 = UnorderedList(list(digest2.keys()))
-      if list1 != list2:
-         raise ValueError("Directories contain a different set of files.")
-      for key in list1:
-         if digest1[key] != digest2[key]:
-            raise ValueError("File contents for [%s] vary between directories." % key)
+    if not verbose:
+        if digest1 != digest2:
+            raise ValueError("Consistency check failed.")
+    else:
+        list1 = UnorderedList(list(digest1.keys()))
+        list2 = UnorderedList(list(digest2.keys()))
+        if list1 != list2:
+            raise ValueError("Directories contain a different set of files.")
+        for key in list1:
+            if digest1[key] != digest2[key]:
+                raise ValueError("File contents for [%s] vary between directories." % key)

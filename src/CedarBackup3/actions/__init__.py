@@ -53,5 +53,4 @@ import CedarBackup3.actions.util
 import CedarBackup3.actions.rebuild
 import CedarBackup3.actions.validate
 
-__all__ = ['constants', 'collect', 'initialize', 'stage', 'store', 'purge', 'util', 'rebuild', 'validate']
-
+__all__ = ["constants", "collect", "initialize", "stage", "store", "purge", "util", "rebuild", "validate"]

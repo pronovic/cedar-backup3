@@ -64,12 +64,10 @@ note will be logged at the INFO level.
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import logging
 from bz2 import BZ2File
 
-# Cedar Backup modules
 from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
 
 
@@ -79,12 +77,12 @@ from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
 
 logger = logging.getLogger("CedarBackup3.log.extend.sysinfo")
 
-DPKG_PATH      = "/usr/bin/dpkg"
-FDISK_PATH     = "/sbin/fdisk"
+DPKG_PATH = "/usr/bin/dpkg"
+FDISK_PATH = "/sbin/fdisk"
 
-DPKG_COMMAND   = [DPKG_PATH, "--get-selections"]
-FDISK_COMMAND  = [FDISK_PATH, "-l"]
-LS_COMMAND     = ["ls", "-laR", "/"]
+DPKG_COMMAND = [DPKG_PATH, "--get-selections"]
+FDISK_COMMAND = [FDISK_PATH, "-l"]
+LS_COMMAND = ["ls", "-laR", "/"]
 
 
 ########################################################################
@@ -97,7 +95,7 @@ LS_COMMAND     = ["ls", "-laR", "/"]
 
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
-   """
+    """
    Executes the sysinfo backup action.
 
    Args:
@@ -108,16 +106,17 @@ def executeAction(configPath, options, config):
       ValueError: Under many generic error conditions
       IOError: If the backup process fails for some reason
    """
-   logger.debug("Executing sysinfo extended action.")
-   if config.options is None or config.collect is None:
-      raise ValueError("Cedar Backup configuration is not properly filled in.")
-   _dumpDebianPackages(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
-   _dumpPartitionTable(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
-   _dumpFilesystemContents(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
-   logger.info("Executed the sysinfo extended action successfully.")
+    logger.debug("Executing sysinfo extended action.")
+    if config.options is None or config.collect is None:
+        raise ValueError("Cedar Backup configuration is not properly filled in.")
+    _dumpDebianPackages(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
+    _dumpPartitionTable(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
+    _dumpFilesystemContents(config.collect.targetDir, config.options.backupUser, config.options.backupGroup)
+    logger.info("Executed the sysinfo extended action successfully.")
+
 
 def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
-   """
+    """
    Dumps a list of currently installed Debian packages via ``dpkg``.
    Args:
       targetDir: Directory to write output file into
@@ -127,23 +126,24 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
    Raises:
       IOError: If the dump fails for some reason
    """
-   if not os.path.exists(DPKG_PATH):
-      logger.info("Not executing Debian package dump since %s doesn't seem to exist.", DPKG_PATH)
-   elif not os.access(DPKG_PATH, os.X_OK):
-      logger.info("Not executing Debian package dump since %s cannot be executed.", DPKG_PATH)
-   else:
-      (outputFile, filename) = _getOutputFile(targetDir, "dpkg-selections", compress)
-      with outputFile:
-         command = resolveCommand(DPKG_COMMAND)
-         result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
-         if result != 0:
-            raise IOError("Error [%d] executing Debian package dump." % result)
-      if not os.path.exists(filename):
-         raise IOError("File [%s] does not seem to exist after Debian package dump finished." % filename)
-      changeOwnership(filename, backupUser, backupGroup)
+    if not os.path.exists(DPKG_PATH):
+        logger.info("Not executing Debian package dump since %s doesn't seem to exist.", DPKG_PATH)
+    elif not os.access(DPKG_PATH, os.X_OK):
+        logger.info("Not executing Debian package dump since %s cannot be executed.", DPKG_PATH)
+    else:
+        (outputFile, filename) = _getOutputFile(targetDir, "dpkg-selections", compress)
+        with outputFile:
+            command = resolveCommand(DPKG_COMMAND)
+            result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
+            if result != 0:
+                raise IOError("Error [%d] executing Debian package dump." % result)
+        if not os.path.exists(filename):
+            raise IOError("File [%s] does not seem to exist after Debian package dump finished." % filename)
+        changeOwnership(filename, backupUser, backupGroup)
+
 
 def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
-   """
+    """
    Dumps information about the partition table via ``fdisk``.
    Args:
       targetDir: Directory to write output file into
@@ -153,23 +153,24 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
    Raises:
       IOError: If the dump fails for some reason
    """
-   if not os.path.exists(FDISK_PATH):
-      logger.info("Not executing partition table dump since %s doesn't seem to exist.", FDISK_PATH)
-   elif not os.access(FDISK_PATH, os.X_OK):
-      logger.info("Not executing partition table dump since %s cannot be executed.", FDISK_PATH)
-   else:
-      (outputFile, filename) = _getOutputFile(targetDir, "fdisk-l", compress)
-      with outputFile:
-         command = resolveCommand(FDISK_COMMAND)
-         result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, outputFile=outputFile)[0]
-         if result != 0:
-            raise IOError("Error [%d] executing partition table dump." % result)
-      if not os.path.exists(filename):
-         raise IOError("File [%s] does not seem to exist after partition table dump finished." % filename)
-      changeOwnership(filename, backupUser, backupGroup)
+    if not os.path.exists(FDISK_PATH):
+        logger.info("Not executing partition table dump since %s doesn't seem to exist.", FDISK_PATH)
+    elif not os.access(FDISK_PATH, os.X_OK):
+        logger.info("Not executing partition table dump since %s cannot be executed.", FDISK_PATH)
+    else:
+        (outputFile, filename) = _getOutputFile(targetDir, "fdisk-l", compress)
+        with outputFile:
+            command = resolveCommand(FDISK_COMMAND)
+            result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, outputFile=outputFile)[0]
+            if result != 0:
+                raise IOError("Error [%d] executing partition table dump." % result)
+        if not os.path.exists(filename):
+            raise IOError("File [%s] does not seem to exist after partition table dump finished." % filename)
+        changeOwnership(filename, backupUser, backupGroup)
+
 
 def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
-   """
+    """
    Dumps complete listing of filesystem contents via ``ls -laR``.
    Args:
       targetDir: Directory to write output file into
@@ -179,17 +180,18 @@ def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
    Raises:
       IOError: If the dump fails for some reason
    """
-   (outputFile, filename) = _getOutputFile(targetDir, "ls-laR", compress)
-   with outputFile:
-      # Note: can't count on return status from 'ls', so we don't check it.
-      command = resolveCommand(LS_COMMAND)
-      executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)
-   if not os.path.exists(filename):
-      raise IOError("File [%s] does not seem to exist after filesystem contents dump finished." % filename)
-   changeOwnership(filename, backupUser, backupGroup)
+    (outputFile, filename) = _getOutputFile(targetDir, "ls-laR", compress)
+    with outputFile:
+        # Note: can't count on return status from 'ls', so we don't check it.
+        command = resolveCommand(LS_COMMAND)
+        executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)
+    if not os.path.exists(filename):
+        raise IOError("File [%s] does not seem to exist after filesystem contents dump finished." % filename)
+    changeOwnership(filename, backupUser, backupGroup)
+
 
 def _getOutputFile(targetDir, name, compress=True):
-   """
+    """
    Opens the output file used for saving a dump to the filesystem.
 
    The filename will be ``name.txt`` (or ``name.txt.bz2`` if ``compress`` is
@@ -203,13 +205,12 @@ def _getOutputFile(targetDir, name, compress=True):
    Returns:
        Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
-   filename = os.path.join(targetDir, "%s.txt" % name)
-   if compress:
-      filename = "%s.bz2" % filename
-   logger.debug("Dump file will be [%s].", filename)
-   if compress:
-      outputFile = BZ2File(filename, "wb")
-   else:
-      outputFile = open(filename, "wb")
-   return (outputFile, filename)
-
+    filename = os.path.join(targetDir, "%s.txt" % name)
+    if compress:
+        filename = "%s.bz2" % filename
+    logger.debug("Dump file will be [%s].", filename)
+    if compress:
+        outputFile = BZ2File(filename, "wb")
+    else:
+        outputFile = open(filename, "wb")
+    return (outputFile, filename)

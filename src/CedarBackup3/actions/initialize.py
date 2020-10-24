@@ -45,10 +45,8 @@ Implements the standard 'initialize' action.
 # Imported modules
 ########################################################################
 
-# System modules
 import logging
 
-# Cedar Backup modules
 from CedarBackup3.actions.util import initializeMediaState
 
 
@@ -69,7 +67,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.initialize")
 
 # pylint: disable=W0613
 def executeInitialize(configPath, options, config):
-   """
+    """
    Executes the initialize action.
 
    The initialize action initializes the media currently in the writer
@@ -82,9 +80,8 @@ def executeInitialize(configPath, options, config):
       config (Config object): Program configuration
 
    """
-   logger.debug("Executing the 'initialize' action.")
-   if config.options is None or config.store is None:
-      raise ValueError("Store configuration is not properly filled in.")
-   initializeMediaState(config)
-   logger.info("Executed the 'initialize' action successfully.")
-
+    logger.debug("Executing the 'initialize' action.")
+    if config.options is None or config.store is None:
+        raise ValueError("Store configuration is not properly filled in.")
+    initializeMediaState(config)
+    logger.info("Executed the 'initialize' action successfully.")

@@ -69,9 +69,10 @@ possible.
 # firstFit() function
 ######################
 
+
 def firstFit(items, capacity):
 
-   """
+    """
    Implements the first-fit knapsack algorithm.
 
    The first-fit algorithm proceeds through an unsorted list of items until
@@ -106,31 +107,32 @@ def firstFit(items, capacity):
        Tuple ``(items, used)`` as described above
    """
 
-   # Use dict since insert into dict is faster than list append
-   included = {}
+    # Use dict since insert into dict is faster than list append
+    included = {}
 
-   # Search the list as it stands (arbitrary order)
-   used = 0
-   remaining = capacity
-   for key in list(items.keys()):
-      if remaining == 0:
-         break
-      if remaining - items[key][1] >= 0:
-         included[key] = None
-         used += items[key][1]
-         remaining -= items[key][1]
+    # Search the list as it stands (arbitrary order)
+    used = 0
+    remaining = capacity
+    for key in list(items.keys()):
+        if remaining == 0:
+            break
+        if remaining - items[key][1] >= 0:
+            included[key] = None
+            used += items[key][1]
+            remaining -= items[key][1]
 
-   # Return results
-   return (list(included.keys()), used)
+    # Return results
+    return (list(included.keys()), used)
 
 
 #####################
 # bestFit() function
 #####################
 
+
 def bestFit(items, capacity):
 
-   """
+    """
    Implements the best-fit knapsack algorithm.
 
    The best-fit algorithm proceeds through a sorted list of items (sorted from
@@ -168,38 +170,39 @@ def bestFit(items, capacity):
        Tuple ``(items, used)`` as described above
    """
 
-   # Use dict since insert into dict is faster than list append
-   included = {}
+    # Use dict since insert into dict is faster than list append
+    included = {}
 
-   # Sort the list from largest to smallest
-   itemlist = list(items.items())
-   itemlist.sort(key=lambda x: x[1][1], reverse=True)    # sort descending
-   keys = []
-   for item in itemlist:
-      keys.append(item[0])
+    # Sort the list from largest to smallest
+    itemlist = list(items.items())
+    itemlist.sort(key=lambda x: x[1][1], reverse=True)  # sort descending
+    keys = []
+    for item in itemlist:
+        keys.append(item[0])
 
-   # Search the list
-   used = 0
-   remaining = capacity
-   for key in keys:
-      if remaining == 0:
-         break
-      if remaining - items[key][1] >= 0:
-         included[key] = None
-         used += items[key][1]
-         remaining -= items[key][1]
+    # Search the list
+    used = 0
+    remaining = capacity
+    for key in keys:
+        if remaining == 0:
+            break
+        if remaining - items[key][1] >= 0:
+            included[key] = None
+            used += items[key][1]
+            remaining -= items[key][1]
 
-   # Return the results
-   return (list(included.keys()), used)
+    # Return the results
+    return (list(included.keys()), used)
 
 
 ######################
 # worstFit() function
 ######################
 
+
 def worstFit(items, capacity):
 
-   """
+    """
    Implements the worst-fit knapsack algorithm.
 
    The worst-fit algorithm proceeds through an a sorted list of items (sorted
@@ -235,38 +238,39 @@ def worstFit(items, capacity):
        Tuple ``(items, used)`` as described above
    """
 
-   # Use dict since insert into dict is faster than list append
-   included = {}
+    # Use dict since insert into dict is faster than list append
+    included = {}
 
-   # Sort the list from smallest to largest
-   itemlist = list(items.items())
-   itemlist.sort(key=lambda x: x[1][1])    # sort ascending
-   keys = []
-   for item in itemlist:
-      keys.append(item[0])
+    # Sort the list from smallest to largest
+    itemlist = list(items.items())
+    itemlist.sort(key=lambda x: x[1][1])  # sort ascending
+    keys = []
+    for item in itemlist:
+        keys.append(item[0])
 
-   # Search the list
-   used = 0
-   remaining = capacity
-   for key in keys:
-      if remaining == 0:
-         break
-      if remaining - items[key][1] >= 0:
-         included[key] = None
-         used += items[key][1]
-         remaining -= items[key][1]
+    # Search the list
+    used = 0
+    remaining = capacity
+    for key in keys:
+        if remaining == 0:
+            break
+        if remaining - items[key][1] >= 0:
+            included[key] = None
+            used += items[key][1]
+            remaining -= items[key][1]
 
-   # Return results
-   return (list(included.keys()), used)
+    # Return results
+    return (list(included.keys()), used)
 
 
 ##########################
 # alternateFit() function
 ##########################
 
+
 def alternateFit(items, capacity):
 
-   """
+    """
    Implements the alternate-fit knapsack algorithm.
 
    This algorithm (which I'm calling "alternate-fit" as in "alternate from one
@@ -304,40 +308,40 @@ def alternateFit(items, capacity):
        Tuple ``(items, used)`` as described above
    """
 
-   # Use dict since insert into dict is faster than list append
-   included = {}
+    # Use dict since insert into dict is faster than list append
+    included = {}
 
-   # Sort the list from smallest to largest
-   itemlist = list(items.items())
-   itemlist.sort(key=lambda x: x[1][1])    # sort ascending
-   keys = []
-   for item in itemlist:
-      keys.append(item[0])
+    # Sort the list from smallest to largest
+    itemlist = list(items.items())
+    itemlist.sort(key=lambda x: x[1][1])  # sort ascending
+    keys = []
+    for item in itemlist:
+        keys.append(item[0])
 
-   # Search the list
-   used = 0
-   remaining = capacity
+    # Search the list
+    used = 0
+    remaining = capacity
 
-   front = keys[0:len(keys)//2]
-   back = keys[len(keys)//2:len(keys)]
-   back.reverse()
+    front = keys[0 : len(keys) // 2]
+    back = keys[len(keys) // 2 : len(keys)]
+    back.reverse()
 
-   i = 0
-   j = 0
+    i = 0
+    j = 0
 
-   while remaining > 0 and (i < len(front) or j < len(back)):
-      if i < len(front):
-         if remaining - items[front[i]][1] >= 0:
-            included[front[i]] = None
-            used += items[front[i]][1]
-            remaining -= items[front[i]][1]
-         i += 1
-      if j < len(back):
-         if remaining - items[back[j]][1] >= 0:
-            included[back[j]] = None
-            used += items[back[j]][1]
-            remaining -= items[back[j]][1]
-         j += 1
+    while remaining > 0 and (i < len(front) or j < len(back)):
+        if i < len(front):
+            if remaining - items[front[i]][1] >= 0:
+                included[front[i]] = None
+                used += items[front[i]][1]
+                remaining -= items[front[i]][1]
+            i += 1
+        if j < len(back):
+            if remaining - items[back[j]][1] >= 0:
+                included[back[j]] = None
+                used += items[back[j]][1]
+                remaining -= items[back[j]][1]
+            j += 1
 
-   # Return results
-   return (list(included.keys()), used)
+    # Return results
+    return (list(included.keys()), used)

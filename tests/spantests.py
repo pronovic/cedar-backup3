@@ -88,79 +88,80 @@ from CedarBackup3.tools.span import Options, _usage, _version
 # TestFunctions class
 ######################
 
+
 class TestFunctions(unittest.TestCase):
 
-   """Tests for the public functions."""
+    """Tests for the public functions."""
 
-   ################
-   # Setup methods
-   ################
+    ################
+    # Setup methods
+    ################
 
-   def setUp(self):
-      pass
+    def setUp(self):
+        pass
 
-   def tearDown(self):
-      pass
+    def tearDown(self):
+        pass
 
+    ########################
+    # Test simple functions
+    ########################
 
-   ########################
-   # Test simple functions
-   ########################
-
-   def testSimpleFuncs_001(self):
-      """
+    def testSimpleFuncs_001(self):
+        """
       Test that the _usage() function runs without errors.
       We don't care what the output is, and we don't check.
       """
-      captureOutput(_usage)
+        captureOutput(_usage)
 
-   def testSimpleFuncs_002(self):
-      """
+    def testSimpleFuncs_002(self):
+        """
       Test that the _version() function runs without errors.
       We don't care what the output is, and we don't check.
       """
-      captureOutput(_version)
+        captureOutput(_version)
 
 
 ########################
 # TestSpanOptions class
 ########################
 
+
 class TestSpanOptions(unittest.TestCase):
 
-   """Tests for the SpanOptions class."""
+    """Tests for the SpanOptions class."""
 
-   ################
-   # Setup methods
-   ################
+    ################
+    # Setup methods
+    ################
 
-   def setUp(self):
-      pass
+    def setUp(self):
+        pass
 
-   def tearDown(self):
-      pass
+    def tearDown(self):
+        pass
 
+    ############################
+    # Test __repr__ and __str__
+    ############################
 
-   ############################
-   # Test __repr__ and __str__
-   ############################
-
-   def testStringFuncs_001(self):
-      """
+    def testStringFuncs_001(self):
+        """
       Just make sure that the string functions don't have errors (i.e. bad variable names).
       """
-      obj = Options()
-      obj.__repr__()
-      obj.__str__()
+        obj = Options()
+        obj.__repr__()
+        obj.__str__()
 
 
 #######################################################################
 # Suite definition
 #######################################################################
 
+
 def suite():
-   """Returns a suite containing all the test cases in this module."""
-   tests = [ ]
-   tests.append(unittest.makeSuite(TestFunctions, 'test'))
-   tests.append(unittest.makeSuite(TestSpanOptions, 'test'))
-   return unittest.TestSuite(tests)
+    """Returns a suite containing all the test cases in this module."""
+    tests = []
+    tests.append(unittest.makeSuite(TestFunctions, "test"))
+    tests.append(unittest.makeSuite(TestSpanOptions, "test"))
+    return unittest.TestSuite(tests)

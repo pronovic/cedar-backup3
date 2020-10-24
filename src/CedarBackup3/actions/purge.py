@@ -45,10 +45,8 @@ Implements the standard 'purge' action.
 # Imported modules
 ########################################################################
 
-# System modules
 import logging
 
-# Cedar Backup modules
 from CedarBackup3.filesystem import PurgeItemList
 
 
@@ -69,7 +67,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.purge")
 
 # pylint: disable=W0613
 def executePurge(configPath, options, config):
-   """
+    """
    Executes the purge backup action.
 
    For each configured directory, we create a purge item list, remove from the
@@ -83,14 +81,13 @@ def executePurge(configPath, options, config):
    Raises:
       ValueError: Under many generic error conditions
    """
-   logger.debug("Executing the 'purge' action.")
-   if config.options is None or config.purge is None:
-      raise ValueError("Purge configuration is not properly filled in.")
-   if config.purge.purgeDirs is not None:
-      for purgeDir in config.purge.purgeDirs:
-         purgeList = PurgeItemList()
-         purgeList.addDirContents(purgeDir.absolutePath)  # add everything within directory
-         purgeList.removeYoungFiles(purgeDir.retainDays)  # remove young files *from the list* so they won't be purged
-         purgeList.purgeItems()                           # remove remaining items from the filesystem
-   logger.info("Executed the 'purge' action successfully.")
-
+    logger.debug("Executing the 'purge' action.")
+    if config.options is None or config.purge is None:
+        raise ValueError("Purge configuration is not properly filled in.")
+    if config.purge.purgeDirs is not None:
+        for purgeDir in config.purge.purgeDirs:
+            purgeList = PurgeItemList()
+            purgeList.addDirContents(purgeDir.absolutePath)  # add everything within directory
+            purgeList.removeYoungFiles(purgeDir.retainDays)  # remove young files *from the list* so they won't be purged
+            purgeList.purgeItems()  # remove remaining items from the filesystem
+    logger.info("Executed the 'purge' action successfully.")

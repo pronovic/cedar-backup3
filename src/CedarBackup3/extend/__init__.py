@@ -46,5 +46,4 @@ import CedarBackup3.extend.split
 import CedarBackup3.extend.subversion
 import CedarBackup3.extend.sysinfo
 
-__all__ = ['amazons3', 'encrypt', 'mbox', 'mysql', 'postgresql', 'split', 'subversion', 'sysinfo']
-
+__all__ = ["amazons3", "encrypt", "mbox", "mysql", "postgresql", "split", "subversion", "sysinfo"]

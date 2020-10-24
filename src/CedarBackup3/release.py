@@ -32,9 +32,9 @@ Attributes:
 :author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
-AUTHOR      = "Kenneth J. Pronovici"
-EMAIL       = "pronovic@ieee.org"
-COPYRIGHT   = "2004-2011,2013-2017,2019"
-VERSION     = "3.2.0"
-DATE        = "24 Aug 2019"
-URL         = "https://github.com/cedarsolutions/cedar-backup3"
+AUTHOR = "Kenneth J. Pronovici"
+EMAIL = "pronovic@ieee.org"
+COPYRIGHT = "2004-2011,2013-2017,2019"
+VERSION = "3.2.0"
+DATE = "24 Aug 2019"
+URL = "https://github.com/cedarsolutions/cedar-backup3"

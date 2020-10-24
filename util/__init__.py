@@ -23,5 +23,4 @@
 This causes the util directory to be a package.
 """
 
-__all__ = [ ]
-
+__all__ = []

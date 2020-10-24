@@ -61,5 +61,16 @@ import CedarBackup3.tools
 import CedarBackup3.util
 import CedarBackup3.writers
 
-__all__ = [ 'actions', 'cli', 'config', 'extend', 'filesystem', 'knapsack',
-            'peer', 'release', 'tools', 'util', 'writers', ]
+__all__ = [
+    "actions",
+    "cli",
+    "config",
+    "extend",
+    "filesystem",
+    "knapsack",
+    "peer",
+    "release",
+    "tools",
+    "util",
+    "writers",
+]

@@ -85,12 +85,12 @@ from subprocess import PIPE, STDOUT, Popen
 from CedarBackup3.release import DATE, VERSION
 
 try:
-   import pwd
-   import grp
-   _UID_GID_AVAILABLE = True
-except ImportError:
-   _UID_GID_AVAILABLE = False
+    import pwd
+    import grp
 
+    _UID_GID_AVAILABLE = True
+except ImportError:
+    _UID_GID_AVAILABLE = False
 
 
 ########################################################################
@@ -100,47 +100,58 @@ except ImportError:
 logger = logging.getLogger("CedarBackup3.log.util")
 outputLogger = logging.getLogger("CedarBackup3.output")
 
-ISO_SECTOR_SIZE    = 2048.0   # in bytes
-BYTES_PER_SECTOR   = ISO_SECTOR_SIZE
+ISO_SECTOR_SIZE = 2048.0  # in bytes
+BYTES_PER_SECTOR = ISO_SECTOR_SIZE
 
-BYTES_PER_KBYTE    = 1024.0
-KBYTES_PER_MBYTE   = 1024.0
-MBYTES_PER_GBYTE   = 1024.0
-BYTES_PER_MBYTE    = BYTES_PER_KBYTE * KBYTES_PER_MBYTE
-BYTES_PER_GBYTE    = BYTES_PER_MBYTE * MBYTES_PER_GBYTE
+BYTES_PER_KBYTE = 1024.0
+KBYTES_PER_MBYTE = 1024.0
+MBYTES_PER_GBYTE = 1024.0
+BYTES_PER_MBYTE = BYTES_PER_KBYTE * KBYTES_PER_MBYTE
+BYTES_PER_GBYTE = BYTES_PER_MBYTE * MBYTES_PER_GBYTE
 
 SECONDS_PER_MINUTE = 60.0
-MINUTES_PER_HOUR   = 60.0
-HOURS_PER_DAY      = 24.0
-SECONDS_PER_DAY    = SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY
+MINUTES_PER_HOUR = 60.0
+HOURS_PER_DAY = 24.0
+SECONDS_PER_DAY = SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY
 
-UNIT_BYTES         = 0
-UNIT_KBYTES        = 1
-UNIT_MBYTES        = 2
-UNIT_GBYTES        = 4
-UNIT_SECTORS       = 3
+UNIT_BYTES = 0
+UNIT_KBYTES = 1
+UNIT_MBYTES = 2
+UNIT_GBYTES = 4
+UNIT_SECTORS = 3
 
-MTAB_FILE          = "/etc/mtab"
+MTAB_FILE = "/etc/mtab"
 
-MOUNT_COMMAND      = ["mount"]
-UMOUNT_COMMAND     = ["umount"]
+MOUNT_COMMAND = ["mount"]
+UMOUNT_COMMAND = ["umount"]
 
-DEFAULT_LANGUAGE   = "C"
-LANG_VAR           = "LANG"
-LOCALE_VARS        = [ "LC_ADDRESS", "LC_ALL", "LC_COLLATE",
-                       "LC_CTYPE", "LC_IDENTIFICATION",
-                       "LC_MEASUREMENT", "LC_MESSAGES",
-                       "LC_MONETARY", "LC_NAME", "LC_NUMERIC",
-                       "LC_PAPER", "LC_TELEPHONE", "LC_TIME", ]
+DEFAULT_LANGUAGE = "C"
+LANG_VAR = "LANG"
+LOCALE_VARS = [
+    "LC_ADDRESS",
+    "LC_ALL",
+    "LC_COLLATE",
+    "LC_CTYPE",
+    "LC_IDENTIFICATION",
+    "LC_MEASUREMENT",
+    "LC_MESSAGES",
+    "LC_MONETARY",
+    "LC_NAME",
+    "LC_NUMERIC",
+    "LC_PAPER",
+    "LC_TELEPHONE",
+    "LC_TIME",
+]
 
 
 ########################################################################
 # UnorderedList class definition
 ########################################################################
 
+
 class UnorderedList(list):
 
-   """
+    """
    Class representing an "unordered list".
 
    An "unordered list" is a list in which only the contents matter, not the
@@ -168,121 +179,122 @@ class UnorderedList(list):
    only want to use it on small lists.
    """
 
-   def __eq__(self, other):
-      """
+    def __eq__(self, other):
+        """
       Definition of ``==`` operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self == other``
       """
-      if other is None:
-         return False
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__eq__(otherSorted)
+        if other is None:
+            return False
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__eq__(otherSorted)
 
-   def __ne__(self, other):
-      """
+    def __ne__(self, other):
+        """
       Definition of ``!=`` operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self != other``
       """
-      if other is None:
-         return True
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__ne__(otherSorted)
+        if other is None:
+            return True
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__ne__(otherSorted)
 
-   def __ge__(self, other):
-      """
+    def __ge__(self, other):
+        """
       Definition of S{>=} operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self >= other``
       """
-      if other is None:
-         return True
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__ge__(otherSorted)
+        if other is None:
+            return True
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__ge__(otherSorted)
 
-   def __gt__(self, other):
-      """
+    def __gt__(self, other):
+        """
       Definition of ``>`` operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self > other``
       """
-      if other is None:
-         return True
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__gt__(otherSorted)
+        if other is None:
+            return True
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__gt__(otherSorted)
 
-   def __le__(self, other):
-      """
+    def __le__(self, other):
+        """
       Definition of S{<=} operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self <= other``
       """
-      if other is None:
-         return False
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__le__(otherSorted)
+        if other is None:
+            return False
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__le__(otherSorted)
 
-   def __lt__(self, other):
-      """
+    def __lt__(self, other):
+        """
       Definition of ``<`` operator for this class.
       Args:
          other: Other object to compare to
       Returns:
           True/false depending on whether ``self < other``
       """
-      if other is None:
-         return False
-      selfSorted = UnorderedList.mixedsort(self[:])
-      otherSorted = UnorderedList.mixedsort(other[:])
-      return selfSorted.__lt__(otherSorted)
+        if other is None:
+            return False
+        selfSorted = UnorderedList.mixedsort(self[:])
+        otherSorted = UnorderedList.mixedsort(other[:])
+        return selfSorted.__lt__(otherSorted)
 
-   @staticmethod
-   def mixedsort(value):
-      """
+    @staticmethod
+    def mixedsort(value):
+        """
       Sort a list, making sure we don't blow up if the list happens to include mixed values.
       @see: http://stackoverflow.com/questions/26575183/how-can-i-get-2-x-like-sorting-behaviour-in-python-3-x
       """
-      return sorted(value, key=UnorderedList.mixedkey)
+        return sorted(value, key=UnorderedList.mixedkey)
 
-   @staticmethod
-   def mixedkey(value):
-      """Provide a key for use by mixedsort()"""
-      numeric = Real, Decimal
-      if isinstance(value, numeric):
-         typeinfo = numeric
-      else:
-         typeinfo = type(value)
-      try:
-         # pylint: disable=R0124
-         x = value < value
-      except TypeError:
-         value = repr(value)
-      return repr(typeinfo), value
+    @staticmethod
+    def mixedkey(value):
+        """Provide a key for use by mixedsort()"""
+        numeric = Real, Decimal
+        if isinstance(value, numeric):
+            typeinfo = numeric
+        else:
+            typeinfo = type(value)
+        try:
+            # pylint: disable=R0124
+            x = value < value
+        except TypeError:
+            value = repr(value)
+        return repr(typeinfo), value
 
 
 ########################################################################
 # AbsolutePathList class definition
 ########################################################################
 
+
 class AbsolutePathList(UnorderedList):
 
-   """
+    """
    Class representing a list of absolute paths.
 
    This is an unordered list.
@@ -296,46 +308,47 @@ class AbsolutePathList(UnorderedList):
    ASCII.
    """
 
-   def append(self, item):
-      """
+    def append(self, item):
+        """
       Overrides the standard ``append`` method.
       Raises:
          ValueError: If item is not an absolute path
       """
-      if not os.path.isabs(item):
-         raise ValueError("Not an absolute path: [%s]" % item)
-      list.append(self, encodePath(item))
+        if not os.path.isabs(item):
+            raise ValueError("Not an absolute path: [%s]" % item)
+        list.append(self, encodePath(item))
 
-   def insert(self, index, item):
-      """
+    def insert(self, index, item):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If item is not an absolute path
       """
-      if not os.path.isabs(item):
-         raise ValueError("Not an absolute path: [%s]" % item)
-      list.insert(self, index, encodePath(item))
+        if not os.path.isabs(item):
+            raise ValueError("Not an absolute path: [%s]" % item)
+        list.insert(self, index, encodePath(item))
 
-   def extend(self, seq):
-      """
+    def extend(self, seq):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If any item is not an absolute path
       """
-      for item in seq:
-         if not os.path.isabs(item):
-            raise ValueError("Not an absolute path: [%s]" % item)
-      for item in seq:
-         list.append(self, encodePath(item))
+        for item in seq:
+            if not os.path.isabs(item):
+                raise ValueError("Not an absolute path: [%s]" % item)
+        for item in seq:
+            list.append(self, encodePath(item))
 
 
 ########################################################################
 # ObjectTypeList class definition
 ########################################################################
 
+
 class ObjectTypeList(UnorderedList):
 
-   """
+    """
    Class representing a list containing only objects with a certain type.
 
    This is an unordered list.
@@ -349,56 +362,57 @@ class ObjectTypeList(UnorderedList):
    CollectDir object."} if ``objectName`` is ``"CollectDir"``.
    """
 
-   def __init__(self, objectType, objectName):
-      """
+    def __init__(self, objectType, objectName):
+        """
       Initializes a typed list for a particular type.
       Args:
          objectType: Type that the list elements must match
          objectName: Short string containing the "name" of the type
       """
-      super(ObjectTypeList, self).__init__()
-      self.objectType = objectType
-      self.objectName = objectName
+        super(ObjectTypeList, self).__init__()
+        self.objectType = objectType
+        self.objectName = objectName
 
-   def append(self, item):
-      """
+    def append(self, item):
+        """
       Overrides the standard ``append`` method.
       Raises:
          ValueError: If item does not match requested type
       """
-      if not isinstance(item, self.objectType):
-         raise ValueError("Item must be a %s object." % self.objectName)
-      list.append(self, item)
+        if not isinstance(item, self.objectType):
+            raise ValueError("Item must be a %s object." % self.objectName)
+        list.append(self, item)
 
-   def insert(self, index, item):
-      """
+    def insert(self, index, item):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If item does not match requested type
       """
-      if not isinstance(item, self.objectType):
-         raise ValueError("Item must be a %s object." % self.objectName)
-      list.insert(self, index, item)
+        if not isinstance(item, self.objectType):
+            raise ValueError("Item must be a %s object." % self.objectName)
+        list.insert(self, index, item)
 
-   def extend(self, seq):
-      """
+    def extend(self, seq):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If item does not match requested type
       """
-      for item in seq:
-         if not isinstance(item, self.objectType):
-            raise ValueError("All items must be %s objects." % self.objectName)
-      list.extend(self, seq)
+        for item in seq:
+            if not isinstance(item, self.objectType):
+                raise ValueError("All items must be %s objects." % self.objectName)
+        list.extend(self, seq)
 
 
 ########################################################################
 # RestrictedContentList class definition
 ########################################################################
 
+
 class RestrictedContentList(UnorderedList):
 
-   """
+    """
    Class representing a list containing only object with certain values.
 
    This is an unordered list.
@@ -418,59 +432,61 @@ class RestrictedContentList(UnorderedList):
    exceptions or other problems.
    """
 
-   def __init__(self, valuesList, valuesDescr, prefix=None):
-      """
+    def __init__(self, valuesList, valuesDescr, prefix=None):
+        """
       Initializes a list restricted to containing certain values.
       Args:
          valuesList: List of valid values
          valuesDescr: Short string describing list of values
          prefix: Prefix to use in error messages (None results in prefix "Item")
       """
-      super(RestrictedContentList, self).__init__()
-      self.prefix = "Item"
-      if prefix is not None: self.prefix = prefix
-      self.valuesList = valuesList
-      self.valuesDescr = valuesDescr
+        super(RestrictedContentList, self).__init__()
+        self.prefix = "Item"
+        if prefix is not None:
+            self.prefix = prefix
+        self.valuesList = valuesList
+        self.valuesDescr = valuesDescr
 
-   def append(self, item):
-      """
+    def append(self, item):
+        """
       Overrides the standard ``append`` method.
       Raises:
          ValueError: If item is not in the values list
       """
-      if item not in self.valuesList:
-         raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
-      list.append(self, item)
-
-   def insert(self, index, item):
-      """
-      Overrides the standard ``insert`` method.
-      Raises:
-         ValueError: If item is not in the values list
-      """
-      if item not in self.valuesList:
-         raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
-      list.insert(self, index, item)
-
-   def extend(self, seq):
-      """
-      Overrides the standard ``insert`` method.
-      Raises:
-         ValueError: If item is not in the values list
-      """
-      for item in seq:
-         if item not in self.valuesList:
+        if item not in self.valuesList:
             raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
-      list.extend(self, seq)
+        list.append(self, item)
+
+    def insert(self, index, item):
+        """
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not in the values list
+      """
+        if item not in self.valuesList:
+            raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
+        list.insert(self, index, item)
+
+    def extend(self, seq):
+        """
+      Overrides the standard ``insert`` method.
+      Raises:
+         ValueError: If item is not in the values list
+      """
+        for item in seq:
+            if item not in self.valuesList:
+                raise ValueError("%s must be one of the values in %s." % (self.prefix, self.valuesDescr))
+        list.extend(self, seq)
 
 
 ########################################################################
 # RegexMatchList class definition
 ########################################################################
 
+
 class RegexMatchList(UnorderedList):
 
-   """
+    """
    Class representing a list containing only strings that match a regular expression.
 
    If ``emptyAllowed`` is passed in as ``False``, then empty strings are
@@ -487,23 +503,24 @@ class RegexMatchList(UnorderedList):
    likely get either TypeError or AttributeError exceptions as a result.
    """
 
-   def __init__(self, valuesRegex, emptyAllowed=True, prefix=None):
-      """
+    def __init__(self, valuesRegex, emptyAllowed=True, prefix=None):
+        """
       Initializes a list restricted to containing certain values.
       Args:
          valuesRegex: Regular expression that must be matched, as a string
          emptyAllowed: Indicates whether empty or None values are allowed
          prefix: Prefix to use in error messages (None results in prefix "Item")
       """
-      super(RegexMatchList, self).__init__()
-      self.prefix = "Item"
-      if prefix is not None: self.prefix = prefix
-      self.valuesRegex = valuesRegex
-      self.emptyAllowed = emptyAllowed
-      self.pattern = re.compile(self.valuesRegex)
+        super(RegexMatchList, self).__init__()
+        self.prefix = "Item"
+        if prefix is not None:
+            self.prefix = prefix
+        self.valuesRegex = valuesRegex
+        self.emptyAllowed = emptyAllowed
+        self.pattern = re.compile(self.valuesRegex)
 
-   def append(self, item):
-      """
+    def append(self, item):
+        """
       Overrides the standard ``append`` method.
 
       Raises:
@@ -511,14 +528,14 @@ class RegexMatchList(UnorderedList):
          ValueError: If item is empty and empty values are not allowed
          ValueError: If item does not match the configured regular expression
       """
-      if item is None or (not self.emptyAllowed and item == ""):
-         raise ValueError("%s cannot be empty." % self.prefix)
-      if not self.pattern.search(item):
-         raise ValueError("%s is not valid: [%s]" % (self.prefix, item))
-      list.append(self, item)
+        if item is None or (not self.emptyAllowed and item == ""):
+            raise ValueError("%s cannot be empty." % self.prefix)
+        if not self.pattern.search(item):
+            raise ValueError("%s is not valid: [%s]" % (self.prefix, item))
+        list.append(self, item)
 
-   def insert(self, index, item):
-      """
+    def insert(self, index, item):
+        """
       Overrides the standard ``insert`` method.
 
       Raises:
@@ -526,14 +543,14 @@ class RegexMatchList(UnorderedList):
          ValueError: If item is empty and empty values are not allowed
          ValueError: If item does not match the configured regular expression
       """
-      if item is None or (not self.emptyAllowed and item == ""):
-         raise ValueError("%s cannot be empty." % self.prefix)
-      if not self.pattern.search(item):
-         raise ValueError("%s is not valid [%s]" % (self.prefix, item))
-      list.insert(self, index, item)
+        if item is None or (not self.emptyAllowed and item == ""):
+            raise ValueError("%s cannot be empty." % self.prefix)
+        if not self.pattern.search(item):
+            raise ValueError("%s is not valid [%s]" % (self.prefix, item))
+        list.insert(self, index, item)
 
-   def extend(self, seq):
-      """
+    def extend(self, seq):
+        """
       Overrides the standard ``insert`` method.
 
       Raises:
@@ -541,21 +558,22 @@ class RegexMatchList(UnorderedList):
          ValueError: If any item is empty and empty values are not allowed
          ValueError: If any item does not match the configured regular expression
       """
-      for item in seq:
-         if item is None or (not self.emptyAllowed and item == ""):
-            raise ValueError("%s cannot be empty." % self.prefix)
-         if not self.pattern.search(item):
-            raise ValueError("%s is not valid: [%s]" % (self.prefix, item))
-      list.extend(self, seq)
+        for item in seq:
+            if item is None or (not self.emptyAllowed and item == ""):
+                raise ValueError("%s cannot be empty." % self.prefix)
+            if not self.pattern.search(item):
+                raise ValueError("%s is not valid: [%s]" % (self.prefix, item))
+        list.extend(self, seq)
 
 
 ########################################################################
 # RegexList class definition
 ########################################################################
 
+
 class RegexList(UnorderedList):
 
-   """
+    """
    Class representing a list of valid regular expression strings.
 
    This is an unordered list.
@@ -564,70 +582,72 @@ class RegexList(UnorderedList):
    any item added to the list is a valid regular expression.
    """
 
-   def append(self, item):
-      """
+    def append(self, item):
+        """
       Overrides the standard ``append`` method.
       Raises:
          ValueError: If item is not an absolute path
       """
-      try:
-         re.compile(item)
-      except re.error:
-         raise ValueError("Not a valid regular expression: [%s]" % item)
-      list.append(self, item)
+        try:
+            re.compile(item)
+        except re.error:
+            raise ValueError("Not a valid regular expression: [%s]" % item)
+        list.append(self, item)
 
-   def insert(self, index, item):
-      """
+    def insert(self, index, item):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If item is not an absolute path
       """
-      try:
-         re.compile(item)
-      except re.error:
-         raise ValueError("Not a valid regular expression: [%s]" % item)
-      list.insert(self, index, item)
+        try:
+            re.compile(item)
+        except re.error:
+            raise ValueError("Not a valid regular expression: [%s]" % item)
+        list.insert(self, index, item)
 
-   def extend(self, seq):
-      """
+    def extend(self, seq):
+        """
       Overrides the standard ``insert`` method.
       Raises:
          ValueError: If any item is not an absolute path
       """
-      for item in seq:
-         try:
-            re.compile(item)
-         except re.error:
-            raise ValueError("Not a valid regular expression: [%s]" % item)
-      for item in seq:
-         list.append(self, item)
+        for item in seq:
+            try:
+                re.compile(item)
+            except re.error:
+                raise ValueError("Not a valid regular expression: [%s]" % item)
+        for item in seq:
+            list.append(self, item)
 
 
 ########################################################################
 # Directed graph implementation
 ########################################################################
 
+
 class _Vertex(object):
 
-   """
+    """
    Represents a vertex (or node) in a directed graph.
    """
 
-   def __init__(self, name):
-      """
+    def __init__(self, name):
+        """
       Constructor.
       Args:
          name (String value): Name of this graph vertex
 
       """
-      self.name = name
-      self.endpoints = []
-      self.state = None
+        self.name = name
+        self.endpoints = []
+        self.state = None
+
 
 @total_ordering
 class DirectedGraph(object):
 
-   """
+    """
    Represents a directed graph.
 
    A graph **G=(V,E)** consists of a set of vertices **V** together with a set
@@ -647,95 +667,95 @@ class DirectedGraph(object):
    they have no dependencies or because nothing depends on them.
    """
 
-   _UNDISCOVERED = 0
-   _DISCOVERED   = 1
-   _EXPLORED     = 2
+    _UNDISCOVERED = 0
+    _DISCOVERED = 1
+    _EXPLORED = 2
 
-   def __init__(self, name):
-      """
+    def __init__(self, name):
+        """
       Directed graph constructor.
 
       Args:
          name (String value): Name of this graph
 
       """
-      if name is None or name == "":
-         raise ValueError("Graph name must be non-empty.")
-      self._name = name
-      self._vertices = {}
-      self._startVertex = _Vertex(None)  # start vertex is only vertex with no name
+        if name is None or name == "":
+            raise ValueError("Graph name must be non-empty.")
+        self._name = name
+        self._vertices = {}
+        self._startVertex = _Vertex(None)  # start vertex is only vertex with no name
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "DirectedGraph(%s)" % self.name
+        return "DirectedGraph(%s)" % self.name
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, implemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, implemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Args:
          other: Other object to compare to
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      # pylint: disable=W0212
-      if other is None:
-         return 1
-      if self.name != other.name:
-         if str(self.name or "") < str(other.name or ""):
-            return -1
-         else:
+        # pylint: disable=W0212
+        if other is None:
             return 1
-      if self._vertices != other._vertices:
-         if self._vertices < other._vertices:
-            return -1
-         else:
-            return 1
-      return 0
+        if self.name != other.name:
+            if str(self.name or "") < str(other.name or ""):
+                return -1
+            else:
+                return 1
+        if self._vertices != other._vertices:
+            if self._vertices < other._vertices:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _getName(self):
-      """
+    def _getName(self):
+        """
       Property target used to get the graph name.
       """
-      return self._name
+        return self._name
 
-   name = property(_getName, None, None, "Name of the graph.")
+    name = property(_getName, None, None, "Name of the graph.")
 
-   def createVertex(self, name):
-      """
+    def createVertex(self, name):
+        """
       Creates a named vertex.
       Args:
          name: vertex name
       Raises:
          ValueError: If the vertex name is ``None`` or empty
       """
-      if name is None or name == "":
-         raise ValueError("Vertex name must be non-empty.")
-      vertex = _Vertex(name)
-      self._startVertex.endpoints.append(vertex)  # so every vertex is connected at least once
-      self._vertices[name] = vertex
+        if name is None or name == "":
+            raise ValueError("Vertex name must be non-empty.")
+        vertex = _Vertex(name)
+        self._startVertex.endpoints.append(vertex)  # so every vertex is connected at least once
+        self._vertices[name] = vertex
 
-   def createEdge(self, start, finish):
-      """
+    def createEdge(self, start, finish):
+        """
       Adds an edge with an associated direction, from ``start`` vertex to ``finish`` vertex.
       Args:
          start: Name of start vertex
@@ -743,15 +763,15 @@ class DirectedGraph(object):
       Raises:
          ValueError: If one of the named vertices is unknown
       """
-      try:
-         startVertex = self._vertices[start]
-         finishVertex = self._vertices[finish]
-         startVertex.endpoints.append(finishVertex)
-      except KeyError as e:
-         raise ValueError("Vertex [%s] could not be found." % e)
+        try:
+            startVertex = self._vertices[start]
+            finishVertex = self._vertices[finish]
+            startVertex.endpoints.append(finishVertex)
+        except KeyError as e:
+            raise ValueError("Vertex [%s] could not be found." % e)
 
-   def topologicalSort(self):
-      """
+    def topologicalSort(self):
+        """
       Implements a topological sort of the graph.
 
       This method also enforces that the graph is a directed acyclic graph,
@@ -780,41 +800,42 @@ class DirectedGraph(object):
       Raises:
          ValueError: If a cycle is found in the graph
       """
-      ordering = []
-      for key in self._vertices:
-         vertex = self._vertices[key]
-         vertex.state = self._UNDISCOVERED
-      for key in self._vertices:
-         vertex = self._vertices[key]
-         if vertex.state == self._UNDISCOVERED:
-            self._topologicalSort(self._startVertex, ordering)
-      return ordering
+        ordering = []
+        for key in self._vertices:
+            vertex = self._vertices[key]
+            vertex.state = self._UNDISCOVERED
+        for key in self._vertices:
+            vertex = self._vertices[key]
+            if vertex.state == self._UNDISCOVERED:
+                self._topologicalSort(self._startVertex, ordering)
+        return ordering
 
-   def _topologicalSort(self, vertex, ordering):
-      """
+    def _topologicalSort(self, vertex, ordering):
+        """
       Recursive depth first search function implementing topological sort.
       Args:
          vertex: Vertex to search
          ordering: List of vertices in proper order
       """
-      vertex.state = self._DISCOVERED
-      for endpoint in vertex.endpoints:
-         if endpoint.state == self._UNDISCOVERED:
-            self._topologicalSort(endpoint, ordering)
-         elif endpoint.state != self._EXPLORED:
-            raise ValueError("Cycle found in graph (found '%s' while searching '%s')." % (vertex.name, endpoint.name))
-      if vertex.name is not None:
-         ordering.insert(0, vertex.name)
-      vertex.state = self._EXPLORED
+        vertex.state = self._DISCOVERED
+        for endpoint in vertex.endpoints:
+            if endpoint.state == self._UNDISCOVERED:
+                self._topologicalSort(endpoint, ordering)
+            elif endpoint.state != self._EXPLORED:
+                raise ValueError("Cycle found in graph (found '%s' while searching '%s')." % (vertex.name, endpoint.name))
+        if vertex.name is not None:
+            ordering.insert(0, vertex.name)
+        vertex.state = self._EXPLORED
 
 
 ########################################################################
 # PathResolverSingleton class definition
 ########################################################################
 
+
 class PathResolverSingleton(object):
 
-   """
+    """
    Singleton used for resolving executable paths.
 
    Various functions throughout Cedar Backup (including extensions) need a way
@@ -862,28 +883,30 @@ class PathResolverSingleton(object):
       _mapping: Internal mapping from resource name to path
    """
 
-   _instance = None     # Holds a reference to singleton instance
+    _instance = None  # Holds a reference to singleton instance
 
-   class _Helper:
-      """Helper class to provide a singleton factory method."""
-      def __init__(self):
-         pass
-      def __call__(self, *args, **kw):
-         # pylint: disable=W0212,R0201
-         if PathResolverSingleton._instance is None:
-            obj = PathResolverSingleton()
-            PathResolverSingleton._instance = obj
-         return PathResolverSingleton._instance
+    class _Helper:
+        """Helper class to provide a singleton factory method."""
 
-   getInstance = _Helper()    # Method that callers will use to get an instance
+        def __init__(self):
+            pass
 
-   def __init__(self, ):
-      """Singleton constructor, which just creates the singleton instance."""
-      PathResolverSingleton._instance = self
-      self._mapping = {}
+        def __call__(self, *args, **kw):
+            # pylint: disable=W0212,R0201
+            if PathResolverSingleton._instance is None:
+                obj = PathResolverSingleton()
+                PathResolverSingleton._instance = obj
+            return PathResolverSingleton._instance
 
-   def lookup(self, name, default=None):
-      """
+    getInstance = _Helper()  # Method that callers will use to get an instance
+
+    def __init__(self,):
+        """Singleton constructor, which just creates the singleton instance."""
+        PathResolverSingleton._instance = self
+        self._mapping = {}
+
+    def lookup(self, name, default=None):
+        """
       Looks up name and returns the resolved path associated with the name.
       Args:
          name: Name of the path resource to resolve
@@ -891,30 +914,31 @@ class PathResolverSingleton(object):
       Returns:
           Resolved path associated with name, or default if name can't be resolved
       """
-      value = default
-      if name in list(self._mapping.keys()):
-         value = self._mapping[name]
-      logger.debug("Resolved command [%s] to [%s].", name, value)
-      return value
+        value = default
+        if name in list(self._mapping.keys()):
+            value = self._mapping[name]
+        logger.debug("Resolved command [%s] to [%s].", name, value)
+        return value
 
-   def fill(self, mapping):
-      """
+    def fill(self, mapping):
+        """
       Fills in the singleton's internal mapping from name to resource.
       Args:
          mapping (Dictionary mapping name to path, both as strings): Mapping from resource name to path
 
       """
-      self._mapping = {}
-      for key in list(mapping.keys()):
-         self._mapping[key] = mapping[key]
+        self._mapping = {}
+        for key in list(mapping.keys()):
+            self._mapping[key] = mapping[key]
 
 
 ########################################################################
 # Pipe class definition
 ########################################################################
 
+
 class Pipe(Popen):
-   """
+    """
    Specialized pipe class for use by ``executeCommand``.
 
    The :any:`executeCommand` function needs a specialized way of interacting
@@ -923,174 +947,179 @@ class Pipe(Popen):
    output written to ``stderr``, as a means of simulating the shell
    ``2>/dev/null`` construct.
    """
-   def __init__(self, cmd, bufsize=-1, ignoreStderr=False):
-      stderr = STDOUT
-      if ignoreStderr:
-         devnull = nullDevice()
-         stderr = os.open(devnull, os.O_RDWR)
-      Popen.__init__(self, shell=False, args=cmd, bufsize=bufsize, stdin=None, stdout=PIPE, stderr=stderr)
+
+    def __init__(self, cmd, bufsize=-1, ignoreStderr=False):
+        stderr = STDOUT
+        if ignoreStderr:
+            devnull = nullDevice()
+            stderr = os.open(devnull, os.O_RDWR)
+        Popen.__init__(self, shell=False, args=cmd, bufsize=bufsize, stdin=None, stdout=PIPE, stderr=stderr)
 
 
 ########################################################################
 # Diagnostics class definition
 ########################################################################
 
+
 class Diagnostics(object):
 
-   """
+    """
    Class holding runtime diagnostic information.
 
    Diagnostic information is information that is useful to get from users for
    debugging purposes.  I'm consolidating it all here into one object.
 
    """
-   # pylint: disable=R0201
 
-   def __init__(self):
-      """
+    # pylint: disable=R0201
+
+    def __init__(self):
+        """
       Constructor for the ``Diagnostics`` class.
       """
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "Diagnostics()"
+        return "Diagnostics()"
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def getValues(self):
-      """
+    def getValues(self):
+        """
       Get a map containing all of the diagnostic values.
       Returns:
           Map from diagnostic name to diagnostic value
       """
-      values = {}
-      values['version'] = self.version
-      values['interpreter'] = self.interpreter
-      values['platform'] = self.platform
-      values['encoding'] = self.encoding
-      values['locale'] = self.locale
-      values['timestamp'] = self.timestamp
-      return values
+        values = {}
+        values["version"] = self.version
+        values["interpreter"] = self.interpreter
+        values["platform"] = self.platform
+        values["encoding"] = self.encoding
+        values["locale"] = self.locale
+        values["timestamp"] = self.timestamp
+        return values
 
-   def printDiagnostics(self, fd=sys.stdout, prefix=""):
-      """
+    def printDiagnostics(self, fd=sys.stdout, prefix=""):
+        """
       Pretty-print diagnostic information to a file descriptor.
       Args:
          fd: File descriptor used to print information
          prefix: Prefix string (if any) to place onto printed lines
       *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
       """
-      lines = self._buildDiagnosticLines(prefix)
-      for line in lines:
-         fd.write("%s\n" % line)
+        lines = self._buildDiagnosticLines(prefix)
+        for line in lines:
+            fd.write("%s\n" % line)
 
-   def logDiagnostics(self, method, prefix=""):
-      """
+    def logDiagnostics(self, method, prefix=""):
+        """
       Pretty-print diagnostic information using a logger method.
       Args:
          method: Logger method to use for logging (i.e. logger.info)
          prefix: Prefix string (if any) to place onto printed lines
       """
-      lines = self._buildDiagnosticLines(prefix)
-      for line in lines:
-         method("%s" % line)
+        lines = self._buildDiagnosticLines(prefix)
+        for line in lines:
+            method("%s" % line)
 
-   def _buildDiagnosticLines(self, prefix=""):
-      """
+    def _buildDiagnosticLines(self, prefix=""):
+        """
       Build a set of pretty-printed diagnostic lines.
       Args:
          prefix: Prefix string (if any) to place onto printed lines
       Returns:
           List of strings, not terminated by newlines
       """
-      values = self.getValues()
-      keys = list(values.keys())
-      keys.sort()
-      tmax = Diagnostics._getMaxLength(keys) + 3  # three extra dots in output
-      lines = []
-      for key in keys:
-         title = key.title()
-         title += (tmax - len(title)) * '.'
-         value = values[key]
-         line = "%s%s: %s" % (prefix, title, value)
-         lines.append(line)
-      return lines
+        values = self.getValues()
+        keys = list(values.keys())
+        keys.sort()
+        tmax = Diagnostics._getMaxLength(keys) + 3  # three extra dots in output
+        lines = []
+        for key in keys:
+            title = key.title()
+            title += (tmax - len(title)) * "."
+            value = values[key]
+            line = "%s%s: %s" % (prefix, title, value)
+            lines.append(line)
+        return lines
 
-   @staticmethod
-   def _getMaxLength(values):
-      """
+    @staticmethod
+    def _getMaxLength(values):
+        """
       Get the maximum length from among a list of strings.
       """
-      tmax = 0
-      for value in values:
-         if len(value) > tmax:
-            tmax = len(value)
-      return tmax
+        tmax = 0
+        for value in values:
+            if len(value) > tmax:
+                tmax = len(value)
+        return tmax
 
-   def _getVersion(self):
-      """
+    def _getVersion(self):
+        """
       Property target to get the Cedar Backup version.
       """
-      return "Cedar Backup %s (%s)" % (VERSION, DATE)
+        return "Cedar Backup %s (%s)" % (VERSION, DATE)
 
-   def _getInterpreter(self):
-      """
+    def _getInterpreter(self):
+        """
       Property target to get the Python interpreter version.
       """
-      version = sys.version_info
-      return "Python %d.%d.%d (%s)" % (version[0], version[1], version[2], version[3])
+        version = sys.version_info
+        return "Python %d.%d.%d (%s)" % (version[0], version[1], version[2], version[3])
 
-   def _getEncoding(self):
-      """
+    def _getEncoding(self):
+        """
       Property target to get the filesystem encoding.
       """
-      return sys.getfilesystemencoding() or sys.getdefaultencoding()
+        return sys.getfilesystemencoding() or sys.getdefaultencoding()
 
-   def _getPlatform(self):
-      """
+    def _getPlatform(self):
+        """
       Property target to get the operating system platform.
       """
-      try:
-         uname = os.uname()
-         sysname = uname[0] # i.e. Linux
-         release = uname[2] # i.e. 2.16.18-2
-         machine = uname[4] # i.e. i686
-         return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
-      except:
-         return sys.platform
+        try:
+            uname = os.uname()
+            sysname = uname[0]  # i.e. Linux
+            release = uname[2]  # i.e. 2.16.18-2
+            machine = uname[4]  # i.e. i686
+            return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
+        except:
+            return sys.platform
 
-   def _getLocale(self):
-      """
+    def _getLocale(self):
+        """
       Property target to get the default locale that is in effect.
       """
-      try:
-         import locale # pylint: disable=import-outside-toplevel
-         return locale.getdefaultlocale()[0]
-      except:
-         return "(unknown)"
+        try:
+            import locale  # pylint: disable=import-outside-toplevel
 
-   def _getTimestamp(self):
-      """
+            return locale.getdefaultlocale()[0]
+        except:
+            return "(unknown)"
+
+    def _getTimestamp(self):
+        """
       Property target to get a current date/time stamp.
       """
-      try:
-         import datetime # pylint: disable=import-outside-toplevel
-         return datetime.datetime.utcnow().ctime() + " UTC"
-      except:
-         return "(unknown)"
+        try:
+            import datetime  # pylint: disable=import-outside-toplevel
 
-   version = property(_getVersion, None, None, "Cedar Backup version.")
-   interpreter = property(_getInterpreter, None, None, "Python interpreter version.")
-   platform = property(_getPlatform, None, None, "Platform identifying information.")
-   encoding = property(_getEncoding, None, None, "Filesystem encoding that is in effect.")
-   locale = property(_getLocale, None, None, "Locale that is in effect.")
-   timestamp = property(_getTimestamp, None, None, "Current timestamp.")
+            return datetime.datetime.utcnow().ctime() + " UTC"
+        except:
+            return "(unknown)"
+
+    version = property(_getVersion, None, None, "Cedar Backup version.")
+    interpreter = property(_getInterpreter, None, None, "Python interpreter version.")
+    platform = property(_getPlatform, None, None, "Platform identifying information.")
+    encoding = property(_getEncoding, None, None, "Filesystem encoding that is in effect.")
+    locale = property(_getLocale, None, None, "Locale that is in effect.")
+    timestamp = property(_getTimestamp, None, None, "Current timestamp.")
 
 
 ########################################################################
@@ -1101,25 +1130,27 @@ class Diagnostics(object):
 # sortDict() function
 ######################
 
+
 def sortDict(d):
-   """
+    """
    Returns the keys of the dictionary sorted by value.
    Args:
       d: Dictionary to operate on
    Returns:
        List of dictionary keys sorted in order by dictionary value
    """
-   items = list(d.items())
-   items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
-   return [key for key, value in items]
+    items = list(d.items())
+    items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
+    return [key for key, value in items]
 
 
 ########################
 # removeKeys() function
 ########################
 
+
 def removeKeys(d, keys):
-   """
+    """
    Removes all of the keys from the dictionary.
    The dictionary is altered in-place.
    Each key must exist in the dictionary.
@@ -1129,16 +1160,17 @@ def removeKeys(d, keys):
    Raises:
       KeyError: If one of the keys does not exist
    """
-   for key in keys:
-      del d[key]
+    for key in keys:
+        del d[key]
 
 
 #########################
 # convertSize() function
 #########################
 
+
 def convertSize(size, fromUnit, toUnit):
-   """
+    """
    Converts a size in one unit to a size in another unit.
 
    This is just a convenience function so that the functionality can be
@@ -1162,40 +1194,41 @@ def convertSize(size, fromUnit, toUnit):
    Raises:
       ValueError: If one of the units is invalid
    """
-   if size is None:
-      raise ValueError("Cannot convert size of None.")
-   if fromUnit == UNIT_BYTES:
-      byteSize = float(size)
-   elif fromUnit == UNIT_KBYTES:
-      byteSize = float(size) * BYTES_PER_KBYTE
-   elif fromUnit == UNIT_MBYTES:
-      byteSize = float(size) * BYTES_PER_MBYTE
-   elif fromUnit == UNIT_GBYTES:
-      byteSize = float(size) * BYTES_PER_GBYTE
-   elif fromUnit == UNIT_SECTORS:
-      byteSize = float(size) * BYTES_PER_SECTOR
-   else:
-      raise ValueError("Unknown 'from' unit %s." % fromUnit)
-   if toUnit == UNIT_BYTES:
-      return byteSize
-   elif toUnit == UNIT_KBYTES:
-      return byteSize / BYTES_PER_KBYTE
-   elif toUnit == UNIT_MBYTES:
-      return byteSize / BYTES_PER_MBYTE
-   elif toUnit == UNIT_GBYTES:
-      return byteSize / BYTES_PER_GBYTE
-   elif toUnit == UNIT_SECTORS:
-      return byteSize / BYTES_PER_SECTOR
-   else:
-      raise ValueError("Unknown 'to' unit %s." % toUnit)
+    if size is None:
+        raise ValueError("Cannot convert size of None.")
+    if fromUnit == UNIT_BYTES:
+        byteSize = float(size)
+    elif fromUnit == UNIT_KBYTES:
+        byteSize = float(size) * BYTES_PER_KBYTE
+    elif fromUnit == UNIT_MBYTES:
+        byteSize = float(size) * BYTES_PER_MBYTE
+    elif fromUnit == UNIT_GBYTES:
+        byteSize = float(size) * BYTES_PER_GBYTE
+    elif fromUnit == UNIT_SECTORS:
+        byteSize = float(size) * BYTES_PER_SECTOR
+    else:
+        raise ValueError("Unknown 'from' unit %s." % fromUnit)
+    if toUnit == UNIT_BYTES:
+        return byteSize
+    elif toUnit == UNIT_KBYTES:
+        return byteSize / BYTES_PER_KBYTE
+    elif toUnit == UNIT_MBYTES:
+        return byteSize / BYTES_PER_MBYTE
+    elif toUnit == UNIT_GBYTES:
+        return byteSize / BYTES_PER_GBYTE
+    elif toUnit == UNIT_SECTORS:
+        return byteSize / BYTES_PER_SECTOR
+    else:
+        raise ValueError("Unknown 'to' unit %s." % toUnit)
 
 
 ##########################
 # displayBytes() function
 ##########################
 
-def displayBytes(bytes, digits=2): # pylint: disable=W0622
-   """
+
+def displayBytes(bytes, digits=2):  # pylint: disable=W0622
+    """
    Format a byte quantity so it can be sensibly displayed.
 
    It's rather difficult to look at a number like "72372224 bytes" and get any
@@ -1221,30 +1254,31 @@ def displayBytes(bytes, digits=2): # pylint: disable=W0622
    Returns:
        String, formatted for sensible display
    """
-   if bytes is None:
-      raise ValueError("Cannot display byte value of None.")
-   bytes = float(bytes)
-   if math.fabs(bytes) < BYTES_PER_KBYTE:
-      fmt = "%.0f bytes"
-      value = bytes
-   elif math.fabs(bytes) < BYTES_PER_MBYTE:
-      fmt = "%." + "%d" % digits + "f kB"
-      value = bytes / BYTES_PER_KBYTE
-   elif math.fabs(bytes) < BYTES_PER_GBYTE:
-      fmt = "%." + "%d" % digits + "f MB"
-      value = bytes / BYTES_PER_MBYTE
-   else:
-      fmt = "%." + "%d" % digits + "f GB"
-      value = bytes / BYTES_PER_GBYTE
-   return fmt % value
+    if bytes is None:
+        raise ValueError("Cannot display byte value of None.")
+    bytes = float(bytes)
+    if math.fabs(bytes) < BYTES_PER_KBYTE:
+        fmt = "%.0f bytes"
+        value = bytes
+    elif math.fabs(bytes) < BYTES_PER_MBYTE:
+        fmt = "%." + "%d" % digits + "f kB"
+        value = bytes / BYTES_PER_KBYTE
+    elif math.fabs(bytes) < BYTES_PER_GBYTE:
+        fmt = "%." + "%d" % digits + "f MB"
+        value = bytes / BYTES_PER_MBYTE
+    else:
+        fmt = "%." + "%d" % digits + "f GB"
+        value = bytes / BYTES_PER_GBYTE
+    return fmt % value
 
 
 ##################################
 # getFunctionReference() function
 ##################################
 
+
 def getFunctionReference(module, function):
-   """
+    """
    Gets a reference to a named function.
 
    This does some hokey-pokey to get back a reference to a dynamically named
@@ -1276,34 +1310,36 @@ def getFunctionReference(module, function):
    of the Python 2.3 codebase.  Python code is copyright (c) 2001, 2002 Python
    Software Foundation; All Rights Reserved.
    """
-   parts = []
-   if module is not None and module != "":
-      parts = module.split(".")
-   if function is not None and function != "":
-      parts.append(function)
-   copy = parts[:]
-   while copy:
-      try:
-         module = __import__(".".join(copy))
-         break
-      except ImportError:
-         del copy[-1]
-         if not copy: raise
-      parts = parts[1:]
-   obj = module
-   for part in parts:
-      obj = getattr(obj, part)
-   if not isinstance(obj, collections.Callable):
-      raise ValueError("Reference to %s.%s is not callable." % (module, function))
-   return obj
+    parts = []
+    if module is not None and module != "":
+        parts = module.split(".")
+    if function is not None and function != "":
+        parts.append(function)
+    copy = parts[:]
+    while copy:
+        try:
+            module = __import__(".".join(copy))
+            break
+        except ImportError:
+            del copy[-1]
+            if not copy:
+                raise
+        parts = parts[1:]
+    obj = module
+    for part in parts:
+        obj = getattr(obj, part)
+    if not isinstance(obj, collections.Callable):
+        raise ValueError("Reference to %s.%s is not callable." % (module, function))
+    return obj
 
 
 #######################
 # getUidGid() function
 #######################
 
+
 def getUidGid(user, group):
-   """
+    """
    Get the uid/gid associated with a user/group pair
 
    This is a no-op if user/group functionality is not available on the platform.
@@ -1316,24 +1352,25 @@ def getUidGid(user, group):
    Raises:
       ValueError: If the ownership user/group values are invalid
    """
-   if _UID_GID_AVAILABLE:
-      try:
-         uid = pwd.getpwnam(user)[2]
-         gid = grp.getgrnam(group)[2]
-         return (uid, gid)
-      except Exception as e:
-         logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
-         raise ValueError("Unable to lookup up uid and gid for passed in user/group.")
-   else:
-      return (0, 0)
+    if _UID_GID_AVAILABLE:
+        try:
+            uid = pwd.getpwnam(user)[2]
+            gid = grp.getgrnam(group)[2]
+            return (uid, gid)
+        except Exception as e:
+            logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
+            raise ValueError("Unable to lookup up uid and gid for passed in user/group.")
+    else:
+        return (0, 0)
 
 
 #############################
 # changeOwnership() function
 #############################
 
+
 def changeOwnership(path, user, group):
-   """
+    """
    Changes ownership of path to match the user and group.
 
    This is a no-op if user/group functionality is not available on the
@@ -1345,36 +1382,38 @@ def changeOwnership(path, user, group):
       user: User which owns file
       group: Group which owns file
    """
-   if _UID_GID_AVAILABLE:
-      if user is None or group is None:
-         logger.debug("User or group is None, so not attempting to change owner on [%s].", path)
-      elif not isRunningAsRoot():
-         logger.debug("Not root, so not attempting to change owner on [%s].", path)
-      else:
-         try:
-            (uid, gid) = getUidGid(user, group)
-            os.chown(path, uid, gid)
-         except Exception as e:
-            logger.error("Error changing ownership of [%s]: %s", path, e)
+    if _UID_GID_AVAILABLE:
+        if user is None or group is None:
+            logger.debug("User or group is None, so not attempting to change owner on [%s].", path)
+        elif not isRunningAsRoot():
+            logger.debug("Not root, so not attempting to change owner on [%s].", path)
+        else:
+            try:
+                (uid, gid) = getUidGid(user, group)
+                os.chown(path, uid, gid)
+            except Exception as e:
+                logger.error("Error changing ownership of [%s]: %s", path, e)
 
 
 #############################
 # isRunningAsRoot() function
 #############################
 
+
 def isRunningAsRoot():
-   """
+    """
    Indicates whether the program is running as the root user.
    """
-   return os.getuid() == 0
+    return os.getuid() == 0
 
 
 ##############################
 # splitCommandLine() function
 ##############################
 
+
 def splitCommandLine(commandLine):
-   """
+    """
    Splits a command line string into a list of arguments.
 
    Unfortunately, there is no "standard" way to parse a command line string,
@@ -1395,19 +1434,20 @@ def splitCommandLine(commandLine):
    Raises:
       ValueError: If the command line is None
    """
-   if commandLine is None:
-      raise ValueError("Cannot split command line of None.")
-   fields = re.findall('[^ "]+|"[^"]+"', commandLine)
-   fields = [field.replace('"', '') for field in fields]
-   return fields
+    if commandLine is None:
+        raise ValueError("Cannot split command line of None.")
+    fields = re.findall('[^ "]+|"[^"]+"', commandLine)
+    fields = [field.replace('"', "") for field in fields]
+    return fields
 
 
 ############################
 # resolveCommand() function
 ############################
 
+
 def resolveCommand(command):
-   """
+    """
    Resolves the real path to a command through the path resolver mechanism.
 
    Both extensions and standard Cedar Backup functionality need a way to
@@ -1436,19 +1476,20 @@ def resolveCommand(command):
    Returns:
        Path to command or just command itself if no mapping exists
    """
-   singleton = PathResolverSingleton.getInstance()
-   name = command[0]
-   result = command[:]
-   result[0] = singleton.lookup(name, name)
-   return result
+    singleton = PathResolverSingleton.getInstance()
+    name = command[0]
+    result = command[:]
+    result[0] = singleton.lookup(name, name)
+    return result
 
 
 ############################
 # executeCommand() function
 ############################
 
+
 def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotLog=False, outputFile=None):
-   """
+    """
    Executes a shell command, hopefully in a safe way.
 
    This function exists to replace direct calls to ``os.popen`` in the Cedar
@@ -1512,59 +1553,65 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
    Returns:
        Tuple of ``(result, output)`` as described above
    """
-   logger.debug("Executing command %s with args %s.", command, args)
-   outputLogger.info("Executing command %s with args %s.", command, args)
-   if doNotLog:
-      logger.debug("Note: output will not be logged, per the doNotLog flag.")
-      outputLogger.info("Note: output will not be logged, per the doNotLog flag.")
-   output = []
-   fields = command[:]        # make sure to copy it so we don't destroy it
-   fields.extend(args)
-   try:
-      sanitizeEnvironment()   # make sure we have a consistent environment
-      try:
-         pipe = Pipe(fields, ignoreStderr=ignoreStderr)
-      except OSError:
-         # On some platforms (i.e. Cygwin) this intermittently fails the first time we do it.
-         # So, we attempt it a second time and if that works, we just go on as usual.
-         # The problem appears to be that we sometimes get a bad stderr file descriptor.
-         pipe = Pipe(fields, ignoreStderr=ignoreStderr)
-      while True:
-         line = pipe.stdout.readline()
-         if not line: break
-         if returnOutput: output.append(line.decode("utf-8"))
-         if outputFile is not None: outputFile.write(line)
-         if not doNotLog: outputLogger.info(line.decode("utf-8")[:-1])  # this way the log will (hopefully) get updated in realtime
-      if outputFile is not None:
-         try: # note, not every file-like object can be flushed
-            outputFile.flush()
-         except: pass
-      if returnOutput:
-         return (pipe.wait(), output)
-      else:
-         return (pipe.wait(), None)
-   except OSError as e:
-      try:
-         if returnOutput:
-            if output != []:
-               return (pipe.wait(), output)
-            else:
-               return (pipe.wait(), [e])
-         else:
+    logger.debug("Executing command %s with args %s.", command, args)
+    outputLogger.info("Executing command %s with args %s.", command, args)
+    if doNotLog:
+        logger.debug("Note: output will not be logged, per the doNotLog flag.")
+        outputLogger.info("Note: output will not be logged, per the doNotLog flag.")
+    output = []
+    fields = command[:]  # make sure to copy it so we don't destroy it
+    fields.extend(args)
+    try:
+        sanitizeEnvironment()  # make sure we have a consistent environment
+        try:
+            pipe = Pipe(fields, ignoreStderr=ignoreStderr)
+        except OSError:
+            # On some platforms (i.e. Cygwin) this intermittently fails the first time we do it.
+            # So, we attempt it a second time and if that works, we just go on as usual.
+            # The problem appears to be that we sometimes get a bad stderr file descriptor.
+            pipe = Pipe(fields, ignoreStderr=ignoreStderr)
+        while True:
+            line = pipe.stdout.readline()
+            if not line:
+                break
+            if returnOutput:
+                output.append(line.decode("utf-8"))
+            if outputFile is not None:
+                outputFile.write(line)
+            if not doNotLog:
+                outputLogger.info(line.decode("utf-8")[:-1])  # this way the log will (hopefully) get updated in realtime
+        if outputFile is not None:
+            try:  # note, not every file-like object can be flushed
+                outputFile.flush()
+            except:
+                pass
+        if returnOutput:
+            return (pipe.wait(), output)
+        else:
             return (pipe.wait(), None)
-      except UnboundLocalError:  # pipe not set
-         if returnOutput:
-            return (256, [])
-         else:
-            return (256, None)
+    except OSError as e:
+        try:
+            if returnOutput:
+                if output != []:
+                    return (pipe.wait(), output)
+                else:
+                    return (pipe.wait(), [e])
+            else:
+                return (pipe.wait(), None)
+        except UnboundLocalError:  # pipe not set
+            if returnOutput:
+                return (256, [])
+            else:
+                return (256, None)
 
 
 ##############################
 # calculateFileAge() function
 ##############################
 
+
 def calculateFileAge(path):
-   """
+    """
    Calculates the age (in days) of a file.
 
    The "age" of a file is the amount of time since the file was last used, per
@@ -1581,20 +1628,21 @@ def calculateFileAge(path):
    Raises:
       OSError: If the file doesn't exist
    """
-   currentTime = int(time.time())
-   fileStats = os.stat(path)
-   lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest"
-   ageInSeconds = currentTime - lastUse
-   ageInDays = ageInSeconds / SECONDS_PER_DAY
-   return ageInDays
+    currentTime = int(time.time())
+    fileStats = os.stat(path)
+    lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest"
+    ageInSeconds = currentTime - lastUse
+    ageInDays = ageInSeconds / SECONDS_PER_DAY
+    return ageInDays
 
 
 ###################
 # mount() function
 ###################
 
+
 def mount(devicePath, mountPoint, fsType):
-   """
+    """
    Mounts the indicated device at the indicated mount point.
 
    For instance, to mount a CD, you might use device path ``/dev/cdrw``, mount
@@ -1615,22 +1663,23 @@ def mount(devicePath, mountPoint, fsType):
    Raises:
       IOError: If the device cannot be mounted
    """
-   if fsType is None:
-      args = [devicePath, mountPoint]
-   else:
-      args = ["-t", fsType, devicePath, mountPoint]
-   command = resolveCommand(MOUNT_COMMAND)
-   result = executeCommand(command, args, returnOutput=False, ignoreStderr=True)[0]
-   if result != 0:
-      raise IOError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
+    if fsType is None:
+        args = [devicePath, mountPoint]
+    else:
+        args = ["-t", fsType, devicePath, mountPoint]
+    command = resolveCommand(MOUNT_COMMAND)
+    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True)[0]
+    if result != 0:
+        raise IOError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
 
 
 #####################
 # unmount() function
 #####################
 
+
 def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
-   """
+    """
    Unmounts whatever device is mounted at the indicated mount point.
 
    Sometimes, it might not be possible to unmount the mount point immediately,
@@ -1662,37 +1711,38 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
    Raises:
       IOError: If the mount point is still mounted after attempts are exhausted
    """
-   if os.path.ismount(mountPoint):
-      for attempt in range(0, attempts):
-         logger.debug("Making attempt %d to unmount [%s].", attempt, mountPoint)
-         command = resolveCommand(UMOUNT_COMMAND)
-         result = executeCommand(command, [mountPoint], returnOutput=False, ignoreStderr=True)[0]
-         if result != 0:
-            logger.error("Error [%d] unmounting [%s] on attempt %d.", result, mountPoint, attempt)
-         elif os.path.ismount(mountPoint):
-            logger.error("After attempt %d, [%s] is still mounted.", attempt, mountPoint)
-         else:
-            logger.debug("Successfully unmounted [%s] on attempt %d.", mountPoint, attempt)
-            break  # this will cause us to skip the loop else: clause
-         if attempt+1 < attempts:  # i.e. this isn't the last attempt
-            if waitSeconds > 0:
-               logger.info("Sleeping %d second(s) before next unmount attempt.", waitSeconds)
-               time.sleep(waitSeconds)
-      else:
-         if os.path.ismount(mountPoint):
-            raise IOError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
-         logger.info("Mount point [%s] seems to have finally gone away.", mountPoint)
-      if os.path.isdir(mountPoint) and removeAfter:
-         logger.debug("Removing mount point [%s].", mountPoint)
-         os.rmdir(mountPoint)
+    if os.path.ismount(mountPoint):
+        for attempt in range(0, attempts):
+            logger.debug("Making attempt %d to unmount [%s].", attempt, mountPoint)
+            command = resolveCommand(UMOUNT_COMMAND)
+            result = executeCommand(command, [mountPoint], returnOutput=False, ignoreStderr=True)[0]
+            if result != 0:
+                logger.error("Error [%d] unmounting [%s] on attempt %d.", result, mountPoint, attempt)
+            elif os.path.ismount(mountPoint):
+                logger.error("After attempt %d, [%s] is still mounted.", attempt, mountPoint)
+            else:
+                logger.debug("Successfully unmounted [%s] on attempt %d.", mountPoint, attempt)
+                break  # this will cause us to skip the loop else: clause
+            if attempt + 1 < attempts:  # i.e. this isn't the last attempt
+                if waitSeconds > 0:
+                    logger.info("Sleeping %d second(s) before next unmount attempt.", waitSeconds)
+                    time.sleep(waitSeconds)
+        else:
+            if os.path.ismount(mountPoint):
+                raise IOError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
+            logger.info("Mount point [%s] seems to have finally gone away.", mountPoint)
+        if os.path.isdir(mountPoint) and removeAfter:
+            logger.debug("Removing mount point [%s].", mountPoint)
+            os.rmdir(mountPoint)
 
 
 ###########################
 # deviceMounted() function
 ###########################
 
+
 def deviceMounted(devicePath):
-   """
+    """
    Indicates whether a specific filesystem device is currently mounted.
 
    We determine whether the device is mounted by looking through the system's
@@ -1709,24 +1759,25 @@ def deviceMounted(devicePath):
    Returns:
        True if device is mounted, false otherwise
    """
-   if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
-      realPath = os.path.realpath(devicePath)
-      with open(MTAB_FILE) as f:
-         lines = f.readlines()
-      for line in lines:
-         (mountDevice, mountPoint, remainder) = line.split(None, 2)
-         if mountDevice in [devicePath, realPath]:
-            logger.debug("Device [%s] is mounted at [%s].", devicePath, mountPoint)
-            return True
-   return False
+    if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
+        realPath = os.path.realpath(devicePath)
+        with open(MTAB_FILE) as f:
+            lines = f.readlines()
+        for line in lines:
+            (mountDevice, mountPoint, remainder) = line.split(None, 2)
+            if mountDevice in [devicePath, realPath]:
+                logger.debug("Device [%s] is mounted at [%s].", devicePath, mountPoint)
+                return True
+    return False
 
 
 ########################
 # encodePath() function
 ########################
 
+
 def encodePath(path):
-   """
+    """
    Safely encodes a filesystem path as a Unicode string, converting bytes to fileystem encoding if necessary.
    Args:
       path: Path to encode
@@ -1736,37 +1787,39 @@ def encodePath(path):
       ValueError: If the path cannot be encoded properly
    @see: http://lucumr.pocoo.org/2013/7/2/the-updated-guide-to-unicode/
    """
-   if path is None:
-      return path
-   try:
-      if isinstance(path, bytes):
-         encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
-         path = path.decode(encoding, "surrogateescape")  # to match what os.listdir() does
-      return path
-   except UnicodeError as e:
-      raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e)))
+    if path is None:
+        return path
+    try:
+        if isinstance(path, bytes):
+            encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
+            path = path.decode(encoding, "surrogateescape")  # to match what os.listdir() does
+        return path
+    except UnicodeError as e:
+        raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e)))
 
 
 ########################
 # nullDevice() function
 ########################
 
+
 def nullDevice():
-   """
+    """
    Attempts to portably return the null device on this system.
 
    The null device is something like ``/dev/null`` on a UNIX system.  The name
    varies on other platforms.
    """
-   return os.devnull
+    return os.devnull
 
 
 ##############################
 # deriveDayOfWeek() function
 ##############################
 
+
 def deriveDayOfWeek(dayName):
-   """
+    """
    Converts English day name to numeric day of week as from ``time.localtime``.
 
    For instance, the day ``monday`` would be converted to the number ``0``.
@@ -1776,30 +1829,31 @@ def deriveDayOfWeek(dayName):
    Returns:
        Integer, where Monday is 0 and Sunday is 6; or -1 if no conversion is possible
    """
-   if dayName.lower() == "monday":
-      return 0
-   elif dayName.lower() == "tuesday":
-      return 1
-   elif dayName.lower() == "wednesday":
-      return 2
-   elif dayName.lower() == "thursday":
-      return 3
-   elif dayName.lower() == "friday":
-      return 4
-   elif dayName.lower() == "saturday":
-      return 5
-   elif dayName.lower() == "sunday":
-      return 6
-   else:
-      return -1  # What else can we do??  Thrown an exception, I guess.
+    if dayName.lower() == "monday":
+        return 0
+    elif dayName.lower() == "tuesday":
+        return 1
+    elif dayName.lower() == "wednesday":
+        return 2
+    elif dayName.lower() == "thursday":
+        return 3
+    elif dayName.lower() == "friday":
+        return 4
+    elif dayName.lower() == "saturday":
+        return 5
+    elif dayName.lower() == "sunday":
+        return 6
+    else:
+        return -1  # What else can we do??  Thrown an exception, I guess.
 
 
 ###########################
 # isStartOfWeek() function
 ###########################
 
+
 def isStartOfWeek(startingDay):
-   """
+    """
    Indicates whether "today" is the backup starting day per configuration.
 
    If the current day's English name matches the indicated starting day, then
@@ -1810,20 +1864,21 @@ def isStartOfWeek(startingDay):
    Returns:
        Boolean indicating whether today is the starting day
    """
-   value = time.localtime().tm_wday == deriveDayOfWeek(startingDay)
-   if value:
-      logger.debug("Today is the start of the week.")
-   else:
-      logger.debug("Today is NOT the start of the week.")
-   return value
+    value = time.localtime().tm_wday == deriveDayOfWeek(startingDay)
+    if value:
+        logger.debug("Today is the start of the week.")
+    else:
+        logger.debug("Today is NOT the start of the week.")
+    return value
 
 
 #################################
 # buildNormalizedPath() function
 #################################
 
+
 def buildNormalizedPath(path):
-   """
+    """
    Returns a "normalized" path based on a path name.
 
    A normalized path is a representation of a path that is also a valid file
@@ -1853,29 +1908,30 @@ def buildNormalizedPath(path):
    Raises:
       ValueError: If the path is None
    """
-   if path is None:
-      raise ValueError("Cannot normalize path None.")
-   elif len(path) == 0:
-      return path
-   elif path == "/" or path == "\\":
-      return "-"
-   else:
-      normalized = path
-      normalized = re.sub(r"^\/", "", normalized)  # remove leading '/'
-      normalized = re.sub(r"^\\", "", normalized)  # remove leading '\'
-      normalized = re.sub(r"^\.", "_", normalized) # convert leading '.' to '_' so file won't be hidden
-      normalized = re.sub(r"\/", "-", normalized)  # convert all '/' characters to '-'
-      normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
-      normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
-      return normalized
+    if path is None:
+        raise ValueError("Cannot normalize path None.")
+    elif len(path) == 0:
+        return path
+    elif path == "/" or path == "\\":
+        return "-"
+    else:
+        normalized = path
+        normalized = re.sub(r"^\/", "", normalized)  # remove leading '/'
+        normalized = re.sub(r"^\\", "", normalized)  # remove leading '\'
+        normalized = re.sub(r"^\.", "_", normalized)  # convert leading '.' to '_' so file won't be hidden
+        normalized = re.sub(r"\/", "-", normalized)  # convert all '/' characters to '-'
+        normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
+        normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
+        return normalized
 
 
 #################################
 # sanitizeEnvironment() function
 #################################
 
+
 def sanitizeEnvironment():
-   """
+    """
    Sanitizes the operating system environment.
 
    The operating system environment is contained in ``os.environ``.  This method
@@ -1893,21 +1949,22 @@ def sanitizeEnvironment():
    Returns:
        Copy of the sanitized environment
    """
-   for var in LOCALE_VARS:
-      if var in os.environ:
-         del os.environ[var]
-   if LANG_VAR in os.environ:
-      if os.environ[LANG_VAR] != DEFAULT_LANGUAGE: # no need to reset if it exists (avoid leaks on BSD systems)
-         os.environ[LANG_VAR] = DEFAULT_LANGUAGE
-   return os.environ.copy()
+    for var in LOCALE_VARS:
+        if var in os.environ:
+            del os.environ[var]
+    if LANG_VAR in os.environ:
+        if os.environ[LANG_VAR] != DEFAULT_LANGUAGE:  # no need to reset if it exists (avoid leaks on BSD systems)
+            os.environ[LANG_VAR] = DEFAULT_LANGUAGE
+    return os.environ.copy()
 
 
 #############################
 # dereferenceLink() function
 #############################
 
+
 def dereferenceLink(path, absolute=True):
-   """
+    """
    Deference a soft link, optionally normalizing it to an absolute path.
    Args:
       path: Path of link to dereference
@@ -1915,20 +1972,21 @@ def dereferenceLink(path, absolute=True):
    Returns:
        Dereferenced path, or original path if original is not a link
    """
-   if os.path.islink(path):
-      result = os.readlink(path)
-      if absolute and not os.path.isabs(result):
-         result = os.path.abspath(os.path.join(os.path.dirname(path), result))
-      return result
-   return path
+    if os.path.islink(path):
+        result = os.readlink(path)
+        if absolute and not os.path.isabs(result):
+            result = os.path.abspath(os.path.join(os.path.dirname(path), result))
+        return result
+    return path
 
 
 #########################
 # checkUnique() function
 #########################
 
+
 def checkUnique(prefix, values):
-   """
+    """
    Checks that all values are unique.
 
    The values list is checked for duplicate values.  If there are
@@ -1942,21 +2000,22 @@ def checkUnique(prefix, values):
    Raises:
       ValueError: If there are duplicates in the list
    """
-   values.sort()
-   duplicates = []
-   for i in range(1, len(values)):
-      if values[i-1] == values[i]:
-         duplicates.append(values[i])
-   if duplicates:
-      raise ValueError("%s %s" % (prefix, duplicates))
+    values.sort()
+    duplicates = []
+    for i in range(1, len(values)):
+        if values[i - 1] == values[i]:
+            duplicates.append(values[i])
+    if duplicates:
+        raise ValueError("%s %s" % (prefix, duplicates))
 
 
 #######################################
 # parseCommaSeparatedString() function
 #######################################
 
+
 def parseCommaSeparatedString(commaString):
-   """
+    """
    Parses a list of values out of a comma-separated string.
 
    The items in the list are split by comma, and then have whitespace
@@ -1968,13 +2027,13 @@ def parseCommaSeparatedString(commaString):
    Returns:
        Values from commaString split into a list, or ``None``
    """
-   if commaString is None:
-      return None
-   else:
-      pass1 = commaString.split(",")
-      pass2 = []
-      for item in pass1:
-         item = item.strip()
-         if len(item) > 0:
-            pass2.append(item)
-      return pass2
+    if commaString is None:
+        return None
+    else:
+        pass1 = commaString.split(",")
+        pass2 = []
+        for item in pass1:
+            item = item.strip()
+            if len(item) > 0:
+                pass2.append(item)
+        return pass2

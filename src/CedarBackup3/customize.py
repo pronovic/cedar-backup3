@@ -51,7 +51,6 @@ variety of patches in different places.
 # Imported modules
 ########################################################################
 
-# System modules
 import logging
 
 ########################################################################
@@ -61,7 +60,7 @@ import logging
 logger = logging.getLogger("CedarBackup3.log.customize")
 
 PLATFORM = "standard"
-#PLATFORM = "debian"
+# PLATFORM = "debian"
 
 DEBIAN_CDRECORD = "/usr/bin/wodim"
 DEBIAN_MKISOFS = "/usr/bin/genisoimage"
@@ -75,8 +74,9 @@ DEBIAN_MKISOFS = "/usr/bin/genisoimage"
 # customizeOverrides() function
 ################################
 
+
 def customizeOverrides(config, platform=PLATFORM):
-   """
+    """
    Modify command overrides based on the configured platform.
 
    On some platforms, we want to add command overrides to configuration.  Each
@@ -88,8 +88,8 @@ def customizeOverrides(config, platform=PLATFORM):
       config: Configuration to modify
       platform: Platform that is in use
    """
-   if platform == "debian":
-      logger.info("Overriding cdrecord for Debian platform: %s", DEBIAN_CDRECORD)
-      config.options.addOverride("cdrecord", DEBIAN_CDRECORD)
-      logger.info("Overriding mkisofs for Debian platform: %s", DEBIAN_MKISOFS)
-      config.options.addOverride("mkisofs", DEBIAN_MKISOFS)
+    if platform == "debian":
+        logger.info("Overriding cdrecord for Debian platform: %s", DEBIAN_CDRECORD)
+        config.options.addOverride("cdrecord", DEBIAN_CDRECORD)
+        logger.info("Overriding mkisofs for Debian platform: %s", DEBIAN_MKISOFS)
+        config.options.addOverride("mkisofs", DEBIAN_MKISOFS)

@@ -8,13 +8,13 @@ import sys
 
 where = "both"
 if len(sys.argv) > 1:
-   where = sys.argv[1]
+    where = sys.argv[1]
 
-for i in range(1, 100000+1):
-   if where == "both":
-      sys.stdout.write("This is line %d.\n" % i)
-      sys.stderr.write("This is line %d.\n" % i)
-   elif where == "stdout":
-      sys.stdout.write("This is line %d.\n" % i)
-   elif where == "stderr":
-      sys.stderr.write("This is line %d.\n" % i)
+for i in range(1, 100000 + 1):
+    if where == "both":
+        sys.stdout.write("This is line %d.\n" % i)
+        sys.stderr.write("This is line %d.\n" % i)
+    elif where == "stdout":
+        sys.stdout.write("This is line %d.\n" % i)
+    elif where == "stderr":
+        sys.stderr.write("This is line %d.\n" % i)

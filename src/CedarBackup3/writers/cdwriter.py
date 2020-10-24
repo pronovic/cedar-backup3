@@ -54,14 +54,12 @@ Attributes:
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import re
 import logging
 import tempfile
 import time
 
-# Cedar Backup modules
 from CedarBackup3.util import resolveCommand, executeCommand
 from CedarBackup3.util import convertSize, displayBytes, encodePath
 from CedarBackup3.util import UNIT_SECTORS, UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES
@@ -75,23 +73,24 @@ from CedarBackup3.writers.util import IsoImage
 
 logger = logging.getLogger("CedarBackup3.log.writers.cdwriter")
 
-MEDIA_CDRW_74  = 1
-MEDIA_CDR_74   = 2
-MEDIA_CDRW_80  = 3
-MEDIA_CDR_80   = 4
+MEDIA_CDRW_74 = 1
+MEDIA_CDR_74 = 2
+MEDIA_CDRW_80 = 3
+MEDIA_CDR_80 = 4
 
 CDRECORD_COMMAND = ["cdrecord"]
-EJECT_COMMAND    = ["eject"]
-MKISOFS_COMMAND  = ["mkisofs"]
+EJECT_COMMAND = ["eject"]
+MKISOFS_COMMAND = ["mkisofs"]
 
 
 ########################################################################
 # MediaDefinition class definition
 ########################################################################
 
+
 class MediaDefinition(object):
 
-   """
+    """
    Class encapsulating information about CD media definitions.
 
    The following media types are accepted:
@@ -106,91 +105,92 @@ class MediaDefinition(object):
 
    """
 
-   def __init__(self, mediaType):
-      """
+    def __init__(self, mediaType):
+        """
       Creates a media definition for the indicated media type.
       Args:
          mediaType: Type of the media, as discussed above
       Raises:
          ValueError: If the media type is unknown or unsupported
       """
-      self._mediaType = None
-      self._rewritable = False
-      self._initialLeadIn = 0.
-      self._leadIn = 0.0
-      self._capacity = 0.0
-      self._setValues(mediaType)
+        self._mediaType = None
+        self._rewritable = False
+        self._initialLeadIn = 0.0
+        self._leadIn = 0.0
+        self._capacity = 0.0
+        self._setValues(mediaType)
 
-   def _setValues(self, mediaType):
-      """
+    def _setValues(self, mediaType):
+        """
       Sets values based on media type.
       Args:
          mediaType: Type of the media, as discussed above
       Raises:
          ValueError: If the media type is unknown or unsupported
       """
-      if mediaType not in [MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80]:
-         raise ValueError("Invalid media type %d." % mediaType)
-      self._mediaType = mediaType
-      self._initialLeadIn = 11400.0   # per cdrecord's documentation
-      self._leadIn = 6900.0           # per cdrecord's documentation
-      if self._mediaType == MEDIA_CDR_74:
-         self._rewritable = False
-         self._capacity = convertSize(650.0, UNIT_MBYTES, UNIT_SECTORS)
-      elif self._mediaType == MEDIA_CDRW_74:
-         self._rewritable = True
-         self._capacity = convertSize(650.0, UNIT_MBYTES, UNIT_SECTORS)
-      elif self._mediaType == MEDIA_CDR_80:
-         self._rewritable = False
-         self._capacity = convertSize(700.0, UNIT_MBYTES, UNIT_SECTORS)
-      elif self._mediaType == MEDIA_CDRW_80:
-         self._rewritable = True
-         self._capacity = convertSize(700.0, UNIT_MBYTES, UNIT_SECTORS)
+        if mediaType not in [MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80]:
+            raise ValueError("Invalid media type %d." % mediaType)
+        self._mediaType = mediaType
+        self._initialLeadIn = 11400.0  # per cdrecord's documentation
+        self._leadIn = 6900.0  # per cdrecord's documentation
+        if self._mediaType == MEDIA_CDR_74:
+            self._rewritable = False
+            self._capacity = convertSize(650.0, UNIT_MBYTES, UNIT_SECTORS)
+        elif self._mediaType == MEDIA_CDRW_74:
+            self._rewritable = True
+            self._capacity = convertSize(650.0, UNIT_MBYTES, UNIT_SECTORS)
+        elif self._mediaType == MEDIA_CDR_80:
+            self._rewritable = False
+            self._capacity = convertSize(700.0, UNIT_MBYTES, UNIT_SECTORS)
+        elif self._mediaType == MEDIA_CDRW_80:
+            self._rewritable = True
+            self._capacity = convertSize(700.0, UNIT_MBYTES, UNIT_SECTORS)
 
-   def _getMediaType(self):
-      """
+    def _getMediaType(self):
+        """
       Property target used to get the media type value.
       """
-      return self._mediaType
+        return self._mediaType
 
-   def _getRewritable(self):
-      """
+    def _getRewritable(self):
+        """
       Property target used to get the rewritable flag value.
       """
-      return self._rewritable
+        return self._rewritable
 
-   def _getInitialLeadIn(self):
-      """
+    def _getInitialLeadIn(self):
+        """
       Property target used to get the initial lead-in value.
       """
-      return self._initialLeadIn
+        return self._initialLeadIn
 
-   def _getLeadIn(self):
-      """
+    def _getLeadIn(self):
+        """
       Property target used to get the lead-in value.
       """
-      return self._leadIn
+        return self._leadIn
 
-   def _getCapacity(self):
-      """
+    def _getCapacity(self):
+        """
       Property target used to get the capacity value.
       """
-      return self._capacity
+        return self._capacity
 
-   mediaType = property(_getMediaType, None, None, doc="Configured media type.")
-   rewritable = property(_getRewritable, None, None, doc="Boolean indicating whether the media is rewritable.")
-   initialLeadIn = property(_getInitialLeadIn, None, None, doc="Initial lead-in required for first image written to media.")
-   leadIn = property(_getLeadIn, None, None, doc="Lead-in required on successive images written to media.")
-   capacity = property(_getCapacity, None, None, doc="Total capacity of the media before any required lead-in.")
+    mediaType = property(_getMediaType, None, None, doc="Configured media type.")
+    rewritable = property(_getRewritable, None, None, doc="Boolean indicating whether the media is rewritable.")
+    initialLeadIn = property(_getInitialLeadIn, None, None, doc="Initial lead-in required for first image written to media.")
+    leadIn = property(_getLeadIn, None, None, doc="Lead-in required on successive images written to media.")
+    capacity = property(_getCapacity, None, None, doc="Total capacity of the media before any required lead-in.")
 
 
 ########################################################################
 # MediaCapacity class definition
 ########################################################################
 
+
 class MediaCapacity(object):
 
-   """
+    """
    Class encapsulating information about CD media capacity.
 
    Space used includes the required media lead-in (unless the disk is unused).
@@ -203,8 +203,8 @@ class MediaCapacity(object):
 
    """
 
-   def __init__(self, bytesUsed, bytesAvailable, boundaries):
-      """
+    def __init__(self, bytesUsed, bytesAvailable, boundaries):
+        """
       Initializes a capacity object.
 
       Raises:
@@ -212,86 +212,89 @@ class MediaCapacity(object):
          ValueError: If the boundaries values are not integers
          ValueError: If the bytes used and available values are not floats
       """
-      self._bytesUsed = float(bytesUsed)
-      self._bytesAvailable = float(bytesAvailable)
-      if boundaries is None:
-         self._boundaries = None
-      else:
-         self._boundaries = (int(boundaries[0]), int(boundaries[1]))
+        self._bytesUsed = float(bytesUsed)
+        self._bytesAvailable = float(bytesAvailable)
+        if boundaries is None:
+            self._boundaries = None
+        else:
+            self._boundaries = (int(boundaries[0]), int(boundaries[1]))
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
+        return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
 
-   def _getBytesUsed(self):
-      """
+    def _getBytesUsed(self):
+        """
       Property target to get the bytes-used value.
       """
-      return self._bytesUsed
+        return self._bytesUsed
 
-   def _getBytesAvailable(self):
-      """
+    def _getBytesAvailable(self):
+        """
       Property target to get the bytes-available value.
       """
-      return self._bytesAvailable
+        return self._bytesAvailable
 
-   def _getBoundaries(self):
-      """
+    def _getBoundaries(self):
+        """
       Property target to get the boundaries tuple.
       """
-      return self._boundaries
+        return self._boundaries
 
-   def _getTotalCapacity(self):
-      """
+    def _getTotalCapacity(self):
+        """
       Property target to get the total capacity (used + available).
       """
-      return self.bytesUsed + self.bytesAvailable
+        return self.bytesUsed + self.bytesAvailable
 
-   def _getUtilized(self):
-      """
+    def _getUtilized(self):
+        """
       Property target to get the percent of capacity which is utilized.
       """
-      if self.bytesAvailable <= 0.0:
-         return 100.0
-      elif self.bytesUsed <= 0.0:
-         return 0.0
-      return (self.bytesUsed / self.totalCapacity) * 100.0
+        if self.bytesAvailable <= 0.0:
+            return 100.0
+        elif self.bytesUsed <= 0.0:
+            return 0.0
+        return (self.bytesUsed / self.totalCapacity) * 100.0
 
-   bytesUsed = property(_getBytesUsed, None, None, doc="Space used on disc, in bytes.")
-   bytesAvailable = property(_getBytesAvailable, None, None, doc="Space available on disc, in bytes.")
-   boundaries = property(_getBoundaries, None, None, doc="Session disc boundaries, in terms of ISO sectors.")
-   totalCapacity = property(_getTotalCapacity, None, None, doc="Total capacity of the disc, in bytes.")
-   utilized = property(_getUtilized, None, None, "Percentage of the total capacity which is utilized.")
+    bytesUsed = property(_getBytesUsed, None, None, doc="Space used on disc, in bytes.")
+    bytesAvailable = property(_getBytesAvailable, None, None, doc="Space available on disc, in bytes.")
+    boundaries = property(_getBoundaries, None, None, doc="Session disc boundaries, in terms of ISO sectors.")
+    totalCapacity = property(_getTotalCapacity, None, None, doc="Total capacity of the disc, in bytes.")
+    utilized = property(_getUtilized, None, None, "Percentage of the total capacity which is utilized.")
 
 
 ########################################################################
 # _ImageProperties class definition
 ########################################################################
 
+
 class _ImageProperties(object):
-   """
+    """
    Simple value object to hold image properties for ``DvdWriter``.
    """
-   def __init__(self):
-      self.newDisc = False
-      self.tmpdir = None
-      self.mediaLabel = None
-      self.entries = None     # dict mapping path to graft point
+
+    def __init__(self):
+        self.newDisc = False
+        self.tmpdir = None
+        self.mediaLabel = None
+        self.entries = None  # dict mapping path to graft point
 
 
 ########################################################################
 # CdWriter class definition
 ########################################################################
 
+
 class CdWriter(object):
 
-   ######################
-   # Class documentation
-   ######################
+    ######################
+    # Class documentation
+    ######################
 
-   """
+    """
    Class representing a device that knows how to write CD media.
 
    This is a class representing a device that knows how to write CD media.  It
@@ -396,14 +399,22 @@ class CdWriter(object):
 
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self, device, scsiId=None, driveSpeed=None,
-                mediaType=MEDIA_CDRW_74, noEject=False,
-                refreshMediaDelay=0, ejectDelay=0, unittest=False):
-      """
+    def __init__(
+        self,
+        device,
+        scsiId=None,
+        driveSpeed=None,
+        mediaType=MEDIA_CDRW_74,
+        noEject=False,
+        refreshMediaDelay=0,
+        ejectDelay=0,
+        unittest=False,
+    ):
+        """
       Initializes a CD writer object.
 
       The current user must have write access to the device at the time the
@@ -443,140 +454,140 @@ class CdWriter(object):
          ValueError: If the drive speed is not an integer >= 1
          IOError: If device properties could not be read for some reason
       """
-      self._image = None  # optionally filled in by initializeImage()
-      self._device = validateDevice(device, unittest)
-      self._scsiId = validateScsiId(scsiId)
-      self._driveSpeed = validateDriveSpeed(driveSpeed)
-      self._media = MediaDefinition(mediaType)
-      self._noEject = noEject
-      self._refreshMediaDelay = refreshMediaDelay
-      self._ejectDelay = ejectDelay
-      if not unittest:
-         (self._deviceType,
-          self._deviceVendor,
-          self._deviceId,
-          self._deviceBufferSize,
-          self._deviceSupportsMulti,
-          self._deviceHasTray,
-          self._deviceCanEject) = self._retrieveProperties()
+        self._image = None  # optionally filled in by initializeImage()
+        self._device = validateDevice(device, unittest)
+        self._scsiId = validateScsiId(scsiId)
+        self._driveSpeed = validateDriveSpeed(driveSpeed)
+        self._media = MediaDefinition(mediaType)
+        self._noEject = noEject
+        self._refreshMediaDelay = refreshMediaDelay
+        self._ejectDelay = ejectDelay
+        if not unittest:
+            (
+                self._deviceType,
+                self._deviceVendor,
+                self._deviceId,
+                self._deviceBufferSize,
+                self._deviceSupportsMulti,
+                self._deviceHasTray,
+                self._deviceCanEject,
+            ) = self._retrieveProperties()
 
+    #############
+    # Properties
+    #############
 
-   #############
-   # Properties
-   #############
-
-   def _getDevice(self):
-      """
+    def _getDevice(self):
+        """
       Property target used to get the device value.
       """
-      return self._device
+        return self._device
 
-   def _getScsiId(self):
-      """
+    def _getScsiId(self):
+        """
       Property target used to get the SCSI id value.
       """
-      return self._scsiId
+        return self._scsiId
 
-   def _getHardwareId(self):
-      """
+    def _getHardwareId(self):
+        """
       Property target used to get the hardware id value.
       """
-      if self._scsiId is None:
-         return self._device
-      return self._scsiId
+        if self._scsiId is None:
+            return self._device
+        return self._scsiId
 
-   def _getDriveSpeed(self):
-      """
+    def _getDriveSpeed(self):
+        """
       Property target used to get the drive speed.
       """
-      return self._driveSpeed
+        return self._driveSpeed
 
-   def _getMedia(self):
-      """
+    def _getMedia(self):
+        """
       Property target used to get the media description.
       """
-      return self._media
+        return self._media
 
-   def _getDeviceType(self):
-      """
+    def _getDeviceType(self):
+        """
       Property target used to get the device type.
       """
-      return self._deviceType
+        return self._deviceType
 
-   def _getDeviceVendor(self):
-      """
+    def _getDeviceVendor(self):
+        """
       Property target used to get the device vendor.
       """
-      return self._deviceVendor
+        return self._deviceVendor
 
-   def _getDeviceId(self):
-      """
+    def _getDeviceId(self):
+        """
       Property target used to get the device id.
       """
-      return self._deviceId
+        return self._deviceId
 
-   def _getDeviceBufferSize(self):
-      """
+    def _getDeviceBufferSize(self):
+        """
       Property target used to get the device buffer size.
       """
-      return self._deviceBufferSize
+        return self._deviceBufferSize
 
-   def _getDeviceSupportsMulti(self):
-      """
+    def _getDeviceSupportsMulti(self):
+        """
       Property target used to get the device-support-multi flag.
       """
-      return self._deviceSupportsMulti
+        return self._deviceSupportsMulti
 
-   def _getDeviceHasTray(self):
-      """
+    def _getDeviceHasTray(self):
+        """
       Property target used to get the device-has-tray flag.
       """
-      return self._deviceHasTray
+        return self._deviceHasTray
 
-   def _getDeviceCanEject(self):
-      """
+    def _getDeviceCanEject(self):
+        """
       Property target used to get the device-can-eject flag.
       """
-      return self._deviceCanEject
+        return self._deviceCanEject
 
-   def _getRefreshMediaDelay(self):
-      """
+    def _getRefreshMediaDelay(self):
+        """
       Property target used to get the configured refresh media delay, in seconds.
       """
-      return self._refreshMediaDelay
+        return self._refreshMediaDelay
 
-   def _getEjectDelay(self):
-      """
+    def _getEjectDelay(self):
+        """
       Property target used to get the configured eject delay, in seconds.
       """
-      return self._ejectDelay
+        return self._ejectDelay
 
-   device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
-   scsiId = property(_getScsiId, None, None, doc="SCSI id for the device, in the form ``[<method>:]scsibus,target,lun``.")
-   hardwareId = property(_getHardwareId, None, None, doc="Hardware id for this writer, either SCSI id or device path.")
-   driveSpeed = property(_getDriveSpeed, None, None, doc="Speed at which the drive writes.")
-   media = property(_getMedia, None, None, doc="Definition of media that is expected to be in the device.")
-   deviceType = property(_getDeviceType, None, None, doc="Type of the device, as returned from ``cdrecord -prcap``.")
-   deviceVendor = property(_getDeviceVendor, None, None, doc="Vendor of the device, as returned from ``cdrecord -prcap``.")
-   deviceId = property(_getDeviceId, None, None, doc="Device identification, as returned from ``cdrecord -prcap``.")
-   deviceBufferSize = property(_getDeviceBufferSize, None, None, doc="Size of the device's write buffer, in bytes.")
-   deviceSupportsMulti = property(_getDeviceSupportsMulti, None, None, doc="Indicates whether device supports multisession discs.")
-   deviceHasTray = property(_getDeviceHasTray, None, None, doc="Indicates whether the device has a media tray.")
-   deviceCanEject = property(_getDeviceCanEject, None, None, doc="Indicates whether the device supports ejecting its media.")
-   refreshMediaDelay = property(_getRefreshMediaDelay, None, None, doc="Refresh media delay, in seconds.")
-   ejectDelay = property(_getEjectDelay, None, None, doc="Eject delay, in seconds.")
+    device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
+    scsiId = property(_getScsiId, None, None, doc="SCSI id for the device, in the form ``[<method>:]scsibus,target,lun``.")
+    hardwareId = property(_getHardwareId, None, None, doc="Hardware id for this writer, either SCSI id or device path.")
+    driveSpeed = property(_getDriveSpeed, None, None, doc="Speed at which the drive writes.")
+    media = property(_getMedia, None, None, doc="Definition of media that is expected to be in the device.")
+    deviceType = property(_getDeviceType, None, None, doc="Type of the device, as returned from ``cdrecord -prcap``.")
+    deviceVendor = property(_getDeviceVendor, None, None, doc="Vendor of the device, as returned from ``cdrecord -prcap``.")
+    deviceId = property(_getDeviceId, None, None, doc="Device identification, as returned from ``cdrecord -prcap``.")
+    deviceBufferSize = property(_getDeviceBufferSize, None, None, doc="Size of the device's write buffer, in bytes.")
+    deviceSupportsMulti = property(_getDeviceSupportsMulti, None, None, doc="Indicates whether device supports multisession discs.")
+    deviceHasTray = property(_getDeviceHasTray, None, None, doc="Indicates whether the device has a media tray.")
+    deviceCanEject = property(_getDeviceCanEject, None, None, doc="Indicates whether the device supports ejecting its media.")
+    refreshMediaDelay = property(_getRefreshMediaDelay, None, None, doc="Refresh media delay, in seconds.")
+    ejectDelay = property(_getEjectDelay, None, None, doc="Eject delay, in seconds.")
 
+    #################################################
+    # Methods related to device and media attributes
+    #################################################
 
-   #################################################
-   # Methods related to device and media attributes
-   #################################################
+    def isRewritable(self):
+        """Indicates whether the media is rewritable per configuration."""
+        return self._media.rewritable
 
-   def isRewritable(self):
-      """Indicates whether the media is rewritable per configuration."""
-      return self._media.rewritable
-
-   def _retrieveProperties(self):
-      """
+    def _retrieveProperties(self):
+        """
       Retrieves properties for a device from ``cdrecord``.
 
       The results are returned as a tuple of the object device attributes as
@@ -589,15 +600,15 @@ class CdWriter(object):
       Raises:
          IOError: If there is a problem talking to the device
       """
-      args = CdWriter._buildPropertiesArgs(self.hardwareId)
-      command = resolveCommand(CDRECORD_COMMAND)
-      (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-      if result != 0:
-         raise IOError("Error (%d) executing cdrecord command to get properties." % result)
-      return CdWriter._parsePropertiesOutput(output)
+        args = CdWriter._buildPropertiesArgs(self.hardwareId)
+        command = resolveCommand(CDRECORD_COMMAND)
+        (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+        if result != 0:
+            raise IOError("Error (%d) executing cdrecord command to get properties." % result)
+        return CdWriter._parsePropertiesOutput(output)
 
-   def retrieveCapacity(self, entireDisc=False, useMulti=True):
-      """
+    def retrieveCapacity(self, entireDisc=False, useMulti=True):
+        """
       Retrieves capacity for the current media in terms of a ``MediaCapacity``
       object.
 
@@ -619,11 +630,11 @@ class CdWriter(object):
       Raises:
          IOError: If the media could not be read for some reason
       """
-      boundaries = self._getBoundaries(entireDisc, useMulti)
-      return CdWriter._calculateCapacity(self._media, boundaries)
+        boundaries = self._getBoundaries(entireDisc, useMulti)
+        return CdWriter._calculateCapacity(self._media, boundaries)
 
-   def _getBoundaries(self, entireDisc=False, useMulti=True):
-      """
+    def _getBoundaries(self, entireDisc=False, useMulti=True):
+        """
       Gets the ISO boundaries for the media.
 
       If ``entireDisc`` is passed in as ``True`` the boundaries will be ``None``,
@@ -646,33 +657,33 @@ class CdWriter(object):
       Raises:
          IOError: If the media could not be read for some reason
       """
-      if not self._deviceSupportsMulti:
-         logger.debug("Device does not support multisession discs; returning boundaries None.")
-         return None
-      elif not useMulti:
-         logger.debug("Use multisession flag is False; returning boundaries None.")
-         return None
-      elif entireDisc:
-         logger.debug("Entire disc flag is True; returning boundaries None.")
-         return None
-      else:
-         args = CdWriter._buildBoundariesArgs(self.hardwareId)
-         command = resolveCommand(CDRECORD_COMMAND)
-         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
-         if result != 0:
-            logger.debug("Error (%d) executing cdrecord command to get capacity.", result)
-            logger.warning("Unable to read disc (might not be initialized); returning boundaries of None.")
+        if not self._deviceSupportsMulti:
+            logger.debug("Device does not support multisession discs; returning boundaries None.")
             return None
-         boundaries = CdWriter._parseBoundariesOutput(output)
-         if boundaries is None:
-            logger.debug("Returning disc boundaries: None")
-         else:
-            logger.debug("Returning disc boundaries: (%d, %d)", boundaries[0], boundaries[1])
-         return boundaries
+        elif not useMulti:
+            logger.debug("Use multisession flag is False; returning boundaries None.")
+            return None
+        elif entireDisc:
+            logger.debug("Entire disc flag is True; returning boundaries None.")
+            return None
+        else:
+            args = CdWriter._buildBoundariesArgs(self.hardwareId)
+            command = resolveCommand(CDRECORD_COMMAND)
+            (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
+            if result != 0:
+                logger.debug("Error (%d) executing cdrecord command to get capacity.", result)
+                logger.warning("Unable to read disc (might not be initialized); returning boundaries of None.")
+                return None
+            boundaries = CdWriter._parseBoundariesOutput(output)
+            if boundaries is None:
+                logger.debug("Returning disc boundaries: None")
+            else:
+                logger.debug("Returning disc boundaries: (%d, %d)", boundaries[0], boundaries[1])
+            return boundaries
 
-   @staticmethod
-   def _calculateCapacity(media, boundaries):
-      """
+    @staticmethod
+    def _calculateCapacity(media, boundaries):
+        """
       Calculates capacity for the media in terms of boundaries.
 
       If ``boundaries`` is ``None`` or the lower bound is 0 (zero), then the
@@ -687,28 +698,29 @@ class CdWriter(object):
       Returns:
           ``MediaCapacity`` object describing the capacity of the media
       """
-      if boundaries is None or boundaries[1] == 0:
-         logger.debug("Capacity calculations are based on a complete disc rewrite.")
-         sectorsAvailable = media.capacity - media.initialLeadIn
-         if sectorsAvailable < 0: sectorsAvailable = 0.0
-         bytesUsed = 0.0
-         bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
-      else:
-         logger.debug("Capacity calculations are based on a new ISO session.")
-         sectorsAvailable = media.capacity - boundaries[1] - media.leadIn
-         if sectorsAvailable < 0: sectorsAvailable = 0.0
-         bytesUsed = convertSize(boundaries[1], UNIT_SECTORS, UNIT_BYTES)
-         bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
-      logger.debug("Used [%s], available [%s].", displayBytes(bytesUsed), displayBytes(bytesAvailable))
-      return MediaCapacity(bytesUsed, bytesAvailable, boundaries)
+        if boundaries is None or boundaries[1] == 0:
+            logger.debug("Capacity calculations are based on a complete disc rewrite.")
+            sectorsAvailable = media.capacity - media.initialLeadIn
+            if sectorsAvailable < 0:
+                sectorsAvailable = 0.0
+            bytesUsed = 0.0
+            bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
+        else:
+            logger.debug("Capacity calculations are based on a new ISO session.")
+            sectorsAvailable = media.capacity - boundaries[1] - media.leadIn
+            if sectorsAvailable < 0:
+                sectorsAvailable = 0.0
+            bytesUsed = convertSize(boundaries[1], UNIT_SECTORS, UNIT_BYTES)
+            bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
+        logger.debug("Used [%s], available [%s].", displayBytes(bytesUsed), displayBytes(bytesAvailable))
+        return MediaCapacity(bytesUsed, bytesAvailable, boundaries)
 
+    #######################################################
+    # Methods used for working with the internal ISO image
+    #######################################################
 
-   #######################################################
-   # Methods used for working with the internal ISO image
-   #######################################################
-
-   def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
-      """
+    def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
+        """
       Initializes the writer's associated ISO image.
 
       This method initializes the ``image`` instance variable so that the caller
@@ -721,14 +733,14 @@ class CdWriter(object):
          mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
 
       """
-      self._image = _ImageProperties()
-      self._image.newDisc = newDisc
-      self._image.tmpdir = encodePath(tmpdir)
-      self._image.mediaLabel = mediaLabel
-      self._image.entries = {} # mapping from path to graft point (if any)
+        self._image = _ImageProperties()
+        self._image.newDisc = newDisc
+        self._image.tmpdir = encodePath(tmpdir)
+        self._image.mediaLabel = mediaLabel
+        self._image.entries = {}  # mapping from path to graft point (if any)
 
-   def addImageEntry(self, path, graftPoint):
-      """
+    def addImageEntry(self, path, graftPoint):
+        """
       Adds a filepath entry to the writer's associated ISO image.
 
       The contents of the filepath -- but not the path itself -- will be added
@@ -743,26 +755,26 @@ class CdWriter(object):
       Raises:
          ValueError: If initializeImage() was not previously called
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      if not os.path.exists(path):
-         raise ValueError("Path [%s] does not exist." % path)
-      self._image.entries[path] = graftPoint
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        if not os.path.exists(path):
+            raise ValueError("Path [%s] does not exist." % path)
+        self._image.entries[path] = graftPoint
 
-   def setImageNewDisc(self, newDisc):
-      """
+    def setImageNewDisc(self, newDisc):
+        """
       Resets (overrides) the newDisc flag on the internal image.
       Args:
          newDisc: New disc flag to set
       Raises:
          ValueError: If initializeImage() was not previously called
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      self._image.newDisc = newDisc
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        self._image.newDisc = newDisc
 
-   def getEstimatedImageSize(self):
-      """
+    def getEstimatedImageSize(self):
+        """
       Gets the estimated size of the image associated with the writer.
       Returns:
           Estimated size of the image, in bytes
@@ -770,20 +782,19 @@ class CdWriter(object):
          IOError: If there is a problem calling ``mkisofs``
          ValueError: If initializeImage() was not previously called
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      image = IsoImage()
-      for path in list(self._image.entries.keys()):
-         image.addEntry(path, self._image.entries[path], override=False, contentsOnly=True)
-      return image.getEstimatedSize()
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        image = IsoImage()
+        for path in list(self._image.entries.keys()):
+            image.addEntry(path, self._image.entries[path], override=False, contentsOnly=True)
+        return image.getEstimatedSize()
 
+    ######################################
+    # Methods which expose device actions
+    ######################################
 
-   ######################################
-   # Methods which expose device actions
-   ######################################
-
-   def openTray(self):
-      """
+    def openTray(self):
+        """
       Opens the device's tray and leaves it open.
 
       This only works if the device has a tray and supports ejecting its media.
@@ -811,35 +822,37 @@ class CdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      if not self._noEject:
-         if self._deviceHasTray and self._deviceCanEject:
-            args = CdWriter._buildOpenTrayArgs(self._device)
-            result = executeCommand(EJECT_COMMAND, args)[0]
-            if result != 0:
-               logger.debug("Eject failed; attempting kludge of unlocking the tray before retrying.")
-               self.unlockTray()
-               result = executeCommand(EJECT_COMMAND, args)[0]
-               if result != 0:
-                  raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
-               logger.debug("Kludge was apparently successful.")
-            if self.ejectDelay is not None:
-               logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
-               time.sleep(self.ejectDelay)
+        if not self._noEject:
+            if self._deviceHasTray and self._deviceCanEject:
+                args = CdWriter._buildOpenTrayArgs(self._device)
+                result = executeCommand(EJECT_COMMAND, args)[0]
+                if result != 0:
+                    logger.debug("Eject failed; attempting kludge of unlocking the tray before retrying.")
+                    self.unlockTray()
+                    result = executeCommand(EJECT_COMMAND, args)[0]
+                    if result != 0:
+                        raise IOError(
+                            "Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result
+                        )
+                    logger.debug("Kludge was apparently successful.")
+                if self.ejectDelay is not None:
+                    logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
+                    time.sleep(self.ejectDelay)
 
-   def unlockTray(self):
-      """
+    def unlockTray(self):
+        """
       Unlocks the device's tray.
       Raises:
          IOError: If there is an error talking to the device
       """
-      args = CdWriter._buildUnlockTrayArgs(self._device)
-      command = resolveCommand(EJECT_COMMAND)
-      result = executeCommand(command, args)[0]
-      if result != 0:
-         raise IOError("Error (%d) executing eject command to unlock tray." % result)
+        args = CdWriter._buildUnlockTrayArgs(self._device)
+        command = resolveCommand(EJECT_COMMAND)
+        result = executeCommand(command, args)[0]
+        if result != 0:
+            raise IOError("Error (%d) executing eject command to unlock tray." % result)
 
-   def closeTray(self):
-      """
+    def closeTray(self):
+        """
       Closes the device's tray.
 
       This only works if the device has a tray and supports ejecting its media.
@@ -853,16 +866,16 @@ class CdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      if not self._noEject:
-         if self._deviceHasTray and self._deviceCanEject:
-            args = CdWriter._buildCloseTrayArgs(self._device)
-            command = resolveCommand(EJECT_COMMAND)
-            result = executeCommand(command, args)[0]
-            if result != 0:
-               raise IOError("Error (%d) executing eject command to close tray." % result)
+        if not self._noEject:
+            if self._deviceHasTray and self._deviceCanEject:
+                args = CdWriter._buildCloseTrayArgs(self._device)
+                command = resolveCommand(EJECT_COMMAND)
+                result = executeCommand(command, args)[0]
+                if result != 0:
+                    raise IOError("Error (%d) executing eject command to close tray." % result)
 
-   def refreshMedia(self):
-      """
+    def refreshMedia(self):
+        """
       Opens and then immediately closes the device's tray, to refresh the
       device's idea of the media.
 
@@ -881,16 +894,16 @@ class CdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      self.openTray()
-      self.closeTray()
-      self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
-      if self.refreshMediaDelay is not None:
-         logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
-         time.sleep(self.refreshMediaDelay)
-      logger.debug("Media refresh complete; hopefully media state is stable now.")
+        self.openTray()
+        self.closeTray()
+        self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
+        if self.refreshMediaDelay is not None:
+            logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
+            time.sleep(self.refreshMediaDelay)
+        logger.debug("Media refresh complete; hopefully media state is stable now.")
 
-   def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
-      """
+    def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
+        """
       Writes an ISO image to the media in the device.
 
       If ``newDisc`` is passed in as ``True``, we assume that the entire disc
@@ -920,24 +933,26 @@ class CdWriter(object):
          IOError: If the media could not be written to for some reason
          ValueError: If no image is passed in and initializeImage() was not previously called
       """
-      if imagePath is None:
-         if self._image is None:
-            raise ValueError("Must call initializeImage() before using this method with no image path.")
-         try:
-            imagePath = self._createImage()
-            self._writeImage(imagePath, writeMulti, self._image.newDisc)
-         finally:
-            if imagePath is not None and os.path.exists(imagePath):
-               try: os.unlink(imagePath)
-               except: pass
-      else:
-         imagePath = encodePath(imagePath)
-         if not os.path.isabs(imagePath):
-            raise ValueError("Image path must be absolute.")
-         self._writeImage(imagePath, writeMulti, newDisc)
+        if imagePath is None:
+            if self._image is None:
+                raise ValueError("Must call initializeImage() before using this method with no image path.")
+            try:
+                imagePath = self._createImage()
+                self._writeImage(imagePath, writeMulti, self._image.newDisc)
+            finally:
+                if imagePath is not None and os.path.exists(imagePath):
+                    try:
+                        os.unlink(imagePath)
+                    except:
+                        pass
+        else:
+            imagePath = encodePath(imagePath)
+            if not os.path.isabs(imagePath):
+                raise ValueError("Image path must be absolute.")
+            self._writeImage(imagePath, writeMulti, newDisc)
 
-   def _createImage(self):
-      """
+    def _createImage(self):
+        """
       Creates an ISO image based on configuration in self._image.
       Returns:
           Path to the newly-created ISO image on disk
@@ -946,34 +961,38 @@ class CdWriter(object):
          ValueError: If there are no filesystem entries in the image
          ValueError: If a path cannot be encoded properly
       """
-      path = None
-      capacity = self.retrieveCapacity(entireDisc=self._image.newDisc)
-      image = IsoImage(self.device, capacity.boundaries)
-      image.volumeId = self._image.mediaLabel  # may be None, which is also valid
-      for key in list(self._image.entries.keys()):
-         image.addEntry(key, self._image.entries[key], override=False, contentsOnly=True)
-      size = image.getEstimatedSize()
-      logger.info("Image size will be %s.", displayBytes(size))
-      available = capacity.bytesAvailable
-      logger.debug("Media capacity: %s", displayBytes(available))
-      if size > available:
-         logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
-         raise IOError("Media does not contain enough capacity to store image.")
-      try:
-         (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
-         try: os.close(handle)
-         except: pass
-         image.writeImage(path)
-         logger.debug("Completed creating image [%s].", path)
-         return path
-      except Exception as e:
-         if path is not None and os.path.exists(path):
-            try: os.unlink(path)
-            except: pass
-         raise e
+        path = None
+        capacity = self.retrieveCapacity(entireDisc=self._image.newDisc)
+        image = IsoImage(self.device, capacity.boundaries)
+        image.volumeId = self._image.mediaLabel  # may be None, which is also valid
+        for key in list(self._image.entries.keys()):
+            image.addEntry(key, self._image.entries[key], override=False, contentsOnly=True)
+        size = image.getEstimatedSize()
+        logger.info("Image size will be %s.", displayBytes(size))
+        available = capacity.bytesAvailable
+        logger.debug("Media capacity: %s", displayBytes(available))
+        if size > available:
+            logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
+            raise IOError("Media does not contain enough capacity to store image.")
+        try:
+            (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
+            try:
+                os.close(handle)
+            except:
+                pass
+            image.writeImage(path)
+            logger.debug("Completed creating image [%s].", path)
+            return path
+        except Exception as e:
+            if path is not None and os.path.exists(path):
+                try:
+                    os.unlink(path)
+                except:
+                    pass
+            raise e
 
-   def _writeImage(self, imagePath, writeMulti, newDisc):
-      """
+    def _writeImage(self, imagePath, writeMulti, newDisc):
+        """
       Write an ISO image to disc using cdrecord.
       The disc is blanked first if ``newDisc`` is ``True``.
       Args:
@@ -981,37 +1000,36 @@ class CdWriter(object):
          writeMulti: Indicates whether a multisession disc should be written, if possible
          newDisc: Indicates whether the entire disc will overwritten
       """
-      if newDisc:
-         self._blankMedia()
-      args = CdWriter._buildWriteArgs(self.hardwareId, imagePath, self._driveSpeed, writeMulti and self._deviceSupportsMulti)
-      command = resolveCommand(CDRECORD_COMMAND)
-      result = executeCommand(command, args)[0]
-      if result != 0:
-         raise IOError("Error (%d) executing command to write disc." % result)
-      self.refreshMedia()
+        if newDisc:
+            self._blankMedia()
+        args = CdWriter._buildWriteArgs(self.hardwareId, imagePath, self._driveSpeed, writeMulti and self._deviceSupportsMulti)
+        command = resolveCommand(CDRECORD_COMMAND)
+        result = executeCommand(command, args)[0]
+        if result != 0:
+            raise IOError("Error (%d) executing command to write disc." % result)
+        self.refreshMedia()
 
-   def _blankMedia(self):
-      """
+    def _blankMedia(self):
+        """
       Blanks the media in the device, if the media is rewritable.
       Raises:
          IOError: If the media could not be written to for some reason
       """
-      if self.isRewritable():
-         args = CdWriter._buildBlankArgs(self.hardwareId)
-         command = resolveCommand(CDRECORD_COMMAND)
-         result = executeCommand(command, args)[0]
-         if result != 0:
-            raise IOError("Error (%d) executing command to blank disc." % result)
-         self.refreshMedia()
+        if self.isRewritable():
+            args = CdWriter._buildBlankArgs(self.hardwareId)
+            command = resolveCommand(CDRECORD_COMMAND)
+            result = executeCommand(command, args)[0]
+            if result != 0:
+                raise IOError("Error (%d) executing command to blank disc." % result)
+            self.refreshMedia()
 
+    #######################################
+    # Methods used to parse command output
+    #######################################
 
-   #######################################
-   # Methods used to parse command output
-   #######################################
-
-   @staticmethod
-   def _parsePropertiesOutput(output):
-      """
+    @staticmethod
+    def _parsePropertiesOutput(output):
+        """
       Parses the output from a ``cdrecord`` properties command.
 
       The ``output`` parameter should be a list of strings as returned from
@@ -1046,50 +1064,51 @@ class CdWriter(object):
       Raises:
          IOError: If there is problem parsing the output
       """
-      deviceType = None
-      deviceVendor = None
-      deviceId = None
-      deviceBufferSize = None
-      deviceSupportsMulti = False
-      deviceHasTray = False
-      deviceCanEject = False
-      typePattern   = re.compile(r"(^Device type\s*:\s*)(.*)(\s*)(.*$)")
-      vendorPattern = re.compile(r"(^Vendor_info\s*:\s*'\s*)(.*?)(\s*')(.*$)")
-      idPattern     = re.compile(r"(^Identifikation\s*:\s*'\s*)(.*?)(\s*')(.*$)")
-      bufferPattern = re.compile(r"(^\s*Buffer size in KB:\s*)(.*?)(\s*$)")
-      multiPattern  = re.compile(r"^\s*Does read multi-session.*$")
-      trayPattern   = re.compile(r"^\s*Loading mechanism type: tray.*$")
-      ejectPattern  = re.compile(r"^\s*Does support ejection.*$")
-      for line in output:
-         if typePattern.search(line):
-            deviceType =  typePattern.search(line).group(2)
-            logger.info("Device type is [%s].", deviceType)
-         elif vendorPattern.search(line):
-            deviceVendor = vendorPattern.search(line).group(2)
-            logger.info("Device vendor is [%s].", deviceVendor)
-         elif idPattern.search(line):
-            deviceId = idPattern.search(line).group(2)
-            logger.info("Device id is [%s].", deviceId)
-         elif bufferPattern.search(line):
-            try:
-               sectors = int(bufferPattern.search(line).group(2))
-               deviceBufferSize = convertSize(sectors, UNIT_KBYTES, UNIT_BYTES)
-               logger.info("Device buffer size is [%d] bytes.", deviceBufferSize)
-            except TypeError: pass
-         elif multiPattern.search(line):
-            deviceSupportsMulti = True
-            logger.info("Device does support multisession discs.")
-         elif trayPattern.search(line):
-            deviceHasTray = True
-            logger.info("Device has a tray.")
-         elif ejectPattern.search(line):
-            deviceCanEject = True
-            logger.info("Device can eject its media.")
-      return (deviceType, deviceVendor, deviceId, deviceBufferSize, deviceSupportsMulti, deviceHasTray, deviceCanEject)
+        deviceType = None
+        deviceVendor = None
+        deviceId = None
+        deviceBufferSize = None
+        deviceSupportsMulti = False
+        deviceHasTray = False
+        deviceCanEject = False
+        typePattern = re.compile(r"(^Device type\s*:\s*)(.*)(\s*)(.*$)")
+        vendorPattern = re.compile(r"(^Vendor_info\s*:\s*'\s*)(.*?)(\s*')(.*$)")
+        idPattern = re.compile(r"(^Identifikation\s*:\s*'\s*)(.*?)(\s*')(.*$)")
+        bufferPattern = re.compile(r"(^\s*Buffer size in KB:\s*)(.*?)(\s*$)")
+        multiPattern = re.compile(r"^\s*Does read multi-session.*$")
+        trayPattern = re.compile(r"^\s*Loading mechanism type: tray.*$")
+        ejectPattern = re.compile(r"^\s*Does support ejection.*$")
+        for line in output:
+            if typePattern.search(line):
+                deviceType = typePattern.search(line).group(2)
+                logger.info("Device type is [%s].", deviceType)
+            elif vendorPattern.search(line):
+                deviceVendor = vendorPattern.search(line).group(2)
+                logger.info("Device vendor is [%s].", deviceVendor)
+            elif idPattern.search(line):
+                deviceId = idPattern.search(line).group(2)
+                logger.info("Device id is [%s].", deviceId)
+            elif bufferPattern.search(line):
+                try:
+                    sectors = int(bufferPattern.search(line).group(2))
+                    deviceBufferSize = convertSize(sectors, UNIT_KBYTES, UNIT_BYTES)
+                    logger.info("Device buffer size is [%d] bytes.", deviceBufferSize)
+                except TypeError:
+                    pass
+            elif multiPattern.search(line):
+                deviceSupportsMulti = True
+                logger.info("Device does support multisession discs.")
+            elif trayPattern.search(line):
+                deviceHasTray = True
+                logger.info("Device has a tray.")
+            elif ejectPattern.search(line):
+                deviceCanEject = True
+                logger.info("Device can eject its media.")
+        return (deviceType, deviceVendor, deviceId, deviceBufferSize, deviceSupportsMulti, deviceHasTray, deviceCanEject)
 
-   @staticmethod
-   def _parseBoundariesOutput(output):
-      """
+    @staticmethod
+    def _parseBoundariesOutput(output):
+        """
       Parses the output from a ``cdrecord`` capacity command.
 
       The ``output`` parameter should be a list of strings as returned from
@@ -1120,27 +1139,26 @@ class CdWriter(object):
       Raises:
          IOError: If there is problem parsing the output
       """
-      if len(output) < 1:
-         logger.warning("Unable to read disc (might not be initialized); returning full capacity.")
-         return None
-      boundaryPattern = re.compile(r"(^\s*)([0-9]*)(\s*,\s*)([0-9]*)(\s*$)")
-      parsed = boundaryPattern.search(output[0])
-      if not parsed:
-         raise IOError("Unable to parse output of boundaries command.")
-      try:
-         boundaries = ( int(parsed.group(2)), int(parsed.group(4)) )
-      except TypeError:
-         raise IOError("Unable to parse output of boundaries command.")
-      return boundaries
+        if len(output) < 1:
+            logger.warning("Unable to read disc (might not be initialized); returning full capacity.")
+            return None
+        boundaryPattern = re.compile(r"(^\s*)([0-9]*)(\s*,\s*)([0-9]*)(\s*$)")
+        parsed = boundaryPattern.search(output[0])
+        if not parsed:
+            raise IOError("Unable to parse output of boundaries command.")
+        try:
+            boundaries = (int(parsed.group(2)), int(parsed.group(4)))
+        except TypeError:
+            raise IOError("Unable to parse output of boundaries command.")
+        return boundaries
 
+    #################################
+    # Methods used to build commands
+    #################################
 
-   #################################
-   # Methods used to build commands
-   #################################
-
-   @staticmethod
-   def _buildOpenTrayArgs(device):
-      """
+    @staticmethod
+    def _buildOpenTrayArgs(device):
+        """
       Builds a list of arguments to be passed to a ``eject`` command.
 
       The arguments will cause the ``eject`` command to open the tray and
@@ -1153,13 +1171,13 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append(device)
-      return args
+        args = []
+        args.append(device)
+        return args
 
-   @staticmethod
-   def _buildUnlockTrayArgs(device):
-      """
+    @staticmethod
+    def _buildUnlockTrayArgs(device):
+        """
       Builds a list of arguments to be passed to a ``eject`` command.
 
       The arguments will cause the ``eject`` command to unlock the tray.
@@ -1170,15 +1188,15 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-i")
-      args.append("off")
-      args.append(device)
-      return args
+        args = []
+        args.append("-i")
+        args.append("off")
+        args.append(device)
+        return args
 
-   @staticmethod
-   def _buildCloseTrayArgs(device):
-      """
+    @staticmethod
+    def _buildCloseTrayArgs(device):
+        """
       Builds a list of arguments to be passed to a ``eject`` command.
 
       The arguments will cause the ``eject`` command to close the tray and reload
@@ -1191,14 +1209,14 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-t")
-      args.append(device)
-      return args
+        args = []
+        args.append("-t")
+        args.append(device)
+        return args
 
-   @staticmethod
-   def _buildPropertiesArgs(hardwareId):
-      """
+    @staticmethod
+    def _buildPropertiesArgs(hardwareId):
+        """
       Builds a list of arguments to be passed to a ``cdrecord`` command.
 
       The arguments will cause the ``cdrecord`` command to ask the device
@@ -1210,14 +1228,14 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-prcap")
-      args.append("dev=%s" % hardwareId)
-      return args
+        args = []
+        args.append("-prcap")
+        args.append("dev=%s" % hardwareId)
+        return args
 
-   @staticmethod
-   def _buildBoundariesArgs(hardwareId):
-      """
+    @staticmethod
+    def _buildBoundariesArgs(hardwareId):
+        """
       Builds a list of arguments to be passed to a ``cdrecord`` command.
 
       The arguments will cause the ``cdrecord`` command to ask the device for
@@ -1230,14 +1248,14 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-msinfo")
-      args.append("dev=%s" % hardwareId)
-      return args
+        args = []
+        args.append("-msinfo")
+        args.append("dev=%s" % hardwareId)
+        return args
 
-   @staticmethod
-   def _buildBlankArgs(hardwareId, driveSpeed=None):
-      """
+    @staticmethod
+    def _buildBlankArgs(hardwareId, driveSpeed=None):
+        """
       Builds a list of arguments to be passed to a ``cdrecord`` command.
 
       The arguments will cause the ``cdrecord`` command to blank the media in
@@ -1252,17 +1270,17 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-v")
-      args.append("blank=fast")
-      if driveSpeed is not None:
-         args.append("speed=%d" % driveSpeed)
-      args.append("dev=%s" % hardwareId)
-      return args
+        args = []
+        args.append("-v")
+        args.append("blank=fast")
+        if driveSpeed is not None:
+            args.append("speed=%d" % driveSpeed)
+        args.append("dev=%s" % hardwareId)
+        return args
 
-   @staticmethod
-   def _buildWriteArgs(hardwareId, imagePath, driveSpeed=None, writeMulti=True):
-      """
+    @staticmethod
+    def _buildWriteArgs(hardwareId, imagePath, driveSpeed=None, writeMulti=True):
+        """
       Builds a list of arguments to be passed to a ``cdrecord`` command.
 
       The arguments will cause the ``cdrecord`` command to write the indicated
@@ -1281,14 +1299,13 @@ class CdWriter(object):
       Returns:
           List suitable for passing to :any:`util.executeCommand` as ``args``
       """
-      args = []
-      args.append("-v")
-      if driveSpeed is not None:
-         args.append("speed=%d" % driveSpeed)
-      args.append("dev=%s" % hardwareId)
-      if writeMulti:
-         args.append("-multi")
-      args.append("-data")
-      args.append(imagePath)
-      return args
-
+        args = []
+        args.append("-v")
+        if driveSpeed is not None:
+            args.append("speed=%d" % driveSpeed)
+        args.append("dev=%s" % hardwareId)
+        if writeMulti:
+            args.append("-multi")
+        args.append("-data")
+        args.append(imagePath)
+        return args

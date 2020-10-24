@@ -53,14 +53,12 @@ Attributes:
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import re
 import logging
 import tempfile
 import time
 
-# Cedar Backup modules
 from CedarBackup3.writers.util import IsoImage
 from CedarBackup3.util import resolveCommand, executeCommand
 from CedarBackup3.util import convertSize, displayBytes, encodePath
@@ -74,20 +72,21 @@ from CedarBackup3.writers.util import validateDevice, validateDriveSpeed
 
 logger = logging.getLogger("CedarBackup3.log.writers.dvdwriter")
 
-MEDIA_DVDPLUSR  = 1
+MEDIA_DVDPLUSR = 1
 MEDIA_DVDPLUSRW = 2
 
 GROWISOFS_COMMAND = ["growisofs"]
-EJECT_COMMAND     = ["eject"]
+EJECT_COMMAND = ["eject"]
 
 
 ########################################################################
 # MediaDefinition class definition
 ########################################################################
 
+
 class MediaDefinition(object):
 
-   """
+    """
    Class encapsulating information about DVD media definitions.
 
    The following media types are accepted:
@@ -104,67 +103,68 @@ class MediaDefinition(object):
 
    """
 
-   def __init__(self, mediaType):
-      """
+    def __init__(self, mediaType):
+        """
       Creates a media definition for the indicated media type.
       Args:
          mediaType: Type of the media, as discussed above
       Raises:
          ValueError: If the media type is unknown or unsupported
       """
-      self._mediaType = None
-      self._rewritable = False
-      self._capacity = 0.0
-      self._setValues(mediaType)
+        self._mediaType = None
+        self._rewritable = False
+        self._capacity = 0.0
+        self._setValues(mediaType)
 
-   def _setValues(self, mediaType):
-      """
+    def _setValues(self, mediaType):
+        """
       Sets values based on media type.
       Args:
          mediaType: Type of the media, as discussed above
       Raises:
          ValueError: If the media type is unknown or unsupported
       """
-      if mediaType not in [MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW]:
-         raise ValueError("Invalid media type %d." % mediaType)
-      self._mediaType = mediaType
-      if self._mediaType == MEDIA_DVDPLUSR:
-         self._rewritable = False
-         self._capacity = convertSize(4.4, UNIT_GBYTES, UNIT_SECTORS)   # 4.4 "true" GB = 4.7 "marketing" GB
-      elif self._mediaType == MEDIA_DVDPLUSRW:
-         self._rewritable = True
-         self._capacity = convertSize(4.4, UNIT_GBYTES, UNIT_SECTORS)   # 4.4 "true" GB = 4.7 "marketing" GB
+        if mediaType not in [MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW]:
+            raise ValueError("Invalid media type %d." % mediaType)
+        self._mediaType = mediaType
+        if self._mediaType == MEDIA_DVDPLUSR:
+            self._rewritable = False
+            self._capacity = convertSize(4.4, UNIT_GBYTES, UNIT_SECTORS)  # 4.4 "true" GB = 4.7 "marketing" GB
+        elif self._mediaType == MEDIA_DVDPLUSRW:
+            self._rewritable = True
+            self._capacity = convertSize(4.4, UNIT_GBYTES, UNIT_SECTORS)  # 4.4 "true" GB = 4.7 "marketing" GB
 
-   def _getMediaType(self):
-      """
+    def _getMediaType(self):
+        """
       Property target used to get the media type value.
       """
-      return self._mediaType
+        return self._mediaType
 
-   def _getRewritable(self):
-      """
+    def _getRewritable(self):
+        """
       Property target used to get the rewritable flag value.
       """
-      return self._rewritable
+        return self._rewritable
 
-   def _getCapacity(self):
-      """
+    def _getCapacity(self):
+        """
       Property target used to get the capacity value.
       """
-      return self._capacity
+        return self._capacity
 
-   mediaType = property(_getMediaType, None, None, doc="Configured media type.")
-   rewritable = property(_getRewritable, None, None, doc="Boolean indicating whether the media is rewritable.")
-   capacity = property(_getCapacity, None, None, doc="Total capacity of media in 2048-byte sectors.")
+    mediaType = property(_getMediaType, None, None, doc="Configured media type.")
+    rewritable = property(_getRewritable, None, None, doc="Boolean indicating whether the media is rewritable.")
+    capacity = property(_getCapacity, None, None, doc="Total capacity of media in 2048-byte sectors.")
 
 
 ########################################################################
 # MediaCapacity class definition
 ########################################################################
 
+
 class MediaCapacity(object):
 
-   """
+    """
    Class encapsulating information about DVD media capacity.
 
    Space used and space available do not include any information about media
@@ -172,82 +172,85 @@ class MediaCapacity(object):
 
    """
 
-   def __init__(self, bytesUsed, bytesAvailable):
-      """
+    def __init__(self, bytesUsed, bytesAvailable):
+        """
       Initializes a capacity object.
 
       Raises:
          ValueError: If the bytes used and available values are not floats
       """
-      self._bytesUsed = float(bytesUsed)
-      self._bytesAvailable = float(bytesAvailable)
+        self._bytesUsed = float(bytesUsed)
+        self._bytesAvailable = float(bytesAvailable)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
+        return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
 
-   def _getBytesUsed(self):
-      """
+    def _getBytesUsed(self):
+        """
       Property target used to get the bytes-used value.
       """
-      return self._bytesUsed
+        return self._bytesUsed
 
-   def _getBytesAvailable(self):
-      """
+    def _getBytesAvailable(self):
+        """
       Property target available to get the bytes-available value.
       """
-      return self._bytesAvailable
+        return self._bytesAvailable
 
-   def _getTotalCapacity(self):
-      """
+    def _getTotalCapacity(self):
+        """
       Property target to get the total capacity (used + available).
       """
-      return self.bytesUsed + self.bytesAvailable
+        return self.bytesUsed + self.bytesAvailable
 
-   def _getUtilized(self):
-      """
+    def _getUtilized(self):
+        """
       Property target to get the percent of capacity which is utilized.
       """
-      if self.bytesAvailable <= 0.0:
-         return 100.0
-      elif self.bytesUsed <= 0.0:
-         return 0.0
-      return (self.bytesUsed / self.totalCapacity) * 100.0
+        if self.bytesAvailable <= 0.0:
+            return 100.0
+        elif self.bytesUsed <= 0.0:
+            return 0.0
+        return (self.bytesUsed / self.totalCapacity) * 100.0
 
-   bytesUsed = property(_getBytesUsed, None, None, doc="Space used on disc, in bytes.")
-   bytesAvailable = property(_getBytesAvailable, None, None, doc="Space available on disc, in bytes.")
-   totalCapacity = property(_getTotalCapacity, None, None, doc="Total capacity of the disc, in bytes.")
-   utilized = property(_getUtilized, None, None, "Percentage of the total capacity which is utilized.")
+    bytesUsed = property(_getBytesUsed, None, None, doc="Space used on disc, in bytes.")
+    bytesAvailable = property(_getBytesAvailable, None, None, doc="Space available on disc, in bytes.")
+    totalCapacity = property(_getTotalCapacity, None, None, doc="Total capacity of the disc, in bytes.")
+    utilized = property(_getUtilized, None, None, "Percentage of the total capacity which is utilized.")
 
 
 ########################################################################
 # _ImageProperties class definition
 ########################################################################
 
+
 class _ImageProperties(object):
-   """
+    """
    Simple value object to hold image properties for ``DvdWriter``.
    """
-   def __init__(self):
-      self.newDisc = False
-      self.tmpdir = None
-      self.mediaLabel = None
-      self.entries = None     # dict mapping path to graft point
+
+    def __init__(self):
+        self.newDisc = False
+        self.tmpdir = None
+        self.mediaLabel = None
+        self.entries = None  # dict mapping path to graft point
 
 
 ########################################################################
 # DvdWriter class definition
 ########################################################################
 
+
 class DvdWriter(object):
 
-   ######################
-   # Class documentation
-   ######################
+    ######################
+    # Class documentation
+    ######################
 
-   """
+    """
    Class representing a device that knows how to write some kinds of DVD media.
 
    **Summary**
@@ -351,14 +354,22 @@ class DvdWriter(object):
 
    """
 
-   ##############
-   # Constructor
-   ##############
+    ##############
+    # Constructor
+    ##############
 
-   def __init__(self, device, scsiId=None, driveSpeed=None,
-                mediaType=MEDIA_DVDPLUSRW, noEject=False,
-                refreshMediaDelay=0, ejectDelay=0, unittest=False):
-      """
+    def __init__(
+        self,
+        device,
+        scsiId=None,
+        driveSpeed=None,
+        mediaType=MEDIA_DVDPLUSRW,
+        noEject=False,
+        refreshMediaDelay=0,
+        ejectDelay=0,
+        unittest=False,
+    ):
+        """
       Initializes a DVD writer object.
 
       Since ``growisofs`` can only address devices using the device path (i.e.
@@ -391,102 +402,100 @@ class DvdWriter(object):
          ValueError: If the SCSI id is not in a valid form
          ValueError: If the drive speed is not an integer >= 1
       """
-      if scsiId is not None:
-         logger.warning("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
-      self._image = None  # optionally filled in by initializeImage()
-      self._device = validateDevice(device, unittest)
-      self._scsiId = scsiId  # not validated, because it's just for reference
-      self._driveSpeed = validateDriveSpeed(driveSpeed)
-      self._media = MediaDefinition(mediaType)
-      self._refreshMediaDelay = refreshMediaDelay
-      self._ejectDelay = ejectDelay
-      if noEject:
-         self._deviceHasTray = False
-         self._deviceCanEject = False
-      else:
-         self._deviceHasTray = True   # just assume
-         self._deviceCanEject = True  # just assume
+        if scsiId is not None:
+            logger.warning("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
+        self._image = None  # optionally filled in by initializeImage()
+        self._device = validateDevice(device, unittest)
+        self._scsiId = scsiId  # not validated, because it's just for reference
+        self._driveSpeed = validateDriveSpeed(driveSpeed)
+        self._media = MediaDefinition(mediaType)
+        self._refreshMediaDelay = refreshMediaDelay
+        self._ejectDelay = ejectDelay
+        if noEject:
+            self._deviceHasTray = False
+            self._deviceCanEject = False
+        else:
+            self._deviceHasTray = True  # just assume
+            self._deviceCanEject = True  # just assume
 
+    #############
+    # Properties
+    #############
 
-   #############
-   # Properties
-   #############
-
-   def _getDevice(self):
-      """
+    def _getDevice(self):
+        """
       Property target used to get the device value.
       """
-      return self._device
+        return self._device
 
-   def _getScsiId(self):
-      """
+    def _getScsiId(self):
+        """
       Property target used to get the SCSI id value.
       """
-      return self._scsiId
+        return self._scsiId
 
-   def _getHardwareId(self):
-      """
+    def _getHardwareId(self):
+        """
       Property target used to get the hardware id value.
       """
-      return self._device
+        return self._device
 
-   def _getDriveSpeed(self):
-      """
+    def _getDriveSpeed(self):
+        """
       Property target used to get the drive speed.
       """
-      return self._driveSpeed
+        return self._driveSpeed
 
-   def _getMedia(self):
-      """
+    def _getMedia(self):
+        """
       Property target used to get the media description.
       """
-      return self._media
+        return self._media
 
-   def _getDeviceHasTray(self):
-      """
+    def _getDeviceHasTray(self):
+        """
       Property target used to get the device-has-tray flag.
       """
-      return self._deviceHasTray
+        return self._deviceHasTray
 
-   def _getDeviceCanEject(self):
-      """
+    def _getDeviceCanEject(self):
+        """
       Property target used to get the device-can-eject flag.
       """
-      return self._deviceCanEject
+        return self._deviceCanEject
 
-   def _getRefreshMediaDelay(self):
-      """
+    def _getRefreshMediaDelay(self):
+        """
       Property target used to get the configured refresh media delay, in seconds.
       """
-      return self._refreshMediaDelay
+        return self._refreshMediaDelay
 
-   def _getEjectDelay(self):
-      """
+    def _getEjectDelay(self):
+        """
       Property target used to get the configured eject delay, in seconds.
       """
-      return self._ejectDelay
+        return self._ejectDelay
 
-   device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
-   scsiId = property(_getScsiId, None, None, doc="SCSI id for the device (saved for reference only).")
-   hardwareId = property(_getHardwareId, None, None, doc="Hardware id for this writer (always the device path).")
-   driveSpeed = property(_getDriveSpeed, None, None, doc="Speed at which the drive writes.")
-   media = property(_getMedia, None, None, doc="Definition of media that is expected to be in the device.")
-   deviceHasTray = property(_getDeviceHasTray, None, None, doc="Indicates whether the device has a media tray.")
-   deviceCanEject = property(_getDeviceCanEject, None, None, doc="Indicates whether the device supports ejecting its media.")
-   refreshMediaDelay = property(_getRefreshMediaDelay, None, None, doc="Refresh media delay, in seconds.")
-   ejectDelay = property(_getEjectDelay, None, None, doc="Eject delay, in seconds.")
+    device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
+    scsiId = property(_getScsiId, None, None, doc="SCSI id for the device (saved for reference only).")
+    hardwareId = property(_getHardwareId, None, None, doc="Hardware id for this writer (always the device path).")
+    driveSpeed = property(_getDriveSpeed, None, None, doc="Speed at which the drive writes.")
+    media = property(_getMedia, None, None, doc="Definition of media that is expected to be in the device.")
+    deviceHasTray = property(_getDeviceHasTray, None, None, doc="Indicates whether the device has a media tray.")
+    deviceCanEject = property(_getDeviceCanEject, None, None, doc="Indicates whether the device supports ejecting its media.")
+    refreshMediaDelay = property(_getRefreshMediaDelay, None, None, doc="Refresh media delay, in seconds.")
+    ejectDelay = property(_getEjectDelay, None, None, doc="Eject delay, in seconds.")
 
+    #################################################
+    # Methods related to device and media attributes
+    #################################################
 
-   #################################################
-   # Methods related to device and media attributes
-   #################################################
+    def isRewritable(self):
+        """Indicates whether the media is rewritable per configuration."""
+        return self._media.rewritable
 
-   def isRewritable(self):
-      """Indicates whether the media is rewritable per configuration."""
-      return self._media.rewritable
-
-   def retrieveCapacity(self, entireDisc=False):
-      """
+    def retrieveCapacity(self, entireDisc=False):
+        """
       Retrieves capacity for the current media in terms of a ``MediaCapacity``
       object.
 
@@ -505,21 +514,20 @@ class DvdWriter(object):
          ValueError: If there is a problem parsing the ``growisofs`` output
          IOError: If the media could not be read for some reason
       """
-      sectorsUsed = 0.0
-      if not entireDisc:
-         sectorsUsed = self._retrieveSectorsUsed()
-      sectorsAvailable = self._media.capacity - sectorsUsed  # both are in sectors
-      bytesUsed = convertSize(sectorsUsed, UNIT_SECTORS, UNIT_BYTES)
-      bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
-      return MediaCapacity(bytesUsed, bytesAvailable)
+        sectorsUsed = 0.0
+        if not entireDisc:
+            sectorsUsed = self._retrieveSectorsUsed()
+        sectorsAvailable = self._media.capacity - sectorsUsed  # both are in sectors
+        bytesUsed = convertSize(sectorsUsed, UNIT_SECTORS, UNIT_BYTES)
+        bytesAvailable = convertSize(sectorsAvailable, UNIT_SECTORS, UNIT_BYTES)
+        return MediaCapacity(bytesUsed, bytesAvailable)
 
+    #######################################################
+    # Methods used for working with the internal ISO image
+    #######################################################
 
-   #######################################################
-   # Methods used for working with the internal ISO image
-   #######################################################
-
-   def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
-      """
+    def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
+        """
       Initializes the writer's associated ISO image.
 
       This method initializes the ``image`` instance variable so that the caller
@@ -532,14 +540,14 @@ class DvdWriter(object):
          mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
 
       """
-      self._image = _ImageProperties()
-      self._image.newDisc = newDisc
-      self._image.tmpdir = encodePath(tmpdir)
-      self._image.mediaLabel = mediaLabel
-      self._image.entries = {} # mapping from path to graft point (if any)
+        self._image = _ImageProperties()
+        self._image.newDisc = newDisc
+        self._image.tmpdir = encodePath(tmpdir)
+        self._image.mediaLabel = mediaLabel
+        self._image.entries = {}  # mapping from path to graft point (if any)
 
-   def addImageEntry(self, path, graftPoint):
-      """
+    def addImageEntry(self, path, graftPoint):
+        """
       Adds a filepath entry to the writer's associated ISO image.
 
       The contents of the filepath -- but not the path itself -- will be added
@@ -555,26 +563,26 @@ class DvdWriter(object):
          ValueError: If initializeImage() was not previously called
          ValueError: If the path is not a valid file or directory
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      if not os.path.exists(path):
-         raise ValueError("Path [%s] does not exist." % path)
-      self._image.entries[path] = graftPoint
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        if not os.path.exists(path):
+            raise ValueError("Path [%s] does not exist." % path)
+        self._image.entries[path] = graftPoint
 
-   def setImageNewDisc(self, newDisc):
-      """
+    def setImageNewDisc(self, newDisc):
+        """
       Resets (overrides) the newDisc flag on the internal image.
       Args:
          newDisc: New disc flag to set
       Raises:
          ValueError: If initializeImage() was not previously called
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      self._image.newDisc = newDisc
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        self._image.newDisc = newDisc
 
-   def getEstimatedImageSize(self):
-      """
+    def getEstimatedImageSize(self):
+        """
       Gets the estimated size of the image associated with the writer.
 
       This is an estimate and is conservative.  The actual image could be as
@@ -587,17 +595,16 @@ class DvdWriter(object):
          IOError: If there is a problem calling ``mkisofs``
          ValueError: If initializeImage() was not previously called
       """
-      if self._image is None:
-         raise ValueError("Must call initializeImage() before using this method.")
-      return DvdWriter._getEstimatedImageSize(self._image.entries)
+        if self._image is None:
+            raise ValueError("Must call initializeImage() before using this method.")
+        return DvdWriter._getEstimatedImageSize(self._image.entries)
 
+    ######################################
+    # Methods which expose device actions
+    ######################################
 
-   ######################################
-   # Methods which expose device actions
-   ######################################
-
-   def openTray(self):
-      """
+    def openTray(self):
+        """
       Opens the device's tray and leaves it open.
 
       This only works if the device has a tray and supports ejecting its media.
@@ -623,35 +630,35 @@ class DvdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      if self._deviceHasTray and self._deviceCanEject:
-         command = resolveCommand(EJECT_COMMAND)
-         args = [self.device]
-         result = executeCommand(command, args)[0]
-         if result != 0:
-            logger.debug("Eject failed; attempting kludge of unlocking the tray before retrying.")
-            self.unlockTray()
+        if self._deviceHasTray and self._deviceCanEject:
+            command = resolveCommand(EJECT_COMMAND)
+            args = [self.device]
             result = executeCommand(command, args)[0]
             if result != 0:
-               raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
-            logger.debug("Kludge was apparently successful.")
-         if self.ejectDelay is not None:
-            logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
-            time.sleep(self.ejectDelay)
+                logger.debug("Eject failed; attempting kludge of unlocking the tray before retrying.")
+                self.unlockTray()
+                result = executeCommand(command, args)[0]
+                if result != 0:
+                    raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
+                logger.debug("Kludge was apparently successful.")
+            if self.ejectDelay is not None:
+                logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
+                time.sleep(self.ejectDelay)
 
-   def unlockTray(self):
-      """
+    def unlockTray(self):
+        """
       Unlocks the device's tray via 'eject -i off'.
       Raises:
          IOError: If there is an error talking to the device
       """
-      command = resolveCommand(EJECT_COMMAND)
-      args = ["-i", "off", self.device]
-      result = executeCommand(command, args)[0]
-      if result != 0:
-         raise IOError("Error (%d) executing eject command to unlock tray." % result)
+        command = resolveCommand(EJECT_COMMAND)
+        args = ["-i", "off", self.device]
+        result = executeCommand(command, args)[0]
+        if result != 0:
+            raise IOError("Error (%d) executing eject command to unlock tray." % result)
 
-   def closeTray(self):
-      """
+    def closeTray(self):
+        """
       Closes the device's tray.
 
       This only works if the device has a tray and supports ejecting its media.
@@ -663,15 +670,15 @@ class DvdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      if self._deviceHasTray and self._deviceCanEject:
-         command = resolveCommand(EJECT_COMMAND)
-         args = ["-t", self.device]
-         result = executeCommand(command, args)[0]
-         if result != 0:
-            raise IOError("Error (%d) executing eject command to close tray." % result)
+        if self._deviceHasTray and self._deviceCanEject:
+            command = resolveCommand(EJECT_COMMAND)
+            args = ["-t", self.device]
+            result = executeCommand(command, args)[0]
+            if result != 0:
+                raise IOError("Error (%d) executing eject command to close tray." % result)
 
-   def refreshMedia(self):
-      """
+    def refreshMedia(self):
+        """
       Opens and then immediately closes the device's tray, to refresh the
       device's idea of the media.
 
@@ -690,16 +697,16 @@ class DvdWriter(object):
       Raises:
          IOError: If there is an error talking to the device
       """
-      self.openTray()
-      self.closeTray()
-      self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
-      if self.refreshMediaDelay is not None:
-         logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
-         time.sleep(self.refreshMediaDelay)
-      logger.debug("Media refresh complete; hopefully media state is stable now.")
+        self.openTray()
+        self.closeTray()
+        self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
+        if self.refreshMediaDelay is not None:
+            logger.debug("Per configuration, sleeping %d seconds to stabilize media state.", self.refreshMediaDelay)
+            time.sleep(self.refreshMediaDelay)
+        logger.debug("Media refresh complete; hopefully media state is stable now.")
 
-   def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
-      """
+    def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
+        """
       Writes an ISO image to the media in the device.
 
       If ``newDisc`` is passed in as ``True``, we assume that the entire disc
@@ -730,31 +737,30 @@ class DvdWriter(object):
          IOError: If the media could not be written to for some reason
          ValueError: If no image is passed in and initializeImage() was not previously called
       """
-      if not writeMulti:
-         logger.warning("writeMulti value of [%s] ignored.", writeMulti)
-      if imagePath is None:
-         if self._image is None:
-            raise ValueError("Must call initializeImage() before using this method with no image path.")
-         size = self.getEstimatedImageSize()
-         logger.info("Image size will be %s (estimated).", displayBytes(size))
-         available = self.retrieveCapacity(entireDisc=self._image.newDisc).bytesAvailable
-         if size > available:
-            logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
-            raise IOError("Media does not contain enough capacity to store image.")
-         self._writeImage(self._image.newDisc, None, self._image.entries, self._image.mediaLabel)
-      else:
-         if not os.path.isabs(imagePath):
-            raise ValueError("Image path must be absolute.")
-         imagePath = encodePath(imagePath)
-         self._writeImage(newDisc, imagePath, None)
+        if not writeMulti:
+            logger.warning("writeMulti value of [%s] ignored.", writeMulti)
+        if imagePath is None:
+            if self._image is None:
+                raise ValueError("Must call initializeImage() before using this method with no image path.")
+            size = self.getEstimatedImageSize()
+            logger.info("Image size will be %s (estimated).", displayBytes(size))
+            available = self.retrieveCapacity(entireDisc=self._image.newDisc).bytesAvailable
+            if size > available:
+                logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
+                raise IOError("Media does not contain enough capacity to store image.")
+            self._writeImage(self._image.newDisc, None, self._image.entries, self._image.mediaLabel)
+        else:
+            if not os.path.isabs(imagePath):
+                raise ValueError("Image path must be absolute.")
+            imagePath = encodePath(imagePath)
+            self._writeImage(newDisc, imagePath, None)
 
+    ##################################################################
+    # Utility methods for dealing with growisofs and dvd+rw-mediainfo
+    ##################################################################
 
-   ##################################################################
-   # Utility methods for dealing with growisofs and dvd+rw-mediainfo
-   ##################################################################
-
-   def _writeImage(self, newDisc, imagePath, entries, mediaLabel=None):
-      """
+    def _writeImage(self, newDisc, imagePath, entries, mediaLabel=None):
+        """
       Writes an image to disc using either an entries list or an ISO image on
       disk.
 
@@ -769,17 +775,17 @@ class DvdWriter(object):
       Raises:
          IOError: If the media could not be written to for some reason
       """
-      command = resolveCommand(GROWISOFS_COMMAND)
-      args = DvdWriter._buildWriteArgs(newDisc, self.hardwareId, self._driveSpeed, imagePath, entries, mediaLabel, dryRun=False)
-      (result, output) = executeCommand(command, args, returnOutput=True)
-      if result != 0:
-         DvdWriter._searchForOverburn(output) # throws own exception if overburn condition is found
-         raise IOError("Error (%d) executing command to write disc." % result)
-      self.refreshMedia()
+        command = resolveCommand(GROWISOFS_COMMAND)
+        args = DvdWriter._buildWriteArgs(newDisc, self.hardwareId, self._driveSpeed, imagePath, entries, mediaLabel, dryRun=False)
+        (result, output) = executeCommand(command, args, returnOutput=True)
+        if result != 0:
+            DvdWriter._searchForOverburn(output)  # throws own exception if overburn condition is found
+            raise IOError("Error (%d) executing command to write disc." % result)
+        self.refreshMedia()
 
-   @staticmethod
-   def _getEstimatedImageSize(entries):
-      """
+    @staticmethod
+    def _getEstimatedImageSize(entries):
+        """
       Gets the estimated size of a set of image entries.
 
       This is implemented in terms of the ``IsoImage`` class.  The returned
@@ -799,17 +805,17 @@ class DvdWriter(object):
          ValueError: If any path in the dictionary does not exist
          IOError: If there is a problem calling ``mkisofs``
       """
-      fudgeFactor = convertSize(2500.0, UNIT_SECTORS, UNIT_BYTES)  # determined through experimentation
-      if len(list(entries.keys())) == 0:
-         raise ValueError("Must add at least one entry with addImageEntry().")
-      image = IsoImage()
-      for path in list(entries.keys()):
-         image.addEntry(path, entries[path], override=False, contentsOnly=True)
-      estimatedSize = image.getEstimatedSize() + fudgeFactor
-      return estimatedSize
+        fudgeFactor = convertSize(2500.0, UNIT_SECTORS, UNIT_BYTES)  # determined through experimentation
+        if len(list(entries.keys())) == 0:
+            raise ValueError("Must add at least one entry with addImageEntry().")
+        image = IsoImage()
+        for path in list(entries.keys()):
+            image.addEntry(path, entries[path], override=False, contentsOnly=True)
+        estimatedSize = image.getEstimatedSize() + fudgeFactor
+        return estimatedSize
 
-   def _retrieveSectorsUsed(self):
-      """
+    def _retrieveSectorsUsed(self):
+        """
       Retrieves the number of sectors used on the current media.
 
       This is a little ugly.  We need to call growisofs in "dry-run" mode and
@@ -823,28 +829,29 @@ class DvdWriter(object):
       Returns:
           Number of sectors used on the media
       """
-      tempdir = tempfile.mkdtemp()
-      try:
-         entries = {tempdir: None}
-         args = DvdWriter._buildWriteArgs(False, self.hardwareId, self.driveSpeed, None, entries, None, dryRun=True)
-         command = resolveCommand(GROWISOFS_COMMAND)
-         (result, output) = executeCommand(command, args, returnOutput=True)
-         if result != 0:
-            logger.debug("Error (%d) calling growisofs to read sectors used.", result)
-            logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
-            return 0.0
-         sectorsUsed = DvdWriter._parseSectorsUsed(output)
-         logger.debug("Determined sectors used as %s", sectorsUsed)
-         return sectorsUsed
-      finally:
-         if os.path.exists(tempdir):
-            try:
-               os.rmdir(tempdir)
-            except: pass
+        tempdir = tempfile.mkdtemp()
+        try:
+            entries = {tempdir: None}
+            args = DvdWriter._buildWriteArgs(False, self.hardwareId, self.driveSpeed, None, entries, None, dryRun=True)
+            command = resolveCommand(GROWISOFS_COMMAND)
+            (result, output) = executeCommand(command, args, returnOutput=True)
+            if result != 0:
+                logger.debug("Error (%d) calling growisofs to read sectors used.", result)
+                logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
+                return 0.0
+            sectorsUsed = DvdWriter._parseSectorsUsed(output)
+            logger.debug("Determined sectors used as %s", sectorsUsed)
+            return sectorsUsed
+        finally:
+            if os.path.exists(tempdir):
+                try:
+                    os.rmdir(tempdir)
+                except:
+                    pass
 
-   @staticmethod
-   def _parseSectorsUsed(output):
-      """
+    @staticmethod
+    def _parseSectorsUsed(output):
+        """
       Parse sectors used information out of ``growisofs`` output.
 
       The first line of a growisofs run looks something like this::
@@ -864,21 +871,21 @@ class DvdWriter(object):
       Raises:
          ValueError: If the output cannot be parsed properly
       """
-      if output is not None:
-         pattern = re.compile(r"(^)(.*)(seek=)(.*)('$)")
-         for line in output:
-            match = pattern.search(line)
-            if match is not None:
-               try:
-                  return float(match.group(4).strip()) * 16.0
-               except ValueError:
-                  raise ValueError("Unable to parse sectors used out of growisofs output.")
-      logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
-      return 0.0
+        if output is not None:
+            pattern = re.compile(r"(^)(.*)(seek=)(.*)('$)")
+            for line in output:
+                match = pattern.search(line)
+                if match is not None:
+                    try:
+                        return float(match.group(4).strip()) * 16.0
+                    except ValueError:
+                        raise ValueError("Unable to parse sectors used out of growisofs output.")
+        logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
+        return 0.0
 
-   @staticmethod
-   def _searchForOverburn(output):
-      """
+    @staticmethod
+    def _searchForOverburn(output):
+        """
       Search for an "overburn" error message in ``growisofs`` output.
 
       The ``growisofs`` command returns a non-zero exit code and puts a message
@@ -900,23 +907,23 @@ class DvdWriter(object):
       Raises:
          IOError: If an overburn condition is found
       """
-      if output is None:
-         return
-      pattern = re.compile(r"(^)(:-[(])(\s*.*:\s*)(.* )(blocks are free, )(.* )(to be written!)")
-      for line in output:
-         match = pattern.search(line)
-         if match is not None:
-            try:
-               available = convertSize(float(match.group(4).strip()), UNIT_SECTORS, UNIT_BYTES)
-               size = convertSize(float(match.group(6).strip()), UNIT_SECTORS, UNIT_BYTES)
-               logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
-            except ValueError:
-               logger.error("Image does not fit in available capacity (no useful capacity info available).")
-            raise IOError("Media does not contain enough capacity to store image.")
+        if output is None:
+            return
+        pattern = re.compile(r"(^)(:-[(])(\s*.*:\s*)(.* )(blocks are free, )(.* )(to be written!)")
+        for line in output:
+            match = pattern.search(line)
+            if match is not None:
+                try:
+                    available = convertSize(float(match.group(4).strip()), UNIT_SECTORS, UNIT_BYTES)
+                    size = convertSize(float(match.group(6).strip()), UNIT_SECTORS, UNIT_BYTES)
+                    logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
+                except ValueError:
+                    logger.error("Image does not fit in available capacity (no useful capacity info available).")
+                raise IOError("Media does not contain enough capacity to store image.")
 
-   @staticmethod
-   def _buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel=None, dryRun=False):
-      """
+    @staticmethod
+    def _buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel=None, dryRun=False):
+        """
       Builds a list of arguments to be passed to a ``growisofs`` command.
 
       The arguments will either cause ``growisofs`` to write the indicated image
@@ -953,34 +960,33 @@ class DvdWriter(object):
       Raises:
          ValueError: If caller does not pass one or the other of imagePath or entries
       """
-      args = []
-      if (imagePath is None and entries is None) or (imagePath is not None and entries is not None):
-         raise ValueError("Must use either imagePath or entries.")
-      args.append("-use-the-force-luke=tty") # tell growisofs to let us run from cron
-      if dryRun:
-         args.append("-dry-run")
-      if driveSpeed is not None:
-         args.append("-speed=%d" % driveSpeed)
-      if newDisc:
-         args.append("-Z")
-      else:
-         args.append("-M")
-      if imagePath is not None:
-         args.append("%s=%s" % (hardwareId, imagePath))
-      else:
-         args.append(hardwareId)
-         if mediaLabel is not None:
-            args.append("-V")
-            args.append(mediaLabel)
-         args.append("-r")    # Rock Ridge extensions with sane ownership and permissions
-         args.append("-graft-points")
-         keys = list(entries.keys())
-         keys.sort() # just so we get consistent results
-         for key in keys:
-            # Same syntax as when calling mkisofs in IsoImage
-            if entries[key] is None:
-               args.append(key)
-            else:
-               args.append("%s/=%s" % (entries[key].strip("/"), key))
-      return args
-
+        args = []
+        if (imagePath is None and entries is None) or (imagePath is not None and entries is not None):
+            raise ValueError("Must use either imagePath or entries.")
+        args.append("-use-the-force-luke=tty")  # tell growisofs to let us run from cron
+        if dryRun:
+            args.append("-dry-run")
+        if driveSpeed is not None:
+            args.append("-speed=%d" % driveSpeed)
+        if newDisc:
+            args.append("-Z")
+        else:
+            args.append("-M")
+        if imagePath is not None:
+            args.append("%s=%s" % (hardwareId, imagePath))
+        else:
+            args.append(hardwareId)
+            if mediaLabel is not None:
+                args.append("-V")
+                args.append(mediaLabel)
+            args.append("-r")  # Rock Ridge extensions with sane ownership and permissions
+            args.append("-graft-points")
+            keys = list(entries.keys())
+            keys.sort()  # just so we get consistent results
+            for key in keys:
+                # Same syntax as when calling mkisofs in IsoImage
+                if entries[key] is None:
+                    args.append(key)
+                else:
+                    args.append("%s/=%s" % (entries[key].strip("/"), key))
+        return args

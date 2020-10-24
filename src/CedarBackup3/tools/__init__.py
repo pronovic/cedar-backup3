@@ -47,5 +47,4 @@ the util/ directory.
 import CedarBackup3.tools.span
 import CedarBackup3.tools.amazons3
 
-__all__ = ['span', 'amazons3']
-
+__all__ = ["span", "amazons3"]

@@ -45,13 +45,11 @@ Implements action-related utilities
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import time
 import tempfile
 import logging
 
-# Cedar Backup modules
 from CedarBackup3.filesystem import FilesystemList
 from CedarBackup3.util import changeOwnership
 from CedarBackup3.util import deviceMounted
@@ -69,7 +67,7 @@ from CedarBackup3.actions.constants import INDICATOR_PATTERN
 ########################################################################
 
 logger = logging.getLogger("CedarBackup3.log.actions.util")
-MEDIA_LABEL_PREFIX   = "CEDAR BACKUP"
+MEDIA_LABEL_PREFIX = "CEDAR BACKUP"
 
 
 ########################################################################
@@ -80,8 +78,9 @@ MEDIA_LABEL_PREFIX   = "CEDAR BACKUP"
 # findDailyDirs() function
 ###########################
 
+
 def findDailyDirs(stagingDir, indicatorFile):
-   """
+    """
    Returns a list of all daily staging directories that do not contain
    the indicated indicator file.
 
@@ -91,36 +90,37 @@ def findDailyDirs(stagingDir, indicatorFile):
    Returns:
        List of absolute paths to daily staging directories
    """
-   results = FilesystemList()
-   yearDirs = FilesystemList()
-   yearDirs.excludeFiles = True
-   yearDirs.excludeLinks = True
-   yearDirs.addDirContents(path=stagingDir, recursive=False, addSelf=False)
-   for yearDir in yearDirs:
-      monthDirs = FilesystemList()
-      monthDirs.excludeFiles = True
-      monthDirs.excludeLinks = True
-      monthDirs.addDirContents(path=yearDir, recursive=False, addSelf=False)
-      for monthDir in monthDirs:
-         dailyDirs = FilesystemList()
-         dailyDirs.excludeFiles = True
-         dailyDirs.excludeLinks = True
-         dailyDirs.addDirContents(path=monthDir, recursive=False, addSelf=False)
-         for dailyDir in dailyDirs:
-            if os.path.exists(os.path.join(dailyDir, indicatorFile)):
-               logger.debug("Skipping directory [%s]; contains %s.", dailyDir, indicatorFile)
-            else:
-               logger.debug("Adding [%s] to list of daily directories.", dailyDir)
-               results.append(dailyDir) # just put it in the list, no fancy operations
-   return results
+    results = FilesystemList()
+    yearDirs = FilesystemList()
+    yearDirs.excludeFiles = True
+    yearDirs.excludeLinks = True
+    yearDirs.addDirContents(path=stagingDir, recursive=False, addSelf=False)
+    for yearDir in yearDirs:
+        monthDirs = FilesystemList()
+        monthDirs.excludeFiles = True
+        monthDirs.excludeLinks = True
+        monthDirs.addDirContents(path=yearDir, recursive=False, addSelf=False)
+        for monthDir in monthDirs:
+            dailyDirs = FilesystemList()
+            dailyDirs.excludeFiles = True
+            dailyDirs.excludeLinks = True
+            dailyDirs.addDirContents(path=monthDir, recursive=False, addSelf=False)
+            for dailyDir in dailyDirs:
+                if os.path.exists(os.path.join(dailyDir, indicatorFile)):
+                    logger.debug("Skipping directory [%s]; contains %s.", dailyDir, indicatorFile)
+                else:
+                    logger.debug("Adding [%s] to list of daily directories.", dailyDir)
+                    results.append(dailyDir)  # just put it in the list, no fancy operations
+    return results
 
 
 ###########################
 # createWriter() function
 ###########################
 
+
 def createWriter(config):
-   """
+    """
    Creates a writer object based on current configuration.
 
    This function creates and returns a writer based on configuration.  This is
@@ -146,30 +146,31 @@ def createWriter(config):
       ValueError: If there is a problem getting the writer
       IOError: If there is a problem creating the writer object
    """
-   devicePath = config.store.devicePath
-   deviceScsiId = config.store.deviceScsiId
-   driveSpeed = config.store.driveSpeed
-   noEject = config.store.noEject
-   refreshMediaDelay = config.store.refreshMediaDelay
-   ejectDelay = config.store.ejectDelay
-   deviceType = _getDeviceType(config)
-   mediaType = _getMediaType(config)
-   if deviceMounted(devicePath):
-      raise IOError("Device [%s] is currently mounted." % (devicePath))
-   if deviceType == "cdwriter":
-      return CdWriter(devicePath, deviceScsiId, driveSpeed, mediaType, noEject, refreshMediaDelay, ejectDelay)
-   elif deviceType == "dvdwriter":
-      return DvdWriter(devicePath, deviceScsiId, driveSpeed, mediaType, noEject, refreshMediaDelay, ejectDelay)
-   else:
-      raise ValueError("Device type [%s] is invalid." % deviceType)
+    devicePath = config.store.devicePath
+    deviceScsiId = config.store.deviceScsiId
+    driveSpeed = config.store.driveSpeed
+    noEject = config.store.noEject
+    refreshMediaDelay = config.store.refreshMediaDelay
+    ejectDelay = config.store.ejectDelay
+    deviceType = _getDeviceType(config)
+    mediaType = _getMediaType(config)
+    if deviceMounted(devicePath):
+        raise IOError("Device [%s] is currently mounted." % (devicePath))
+    if deviceType == "cdwriter":
+        return CdWriter(devicePath, deviceScsiId, driveSpeed, mediaType, noEject, refreshMediaDelay, ejectDelay)
+    elif deviceType == "dvdwriter":
+        return DvdWriter(devicePath, deviceScsiId, driveSpeed, mediaType, noEject, refreshMediaDelay, ejectDelay)
+    else:
+        raise ValueError("Device type [%s] is invalid." % deviceType)
 
 
 ################################
 # writeIndicatorFile() function
 ################################
 
+
 def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
-   """
+    """
    Writes an indicator file into a target directory.
    Args:
       targetDir: Target directory in which to write indicator
@@ -179,23 +180,24 @@ def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
    Raises:
       IOException: If there is a problem writing the indicator file
    """
-   filename = os.path.join(targetDir, indicatorFile)
-   logger.debug("Writing indicator file [%s].", filename)
-   try:
-      with open(filename, "w") as f:
-         f.write("")
-      changeOwnership(filename, backupUser, backupGroup)
-   except Exception as e:
-      logger.error("Error writing [%s]: %s", filename, e)
-      raise e
+    filename = os.path.join(targetDir, indicatorFile)
+    logger.debug("Writing indicator file [%s].", filename)
+    try:
+        with open(filename, "w") as f:
+            f.write("")
+        changeOwnership(filename, backupUser, backupGroup)
+    except Exception as e:
+        logger.error("Error writing [%s]: %s", filename, e)
+        raise e
 
 
 ############################
 # getBackupFiles() function
 ############################
 
+
 def getBackupFiles(targetDir):
-   """
+    """
    Gets a list of backup files in a target directory.
 
    Files that match INDICATOR_PATTERN (i.e. ``"cback.store"``, ``"cback.stage"``,
@@ -210,22 +212,23 @@ def getBackupFiles(targetDir):
    Raises:
       ValueError: If the target directory does not exist
    """
-   if not os.path.isdir(targetDir):
-      raise ValueError("Target directory [%s] is not a directory or does not exist." % targetDir)
-   fileList = FilesystemList()
-   fileList.excludeDirs = True
-   fileList.excludeLinks = True
-   fileList.excludeBasenamePatterns = INDICATOR_PATTERN
-   fileList.addDirContents(targetDir)
-   return fileList
+    if not os.path.isdir(targetDir):
+        raise ValueError("Target directory [%s] is not a directory or does not exist." % targetDir)
+    fileList = FilesystemList()
+    fileList.excludeDirs = True
+    fileList.excludeLinks = True
+    fileList.excludeBasenamePatterns = INDICATOR_PATTERN
+    fileList.addDirContents(targetDir)
+    return fileList
 
 
 ####################
 # checkMediaState()
 ####################
 
+
 def checkMediaState(storeConfig):
-   """
+    """
    Checks state of the media in the backup device to confirm whether it has
    been initialized for use with Cedar Backup.
 
@@ -243,25 +246,26 @@ def checkMediaState(storeConfig):
    Raises:
       ValueError: If media is not initialized
    """
-   mediaLabel = readMediaLabel(storeConfig.devicePath)
-   if storeConfig.mediaType in REWRITABLE_MEDIA_TYPES:
-      if mediaLabel is None:
-         raise ValueError("Media has not been initialized: no media label available")
-      elif not mediaLabel.startswith(MEDIA_LABEL_PREFIX):
-         raise ValueError("Media has not been initialized: unrecognized media label [%s]" % mediaLabel)
-   else:
-      if mediaLabel is None:
-         logger.info("Media has no media label; assuming OK since media is not rewritable.")
-      elif not mediaLabel.startswith(MEDIA_LABEL_PREFIX):
-         raise ValueError("Media has not been initialized: unrecognized media label [%s]" % mediaLabel)
+    mediaLabel = readMediaLabel(storeConfig.devicePath)
+    if storeConfig.mediaType in REWRITABLE_MEDIA_TYPES:
+        if mediaLabel is None:
+            raise ValueError("Media has not been initialized: no media label available")
+        elif not mediaLabel.startswith(MEDIA_LABEL_PREFIX):
+            raise ValueError("Media has not been initialized: unrecognized media label [%s]" % mediaLabel)
+    else:
+        if mediaLabel is None:
+            logger.info("Media has no media label; assuming OK since media is not rewritable.")
+        elif not mediaLabel.startswith(MEDIA_LABEL_PREFIX):
+            raise ValueError("Media has not been initialized: unrecognized media label [%s]" % mediaLabel)
 
 
 #########################
 # initializeMediaState()
 #########################
 
+
 def initializeMediaState(config):
-   """
+    """
    Initializes state of the media in the backup device so Cedar Backup can
    recognize it.
 
@@ -280,35 +284,37 @@ def initializeMediaState(config):
       ValueError: If media could not be initialized
       ValueError: If the configured media type is not rewritable
    """
-   if not config.store.mediaType in REWRITABLE_MEDIA_TYPES:
-      raise ValueError("Only rewritable media types can be initialized.")
-   mediaLabel = buildMediaLabel()
-   writer = createWriter(config)
-   writer.refreshMedia()
-   writer.initializeImage(True, config.options.workingDir, mediaLabel) # always create a new disc
-   tempdir = tempfile.mkdtemp(dir=config.options.workingDir)
-   try:
-      writer.addImageEntry(tempdir, "CedarBackup")
-      writer.writeImage()
-   finally:
-      if os.path.exists(tempdir):
-         try:
-            os.rmdir(tempdir)
-         except: pass
+    if not config.store.mediaType in REWRITABLE_MEDIA_TYPES:
+        raise ValueError("Only rewritable media types can be initialized.")
+    mediaLabel = buildMediaLabel()
+    writer = createWriter(config)
+    writer.refreshMedia()
+    writer.initializeImage(True, config.options.workingDir, mediaLabel)  # always create a new disc
+    tempdir = tempfile.mkdtemp(dir=config.options.workingDir)
+    try:
+        writer.addImageEntry(tempdir, "CedarBackup")
+        writer.writeImage()
+    finally:
+        if os.path.exists(tempdir):
+            try:
+                os.rmdir(tempdir)
+            except:
+                pass
 
 
 ####################
 # buildMediaLabel()
 ####################
 
+
 def buildMediaLabel():
-   """
+    """
    Builds a media label to be used on Cedar Backup media.
    Returns:
        Media label as a string
    """
-   currentDate = time.strftime("%d-%b-%Y").upper()
-   return "%s %s" % (MEDIA_LABEL_PREFIX, currentDate)
+    currentDate = time.strftime("%d-%b-%Y").upper()
+    return "%s %s" % (MEDIA_LABEL_PREFIX, currentDate)
 
 
 ########################################################################
@@ -319,8 +325,9 @@ def buildMediaLabel():
 # _getDeviceType() function
 ############################
 
+
 def _getDeviceType(config):
-   """
+    """
    Gets the device type that should be used for storing.
 
    Use the configured device type if not ``None``, otherwise use
@@ -331,20 +338,21 @@ def _getDeviceType(config):
    Returns:
        Device type to be used
    """
-   if config.store.deviceType is None:
-      deviceType = DEFAULT_DEVICE_TYPE
-   else:
-      deviceType = config.store.deviceType
-   logger.debug("Device type is [%s]", deviceType)
-   return deviceType
+    if config.store.deviceType is None:
+        deviceType = DEFAULT_DEVICE_TYPE
+    else:
+        deviceType = config.store.deviceType
+    logger.debug("Device type is [%s]", deviceType)
+    return deviceType
 
 
 ###########################
 # _getMediaType() function
 ###########################
 
+
 def _getMediaType(config):
-   """
+    """
    Gets the media type that should be used for storing.
 
    Use the configured media type if not ``None``, otherwise use
@@ -368,28 +376,27 @@ def _getMediaType(config):
    Raises:
       ValueError: If the media type is not valid
    """
-   if config.store.mediaType is None:
-      mediaType = DEFAULT_MEDIA_TYPE
-   else:
-      mediaType = config.store.mediaType
-   if mediaType == "cdr-74":
-      logger.debug("Media type is MEDIA_CDR_74.")
-      return MEDIA_CDR_74
-   elif mediaType == "cdrw-74":
-      logger.debug("Media type is MEDIA_CDRW_74.")
-      return MEDIA_CDRW_74
-   elif mediaType == "cdr-80":
-      logger.debug("Media type is MEDIA_CDR_80.")
-      return MEDIA_CDR_80
-   elif mediaType == "cdrw-80":
-      logger.debug("Media type is MEDIA_CDRW_80.")
-      return MEDIA_CDRW_80
-   elif mediaType == "dvd+r":
-      logger.debug("Media type is MEDIA_DVDPLUSR.")
-      return MEDIA_DVDPLUSR
-   elif mediaType == "dvd+rw":
-      logger.debug("Media type is MEDIA_DVDPLUSRW.")
-      return MEDIA_DVDPLUSRW
-   else:
-      raise ValueError("Media type [%s] is not valid." % mediaType)
-
+    if config.store.mediaType is None:
+        mediaType = DEFAULT_MEDIA_TYPE
+    else:
+        mediaType = config.store.mediaType
+    if mediaType == "cdr-74":
+        logger.debug("Media type is MEDIA_CDR_74.")
+        return MEDIA_CDR_74
+    elif mediaType == "cdrw-74":
+        logger.debug("Media type is MEDIA_CDRW_74.")
+        return MEDIA_CDRW_74
+    elif mediaType == "cdr-80":
+        logger.debug("Media type is MEDIA_CDR_80.")
+        return MEDIA_CDR_80
+    elif mediaType == "cdrw-80":
+        logger.debug("Media type is MEDIA_CDRW_80.")
+        return MEDIA_CDRW_80
+    elif mediaType == "dvd+r":
+        logger.debug("Media type is MEDIA_DVDPLUSR.")
+        return MEDIA_DVDPLUSR
+    elif mediaType == "dvd+rw":
+        logger.debug("Media type is MEDIA_DVDPLUSRW.")
+        return MEDIA_DVDPLUSRW
+    else:
+        raise ValueError("Media type [%s] is not valid." % mediaType)

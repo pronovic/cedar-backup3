@@ -46,14 +46,12 @@ Implements the standard 'store' action.
 # Imported modules
 ########################################################################
 
-# System modules
 import sys
 import os
 import logging
 import datetime
 import tempfile
 
-# Cedar Backup modules
 from CedarBackup3.filesystem import compareContents
 from CedarBackup3.util import isStartOfWeek
 from CedarBackup3.util import mount, unmount, displayBytes
@@ -78,7 +76,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.store")
 
 # pylint: disable=W0613
 def executeStore(configPath, options, config):
-   """
+    """
    Executes the store backup action.
 
    *Note:* The rebuild action and the store action are very similar.  The
@@ -97,36 +95,37 @@ def executeStore(configPath, options, config):
       ValueError: Under many generic error conditions
       IOError: If there are problems reading or writing files
    """
-   logger.debug("Executing the 'store' action.")
-   if sys.platform == "darwin":
-      logger.warning("Warning: the store action is not fully supported on Mac OS X.")
-      logger.warning("See the Cedar Backup software manual for further information.")
-   if config.options is None or config.store is None:
-      raise ValueError("Store configuration is not properly filled in.")
-   if config.store.checkMedia:
-      checkMediaState(config.store)  # raises exception if media is not initialized
-   rebuildMedia = options.full
-   logger.debug("Rebuild media flag [%s]", rebuildMedia)
-   todayIsStart = isStartOfWeek(config.options.startingDay)
-   stagingDirs = _findCorrectDailyDir(options, config)
-   writeImageBlankSafe(config, rebuildMedia, todayIsStart, config.store.blankBehavior, stagingDirs)
-   if config.store.checkData:
-      if sys.platform == "darwin":
-         logger.warning("Warning: consistency check cannot be run successfully on Mac OS X.")
-         logger.warning("See the Cedar Backup software manual for further information.")
-      else:
-         logger.debug("Running consistency check of media.")
-         consistencyCheck(config, stagingDirs)
-   writeStoreIndicator(config, stagingDirs)
-   logger.info("Executed the 'store' action successfully.")
+    logger.debug("Executing the 'store' action.")
+    if sys.platform == "darwin":
+        logger.warning("Warning: the store action is not fully supported on Mac OS X.")
+        logger.warning("See the Cedar Backup software manual for further information.")
+    if config.options is None or config.store is None:
+        raise ValueError("Store configuration is not properly filled in.")
+    if config.store.checkMedia:
+        checkMediaState(config.store)  # raises exception if media is not initialized
+    rebuildMedia = options.full
+    logger.debug("Rebuild media flag [%s]", rebuildMedia)
+    todayIsStart = isStartOfWeek(config.options.startingDay)
+    stagingDirs = _findCorrectDailyDir(options, config)
+    writeImageBlankSafe(config, rebuildMedia, todayIsStart, config.store.blankBehavior, stagingDirs)
+    if config.store.checkData:
+        if sys.platform == "darwin":
+            logger.warning("Warning: consistency check cannot be run successfully on Mac OS X.")
+            logger.warning("See the Cedar Backup software manual for further information.")
+        else:
+            logger.debug("Running consistency check of media.")
+            consistencyCheck(config, stagingDirs)
+    writeStoreIndicator(config, stagingDirs)
+    logger.info("Executed the 'store' action successfully.")
 
 
 ########################
 # writeImage() function
 ########################
 
+
 def writeImage(config, newDisc, stagingDirs):
-   """
+    """
    Builds and writes an ISO image containing the indicated stage directories.
 
    The generated image will contain each of the staging directories listed in
@@ -146,15 +145,16 @@ def writeImage(config, newDisc, stagingDirs):
       ValueError: Under many generic error conditions
       IOError: If there is a problem writing the image to disc
    """
-   writeImageBlankSafe(config, newDisc, newDisc, None, stagingDirs)
+    writeImageBlankSafe(config, newDisc, newDisc, None, stagingDirs)
 
 
 #################################
 # writeImageBlankSafe() function
 #################################
 
+
 def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagingDirs):
-   """
+    """
    Builds and writes an ISO image containing the indicated stage directories.
 
    The generated image will contain each of the staging directories listed in
@@ -199,19 +199,20 @@ def writeImageBlankSafe(config, rebuildMedia, todayIsStart, blankBehavior, stagi
       ValueError: Under many generic error conditions
       IOError: If there is a problem writing the image to disc
    """
-   mediaLabel = buildMediaLabel()
-   writer = createWriter(config)
-   writer.initializeImage(True, config.options.workingDir, mediaLabel)  # default value for newDisc
-   for stageDir in list(stagingDirs.keys()):
-      logger.debug("Adding stage directory [%s].", stageDir)
-      dateSuffix = stagingDirs[stageDir]
-      writer.addImageEntry(stageDir, dateSuffix)
-   newDisc = _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior)
-   writer.setImageNewDisc(newDisc)
-   writer.writeImage()
+    mediaLabel = buildMediaLabel()
+    writer = createWriter(config)
+    writer.initializeImage(True, config.options.workingDir, mediaLabel)  # default value for newDisc
+    for stageDir in list(stagingDirs.keys()):
+        logger.debug("Adding stage directory [%s].", stageDir)
+        dateSuffix = stagingDirs[stageDir]
+        writer.addImageEntry(stageDir, dateSuffix)
+    newDisc = _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior)
+    writer.setImageNewDisc(newDisc)
+    writer.writeImage()
+
 
 def _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior):
-   """
+    """
    Gets a value for the newDisc flag based on blanking factor rules.
 
    The blanking factor rules are described above by :any:`writeImageBlankSafe`.
@@ -225,43 +226,44 @@ def _getNewDisc(writer, rebuildMedia, todayIsStart, blankBehavior):
    Returns:
        newDisc flag to be set on writer
    """
-   newDisc = False
-   if rebuildMedia:
-      newDisc = True
-      logger.debug("Setting new disc flag based on rebuildMedia flag.")
-   else:
-      if blankBehavior is None:
-         logger.debug("Default media blanking behavior is in effect.")
-         if todayIsStart:
-            newDisc = True
-            logger.debug("Setting new disc flag based on todayIsStart.")
-      else:
-         # note: validation says we can assume that behavior is fully filled in if it exists at all
-         logger.debug("Optimized media blanking behavior is in effect based on configuration.")
-         if blankBehavior.blankMode == "daily" or (blankBehavior.blankMode == "weekly" and todayIsStart):
-            logger.debug("New disc flag will be set based on blank factor calculation.")
-            blankFactor = float(blankBehavior.blankFactor)
-            logger.debug("Configured blanking factor: %.2f", blankFactor)
-            available = writer.retrieveCapacity().bytesAvailable
-            logger.debug("Bytes available: %s", displayBytes(available))
-            required = writer.getEstimatedImageSize()
-            logger.debug("Bytes required: %s", displayBytes(required))
-            ratio = available / (1.0 + required)
-            logger.debug("Calculated ratio: %.2f", ratio)
-            newDisc = (ratio <= blankFactor)
-            logger.debug("%.2f <= %.2f ? %s", ratio, blankFactor, newDisc)
-         else:
-            logger.debug("No blank factor calculation is required based on configuration.")
-   logger.debug("New disc flag [%s].", newDisc)
-   return newDisc
+    newDisc = False
+    if rebuildMedia:
+        newDisc = True
+        logger.debug("Setting new disc flag based on rebuildMedia flag.")
+    else:
+        if blankBehavior is None:
+            logger.debug("Default media blanking behavior is in effect.")
+            if todayIsStart:
+                newDisc = True
+                logger.debug("Setting new disc flag based on todayIsStart.")
+        else:
+            # note: validation says we can assume that behavior is fully filled in if it exists at all
+            logger.debug("Optimized media blanking behavior is in effect based on configuration.")
+            if blankBehavior.blankMode == "daily" or (blankBehavior.blankMode == "weekly" and todayIsStart):
+                logger.debug("New disc flag will be set based on blank factor calculation.")
+                blankFactor = float(blankBehavior.blankFactor)
+                logger.debug("Configured blanking factor: %.2f", blankFactor)
+                available = writer.retrieveCapacity().bytesAvailable
+                logger.debug("Bytes available: %s", displayBytes(available))
+                required = writer.getEstimatedImageSize()
+                logger.debug("Bytes required: %s", displayBytes(required))
+                ratio = available / (1.0 + required)
+                logger.debug("Calculated ratio: %.2f", ratio)
+                newDisc = ratio <= blankFactor
+                logger.debug("%.2f <= %.2f ? %s", ratio, blankFactor, newDisc)
+            else:
+                logger.debug("No blank factor calculation is required based on configuration.")
+    logger.debug("New disc flag [%s].", newDisc)
+    return newDisc
 
 
 #################################
 # writeStoreIndicator() function
 #################################
 
+
 def writeStoreIndicator(config, stagingDirs):
-   """
+    """
    Writes a store indicator file into staging directories.
 
    The store indicator is written into each of the staging directories when
@@ -271,18 +273,17 @@ def writeStoreIndicator(config, stagingDirs):
       config: Config object
       stagingDirs: Dictionary mapping directory path to date suffix
    """
-   for stagingDir in list(stagingDirs.keys()):
-      writeIndicatorFile(stagingDir, STORE_INDICATOR,
-                         config.options.backupUser,
-                         config.options.backupGroup)
+    for stagingDir in list(stagingDirs.keys()):
+        writeIndicatorFile(stagingDir, STORE_INDICATOR, config.options.backupUser, config.options.backupGroup)
 
 
 ##############################
 # consistencyCheck() function
 ##############################
 
+
 def consistencyCheck(config, stagingDirs):
-   """
+    """
    Runs a consistency check against media in the backup device.
 
    It seems that sometimes, it's possible to create a corrupted multisession
@@ -309,17 +310,17 @@ def consistencyCheck(config, stagingDirs):
       ValueError: If the two directories are not equivalent
       IOError: If there is a problem working with the media
    """
-   logger.debug("Running consistency check.")
-   mountPoint = tempfile.mkdtemp(dir=config.options.workingDir)
-   try:
-      mount(config.store.devicePath, mountPoint, "iso9660")
-      for stagingDir in list(stagingDirs.keys()):
-         discDir = os.path.join(mountPoint, stagingDirs[stagingDir])
-         logger.debug("Checking [%s] vs. [%s].", stagingDir, discDir)
-         compareContents(stagingDir, discDir, verbose=True)
-         logger.info("Consistency check completed for [%s].  No problems found.", stagingDir)
-   finally:
-      unmount(mountPoint, True, 5, 1)  # try 5 times, and remove mount point when done
+    logger.debug("Running consistency check.")
+    mountPoint = tempfile.mkdtemp(dir=config.options.workingDir)
+    try:
+        mount(config.store.devicePath, mountPoint, "iso9660")
+        for stagingDir in list(stagingDirs.keys()):
+            discDir = os.path.join(mountPoint, stagingDirs[stagingDir])
+            logger.debug("Checking [%s] vs. [%s].", stagingDir, discDir)
+            compareContents(stagingDir, discDir, verbose=True)
+            logger.info("Consistency check completed for [%s].  No problems found.", stagingDir)
+    finally:
+        unmount(mountPoint, True, 5, 1)  # try 5 times, and remove mount point when done
 
 
 ########################################################################
@@ -330,8 +331,9 @@ def consistencyCheck(config, stagingDirs):
 # _findCorrectDailyDir()
 #########################
 
+
 def _findCorrectDailyDir(options, config):
-   """
+    """
    Finds the correct daily staging directory to be written to disk.
 
    In Cedar Backup v1.0, we assumed that the correct staging directory matched
@@ -367,40 +369,39 @@ def _findCorrectDailyDir(options, config):
    Raises:
       IOError: If the staging directory cannot be found
    """
-   oneDay = datetime.timedelta(days=1)
-   today = datetime.date.today()
-   yesterday = today - oneDay
-   tomorrow = today + oneDay
-   todayDate = today.strftime(DIR_TIME_FORMAT)
-   yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
-   tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
-   todayPath = os.path.join(config.stage.targetDir, todayDate)
-   yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
-   tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
-   todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
-   yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
-   tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
-   todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
-   yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
-   tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
-   if options.full:
-      if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
-         logger.info("Store process will use current day's stage directory [%s]", todayPath)
-         return {todayPath:todayDate}
-      raise IOError("Unable to find staging directory to store (only tried today due to full option).")
-   else:
-      if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
-         logger.info("Store process will use current day's stage directory [%s]", todayPath)
-         return {todayPath:todayDate}
-      elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
-         logger.info("Store process will use previous day's stage directory [%s]", yesterdayPath)
-         if config.store.warnMidnite:
-            logger.warning("Warning: store process crossed midnite boundary to find data.")
-         return {yesterdayPath:yesterdayDate}
-      elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
-         logger.info("Store process will use next day's stage directory [%s]", tomorrowPath)
-         if config.store.warnMidnite:
-            logger.warning("Warning: store process crossed midnite boundary to find data.")
-         return {tomorrowPath:tomorrowDate}
-      raise IOError("Unable to find unused staging directory to store (tried today, yesterday, tomorrow).")
-
+    oneDay = datetime.timedelta(days=1)
+    today = datetime.date.today()
+    yesterday = today - oneDay
+    tomorrow = today + oneDay
+    todayDate = today.strftime(DIR_TIME_FORMAT)
+    yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
+    tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
+    todayPath = os.path.join(config.stage.targetDir, todayDate)
+    yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
+    tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
+    todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
+    yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
+    tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
+    todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
+    yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
+    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
+    if options.full:
+        if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
+            logger.info("Store process will use current day's stage directory [%s]", todayPath)
+            return {todayPath: todayDate}
+        raise IOError("Unable to find staging directory to store (only tried today due to full option).")
+    else:
+        if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
+            logger.info("Store process will use current day's stage directory [%s]", todayPath)
+            return {todayPath: todayDate}
+        elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
+            logger.info("Store process will use previous day's stage directory [%s]", yesterdayPath)
+            if config.store.warnMidnite:
+                logger.warning("Warning: store process crossed midnite boundary to find data.")
+            return {yesterdayPath: yesterdayDate}
+        elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
+            logger.info("Store process will use next day's stage directory [%s]", tomorrowPath)
+            if config.store.warnMidnite:
+                logger.warning("Warning: store process crossed midnite boundary to find data.")
+            return {tomorrowPath: tomorrowDate}
+        raise IOError("Unable to find unused staging directory to store (tried today, yesterday, tomorrow).")

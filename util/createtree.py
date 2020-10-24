@@ -111,30 +111,32 @@ from configparser import SafeConfigParser
 # usage() function
 ###################
 
+
 def usage():
-   """
+    """
    Prints out program usage information.
    """
-   print("")
-   print(("Usage: %s <create-dir> <config-file>" % os.path.basename(sys.argv[0])))
-   print("")
-   print("Creates a directory tree within <create-dir> based on the")
-   print("configuration within <config-file>.  The directory tree will")
-   print("contain a random number of directories and files of various")
-   print("sizes.")
-   print("")
-   print("The <config-file> is a Windows-style INI file that can be")
-   print("parsed by the Python ConfigParser functionality.  For an")
-   print("example, see internal comments in this Python script.")
-   print("")
+    print("")
+    print(("Usage: %s <create-dir> <config-file>" % os.path.basename(sys.argv[0])))
+    print("")
+    print("Creates a directory tree within <create-dir> based on the")
+    print("configuration within <config-file>.  The directory tree will")
+    print("contain a random number of directories and files of various")
+    print("sizes.")
+    print("")
+    print("The <config-file> is a Windows-style INI file that can be")
+    print("parsed by the Python ConfigParser functionality.  For an")
+    print("example, see internal comments in this Python script.")
+    print("")
 
 
 ########################
 # createfile() function
 ########################
 
+
 def createfile(config, filepath):
-   """
+    """
    Creates a file of a random size using configuration.
 
    The file will be filled with random letters, digits and newlines, and will
@@ -151,20 +153,21 @@ def createfile(config, filepath):
 
    @return: Size of file that was created.
    """
-   characterSet = string.ascii_letters + string.digits + "\n"
-   filesize = random.randint(config['minsize'], config['maxsize'])
-   with open(filepath, "w") as fp:
-      fp.write("".join([random.choice(characterSet) for i in range(1, filesize)]))
-      fp.write("\n")
-   return filesize
+    characterSet = string.ascii_letters + string.digits + "\n"
+    filesize = random.randint(config["minsize"], config["maxsize"])
+    with open(filepath, "w") as fp:
+        fp.write("".join([random.choice(characterSet) for i in range(1, filesize)]))
+        fp.write("\n")
+    return filesize
 
 
 #####################
 # filldir() function
 #####################
 
+
 def filldir(config, basedir, depth):
-   """
+    """
    Fills in a directory based on configuration.
 
    The directory will be filled in with a random number of files, directories
@@ -192,50 +195,51 @@ def filldir(config, basedir, depth):
    @return: Total number of directory elements recursively created
    """
 
-   # Check our recursive exit condition
-   if depth > config['maxdepth']:
-      return
+    # Check our recursive exit condition
+    if depth > config["maxdepth"]:
+        return
 
-   # Initialize list of created items for later use with links
-   itemlist = []
+    # Initialize list of created items for later use with links
+    itemlist = []
 
-   # Create each of the directories, recursively filling each.
-   dircount = random.randint(config['mindirs'], config['maxdirs'])
-   for dirindex in range(1, dircount+1):
-      dirname = os.path.join(basedir, "%s%03d" % (config['dirprefix'], dirindex))
-      itemlist.append(dirname)
-      os.mkdir(dirname)
-      filldir(config, dirname, depth+1)
-      print(("Created dir  [%s]." % dirname))
+    # Create each of the directories, recursively filling each.
+    dircount = random.randint(config["mindirs"], config["maxdirs"])
+    for dirindex in range(1, dircount + 1):
+        dirname = os.path.join(basedir, "%s%03d" % (config["dirprefix"], dirindex))
+        itemlist.append(dirname)
+        os.mkdir(dirname)
+        filldir(config, dirname, depth + 1)
+        print(("Created dir  [%s]." % dirname))
 
-   # Create each of the files
-   filecount = random.randint(config['minfiles'], config['maxfiles'])
-   for fileindex in range(1, filecount+1):
-      filename = os.path.join(basedir, "%s%03d" % (config['fileprefix'], fileindex))
-      itemlist.append(filename)
-      size = createfile(config, filename)
-      print(("Created file [%s] with size [%d] bytes." % (filename, size)))
+    # Create each of the files
+    filecount = random.randint(config["minfiles"], config["maxfiles"])
+    for fileindex in range(1, filecount + 1):
+        filename = os.path.join(basedir, "%s%03d" % (config["fileprefix"], fileindex))
+        itemlist.append(filename)
+        size = createfile(config, filename)
+        print(("Created file [%s] with size [%d] bytes." % (filename, size)))
 
-   # Create each of the links, only as many as we have things to link to
-   linkcount = random.randint(config['minlinks'], config['maxlinks'])
-   if linkcount >= len(itemlist):
-      linkitems = itemlist
-   else:
-      linkitems = random.sample(itemlist, linkcount)
-   linkindex = 0
-   for linkitem in linkitems:
-      linkindex += 1
-      linkname = os.path.join(basedir, "%s%03d" % (config['linkprefix'], linkindex))
-      os.symlink(os.path.basename(linkitem), linkname)
-      print(("Created link [%s -> %s]." % (linkname, os.path.basename(linkitem))))
+    # Create each of the links, only as many as we have things to link to
+    linkcount = random.randint(config["minlinks"], config["maxlinks"])
+    if linkcount >= len(itemlist):
+        linkitems = itemlist
+    else:
+        linkitems = random.sample(itemlist, linkcount)
+    linkindex = 0
+    for linkitem in linkitems:
+        linkindex += 1
+        linkname = os.path.join(basedir, "%s%03d" % (config["linkprefix"], linkindex))
+        os.symlink(os.path.basename(linkitem), linkname)
+        print(("Created link [%s -> %s]." % (linkname, os.path.basename(linkitem))))
 
 
 #########################
 # parseconfig() function
 #########################
 
+
 def parseconfig(configfile):
-   """
+    """
    Parses configuration on disk.
 
    See the script-wide comments for documentation on the
@@ -246,75 +250,76 @@ def parseconfig(configfile):
    @type configfile: String representing path to file on disk
    """
 
-   # Initialize parser
-   config = {}
-   parser = SafeConfigParser()
-   parser.read(configfile)
+    # Initialize parser
+    config = {}
+    parser = SafeConfigParser()
+    parser.read(configfile)
 
-   # Parse out [names] items
-   config['dirprefix'] = parser.get("names", "dirprefix")
-   config['fileprefix'] = parser.get("names", "fileprefix")
-   config['linkprefix'] = parser.get("names", "linkprefix")
+    # Parse out [names] items
+    config["dirprefix"] = parser.get("names", "dirprefix")
+    config["fileprefix"] = parser.get("names", "fileprefix")
+    config["linkprefix"] = parser.get("names", "linkprefix")
 
-   # Parse out [sizes] items
-   config['maxdepth'] = parser.getint("sizes", "maxdepth")
-   config['mindirs'] = parser.getint("sizes", "mindirs")
-   config['maxdirs'] = parser.getint("sizes", "maxdirs")
-   config['minfiles'] = parser.getint("sizes", "minfiles")
-   config['maxfiles'] = parser.getint("sizes", "maxfiles")
-   config['minlinks'] = parser.getint("sizes", "minlinks")
-   config['maxlinks'] = parser.getint("sizes", "maxlinks")
-   config['minsize'] = parser.getint("sizes", "minsize")
-   config['maxsize'] = parser.getint("sizes", "maxsize")
+    # Parse out [sizes] items
+    config["maxdepth"] = parser.getint("sizes", "maxdepth")
+    config["mindirs"] = parser.getint("sizes", "mindirs")
+    config["maxdirs"] = parser.getint("sizes", "maxdirs")
+    config["minfiles"] = parser.getint("sizes", "minfiles")
+    config["maxfiles"] = parser.getint("sizes", "maxfiles")
+    config["minlinks"] = parser.getint("sizes", "minlinks")
+    config["maxlinks"] = parser.getint("sizes", "maxlinks")
+    config["minsize"] = parser.getint("sizes", "minsize")
+    config["maxsize"] = parser.getint("sizes", "maxsize")
 
-   # Return the result
-   return config
+    # Return the result
+    return config
 
 
 ##################
 # main() function
 ##################
 
+
 def main():
 
-   """
+    """
    Main routine for program.
    """
 
-   # Handle arguments
-   basedir = None
-   configfile = None
-   config = None
+    # Handle arguments
+    basedir = None
+    configfile = None
+    config = None
 
-   # Parse command-line
-   try:
-      basedir = sys.argv[1]
-      configfile = sys.argv[2]
-   except Exception:
-      usage()
-      sys.exit(1)
+    # Parse command-line
+    try:
+        basedir = sys.argv[1]
+        configfile = sys.argv[2]
+    except Exception:
+        usage()
+        sys.exit(1)
 
-   # Parse configuration
-   try:
-      config = parseconfig(configfile)
-   except Exception as e:
-      print(("Unable to parse configuration file: %s" % e))
-      sys.exit(2)
+    # Parse configuration
+    try:
+        config = parseconfig(configfile)
+    except Exception as e:
+        print(("Unable to parse configuration file: %s" % e))
+        sys.exit(2)
 
-   # Validate the base directory
-   if os.path.exists(basedir):
-      print(("Path [%s] already exists; aborting." % basedir))
-      sys.exit(2)
+    # Validate the base directory
+    if os.path.exists(basedir):
+        print(("Path [%s] already exists; aborting." % basedir))
+        sys.exit(2)
 
-   # Create the tree (this is a recursive call)
-   try:
-      os.mkdir(basedir)
-      filldir(config, basedir, 1)
-   except Exception as e:
-      print(("Error filling directory: %s" % e))
+    # Create the tree (this is a recursive call)
+    try:
+        os.mkdir(basedir)
+        filldir(config, basedir, 1)
+    except Exception as e:
+        print(("Error filling directory: %s" % e))
 
-   # Print a closing message
-   print("Completed with no errors.")
+    # Print a closing message
+    print("Completed with no errors.")
 
 
 ########################################################################
@@ -322,6 +327,5 @@ def main():
 ########################################################################
 
 # Run the main routine if the module is executed rather than sourced
-if __name__ == '__main__':
-   main()
-
+if __name__ == "__main__":
+    main()

@@ -85,14 +85,12 @@ mode ``0600``).
 # Imported modules
 ########################################################################
 
-# System modules
 import os
 import logging
 from gzip import GzipFile
 from bz2 import BZ2File
 from functools import total_ordering
 
-# Cedar Backup modules
 from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode, addBooleanNode
 from CedarBackup3.xmlutil import readFirstChild, readString, readStringList, readBoolean
 from CedarBackup3.config import VALID_COMPRESS_MODES
@@ -112,10 +110,11 @@ MYSQLDUMP_COMMAND = ["mysqldump"]
 # MysqlConfig class definition
 ########################################################################
 
+
 @total_ordering
 class MysqlConfig(object):
 
-   """
+    """
    Class representing MySQL configuration.
 
    The MySQL configuration information is used for backing up MySQL databases.
@@ -129,8 +128,8 @@ class MysqlConfig(object):
 
    """
 
-   def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
-      """
+    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
+        """
       Constructor for the ``MysqlConfig`` class.
 
       Args:
@@ -140,184 +139,185 @@ class MysqlConfig(object):
          all: Indicates whether to back up all databases
          databases: List of databases to back up
       """
-      self._user = None
-      self._password = None
-      self._compressMode = None
-      self._all = None
-      self._databases = None
-      self.user = user
-      self.password = password
-      self.compressMode = compressMode
-      self.all = all
-      self.databases = databases
+        self._user = None
+        self._password = None
+        self._compressMode = None
+        self._all = None
+        self._databases = None
+        self.user = user
+        self.password = password
+        self.compressMode = compressMode
+        self.all = all
+        self.databases = databases
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "MysqlConfig(%s, %s, %s, %s)" % (self.user, self.password, self.all, self.databases)
+        return "MysqlConfig(%s, %s, %s, %s)" % (self.user, self.password, self.all, self.databases)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Args:
          other: Other object to compare to
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.user != other.user:
-         if str(self.user or "") < str(other.user or ""):
-            return -1
-         else:
+        if other is None:
             return 1
-      if self.password != other.password:
-         if str(self.password or "") < str(other.password or ""):
-            return -1
-         else:
-            return 1
-      if self.compressMode != other.compressMode:
-         if str(self.compressMode or "") < str(other.compressMode or ""):
-            return -1
-         else:
-            return 1
-      if self.all != other.all:
-         if self.all < other.all:
-            return -1
-         else:
-            return 1
-      if self.databases != other.databases:
-         if self.databases < other.databases:
-            return -1
-         else:
-            return 1
-      return 0
+        if self.user != other.user:
+            if str(self.user or "") < str(other.user or ""):
+                return -1
+            else:
+                return 1
+        if self.password != other.password:
+            if str(self.password or "") < str(other.password or ""):
+                return -1
+            else:
+                return 1
+        if self.compressMode != other.compressMode:
+            if str(self.compressMode or "") < str(other.compressMode or ""):
+                return -1
+            else:
+                return 1
+        if self.all != other.all:
+            if self.all < other.all:
+                return -1
+            else:
+                return 1
+        if self.databases != other.databases:
+            if self.databases < other.databases:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setUser(self, value):
-      """
+    def _setUser(self, value):
+        """
       Property target used to set the user value.
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("User must be non-empty string.")
-      self._user = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("User must be non-empty string.")
+        self._user = value
 
-   def _getUser(self):
-      """
+    def _getUser(self):
+        """
       Property target used to get the user value.
       """
-      return self._user
+        return self._user
 
-   def _setPassword(self, value):
-      """
+    def _setPassword(self, value):
+        """
       Property target used to set the password value.
       """
-      if value is not None:
-         if len(value) < 1:
-            raise ValueError("Password must be non-empty string.")
-      self._password = value
+        if value is not None:
+            if len(value) < 1:
+                raise ValueError("Password must be non-empty string.")
+        self._password = value
 
-   def _getPassword(self):
-      """
+    def _getPassword(self):
+        """
       Property target used to get the password value.
       """
-      return self._password
+        return self._password
 
-   def _setCompressMode(self, value):
-      """
+    def _setCompressMode(self, value):
+        """
       Property target used to set the compress mode.
       If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
       Raises:
          ValueError: If the value is not valid
       """
-      if value is not None:
-         if value not in VALID_COMPRESS_MODES:
-            raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
-      self._compressMode = value
+        if value is not None:
+            if value not in VALID_COMPRESS_MODES:
+                raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
+        self._compressMode = value
 
-   def _getCompressMode(self):
-      """
+    def _getCompressMode(self):
+        """
       Property target used to get the compress mode.
       """
-      return self._compressMode
+        return self._compressMode
 
-   def _setAll(self, value):
-      """
+    def _setAll(self, value):
+        """
       Property target used to set the 'all' flag.
       No validations, but we normalize the value to ``True`` or ``False``.
       """
-      if value:
-         self._all = True
-      else:
-         self._all = False
+        if value:
+            self._all = True
+        else:
+            self._all = False
 
-   def _getAll(self):
-      """
+    def _getAll(self):
+        """
       Property target used to get the 'all' flag.
       """
-      return self._all
+        return self._all
 
-   def _setDatabases(self, value):
-      """
+    def _setDatabases(self, value):
+        """
       Property target used to set the databases list.
       Either the value must be ``None`` or each element must be a string.
       Raises:
          ValueError: If the value is not a string
       """
-      if value is None:
-         self._databases = None
-      else:
-         for database in value:
-            if len(database) < 1:
-               raise ValueError("Each database must be a non-empty string.")
-         try:
-            saved = self._databases
-            self._databases = ObjectTypeList(str, "string")
-            self._databases.extend(value)
-         except Exception as e:
-            self._databases = saved
-            raise e
+        if value is None:
+            self._databases = None
+        else:
+            for database in value:
+                if len(database) < 1:
+                    raise ValueError("Each database must be a non-empty string.")
+            try:
+                saved = self._databases
+                self._databases = ObjectTypeList(str, "string")
+                self._databases.extend(value)
+            except Exception as e:
+                self._databases = saved
+                raise e
 
-   def _getDatabases(self):
-      """
+    def _getDatabases(self):
+        """
       Property target used to get the databases list.
       """
-      return self._databases
+        return self._databases
 
-   user = property(_getUser, _setUser, None, "User to execute backup as.")
-   password = property(_getPassword, _setPassword, None, "Password associated with user.")
-   compressMode = property(_getCompressMode, _setCompressMode, None, "Compress mode to be used for backed-up files.")
-   all = property(_getAll, _setAll, None, "Indicates whether to back up all databases.")
-   databases = property(_getDatabases, _setDatabases, None, "List of databases to back up.")
+    user = property(_getUser, _setUser, None, "User to execute backup as.")
+    password = property(_getPassword, _setPassword, None, "Password associated with user.")
+    compressMode = property(_getCompressMode, _setCompressMode, None, "Compress mode to be used for backed-up files.")
+    all = property(_getAll, _setAll, None, "Indicates whether to back up all databases.")
+    databases = property(_getDatabases, _setDatabases, None, "List of databases to back up.")
 
 
 ########################################################################
 # LocalConfig class definition
 ########################################################################
 
+
 @total_ordering
 class LocalConfig(object):
 
-   """
+    """
    Class representing this extension's configuration document.
 
    This is not a general-purpose configuration object like the main Cedar
@@ -330,8 +330,8 @@ class LocalConfig(object):
 
    """
 
-   def __init__(self, xmlData=None, xmlPath=None, validate=True):
-      """
+    def __init__(self, xmlData=None, xmlPath=None, validate=True):
+        """
       Initializes a configuration object.
 
       If you initialize the object without passing either ``xmlData`` or
@@ -361,47 +361,47 @@ class LocalConfig(object):
          ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
          ValueError: If the parsed configuration document is not valid
       """
-      self._mysql = None
-      self.mysql = None
-      if xmlData is not None and xmlPath is not None:
-         raise ValueError("Use either xmlData or xmlPath, but not both.")
-      if xmlData is not None:
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
-      elif xmlPath is not None:
-         with open(xmlPath) as f:
-            xmlData = f.read()
-         self._parseXmlData(xmlData)
-         if validate:
-            self.validate()
+        self._mysql = None
+        self.mysql = None
+        if xmlData is not None and xmlPath is not None:
+            raise ValueError("Use either xmlData or xmlPath, but not both.")
+        if xmlData is not None:
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
+        elif xmlPath is not None:
+            with open(xmlPath) as f:
+                xmlData = f.read()
+            self._parseXmlData(xmlData)
+            if validate:
+                self.validate()
 
-   def __repr__(self):
-      """
+    def __repr__(self):
+        """
       Official string representation for class instance.
       """
-      return "LocalConfig(%s)" % (self.mysql)
+        return "LocalConfig(%s)" % (self.mysql)
 
-   def __str__(self):
-      """
+    def __str__(self):
+        """
       Informal string representation for class instance.
       """
-      return self.__repr__()
+        return self.__repr__()
 
-   def __eq__(self, other):
-      """Equals operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) == 0
+    def __eq__(self, other):
+        """Equals operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) == 0
 
-   def __lt__(self, other):
-      """Less-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) < 0
+    def __lt__(self, other):
+        """Less-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) < 0
 
-   def __gt__(self, other):
-      """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
-      return self.__cmp__(other) > 0
+    def __gt__(self, other):
+        """Greater-than operator, iplemented in terms of original Python 2 compare operator."""
+        return self.__cmp__(other) > 0
 
-   def __cmp__(self, other):
-      """
+    def __cmp__(self, other):
+        """
       Original Python 2 comparison operator.
       Lists within this class are "unordered" for equality comparisons.
       Args:
@@ -409,39 +409,39 @@ class LocalConfig(object):
       Returns:
           -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
       """
-      if other is None:
-         return 1
-      if self.mysql != other.mysql:
-         if self.mysql < other.mysql:
-            return -1
-         else:
+        if other is None:
             return 1
-      return 0
+        if self.mysql != other.mysql:
+            if self.mysql < other.mysql:
+                return -1
+            else:
+                return 1
+        return 0
 
-   def _setMysql(self, value):
-      """
+    def _setMysql(self, value):
+        """
       Property target used to set the mysql configuration value.
       If not ``None``, the value must be a ``MysqlConfig`` object.
       Raises:
          ValueError: If the value is not a ``MysqlConfig``
       """
-      if value is None:
-         self._mysql = None
-      else:
-         if not isinstance(value, MysqlConfig):
-            raise ValueError("Value must be a ``MysqlConfig`` object.")
-         self._mysql = value
+        if value is None:
+            self._mysql = None
+        else:
+            if not isinstance(value, MysqlConfig):
+                raise ValueError("Value must be a ``MysqlConfig`` object.")
+            self._mysql = value
 
-   def _getMysql(self):
-      """
+    def _getMysql(self):
+        """
       Property target used to get the mysql configuration value.
       """
-      return self._mysql
+        return self._mysql
 
-   mysql = property(_getMysql, _setMysql, None, "Mysql configuration in terms of a ``MysqlConfig`` object.")
+    mysql = property(_getMysql, _setMysql, None, "Mysql configuration in terms of a ``MysqlConfig`` object.")
 
-   def validate(self):
-      """
+    def validate(self):
+        """
       Validates configuration represented by the object.
 
       The compress mode must be filled in.  Then, if the 'all' flag *is* set,
@@ -451,19 +451,19 @@ class LocalConfig(object):
       Raises:
          ValueError: If one of the validations fails
       """
-      if self.mysql is None:
-         raise ValueError("Mysql section is required.")
-      if self.mysql.compressMode is None:
-         raise ValueError("Compress mode value is required.")
-      if self.mysql.all:
-         if self.mysql.databases is not None and self.mysql.databases != []:
-            raise ValueError("Databases cannot be specified if 'all' flag is set.")
-      else:
-         if self.mysql.databases is None or len(self.mysql.databases) < 1:
-            raise ValueError("At least one MySQL database must be indicated if 'all' flag is not set.")
+        if self.mysql is None:
+            raise ValueError("Mysql section is required.")
+        if self.mysql.compressMode is None:
+            raise ValueError("Compress mode value is required.")
+        if self.mysql.all:
+            if self.mysql.databases is not None and self.mysql.databases != []:
+                raise ValueError("Databases cannot be specified if 'all' flag is set.")
+        else:
+            if self.mysql.databases is None or len(self.mysql.databases) < 1:
+                raise ValueError("At least one MySQL database must be indicated if 'all' flag is not set.")
 
-   def addConfig(self, xmlDom, parentNode):
-      """
+    def addConfig(self, xmlDom, parentNode):
+        """
       Adds a <mysql> configuration section as the next child of a parent.
 
       Third parties should use this function to write configuration related to
@@ -485,18 +485,18 @@ class LocalConfig(object):
          xmlDom: DOM tree as from ``impl.createDocument()``
          parentNode: Parent that the section should be appended to
       """
-      if self.mysql is not None:
-         sectionNode = addContainerNode(xmlDom, parentNode, "mysql")
-         addStringNode(xmlDom, sectionNode, "user", self.mysql.user)
-         addStringNode(xmlDom, sectionNode, "password", self.mysql.password)
-         addStringNode(xmlDom, sectionNode, "compress_mode", self.mysql.compressMode)
-         addBooleanNode(xmlDom, sectionNode, "all", self.mysql.all)
-         if self.mysql.databases is not None:
-            for database in self.mysql.databases:
-               addStringNode(xmlDom, sectionNode, "database", database)
+        if self.mysql is not None:
+            sectionNode = addContainerNode(xmlDom, parentNode, "mysql")
+            addStringNode(xmlDom, sectionNode, "user", self.mysql.user)
+            addStringNode(xmlDom, sectionNode, "password", self.mysql.password)
+            addStringNode(xmlDom, sectionNode, "compress_mode", self.mysql.compressMode)
+            addBooleanNode(xmlDom, sectionNode, "all", self.mysql.all)
+            if self.mysql.databases is not None:
+                for database in self.mysql.databases:
+                    addStringNode(xmlDom, sectionNode, "database", database)
 
-   def _parseXmlData(self, xmlData):
-      """
+    def _parseXmlData(self, xmlData):
+        """
       Internal method to parse an XML string into the object.
 
       This method parses the XML document into a DOM tree (``xmlDom``) and then
@@ -507,12 +507,12 @@ class LocalConfig(object):
       Raises:
          ValueError: If the XML cannot be successfully parsed
       """
-      (xmlDom, parentNode) = createInputDom(xmlData)
-      self._mysql = LocalConfig._parseMysql(parentNode)
+        (xmlDom, parentNode) = createInputDom(xmlData)
+        self._mysql = LocalConfig._parseMysql(parentNode)
 
-   @staticmethod
-   def _parseMysql(parentNode):
-      """
+    @staticmethod
+    def _parseMysql(parentNode):
+        """
       Parses a mysql configuration section.
 
       We read the following fields::
@@ -535,16 +535,16 @@ class LocalConfig(object):
       Raises:
          ValueError: If some filled-in value is invalid
       """
-      mysql = None
-      section = readFirstChild(parentNode, "mysql")
-      if section is not None:
-         mysql = MysqlConfig()
-         mysql.user = readString(section, "user")
-         mysql.password = readString(section, "password")
-         mysql.compressMode = readString(section, "compress_mode")
-         mysql.all = readBoolean(section, "all")
-         mysql.databases = readStringList(section, "database")
-      return mysql
+        mysql = None
+        section = readFirstChild(parentNode, "mysql")
+        if section is not None:
+            mysql = MysqlConfig()
+            mysql.user = readString(section, "user")
+            mysql.password = readString(section, "password")
+            mysql.compressMode = readString(section, "compress_mode")
+            mysql.all = readBoolean(section, "all")
+            mysql.databases = readStringList(section, "database")
+        return mysql
 
 
 ########################################################################
@@ -557,7 +557,7 @@ class LocalConfig(object):
 
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
-   """
+    """
    Executes the MySQL backup action.
 
    Args:
@@ -568,24 +568,39 @@ def executeAction(configPath, options, config):
       ValueError: Under many generic error conditions
       IOError: If a backup could not be written for some reason
    """
-   logger.debug("Executing MySQL extended action.")
-   if config.options is None or config.collect is None:
-      raise ValueError("Cedar Backup configuration is not properly filled in.")
-   local = LocalConfig(xmlPath=configPath)
-   if local.mysql.all:
-      logger.info("Backing up all databases.")
-      _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
-                      config.options.backupUser, config.options.backupGroup, None)
-   else:
-      logger.debug("Backing up %d individual databases.", len(local.mysql.databases))
-      for database in local.mysql.databases:
-         logger.info("Backing up database [%s].", database)
-         _backupDatabase(config.collect.targetDir, local.mysql.compressMode, local.mysql.user, local.mysql.password,
-                         config.options.backupUser, config.options.backupGroup, database)
-   logger.info("Executed the MySQL extended action successfully.")
+    logger.debug("Executing MySQL extended action.")
+    if config.options is None or config.collect is None:
+        raise ValueError("Cedar Backup configuration is not properly filled in.")
+    local = LocalConfig(xmlPath=configPath)
+    if local.mysql.all:
+        logger.info("Backing up all databases.")
+        _backupDatabase(
+            config.collect.targetDir,
+            local.mysql.compressMode,
+            local.mysql.user,
+            local.mysql.password,
+            config.options.backupUser,
+            config.options.backupGroup,
+            None,
+        )
+    else:
+        logger.debug("Backing up %d individual databases.", len(local.mysql.databases))
+        for database in local.mysql.databases:
+            logger.info("Backing up database [%s].", database)
+            _backupDatabase(
+                config.collect.targetDir,
+                local.mysql.compressMode,
+                local.mysql.user,
+                local.mysql.password,
+                config.options.backupUser,
+                config.options.backupGroup,
+                database,
+            )
+    logger.info("Executed the MySQL extended action successfully.")
+
 
 def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupGroup, database=None):
-   """
+    """
    Backs up an individual MySQL database, or all databases.
 
    This internal method wraps the public method and adds some functionality,
@@ -607,15 +622,16 @@ def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupG
       ValueError: If some value is missing or invalid
       IOError: If there is a problem executing the MySQL dump
    """
-   (outputFile, filename) = _getOutputFile(targetDir, database, compressMode)
-   with outputFile:
-      backupDatabase(user, password, outputFile, database)
-   if not os.path.exists(filename):
-      raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
-   changeOwnership(filename, backupUser, backupGroup)
+    (outputFile, filename) = _getOutputFile(targetDir, database, compressMode)
+    with outputFile:
+        backupDatabase(user, password, outputFile, database)
+    if not os.path.exists(filename):
+        raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
+    changeOwnership(filename, backupUser, backupGroup)
+
 
 def _getOutputFile(targetDir, database, compressMode):
-   """
+    """
    Opens the output file used for saving the MySQL dump.
 
    The filename is either ``"mysqldump.txt"`` or ``"mysqldump-<database>.txt"``.  The
@@ -629,28 +645,29 @@ def _getOutputFile(targetDir, database, compressMode):
    Returns:
        Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
    """
-   if database is None:
-      filename = os.path.join(targetDir, "mysqldump.txt")
-   else:
-      filename = os.path.join(targetDir, "mysqldump-%s.txt" % database)
-   if compressMode == "gzip":
-      filename = "%s.gz" % filename
-      outputFile = GzipFile(filename, "wb")
-   elif compressMode == "bzip2":
-      filename = "%s.bz2" % filename
-      outputFile = BZ2File(filename, "wb")
-   else:
-      outputFile = open(filename, "wb")
-   logger.debug("MySQL dump file will be [%s].", filename)
-   return (outputFile, filename)
+    if database is None:
+        filename = os.path.join(targetDir, "mysqldump.txt")
+    else:
+        filename = os.path.join(targetDir, "mysqldump-%s.txt" % database)
+    if compressMode == "gzip":
+        filename = "%s.gz" % filename
+        outputFile = GzipFile(filename, "wb")
+    elif compressMode == "bzip2":
+        filename = "%s.bz2" % filename
+        outputFile = BZ2File(filename, "wb")
+    else:
+        outputFile = open(filename, "wb")
+    logger.debug("MySQL dump file will be [%s].", filename)
+    return (outputFile, filename)
 
 
 ############################
 # backupDatabase() function
 ############################
 
+
 def backupDatabase(user, password, backupFile, database=None):
-   """
+    """
    Backs up an individual MySQL database, or all databases.
 
    This function backs up either a named local MySQL database or all local
@@ -696,23 +713,22 @@ def backupDatabase(user, password, backupFile, database=None):
       ValueError: If some value is missing or invalid
       IOError: If there is a problem executing the MySQL dump
    """
-   args = ["-all", "--flush-logs", "--opt"]
-   if user is not None:
-      logger.warning("Warning: MySQL username will be visible in process listing (consider using ~/.my.cnf).")
-      args.append("--user=%s" % user)
-   if password is not None:
-      logger.warning("Warning: MySQL password will be visible in process listing (consider using ~/.my.cnf).")
-      args.append("--password=%s" % password)
-   if database is None:
-      args.insert(0, "--all-databases")
-   else:
-      args.insert(0, "--databases")
-      args.append(database)
-   command = resolveCommand(MYSQLDUMP_COMMAND)
-   result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
-   if result != 0:
-      if database is None:
-         raise IOError("Error [%d] executing MySQL database dump for all databases." % result)
-      else:
-         raise IOError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))
-
+    args = ["-all", "--flush-logs", "--opt"]
+    if user is not None:
+        logger.warning("Warning: MySQL username will be visible in process listing (consider using ~/.my.cnf).")
+        args.append("--user=%s" % user)
+    if password is not None:
+        logger.warning("Warning: MySQL password will be visible in process listing (consider using ~/.my.cnf).")
+        args.append("--password=%s" % password)
+    if database is None:
+        args.insert(0, "--all-databases")
+    else:
+        args.insert(0, "--databases")
+        args.append(database)
+    command = resolveCommand(MYSQLDUMP_COMMAND)
+    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
+    if result != 0:
+        if database is None:
+            raise IOError("Error [%d] executing MySQL database dump for all databases." % result)
+        else:
+            raise IOError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))
