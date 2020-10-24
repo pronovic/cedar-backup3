@@ -8,8 +8,8 @@ Preface
 Purpose
 -------
 
-This software manual has been written to document version 2 of Cedar
-Backup, originally released in early 2005.
+This software manual has been written to document version 2 and version 3 of
+Cedar Backup.  Version 2 was first released in 2005, and version 3 in 2015.
 
 .. _cedar-preface-audience:
 
@@ -69,8 +69,8 @@ Organization of This Manual
    specifies terms used throughout the rest of the manual.
 
 :doc:`install`
-   Explains how to install the Cedar Backup package either from the
-   Python source distribution or from the Debian package.
+   Explains how to install Cedar Backup either from the Debian package or from
+   the Python package.
 
 :doc:`commandline`:
    Discusses the various Cedar Backup command-line tools, including the

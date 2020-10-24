@@ -59,12 +59,12 @@ stage action.
 The underlying functionality relies on the `AWS
 CLI <http://aws.amazon.com/documentation/cli/>`__ toolset. Before you
 use this extension, you need to set up your Amazon S3 account and
-configure AWS CLI as detailed in Amazons's `setup
+configure AWS CLI as detailed in Amazon's `setup
 guide <http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html>`__.
 The extension assumes that the backup is being executed as root, and
 switches over to the configured backup user to run the ``aws`` program.
 So, make sure you configure the AWS CLI tools as the backup user and not
-root. (This is different than the amazons3 sync tool extension, which
+root. (This is different than the ``cback-amazons3-sync`` tool, which
 executes AWS CLI command as the same user that is running the tool.)
 
 You can use whichever Amazon-supported authentication mechanism you
@@ -260,7 +260,7 @@ Subversion Extension
 --------------------
 
 The Subversion Extension is a Cedar Backup extension used to back up
-Subversion  [1]_ version control repositories via the Cedar Backup
+`Subversion <http://subversion.org>`__ version control repositories via the Cedar Backup
 command line. It is intended to be run either immediately before or
 immediately after the standard collect action.
 
@@ -462,9 +462,10 @@ The following elements are part of the Subversion configuration section:
 MySQL Extension
 ---------------
 
-The MySQL Extension is a Cedar Backup extension used to back up MySQL databases
-via the Cedar Backup command line. It is intended to be run either immediately
-before or immediately after the standard collect action. [2]_
+The MySQL Extension is a Cedar Backup extension used to back up
+`MySQL <http://www.mysql.com>`__ databases via the Cedar Backup command line. It
+is intended to be run either immediately before or immediately after the
+standard collect action.
 
    |note|
 
@@ -637,15 +638,10 @@ This is a community-contributed extension provided by Antoine Beaupre
 parsing code and I will maintain this section in the user manual based
 on his source code documentation.
 
-Unfortunately, I don't have any PostgreSQL databases with which to test
-the functional code. While I have code-reviewed the code and it looks
-both sensible and safe, I have to rely on the author to ensure that it
-works properly.
-
 The PostgreSQL Extension is a Cedar Backup extension used to back up
-PostgreSQL  [3]_ databases via the Cedar Backup command line. It is
-intended to be run either immediately before or immediately after the
-standard collect action.
+`PostgreSQL <http://www.postgresql.org>`__  databases via the Cedar Backup
+command line. It is intended to be run either immediately before or immediately
+after the standard collect action.
 
 The backup is done via the ``pg_dump`` or ``pg_dumpall`` commands
 included with the PostgreSQL product. Output can be compressed using
@@ -785,11 +781,10 @@ backup process to back them up every day in order to avoid losing data.
 This can result in quite a bit of wasted space when backing up large
 mail folders.
 
-What the mbox extension does is leverage the ``grepmail`` utility to
-back up only email messages which have been received since the last
-incremental backup. This way, even if a folder is added to every day,
-only the recently-added messages are backed up. This can potentially
-save a lot of space.
+The Mbox extension leverages the ``grepmail`` utility to back up only email
+messages which have been received since the last incremental backup. This way,
+even if a folder is added to every day, only the recently-added messages are
+is backed up. This can potentially save a lot of space.
 
 Each configured mbox file or directory can be backed using the same
 collect modes allowed for filesystems in the standard Cedar Backup
@@ -1257,17 +1252,6 @@ The following elements are part of the Capacity configuration section:
 ----------
 
 *Previous*: :doc:`config` • *Next*: :doc:`extenspec`
-
-----------
-
-.. [1]
-   See `<http://subversion.org>`__
-
-.. [2]
-   See `<http://www.mysql.com>`__
-
-.. [3]
-   See `<http://www.postgresql.org/>`__
 
 .. |note| image:: images/note.png
 .. |tip| image:: images/tip.png

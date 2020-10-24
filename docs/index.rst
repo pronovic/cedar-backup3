@@ -19,10 +19,7 @@ Release v\ |version|
     :target: https://cedar-backup3.readthedocs.io/en/latest/
 
 Cedar Backup is a software package designed to manage system backups for a pool
-of local and remote machines. The project was originally maintained at
-SourceForge, and historical releases still exist there. The project was moved
-to BitBucket in mid-2015, and from there to GitHub in mid-2019 when BitBucket
-retired their Mercurial hosting service.
+of local and remote machines. 
 
 Cedar Backup understands how to back up filesystem data as well as MySQL and
 PostgreSQL databases and Subversion repositories. It can also be easily extended
@@ -93,7 +90,7 @@ users have helped out by reporting unit test failures, making suggestions,
 requesting enhancements, updating documentation, submitting patches, and
 beta-testing entire releases or individual bug fixes.  As a result, Cedar
 Backup has evolved into a much more flexible platform than it would otherwise
-have been.  If you are interested in contributing, submit a PR at GitHub.
+have been.
 
 
 Migrating from Version 2 to Version 3

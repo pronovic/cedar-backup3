@@ -19,7 +19,7 @@ In particular, be sure that you understand the differences between a
 master and a client. (If you only have one machine, then your machine
 will act as both a master and a client, and we'll refer to your setup as
 a pool of one.) Then, install Cedar Backup per the instructions in
-:doc:`install`
+:doc:`install`.
 
 Once everything has been installed, you are ready to begin configuring Cedar
 Backup. Look over :doc:`commandline` to become familiar with the command line

@@ -154,16 +154,43 @@ be fine. Here's an example for the collect action:
    /usr/bin/cback3 --full collect
    /usr/bin/cback3 collect
          
-
 Of course, you would have to list the actual path to the ``cback3``
-executable --- exactly the one listed in the <cback_command>
+executable --- exactly the one listed in the ``<cback_command>``
 configuration option for your managed peer.
 
-I hope that there is enough information here for interested users to
-implement something that makes them comfortable. I have resisted
-providing a complete example script, because I think everyone's setup
-will be different. However, feel free to write if you are working
-through this and you have questions.
+Below is the script that I use for my own backups, to allow the
+master to stage files from each client.  This is stored as 
+``~/.ssh/validate-backup`` and is referenced in ``~/.ssh/authorized-keys``
+as described above.
+
+::
+
+   # Since this script is specified as the command in ~/.ssh/authorized_keys, it
+   # acts as a "filter" and prevents the backup user from doing anything except
+   # specific Cedar Backup actions (stage, in this case, via scp).
+
+   # See the AUTHORIZED_KEYS FILE FORMAT section in sshd(8) for more information.
+
+   typeset -x COLLECTDIR=/data/backup/collect
+
+   typeset -x CMD1="scp -f ${COLLECTDIR}/cback.collect"    # check collect indicator
+   typeset -x CMD2="scp -f ${COLLECTDIR}/*"                # stage all files
+   typeset -x CMD3="scp -t ${COLLECTDIR}/cback.stage"      # write the stage indicator
+
+   if [[ "${SSH_ORIGINAL_COMMAND}" == "${CMD1}" ]] ; then
+       ${SSH_ORIGINAL_COMMAND}
+   elif [[ "${SSH_ORIGINAL_COMMAND}" == "${CMD2}" ]]; then
+      ${SSH_ORIGINAL_COMMAND}
+   elif [[ "${SSH_ORIGINAL_COMMAND}" == "${CMD3}" ]]; then
+      ${SSH_ORIGINAL_COMMAND}
+   else
+      echo "Security policy does not allow command [${SSH_ORIGINAL_COMMAND}]."
+      exit 1
+   fi
+
+
+I hope that there is enough information here for interested users to implement
+something that makes them comfortable. 
 
 ----------
 

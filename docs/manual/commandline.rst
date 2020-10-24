@@ -143,7 +143,7 @@ Switches
 
 ``-m``, ``--mode``
    Specify the permissions for the logfile, using the numeric mode as in
-   chmod(1). The default mode is ``0640`` (``-rw-r-----``). This value
+   ``chmod(1)``. The default mode is ``0640`` (``-rw-r-----``). This value
    will only be used when creating a new logfile. If the logfile already
    exists when the ``cback3`` command is executed, it will retain its
    existing ownership and mode.
@@ -176,17 +176,17 @@ Actions
 ~~~~~~~
 
 You can find more information about the various actions in :doc:`basic`. In
-general, you may specify any combination of the ``collect``, ``stage``,
-``store`` or ``purge`` actions, and the specified actions will be executed in a
-sensible order. Or, you can specify one of the ``all``, ``rebuild``,
-``validate``, or ``initialize`` actions (but these actions may not be combined
+general, you may specify any combination of the *collect*, *stage*,
+*store* or *purge* actions, and the specified actions will be executed in a
+sensible order. Or, you can specify one of the *all*, *rebuild*,
+*validate*, or *initialize* actions (but these actions may not be combined
 with other actions).
 
 If you have configured any Cedar Backup extensions, then the actions
 associated with those extensions may also be specified on the command
 line. If you specify any other actions along with an extended action,
 the actions will be executed in a sensible order per configuration. The
-``all`` action never executes extended actions, however.
+*all* action never executes extended actions, however.
 
 .. _cedar-commandline-sync:
 
@@ -212,7 +212,7 @@ retrieve previous versions.
 
 The underlying functionality relies on the `AWS CLI <http://aws.amazon.com/documentation/cli/>`__ 
 toolset. Before you use this extension, you need to set up your Amazon S3
-account and configure AWS CLI as detailed in Amazons's 
+account and configure AWS CLI as detailed in Amazon's 
 `setup guide <http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html>`__.
 The ``aws`` command will be executed as the same user that is executing
 the ``cback3-amazons3-sync`` command, so make sure you configure it as
@@ -343,7 +343,7 @@ Switches
 
 ``-m``, ``--mode``
    Specify the permissions for the logfile, using the numeric mode as in
-   chmod(1). The default mode is ``0640`` (``-rw-r-----``). This value
+   ``chmod(1)``. The default mode is ``0640`` (``-rw-r-----``). This value
    will only be used when creating a new logfile. If the logfile already
    exists when the ``cback3-amazons3-sync`` command is executed, it will
    retain its existing ownership and mode.
@@ -407,10 +407,10 @@ The ``cback3-span`` command
 Introduction
 ~~~~~~~~~~~~
 
-Cedar Backup was designed --- and is still primarily focused ---
-around weekly backups to a single CD or DVD. Most users who back up more
-data than fits on a single disc seem to stop their backup process at the
-stage step, using Cedar Backup as an easy way to collect data.
+Cedar Backup was designed --- and is still primarily focused --- around weekly
+backups. Most users who back up more data than fits on a single disc seem to
+either use Amazon S3 or stop their backup process at the stage step, using
+Cedar Backup as an easy way to collect data.
 
 However, some users have expressed a need to write these large kinds of
 backups to disc --- if not every day, then at least occassionally. The
@@ -501,7 +501,7 @@ Switches
 
 ``-m``, ``--mode``
    Specify the permissions for the logfile, using the numeric mode as in
-   chmod(1). The default mode is ``0640`` (``-rw-r-----``). This value
+   ``chmod(1)``. The default mode is ``0640`` (``-rw-r-----``). This value
    will only be used when creating a new logfile. If the logfile already
    exists when the ``cback3`` command is executed, it will retain its
    existing ownership and mode.
@@ -552,7 +552,7 @@ algorithm.
 
 The four available fit algorithms are:
 
-worst
+``worst``
    The worst-fit algorithm.
 
    The worst-fit algorithm proceeds through a sorted list of items
@@ -565,7 +565,7 @@ worst
    algorithm, probably because on average it has to look at more items
    before completing.
 
-best
+``best``
    The best-fit algorithm.
 
    The best-fit algorithm proceeds through a sorted list of items
@@ -580,7 +580,7 @@ best
    before completing, it tends to be a little faster than the worst-fit
    or alternate-fit algorithms.
 
-first
+``first``
    The first-fit algorithm.
 
    The first-fit algorithm proceeds through an unsorted list of items
@@ -592,7 +592,7 @@ first
    magnitude faster on large lists of items because it doesn't require
    any sorting.
 
-alternate
+``alternate``
    A hybrid algorithm that I call alternate-fit.
 
    This algorithm tries to balance small and large items to achieve

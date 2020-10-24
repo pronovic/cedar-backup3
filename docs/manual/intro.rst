@@ -67,17 +67,15 @@ designed for Python 2, while version 3 is a conversion of the original
 code to Python 3. Other than that, both versions are functionally
 equivalent. The configuration format is unchanged, and you can
 mix-and-match masters and clients of different versions in the same
-backup pool. Both versions will be fully supported until around the time
-of the Python 2 end-of-life in 2020, but you should plan to migrate
-sooner than that if possible.
+backup pool. Python 2 has now reached its end of life, and Cedar Backup v2 has
+been unsupported since 11 Nov 2017.
 
-A major design goal for version 3 was to facilitate easy migration
-testing for users, by making it possible to install version 3 on the
-same server where version 2 was already in use. A side effect of this
-design choice is that all of the executables, configuration files, and
-logs changed names in version 3. Where version 2 used "cback", version 3
-uses "cback3": ``cback3.conf`` instead of ``cback.conf``, ``cback3.log``
-instead of ``cback.log``, etc.
+A major design goal for version 3 was to facilitate easy migration testing for
+users, by making it possible to install version 3 on the same server where
+version 2 was already in use. A side effect of this design choice is that all
+of the executables, configuration files, and logs changed names in version 3.
+Where version 2 used ``cback``, version 3 uses ``cback3``: ``cback3.conf``
+instead of ``cback.conf``, ``cback3.log`` instead of ``cback.log``, etc.
 
 So, while migrating from version 2 to version 3 is relatively
 straightforward, you will have to make some changes manually. You will
@@ -157,20 +155,15 @@ doing research related to code I could borrow or base the rewrite on, I
 discovered that there was already an existing backup package with the
 name kbackup, so I decided to change the name to Cedar Backup instead.
 
-Because I had become fed up with the prospect of maintaining a large
-volume of Perl code, I decided to abandon that language in favor of
-Python.  [3]_ At the time, I chose Python mostly because I was
-interested in learning it, but in retrospect it turned out to be a very
-good decision. From my perspective, Python has almost all of the
-strengths of Perl, but few of its inherent weaknesses (I feel that
-primarily, Python code often ends up being much more readable than Perl
-code).
+Because I had become fed up with the prospect of maintaining a large volume of
+Perl code, I decided to abandon that language in favor of Python.  At the time,
+I chose Python mostly because I was interested in learning it, but in
+retrospect it turned out to be a very good decision.
 
 Around this same time, skyjammer.com and cedar-solutions.com were
-converted to run Debian GNU/Linux (potato)  [4]_ and I entered the
-Debian new maintainer queue, so I also made it a goal to implement
-Debian packages along with a Python source distribution for the new
-release.
+converted to run Debian GNU/Linux and I entered the Debian new maintainer
+queue, so I also made it a goal to implement Debian packages along with a
+Python source distribution for the new release.
 
 Version 1.0 of Cedar Backup was released in June of 2002. We immediately
 began using it to back up skyjammer.com and cedar-solutions.com, where
@@ -185,8 +178,7 @@ converted all of the internal documentation to use Epydoc,  and
 updated the code to use the newly-released Python logging package
 after having a good experience with Java's log4j. However, I was still
 not satisfied with the code, which did not lend itself to the automated
-regression testing I had used when working with junit in my Java code.
-[5]_
+regression testing I had used when working with JUnit in my Java code.
 
 So, rather than releasing the cleaned-up code, I instead began another
 ground-up rewrite in May 2004. With this rewrite, I applied everything I
@@ -194,18 +186,19 @@ had learned from other Java and Python projects I had undertaken over
 the last few years. I structured the code to take advantage of Python's
 unique ability to blend procedural code with object-oriented code, and I
 made automated unit testing a primary requirement. The result was the
-2.0 release, which is cleaner, more compact, better focused, and better
+2.0 release, which was cleaner, more compact, better focused, and better
 documented than any release before it. Utility code is less
 application-specific, and is now usable as a general-purpose library.
 The 2.0 release also includes a complete regression test suite of over
-3000 tests, which will help to ensure that quality is maintained as
-development continues into the future.  [6]_
+3800 tests, which will help to ensure that quality is maintained as
+development continues into the future. 
 
-The 3.0 release of Cedar Backup is a Python 3 conversion of the 2.0
-release, with minimal additional functionality. The conversion from
-Python 2 to Python 3 started in mid-2015, about 5 years before the
-anticipated deprecation of Python 2 in 2020. Most users should consider
-transitioning to the 3.0 release.
+The 3.0 release of Cedar Backup is a Python 3 conversion of the 2.0 release,
+with minimal additional functionality. The conversion from Python 2 to Python 3
+started in mid-2015, about 5 years before the anticipated deprecation of Python
+2 in 2020.  In 2020, the Python package structure, development tooling, and
+documentation format were modernized, preparing Cedar Backup for the next phase
+of its life.
          
 ----------
 
@@ -219,20 +212,6 @@ transitioning to the 3.0 release.
 .. [2]
    See Simon Tatham's excellent bug reporting tutorial:
    `<http://www.chiark.greenend.org.uk/~sgtatham/bugs.html>`__ .
-
-.. [3]
-   See `<http://www.python.org/>`__ .
-
-.. [4]
-   Debian's stable releases are named after characters in the Toy Story movie.
-
-.. [5]
-   See `<http://docs.python.org/lib/module-logging.html>`__ .
-
-.. [6]
-   Tests are implemented using Python's unit test framework. See
-   `<http://docs.python.org/lib/module-unittest.html>`__.
-
 
 .. |note| image:: images/note.png
 .. |tip| image:: images/tip.png

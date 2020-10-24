@@ -100,7 +100,7 @@ users have helped out by reporting unit test failures, making suggestions,
 requesting enhancements, updating documentation, submitting patches, and
 beta-testing entire releases or individual bug fixes.  As a result, Cedar
 Backup has evolved into a much more flexible platform than it would otherwise
-have been.  If you are interested in contributing, submit a PR at GitHub.
+have been.
 
 ## Migrating from Version 2 to Version 3
 

@@ -8,10 +8,9 @@ programming interface used by third-party developers to write Cedar
 Backup extensions. This appendix briefly specifies the interface in
 enough detail for someone to succesfully implement an extension.
 
-You will recall that Cedar Backup extensions are third-party pieces of
-code which extend Cedar Backup's functionality. Extensions can be
-invoked from the Cedar Backup command line and are allowed to place
-their configuration in Cedar Backup's configuration file.
+Backup extensions are third-party pieces of code which extend Cedar Backup's
+functionality. Extensions can be invoked from the Cedar Backup command line and
+are allowed to place their configuration in Cedar Backup's configuration file.
 
 There is a one-to-one mapping between a command-line extended action and
 an extension function. The mapping is configured in the Cedar Backup
@@ -35,7 +34,7 @@ function ``foo.bar()``.
 Extension functions can take any actions they would like to once they
 have been invoked, but must abide by these rules:
 
-1. Extensions may not write to ``stdout`` or ``stderr`` using functions
+1. Extensions must not write to ``stdout`` or ``stderr`` using functions
    such as ``print`` or ``sys.write``.
 
 2. All logging must take place using the Python logging facility.
@@ -59,10 +58,10 @@ have been invoked, but must abide by these rules:
 
 6. Extensions may rely only on Cedar Backup functionality that is
    advertised as being part of the public interface. This means that
-   extensions cannot directly make use of methods, functions or values
+   extensions must not directly make use of methods, functions or values
    starting with with the ``_`` character. Furthermore, extensions
    should only rely on parts of the public interface that are documented
-   in the online Epydoc documentation.
+   in the online interface documentation.
 
 7. Extension authors are encouraged to extend the Cedar Backup public
    interface through normal methods of inheritence. However, no
@@ -96,10 +95,9 @@ parse it again as needed.
 
 The interface to the ``CedarBackup3.cli.Options`` and
 ``CedarBackup3.config.Config`` classes has been thoroughly documented
-using Epydoc, and the documentation is available on the Cedar Backup
-website. The interface is guaranteed to change only in
-backwards-compatible ways unless the Cedar Backup major version number
-is bumped (i.e. from 2 to 3).
+in the online interface documentation.  The interface is guaranteed to change
+only in backwards-compatible ways unless the Cedar Backup major version number
+is bumped (i.e. from 3 to 4).
 
 If an extension needs to add its own configuration information to the
 Cedar Backup configuration file, this extra configuration must be added

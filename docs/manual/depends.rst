@@ -3,14 +3,14 @@
 Dependencies
 ============
 
-Python 3.4 (or later)
+Python 3.7 (or later)
 
    +---------------+------------------------------------------------------------------+
    | Source        | URL                                                              |
    +===============+==================================================================+
    | upstream      | `<http://www.python.org>`__                                      |
    +---------------+------------------------------------------------------------------+
-   | Debian        | `<http://packages.debian.org/stable/python/python3.4>`__         |
+   | Debian        | `<http://packages.debian.org/stable/python/python3>`__           |
    +---------------+------------------------------------------------------------------+
    | RPM           | `<http://rpmfind.net/linux/rpm2html/search.php?query=python3>`__ |
    +---------------+------------------------------------------------------------------+
@@ -70,13 +70,13 @@ RSH Server and Client
    On Debian platforms, ``cdrecord`` is not distributed and ``wodim`` is
    used instead. The Debian package takes care of this for you.
 
-   +---------------+--------------------------------------------------------------------+
-   | Source        | URL                                                                |
-   +===============+====================================================================+
-   | upstream      | `<https://en.wikipedia.org/wiki/Cdrtools>`__                       |
-   +---------------+------------------------------------------------------------------- +
-   | RPM           | `<http://rpmfind.net/linux/rpm2html/search.php?query=cdrecord>`__  |
-   +---------------+--------------------------------------------------------------------+
+   +---------------+-------------------------------------------------------------------+
+   | Source        | URL                                                               |
+   +===============+===================================================================+
+   | upstream      | `<https://en.wikipedia.org/wiki/Cdrtools>`__                      |
+   +---------------+-------------------------------------------------------------------+
+   | RPM           | `<http://rpmfind.net/linux/rpm2html/search.php?query=cdrecord>`__ |
+   +---------------+-------------------------------------------------------------------+
 
    If you can't find a package for your system, install from the package
    source, using the “upstream” link.
@@ -149,7 +149,7 @@ RSH Server and Client
    +---------------+--------------------------------------------------------------------+
    | Source        | URL                                                                |
    +===============+====================================================================+
-   | upstream      | `<http://sourceforge.net/projects/grepmail/>`__                    |
+   | upstream      | `<https://github.com/coppit/grepmail>`__                           |
    +---------------+--------------------------------------------------------------------+
    | Debian        | `<http://packages.debian.org/stable/mail/grepmail>`__              |
    +---------------+--------------------------------------------------------------------+

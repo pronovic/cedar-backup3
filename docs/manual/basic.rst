@@ -70,16 +70,16 @@ Cedar Backup Pools
 -------------------
 
 There are two kinds of machines in a Cedar Backup pool. One machine (the
-master) has a CD or DVD writer on it and writes the backup to disc. The
-others (clients) collect data to be written to disc by the master.
-Collectively, the master and client machines in a pool are called peer
-machines.
+*master*) has a CD or DVD writer on it and writes the backup to disc.  If you are
+using Amazon S3 instead of physical media, then the master is the machine that
+consolidates data and writes your backup to cloud storage.  The other machines
+(*clients*) collect data to be written to disc by the master.  Collectively, the
+master and client machines in a pool are called *peer machines*.
 
-Cedar Backup has been designed primarily for situations where there is a
-single master and a set of other clients that the master interacts with.
-However, it will just as easily work for a single machine (a backup pool
-of one) and in fact more users seem to use it like this than any other
-way.
+Cedar Backup has been designed primarily for situations where there is a single
+master and a set of other clients that the master interacts with.  However, it
+will just as easily work for a single machine (a backup pool of one) and in
+fact more users seem to use it like this than any other way.
 
 .. _cedar-basic-process:
 
@@ -101,16 +101,16 @@ A standard backup run consists of four steps (actions), some of which
 execute on the master machine, and some of which execute on one or more
 client machines. These actions are: collect, stage, store and purge.
 
-In general, more than one action may be specified on the command-line.
-If more than one action is specified, then actions will be taken in a
-sensible order (generally collect, stage, store, purge). A special all
-action is also allowed, which implies all of the standard actions in the
-same sensible order.
+In general, more than one action may be specified on the command-line.  If more
+than one action is specified, then actions will be taken in a sensible order
+(generally *collect*, *stage*, *store*, *purge*). A special *all* action is
+also allowed, which implies all of the standard actions in the same sensible
+order.
 
-The ``cback3`` command also supports several actions that are not part
-of the standard backup run and cannot be executed along with any other
-actions. These actions are validate, initialize and rebuild. All of the
-various actions are discussed further below.
+The ``cback3`` command also supports several actions that are not part of the
+standard backup run and cannot be executed along with any other actions. These
+actions are *validate*, *initialize* and *rebuild*. All of the various actions
+are discussed further below.
 
 See :doc:`config` for more information on how a backup run is
 configured.
@@ -119,18 +119,12 @@ Cedar Backup was designed to be flexible. It allows you to decide for
 yourself which backup steps you care about executing (and when you
 execute them), based on your own situation and your own priorities.
 
-As an example, I always back up every machine I own. I typically keep
-7-10 days of staging directories around, but switch CD/DVD media mostly
-every week. That way, I can periodically take a disc off-site in case
-the machine gets stolen or damaged.
-
-If you're not worried about these risks, then there's no need to write
-to disc. In fact, some users prefer to use their master machine as a
-simple “consolidation point”. They don't back up any data on the master,
-and don't write to disc at all. They just use Cedar Backup to handle the
-mechanics of moving backed-up data to a central location. This isn't
-quite what Cedar Backup was written to do, but it is flexible enough to
-meet their needs.
+For example, no need to write to disc or to Amazon S3 at all. In fact, some
+users prefer to use their master machine as a simple “consolidation point”.
+They don't back up any data on the master, and don't write to disc at all. They
+just use Cedar Backup to handle the mechanics of moving backed-up data to a
+central location. This isn't quite what Cedar Backup was written to do, but it
+is flexible enough to meet their needs.
 
 .. _cedar-basic-process-collect:
 
@@ -145,19 +139,18 @@ up. Each configured high-level directory is collected up into its own
 uncompressed (``.tar``) or compressed with either ``gzip`` (``.tar.gz``)
 or ``bzip2`` (``.tar.bz2``).
 
-There are three supported collect modes: daily, weekly and incremental.
+There are three supported collect modes: *daily*, *weekly* and *incremental*.
 Directories configured for daily backups are backed up every day.
 Directories configured for weekly backups are backed up on the first day
 of the week. Directories configured for incremental backups are
 traversed every day, but only the files which have changed (based on a
-saved-off SHA hash) are actually backed up.
+saved-off cryptographic hash) are actually backed up.
 
-Collect configuration also allows for a variety of ways to filter files
-and directories out of the backup. For instance, administrators can
-configure an ignore indicator file  [2]_ or specify absolute paths or
-filename patterns  [3]_ to be excluded. You can even configure a backup
-“link farm” rather than explicitly listing files and directories in
-configuration.
+Collect configuration also allows for a variety of ways to filter files and
+directories out of the backup. For instance, administrators can configure an
+ignore indicator file or specify absolute paths or filename patterns to be
+excluded. You can even configure a backup “link farm” rather than explicitly
+listing files and directories in configuration.
 
 This action is optional on the master. You only need to configure and
 execute the collect action on the master if you have data to back up on
@@ -196,11 +189,12 @@ which are up and running.
 Keep in mind that Cedar Backup is flexible about what actions must be
 executed as part of a backup. If you would prefer, you can stop the
 backup process at this step, and skip the store step. In this case, the
-staged directories will represent your backup rather than a disc.
+staged directories will represent your backup rather than a disc or
+an Amazon S3 bucket.
 
    |note|
 
-   Directories “collected” by another process can be staged by Cedar
+   Directories “collected” by another process can alsoalso  be staged by Cedar
    Backup. If the file ``cback.collect`` exists in a collect directory
    when the stage action is taken, then that directory will be staged.
 
@@ -242,7 +236,7 @@ directory exists, and it has not yet been written to disc (i.e. there is
 no store indicator), then it will be used. Otherwise, the store action
 will look for an unused staging directory for either the previous day or
 the next day, in that order. A warning will be written to the log under
-these circumstances (controlled by the <warn_midnite> configuration
+these circumstances (controlled by the ``<warn_midnite>`` configuration
 value).
 
 This behavior varies slightly when the ``--full`` option is in effect.
@@ -282,7 +276,7 @@ combined with any other actions on the command line.
 
 Extensions *cannot* be executed as part of the all action. If you need
 to execute an extended action, you must specify the other actions you
-want to run individually on the command line.  [4]_
+want to run individually on the command line.  [2]_
 
 The all action does not have its own configuration. Instead, it relies
 on the individual configuration sections for all of the other actions.
@@ -407,9 +401,9 @@ Media and Device Types
 Cedar Backup is focused around writing backups to CD or DVD media using
 a standard SCSI or IDE writer. In Cedar Backup terms, the disc itself is
 referred to as the media, and the CD/DVD drive is referred to as the
-device or sometimes the backup device.  [5]_
+device or sometimes the backup device.
 
-When using a new enough backup device, a new “multisession” ISO image [6]_ 
+When using a new enough backup device, a new “multisession” ISO image [3]_ 
 is written to the media on the first day of the week, and then additional
 multisession images are added to the media each day that Cedar Backup runs.
 This way, the media is complete and usable at the end of every backup run, but
@@ -469,7 +463,7 @@ backed up on a daily basis.
 
 In Cedar Backup, incremental backups are not based on date, but are
 instead based on saved checksums, one for each backed-up file. When a
-full backup is run, Cedar Backup gathers a checksum value  [7]_ for each
+full backup is run, Cedar Backup gathers a checksum value  [4]_ for each
 backed-up file. The next time an incremental backup is run, Cedar Backup
 checks its list of file/checksum pairs for each file that might be
 backed up. If the file's checksum value does not match the saved value,
@@ -519,7 +513,7 @@ general-purpose extensions will be accepted into the official codebase.
 
    |note|
 
-   Users should see :doc:`config` for more information on how
+   See :doc:`config` for more information on how
    extensions are configured, and :doc:`extensions` for
    details on all of the officially-supported extensions.
 
@@ -535,30 +529,19 @@ general-purpose extensions will be accepted into the official codebase.
    See `<http://en.wikipedia.org/wiki/Setuid>`__
 
 .. [2]
-   Analagous to ``.cvsignore`` in CVS
-
-.. [3]
-   In terms of Python regular expressions
-
-.. [4]
    Some users find this surprising, because extensions are configured
    with sequence numbers. I did it this way because I felt that running
    extensions as part of the all action would sometimes result in
    surprising behavior. I am not planning to change the way this works.
 
-.. [5]
-   My original backup device was an old Sony CRX140E 4X CD-RW drive. It
-   has since died, and I currently develop using a Lite-On 1673S DVD±RW
-   drive.
-
-.. [6]
+.. [4]
    An ISO image is the standard way of creating a filesystem to be
    copied to a CD or DVD. It is essentially a “filesystem-within-a-file”
    and many UNIX operating systems can actually mount ISO image files
    just like hard drives, floppy disks or actual CDs. See Wikipedia for
    more information: `<http://en.wikipedia.org/wiki/ISO_image>`__.
 
-.. [7]
+.. [5]
    The checksum is actually an SHA cryptographic hash. See Wikipedia for
    more information: `<http://en.wikipedia.org/wiki/SHA-1>`__.
 
