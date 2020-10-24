@@ -1,5 +1,5 @@
 # -*- coding: iso-8859-1 -*-
-# vim: set ft=python ts=3 sw=3 expandtab:
+# vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
