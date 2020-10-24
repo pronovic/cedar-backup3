@@ -1069,7 +1069,7 @@ class Diagnostics(object):
       Property target to get the default locale that is in effect.
       """
       try:
-         import locale
+         import locale # pylint: disable=import-outside-toplevel
          return locale.getdefaultlocale()[0]
       except:
          return "(unknown)"
@@ -1079,7 +1079,7 @@ class Diagnostics(object):
       Property target to get a current date/time stamp.
       """
       try:
-         import datetime
+         import datetime # pylint: disable=import-outside-toplevel
          return datetime.datetime.utcnow().ctime() + " UTC"
       except:
          return "(unknown)"

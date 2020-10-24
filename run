@@ -20,7 +20,7 @@ run_pylint() {
       run_install
    fi
 
-   poetry run pylint --rcfile=.pylintrc src/CedarBackup3 tests
+   poetry run pylint --rcfile=.pylintrc src/CedarBackup3
 }
 
 # Run the black code formatter
