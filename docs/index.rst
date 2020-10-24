@@ -47,6 +47,17 @@ web sites, source code repositories, or small databases, then Cedar Backup is
 probably worth your time.
 
 
+Documentation
+-------------
+
+See the Changelog_ for recent changes.
+
+The :doc:`manual/index` documents the process of setting up and using Cedar
+Backup.  In the manual, you can find information about how Cedar Backup works,
+how to install and configure it, how to schedule backups, how to restore data,
+and how to get support.
+
+
 Package Distributions
 ---------------------
 
@@ -109,3 +120,5 @@ file (or soft link to the old one), modify your cron jobs to use the new
 executable name, etc.  You can migrate one server at a time in your pool with
 no ill effects, or even incrementally migrate a single server by using v2 and
 v3 on different days of the week or for different parts of the backup.
+
+.. _Changelog: https://github.com/pronovic/cedar-backup3/blob/master/Changelog
