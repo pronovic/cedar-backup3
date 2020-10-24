@@ -43,7 +43,6 @@ run_isort() {
    poetry run isort src/**/*.py tests/*.py
 }
 
-# TODO: this isn't correct since we don't use pytest
 # Run the unit tests, optionally with coverage
 run_pytest() {
    coverage="no"
@@ -64,20 +63,22 @@ run_pytest() {
      esac
    done
 
-   poetry run which pytest > /dev/null
+   shift $((OPTIND -1))  # pop off the options consumed by getopts
+
+   poetry run which coverage > /dev/null
    if [ $? != 0 ]; then
       run_install
    fi
 
    if [ $coverage == "yes" ]; then
-      poetry run coverage run --rcfile=.coveragerc -m pytest tests
+      poetry run coverage run --rcfile=.coveragerc util/test.py $*
       poetry run coverage report
       if [ $html == "yes" ]; then
          poetry run coverage html -d .htmlcov
          $(which start || which open) .htmlcov/index.html 2>/dev/null  # start on Windows, open on MacOS
       fi
    else
-      poetry run pytest tests
+      poetry run python util/test.py $*
    fi
 }
 
@@ -157,7 +158,7 @@ case $1 in
       echo "- run activate: Print command needed to activate the Poetry virtualenv"
       echo "- run checks: Run the PyLint code checker"
       echo "- run format: Run the Black code formatter"
-      echo "- run test: Run the unit tests"
+      echo "- run test: Run the unit tests (see util/test.py for other arguments)"
       echo "- run test -c: Run the unit tests with coverage"
       echo "- run test -ch: Run the unit tests with coverage and open the HTML report"
       echo "- run tox: Run the broader Tox test suite used by the GitHub CI action"
