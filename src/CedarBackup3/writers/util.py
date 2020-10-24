@@ -61,8 +61,8 @@ from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_SECTORS, encodePath
 
 logger = logging.getLogger("CedarBackup3.log.writers.util")
 
-MKISOFS_COMMAND      = [ "mkisofs", ]
-VOLNAME_COMMAND      = [ "volname", ]
+MKISOFS_COMMAND      = ["mkisofs"]
+VOLNAME_COMMAND      = ["volname"]
 
 
 ########################################################################
@@ -169,7 +169,7 @@ def readMediaLabel(devicePath):
    Returns:
        Media label as a string, or None if there is no name or it could not be read
    """
-   args = [ devicePath, ]
+   args = [devicePath]
    command = resolveCommand(VOLNAME_COMMAND)
    (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
    if result != 0:
@@ -275,7 +275,7 @@ class IsoImage(object):
       self._publisherId = None
       self._preparerId = None
       self._volumeId = None
-      self.entries = { }
+      self.entries = {}
       self.device = device
       self.boundaries = boundaries
       self.graftPoint = graftPoint

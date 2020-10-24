@@ -107,7 +107,7 @@ def firstFit(items, capacity):
    """
 
    # Use dict since insert into dict is faster than list append
-   included = { }
+   included = {}
 
    # Search the list as it stands (arbitrary order)
    used = 0
@@ -169,7 +169,7 @@ def bestFit(items, capacity):
    """
 
    # Use dict since insert into dict is faster than list append
-   included = { }
+   included = {}
 
    # Sort the list from largest to smallest
    itemlist = list(items.items())
@@ -236,7 +236,7 @@ def worstFit(items, capacity):
    """
 
    # Use dict since insert into dict is faster than list append
-   included = { }
+   included = {}
 
    # Sort the list from smallest to largest
    itemlist = list(items.items())
@@ -305,7 +305,7 @@ def alternateFit(items, capacity):
    """
 
    # Use dict since insert into dict is faster than list append
-   included = { }
+   included = {}
 
    # Sort the list from smallest to largest
    itemlist = list(items.items())

@@ -77,8 +77,8 @@ logger = logging.getLogger("CedarBackup3.log.writers.dvdwriter")
 MEDIA_DVDPLUSR  = 1
 MEDIA_DVDPLUSRW = 2
 
-GROWISOFS_COMMAND = [ "growisofs", ]
-EJECT_COMMAND     = [ "eject", ]
+GROWISOFS_COMMAND = ["growisofs"]
+EJECT_COMMAND     = ["eject"]
 
 
 ########################################################################
@@ -125,7 +125,7 @@ class MediaDefinition(object):
       Raises:
          ValueError: If the media type is unknown or unsupported
       """
-      if mediaType not in [MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, ]:
+      if mediaType not in [MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW]:
          raise ValueError("Invalid media type %d." % mediaType)
       self._mediaType = mediaType
       if self._mediaType == MEDIA_DVDPLUSR:
@@ -625,7 +625,7 @@ class DvdWriter(object):
       """
       if self._deviceHasTray and self._deviceCanEject:
          command = resolveCommand(EJECT_COMMAND)
-         args = [ self.device, ]
+         args = [self.device]
          result = executeCommand(command, args)[0]
          if result != 0:
             logger.debug("Eject failed; attempting kludge of unlocking the tray before retrying.")
@@ -645,7 +645,7 @@ class DvdWriter(object):
          IOError: If there is an error talking to the device
       """
       command = resolveCommand(EJECT_COMMAND)
-      args = [ "-i", "off", self.device, ]
+      args = ["-i", "off", self.device]
       result = executeCommand(command, args)[0]
       if result != 0:
          raise IOError("Error (%d) executing eject command to unlock tray." % result)
@@ -665,7 +665,7 @@ class DvdWriter(object):
       """
       if self._deviceHasTray and self._deviceCanEject:
          command = resolveCommand(EJECT_COMMAND)
-         args = [ "-t", self.device, ]
+         args = ["-t", self.device]
          result = executeCommand(command, args)[0]
          if result != 0:
             raise IOError("Error (%d) executing eject command to close tray." % result)
@@ -825,7 +825,7 @@ class DvdWriter(object):
       """
       tempdir = tempfile.mkdtemp()
       try:
-         entries = { tempdir: None }
+         entries = {tempdir: None}
          args = DvdWriter._buildWriteArgs(False, self.hardwareId, self.driveSpeed, None, entries, None, dryRun=True)
          command = resolveCommand(GROWISOFS_COMMAND)
          (result, output) = executeCommand(command, args, returnOutput=True)

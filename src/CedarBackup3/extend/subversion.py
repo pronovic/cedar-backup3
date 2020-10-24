@@ -94,8 +94,8 @@ from CedarBackup3.util import ObjectTypeList, encodePath, changeOwnership
 
 logger = logging.getLogger("CedarBackup3.log.extend.subversion")
 
-SVNLOOK_COMMAND      = [ "svnlook", ]
-SVNADMIN_COMMAND     = [ "svnadmin", ]
+SVNLOOK_COMMAND      = ["svnlook"]
+SVNADMIN_COMMAND     = ["svnadmin"]
 
 REVISION_PATH_EXTENSION = "svnlast"
 
@@ -1319,7 +1319,7 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
    collectMode = _getCollectMode(local, repository)
    compressMode = _getCompressMode(local, repository)
    revisionPath = _getRevisionPath(config, repository)
-   if not (fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart)):
+   if not (fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart)):
       logger.debug("Repository will not be backed up, per collect mode.")
       return
    logger.debug("Repository meets criteria to be backed up today.")
@@ -1464,7 +1464,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
       raise ValueError("End revision must be >= 0.")
    if startRevision > endRevision:
       raise ValueError("Start revision must be <= end revision.")
-   args = [ "dump", "--quiet", "-r%s:%s" % (startRevision, endRevision), "--incremental", repositoryPath, ]
+   args = ["dump", "--quiet", "-r%s:%s" % (startRevision, endRevision), "--incremental", repositoryPath]
    command = resolveCommand(SVNADMIN_COMMAND)
    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
    if result != 0:
@@ -1492,7 +1492,7 @@ def getYoungestRevision(repositoryPath):
       ValueError: If there is a problem parsing the ``svnlook`` output
       IOError: If there is a problem executing the ``svnlook`` command
    """
-   args = [ 'youngest', repositoryPath, ]
+   args = ['youngest', repositoryPath]
    command = resolveCommand(SVNLOOK_COMMAND)
    (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
    if result != 0:

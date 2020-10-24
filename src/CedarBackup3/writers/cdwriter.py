@@ -80,9 +80,9 @@ MEDIA_CDR_74   = 2
 MEDIA_CDRW_80  = 3
 MEDIA_CDR_80   = 4
 
-CDRECORD_COMMAND = [ "cdrecord", ]
-EJECT_COMMAND    = [ "eject", ]
-MKISOFS_COMMAND  = [ "mkisofs", ]
+CDRECORD_COMMAND = ["cdrecord"]
+EJECT_COMMAND    = ["eject"]
+MKISOFS_COMMAND  = ["mkisofs"]
 
 
 ########################################################################

@@ -75,13 +75,13 @@ from CedarBackup3.util import executeCommand
 
 logger = logging.getLogger("CedarBackup3.log.tools.amazons3")
 
-AWS_COMMAND   = [ "aws" ]
+AWS_COMMAND   = ["aws"]
 
 SHORT_SWITCHES     = "hVbql:o:m:OdsDvw"
 LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
                        'logfile=', 'owner=', 'mode=',
                        'output', 'debug', 'stack', 'diagnostics',
-                       'verifyOnly', 'ignoreWarnings', ]
+                       'verifyOnly', 'ignoreWarnings']
 
 
 #######################################################################
@@ -781,7 +781,7 @@ class Options(object):
       Raises:
          ValueError: If the argument list cannot be successfully parsed
       """
-      switches = { }
+      switches = {}
       opts, remaining = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
       for o, a in opts:  # push the switches into a hash
          switches[o] = a
@@ -1124,7 +1124,7 @@ def _synchronizeBucket(sourceDir, s3BucketUrl):
    # --recursive option is useless.  They eventually removed it and now using
    # it causes an error.  See: https://github.com/aws/aws-cli/issues/1170
    logger.info("Synchronizing local source directory up to Amazon S3.")
-   args = [ "s3", "sync", sourceDir, s3BucketUrl, "--delete" ]
+   args = ["s3", "sync", sourceDir, s3BucketUrl, "--delete"]
    result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI synchronize bucket." % result)
@@ -1167,12 +1167,12 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
    (bucket, prefix) = s3BucketUrl.replace("s3://", "").split("/", 1)
 
    query = "Contents[].{Key: Key, Size: Size}"
-   args = [ "s3api", "list-objects", "--bucket", bucket, "--prefix", prefix, "--query", query, ]
+   args = ["s3api", "list-objects", "--bucket", bucket, "--prefix", prefix, "--query", query]
    (result, data) = executeCommand(AWS_COMMAND, args, returnOutput=True)
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI verify bucket contents." % result)
 
-   contents = { }
+   contents = {}
    for entry in json.loads("".join(data)):
       key = entry["Key"].replace(prefix, "")
       size = int(entry["Size"])

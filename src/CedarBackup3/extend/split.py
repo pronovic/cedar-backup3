@@ -77,7 +77,7 @@ from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityN
 
 logger = logging.getLogger("CedarBackup3.log.extend.split")
 
-SPLIT_COMMAND = [ "split", ]
+SPLIT_COMMAND = ["split"]
 SPLIT_INDICATOR = "cback.split"
 
 
@@ -514,7 +514,7 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
       bytes = int(splitSize.bytes) # pylint: disable=W0622
       os.chdir(dirname) # need to operate from directory that we want files written to
       command = resolveCommand(SPLIT_COMMAND)
-      args = [ "--verbose", "--numeric-suffixes", "--suffix-length=5", "--bytes=%d" % bytes, filename, prefix, ]
+      args = ["--verbose", "--numeric-suffixes", "--suffix-length=5", "--bytes=%d" % bytes, filename, prefix]
       (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=False)
       if result != 0:
          raise IOError("Error [%d] calling split for [%s]." % (result, sourcePath))

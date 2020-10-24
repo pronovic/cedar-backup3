@@ -386,21 +386,21 @@ def _findCorrectDailyDir(options, config):
    if options.full:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
          logger.info("Store process will use current day's stage directory [%s]", todayPath)
-         return { todayPath:todayDate }
+         return {todayPath:todayDate}
       raise IOError("Unable to find staging directory to store (only tried today due to full option).")
    else:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
          logger.info("Store process will use current day's stage directory [%s]", todayPath)
-         return { todayPath:todayDate }
+         return {todayPath:todayDate}
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
          logger.info("Store process will use previous day's stage directory [%s]", yesterdayPath)
          if config.store.warnMidnite:
             logger.warning("Warning: store process crossed midnite boundary to find data.")
-         return { yesterdayPath:yesterdayDate }
+         return {yesterdayPath:yesterdayDate}
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
          logger.info("Store process will use next day's stage directory [%s]", tomorrowPath)
          if config.store.warnMidnite:
             logger.warning("Warning: store process crossed midnite boundary to find data.")
-         return { tomorrowPath:tomorrowDate }
+         return {tomorrowPath:tomorrowDate}
       raise IOError("Unable to find unused staging directory to store (tried today, yesterday, tomorrow).")
 

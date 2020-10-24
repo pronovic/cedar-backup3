@@ -77,8 +77,8 @@ from xml.parsers.expat import ExpatError
 
 logger = logging.getLogger("CedarBackup3.log.xml")
 
-TRUE_BOOLEAN_VALUES   = [ "Y", "y", ]
-FALSE_BOOLEAN_VALUES  = [ "N", "n", ]
+TRUE_BOOLEAN_VALUES   = ["Y", "y"]
+FALSE_BOOLEAN_VALUES  = ["N", "n"]
 VALID_BOOLEAN_VALUES  = TRUE_BOOLEAN_VALUES + FALSE_BOOLEAN_VALUES
 
 
@@ -758,7 +758,7 @@ def _translateCDATA(characters, encoding='UTF-8', prev_chars='', markupSafe=0):
    Fourthought Inc, USA; All Rights Reserved.
    """
    CDATA_CHAR_PATTERN = re.compile('[&<]|]]>')
-   CHAR_TO_ENTITY = { '&': '&amp;', '<': '&lt;', ']]>': ']]&gt;', }
+   CHAR_TO_ENTITY = {'&': '&amp;', '<': '&lt;', ']]>': ']]&gt;'}
    ILLEGAL_LOW_CHARS = '[\x01-\x08\x0B-\x0C\x0E-\x1F]'
    ILLEGAL_HIGH_CHARS = '\xEF\xBF[\xBE\xBF]'
    XML_ILLEGAL_CHAR_PATTERN = re.compile('%s|%s'%(ILLEGAL_LOW_CHARS, ILLEGAL_HIGH_CHARS))

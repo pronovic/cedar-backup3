@@ -141,7 +141,7 @@ def findResources(resources, dataDirs):
    Raises:
       Exception: If some resource cannot be found
    """
-   mapping = { }
+   mapping = {}
    for resource in resources:
       for resourceDir in dataDirs:
          path = os.path.join(resourceDir, resource)
@@ -483,7 +483,7 @@ def availableLocales():
        List of string locale names
    """
    locales = []
-   output = executeCommand(["locale"], [ "-a", ], returnOutput=True, ignoreStderr=True)[1]
+   output = executeCommand(["locale"], ["-a"], returnOutput=True, ignoreStderr=True)[1]
    for line in output:
       locales.append(line.rstrip()) # pylint: disable=E1101
    return locales

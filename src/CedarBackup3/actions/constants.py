@@ -31,7 +31,7 @@ Provides common constants used by standard actions.
 DIR_TIME_FORMAT      = "%Y/%m/%d"
 DIGEST_EXTENSION     = "sha"
 
-INDICATOR_PATTERN    = [ r"cback\..*", ]
+INDICATOR_PATTERN    = [r"cback\..*"]
 COLLECT_INDICATOR    = "cback.collect"
 STAGE_INDICATOR      = "cback.stage"
 STORE_INDICATOR      = "cback.store"

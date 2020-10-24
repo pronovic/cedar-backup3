@@ -122,8 +122,8 @@ UNIT_SECTORS       = 3
 
 MTAB_FILE          = "/etc/mtab"
 
-MOUNT_COMMAND      = [ "mount", ]
-UMOUNT_COMMAND     = [ "umount", ]
+MOUNT_COMMAND      = ["mount"]
+UMOUNT_COMMAND     = ["umount"]
 
 DEFAULT_LANGUAGE   = "C"
 LANG_VAR           = "LANG"
@@ -880,7 +880,7 @@ class PathResolverSingleton(object):
    def __init__(self, ):
       """Singleton constructor, which just creates the singleton instance."""
       PathResolverSingleton._instance = self
-      self._mapping = { }
+      self._mapping = {}
 
    def lookup(self, name, default=None):
       """
@@ -904,7 +904,7 @@ class PathResolverSingleton(object):
          mapping (Dictionary mapping name to path, both as strings): Mapping from resource name to path
 
       """
-      self._mapping = { }
+      self._mapping = {}
       for key in list(mapping.keys()):
          self._mapping[key] = mapping[key]
 
@@ -1549,7 +1549,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
             if output != []:
                return (pipe.wait(), output)
             else:
-               return (pipe.wait(), [ e, ])
+               return (pipe.wait(), [e])
          else:
             return (pipe.wait(), None)
       except UnboundLocalError:  # pipe not set
@@ -1616,9 +1616,9 @@ def mount(devicePath, mountPoint, fsType):
       IOError: If the device cannot be mounted
    """
    if fsType is None:
-      args = [ devicePath, mountPoint ]
+      args = [devicePath, mountPoint]
    else:
-      args = [ "-t", fsType, devicePath, mountPoint ]
+      args = ["-t", fsType, devicePath, mountPoint]
    command = resolveCommand(MOUNT_COMMAND)
    result = executeCommand(command, args, returnOutput=False, ignoreStderr=True)[0]
    if result != 0:
@@ -1666,7 +1666,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
       for attempt in range(0, attempts):
          logger.debug("Making attempt %d to unmount [%s].", attempt, mountPoint)
          command = resolveCommand(UMOUNT_COMMAND)
-         result = executeCommand(command, [ mountPoint, ], returnOutput=False, ignoreStderr=True)[0]
+         result = executeCommand(command, [mountPoint], returnOutput=False, ignoreStderr=True)[0]
          if result != 0:
             logger.error("Error [%d] unmounting [%s] on attempt %d.", result, mountPoint, attempt)
          elif os.path.ismount(mountPoint):
@@ -1715,7 +1715,7 @@ def deviceMounted(devicePath):
          lines = f.readlines()
       for line in lines:
          (mountDevice, mountPoint, remainder) = line.split(None, 2)
-         if mountDevice in [ devicePath, realPath, ]:
+         if mountDevice in [devicePath, realPath]:
             logger.debug("Device [%s] is mounted at [%s].", devicePath, mountPoint)
             return True
    return False

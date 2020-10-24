@@ -108,7 +108,7 @@ def executeCollect(configPath, options, config):
          archiveMode = _getArchiveMode(config, collectFile)
          digestPath = _getDigestPath(config, collectFile.absolutePath)
          tarfilePath = _getTarfilePath(config, collectFile.absolutePath, archiveMode)
-         if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
+         if fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("File meets criteria to be backed up today.")
             _collectFile(config, collectFile.absolutePath, tarfilePath,
                          collectMode, archiveMode, resetDigest, digestPath)
@@ -125,7 +125,7 @@ def executeCollect(configPath, options, config):
          dereference = _getDereference(collectDir)
          recursionLevel = _getRecursionLevel(collectDir)
          (excludePaths, excludePatterns) = _getExclusions(config, collectDir)
-         if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
+         if fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Directory meets criteria to be backed up today.")
             _collectDirectory(config, collectDir.absolutePath,
                               collectMode, archiveMode, ignoreFile, linkDepth, dereference,

@@ -105,7 +105,7 @@ from CedarBackup3.util import ObjectTypeList, changeOwnership
 ########################################################################
 
 logger = logging.getLogger("CedarBackup3.log.extend.mysql")
-MYSQLDUMP_COMMAND = [ "mysqldump", ]
+MYSQLDUMP_COMMAND = ["mysqldump"]
 
 
 ########################################################################
@@ -696,7 +696,7 @@ def backupDatabase(user, password, backupFile, database=None):
       ValueError: If some value is missing or invalid
       IOError: If there is a problem executing the MySQL dump
    """
-   args = [ "-all", "--flush-logs", "--opt", ]
+   args = ["-all", "--flush-logs", "--opt"]
    if user is not None:
       logger.warning("Warning: MySQL username will be visible in process listing (consider using ~/.my.cnf).")
       args.append("--user=%s" % user)

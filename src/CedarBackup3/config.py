@@ -281,19 +281,19 @@ logger = logging.getLogger("CedarBackup3.log.config")
 DEFAULT_DEVICE_TYPE   = "cdwriter"
 DEFAULT_MEDIA_TYPE    = "cdrw-74"
 
-VALID_DEVICE_TYPES    = [ "cdwriter", "dvdwriter", ]
-VALID_CD_MEDIA_TYPES  = [ "cdr-74", "cdrw-74", "cdr-80", "cdrw-80", ]
-VALID_DVD_MEDIA_TYPES = [ "dvd+r", "dvd+rw", ]
+VALID_DEVICE_TYPES    = ["cdwriter", "dvdwriter"]
+VALID_CD_MEDIA_TYPES  = ["cdr-74", "cdrw-74", "cdr-80", "cdrw-80"]
+VALID_DVD_MEDIA_TYPES = ["dvd+r", "dvd+rw"]
 VALID_MEDIA_TYPES     = VALID_CD_MEDIA_TYPES + VALID_DVD_MEDIA_TYPES
-VALID_COLLECT_MODES   = [ "daily", "weekly", "incr", ]
-VALID_ARCHIVE_MODES   = [ "tar", "targz", "tarbz2", ]
-VALID_COMPRESS_MODES  = [ "none", "gzip", "bzip2", ]
-VALID_ORDER_MODES     = [ "index", "dependency", ]
-VALID_BLANK_MODES     = [ "daily", "weekly", ]
-VALID_BYTE_UNITS      = [ UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES, ]
-VALID_FAILURE_MODES   = [ "none", "all", "daily", "weekly", ]
+VALID_COLLECT_MODES   = ["daily", "weekly", "incr"]
+VALID_ARCHIVE_MODES   = ["tar", "targz", "tarbz2"]
+VALID_COMPRESS_MODES  = ["none", "gzip", "bzip2"]
+VALID_ORDER_MODES     = ["index", "dependency"]
+VALID_BLANK_MODES     = ["daily", "weekly"]
+VALID_BYTE_UNITS      = [UNIT_BYTES, UNIT_KBYTES, UNIT_MBYTES, UNIT_GBYTES]
+VALID_FAILURE_MODES   = ["none", "all", "daily", "weekly"]
 
-REWRITABLE_MEDIA_TYPES = [ "cdrw-74", "cdrw-80", "dvd+rw", ]
+REWRITABLE_MEDIA_TYPES = ["cdrw-74", "cdrw-80", "dvd+rw"]
 
 ACTION_NAME_REGEX     = r"^[a-z0-9]*$"
 
@@ -2855,7 +2855,7 @@ class OptionsConfig(object):
       """
       override = CommandOverride(command, absolutePath)
       if self.overrides is None:
-         self.overrides = [ override, ]
+         self.overrides = [override]
       else:
          exists = False
          for obj in self.overrides:
@@ -2874,7 +2874,7 @@ class OptionsConfig(object):
       """
       override = CommandOverride(command, absolutePath)
       if self.overrides is None:
-         self.overrides = [ override, ]
+         self.overrides = [override]
       else:
          exists = False
          for obj in self.overrides:
@@ -2894,7 +2894,7 @@ class OptionsConfig(object):
          ValueError: If the value is not a valid day of the week
       """
       if value is not None:
-         if value not in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", ]:
+         if value not in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]:
             raise ValueError("Starting day must be an English day of the week, i.e. \"monday\".")
       self._startingDay = value
 

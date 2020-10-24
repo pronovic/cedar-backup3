@@ -114,7 +114,7 @@ from CedarBackup3.util import ObjectTypeList, UnorderedList, RegexList, encodePa
 
 logger = logging.getLogger("CedarBackup3.log.extend.mbox")
 
-GREPMAIL_COMMAND = [ "grepmail", ]
+GREPMAIL_COMMAND = ["grepmail"]
 REVISION_PATH_EXTENSION = "mboxlast"
 
 
@@ -1142,7 +1142,7 @@ def executeAction(configPath, options, config):
          collectMode = _getCollectMode(local, mboxFile)
          compressMode = _getCompressMode(local, mboxFile)
          lastRevision = _loadLastRevision(config, mboxFile, fullBackup, collectMode)
-         if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
+         if fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Mbox file meets criteria to be backed up today.")
             _backupMboxFile(config, mboxFile.absolutePath, fullBackup,
                             collectMode, compressMode, lastRevision, newRevision)
@@ -1157,7 +1157,7 @@ def executeAction(configPath, options, config):
          compressMode = _getCompressMode(local, mboxDir)
          lastRevision = _loadLastRevision(config, mboxDir, fullBackup, collectMode)
          (excludePaths, excludePatterns) = _getExclusions(mboxDir)
-         if fullBackup or (collectMode in ['daily', 'incr', ]) or (collectMode == 'weekly' and todayIsStart):
+         if fullBackup or (collectMode in ['daily', 'incr']) or (collectMode == 'weekly' and todayIsStart):
             logger.debug("Mbox directory meets criteria to be backed up today.")
             _backupMboxDir(config, mboxDir.absolutePath,
                            fullBackup, collectMode, compressMode,
@@ -1433,10 +1433,10 @@ def _backupMboxFile(config, absolutePath,
       IOError: If there is a problem backing up the mbox file
    """
    if fullBackup or collectMode != "incr" or lastRevision is None:
-      args = [ "-a", "-u", absolutePath, ]  # remove duplicates but fetch entire mailbox
+      args = ["-a", "-u", absolutePath]  # remove duplicates but fetch entire mailbox
    else:
       revisionDate = lastRevision.strftime("%Y-%m-%dT%H:%M:%S")  # ISO-8601 format; grepmail calls Date::Parse::str2time()
-      args = [ "-a", "-u", "-d", "since %s" % revisionDate, absolutePath, ]
+      args = ["-a", "-u", "-d", "since %s" % revisionDate, absolutePath]
    command = resolveCommand(GREPMAIL_COMMAND)
    backupPath = _getBackupPath(config, absolutePath, compressMode, newRevision, targetDir=targetDir)
    with _getOutputFile(backupPath, compressMode) as outputFile:

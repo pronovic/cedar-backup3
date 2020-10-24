@@ -74,8 +74,8 @@ from CedarBackup3.actions.util import findDailyDirs, writeIndicatorFile, getBack
 
 logger = logging.getLogger("CedarBackup3.log.extend.encrypt")
 
-GPG_COMMAND = [ "gpg", ]
-VALID_ENCRYPT_MODES = [ "gpg", ]
+GPG_COMMAND = ["gpg",]
+VALID_ENCRYPT_MODES = ["gpg",]
 ENCRYPT_INDICATOR = "cback.encrypt"
 
 
@@ -433,7 +433,7 @@ def executeAction(configPath, options, config):
    if config.options is None or config.stage is None:
       raise ValueError("Cedar Backup configuration is not properly filled in.")
    local = LocalConfig(xmlPath=configPath)
-   if local.encrypt.encryptMode not in ["gpg", ]:
+   if local.encrypt.encryptMode not in ["gpg"]:
       raise ValueError("Unknown encrypt mode [%s]" % local.encrypt.encryptMode)
    if local.encrypt.encryptMode == "gpg":
       _confirmGpgRecipient(local.encrypt.encryptTarget)
@@ -544,7 +544,7 @@ def _encryptFileWithGpg(sourcePath, recipient):
    """
    encryptedPath = "%s.gpg" % sourcePath
    command = resolveCommand(GPG_COMMAND)
-   args = [ "--batch", "--yes", "-e", "-r", recipient, "-o", encryptedPath, sourcePath, ]
+   args = ["--batch", "--yes", "-e", "-r", recipient, "-o", encryptedPath, sourcePath]
    result = executeCommand(command, args)[0]
    if result != 0:
       raise IOError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
@@ -568,7 +568,7 @@ def _confirmGpgRecipient(recipient):
       IOError: If the recipient's public key is not known to GPG
    """
    command = resolveCommand(GPG_COMMAND)
-   args = [ "--batch", "-k", recipient, ]  # should use --with-colons if the output will be parsed
+   args = ["--batch", "-k", recipient]  # should use --with-colons if the output will be parsed
    result = executeCommand(command, args)[0]
    if result != 0:
       raise IOError("GPG unable to find public key for [%s]." % recipient)

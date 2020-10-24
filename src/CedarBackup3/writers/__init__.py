@@ -40,5 +40,5 @@ import CedarBackup3.writers.util
 import CedarBackup3.writers.cdwriter
 import CedarBackup3.writers.dvdwriter
 
-__all__ = [ 'util', 'cdwriter', 'dvdwriter', ]
+__all__ = ['util', 'cdwriter', 'dvdwriter']
 

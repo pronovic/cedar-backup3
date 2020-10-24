@@ -95,8 +95,8 @@ from CedarBackup3.util import ObjectTypeList, changeOwnership
 ########################################################################
 
 logger = logging.getLogger("CedarBackup3.log.extend.postgresql")
-POSTGRESQLDUMP_COMMAND = [ "pg_dump", ]
-POSTGRESQLDUMPALL_COMMAND = [ "pg_dumpall", ]
+POSTGRESQLDUMP_COMMAND = ["pg_dump"]
+POSTGRESQLDUMPALL_COMMAND = ["pg_dumpall"]
 
 
 ########################################################################

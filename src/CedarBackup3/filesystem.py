@@ -847,7 +847,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Returns:
           Dictionary mapping file to file size
       """
-      table = { }
+      table = {}
       for entry in self:
          if os.path.islink(entry):
             table[entry] = 0.0
@@ -879,7 +879,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
           Dictionary mapping file to digest value
       @see: :any:`removeUnchanged`
       """
-      table = { }
+      table = {}
       if stripPrefix is not None:
          for entry in self:
             if os.path.isfile(entry) and not os.path.islink(entry):
@@ -1014,7 +1014,7 @@ class BackupFileList(FilesystemList): # pylint: disable=R0904
       Returns:
           Dictionary mapping file name to tuple of (file path, file size)
       """
-      table = { }
+      table = {}
       for entry in self:
          if os.path.islink(entry):
             table[entry] = (entry, 0.0)

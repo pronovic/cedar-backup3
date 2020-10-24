@@ -405,7 +405,7 @@ def _executeAction(options, config):
       print("If you don't like the results you will have a chance to try a")
       print("different one later.")
       print("")
-      algorithm = _getChoiceAnswer("Which algorithm?", "worst", [ "first", "best", "worst", "alternate", ])
+      algorithm = _getChoiceAnswer("Which algorithm?", "worst", ["first", "best", "worst", "alternate"])
       print("===")
 
       print("")
@@ -678,9 +678,9 @@ def _getYesNoAnswer(prompt, default):
    else:
       prompt = "%s [y/N]: " % prompt
    answer = input(prompt)
-   if answer in [ None, "", ]:
+   if answer in [None, ""]:
       answer = default
-   if answer[0] in [ "Y", "y", ]:
+   if answer[0] in ["Y", "y"]:
       return True
    else:
       return False
@@ -700,7 +700,7 @@ def _getChoiceAnswer(prompt, default, validChoices):
    """
    prompt = "%s [%s]: " % (prompt, default)
    answer = input(prompt)
-   if answer in [ None, "", ]:
+   if answer in [None, ""]:
       answer = default
    while answer not in validChoices:
       print("Choice must be one of %s" % validChoices)
@@ -722,7 +722,7 @@ def _getFloat(prompt, default):
    prompt = "%s [%.2f]: " % (prompt, default)
    while True:
       answer = input(prompt)
-      if answer in [ None, "" ]:
+      if answer in [None, ""]:
          return default
       else:
          try:

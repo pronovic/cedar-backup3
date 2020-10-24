@@ -110,8 +110,8 @@ from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityN
 
 logger = logging.getLogger("CedarBackup3.log.extend.amazons3")
 
-SU_COMMAND    = [ "su" ]
-AWS_COMMAND   = [ "aws" ]
+SU_COMMAND    = ["su"]
+AWS_COMMAND   = ["aws"]
 
 STORE_INDICATOR = "cback.amazons3"
 
@@ -623,22 +623,22 @@ def _findCorrectDailyDir(options, config, local):
    if options.full:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
          logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
-         return { todayPath:todayDate }
+         return {todayPath:todayDate}
       raise IOError("Unable to find staging directory to process (only tried today due to full option).")
    else:
       if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
          logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
-         return { todayPath:todayDate }
+         return {todayPath:todayDate}
       elif os.path.isdir(yesterdayPath) and os.path.exists(yesterdayStageInd) and not os.path.exists(yesterdayStoreInd):
          logger.info("Amazon S3 process will use previous day's staging directory [%s]", yesterdayPath)
          if local.amazons3.warnMidnite:
             logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
-         return { yesterdayPath:yesterdayDate }
+         return {yesterdayPath:yesterdayDate}
       elif os.path.isdir(tomorrowPath) and os.path.exists(tomorrowStageInd) and not os.path.exists(tomorrowStoreInd):
          logger.info("Amazon S3 process will use next day's staging directory [%s]", tomorrowPath)
          if local.amazons3.warnMidnite:
             logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
-         return { tomorrowPath:tomorrowDate }
+         return {tomorrowPath:tomorrowDate}
       raise IOError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
 
 
@@ -816,13 +816,13 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
    (result, data) = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand], returnOutput=True)
    if result != 0:
       raise IOError("Error [%d] calling AWS CLI verify upload to [%s]." % (result, s3BucketUrl))
-   contents = { }
+   contents = {}
    for entry in json.loads("".join(data)):
       key = entry["Key"].replace(prefix, "")
       size = int(entry["Size"])
       contents[key] = size
    files = FilesystemList()
-   files.excludeBasenamePatterns = [ r"cback\..*", ]  # because these are excluded from the upload
+   files.excludeBasenamePatterns = [r"cback\..*"]  # because these are excluded from the upload
    files.addDirContents(stagingDir)
    for entry in files:
       if os.path.isfile(entry):

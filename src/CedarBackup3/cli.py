@@ -124,7 +124,7 @@ DATE_FORMAT        = "%Y-%m-%dT%H:%M:%S %Z"
 
 DEFAULT_CONFIG     = "/etc/cback3.conf"
 DEFAULT_LOGFILE    = "/var/log/cback3.log"
-DEFAULT_OWNERSHIP  = [ "root", "adm", ]
+DEFAULT_OWNERSHIP  = ["root", "adm"]
 DEFAULT_MODE       = 0o640
 
 REBUILD_INDEX      = 0        # can't run with anything else, anyway
@@ -135,9 +135,9 @@ STAGE_INDEX        = 200
 STORE_INDEX        = 300
 PURGE_INDEX        = 400
 
-VALID_ACTIONS      = [ "collect", "stage", "store", "purge", "rebuild", "validate", "initialize", "all", ]
-COMBINE_ACTIONS    = [ "collect", "stage", "store", "purge", ]
-NONCOMBINE_ACTIONS = [ "rebuild", "validate", "initialize", "all", ]
+VALID_ACTIONS      = ["collect", "stage", "store", "purge", "rebuild", "validate", "initialize", "all"]
+COMBINE_ACTIONS    = ["collect", "stage", "store", "purge"]
+NONCOMBINE_ACTIONS = ["rebuild", "validate", "initialize", "all"]
 
 SHORT_SWITCHES     = "hVbqc:fMNl:o:m:OdsD"
 LONG_SWITCHES      = [ 'help', 'version', 'verbose', 'quiet',
@@ -827,7 +827,7 @@ class _ActionSet(object):
                            if remotePeer not in peerMap[managedAction]:
                               peerMap[managedAction].append(remotePeer)
                         else:
-                           peerMap[managedAction] = [ remotePeer, ]
+                           peerMap[managedAction] = [ remotePeer]
       return peerMap
 
    @staticmethod
@@ -870,7 +870,7 @@ class _ActionSet(object):
          if action not in VALID_ACTIONS and action not in extensionNames:
             raise ValueError("Action [%s] is not a valid action or extended action." % action)
       for action in NONCOMBINE_ACTIONS:
-         if action in actions and actions != [ action, ]:
+         if action in actions and actions != [action]:
             raise ValueError("Action [%s] may not be combined with other actions." % action)
 
    @staticmethod
@@ -2010,7 +2010,7 @@ class Options(object):
       Raises:
          ValueError: If the argument list cannot be successfully parsed
       """
-      switches = { }
+      switches = {}
       opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
       for o, a in opts:  # push the switches into a hash
          switches[o] = a

@@ -69,14 +69,14 @@ from CedarBackup3.util import encodePath, executeCommand, isRunningAsRoot, resol
 
 logger                  = logging.getLogger("CedarBackup3.log.peer")
 
-DEF_RCP_COMMAND         = [ "/usr/bin/scp", "-B", "-q", "-C" ]
-DEF_RSH_COMMAND         = [ "/usr/bin/ssh", ]
+DEF_RCP_COMMAND         = ["/usr/bin/scp", "-B", "-q", "-C"]
+DEF_RSH_COMMAND         = ["/usr/bin/ssh"]
 DEF_CBACK_COMMAND       = "/usr/bin/cback3"
 
 DEF_COLLECT_INDICATOR   = "cback.collect"
 DEF_STAGE_INDICATOR     = "cback.stage"
 
-SU_COMMAND              = [ "su" ]
+SU_COMMAND              = ["su"]
 
 
 ########################################################################

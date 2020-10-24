@@ -82,9 +82,9 @@ logger = logging.getLogger("CedarBackup3.log.extend.sysinfo")
 DPKG_PATH      = "/usr/bin/dpkg"
 FDISK_PATH     = "/sbin/fdisk"
 
-DPKG_COMMAND   = [ DPKG_PATH, "--get-selections", ]
-FDISK_COMMAND  = [ FDISK_PATH, "-l", ]
-LS_COMMAND     = [ "ls", "-laR", "/", ]
+DPKG_COMMAND   = [DPKG_PATH, "--get-selections"]
+FDISK_COMMAND  = [FDISK_PATH, "-l"]
+LS_COMMAND     = ["ls", "-laR", "/"]
 
 
 ########################################################################

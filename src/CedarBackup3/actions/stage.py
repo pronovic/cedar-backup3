@@ -164,7 +164,7 @@ def _createStagingDirs(config, dailyDir, peers):
       try:
          logger.debug("Creating staging directory [%s].", dailyDir)
          os.makedirs(dailyDir)
-         for path in [ dailyDir, os.path.join(dailyDir, ".."), os.path.join(dailyDir, "..", ".."), ]:
+         for path in [dailyDir, os.path.join(dailyDir, ".."), os.path.join(dailyDir, "..", "..")]:
             changeOwnership(path, config.options.backupUser, config.options.backupGroup)
       except Exception as e:
          raise Exception("Unable to create staging directory: %s" % e)
