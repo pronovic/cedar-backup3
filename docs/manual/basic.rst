@@ -534,14 +534,14 @@ general-purpose extensions will be accepted into the official codebase.
    extensions as part of the all action would sometimes result in
    surprising behavior. I am not planning to change the way this works.
 
-.. [4]
+.. [3]
    An ISO image is the standard way of creating a filesystem to be
    copied to a CD or DVD. It is essentially a “filesystem-within-a-file”
    and many UNIX operating systems can actually mount ISO image files
    just like hard drives, floppy disks or actual CDs. See Wikipedia for
    more information: `<http://en.wikipedia.org/wiki/ISO_image>`__.
 
-.. [5]
+.. [4]
    The checksum is actually an SHA cryptographic hash. See Wikipedia for
    more information: `<http://en.wikipedia.org/wiki/SHA-1>`__.
 
