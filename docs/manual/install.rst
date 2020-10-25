@@ -75,7 +75,7 @@ You will have to manage external dependencies on your own.
 
 The easiest way to install the Python package is using Pip::
 
-    $ pip install CedarBackup3
+    $ pip install cedar-backup3
 
 There are other ways to install a package, but this is the simplest and is
 probably the mechanism most people will want to use.  If you are an experienced

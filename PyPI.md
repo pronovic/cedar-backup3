@@ -16,19 +16,19 @@ Cedar Backup is focused around weekly backups to a single CD or DVD disc,
 with the expectation that the disc will be changed or overwritten at the
 beginning of each week.  If your hardware is new enough, Cedar Backup can
 write multisession discs, allowing you to add incremental data to a disc on
-a daily basis.  
-
-Alternately, Cedar Backup can write your backups to the Amazon S3 cloud
-rather than relying on physical media.
+a daily basis.  Alternately, Cedar Backup can write your backups to the Amazon
+S3 cloud rather than relying on physical media.
 
 Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality,
 written in the Python 3 programming language.
 
-This is release 3 of the Cedar Backup package.  Release 3 is a Python 3
-conversion of release 2, with minimal additional functionality. 
-
-CedarBackup2 and CedarBackup3 are functionally equivalent and are
-compatible with one another.  It is safe to mix-and-match clients running
-both versions within the same backup configuration.
-
+There are many different backup software systems in the open source world.
+Cedar Backup aims to fill a niche: it aims to be a good fit for people who need
+to back up a limited amount of important data on a regular basis. Cedar Backup
+isn’t for you if you want to back up your huge MP3 collection every night, or
+if you want to back up a few hundred machines.  However, if you administer a
+small set of machines and you want to run daily incremental backups for things
+like system configuration, current email, small web sites, source code
+repositories, or small databases, then Cedar Backup is probably worth your
+time.

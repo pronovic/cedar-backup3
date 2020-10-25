@@ -31,16 +31,15 @@ Besides offering command-line utilities to manage the backup process,
 Cedar Backup provides a well-organized library of backup-related
 functionality, written in the Python 3 programming language.
 
-There are many different backup software implementations out there in
-the open source world. Cedar Backup aims to fill a niche: it aims to be
-a good fit for people who need to back up a limited amount of important
-data on a regular basis. Cedar Backup isn't for you if you want to back
-up your huge MP3 collection every night, or if you want to back up a few
-hundred machines. However, if you administer a small set of machines and
-you want to run daily incremental backups for things like system
-configuration, current email, small web sites, Subversion or Mercurial
-repositories, or small MySQL databases, then Cedar Backup is probably
-worth your time.
+There are many different backup software systems in the open source world.
+Cedar Backup aims to fill a niche: it aims to be a good fit for people who need
+to back up a limited amount of important data on a regular basis. Cedar Backup
+isn’t for you if you want to back up your huge MP3 collection every night, or
+if you want to back up a few hundred machines.  However, if you administer a
+small set of machines and you want to run daily incremental backups for things
+like system configuration, current email, small web sites, source code
+repositories, or small databases, then Cedar Backup is probably worth your
+time.
 
 Cedar Backup has been developed on a Debian GNU/Linux system and is
 primarily supported on Debian and other Linux systems. However, since it
