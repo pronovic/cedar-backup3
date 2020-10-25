@@ -1,4 +1,4 @@
-Version 3.3.0     unreleased
+Version 3.3.0     25 Oct 2020
 
 	* Convert to modern Python packaging based on Poetry.
 	* Apply code formatting standards with Black and isort.
