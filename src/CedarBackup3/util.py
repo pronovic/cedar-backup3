@@ -1553,6 +1553,18 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
    Returns:
        Tuple of ``(result, output)`` as described above
    """
+
+    # I refactored this in Oct 2020 when modernizing the packaging. Recent versions of
+    # Python gave a "ResourceWarning: unclosed file <_io.BufferedReader name=72>".  From
+    # StackOverflow (https://stackoverflow.com/a/58696973/2907667), I decided that the solution
+    # was to use the Pipe as a context manager, which helps ensure that all of its associated
+    # resources are cleaned up properly.  However, the error handling below is somewhat
+    # complicated, for reasons I am sure were important in 2004 but are not clear to me now.
+    # The error conditions are also hard to test.  So, there's a chance that my refactoring is
+    # not strictly equivalent to the original code.  If needed, the original code can be
+    # found at this commit:
+    #   https://github.com/pronovic/cedar-backup3/blob/370dbc9ea2b7a5ad9533605ead32d1e56746efd4/CedarBackup3/util.py#L1449
+
     logger.debug("Executing command %s with args %s.", command, args)
     outputLogger.info("Executing command %s with args %s.", command, args)
     if doNotLog:
@@ -1563,46 +1575,40 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
     fields.extend(args)
     try:
         sanitizeEnvironment()  # make sure we have a consistent environment
-        try:
-            pipe = Pipe(fields, ignoreStderr=ignoreStderr)
-        except OSError:
-            # On some platforms (i.e. Cygwin) this intermittently fails the first time we do it.
-            # So, we attempt it a second time and if that works, we just go on as usual.
-            # The problem appears to be that we sometimes get a bad stderr file descriptor.
-            pipe = Pipe(fields, ignoreStderr=ignoreStderr)
-        while True:
-            line = pipe.stdout.readline()
-            if not line:
-                break
-            if returnOutput:
-                output.append(line.decode("utf-8"))
-            if outputFile is not None:
-                outputFile.write(line)
-            if not doNotLog:
-                outputLogger.info(line.decode("utf-8")[:-1])  # this way the log will (hopefully) get updated in realtime
-        if outputFile is not None:
-            try:  # note, not every file-like object can be flushed
-                outputFile.flush()
-            except:
-                pass
-        if returnOutput:
-            return (pipe.wait(), output)
-        else:
-            return (pipe.wait(), None)
-    except OSError as e:
-        try:
-            if returnOutput:
-                if output != []:
+        with Pipe(fields, ignoreStderr=ignoreStderr) as pipe:
+            try:
+                while True:
+                    line = pipe.stdout.readline()
+                    if not line:
+                        break
+                    if returnOutput:
+                        output.append(line.decode("utf-8"))
+                    if outputFile is not None:
+                        outputFile.write(line)
+                    if not doNotLog:
+                        outputLogger.info(line.decode("utf-8")[:-1])  # this way the log will (hopefully) get updated in realtime
+                if outputFile is not None:
+                    try:  # note, not every file-like object can be flushed
+                        outputFile.flush()
+                    except:
+                        pass
+                if returnOutput:
                     return (pipe.wait(), output)
                 else:
-                    return (pipe.wait(), [e])
-            else:
-                return (pipe.wait(), None)
-        except UnboundLocalError:  # pipe not set
-            if returnOutput:
-                return (256, [])
-            else:
-                return (256, None)
+                    return (pipe.wait(), None)
+            except OSError as e:
+                if returnOutput:
+                    if output != []:
+                        return (pipe.wait(), output)
+                    else:
+                        return (pipe.wait(), [e])
+                else:
+                    return (pipe.wait(), None)
+    except OSError as e:
+        if returnOutput:
+            return (256, [])
+        else:
+            return (256, None)
 
 
 ##############################

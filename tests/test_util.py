@@ -79,7 +79,6 @@ import sys
 import tempfile
 import time
 import unittest
-import warnings
 from os.path import isdir
 
 from CedarBackup3.testutil import buildPath, captureOutput, configureLogging, extractTar, findResources, removedir
@@ -2176,13 +2175,6 @@ class TestFunctions(unittest.TestCase):
     ################
 
     def setUp(self):
-
-        # In recent versions of Python, we get "ResourceWarning: unclosed file <_io.BufferedReader name=72>"
-        # for the executeCommand() tests.  As far as I can tell, this is a problem with Popen() in the standard
-        # library.  You can get more details by adding tracemalloc (https://docs.python.org/3/library/tracemalloc.html).
-        # Because it's not our problem, I'm going to ignore the warnings.
-        warnings.simplefilter("ignore", ResourceWarning)
-
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
