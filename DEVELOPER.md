@@ -135,7 +135,8 @@ Usage: run <command>
 - run tox: Run the broader Tox test suite used by the GitHub CI action
 - run docs: Build the Spinx documentation for cedar-backup3.readthedocs.io
 - run docs -o: Build the Spinx documentation and open in a browser
-- run publish: Tag the current code and publish to PyPI
+- run release: Release a specific version and tag the code
+- run publish: Publish the current code to PyPI and push to GitHub
 
 Try 'run test --help' to get a list of other arguments accepted by that command.
 
@@ -309,37 +310,36 @@ Poetry to use it, following the [instructions](https://python-poetry.org/docs/re
 poetry config pypi-token.pypi my-token
 ```
 
-To publish a new release, check the current version:
+To publish a new release, first ensure that you are on the `master` branch.
+Releases must always be done from master.
+
+Next, ensure that the `Changelog` is up-to-date and reflects all of the changes
+that will be published.  The top line must show your version as unreleased:
 
 ```
-$ poetry version 
-cedar-backup3 3.2.0
+Version 3.3.0     unreleased
 ```
 
-Bump it to whatever version you want to use and commit your changes:
+Next, run the release step:
 
 ```
-$ poetry version 3.3.0
-Bumping version from 3.2.0 to 3.3.0
-
-$ git add pyproject.toml
-
-$ git commit -m "Release v3.3.0"
+$ run release 3.3.0
 ```
 
-Finally, kick off the custom publish process via the `run` script:
+This updates `pyproject.toml`, the `Changelog`, and `release.py` to reflect the
+released version, then commits those changes and tags the code.  Nothing has
+been pushed or published yet, so you can always remove the tag (i.e. `git tag
+-d CEDAR_BACKUPV3_V3.3.0`) and revert your commit (`git reset HEAD~1`) if you
+made a mistake.
+
+Finally, publish the code:
 
 ```
 $ run publish
 ```
 
-This tags the code, builds the deployment artifacts, publishes the artifacts to
-PyPI, and pushes the tag to GitHub.  You still need to push your change to
-`pyproject.toml` and any other pending changes to the repo:
-
-```
-$ git push
-```
+This builds the deployment artifacts, publishes the artifacts to PyPI, and
+pushes the repo to GitHub.  
 
 The code will be available on PyPI for others to use after a little while,
 sometimes within a minute or two, and sometimes as much as half an hour later.

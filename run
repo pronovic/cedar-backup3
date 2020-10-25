@@ -164,24 +164,81 @@ run_docs() {
    fi
 }
 
-# Tag the current code and publish to PyPI
+# Release a specific version and tag the code
+run_release() {
+   if [ $# != 1 ]; then
+      echo "run release <version>"
+      exit 1
+   fi
+
+   VERSION=$1
+   COPYRIGHT="2004-$(date +'%Y')"
+   DATE=$(date +'%d %b %Y')
+   TAG="CEDAR_BACKUPV3_V$VERSION"
+   FILES="pyproject.toml Changelog src/CedarBackup3/release.py"
+   MESSAGE="Release $VERSION to PyPI"
+
+   if [ "$(git branch --show-current)" != "master" ]; then
+      echo "*** You are not on master; you cannot release from this branch"
+      exit 1
+   fi
+
+   git tag -l "$TAG" | grep -q "$TAG"
+   if [ $? = 0 ]; then
+      echo "*** Version $VERSION already tagged as $TAG"
+      exit 1
+   fi
+
+   head -1 Changelog | grep -q "^Version $VERSION     unreleased"
+   if [ $? != 0 ]; then
+      echo "*** Unreleased version $VERSION is not at the head of the Changelog"
+      exit 1
+   fi
+
+   poetry version $VERSION
+
+   sed -i "" "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
+   sed -i "" "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
+   sed -i "" "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
+   sed -i "" "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+
+   git diff $FILES
+
+   git commit --no-verify -m "$MESSAGE" $FILES
+   if [ $? != 0 ]; then
+      echo "*** Commit step failed."
+      exit 1
+   fi
+
+   git tag -a "$TAG" -m "$MESSAGE"
+   if [ $? != 0 ]; then
+      echo "*** Tag step failed."
+      exit 1
+   fi
+
+   echo ""
+   echo "*** Version $VERSION has been released and commited; you may publish now"
+   echo ""
+}
+
+# Publish the current code to PyPI and push to GitHub
 # Before doing this, you must retrieve and configure a local API token
 # For instance: poetry config pypi-token.pypi token --local
 # See: https://python-poetry.org/docs/repositories/#configuring-credentials
 run_publish() {
-   VERSION=$(poetry version)
-   SHORT_VERSION=$(echo "$VERSION" | sed 's/^.* //g')
-
-   git tag -a "v$SHORT_VERSION" -m "Release $VERSION to PyPI"
+   poetry build
    if [ $? != 0 ]; then
-      echo "*** Tag step failed.  Does this version already exist?"
+      echo "*** Build step failed."
       exit 1
    fi
 
-   poetry build
    poetry publish
+   if [ $? != 0 ]; then
+      echo "*** Publish step failed."
+      exit 1
+   fi
 
-   git push origin "v$SHORT_VERSION"
+   git push --follow-tags
 }
 
 # Execute one of the developer tasks
@@ -222,6 +279,10 @@ case $1 in
       shift 1
       run_docs $*
       ;;
+   release)
+      shift 1
+      run_release $*
+      ;;
    publish)
       run_publish
       ;;
@@ -243,7 +304,8 @@ case $1 in
       echo "- run tox: Run the broader Tox test suite used by the GitHub CI action"
       echo "- run docs: Build the Spinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Spinx documentation and open in a browser"
-      echo "- run publish: Tag the current code and publish to PyPI"
+      echo "- run release: Release a specific version and tag the code"
+      echo "- run publish: Publish the current code to PyPI and push to GitHub"
       echo ""
       echo "Try 'run test --help' to get a list of other arguments accepted by that command."
       echo ""
