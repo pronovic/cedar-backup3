@@ -233,7 +233,7 @@ Under **Docstrings > Docstring format**, select _Google_. Click **OK**.
 
 Use **Build > Rebuild Project**, just to be sure that everything is up-to-date.
 Then, right click on the `tests` folder in IntelliJ's project explorer and
-choose **Run 'pytest in tests'**.  Make sure that all of the tests pass.
+choose **Run 'Unittests in tests'**.  Make sure that all of the tests pass.
 
 ### External Tools
 
@@ -249,7 +249,7 @@ described below.
 |Field|Value|
 |-----|-----|
 |Name|`Format Code`|
-|Description|`Run the Black and isort code formatters`|
+|Description|`Run the code formatters`|
 |Group|`Developer Tools`|
 |Program|`$ProjectFileDir$/run`|
 |Arguments|`format`|
