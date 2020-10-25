@@ -15,6 +15,10 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+"""
+Scripts published by Poetry as part of the Python package.
+"""
+
 import sys
 
 
