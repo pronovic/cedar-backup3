@@ -3,14 +3,14 @@ Cedar Backup v3
 
 Release v\ |version|
 
-.. image:: https://img.shields.io/pypi/l/CedarBackup3.svg
-    :target: https://pypi.org/project/CedarBackup3/
+.. image:: https://img.shields.io/pypi/l/cedar-backup3.svg
+    :target: https://pypi.org/project/cedar-backup3/
 
-.. image:: https://img.shields.io/pypi/wheel/CedarBackup3.svg
-    :target: https://pypi.org/project/CedarBackup3/
+.. image:: https://img.shields.io/pypi/wheel/cedar-backup3.svg
+    :target: https://pypi.org/project/cedar-backup3/
 
-.. image:: https://img.shields.io/pypi/pyversions/CedarBackup3.svg
-    :target: https://pypi.org/project/CedarBackup3/
+.. image:: https://img.shields.io/pypi/pyversions/cedar-backup3.svg
+    :target: https://pypi.org/project/cedar-backup3/
 
 .. image:: https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg
     :target: https://github.com/pronovic/cedar-backup3
@@ -61,7 +61,7 @@ Package Distributions
 Cedar Backup is primarily distributed as a Python 3 package.  You can install
 it using pip::
 
-    $ pip install CedarBackup3
+    $ pip install cedar-backup3
 
 Debian packages for Cedar Backup v3, called ``cedar-backup3`` and
 ``cedar-backup3-doc``, were first available starting with the Debian 'stretch'

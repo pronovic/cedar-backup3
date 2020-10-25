@@ -1,10 +1,10 @@
 # Cedar Backup v3
 
-![](https://img.shields.io/pypi/l/CedarBackup3.svg)
-![](https://img.shields.io/pypi/wheel/CedarBackup3.svg)
-![](https://img.shields.io/pypi/pyversions/CedarBackup3.svg)
+![](https://img.shields.io/pypi/l/cedar-backup3.svg)
+![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
+![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
 ![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
-![](https://readthedocs.org/projects/CedarBackup3/badge/?version=latest&style=flat)
+![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
 
 Cedar Backup is a software package designed to manage system backups for a
 pool of local and remote machines.  Cedar Backup understands how to back up
