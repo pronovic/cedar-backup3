@@ -1,5 +1,7 @@
-Release Procedure
-=================
+# Release Procedure
+
+These are my partially-obsolete notes about the release procedure that I
+follow.  As I finalize the new procedure for PyPI, these will be updated.
 
 - Make final update to Changelog
 - Update CedarBackup3/release.py
