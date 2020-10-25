@@ -1,6 +1,13 @@
 Version 3.3.0     unreleased
 
 	* Convert to modern Python packaging based on Poetry.
+	* Apply code formatting standards with Black and isort.
+	* Switch to standard unittest discovery process to run test suite.
+	* Convert user manual from Docbook XML to Sphinx and revise content.
+	* Migrate all documentation (manual and API specs) to Read the Docs.
+	* Add a GitHub workflow to implement code quality gates, executed via Tox.
+	* Clean up and remove obsolete and unused notes, utilities, etc.
+	* Fix resource leak in executeCommand() that was exposed by unit tests.
 	* Increase minimum interpreter version from Python 3.4 to Python 3.7.
 
 Version 3.2.0     24 Aug 2019
