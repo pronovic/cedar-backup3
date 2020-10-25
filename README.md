@@ -1,5 +1,6 @@
 # Cedar Backup v3
 
+![](https://img.shields.io/pypi/v/cedar-backup3.svg)
 ![](https://img.shields.io/pypi/l/cedar-backup3.svg)
 ![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
 ![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
