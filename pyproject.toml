@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "cedar-backup3"
+version = "3.3.0"
+description = "Implements local and remote backups to CD/DVD and Amazon S3"
+keywords = [ 'local', 'remote', 'backup', 'scp' ]
+authors = ["Kenneth J. Pronovici <pronovic@ieee.org>"]
+license = "GPL-2.0-only"
+readme = "PyPI.md"
+homepage = "https://github.com/pronovic/cedar-backup3"
+repository = "https://github.com/pronovic/cedar-backup3"
+include = [ "CREDITS", "Changelog", "LICENSE", "README.md", "docs", "manpages", "samples", "tests", ]
+packages = [ { include = "CedarBackup3", from = "src" } ]
+classifiers=[
+   "Programming Language :: Python :: 3",
+   "Development Status :: 5 - Production/Stable",
+   "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+   "Operating System :: OS Independent",
+   "Environment :: Console",
+   "Intended Audience :: System Administrators",
+   "Natural Language :: English",
+   "Topic :: Software Development :: Libraries",
+   "Topic :: System :: Archiving :: Backup",
+   "Topic :: Utilities",
+]
+
+[tool.poetry.scripts]
+cback3 = 'CedarBackup3.scripts:cback3' 
+cback3-amazons3-sync = 'CedarBackup3.scripts:amazons3' 
+cback3-span = 'CedarBackup3.scripts:span' 
+
+[tool.poetry.dependencies]
+python = ">=3.7,<=3.9"
+chardet = "^3.0.4"
+
+[tool.poetry.dev-dependencies]
+coverage = "^5.0.3"
+tox = "^3.14.5"
+pylint = "^2.4.4"
+sphinx = "^2.4.4"
+toml = "^0.10.0"
+pre-commit = "^2.2.0"
+black = "^19.10b0"
+isort = "^4.3.21"
+sphinx-autoapi = "^1.2.1"
+
+[tool.black]
+line-length = 132
+target-version = ['py37', 'py38']
+include = '(src\/scripts\/.*$|\.pyi?$)'
+exclude = '''
+/(
+    \.git
+  | __pycache__
+  | \.tox
+  | build
+  | dist
+  | docs
+)/
+'''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

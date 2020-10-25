@@ -1,0 +1,154 @@
+.\" vim: set ft=nroff .\"
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\" #
+.\" #              C E D A R
+.\" #          S O L U T I O N S       "Software done right."
+.\" #           S O F T W A R E
+.\" #
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\" #
+.\" # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
+.\" # Language : nroff
+.\" # Project  : Cedar Backup, release 3
+.\" # Purpose  : Manpage for cback3-span script
+.\" #
+.\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+.\"
+.TH cback3\-span "1" "Aug 2019" "Cedar Backup 3" "Kenneth J. Pronovici"
+.SH NAME
+cback3\-span \- Span staged data among multiple discs
+.SH SYNOPSIS
+.B cback3\-span
+[\fIswitches\fR]
+.SH DESCRIPTION
+.PP
+This is the Cedar Backup 3 span tool.  It is intended for use by people who back
+up more data than can fit on a single disc.  It allows a user to split (span)
+staged data between more than one disc.  It can't be a Cedar Backup extension
+in the usual sense because it requires user input when switching media.
+.PP
+Generally, one can run the cback3\-span command with no arguments.  This will
+start it using the default configuration file, the default log file, etc.  You
+only need to use the switches if you need to change the default behavior.
+.PP
+This command takes most of its configuration from the Cedar Backup
+configuration file, specifically the store section.  Then, more information is
+gathered from the user interactively while the command is running.
+.SH MIGRATING FROM VERSION 2 TO VERSION 3
+.PP
+The main difference between Cedar Backup version 2 and Cedar Backup version 3
+is the targeted Python interpreter.  For most users, migration should be
+straightforward.  See the discussion found at cback3(1) or reference the Cedar
+Backup user guide.
+.SH SWITCHES
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Display usage/help listing.
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Display version information.
+.TP
+\fB\-b\fR, \fB\-\-verbose\fR
+Print verbose output to the screen as well writing to the logfile. When this
+option is enabled, most information that would normally be written to the
+logfile will also be written to the screen.
+.TP
+\fB\-c\fR, \fB\-\-config\fR
+Specify the path to an alternate configuration file.  The default configuration
+file is \fI/etc/cback3.conf\fR.
+.TP
+\fB\-l\fR, \fB\-\-logfile\fR
+Specify the path to an alternate logfile.  The default logfile file is
+\fI/var/log/cback3.log\fR.
+.TP
+\fB\-o\fR, \fB\-\-owner\fR
+Specify the ownership of the logfile, in the form user:group.  The default
+ownership is \fIroot:adm\fR, to match the Debian standard for most logfiles.  This
+value will only be used when creating a new logfile.  If the logfile already
+exists when the cback3 script is executed, it will retain its existing ownership
+and mode.  Only user and group names may be used, not numeric uid and gid
+values.
+.TP
+\fB\-m\fR, \fB\-\-mode\fR
+Specify the permissions for the logfile, using the numeric mode as in chmod(1).
+The default mode is \fI640\fR (\-rw\-r\-\-\-\-\-).  This value will only be used when
+creating a new logfile.  If the logfile already exists when the cback3 script is
+executed, it will retain its existing ownership and mode.
+.TP
+\fB\-O\fR, \fB\-\-output\fR
+Record some sub-command output to the logfile. When this option is enabled, all
+output from system commands will be logged. This might be useful for debugging
+or just for reference.
+.TP
+\fB\-d\fR, \fB\-\-debug\fR
+Write debugging information to the logfile. This option produces a high volume
+of output, and would generally only be needed when debugging a problem. This
+option implies the \-\-output option, as well.
+.TP
+\fB\-s\fR, \fB\-\-stack\fR
+Dump a Python stack trace instead of swallowing exceptions.  This forces Cedar
+Backup to dump the entire Python stack trace associated with an error, rather
+than just progating last message it received back up to the user interface.
+Under some circumstances, this is useful information to include along with a
+bug report.
+.TP
+\fB\-D\fR, \fB\-\-diagnostics\fR
+Display runtime diagnostic information and then exit.  This diagnostic
+information is often useful when filing a bug report.
+.SH RETURN VALUES
+.PP
+This command returns 0 (zero) upon normal completion, and six other error
+codes related to particular errors. 
+.TP
+\fB1\fR
+The Python interpreter version is < 3.7.
+.TP
+\fB2\fR
+Error processing command\-line arguments.
+.TP
+\fB3\fR
+Error configuring logging.
+.TP
+\fB4\fR
+Error parsing indicated configuration file.
+.TP
+\fB5\fR
+Backup was interrupted with a CTRL\-C or similar.
+.TP
+\fB6\fR
+Other error during processing.
+.SH NOTES
+.PP
+Cedar Backup itself is designed to run as root, since otherwise it's difficult
+to back up system directories or write the CD or DVD device.  However,
+cback3\-span can be run safely as any user that has read access to the Cedar
+Backup staging directories and write access to the CD or DVD device.
+.SH SEE ALSO
+cback3(1)
+.SH FILES
+.TP
+\fI/etc/cback3.conf\fR - Default configuration file
+.TP
+\fI/var/log/cback3.log\fR - Default log file
+.SH URLS
+.TP
+The project homepage is: \fIhttps://github.com/cedarsolutions/cedar\-backup3\fR 
+.SH BUGS
+.PP
+If you find a bug, please report it.
+.PP
+If possible, give me the output from \-\-diagnostics, all of the error
+messages that the script printed into its log, and also any stack\-traces
+(exceptions) that Python printed.  It would be even better if you could tell me
+how to reproduce the problem, for instance by sending me your configuration file.
+.PP
+Report bugs to <support@cedar\-solutions.com> or via GitHub issues
+tracker.
+.SH AUTHOR
+Written and maintained by Kenneth J. Pronovici <pronovic@ieee.org> with contributions from others.
+.SH COPYRIGHT
+Copyright (c) 2004\-2011,2013\-2017,2019 Kenneth J. Pronovici.
+.PP
+This is free software; see the source for copying conditions.  There is
+NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.
