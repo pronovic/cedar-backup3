@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: skip-file
 #
-# Apologies documentation build configuration file, based on existing
+# Cedar Backup v3 documentation build configuration file, based on existing
 # documentation for Requests (https://github.com/psf/requests).
 #
 # This file is execfile()d with the current directory set to its
@@ -24,7 +24,7 @@ import toml
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
 
-# Insert Apologies path into the system.
+# Insert source code into the system path
 sys.path.insert(0, os.path.abspath("../src"))
 sys.path.insert(0, os.path.abspath("_themes"))
 

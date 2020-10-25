@@ -133,7 +133,7 @@ run_tox() {
    poetry run tox -c .toxrc -e "precommit,{py}-{coverage,nocoverage}"
 }
 
-# Build the Sphinx documentation for apologies.readthedocs.io
+# Build the Sphinx documentation for cedar-backup3.readthedocs.io
 run_docs() {
    open="no"
 
