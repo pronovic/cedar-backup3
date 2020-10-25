@@ -210,20 +210,6 @@ RSH Server and Client
    then ``pip3 install awscli``. The Debian package includes an
    appropriate dependency starting with the jessie release.
 
-``Chardet``
-
-   The ``cback3-amazons3-sync`` command relies on the Chardet Python
-   package to check filename encoding. You only need this package if you
-   are going to use the sync tool.
-
-   +---------------+----------------------------------------------------------+
-   | Source        | URL                                                      |
-   +===============+==========================================================+
-   | upstream      | `<https://github.com/chardet/chardet>`__                 |
-   +---------------+----------------------------------------------------------+
-   | debian        | `<https://packages.debian.org/stable/python3-chardet>`__ |
-   +---------------+----------------------------------------------------------+
-
 ----------
 
 *Previous*: :doc:`extenspec` • *Next*: :doc:`recovering`
