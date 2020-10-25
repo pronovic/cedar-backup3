@@ -1,12 +1,19 @@
 # Cedar Backup v3
 
+![](https://img.shields.io/pypi/l/cedar-backup3.svg)
+![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
+![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
+![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
+![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
+
 ## What is Cedar Backup?
 
-Cedar Backup is a software package designed to manage system backups for a pool
-of local and remote machines. The project was originally maintained at
-SourceForge, and historical releases still exist there. The project was moved
-to BitBucket in mid-2015, and from there to GitHub in mid-2019 when BitBucket
-retired their Mercurial hosting service.
+[Cedar Backup v3](https://pypi.org/project/cedar-backup3/) is a software
+package designed to manage system backups for a pool of local and remote
+machines. The project was originally maintained at SourceForge, and historical
+releases still exist there. The project was moved to BitBucket in mid-2015, and
+from there to GitHub in mid-2019 when BitBucket retired their Mercurial hosting
+service.
 
 Cedar Backup understands how to back up filesystem data as well as MySQL and
 PostgreSQL databases and Subversion repositories. It can also be easily extended 
@@ -48,7 +55,7 @@ environment, etc.
 See the [Changelog](https://github.com/cedarsolutions/cedar-backup3/blob/master/Changelog) for
 recent changes.
 
-The **Cedar Backup v3 Software Manual**, found at [Read the Docs](https://cedar-backup3.readthedocs.io), documents 
+The [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/index.html) documents 
 the process of setting up and using Cedar Backup.  In the manual, you can find
 information about how Cedar Backup works, how to install and configure it, how
 to schedule backups, how to restore data, and how to get support.
@@ -61,8 +68,8 @@ package contains a variety of useful backup-related classes and functions.  For
 instance: the `IsoImage` class represents an ISO CD image;
 the `CdWriter` class represents a CD-R/CD-RW writer device; and the
 `FilesystemList` class represents a list of files and directories on a
-filesystem.  For more information, see the API reference documentation
-at [Read the Docs](https://cedar-backup3.readthedocs.io).
+filesystem.  For more information, see 
+the [API Reference](https://cedar-backup3.readthedocs.io/en/latest/autoapi/index.html) documentation.
 
 ## Package Distributions
 
@@ -74,8 +81,8 @@ $ pip install cedar-backup3
 ```
 
 In addition to the Python package, Cedar Backup requires a variety of external 
-system dependencies.  For more information, see the **Cedar Backup Software
-Manual**, found at [Read the Docs](https://cedar-backup3.readthedocs.io).
+system dependencies.  For more information, see 
+the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/install.html#installing-the-python-package).
     
 Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'

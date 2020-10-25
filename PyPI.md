@@ -6,11 +6,11 @@
 ![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
 ![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
 
-Cedar Backup is a software package designed to manage system backups for a
-pool of local and remote machines.  Cedar Backup understands how to back up
-filesystem data as well as MySQL and PostgreSQL databases and Subversion
-repositories.  It can also be easily extended to support other kinds of
-data sources.
+[Cedar Backup](https://github.com/pronovic/cedar-backup3) is a software package
+designed to manage system backups for a pool of local and remote machines.
+Cedar Backup understands how to back up filesystem data as well as MySQL and
+PostgreSQL databases and Subversion repositories.  It can also be easily
+extended to support other kinds of data sources.
 
 Cedar Backup is focused around weekly backups to a single CD or DVD disc,
 with the expectation that the disc will be changed or overwritten at the
