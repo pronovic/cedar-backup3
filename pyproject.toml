@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "CedarBackup3"
+name = "cedar-backup3"
 version = "3.3.0"
 description = "Implements local and remote backups to CD/DVD and Amazon S3"
 keywords = [ 'local', 'remote', 'backup', 'scp' ]
@@ -9,6 +9,7 @@ readme = "PyPI.md"
 homepage = "https://github.com/pronovic/cedar-backup3"
 repository = "https://github.com/pronovic/cedar-backup3"
 include = ["LICENSE" ]
+packages = [ { include = "CedarBackup3", from = "src" } ]
 classifiers=[
    "Programming Language :: Python :: 3",
    "Development Status :: 5 - Production/Stable",
