@@ -89,6 +89,7 @@ run_unittest() {
    while [ $# -gt 0 ]; do
      case $1 in
        full) 
+         sudo -v
          export PEERTESTS_FULL="Y"
          export WRITERSUTILTESTS_FULL="Y"
          export ENCRYPTTESTS_FULL="Y"
