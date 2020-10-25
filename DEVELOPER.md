@@ -138,6 +138,14 @@ Usage: run <command>
 - run publish: Tag the current code and publish to PyPI
 
 Try 'run test --help' to get a list of other arguments accepted by that command.
+
+To run scripts, use poetry directly: 
+
+- poetry run cback3
+- poetry run cback3-amazons3-sync
+- poetry run cback3-span
+
+These are the exact scripts published by Poetry as part of the Python package.
 ```
 
 ## Integration with IntelliJ or PyCharm

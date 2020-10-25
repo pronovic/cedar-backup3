@@ -23,6 +23,11 @@ classifiers=[
    "Topic :: Utilities",
 ]
 
+[tool.poetry.scripts]
+cback3 = 'CedarBackup3.scripts:cback3' 
+cback3-amazons3-sync = 'CedarBackup3.scripts:amazons3' 
+cback3-span = 'CedarBackup3.scripts:span' 
+
 [tool.poetry.dependencies]
 python = ">=3.7,<=3.9"
 chardet = "^3.0.4"
