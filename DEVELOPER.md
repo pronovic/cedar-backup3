@@ -296,31 +296,24 @@ is no formal release process for the documentation.
 ### Code
 
 Code is released to [PyPI](https://pypi.org/project/cedar-backup3/).  There is a
-manual process to publish a new release. 
+partially-automated process to publish a new release.  
 
-Before publishing code, you must must have push permissions to the GitHub repo
-and be a collaborator on the PyPI project.
+> _Note:_ In order to publish code, you must must have push permissions to the
+> GitHub repo and be a collaborator on the PyPI project.  Before running this
+> process for the first time, you must set up a PyPI API token and configure
+> Poetry to use it.  (See notes below.)
 
-First, configure an API token which has permission to publish to the
-PyPI project.  This is a one-time step. In your PyPI [account settings](https://pypi.org/manage/account/),
-create an API token with upload permissions.  Save off the token, and then tell
-Poetry to use it, following the [instructions](https://python-poetry.org/docs/repositories/#configuring-credentials):
+Ensure that you are on the `master` branch.  Releases must always be done from
+`master`.
 
-```
-poetry config pypi-token.pypi my-token
-```
-
-To publish a new release, first ensure that you are on the `master` branch.
-Releases must always be done from master.
-
-Next, ensure that the `Changelog` is up-to-date and reflects all of the changes
-that will be published.  The top line must show your version as unreleased:
+Ensure that the `Changelog` is up-to-date and reflects all of the changes that
+will be published.  The top line must show your version as unreleased:
 
 ```
 Version 3.3.0     unreleased
 ```
 
-Next, run the release step:
+Run the release step:
 
 ```
 $ run release 3.3.0
@@ -332,14 +325,57 @@ been pushed or published yet, so you can always remove the tag (i.e. `git tag
 -d CEDAR_BACKUPV3_V3.3.0`) and revert your commit (`git reset HEAD~1`) if you
 made a mistake.
 
-Finally, publish the code:
+Finally, publish the release:
 
 ```
 $ run publish
 ```
 
 This builds the deployment artifacts, publishes the artifacts to PyPI, and
-pushes the repo to GitHub.  
+pushes the repo to GitHub.  The code will be available on PyPI for others to
+use after a little while, sometimes within a minute or two, and sometimes as
+much as half an hour later.
 
-The code will be available on PyPI for others to use after a little while,
-sometimes within a minute or two, and sometimes as much as half an hour later.
+### Configuring the PyPI API Token
+
+First, in your PyPI [account settings](https://pypi.org/manage/account/),
+create an API token with upload permissions for the cedar-backup3 project.
+
+Once you have the token, you will configure Poetry to use it.  Poetry relies on
+the Python keyring to store this secret.  On MacOS, it will use the system
+keyring, and no other setup is required.  
+
+On Debian, the process is more complicated (see the the [keyring documentation](https://pypi.org/project/keyring/) for more details).  First, install a keyring manager, and then log out:
+
+```
+$ sudo apt-get install gnome-keyring
+$ exit
+```
+
+Log back in and initialize your keyring by setting and then removing a dummy
+value:
+
+```
+$ keyring set testvalue "user"
+Password for 'user' in 'testvalue': 
+Please enter password for encrypted keyring: 
+
+$ keyring get testvalue "user"
+Please enter password for encrypted keyring: 
+password
+
+$ keyring del testvalue "user"
+Deleting password for 'user' in 'testvalue':
+```
+
+At this point, the keyring should be fully functional.
+
+Now, configure Poetry following the [instructions](https://python-poetry.org/docs/repositories/#configuring-credentials):
+
+```
+poetry config pypi-token.pypi <the PyPI token>
+```
+
+You will have to type in the same keyring password that you set above.  Note
+that this leaves your actual secret in the command-line history, so make sure
+to scrub it once you're done.
