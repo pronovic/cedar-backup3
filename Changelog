@@ -2,7 +2,7 @@ Version 3.3.1     unreleased
 
 	* Minor adjustments to PyPI package documentation.
 	* Execute 'sudo -v' prior to running full test suite.
-	* Fix release process to work with older git clients.
+	* Fix release process to work consistently across platforms.
 
 Version 3.3.0     25 Oct 2020
 
