@@ -84,10 +84,6 @@ Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'
 release.  Debian derivatives (such as Ubuntu) should also contain the packages.
 
-Debian users who who want to always run the latest release of Cedar Backup rather than the version 
-included with their distribution can use the Cedar Solutions APT source.  See the Cedar Solutions 
-[Debian page](http://software.cedar-solutions.com/debian.html) for more information.
-
 ## Support
 
 If you think you have found a bug or you would like to request an enhancement,
