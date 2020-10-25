@@ -1,3 +1,8 @@
+Version 3.3.1     unreleased
+
+	* Minor adjustments to PyPI package documentation.
+	* Execute 'sudo -v' prior to running full test suite.
+
 Version 3.3.0     25 Oct 2020
 
 	* Convert to modern Python packaging based on Poetry.
