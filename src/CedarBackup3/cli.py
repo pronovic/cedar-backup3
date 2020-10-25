@@ -25,7 +25,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python 3 (>= 3.4)
+# Language : Python 3 (>= 3.7)
 # Project  : Cedar Backup, release 3
 # Purpose  : Provides command-line interface implementation.
 #
@@ -189,7 +189,7 @@ def cli():
 
    A different error code is returned for each type of failure:
 
-      - ``1``: The Python interpreter version is < 3.4
+      - ``1``: The Python interpreter version is < 3.7
       - ``2``: Error processing command-line arguments
       - ``3``: Error configuring logging
       - ``4``: Error parsing indicated configuration file
@@ -208,12 +208,12 @@ def cli():
        Error code as described above
    """
     try:
-        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 4]:
-            sys.stderr.write("Python 3 version 3.4 or greater required.\n")
+        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 7]:
+            sys.stderr.write("Python 3 version 3.7 or greater required.\n")
             return 1
     except:
         # sys.version_info isn't available before 2.0
-        sys.stderr.write("Python 3 version 3.4 or greater required.\n")
+        sys.stderr.write("Python 3 version 3.7 or greater required.\n")
         return 1
 
     try:
