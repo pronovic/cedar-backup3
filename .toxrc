@@ -8,9 +8,9 @@ ignore_basepython_conflict = true
 [testenv]
 whitelist_externals = poetry
 commands =
-   nocoverage: poetry run python util/test.py
+   nocoverage: poetry run python -m unittest discover -s tests -t tests
    coverage: poetry run coverage erase
-   coverage: poetry run coverage run --rcfile=.coveragerc util/test.py
+   coverage: poetry run coverage run --rcfile=.coveragerc -m unittest discover -s tests -t tests
    coverage: poetry run coverage report
 
 [testenv:precommit]
@@ -18,5 +18,6 @@ whitelist_externals = poetry
 commands =
    poetry --version
    poetry version
+   poetry run python -c 'from CedarBackup3.util import Diagnostics; Diagnostics().printDiagnostics(prefix="*** ")'
    poetry run pre-commit run --all-files --show-diff-on-failure
    poetry run pylint --rcfile=.pylintrc src/CedarBackup3

@@ -79,9 +79,10 @@ import sys
 import tempfile
 import time
 import unittest
+import warnings
 from os.path import isdir
 
-from CedarBackup3.testutil import buildPath, captureOutput, extractTar, findResources, removedir
+from CedarBackup3.testutil import buildPath, captureOutput, configureLogging, extractTar, findResources, removedir
 from CedarBackup3.util import (
     UNIT_BYTES,
     UNIT_GBYTES,
@@ -140,6 +141,10 @@ class TestUnorderedList(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -403,6 +408,10 @@ class TestAbsolutePathList(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         pass
 
@@ -494,6 +503,10 @@ class TestObjectTypeList(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -2163,6 +2176,13 @@ class TestFunctions(unittest.TestCase):
     ################
 
     def setUp(self):
+
+        # In recent versions of Python, we get "ResourceWarning: unclosed file <_io.BufferedReader name=72>"
+        # for the executeCommand() tests.  As far as I can tell, this is a problem with Popen() in the standard
+        # library.  You can get more details by adding tracemalloc (https://docs.python.org/3/library/tracemalloc.html).
+        # Because it's not our problem, I'm going to ignore the warnings.
+        warnings.simplefilter("ignore", ResourceWarning)
+
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
@@ -4416,24 +4436,3 @@ class TestFunctions(unittest.TestCase):
       """
         actual = parseCommaSeparatedString("   one,  two,three,   four , five   , six,   seven,,eight    ,")
         self.assertEqual(["one", "two", "three", "four", "five", "six", "seven", "eight",], actual)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestUnorderedList, "test"))
-    tests.append(unittest.makeSuite(TestAbsolutePathList, "test"))
-    tests.append(unittest.makeSuite(TestObjectTypeList, "test"))
-    tests.append(unittest.makeSuite(TestRestrictedContentList, "test"))
-    tests.append(unittest.makeSuite(TestRegexMatchList, "test"))
-    tests.append(unittest.makeSuite(TestRegexList, "test"))
-    tests.append(unittest.makeSuite(TestDirectedGraph, "test"))
-    tests.append(unittest.makeSuite(TestPathResolverSingleton, "test"))
-    tests.append(unittest.makeSuite(TestDiagnostics, "test"))
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    return unittest.TestSuite(tests)

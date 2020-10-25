@@ -123,7 +123,7 @@ from CedarBackup3.config import (
     StageConfig,
     StoreConfig,
 )
-from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 
 #######################################################################
@@ -173,6 +173,14 @@ RESOURCES = [
 class TestByteQuantity(unittest.TestCase):
 
     """Tests for the ByteQuantity class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -797,6 +805,14 @@ class TestActionDependencies(unittest.TestCase):
 
     """Tests for the ActionDependencies class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -1060,6 +1076,14 @@ class TestActionHook(unittest.TestCase):
 
     """Tests for the ActionHook class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -1257,6 +1281,14 @@ class TestActionHook(unittest.TestCase):
 class TestPreActionHook(unittest.TestCase):
 
     """Tests for the PreActionHook class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -1456,6 +1488,14 @@ class TestPostActionHook(unittest.TestCase):
 
     """Tests for the PostActionHook class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -1653,6 +1693,14 @@ class TestPostActionHook(unittest.TestCase):
 class TestBlankBehavior(unittest.TestCase):
 
     """Tests for the BlankBehavior class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -1870,6 +1918,14 @@ class TestBlankBehavior(unittest.TestCase):
 class TestExtendedAction(unittest.TestCase):
 
     """Tests for the ExtendedAction class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -2302,6 +2358,14 @@ class TestCommandOverride(unittest.TestCase):
 
     """Tests for the CommandOverride class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -2491,6 +2555,14 @@ class TestCommandOverride(unittest.TestCase):
 class TestCollectFile(unittest.TestCase):
 
     """Tests for the CollectFile class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -2774,6 +2846,14 @@ class TestCollectFile(unittest.TestCase):
 class TestCollectDir(unittest.TestCase):
 
     """Tests for the CollectDir class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -3692,6 +3772,14 @@ class TestPurgeDir(unittest.TestCase):
 
     """Tests for the PurgeDir class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -3918,6 +4006,14 @@ class TestPurgeDir(unittest.TestCase):
 class TestLocalPeer(unittest.TestCase):
 
     """Tests for the LocalPeer class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -4180,6 +4276,14 @@ class TestLocalPeer(unittest.TestCase):
 class TestRemotePeer(unittest.TestCase):
 
     """Tests for the RemotePeer class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -4837,6 +4941,14 @@ class TestReferenceConfig(unittest.TestCase):
 
     """Tests for the ReferenceConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -5198,6 +5310,14 @@ class TestExtensionsConfig(unittest.TestCase):
 
     """Tests for the ExtensionsConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -5504,6 +5624,14 @@ class TestExtensionsConfig(unittest.TestCase):
 class TestOptionsConfig(unittest.TestCase):
 
     """Tests for the OptionsConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -6657,6 +6785,14 @@ class TestPeersConfig(unittest.TestCase):
 
     """Tests for the PeersConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -7024,6 +7160,14 @@ class TestPeersConfig(unittest.TestCase):
 class TestCollectConfig(unittest.TestCase):
 
     """Tests for the CollectConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -7920,6 +8064,14 @@ class TestStageConfig(unittest.TestCase):
 
     """Tests for the StageConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -8354,6 +8506,14 @@ class TestStageConfig(unittest.TestCase):
 class TestStoreConfig(unittest.TestCase):
 
     """Tests for the StoreConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -9251,6 +9411,14 @@ class TestPurgeConfig(unittest.TestCase):
 
     """Tests for the PurgeConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -9473,6 +9641,14 @@ class TestPurgeConfig(unittest.TestCase):
 class TestConfig(unittest.TestCase):
 
     """Tests for the Config class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ################
     # Setup methods
@@ -13829,36 +14005,3 @@ class TestConfig(unittest.TestCase):
         beforeXml = before.extractXml(validate=True)
         after = Config(xmlData=beforeXml, validate=True)
         self.assertEqual(before, after)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestByteQuantity, "test"))
-    tests.append(unittest.makeSuite(TestActionDependencies, "test"))
-    tests.append(unittest.makeSuite(TestActionHook, "test"))
-    tests.append(unittest.makeSuite(TestPreActionHook, "test"))
-    tests.append(unittest.makeSuite(TestPostActionHook, "test"))
-    tests.append(unittest.makeSuite(TestBlankBehavior, "test"))
-    tests.append(unittest.makeSuite(TestExtendedAction, "test"))
-    tests.append(unittest.makeSuite(TestCommandOverride, "test"))
-    tests.append(unittest.makeSuite(TestCollectFile, "test"))
-    tests.append(unittest.makeSuite(TestCollectDir, "test"))
-    tests.append(unittest.makeSuite(TestPurgeDir, "test"))
-    tests.append(unittest.makeSuite(TestLocalPeer, "test"))
-    tests.append(unittest.makeSuite(TestRemotePeer, "test"))
-    tests.append(unittest.makeSuite(TestReferenceConfig, "test"))
-    tests.append(unittest.makeSuite(TestExtensionsConfig, "test"))
-    tests.append(unittest.makeSuite(TestOptionsConfig, "test"))
-    tests.append(unittest.makeSuite(TestPeersConfig, "test"))
-    tests.append(unittest.makeSuite(TestCollectConfig, "test"))
-    tests.append(unittest.makeSuite(TestStageConfig, "test"))
-    tests.append(unittest.makeSuite(TestStoreConfig, "test"))
-    tests.append(unittest.makeSuite(TestPurgeConfig, "test"))
-    tests.append(unittest.makeSuite(TestConfig, "test"))
-    return unittest.TestSuite(tests)

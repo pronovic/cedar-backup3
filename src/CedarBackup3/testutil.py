@@ -70,7 +70,7 @@ from io import StringIO
 from CedarBackup3.cli import setupPathResolver
 from CedarBackup3.config import Config, OptionsConfig
 from CedarBackup3.customize import customizeOverrides
-from CedarBackup3.util import encodePath, executeCommand
+from CedarBackup3.util import encodePath, executeCommand, nullDevice
 
 ########################################################################
 # Public functions
@@ -98,6 +98,17 @@ def setupDebugLogger():
     handler.setFormatter(formatter)
     handler.setLevel(logging.DEBUG)
     logger.addHandler(handler)
+
+
+def configureLogging():
+    """Optionally disable system logging based on configuration in the environment."""
+    if "FULL_LOGGING" not in os.environ or os.environ["FULL_LOGGING"] == "N":
+        devnull = nullDevice()
+        handler = logging.FileHandler(filename=devnull)
+        handler.setLevel(logging.NOTSET)
+        logger = logging.getLogger("CedarBackup3")
+        logger.setLevel(logging.NOTSET)
+        logger.addHandler(handler)
 
 
 #################

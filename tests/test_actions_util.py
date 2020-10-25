@@ -78,7 +78,7 @@ import unittest
 
 from CedarBackup3.actions.util import findDailyDirs, writeIndicatorFile
 from CedarBackup3.extend.encrypt import ENCRYPT_INDICATOR
-from CedarBackup3.testutil import buildPath, extractTar, findResources, removedir
+from CedarBackup3.testutil import buildPath, configureLogging, extractTar, findResources, removedir
 
 #######################################################################
 # Module-wide configuration and constants
@@ -117,6 +117,10 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -256,15 +260,3 @@ class TestFunctions(unittest.TestCase):
         stagingDir = self.buildPath(["tree8", "dir001",])
         writeIndicatorFile(stagingDir, ENCRYPT_INDICATOR, None, None)
         self.assertTrue(os.path.exists(self.buildPath(["tree8", "dir001", ENCRYPT_INDICATOR,])))
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    return unittest.TestSuite(tests)

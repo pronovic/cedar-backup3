@@ -78,7 +78,7 @@ Full vs. Reduced Tests
 import unittest
 from getopt import GetoptError
 
-from CedarBackup3.testutil import captureOutput, failUnlessAssignRaises
+from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAssignRaises
 from CedarBackup3.tools.amazons3 import Options, _usage, _version
 
 #######################################################################
@@ -97,6 +97,10 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -135,6 +139,10 @@ class TestOptions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -3558,16 +3566,3 @@ class TestOptions(unittest.TestCase):
             '--help --version --verbose --quiet --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics --verifyOnly --ignoreWarnings "source" "bucket" ',
             argumentString,
         )
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    tests.append(unittest.makeSuite(TestOptions, "test"))
-    return unittest.TestSuite(tests)

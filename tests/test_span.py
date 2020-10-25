@@ -77,7 +77,7 @@ Full vs. Reduced Tests
 
 import unittest
 
-from CedarBackup3.testutil import captureOutput
+from CedarBackup3.testutil import captureOutput, configureLogging
 from CedarBackup3.tools.span import Options, _usage, _version
 
 #######################################################################
@@ -96,6 +96,10 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -135,6 +139,10 @@ class TestSpanOptions(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         pass
 
@@ -152,16 +160,3 @@ class TestSpanOptions(unittest.TestCase):
         obj = Options()
         obj.__repr__()
         obj.__str__()
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    tests.append(unittest.makeSuite(TestSpanOptions, "test"))
-    return unittest.TestSuite(tests)

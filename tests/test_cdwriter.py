@@ -100,6 +100,7 @@ Full vs. Reduced Tests
 
 import unittest
 
+from CedarBackup3.testutil import configureLogging
 from CedarBackup3.writers.cdwriter import (
     MEDIA_CDR_74,
     MEDIA_CDR_80,
@@ -149,6 +150,10 @@ INVALID_FILE = "bogus"  # This file name should never exist
 class TestMediaDefinition(unittest.TestCase):
 
     """Tests for the MediaDefinition class."""
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def testConstructor_001(self):
         """
@@ -210,6 +215,10 @@ class TestMediaCapacity(unittest.TestCase):
 
     """Tests for the MediaCapacity class."""
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def testConstructor_001(self):
         """
       Test the constructor.
@@ -232,6 +241,10 @@ class TestCdWriter(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -1866,17 +1879,3 @@ class TestCdWriter(unittest.TestCase):
         self.assertEqual(False, deviceSupportsMulti)
         self.assertEqual(False, deviceHasTray)
         self.assertEqual(False, deviceCanEject)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestMediaDefinition, "test"))
-    tests.append(unittest.makeSuite(TestMediaCapacity, "test"))
-    tests.append(unittest.makeSuite(TestCdWriter, "test"))
-    return unittest.TestSuite(tests)

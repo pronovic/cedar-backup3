@@ -92,7 +92,7 @@ Full vs. Reduced Tests
 import unittest
 
 from CedarBackup3.extend.capacity import ByteQuantity, CapacityConfig, LocalConfig, PercentageQuantity
-from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
@@ -124,6 +124,14 @@ RESOURCES = [
 class TestPercentageQuantity(unittest.TestCase):
 
     """Tests for the PercentageQuantity class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -314,6 +322,14 @@ class TestPercentageQuantity(unittest.TestCase):
 class TestCapacityConfig(unittest.TestCase):
 
     """Tests for the CapacityConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -524,6 +540,14 @@ class TestCapacityConfig(unittest.TestCase):
 class TestLocalConfig(unittest.TestCase):
 
     """Tests for the LocalConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ################
     # Setup methods
@@ -753,7 +777,7 @@ class TestLocalConfig(unittest.TestCase):
     ############################
     # Test parsing of documents
     ############################
-    # Some of the byte-size parsing logic is tested more fully in splittests.py.
+    # Some of the byte-size parsing logic is tested more fully in test_split.py.
     # I decided not to duplicate it here, since it's shared from config.py.
 
     def testParse_001(self):
@@ -875,17 +899,3 @@ class TestLocalConfig(unittest.TestCase):
         config = LocalConfig()
         config.capacity = capacity
         self.validateAddConfig(config)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestPercentageQuantity, "test"))
-    tests.append(unittest.makeSuite(TestCapacityConfig, "test"))
-    tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-    return unittest.TestSuite(tests)

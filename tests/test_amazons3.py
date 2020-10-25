@@ -87,7 +87,7 @@ import unittest
 
 from CedarBackup3.config import ByteQuantity
 from CedarBackup3.extend.amazons3 import AmazonS3Config, LocalConfig
-from CedarBackup3.testutil import buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
+from CedarBackup3.testutil import buildPath, configureLogging, extractTar, failUnlessAssignRaises, findResources, removedir
 from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
@@ -130,6 +130,14 @@ RESOURCES = [
 class TestAmazonS3Config(unittest.TestCase):
 
     """Tests for the AmazonS3Config class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -600,6 +608,10 @@ class TestLocalConfig(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         try:
             self.resources = findResources(RESOURCES, DATA_DIRS)
@@ -901,6 +913,10 @@ class TestTool(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         try:
             self.tmpdir = tempfile.mkdtemp()
@@ -948,17 +964,3 @@ class TestTool(unittest.TestCase):
         sourceDir = self.buildPath(["tree4", "dir006",])
         sourceFiles = _buildSourceFiles(sourceDir)
         _checkSourceFiles(sourceDir=sourceDir, sourceFiles=sourceFiles)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestAmazonS3Config, "test"))
-    tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-    tests.append(unittest.makeSuite(TestTool, "test"))
-    return unittest.TestSuite(tests)

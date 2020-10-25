@@ -103,7 +103,15 @@ import tempfile
 import unittest
 
 from CedarBackup3.extend.split import ByteQuantity, LocalConfig, SplitConfig, _splitDailyDir, _splitFile
-from CedarBackup3.testutil import availableLocales, buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
+from CedarBackup3.testutil import (
+    availableLocales,
+    buildPath,
+    configureLogging,
+    extractTar,
+    failUnlessAssignRaises,
+    findResources,
+    removedir,
+)
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
@@ -152,6 +160,14 @@ def runAllTests():
 class TestSplitConfig(unittest.TestCase):
 
     """Tests for the SplitConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -366,6 +382,10 @@ class TestLocalConfig(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -719,6 +739,7 @@ class TestLocalConfig(unittest.TestCase):
 ######################
 
 
+@unittest.skipUnless(runAllTests(), "")
 class TestFunctions(unittest.TestCase):
 
     """Tests for the functions in split.py."""
@@ -726,6 +747,15 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
+    @classmethod
+    def checkDisabled(cls):
+        if not runAllTests():
+            raise unittest.SkipTest("Disabled")
 
     def setUp(self):
         try:
@@ -1073,23 +1103,3 @@ class TestFunctions(unittest.TestCase):
         self.checkSplit(os.path.join(dailyDir, "system3", "file001"), 99999, 1000)
         self.checkSplit(os.path.join(dailyDir, "system3", "file002"), 100000, 1000)
         self.checkSplit(os.path.join(dailyDir, "system3", "file003"), 100001, 1000)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    if runAllTests():
-        tests = []
-        tests.append(unittest.makeSuite(TestSplitConfig, "test"))
-        tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-        tests.append(unittest.makeSuite(TestFunctions, "test"))
-        return unittest.TestSuite(tests)
-    else:
-        tests = []
-        tests.append(unittest.makeSuite(TestSplitConfig, "test"))
-        tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-        return unittest.TestSuite(tests)

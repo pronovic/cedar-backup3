@@ -103,7 +103,7 @@ import unittest
 
 from CedarBackup3.extend.encrypt import EncryptConfig, LocalConfig, _encryptDailyDir, _encryptFile, _encryptFileWithGpg
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.testutil import buildPath, extractTar, failUnlessAssignRaises, findResources, removedir
+from CedarBackup3.testutil import buildPath, configureLogging, extractTar, failUnlessAssignRaises, findResources, removedir
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
@@ -159,6 +159,14 @@ def runAllTests():
 class TestEncryptConfig(unittest.TestCase):
 
     """Tests for the EncryptConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -343,6 +351,10 @@ class TestLocalConfig(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -621,6 +633,7 @@ class TestLocalConfig(unittest.TestCase):
 ######################
 
 
+@unittest.skipUnless(runAllTests(), "")
 class TestFunctions(unittest.TestCase):
 
     """Tests for the functions in encrypt.py."""
@@ -628,6 +641,10 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -1107,23 +1124,3 @@ class TestFunctions(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree16", "cback.collect",]) in fsList)
         self.assertTrue(self.buildPath(["tree16", "cback.stage",]) in fsList)
         self.assertTrue(self.buildPath(["tree16", "cback.store",]) in fsList)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    if runAllTests():
-        tests = []
-        tests.append(unittest.makeSuite(TestEncryptConfig, "test"))
-        tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-        tests.append(unittest.makeSuite(TestFunctions, "test"))
-        return unittest.TestSuite(tests)
-    else:
-        tests = []
-        tests.append(unittest.makeSuite(TestEncryptConfig, "test"))
-        tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-        return unittest.TestSuite(tests)

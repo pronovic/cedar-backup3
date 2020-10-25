@@ -100,6 +100,7 @@ from CedarBackup3.filesystem import BackupFileList, FilesystemList, PurgeItemLis
 from CedarBackup3.testutil import (
     buildPath,
     changeFileAge,
+    configureLogging,
     extractTar,
     failUnlessAssignRaises,
     findResources,
@@ -163,6 +164,10 @@ class TestFilesystemList(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -13084,6 +13089,10 @@ class TestBackupFileList(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         try:
             self.tmpdir = tempfile.mkdtemp()
@@ -15804,6 +15813,10 @@ class TestPurgeItemList(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -20128,6 +20141,10 @@ class TestFunctions(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         try:
             self.tmpdir = tempfile.mkdtemp()
@@ -20287,18 +20304,3 @@ class TestFunctions(unittest.TestCase):
         path2 = self.buildPath(["path2", "tree6",])
         self.assertRaises(ValueError, compareContents, path1, path2)
         self.assertRaises(ValueError, compareContents, path1, path2, verbose=True)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFilesystemList, "test"))
-    tests.append(unittest.makeSuite(TestBackupFileList, "test"))
-    tests.append(unittest.makeSuite(TestPurgeItemList, "test"))
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    return unittest.TestSuite(tests)

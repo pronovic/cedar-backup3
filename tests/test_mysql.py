@@ -104,7 +104,7 @@ Full vs. Reduced Tests
 import unittest
 
 from CedarBackup3.extend.mysql import LocalConfig, MysqlConfig
-from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
@@ -136,6 +136,14 @@ RESOURCES = [
 class TestMysqlConfig(unittest.TestCase):
 
     """Tests for the MysqlConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -652,6 +660,10 @@ class TestLocalConfig(unittest.TestCase):
     # Setup methods
     ################
 
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     def setUp(self):
         try:
             self.resources = findResources(RESOURCES, DATA_DIRS)
@@ -1101,16 +1113,3 @@ class TestLocalConfig(unittest.TestCase):
         config = LocalConfig()
         config.mysql = MysqlConfig(None, None, "gzip", True, ["database1", "database2",])
         self.validateAddConfig(config)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestMysqlConfig, "test"))
-    tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-    return unittest.TestSuite(tests)

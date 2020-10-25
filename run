@@ -48,10 +48,21 @@ run_isort() {
    poetry run isort src/**/*.py tests/*.py
 }
 
+# Print diagnostics about the Cedar Backup runtime environment
+run_diagnostics() {
+   poetry run python -c 'from CedarBackup3.util import Diagnostics; Diagnostics().printDiagnostics(prefix="*** ")'
+}
+
 # Run the unit tests, optionally with coverage
-run_pytest() {
+run_unittest() {
+
+   # The logic below mostly replicates what was available in util/test.py prior to
+   # converting to the more standard unittest discovery process.
+
    coverage="no"
    html="no"
+   pattern=""
+   verbose=""
 
    while getopts ":ch" option; do
      case $option in
@@ -61,8 +72,13 @@ run_pytest() {
        h) 
          html="yes"
          ;;
-       ?) 
-         echo "invalid option -$OPTARG"
+       *) 
+         echo "run test [-c] [-ch] [full] [verbose] [name]"
+         echo "  -c       run coverage"
+         echo "  -ch      run coverage and generate the HTML report"
+         echo "  full     run the full integration test suite (useful on Ken's home network)"
+         echo "  verbose  enable (very) verbose test output"
+         echo "  name     execute the test with name only; i.e. 'util' executes test_util.py"
          exit 1
          ;;
      esac
@@ -70,20 +86,40 @@ run_pytest() {
 
    shift $((OPTIND -1))  # pop off the options consumed by getopts
 
+   while [ $# -gt 0 ]; do
+     case $1 in
+       full) 
+         export PEERTESTS_FULL="Y"
+         export WRITERSUTILTESTS_FULL="Y"
+         export ENCRYPTTESTS_FULL="Y"
+         export SPLITTESTS_FULL="Y"  
+         ;;
+       verbose) 
+         verbose="-v"
+         export FULL_LOGGING="Y"
+         ;;
+      *)
+         pattern="-p test_$1.py"
+     esac
+     shift
+   done
+
    poetry run which coverage > /dev/null
    if [ $? != 0 ]; then
       run_install
    fi
 
+   run_diagnostics
+
    if [ $coverage == "yes" ]; then
-      poetry run coverage run --rcfile=.coveragerc util/test.py $*
+      poetry run coverage run --rcfile=.coveragerc -m unittest discover -s tests -t tests $verbose $pattern
       poetry run coverage report
       if [ $html == "yes" ]; then
          poetry run coverage html -d .htmlcov
          $(which start || which open) .htmlcov/index.html 2>/dev/null  # start on Windows, open on MacOS
       fi
    else
-      poetry run python util/test.py $*
+      poetry run python -m unittest discover -s tests -t tests $verbose $pattern
    fi
 }
 
@@ -175,9 +211,9 @@ case $1 in
       run_black
       run_isort
       ;;
-   pytest|test*)
+   unittest|test*)
       shift 1
-      run_pytest $*
+      run_unittest $*
       ;;
    tox)
       run_tox
@@ -202,13 +238,13 @@ case $1 in
       echo "- run requirements: Regenerate the docs/requirements.txt file"
       echo "- run checks: Run the PyLint code checker"
       echo "- run format: Run the code formatters"
-      echo "- run test: Run the unit tests (see util/test.py for other arguments)"
-      echo "- run test -c: Run the unit tests with coverage"
-      echo "- run test -ch: Run the unit tests with coverage and open the HTML report"
+      echo "- run diagnostics: Print diagnostics about the Cedar Backup runtime environment"
+      echo "- run test: Run the unit test suite"
       echo "- run tox: Run the broader Tox test suite used by the GitHub CI action"
       echo "- run docs: Build the Spinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Spinx documentation and open in a browser"
       echo "- run publish: Tag the current code and publish to PyPI"
       echo ""
+      echo "Try 'run test --help' to get a list of other arguments accepted by that command."
       exit 1
 esac

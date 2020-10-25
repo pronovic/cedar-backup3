@@ -91,7 +91,7 @@ import os
 import tempfile
 import unittest
 
-from CedarBackup3.testutil import buildPath, extractTar, findResources, removedir
+from CedarBackup3.testutil import buildPath, configureLogging, extractTar, findResources, removedir
 from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, DvdWriter, MediaCapacity, MediaDefinition
 
 #######################################################################
@@ -122,6 +122,10 @@ RESOURCES = [
 class TestMediaDefinition(unittest.TestCase):
 
     """Tests for the MediaDefinition class."""
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def testConstructor_001(self):
         """
@@ -156,6 +160,10 @@ class TestMediaDefinition(unittest.TestCase):
 class TestMediaCapacity(unittest.TestCase):
 
     """Tests for the MediaCapacity class."""
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def testConstructor_001(self):
         """
@@ -198,6 +206,10 @@ class TestDvdWriter(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -1339,17 +1351,3 @@ class TestDvdWriter(unittest.TestCase):
         ]  # sorted order
         actual = DvdWriter._buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel, dryRun)
         self.assertEqual(actual, expected)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestMediaDefinition, "test"))
-    tests.append(unittest.makeSuite(TestMediaCapacity, "test"))
-    tests.append(unittest.makeSuite(TestDvdWriter, "test"))
-    return unittest.TestSuite(tests)

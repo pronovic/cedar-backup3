@@ -129,14 +129,15 @@ Usage: run <command>
 - run activate: Print command needed to activate the Poetry virtualenv
 - run requirements: Regenerate the docs/requirements.txt file
 - run checks: Run the PyLint code checker
-- run format: Run the Black code formatter
-- run test: Run the unit tests
-- run test -c: Run the unit tests with coverage
-- run test -ch: Run the unit tests with coverage and open the HTML report
+- run format: Run the code formatters
+- run diagnostics: Print diagnostics about the Cedar Backup runtime environment
+- run test: Run the unit test suite
 - run tox: Run the broader Tox test suite used by the GitHub CI action
 - run docs: Build the Spinx documentation for cedar-backup3.readthedocs.io
 - run docs -o: Build the Spinx documentation and open in a browser
 - run publish: Tag the current code and publish to PyPI
+
+Try 'run test --help' to get a list of other arguments accepted by that command.
 ```
 
 ## Integration with IntelliJ or PyCharm

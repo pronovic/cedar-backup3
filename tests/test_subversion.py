@@ -104,7 +104,7 @@ Full vs. Reduced Tests
 import unittest
 
 from CedarBackup3.extend.subversion import BDBRepository, FSFSRepository, LocalConfig, Repository, RepositoryDir, SubversionConfig
-from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
@@ -143,6 +143,14 @@ class TestBDBRepository(unittest.TestCase):
    *Note:* This class is deprecated.  These tests are kept around to make sure
    that we don't accidentally break the interface.
    """
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -437,6 +445,14 @@ class TestFSFSRepository(unittest.TestCase):
    that we don't accidentally break the interface.
    """
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -724,6 +740,14 @@ class TestFSFSRepository(unittest.TestCase):
 class TestRepository(unittest.TestCase):
 
     """Tests for the Repository class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -1058,6 +1082,14 @@ class TestRepository(unittest.TestCase):
 class TestRepositoryDir(unittest.TestCase):
 
     """Tests for the RepositoryDir class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -1516,6 +1548,14 @@ class TestSubversionConfig(unittest.TestCase):
 
     """Tests for the SubversionConfig class."""
 
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
+
     ##################
     # Utility methods
     ##################
@@ -1916,6 +1956,14 @@ class TestSubversionConfig(unittest.TestCase):
 class TestLocalConfig(unittest.TestCase):
 
     """Tests for the LocalConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ################
     # Setup methods
@@ -2644,20 +2692,3 @@ class TestLocalConfig(unittest.TestCase):
         config = LocalConfig()
         config.subversion = subversion
         self.validateAddConfig(config)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestBDBRepository, "test"))
-    tests.append(unittest.makeSuite(TestFSFSRepository, "test"))
-    tests.append(unittest.makeSuite(TestRepository, "test"))
-    tests.append(unittest.makeSuite(TestRepositoryDir, "test"))
-    tests.append(unittest.makeSuite(TestSubversionConfig, "test"))
-    tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-    return unittest.TestSuite(tests)

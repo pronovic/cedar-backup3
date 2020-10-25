@@ -93,7 +93,7 @@ Full vs. Reduced Tests
 import unittest
 
 from CedarBackup3.extend.mbox import LocalConfig, MboxConfig, MboxDir, MboxFile
-from CedarBackup3.testutil import failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
 
 #######################################################################
@@ -124,6 +124,14 @@ RESOURCES = [
 class TestMboxFile(unittest.TestCase):
 
     """Tests for the MboxFile class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -408,6 +416,14 @@ class TestMboxFile(unittest.TestCase):
 class TestMboxDir(unittest.TestCase):
 
     """Tests for the MboxDir class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -935,6 +951,14 @@ class TestMboxDir(unittest.TestCase):
 class TestMboxConfig(unittest.TestCase):
 
     """Tests for the MboxConfig class."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ##################
     # Utility methods
@@ -1475,6 +1499,10 @@ class TestLocalConfig(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         try:
@@ -2253,18 +2281,3 @@ class TestLocalConfig(unittest.TestCase):
         config = LocalConfig()
         config.mbox = mbox
         self.validateAddConfig(config)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestMboxFile, "test"))
-    tests.append(unittest.makeSuite(TestMboxDir, "test"))
-    tests.append(unittest.makeSuite(TestMboxConfig, "test"))
-    tests.append(unittest.makeSuite(TestLocalConfig, "test"))
-    return unittest.TestSuite(tests)

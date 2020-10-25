@@ -49,6 +49,7 @@ import unittest
 
 from CedarBackup3.config import CommandOverride, Config, OptionsConfig
 from CedarBackup3.customize import PLATFORM, customizeOverrides
+from CedarBackup3.testutil import configureLogging
 
 #######################################################################
 # Test Case Classes
@@ -62,6 +63,14 @@ from CedarBackup3.customize import PLATFORM, customizeOverrides
 class TestFunctions(unittest.TestCase):
 
     """Tests for the various public functions."""
+
+    ################
+    # Setup methods
+    ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     ############################
     # Test customizeOverrides()
@@ -209,15 +218,3 @@ class TestFunctions(unittest.TestCase):
         config.options = options
         customizeOverrides(config, platform="debian")
         self.assertEqual([CommandOverride("cdrecord", "/blech"), CommandOverride("mkisofs", "/blech2"),], options.overrides)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    return unittest.TestSuite(tests)

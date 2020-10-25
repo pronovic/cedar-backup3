@@ -83,6 +83,7 @@ Full vs. Reduced Tests
 import unittest
 
 from CedarBackup3.knapsack import alternateFit, bestFit, firstFit, worstFit
+from CedarBackup3.testutil import configureLogging
 
 #######################################################################
 # Module-wide configuration and constants
@@ -316,6 +317,10 @@ class TestKnapsack(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -2698,15 +2703,3 @@ class TestKnapsack(unittest.TestCase):
         self.assertTrue("dir001/file001" in result[0])
         self.assertTrue("dir002/file002" in result[0])
         self.assertTrue("dir002/file001" in result[0])
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestKnapsack, "test"))
-    return unittest.TestSuite(tests)

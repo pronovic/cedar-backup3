@@ -92,7 +92,7 @@ from CedarBackup3.config import (
     PreActionHook,
     RemotePeer,
 )
-from CedarBackup3.testutil import captureOutput, failUnlessAssignRaises
+from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAssignRaises
 
 #######################################################################
 # Test Case Classes
@@ -110,6 +110,10 @@ class TestFunctions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -155,6 +159,10 @@ class TestOptions(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -5056,6 +5064,10 @@ class TestActionSet(unittest.TestCase):
     ################
     # Setup methods
     ################
+
+    @classmethod
+    def setUpClass(cls):
+        configureLogging()
 
     def setUp(self):
         pass
@@ -16064,17 +16076,3 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual("userZ", actionSet.actionSet[9].remotePeers[0].localUser)
         self.assertEqual("rshZ", actionSet.actionSet[9].remotePeers[0].rshCommand)
         self.assertEqual("cback", actionSet.actionSet[9].remotePeers[0].cbackCommand)
-
-
-#######################################################################
-# Suite definition
-#######################################################################
-
-
-def suite():
-    """Returns a suite containing all the test cases in this module."""
-    tests = []
-    tests.append(unittest.makeSuite(TestFunctions, "test"))
-    tests.append(unittest.makeSuite(TestOptions, "test"))
-    tests.append(unittest.makeSuite(TestActionSet, "test"))
-    return unittest.TestSuite(tests)
