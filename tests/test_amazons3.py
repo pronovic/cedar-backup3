@@ -87,7 +87,15 @@ import unittest
 
 from CedarBackup3.config import ByteQuantity
 from CedarBackup3.extend.amazons3 import AmazonS3Config, LocalConfig
-from CedarBackup3.testutil import buildPath, configureLogging, extractTar, failUnlessAssignRaises, findResources, removedir
+from CedarBackup3.testutil import (
+    buildPath,
+    configureLogging,
+    extractTar,
+    failUnlessAssignRaises,
+    findResources,
+    platformMacOsX,
+    removedir,
+)
 from CedarBackup3.tools.amazons3 import _buildSourceFiles, _checkSourceFiles
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_MBYTES
 from CedarBackup3.xmlutil import createOutputDom, serializeDom
@@ -947,16 +955,17 @@ class TestTool(unittest.TestCase):
     # Test _checkSourceFiles()
     ###########################
 
-    #   def testCheckSourceFiles_001(self):
-    #      """
-    #      Test _checkSourceFiles() where some files have an invalid encoding.
-    #      """
-    #      self.extractTar("tree13")
-    #      sourceDir = self.buildPath(["tree13", ])
-    #      sourceFiles = _buildSourceFiles(sourceDir)
-    #      self.assertRaises(ValueError, _checkSourceFiles, sourceDir=sourceDir, sourceFiles=sourceFiles)
+    def testCheckSourceFiles_001(self):
+        """
+        Test _checkSourceFiles() where some files have an invalid encoding.
+        """
+        if not platformMacOsX():
+            self.extractTar("tree13")
+            sourceDir = self.buildPath(["tree13",])
+            sourceFiles = _buildSourceFiles(sourceDir)
+            self.assertRaises(ValueError, _checkSourceFiles, sourceDir=sourceDir, sourceFiles=sourceFiles)
 
-    def testFileEncoding_002(self):
+    def testCheckSourceFiles_002(self):
         """
       Test _checkSourceFiles() where all files have a valid encoding.
       """
