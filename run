@@ -179,7 +179,7 @@ run_release() {
    FILES="pyproject.toml Changelog src/CedarBackup3/release.py"
    MESSAGE="Release $VERSION to PyPI"
 
-   if [ "$(git branch --show-current)" != "master" ]; then
+   if [ "$(git branch -a | grep '^\*' | sed 's/^\* //')" != "master" ]; then
       echo "*** You are not on master; you cannot release from this branch"
       exit 1
    fi
