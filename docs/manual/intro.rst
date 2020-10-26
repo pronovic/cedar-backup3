@@ -206,7 +206,7 @@ of its life.
 ----------
 
 .. [1]
-   See `<https://github.com/cedarsolutions/cedar-backup3/issues>`__
+   See `<https://github.com/pronovic/cedar-backup3/issues>`__
 
 .. [2]
    See Simon Tatham's excellent bug reporting tutorial:

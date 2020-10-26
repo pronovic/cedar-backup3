@@ -2818,7 +2818,7 @@ value should be used.
    See `<http://docs.python.org/lib/re-syntax.html>`__
 
 .. [4]
-   See `<https://github.com/cedarsolutions/cedar-backup3/issues>`__.
+   See `<https://github.com/pronovic/cedar-backup3/issues>`__.
 
 .. [5]
    See :doc:`basic`

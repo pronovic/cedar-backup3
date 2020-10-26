@@ -1,3 +1,7 @@
+Version 3.3.2     unreleased
+
+	* Fix obsolete GitHub URL in several places.
+
 Version 3.3.1     25 Oct 2020
 
 	* Minor adjustments to PyPI package documentation.

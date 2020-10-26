@@ -53,7 +53,7 @@ environment, etc.
 
 ## End User Documentation
 
-See the [Changelog](https://github.com/cedarsolutions/cedar-backup3/blob/master/Changelog) for
+See the [Changelog](https://github.com/pronovic/cedar-backup3/blob/master/Changelog) for
 recent changes.
 
 The [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/index.html) documents 
