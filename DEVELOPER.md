@@ -4,9 +4,9 @@
 
 This code has been around since the early 2000s.  Historically, my development
 environment has been Vim on Debian Linux.  Recently, I've also begun using
-IntelliJ on MacOS.  As of now, I do not do any software development on Windows
-it's not clear whether it works there. (I haven't tried using it on Windows
-since ~2005.)
+IntelliJ on MacOS.  As of now, I do not do any software development on Windows.
+It's not clear whether the code works there. (I haven't tried using it on
+Windows since ~2005.)
 
 ## Packaging and Dependencies
 
@@ -133,8 +133,8 @@ Usage: run <command>
 - run diagnostics: Print diagnostics about the Cedar Backup runtime environment
 - run test: Run the unit test suite
 - run tox: Run the broader Tox test suite used by the GitHub CI action
-- run docs: Build the Spinx documentation for cedar-backup3.readthedocs.io
-- run docs -o: Build the Spinx documentation and open in a browser
+- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io
+- run docs -o: Build the Sphinx documentation and open in a browser
 - run release: Release a specific version and tag the code
 - run publish: Publish the current code to PyPI and push to GitHub
 
@@ -231,9 +231,7 @@ module configuration.
 
 ### Preferences
 
-API documentation is written 
-using [Google Style Python Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).  
-However, this is not the default in IntelliJ.
+API documentation is written using [Google Style Python Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).  However, this is not the default in IntelliJ.
 
 Go to IntelliJ preferences, then select **Tools > Python Integrated Tools**.
 Under **Docstrings > Docstring format**, select _Google_. Click **OK**.
