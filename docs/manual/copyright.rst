@@ -14,10 +14,10 @@ Copyright
    as published by the Free Software Foundation.
 
    For the purposes of the GPL, the "preferred form of modification"
-   for this work is the original Docbook XML text files.  If you
+   for this work is the original reStructuredText files.  If you
    choose to distribute this work in a compiled form (i.e. if you
    distribute HTML, PDF or Postscript documents based on the original
-   Docbook XML text files), you must also consider image files to be
+   restructuredText files), you must also consider image files to be
    "source code" if those images are required in order to construct a
    complete and readable compiled version of the work.
 

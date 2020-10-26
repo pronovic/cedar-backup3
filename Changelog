@@ -1,3 +1,7 @@
+Version 3.3.3     unreleased
+
+	* Update manual's copyright to reflect reStructuredText, not Docbook XML.
+
 Version 3.3.2     26 Oct 2020
 
 	* Fix obsolete GitHub URL in several places.
