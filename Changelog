@@ -1,6 +1,7 @@
 Version 3.3.3     unreleased
 
 	* Update manual's copyright to reflect reStructuredText, not Docbook XML.
+	* Fix typos (misspellings) discovered in manpages by Debian's Lintian.
 
 Version 3.3.2     26 Oct 2020
 
