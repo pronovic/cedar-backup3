@@ -198,10 +198,22 @@ run_release() {
 
    poetry version $VERSION
 
-   sed -i"" "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
-   sed -i"" "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
-   sed -i"" "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
-   sed -i"" "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+   # annoyingly, BSD sed and GNU sed are not compatible on the syntax for -i
+   # I failed miserably in all attempts to put the sed command (with empty string) into a variable
+   sed --version 2>&1 | grep -iq "GNU sed"
+   if [ $? = 0 ]; then
+      # GNU sed accepts a bare -i and assumes no backup file
+      sed -i "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
+      sed -i "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
+      sed -i "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
+      sed -i "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+   else
+      # BSD set requires you to set an empty backup file extension
+      sed -i "" "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
+      sed -i "" "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
+      sed -i "" "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
+      sed -i "" "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+   fi
 
    git diff $FILES
 
