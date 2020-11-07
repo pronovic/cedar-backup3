@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2007,2010,2015 Kenneth J. Pronovici.
+# Copyright (c) 2007,2010,2015,2020 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -191,6 +191,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -212,6 +213,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -233,6 +235,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -254,6 +257,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -275,6 +279,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -296,6 +301,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -317,6 +323,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -338,6 +345,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -359,6 +367,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -380,6 +389,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -401,6 +411,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -422,6 +433,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -443,6 +455,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -464,6 +477,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -485,6 +499,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -506,6 +521,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -527,6 +543,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -548,6 +565,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -569,6 +587,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -590,6 +609,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -635,6 +655,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -656,6 +677,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -677,6 +699,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -698,6 +721,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -767,6 +791,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -788,6 +813,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -809,6 +835,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -830,6 +857,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -899,6 +927,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -920,6 +949,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -941,6 +971,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -962,6 +993,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -983,6 +1015,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1004,6 +1037,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1025,6 +1059,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1046,6 +1081,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1067,6 +1103,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1088,6 +1125,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1109,6 +1147,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1130,6 +1169,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1151,6 +1191,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1172,6 +1213,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1193,6 +1235,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1214,6 +1257,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1235,6 +1279,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1256,6 +1301,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1277,6 +1323,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1298,6 +1345,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1319,6 +1367,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(True, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1340,6 +1389,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(True, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1361,6 +1411,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(True, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1382,6 +1433,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(True, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1403,6 +1455,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(True, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1424,6 +1477,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(True, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1445,6 +1499,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(True, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1466,6 +1521,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(True, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1487,6 +1543,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -1508,6 +1565,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -1529,6 +1587,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -1550,6 +1609,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -1583,6 +1643,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1604,6 +1665,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1625,6 +1687,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1646,6 +1709,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1667,6 +1731,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1688,6 +1753,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1709,6 +1775,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -1730,6 +1797,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -2063,6 +2131,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -2084,6 +2153,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -2105,6 +2175,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -2126,6 +2197,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(True, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual(None, options.sourceDir)
         self.assertEqual(None, options.s3BucketUrl)
@@ -2195,6 +2267,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -2216,6 +2289,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -2237,6 +2311,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -2258,6 +2333,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -2279,6 +2355,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
@@ -2300,9 +2377,98 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
         self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(False, options.uploadOnly)
         self.assertEqual(False, options.ignoreWarnings)
         self.assertEqual("source", options.sourceDir)
         self.assertEqual("bucket", options.s3BucketUrl)
+
+    def testConstructor_170(self):
+        """
+      Test constructor with argumentList=["--uploadOnly", ], validate=False.
+      """
+        options = Options(argumentList=["--uploadOnly",], validate=False)
+        self.assertEqual(False, options.help)
+        self.assertEqual(False, options.version)
+        self.assertEqual(False, options.verbose)
+        self.assertEqual(False, options.quiet)
+        self.assertEqual(None, options.logfile)
+        self.assertEqual(None, options.owner)
+        self.assertEqual(None, options.mode)
+        self.assertEqual(False, options.output)
+        self.assertEqual(False, options.debug)
+        self.assertEqual(False, options.stacktrace)
+        self.assertEqual(False, options.diagnostics)
+        self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(True, options.uploadOnly)
+        self.assertEqual(False, options.ignoreWarnings)
+        self.assertEqual(None, options.sourceDir)
+        self.assertEqual(None, options.s3BucketUrl)
+
+    def testConstructor_171(self):
+        """
+      Test constructor with argumentString="--verifyOnly", validate=False.
+      """
+        options = Options(argumentString="--uploadOnly", validate=False)
+        self.assertEqual(False, options.help)
+        self.assertEqual(False, options.version)
+        self.assertEqual(False, options.verbose)
+        self.assertEqual(False, options.quiet)
+        self.assertEqual(None, options.logfile)
+        self.assertEqual(None, options.owner)
+        self.assertEqual(None, options.mode)
+        self.assertEqual(False, options.output)
+        self.assertEqual(False, options.debug)
+        self.assertEqual(False, options.stacktrace)
+        self.assertEqual(False, options.diagnostics)
+        self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(True, options.uploadOnly)
+        self.assertEqual(False, options.ignoreWarnings)
+        self.assertEqual(None, options.sourceDir)
+        self.assertEqual(None, options.s3BucketUrl)
+
+    def testConstructor_172(self):
+        """
+      Test constructor with argumentList=["-u", ], validate=False.
+      """
+        options = Options(argumentList=["-u",], validate=False)
+        self.assertEqual(False, options.help)
+        self.assertEqual(False, options.version)
+        self.assertEqual(False, options.verbose)
+        self.assertEqual(False, options.quiet)
+        self.assertEqual(None, options.logfile)
+        self.assertEqual(None, options.owner)
+        self.assertEqual(None, options.mode)
+        self.assertEqual(False, options.output)
+        self.assertEqual(False, options.debug)
+        self.assertEqual(False, options.stacktrace)
+        self.assertEqual(False, options.diagnostics)
+        self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(True, options.uploadOnly)
+        self.assertEqual(False, options.ignoreWarnings)
+        self.assertEqual(None, options.sourceDir)
+        self.assertEqual(None, options.s3BucketUrl)
+
+    def testConstructor_173(self):
+        """
+      Test constructor with argumentString="-u", validate=False.
+      """
+        options = Options(argumentString="-u", validate=False)
+        self.assertEqual(False, options.help)
+        self.assertEqual(False, options.version)
+        self.assertEqual(False, options.verbose)
+        self.assertEqual(False, options.quiet)
+        self.assertEqual(None, options.logfile)
+        self.assertEqual(None, options.owner)
+        self.assertEqual(None, options.mode)
+        self.assertEqual(False, options.output)
+        self.assertEqual(False, options.debug)
+        self.assertEqual(False, options.stacktrace)
+        self.assertEqual(False, options.diagnostics)
+        self.assertEqual(False, options.verifyOnly)
+        self.assertEqual(True, options.uploadOnly)
+        self.assertEqual(False, options.ignoreWarnings)
+        self.assertEqual(None, options.sourceDir)
+        self.assertEqual(None, options.s3BucketUrl)
 
     ############################
     # Test comparison operators
@@ -2341,6 +2507,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2357,6 +2524,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2388,6 +2556,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2404,6 +2573,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2435,6 +2605,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2451,6 +2622,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2482,6 +2654,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2498,6 +2671,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2529,6 +2703,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2545,6 +2720,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2576,6 +2752,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2592,6 +2769,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2623,6 +2801,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2639,6 +2818,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2670,6 +2850,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2686,6 +2867,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2717,6 +2899,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2733,6 +2916,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2764,6 +2948,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2780,6 +2965,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2811,6 +2997,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = False
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2827,6 +3014,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2858,6 +3046,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = False
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2874,6 +3063,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2905,6 +3095,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = False
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = "bucket"
@@ -2921,6 +3112,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2952,6 +3144,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = None
         options1.s3BucketUrl = "bucket"
@@ -2968,6 +3161,7 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -2999,6 +3193,7 @@ class TestOptions(unittest.TestCase):
         options1.stacktrace = True
         options1.diagnostics = True
         options1.verifyOnly = True
+        options1.uploadOnly = True
         options1.ignoreWarnings = True
         options1.sourceDir = "source"
         options1.s3BucketUrl = None
@@ -3015,6 +3210,56 @@ class TestOptions(unittest.TestCase):
         options2.stacktrace = True
         options2.diagnostics = True
         options2.verifyOnly = True
+        options2.uploadOnly = True
+        options2.ignoreWarnings = True
+        options2.sourceDir = "source"
+        options2.s3BucketUrl = "bucket"
+
+        self.assertNotEqual(options1, options2)
+        self.assertTrue(not options1 == options2)
+        self.assertTrue(options1 < options2)
+        self.assertTrue(options1 <= options2)
+        self.assertTrue(not options1 > options2)
+        self.assertTrue(not options1 >= options2)
+        self.assertTrue(options1 != options2)
+
+    def testComparison_017(self):
+        """
+      Test comparison of two identical objects, all attributes filled in, uploadOnly different.
+      """
+        options1 = Options()
+        options2 = Options()
+
+        options1.help = True
+        options1.version = True
+        options1.verbose = True
+        options1.quiet = True
+        options1.logfile = "logfile"
+        options1.owner = ("a", "b")
+        options1.mode = "631"
+        options1.output = True
+        options1.debug = True
+        options1.stacktrace = True
+        options1.diagnostics = True
+        options1.verifyOnly = True
+        options1.uploadOnly = False
+        options1.ignoreWarnings = True
+        options1.sourceDir = "source"
+        options1.s3BucketUrl = "bucket"
+
+        options2.help = True
+        options2.version = True
+        options2.verbose = True
+        options2.quiet = True
+        options2.logfile = "logfile"
+        options2.owner = ("a", "b")
+        options2.mode = "631"
+        options2.output = True
+        options2.debug = True
+        options2.stacktrace = True
+        options2.diagnostics = True
+        options2.verifyOnly = True
+        options2.uploadOnly = True
         options2.ignoreWarnings = True
         options2.sourceDir = "source"
         options2.s3BucketUrl = "bucket"
@@ -3316,6 +3561,13 @@ class TestOptions(unittest.TestCase):
             argumentList,
         )
 
+    def testBuildArgumentList_033(self):
+        """Test with uploadOnly set, validate=False."""
+        options = Options()
+        options.uploadOnly = True
+        argumentList = options.buildArgumentList(validate=False)
+        self.assertEqual(["--uploadOnly",], argumentList)
+
     #############################
     # Test buildArgumentString()
     #############################
@@ -3566,3 +3818,10 @@ class TestOptions(unittest.TestCase):
             '--help --version --verbose --quiet --logfile "logfile" --owner "a:b" --mode 631 --output --debug --stack --diagnostics --verifyOnly --ignoreWarnings "source" "bucket" ',
             argumentString,
         )
+
+    def testBuildArgumentString_033(self):
+        """Test with uploadOnly set, validate=False."""
+        options = Options()
+        options.uploadOnly = True
+        argumentString = options.buildArgumentString(validate=False)
+        self.assertEqual("--uploadOnly ", argumentString)

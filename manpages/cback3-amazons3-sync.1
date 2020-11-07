@@ -14,7 +14,7 @@
 .\" #
 .\" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 .\"
-.TH cback3\-amazons3-sync "1" "Aug 2019" "Cedar Backup 3" "Kenneth J. Pronovici"
+.TH cback3\-amazons3-sync "1" "Nov 2020" "Cedar Backup 3" "Kenneth J. Pronovici"
 .SH NAME
 cback3\-amazons3-sync \- Synchronize a local directory with an Amazon S3 bucket
 .SH SYNOPSIS
@@ -97,6 +97,28 @@ bug report.
 \fB\-D\fR, \fB\-\-diagnostics\fR
 Display runtime diagnostic information and then exit.  This diagnostic
 information is often useful when filing a bug report.
+.TP
+\fB\-v\fR, \fB\-\-verifyOnly\fR
+Only verify the S3 bucket contents against the directory on disk. Do not make
+any changes to the S3 bucket or transfer any files. This is intended as a quick
+check to see whether the sync is up-to-date.  Although no files are
+transferred, the tool will still execute the source filename encoding check.
+.TP
+\fB\-u\fR, \fB\-\-uploadOnly\fR
+Implement a partial or "upload only" sync, instead of a full synchronization.
+Normally, synchronization would remove files that exist in S3 but do not exist
+in the directory on disk.  With this flag, new files are uploaded, but no files
+are removed in S3.
+.TP
+\fB\-w\fR, \fB\-\-ignoreWarnings\fR
+The AWS CLI S3 sync process is very picky about filename encoding.  Files that
+the Linux filesystem handles with no problems can cause problems in S3 if the
+filename cannot be encoded properly in your configured locale. As of this
+writing, filenames like this will cause the sync process to abort without
+transferring all files as expected.  To avoid confusion, the tool tries to
+guess which files in the source directory will cause problems, and refuses to
+execute the AWS CLI S3 sync if any problematic files exist. If you'd rather
+proceed anyway, use this flag.
 .SH RETURN VALUES
 .PP
 This command returns 0 (zero) upon normal completion, and several other error
@@ -152,7 +174,7 @@ tracker.
 .SH AUTHOR
 Written and maintained by Kenneth J. Pronovici <pronovic@ieee.org> with contributions from others.
 .SH COPYRIGHT
-Copyright (c) 2004\-2011,2013\-2017,2019 Kenneth J. Pronovici.
+Copyright (c) 2004\-2020 Kenneth J. Pronovici.
 .PP
 This is free software; see the source for copying conditions.  There is
 NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR

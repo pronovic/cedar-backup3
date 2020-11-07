@@ -8,7 +8,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# Copyright (c) 2014-2016 Kenneth J. Pronovici.
+# Copyright (c) 2014-2016,2020 Kenneth J. Pronovici.
 # All rights reserved.
 #
 # This program is free software; you can redistribute it and/or
@@ -75,7 +75,7 @@ logger = logging.getLogger("CedarBackup3.log.tools.amazons3")
 
 AWS_COMMAND = ["aws"]
 
-SHORT_SWITCHES = "hVbql:o:m:OdsDvw"
+SHORT_SWITCHES = "hVbql:o:m:OdsDvuw"
 LONG_SWITCHES = [
     "help",
     "version",
@@ -89,6 +89,7 @@ LONG_SWITCHES = [
     "stack",
     "diagnostics",
     "verifyOnly",
+    "uploadOnly",
     "ignoreWarnings",
 ]
 
@@ -204,6 +205,7 @@ class Options(object):
         self._stacktrace = False
         self._diagnostics = False
         self._verifyOnly = False
+        self._uploadOnly = False
         self._ignoreWarnings = False
         self._sourceDir = None
         self._s3BucketUrl = None
@@ -316,6 +318,11 @@ class Options(object):
                 return 1
         if self.verifyOnly != other.verifyOnly:
             if self.verifyOnly < other.verifyOnly:
+                return -1
+            else:
+                return 1
+        if self.uploadOnly != other.uploadOnly:
+            if self.uploadOnly < other.uploadOnly:
                 return -1
             else:
                 return 1
@@ -552,6 +559,22 @@ class Options(object):
       """
         return self._verifyOnly
 
+    def _setUploadOnly(self, value):
+        """
+      Property target used to set the uploadOnly flag.
+      No validations, but we normalize the value to ``True`` or ``False``.
+      """
+        if value:
+            self._uploadOnly = True
+        else:
+            self._uploadOnly = False
+
+    def _getUploadOnly(self):
+        """
+      Property target used to get the uploadOnly flag.
+      """
+        return self._uploadOnly
+
     def _setIgnoreWarnings(self, value):
         """
       Property target used to set the ignoreWarnings flag.
@@ -610,6 +633,7 @@ class Options(object):
     stacktrace = property(_getStacktrace, _setStacktrace, None, "Command-line stacktrace (``-s,--stack``) flag.")
     diagnostics = property(_getDiagnostics, _setDiagnostics, None, "Command-line diagnostics (``-D,--diagnostics``) flag.")
     verifyOnly = property(_getVerifyOnly, _setVerifyOnly, None, "Command-line verifyOnly (``-v,--verifyOnly``) flag.")
+    uploadOnly = property(_getUploadOnly, _setUploadOnly, None, "Command-line uploadOnly (``-u,--uploadOnly``) flag.")
     ignoreWarnings = property(
         _getIgnoreWarnings, _setIgnoreWarnings, None, "Command-line ignoreWarnings (``-w,--ignoreWarnings``) flag"
     )
@@ -697,6 +721,8 @@ class Options(object):
             argumentList.append("--diagnostics")
         if self.verifyOnly:
             argumentList.append("--verifyOnly")
+        if self.uploadOnly:
+            argumentList.append("--uploadOnly")
         if self.ignoreWarnings:
             argumentList.append("--ignoreWarnings")
         if self.sourceDir is not None:
@@ -760,6 +786,8 @@ class Options(object):
             argumentString += "--diagnostics "
         if self.verifyOnly:
             argumentString += "--verifyOnly "
+        if self.uploadOnly:
+            argumentString += "--uploadOnly "
         if self.ignoreWarnings:
             argumentString += "--ignoreWarnings "
         if self.sourceDir is not None:
@@ -823,6 +851,8 @@ class Options(object):
             self.diagnostics = True
         if "-v" in switches or "--verifyOnly" in switches:
             self.verifyOnly = True
+        if "-u" in switches or "--uploadOnly" in switches:
+            self.uploadOnly = True
         if "-w" in switches or "--ignoreWarnings" in switches:
             self.ignoreWarnings = True
         try:
@@ -975,6 +1005,7 @@ def _usage(fd=sys.stderr):
     )  # exactly 80 characters in width!
     fd.write("   -D, --diagnostics    Print runtime diagnostics to the screen and exit\n")
     fd.write("   -v, --verifyOnly     Only verify the S3 bucket contents, do not make changes\n")
+    fd.write("   -u, --uploadOnly     Only upload new data, do not remove files in the S3 bucket\n")
     fd.write("   -w, --ignoreWarnings Ignore warnings about problematic filename encodings\n")
     fd.write("\n")
     fd.write(" Typical usage would be something like:\n")
@@ -1047,7 +1078,7 @@ def _executeAction(options):
     if not options.ignoreWarnings:
         _checkSourceFiles(options.sourceDir, sourceFiles)
     if not options.verifyOnly:
-        _synchronizeBucket(options.sourceDir, options.s3BucketUrl)
+        _synchronizeBucket(options.sourceDir, options.s3BucketUrl, options.uploadOnly)
     _verifyBucketContents(options.sourceDir, sourceFiles, options.s3BucketUrl)
 
 
@@ -1132,7 +1163,7 @@ def _checkSourceFiles(sourceDir, sourceFiles):
 ################################
 
 
-def _synchronizeBucket(sourceDir, s3BucketUrl):
+def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
     """
    Synchronize a local directory to an Amazon S3 bucket.
    Args:
@@ -1143,7 +1174,12 @@ def _synchronizeBucket(sourceDir, s3BucketUrl):
     # --recursive option is useless.  They eventually removed it and now using
     # it causes an error.  See: https://github.com/aws/aws-cli/issues/1170
     logger.info("Synchronizing local source directory up to Amazon S3.")
-    args = ["s3", "sync", sourceDir, s3BucketUrl, "--delete"]
+    args = ["s3", "sync", sourceDir, s3BucketUrl]
+    if uploadOnly:
+        logger.info("Sync process will only upload new data, never removing files in S3")
+    else:
+        logger.info("This will be a full sync process, removing and S3 files that do not exist in the source")
+        args += ["--delete"]
     result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
     if result != 0:
         raise IOError("Error [%d] calling AWS CLI synchronize bucket." % result)
