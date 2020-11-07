@@ -1178,7 +1178,7 @@ def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
     if uploadOnly:
         logger.info("Sync process will only upload new data, never removing files in S3")
     else:
-        logger.info("This will be a full sync process, removing and S3 files that do not exist in the source")
+        logger.info("This will be a full sync process, removing any S3 files that do not exist in the source")
         args += ["--delete"]
     result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
     if result != 0:
