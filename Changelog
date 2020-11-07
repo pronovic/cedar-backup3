@@ -1,3 +1,7 @@
+Version 3.4.0     unreleased
+
+	* Add a new -u/--uploadOnly option to cback3-amazons3-sync.
+
 Version 3.3.4     29 Oct 2020
 
 	* Update manual's copyright to reflect reStructuredText, not Docbook XML.

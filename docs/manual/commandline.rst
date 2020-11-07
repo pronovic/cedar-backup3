@@ -300,6 +300,7 @@ The ``cback3-amazons3-sync`` command has the following syntax:
       -s, --stack          Dump Python stack trace instead of swallowing exceptions
       -D, --diagnostics    Print runtime diagnostics to the screen and exit
       -v, --verifyOnly     Only verify the S3 bucket contents, do not make changes
+      -v, --uploadOnly     Only upload new data, do not remove files in the S3 bucket
       -w, --ignoreWarnings Ignore warnings about problematic filename encodings
 
     Typical usage would be something like:
@@ -378,6 +379,12 @@ Switches
    Although no files are transferred, the tool will still execute the
    source filename encoding check, discussed below along with
    ``--ignoreWarnings``.
+
+``-u``, ``--uploadOnly``
+   Implement a partial or "upload only" sync, instead of a full synchronization.  
+   Normally, synchronization would remove files that exist in S3 but do not exist 
+   in the directory on disk.  With this flag, new files are uploaded, but no 
+   files are removed in S3.
 
 ``-w``, ``--ignoreWarnings``
    The AWS CLI S3 sync process is very picky about filename encoding.
