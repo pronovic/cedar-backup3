@@ -35,6 +35,6 @@ Attributes:
 AUTHOR = "Kenneth J. Pronovici"
 EMAIL = "pronovic@ieee.org"
 COPYRIGHT = "2004-2020"
-VERSION = "3.3.4"
-DATE = "29 Oct 2020"
+VERSION = "3.4.0"
+DATE = "07 Nov 2020"
 URL = "https://github.com/pronovic/cedar-backup3"

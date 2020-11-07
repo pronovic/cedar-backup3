@@ -1,4 +1,4 @@
-Version 3.4.0     unreleased
+Version 3.4.0     07 Nov 2020
 
 	* Add a new -u/--uploadOnly option to cback3-amazons3-sync.
 
