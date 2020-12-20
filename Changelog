@@ -1,4 +1,4 @@
-Version 3.4.1     unreleased
+Version 3.4.1     20 Dec 2020
 
 	* Fix Python dependencies to work with Python 3.9.1 and not just 3.9.0.
 
