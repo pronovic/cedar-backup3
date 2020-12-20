@@ -343,7 +343,9 @@ Once you have the token, you will configure Poetry to use it.  Poetry relies on
 the Python keyring to store this secret.  On MacOS, it will use the system
 keyring, and no other setup is required.  
 
-On Debian, the process is more complicated (see the the [keyring documentation](https://pypi.org/project/keyring/) for more details).  First, install a keyring manager, and then log out:
+On Debian, the process is more complicated (see the the [keyring documentation](https://pypi.org/project/keyring/) for more details).  
+
+First, install a keyring manager, and then log out:
 
 ```
 $ sudo apt-get install gnome-keyring
@@ -377,3 +379,19 @@ poetry config pypi-token.pypi <the PyPI token>
 You will have to type in the same keyring password that you set above.  Note
 that this leaves your actual secret in the command-line history, so make sure
 to scrub it once you're done.
+
+> _Note:_ The user experience is frankly terrible if you're trying to work on a
+> simple SSH session outside of a Linux desktop.  The GNOME keyring manager
+> wants to pop up its dialog to accept your credentials to unlock the keyring.
+> That won't work on an SSH session where there is no GUI.  One alternative is
+> to follow the notes in the [keyring documentation](https://pypi.org/project/keyring/) under
+> **Using Keyring on headless Linux systems**.  This gives you a way to unlock
+> the keyring inside a DBUS session. 
+>
+> The documented process does work, but it's slow and clunky.  And _you must
+> keep the DBUS session open in a separate terminal window for as long as you
+> need to use the keyring_.  When the instructions say "enter your password and
+> type CTRL-D", they mean that literally.  Don't press Enter first or anything
+> like that.  I've found that it works best if I enter the password and press
+> CTRL-D twice so I get back to the DBUS `$` prompt before proceeding in
+> another window.
