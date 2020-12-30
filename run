@@ -288,6 +288,9 @@ case $1 in
       run_black
       run_isort
       ;;
+   diagnostics)
+      run_diagnostics
+      ;;
    unittest|test*)
       shift 1
       run_unittest $*
