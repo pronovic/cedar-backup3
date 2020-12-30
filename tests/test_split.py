@@ -739,7 +739,7 @@ class TestLocalConfig(unittest.TestCase):
 ######################
 
 
-@unittest.skipUnless(runAllTests(), "")
+@unittest.skipUnless(runAllTests(), "Limited test suite")
 class TestFunctions(unittest.TestCase):
 
     """Tests for the functions in split.py."""

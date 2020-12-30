@@ -81,7 +81,16 @@ import time
 import unittest
 from os.path import isdir
 
-from CedarBackup3.testutil import buildPath, captureOutput, configureLogging, extractTar, findResources, removedir
+from CedarBackup3.testutil import (
+    buildPath,
+    captureOutput,
+    configureLogging,
+    extractTar,
+    findResources,
+    platformSupportsLinks,
+    platformWindows,
+    removedir,
+)
 from CedarBackup3.util import (
     UNIT_BYTES,
     UNIT_GBYTES,
@@ -122,6 +131,17 @@ RESOURCES = [
     "lotsoflines.py",
     "tree10.tar.gz",
 ]
+
+# This is a command that is always valid on the platform, something other than the Python interpreter
+# The command must return a success status (zero) for the tests to pass
+if platformWindows():
+    VALID_COMMAND = [os.path.join(os.environ["SystemRoot"], "system32", "WindowsPowerShell", "v1.0", "powershell.exe")]
+    VALID_ARGS = ["Write-Output hello"]
+    VALID_OUTPUT = "hello\r\n"
+else:
+    VALID_COMMAND = ["echo"]
+    VALID_ARGS = ["hello"]
+    VALID_OUTPUT = "hello\n"
 
 
 #######################################################################
@@ -2402,12 +2422,10 @@ class TestFunctions(unittest.TestCase):
     def testExecuteCommand_001(self):
         """
       Execute a command that should succeed, no arguments, returnOutput=False
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False)
         self.assertEqual(0, result)
         self.assertEqual(None, output)
@@ -2515,16 +2533,14 @@ class TestFunctions(unittest.TestCase):
     def testExecuteCommand_008(self):
         """
       Execute a command that should succeed, no arguments, returnOutput=True
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True)
         self.assertEqual(0, result)
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual(VALID_OUTPUT, output[0])
 
     def testExecuteCommand_009(self):
         """
@@ -2638,12 +2654,10 @@ class TestFunctions(unittest.TestCase):
         """
       Execute a command that should succeed, no arguments, returnOutput=False
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False)
         self.assertEqual(0, result)
         self.assertEqual(None, output)
@@ -2752,16 +2766,14 @@ class TestFunctions(unittest.TestCase):
         """
       Execute a command that should succeed, no arguments, returnOutput=True
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True)
         self.assertEqual(0, result)
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual(VALID_OUTPUT, output[0])
 
     def testExecuteCommand_023(self):
         """
@@ -2871,12 +2883,10 @@ class TestFunctions(unittest.TestCase):
     def testExecuteCommand_030(self):
         """
       Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
         self.assertEqual(0, result)
         self.assertEqual(None, output)
@@ -2984,16 +2994,14 @@ class TestFunctions(unittest.TestCase):
     def testExecuteCommand_037(self):
         """
       Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
         self.assertEqual(0, result)
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual(VALID_OUTPUT, output[0])
 
     def testExecuteCommand_038(self):
         """
@@ -3111,12 +3119,10 @@ class TestFunctions(unittest.TestCase):
         """
       Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
         self.assertEqual(0, result)
         self.assertEqual(None, output)
@@ -3225,16 +3231,14 @@ class TestFunctions(unittest.TestCase):
         """
       Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
         self.assertEqual(0, result)
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual(VALID_OUTPUT, output[0])
 
     def testExecuteCommand_052(self):
         """
@@ -3352,12 +3356,10 @@ class TestFunctions(unittest.TestCase):
         """
       Execute a command that should succeed, no arguments, returnOutput=False, using outputFile.
       Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: echo
+      Command-line: non-Python platform-specific valid command
       """
-        command = [
-            "echo",
-        ]
-        args = []
+        command = VALID_COMMAND
+        args = VALID_ARGS
 
         filename = self.getTempfile()
         with open(filename, "wb") as outputFile:
@@ -3368,7 +3370,9 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual(
+            VALID_OUTPUT, output[0].replace("\n", os.linesep)
+        )  # when reading from a file, Python translates the line ending
 
     def testExecuteCommand_059(self):
         """
@@ -3412,7 +3416,7 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual("\n", output[0])
 
     def testExecuteCommand_061(self):
         """
@@ -3437,7 +3441,7 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(1, len(output))
-        self.assertEqual("first%s" % os.linesep, output[0])
+        self.assertEqual("first\n", output[0])
 
     def testExecuteCommand_062(self):
         """
@@ -3463,8 +3467,8 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(2, len(output))
-        self.assertEqual("first%s" % os.linesep, output[0])
-        self.assertEqual("second%s" % os.linesep, output[1])
+        self.assertEqual("first\n", output[0])
+        self.assertEqual("second\n", output[1])
 
     def testExecuteCommand_063(self):
         """
@@ -3488,7 +3492,7 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(1, len(output))
-        self.assertEqual(os.linesep, output[0])
+        self.assertEqual("\n", output[0])
 
     def testExecuteCommand_064(self):
         """
@@ -3514,8 +3518,8 @@ class TestFunctions(unittest.TestCase):
             output = f.readlines()
 
         self.assertEqual(2, len(output))
-        self.assertEqual("first%s" % os.linesep, output[0])
-        self.assertEqual("second%s" % os.linesep, output[1])
+        self.assertEqual("first\n", output[0])
+        self.assertEqual("second\n", output[1])
 
     def testExecuteCommand_065(self):
         """
@@ -3893,7 +3897,10 @@ class TestFunctions(unittest.TestCase):
       Test that the function behaves sensibly.
       """
         device = nullDevice()
-        self.assertEqual("/dev/null", device)
+        if sys.platform == "win32":
+            self.assertEqual("nul", device)
+        else:
+            self.assertEqual("/dev/null", device)
 
     ######################
     # Test displayBytes()
@@ -4292,6 +4299,7 @@ class TestFunctions(unittest.TestCase):
     # Test dereferenceLink()
     #########################
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testDereferenceLink_001(self):
         """
       Test for a path that is a link, absolute=false.
@@ -4302,6 +4310,7 @@ class TestFunctions(unittest.TestCase):
         actual = dereferenceLink(path, absolute=False)
         self.assertEqual(expected, actual)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testDereferenceLink_002(self):
         """
       Test for a path that is a link, absolute=true.

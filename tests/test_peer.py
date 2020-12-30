@@ -103,6 +103,7 @@ from CedarBackup3.testutil import (
     findResources,
     getLogin,
     getMaskAsMode,
+    platformWindows,
     removedir,
     runningAsRoot,
 )
@@ -357,6 +358,7 @@ class TestLocalPeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(True, result)
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testCheckCollectIndicator_008(self):
         """
       Attempt to check collect indicator collect indicator file that does exist, custom name,
@@ -388,6 +390,7 @@ class TestLocalPeer(unittest.TestCase):
         peer = LocalPeer(name, collectDir)
         self.assertRaises(ValueError, peer.writeStageIndicator)
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testWriteStageIndicator_002(self):
         """
       Attempt to write stage indicator with non-writable collect directory.
@@ -563,6 +566,7 @@ class TestLocalPeer(unittest.TestCase):
         stagedFiles = os.listdir(targetDir)
         self.assertEqual([], stagedFiles)
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_007(self):
         """
       Attempt to stage files with empty collect directory, where the target
@@ -571,7 +575,7 @@ class TestLocalPeer(unittest.TestCase):
         self.extractTar("tree2")
         name = "peer1"
         collectDir = self.buildPath(["tree2", "dir001",])
-        targetDir = self.buildPath([" target directory ",])
+        targetDir = self.buildPath([" target directory ",])  # windows doesn't like paths that start or end with a space
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -646,6 +650,7 @@ class TestLocalPeer(unittest.TestCase):
         peer = LocalPeer(name, collectDir)
         self.assertRaises(ValueError, peer.stagePeer, targetDir=targetDir)
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_011(self):
         """
       Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
@@ -904,7 +909,7 @@ class TestRemotePeer(unittest.TestCase):
     # Test checkCollectIndicator()
     ###############################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_001(self):
         """
       Attempt to check collect indicator with invalid hostname.
@@ -919,7 +924,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_002(self):
         """
       Attempt to check collect indicator with invalid remote user.
@@ -934,7 +939,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_003(self):
         """
       Attempt to check collect indicator with invalid rcp command.
@@ -950,7 +955,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_004(self):
         """
       Attempt to check collect indicator with non-existent collect directory.
@@ -964,7 +969,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_005(self):
         """
       Attempt to check collect indicator with non-readable collect directory.
@@ -981,7 +986,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertEqual(False, result)
         os.chmod(collectDir, 0o777)  # so we can remove it safely
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_006(self):
         """
       Attempt to check collect indicator collect indicator file that does not exist.
@@ -998,7 +1003,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_007(self):
         """
       Attempt to check collect indicator collect indicator file that does not exist, custom name.
@@ -1015,7 +1020,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_008(self):
         """
       Attempt to check collect indicator collect indicator file that does not
@@ -1033,7 +1038,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_009(self):
         """
       Attempt to check collect indicator collect indicator file that does not
@@ -1051,7 +1056,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(False, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_010(self):
         """
       Attempt to check collect indicator collect indicator file that does exist.
@@ -1070,7 +1075,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(True, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_011(self):
         """
       Attempt to check collect indicator collect indicator file that does exist, custom name.
@@ -1089,7 +1094,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator(collectIndicator="whatever")
         self.assertEqual(True, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_012(self):
         """
       Attempt to check collect indicator collect indicator file that does exist,
@@ -1109,7 +1114,7 @@ class TestRemotePeer(unittest.TestCase):
         result = peer.checkCollectIndicator()
         self.assertEqual(True, result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_013(self):
         """
       Attempt to check collect indicator collect indicator file that does
@@ -1134,7 +1139,7 @@ class TestRemotePeer(unittest.TestCase):
     # Test writeStageIndicator()
     #############################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_001(self):
         """
       Attempt to write stage indicator with invalid hostname.
@@ -1148,7 +1153,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         self.assertRaises((IOError, OSError), peer.writeStageIndicator)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_002(self):
         """
       Attempt to write stage indicator with invalid remote user.
@@ -1162,7 +1167,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         self.assertRaises((IOError, OSError), peer.writeStageIndicator)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_003(self):
         """
       Attempt to write stage indicator with invalid rcp command.
@@ -1177,7 +1182,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand)
         self.assertRaises((IOError, OSError), peer.writeStageIndicator)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_004(self):
         """
       Attempt to write stage indicator with non-existent collect directory.
@@ -1190,7 +1195,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser)
         self.assertRaises(IOError, peer.writeStageIndicator)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_005(self):
         """
       Attempt to write stage indicator with non-writable collect directory.
@@ -1209,7 +1214,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertTrue(not os.path.exists(stageIndicator))
         os.chmod(collectDir, 0o777)  # so we can remove it safely
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_006(self):
         """
       Attempt to write stage indicator in a valid directory.
@@ -1226,7 +1231,7 @@ class TestRemotePeer(unittest.TestCase):
         peer.writeStageIndicator()
         self.assertTrue(os.path.exists(stageIndicator))
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_007(self):
         """
       Attempt to write stage indicator in a valid directory, custom name.
@@ -1243,7 +1248,7 @@ class TestRemotePeer(unittest.TestCase):
         peer.writeStageIndicator(stageIndicator="newname")
         self.assertTrue(os.path.exists(stageIndicator))
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_008(self):
         """
       Attempt to write stage indicator in a valid directory that contains
@@ -1261,7 +1266,7 @@ class TestRemotePeer(unittest.TestCase):
         peer.writeStageIndicator()
         self.assertTrue(os.path.exists(stageIndicator))
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_009(self):
         """
       Attempt to write stage indicator in a valid directory, custom name, where
@@ -1283,7 +1288,7 @@ class TestRemotePeer(unittest.TestCase):
     # Test stagePeer()
     ###################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_001(self):
         """
       Attempt to stage files with invalid hostname.
@@ -1300,7 +1305,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_002(self):
         """
       Attempt to stage files with invalid remote user.
@@ -1317,7 +1322,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_003(self):
         """
       Attempt to stage files with invalid rcp command.
@@ -1335,7 +1340,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand)
         self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_004(self):
         """
       Attempt to stage files with non-existent collect directory.
@@ -1351,7 +1356,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser)
         self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_005(self):
         """
       Attempt to stage files with non-readable collect directory.
@@ -1370,7 +1375,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertRaises((IOError, OSError), peer.stagePeer, targetDir=targetDir)
         os.chmod(collectDir, 0o777)  # so we can remove it safely
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_006(self):
         """
       Attempt to stage files with non-absolute target directory.
@@ -1384,7 +1389,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser)
         self.assertRaises(ValueError, peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_007(self):
         """
       Attempt to stage files with non-existent target directory.
@@ -1400,7 +1405,7 @@ class TestRemotePeer(unittest.TestCase):
         peer = RemotePeer(name, collectDir, workingDir, remoteUser)
         self.assertRaises(ValueError, peer.stagePeer, targetDir=targetDir)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_008(self):
         """
       Attempt to stage files with non-writable target directory.
@@ -1420,7 +1425,7 @@ class TestRemotePeer(unittest.TestCase):
         os.chmod(collectDir, 0o777)  # so we can remove it safely
         self.assertEqual(0, len(os.listdir(targetDir)))
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_009(self):
         """
       Attempt to stage files with empty collect directory.
@@ -1440,7 +1445,7 @@ class TestRemotePeer(unittest.TestCase):
         stagedFiles = os.listdir(targetDir)
         self.assertEqual([], stagedFiles)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_010(self):
         """
       Attempt to stage files with empty collect directory, with a target
@@ -1461,7 +1466,7 @@ class TestRemotePeer(unittest.TestCase):
         stagedFiles = os.listdir(targetDir)
         self.assertEqual([], stagedFiles)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_011(self):
         """
       Attempt to stage files with non-empty collect directory.
@@ -1489,7 +1494,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertTrue("file006" in stagedFiles)
         self.assertTrue("file007" in stagedFiles)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_012(self):
         """
       Attempt to stage files with non-empty collect directory, with a target
@@ -1518,7 +1523,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertTrue("file006" in stagedFiles)
         self.assertTrue("file007" in stagedFiles)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_013(self):
         """
       Attempt to stage files with non-empty collect directory containing links and directories.
@@ -1541,7 +1546,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertTrue("file001" in stagedFiles)
         self.assertTrue("file002" in stagedFiles)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_014(self):
         """
       Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
@@ -1584,7 +1589,7 @@ class TestRemotePeer(unittest.TestCase):
     # Test executeRemoteCommand()
     ##############################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testExecuteRemoteCommand(self):
         """
       Test that a simple remote command succeeds.
@@ -1602,14 +1607,14 @@ class TestRemotePeer(unittest.TestCase):
     # Test _buildCbackCommand()
     ############################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_001(self):
         """
       Test with None for cbackCommand and action, False for fullBackup.
       """
         self.assertRaises(ValueError, RemotePeer._buildCbackCommand, None, None, False)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_002(self):
         """
       Test with None for cbackCommand, "collect" for action, False for fullBackup.
@@ -1617,7 +1622,7 @@ class TestRemotePeer(unittest.TestCase):
         result = RemotePeer._buildCbackCommand(None, "collect", False)
         self.assertEqual("/usr/bin/cback3 collect", result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_003(self):
         """
       Test with "cback" for cbackCommand, "collect" for action, False for fullBackup.
@@ -1625,7 +1630,7 @@ class TestRemotePeer(unittest.TestCase):
         result = RemotePeer._buildCbackCommand("cback", "collect", False)
         self.assertEqual("cback collect", result)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_004(self):
         """
       Test with "cback" for cbackCommand, "collect" for action, True for fullBackup.

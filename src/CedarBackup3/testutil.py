@@ -453,7 +453,7 @@ def _isPlatform(name):
       name: Platform name to check, currently one of "windows" or "macosx"
    """
     if name == "windows":
-        return platform.platform(True, True).startswith("Windows")
+        return sys.platform == "win32"
     elif name == "macosx":
         return sys.platform == "darwin"
     elif name == "debian":
@@ -488,6 +488,28 @@ def platformMacOsX():
     return _isPlatform("macosx")
 
 
+#############################
+# platformWindows() function
+#############################
+
+
+def platformWindows():
+    """
+   Returns boolean indicating whether this is the Windows platform.
+   """
+    return _isPlatform("windows")
+
+
+####################################
+# platformSupportsLinks() function
+####################################
+
+
+def platformSupportsLinks():
+    """Whether the platform supports soft links"""
+    return not platformWindows()
+
+
 ###########################
 # runningAsRoot() function
 ###########################
@@ -498,7 +520,8 @@ def runningAsRoot():
    Returns boolean indicating whether the effective user id is root.
    """
     if sys.platform == "win32":
-        return False
+        # we're sort of always root on Windows, at least for the purposes of this check
+        return True
     return os.geteuid() == 0  # pylint: disable=no-member
 
 

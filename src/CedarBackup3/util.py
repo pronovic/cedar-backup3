@@ -1089,7 +1089,7 @@ class Diagnostics(object):
                 sysname = "win32"
                 release = platform.platform()
                 machine = platform.machine()
-                return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
+                return "%s (%s %s)" % (sysname, release, machine)
             else:
                 uname = os.uname()  # pylint: disable=no-member
                 sysname = uname[0]  # i.e. Linux

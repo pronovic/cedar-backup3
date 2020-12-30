@@ -55,8 +55,8 @@ Attributes:
 
 import logging
 import os
-import sys
 import shutil
+import sys
 
 from CedarBackup3.config import VALID_FAILURE_MODES
 from CedarBackup3.filesystem import FilesystemList
