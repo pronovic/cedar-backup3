@@ -45,13 +45,11 @@ Provides utilities related to image writers.
 # Imported modules
 ########################################################################
 
+import logging
 import os
 import re
-import logging
 
-from CedarBackup3.util import resolveCommand, executeCommand
-from CedarBackup3.util import convertSize, UNIT_BYTES, UNIT_SECTORS, encodePath
-
+from CedarBackup3.util import UNIT_BYTES, UNIT_SECTORS, convertSize, encodePath, executeCommand, resolveCommand
 
 ########################################################################
 # Module-wide constants and variables

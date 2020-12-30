@@ -54,24 +54,27 @@ directly from the user.
 # Imported modules and constants
 ########################################################################
 
-import sys
-import os
 import logging
+import os
+import sys
 import tempfile
 
-from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
-from CedarBackup3.util import displayBytes, convertSize, mount, unmount
-from CedarBackup3.util import UNIT_SECTORS, UNIT_BYTES
+from CedarBackup3.actions.constants import STORE_INDICATOR
+from CedarBackup3.actions.store import writeIndicatorFile
+from CedarBackup3.actions.util import createWriter, findDailyDirs
+from CedarBackup3.cli import (
+    DEFAULT_CONFIG,
+    DEFAULT_LOGFILE,
+    DEFAULT_MODE,
+    DEFAULT_OWNERSHIP,
+    Options,
+    setupLogging,
+    setupPathResolver,
+)
 from CedarBackup3.config import Config
 from CedarBackup3.filesystem import BackupFileList, compareDigestMaps, normalizeDir
-from CedarBackup3.cli import Options, setupLogging, setupPathResolver
-from CedarBackup3.cli import DEFAULT_CONFIG, DEFAULT_LOGFILE, DEFAULT_OWNERSHIP, DEFAULT_MODE
-from CedarBackup3.actions.constants import STORE_INDICATOR
-from CedarBackup3.actions.util import createWriter
-from CedarBackup3.actions.store import writeIndicatorFile
-from CedarBackup3.actions.util import findDailyDirs
-from CedarBackup3.util import Diagnostics
-
+from CedarBackup3.release import AUTHOR, COPYRIGHT, DATE, EMAIL, VERSION
+from CedarBackup3.util import UNIT_BYTES, UNIT_SECTORS, Diagnostics, convertSize, displayBytes, mount, unmount
 
 ########################################################################
 # Module-wide constants and variables

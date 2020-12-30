@@ -45,12 +45,11 @@ Implements the standard 'validate' action.
 # Imported modules
 ########################################################################
 
-import os
 import logging
+import os
 
-from CedarBackup3.util import getUidGid, getFunctionReference
 from CedarBackup3.actions.util import createWriter
-
+from CedarBackup3.util import getFunctionReference, getUidGid
 
 ########################################################################
 # Module-wide constants and variables

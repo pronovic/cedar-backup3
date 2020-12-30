@@ -53,12 +53,10 @@ than X bytes of capacity remaining.
 import logging
 from functools import total_ordering
 
+from CedarBackup3.actions.util import checkMediaState, createWriter
+from CedarBackup3.config import ByteQuantity, addByteQuantityNode, readByteQuantity
 from CedarBackup3.util import displayBytes
-from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityNode
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode
-from CedarBackup3.xmlutil import readFirstChild, readString
-from CedarBackup3.actions.util import createWriter, checkMediaState
-
+from CedarBackup3.xmlutil import addContainerNode, addStringNode, createInputDom, readFirstChild, readString
 
 ########################################################################
 # Module-wide constants and variables

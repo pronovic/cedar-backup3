@@ -45,15 +45,14 @@ Implements the standard 'collect' action.
 # Imported modules
 ########################################################################
 
-import os
 import logging
+import os
 import pickle
 
-from CedarBackup3.filesystem import BackupFileList, FilesystemList
-from CedarBackup3.util import isStartOfWeek, changeOwnership, displayBytes, buildNormalizedPath
-from CedarBackup3.actions.constants import DIGEST_EXTENSION, COLLECT_INDICATOR
+from CedarBackup3.actions.constants import COLLECT_INDICATOR, DIGEST_EXTENSION
 from CedarBackup3.actions.util import writeIndicatorFile
-
+from CedarBackup3.filesystem import BackupFileList, FilesystemList
+from CedarBackup3.util import buildNormalizedPath, changeOwnership, displayBytes, isStartOfWeek
 
 ########################################################################
 # Module-wide constants and variables

@@ -45,15 +45,14 @@ Implements the standard 'stage' action.
 # Imported modules
 ########################################################################
 
+import logging
 import os
 import time
-import logging
 
-from CedarBackup3.peer import RemotePeer, LocalPeer
-from CedarBackup3.util import getUidGid, changeOwnership, isStartOfWeek, isRunningAsRoot
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
 from CedarBackup3.actions.util import writeIndicatorFile
-
+from CedarBackup3.peer import LocalPeer, RemotePeer
+from CedarBackup3.util import changeOwnership, getUidGid, isRunningAsRoot, isStartOfWeek
 
 ########################################################################
 # Module-wide constants and variables
