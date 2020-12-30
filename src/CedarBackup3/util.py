@@ -74,6 +74,7 @@ import collections
 import logging
 import math
 import os
+import platform
 import re
 import sys
 import time
@@ -1084,11 +1085,17 @@ class Diagnostics(object):
       Property target to get the operating system platform.
       """
         try:
-            uname = os.uname()
-            sysname = uname[0]  # i.e. Linux
-            release = uname[2]  # i.e. 2.16.18-2
-            machine = uname[4]  # i.e. i686
-            return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
+            if sys.platform == "win32":
+                sysname = "win32"
+                release = platform.platform()
+                machine = platform.machine()
+                return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
+            else:
+                uname = os.uname()  # pylint: disable=no-member
+                sysname = uname[0]  # i.e. Linux
+                release = uname[2]  # i.e. 2.16.18-2
+                machine = uname[4]  # i.e. i686
+                return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
         except:
             return sys.platform
 
@@ -1383,14 +1390,16 @@ def changeOwnership(path, user, group):
       group: Group which owns file
    """
     if _UID_GID_AVAILABLE:
-        if user is None or group is None:
+        if sys.platform == "win32":
+            logger.debug("Chown not supported on Windows platform")
+        elif user is None or group is None:
             logger.debug("User or group is None, so not attempting to change owner on [%s].", path)
         elif not isRunningAsRoot():
             logger.debug("Not root, so not attempting to change owner on [%s].", path)
         else:
             try:
                 (uid, gid) = getUidGid(user, group)
-                os.chown(path, uid, gid)
+                os.chown(path, uid, gid)  # pylint: disable=no-member
             except Exception as e:
                 logger.error("Error changing ownership of [%s]: %s", path, e)
 
@@ -1404,7 +1413,9 @@ def isRunningAsRoot():
     """
    Indicates whether the program is running as the root user.
    """
-    return os.getuid() == 0
+    if sys.platform == "win32":
+        return False
+    return os.getuid() == 0  # pylint: disable=no-member
 
 
 ##############################

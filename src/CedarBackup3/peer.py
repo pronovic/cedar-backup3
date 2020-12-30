@@ -55,6 +55,7 @@ Attributes:
 
 import logging
 import os
+import sys
 import shutil
 
 from CedarBackup3.config import VALID_FAILURE_MODES
@@ -386,7 +387,8 @@ class LocalPeer(object):
                 logger.debug("Source [%s] is not a regular file.", sourceFile)
                 raise ValueError("Source is not a regular file.")
         if ownership is not None:
-            os.chown(targetFile, ownership[0], ownership[1])
+            if sys.platform != "win32":
+                os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
         if permissions is not None:
             os.chmod(targetFile, permissions)
 
@@ -1005,7 +1007,8 @@ class RemotePeer(object):
             raise IOError("Apparently did not copy any new files from remote peer.")
         for targetFile in differenceSet:
             if ownership is not None:
-                os.chown(targetFile, ownership[0], ownership[1])
+                if sys.platform != "win32":
+                    os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
             if permissions is not None:
                 os.chmod(targetFile, permissions)
         return len(differenceSet)
@@ -1084,7 +1087,8 @@ class RemotePeer(object):
         if not os.path.exists(targetFile):
             raise IOError("Apparently unable to copy file from remote host.")
         if ownership is not None:
-            os.chown(targetFile, ownership[0], ownership[1])
+            if sys.platform != "win32":
+                os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
         if permissions is not None:
             os.chmod(targetFile, permissions)
 

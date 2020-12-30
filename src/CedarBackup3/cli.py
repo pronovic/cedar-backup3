@@ -1188,7 +1188,8 @@ def _setupLogfile(options):
                 (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
             else:
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
-            os.chown(logfile, uid, gid)
+            if sys.platform != "win32":
+                os.chown(logfile, uid, gid)  # pylint: disable=no-member
         except:
             pass
     return logfile

@@ -497,7 +497,9 @@ def runningAsRoot():
     """
    Returns boolean indicating whether the effective user id is root.
    """
-    return os.geteuid() == 0
+    if sys.platform == "win32":
+        return False
+    return os.geteuid() == 0  # pylint: disable=no-member
 
 
 ##############################
