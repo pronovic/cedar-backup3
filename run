@@ -50,7 +50,7 @@ run_isort() {
       run_install
    fi
 
-   poetry run isort src/**/*.py tests/*.py
+   poetry run isort src/**/**/*.py tests/*.py
 
    echo "done"
 }
