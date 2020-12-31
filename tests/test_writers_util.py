@@ -96,7 +96,16 @@ import time
 import unittest
 
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.testutil import buildPath, configureLogging, extractTar, findResources, platformMacOsX, removedir, setupOverrides
+from CedarBackup3.testutil import (
+    buildPath,
+    configureLogging,
+    extractTar,
+    findResources,
+    platformMacOsX,
+    platformSupportsLinks,
+    removedir,
+    setupOverrides,
+)
 from CedarBackup3.util import executeCommand
 from CedarBackup3.writers.util import IsoImage, validateDriveSpeed, validateScsiId
 
@@ -889,6 +898,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddEntry_002(self):
         """
       Attempt to add a an entry that is a soft link to a file.
@@ -898,6 +908,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddEntry_003(self):
         """
       Attempt to add a an entry that is a soft link to a directory
@@ -1172,7 +1183,7 @@ class TestIsoImage(unittest.TestCase):
     # Test getEstimatedSize()
     ##########################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testGetEstimatedSize_001(self):
         """
       Test with an empty list.
@@ -1181,7 +1192,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.getEstimatedSize)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testGetEstimatedSize_002(self):
         """
       Test with non-empty empty list.
@@ -1197,7 +1208,7 @@ class TestIsoImage(unittest.TestCase):
     # Test writeImage()
     ####################
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_001(self):
         """
       Attempt to write an image containing no entries.
@@ -1206,7 +1217,7 @@ class TestIsoImage(unittest.TestCase):
         imagePath = self.buildPath(["image.iso",])
         self.assertRaises(ValueError, isoImage.writeImage, imagePath)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_002(self):
         """
       Attempt to write an image containing only an empty directory, no graft point.
@@ -1224,7 +1235,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(mountPath in fsList)
         self.assertTrue(os.path.join(mountPath, "dir002") in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_003(self):
         """
       Attempt to write an image containing only an empty directory, with a graft point.
@@ -1243,7 +1254,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "base") in fsList)
         self.assertTrue(os.path.join(mountPath, "base", "dir002") in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_004(self):
         """
       Attempt to write an image containing only a non-empty directory, no graft
@@ -1270,7 +1281,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "dir002", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "dir002", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_005(self):
         """
       Attempt to write an image containing only a non-empty directory, with a
@@ -1299,7 +1310,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "something", "else", "dir002", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_006(self):
         """
       Attempt to write an image containing only a file, no graft point.
@@ -1317,7 +1328,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(mountPath in fsList)
         self.assertTrue(os.path.join(mountPath, "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_007(self):
         """
       Attempt to write an image containing only a file, with a graft point.
@@ -1336,7 +1347,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "point",) in fsList)
         self.assertTrue(os.path.join(mountPath, "point", "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_008(self):
         """
       Attempt to write an image containing a file and an empty directory, no
@@ -1358,7 +1369,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "file001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_009(self):
         """
       Attempt to write an image containing a file and an empty directory, with
@@ -1382,7 +1393,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "other", "file001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "base", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_010(self):
         """
       Attempt to write an image containing a file and a non-empty directory,
@@ -1412,7 +1423,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_011(self):
         """
       Attempt to write an image containing several files and a non-empty
@@ -1446,7 +1457,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "base", "dir001", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_012(self):
         """
       Attempt to write an image containing a deeply-nested directory.
@@ -1486,7 +1497,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "something", "tree9", "dir002", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_013(self):
         """
       Attempt to write an image containing only an empty directory, no graft
@@ -1504,7 +1515,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertEqual(1, len(fsList))
         self.assertTrue(mountPath in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_014(self):
         """
       Attempt to write an image containing only an empty directory, with a
@@ -1523,7 +1534,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(mountPath in fsList)
         self.assertTrue(os.path.join(mountPath, "base") in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_015(self):
         """
       Attempt to write an image containing only a non-empty directory, no graft
@@ -1549,7 +1560,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_016(self):
         """
       Attempt to write an image containing only a non-empty directory, with a
@@ -1577,7 +1588,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "something", "else", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "something", "else", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_017(self):
         """
       Attempt to write an image containing only a file, no graft point,
@@ -1596,7 +1607,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(mountPath in fsList)
         self.assertTrue(os.path.join(mountPath, "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_018(self):
         """
       Attempt to write an image containing only a file, with a graft point,
@@ -1616,7 +1627,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "point",) in fsList)
         self.assertTrue(os.path.join(mountPath, "point", "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_019(self):
         """
       Attempt to write an image containing a file and an empty directory, no
@@ -1637,7 +1648,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(mountPath in fsList)
         self.assertTrue(os.path.join(mountPath, "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_020(self):
         """
       Attempt to write an image containing a file and an empty directory, with
@@ -1660,7 +1671,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "base",) in fsList)
         self.assertTrue(os.path.join(mountPath, "other", "file001",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_021(self):
         """
       Attempt to write an image containing a file and a non-empty directory,
@@ -1675,7 +1686,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage.addEntry(dir1, contentsOnly=True)
         self.assertRaises(IOError, isoImage.writeImage, imagePath)  # ends up with a duplicate name
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_022(self):
         """
       Attempt to write an image containing several files and a non-empty
@@ -1708,7 +1719,7 @@ class TestIsoImage(unittest.TestCase):
         self.assertTrue(os.path.join(mountPath, "base", "dir001",) in fsList)
         self.assertTrue(os.path.join(mountPath, "base", "dir002",) in fsList)
 
-    @unittest.skipUnless(runAllTests(), "")
+    @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_023(self):
         """
       Attempt to write an image containing a deeply-nested directory,

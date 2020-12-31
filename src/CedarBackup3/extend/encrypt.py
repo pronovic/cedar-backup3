@@ -56,15 +56,13 @@ configuration file.
 # Imported modules
 ########################################################################
 
-import os
 import logging
+import os
 from functools import total_ordering
 
-from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode
-from CedarBackup3.xmlutil import readFirstChild, readString
-from CedarBackup3.actions.util import findDailyDirs, writeIndicatorFile, getBackupFiles
-
+from CedarBackup3.actions.util import findDailyDirs, getBackupFiles, writeIndicatorFile
+from CedarBackup3.util import changeOwnership, executeCommand, resolveCommand
+from CedarBackup3.xmlutil import addContainerNode, addStringNode, createInputDom, readFirstChild, readString
 
 ########################################################################
 # Module-wide constants and variables

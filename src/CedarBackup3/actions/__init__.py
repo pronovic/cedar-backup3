@@ -43,14 +43,14 @@ Architecture Interface, i.e. the same interface that extensions implement.
 # Using 'from CedarBackup3.actions import *' will just import the modules listed
 # in the __all__ variable.
 
-import CedarBackup3.actions.constants
 import CedarBackup3.actions.collect
+import CedarBackup3.actions.constants
 import CedarBackup3.actions.initialize
+import CedarBackup3.actions.purge
+import CedarBackup3.actions.rebuild
 import CedarBackup3.actions.stage
 import CedarBackup3.actions.store
-import CedarBackup3.actions.purge
 import CedarBackup3.actions.util
-import CedarBackup3.actions.rebuild
 import CedarBackup3.actions.validate
 
 __all__ = ["constants", "collect", "initialize", "stage", "store", "purge", "util", "rebuild", "validate"]

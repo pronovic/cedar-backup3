@@ -69,22 +69,36 @@ Check the Subversion documentation for more information.
 # Imported modules
 ########################################################################
 
-import os
 import logging
+import os
 import pickle
 from bz2 import BZ2File
-from gzip import GzipFile
 from functools import total_ordering
+from gzip import GzipFile
 
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode
-from CedarBackup3.xmlutil import isElement, readChildren, readFirstChild, readString, readStringList
 from CedarBackup3.config import VALID_COLLECT_MODES, VALID_COMPRESS_MODES
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.util import UnorderedList, RegexList
-from CedarBackup3.util import isStartOfWeek, buildNormalizedPath
-from CedarBackup3.util import resolveCommand, executeCommand
-from CedarBackup3.util import ObjectTypeList, encodePath, changeOwnership
-
+from CedarBackup3.util import (
+    ObjectTypeList,
+    RegexList,
+    UnorderedList,
+    buildNormalizedPath,
+    changeOwnership,
+    encodePath,
+    executeCommand,
+    isStartOfWeek,
+    resolveCommand,
+)
+from CedarBackup3.xmlutil import (
+    addContainerNode,
+    addStringNode,
+    createInputDom,
+    isElement,
+    readChildren,
+    readFirstChild,
+    readString,
+    readStringList,
+)
 
 ########################################################################
 # Module-wide constants and variables

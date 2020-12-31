@@ -49,7 +49,6 @@ import logging
 
 from CedarBackup3.actions.util import initializeMediaState
 
-
 ########################################################################
 # Module-wide constants and variables
 ########################################################################

@@ -45,22 +45,18 @@ Implements action-related utilities
 # Imported modules
 ########################################################################
 
-import os
-import time
-import tempfile
 import logging
+import os
+import tempfile
+import time
 
-from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.util import changeOwnership
-from CedarBackup3.util import deviceMounted
-from CedarBackup3.writers.util import readMediaLabel
-from CedarBackup3.writers.cdwriter import CdWriter
-from CedarBackup3.writers.dvdwriter import DvdWriter
-from CedarBackup3.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDR_80, MEDIA_CDRW_74, MEDIA_CDRW_80
-from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW
-from CedarBackup3.config import DEFAULT_MEDIA_TYPE, DEFAULT_DEVICE_TYPE, REWRITABLE_MEDIA_TYPES
 from CedarBackup3.actions.constants import INDICATOR_PATTERN
-
+from CedarBackup3.config import DEFAULT_DEVICE_TYPE, DEFAULT_MEDIA_TYPE, REWRITABLE_MEDIA_TYPES
+from CedarBackup3.filesystem import FilesystemList
+from CedarBackup3.util import changeOwnership, deviceMounted
+from CedarBackup3.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDR_80, MEDIA_CDRW_74, MEDIA_CDRW_80, CdWriter
+from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, DvdWriter
+from CedarBackup3.writers.util import readMediaLabel
 
 ########################################################################
 # Module-wide constants and variables
@@ -83,10 +79,6 @@ def findDailyDirs(stagingDir, indicatorFile):
     """
    Returns a list of all daily staging directories that do not contain
    the indicated indicator file.
-
-   Args:
-      stagingDir: Configured staging directory (config.targetDir)
-
    Returns:
        List of absolute paths to daily staging directories
    """
@@ -284,7 +276,7 @@ def initializeMediaState(config):
       ValueError: If media could not be initialized
       ValueError: If the configured media type is not rewritable
    """
-    if not config.store.mediaType in REWRITABLE_MEDIA_TYPES:
+    if config.store.mediaType not in REWRITABLE_MEDIA_TYPES:
         raise ValueError("Only rewritable media types can be initialized.")
     mediaLabel = buildMediaLabel()
     writer = createWriter(config)

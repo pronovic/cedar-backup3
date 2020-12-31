@@ -170,6 +170,7 @@ RESOURCES = [
 ##########################
 
 
+# noinspection PyTypeChecker
 class TestByteQuantity(unittest.TestCase):
 
     """Tests for the ByteQuantity class."""

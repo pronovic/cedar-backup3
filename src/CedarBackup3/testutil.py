@@ -336,8 +336,6 @@ def getLogin():
 def randomFilename(length, prefix=None, suffix=None):
     """
    Generates a random filename with the given length.
-   Args:
-      length: Length of filename
    @return Random filename
    """
     characters = [None] * length
@@ -453,7 +451,7 @@ def _isPlatform(name):
       name: Platform name to check, currently one of "windows" or "macosx"
    """
     if name == "windows":
-        return platform.platform(True, True).startswith("Windows")
+        return sys.platform == "win32"
     elif name == "macosx":
         return sys.platform == "darwin"
     elif name == "debian":
@@ -488,16 +486,26 @@ def platformMacOsX():
     return _isPlatform("macosx")
 
 
-###########################
-# runningAsRoot() function
-###########################
+#############################
+# platformWindows() function
+#############################
 
 
-def runningAsRoot():
+def platformWindows():
     """
-   Returns boolean indicating whether the effective user id is root.
+   Returns boolean indicating whether this is the Windows platform.
    """
-    return os.geteuid() == 0
+    return _isPlatform("windows")
+
+
+####################################
+# platformSupportsLinks() function
+####################################
+
+
+def platformSupportsLinks():
+    """Whether the platform supports soft links"""
+    return not platformWindows()
 
 
 ##############################

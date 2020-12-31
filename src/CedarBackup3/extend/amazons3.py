@@ -83,24 +83,37 @@ if run on Windows.
 # Imported modules
 ########################################################################
 
-import sys
-import os
-import logging
-import tempfile
 import datetime
 import json
+import logging
+import os
 import shutil
+import sys
+import tempfile
 from functools import total_ordering
 
-from CedarBackup3.filesystem import FilesystemList, BackupFileList
-from CedarBackup3.util import resolveCommand, executeCommand, isRunningAsRoot, changeOwnership, isStartOfWeek
-from CedarBackup3.util import displayBytes, UNIT_BYTES
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addBooleanNode, addStringNode
-from CedarBackup3.xmlutil import readFirstChild, readString, readBoolean
-from CedarBackup3.actions.util import writeIndicatorFile
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
-from CedarBackup3.config import ByteQuantity, readByteQuantity, addByteQuantityNode
-
+from CedarBackup3.actions.util import writeIndicatorFile
+from CedarBackup3.config import ByteQuantity, addByteQuantityNode, readByteQuantity
+from CedarBackup3.filesystem import BackupFileList, FilesystemList
+from CedarBackup3.util import (
+    UNIT_BYTES,
+    changeOwnership,
+    displayBytes,
+    executeCommand,
+    isRunningAsRoot,
+    isStartOfWeek,
+    resolveCommand,
+)
+from CedarBackup3.xmlutil import (
+    addBooleanNode,
+    addContainerNode,
+    addStringNode,
+    createInputDom,
+    readBoolean,
+    readFirstChild,
+    readString,
+)
 
 ########################################################################
 # Module-wide constants and variables
@@ -845,7 +858,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
         if os.path.isfile(entry):
             key = entry.replace(stagingDir, "")
             size = int(os.stat(entry).st_size)
-            if not key in contents:
+            if key not in contents:
                 raise IOError("File was apparently not uploaded: [%s]" % entry)
             else:
                 if size != contents[key]:

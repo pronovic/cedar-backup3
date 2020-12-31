@@ -63,6 +63,10 @@ Test Notes
    really should split it up into smaller files, but I like having a 1:1
    relationship between a module and its test.
 
+   These tests do pass on Windows, but I've taken the easy way out.  In most cases,
+   rather than establising new expected results, I've excluded the tests that require
+   soft links or other UNIX-specific behaviors.
+
 Naming Conventions
 ==================
 
@@ -105,6 +109,7 @@ from CedarBackup3.testutil import (
     failUnlessAssignRaises,
     findResources,
     platformMacOsX,
+    platformSupportsLinks,
     randomFilename,
     removedir,
 )
@@ -146,7 +151,6 @@ AGE_25_HOURS = 25 * 60 * 60  # in seconds
 AGE_47_HOURS = 47 * 60 * 60  # in seconds
 AGE_48_HOURS = 48 * 60 * 60  # in seconds
 AGE_49_HOURS = 49 * 60 * 60  # in seconds
-
 
 #######################################################################
 # Test Case Classes
@@ -720,6 +724,7 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludeLinks = True
         self.assertRaises(ValueError, fsList.addFile, path)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddFile_015(self):
         """
       Attempt to add a soft link; excludeLinks set.
@@ -1262,6 +1267,7 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludeLinks = True
         self.assertRaises(ValueError, fsList.addDir, path)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDir_015(self):
         """
       Attempt to add a soft link; excludeLinks set.
@@ -1934,12 +1940,13 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludeLinks = True
         self.assertRaises(ValueError, fsList.addDirContents, path)
 
-        path = self.buildPath(["tree5", "dir002", "link001"])  # link to a dir
-        fsList = FilesystemList()
-        fsList.excludeLinks = True
-        count = fsList.addDirContents(path)
-        self.assertEqual(0, count)
-        self.assertEqual([], fsList)
+        if platformSupportsLinks():
+            path = self.buildPath(["tree5", "dir002", "link001"])  # link to a dir
+            fsList = FilesystemList()
+            fsList.excludeLinks = True
+            count = fsList.addDirContents(path)
+            self.assertEqual(0, count)
+            self.assertEqual([], fsList)
 
     def testAddDirContents_026(self):
         """
@@ -1979,6 +1986,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(0, count)
         self.assertEqual([], fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_029(self):
         """
       Attempt to add an non-empty directory; excludeLinks set.
@@ -2688,6 +2696,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002",]) in fsList)
         self.assertTrue(self.buildPath(["tree6", "link001",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_061(self):
         """
       Attempt to add a large tree, with excludeLinks set.
@@ -2938,6 +2947,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree6", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_063(self):
         """
       Attempt to add a large tree, with excludePatterns set to exclude some entries.
@@ -3158,6 +3168,7 @@ class TestFilesystemList(unittest.TestCase):
         fsList = FilesystemList()
         self.assertRaises(ValueError, fsList.addDirContents, path)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_066(self):
         """
       Attempt to add a link to a directory (which should add its contents).
@@ -3896,6 +3907,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree6", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_091(self):
         """
       Attempt to add a directory with linkDepth=1.
@@ -4072,6 +4084,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002",]) in fsList)
         self.assertTrue(self.buildPath(["tree6", "link001",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_092(self):
         """
       Attempt to add a directory with linkDepth=2.
@@ -4347,6 +4360,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link002",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_094(self):
         """
       Attempt to add a directory with linkDepth=1, dereference=False.
@@ -4374,6 +4388,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_095(self):
         """
       Attempt to add a directory with linkDepth=2, dereference=False.
@@ -4405,6 +4420,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_096(self):
         """
       Attempt to add a directory with linkDepth=3, dereference=False.
@@ -4459,6 +4475,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link002",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_098(self):
         """
       Attempt to add a directory with linkDepth=1, dereference=True.
@@ -4490,6 +4507,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir005", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir005", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_099(self):
         """
       Attempt to add a directory with linkDepth=2, dereference=True.
@@ -4533,6 +4551,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir006", "link001",]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir006", "link002",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_100(self):
         """
       Attempt to add a directory with linkDepth=3, dereference=True.
@@ -4615,6 +4634,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(0, count)
         self.assertEqual([], fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_103(self):
         """
       Attempt to add a soft link; excludeLinks and dereference set.
@@ -4680,6 +4700,7 @@ class TestFilesystemList(unittest.TestCase):
         fsList = FilesystemList()
         self.assertRaises(ValueError, fsList.addDirContents, path, True, True, 1, True)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_107(self):
         """
       Attempt to add a link to a directory (which should add its contents),
@@ -8815,6 +8836,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_006(self):
         """
       Test with a non-empty list (files, directories and links) and a pattern of None.
@@ -9044,6 +9066,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_008(self):
         """
       Test with a non-empty list (spaces in path names) and a pattern of None.
@@ -9860,6 +9883,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_018(self):
         """
       Test with a non-empty list (files, directories and links) and a non-empty
@@ -10095,6 +10119,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_020(self):
         """
       Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -10384,6 +10409,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_024(self):
         """
       Test with a non-empty list (files, directories and links) and a non-empty
@@ -10614,6 +10640,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_026(self):
         """
       Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -13154,10 +13181,11 @@ class TestBackupFileList(unittest.TestCase):
         count = backupList.addDir(dirPath)
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
-        dirPath = self.buildPath(["tree5", "dir002", "link001",])
-        count = backupList.addDir(dirPath)
-        self.assertEqual(1, count)
-        self.assertEqual([dirPath], backupList)
+        if platformSupportsLinks():
+            dirPath = self.buildPath(["tree5", "dir002", "link001",])
+            count = backupList.addDir(dirPath)
+            self.assertEqual(1, count)
+            self.assertEqual([dirPath], backupList)
 
     def testAddDir_002(self):
         """
@@ -13174,11 +13202,11 @@ class TestBackupFileList(unittest.TestCase):
         count = backupList.addDir(dirPath)
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
-        dirPath = self.buildPath(["tree5", "dir002", "link001",])
-        dirPath = self.buildPath(["tree5", "dir002", "link001",])
-        count = backupList.addDir(dirPath)
-        self.assertEqual(1, count)
-        self.assertEqual([dirPath], backupList)
+        if platformSupportsLinks():
+            dirPath = self.buildPath(["tree5", "dir002", "link001",])
+            count = backupList.addDir(dirPath)
+            self.assertEqual(1, count)
+            self.assertEqual([dirPath], backupList)
 
     def testAddDir_003(self):
         """
@@ -13235,10 +13263,11 @@ class TestBackupFileList(unittest.TestCase):
         count = backupList.addDir(dirPath)
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
-        dirPath = self.buildPath(["tree5", "dir002", "link001",])
-        count = backupList.addDir(dirPath)
-        self.assertEqual(1, count)
-        self.assertEqual([dirPath], backupList)
+        if platformSupportsLinks():
+            dirPath = self.buildPath(["tree5", "dir002", "link001",])
+            count = backupList.addDir(dirPath)
+            self.assertEqual(1, count)
+            self.assertEqual([dirPath], backupList)
 
     def testAddDir_006(self):
         """
@@ -13255,10 +13284,11 @@ class TestBackupFileList(unittest.TestCase):
         count = backupList.addDir(dirPath)
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
-        dirPath = self.buildPath(["tree5", "dir002", "link001",])
-        count = backupList.addDir(dirPath)
-        self.assertEqual(1, count)
-        self.assertEqual([dirPath], backupList)
+        if platformSupportsLinks():
+            dirPath = self.buildPath(["tree5", "dir002", "link001",])
+            count = backupList.addDir(dirPath)
+            self.assertEqual(1, count)
+            self.assertEqual([dirPath], backupList)
 
     ###################
     # Test totalSize()
@@ -13272,6 +13302,7 @@ class TestBackupFileList(unittest.TestCase):
         size = backupList.totalSize()
         self.assertEqual(0, size)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_002(self):
         """
       Test on a non-empty list containing only valid entries.
@@ -13300,6 +13331,7 @@ class TestBackupFileList(unittest.TestCase):
         size = backupList.totalSize()
         self.assertEqual(1116, size)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_004(self):
         """
       Test on a non-empty list (some containing spaces).
@@ -13326,6 +13358,7 @@ class TestBackupFileList(unittest.TestCase):
         size = backupList.totalSize()
         self.assertEqual(1085, size)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_005(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -13358,6 +13391,7 @@ class TestBackupFileList(unittest.TestCase):
         size = backupList.totalSize()
         self.assertEqual(1116, size)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_006(self):
         """
       Test on a non-empty list containing a non-existent file.
@@ -13401,6 +13435,7 @@ class TestBackupFileList(unittest.TestCase):
         sizeMap = backupList.generateSizeMap()
         self.assertEqual(0, len(sizeMap))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_002(self):
         """
       Test on a non-empty list containing only valid entries.
@@ -13444,6 +13479,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, sizeMap[self.buildPath(["tree9", "link001",])])
         self.assertEqual(0, sizeMap[self.buildPath(["tree9", "link002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_004(self):
         """
       Test on a non-empty list (some containing spaces).
@@ -13483,6 +13519,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, sizeMap[self.buildPath(["tree11", "dir with spaces", "link002",])])
         self.assertEqual(0, sizeMap[self.buildPath(["tree11", "dir with spaces", "link with spaces",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_005(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -13530,6 +13567,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, sizeMap[self.buildPath(["tree9", "link001",])])
         self.assertEqual(0, sizeMap[self.buildPath(["tree9", "link002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_006(self):
         """
       Test on a non-empty list containing a non-existent file.
@@ -13588,6 +13626,7 @@ class TestBackupFileList(unittest.TestCase):
         digestMap = backupList.generateDigestMap()
         self.assertEqual(0, len(digestMap))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_002(self):
         """
       Test on a non-empty list containing only valid entries.
@@ -13622,6 +13661,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", digestMap[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", digestMap[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_003(self):
         """
       Test on a non-empty list containing only valid entries (some containing
@@ -13661,6 +13701,7 @@ class TestBackupFileList(unittest.TestCase):
             digestMap[self.buildPath(["tree11", "dir with spaces", "file with spaces",])],
         )
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_004(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -13699,6 +13740,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", digestMap[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", digestMap[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_005(self):
         """
       Test on a non-empty list containing a non-existent file.
@@ -13745,6 +13787,7 @@ class TestBackupFileList(unittest.TestCase):
         digestMap = backupList.generateDigestMap(stripPrefix=prefix)
         self.assertEqual(0, len(digestMap))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_007(self):
         """
       Test on a non-empty list containing only valid entries, passing
@@ -13781,6 +13824,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", digestMap[buildPath(["/", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", digestMap[buildPath(["/", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_008(self):
         """
       Test on a non-empty list containing only valid entries (some containing
@@ -13818,6 +13862,7 @@ class TestBackupFileList(unittest.TestCase):
             "3ef0b16a6237af9200b7a46c1987d6a555973847", digestMap[buildPath(["/", "dir with spaces", "file with spaces",])]
         )
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_009(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -13857,6 +13902,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", digestMap[buildPath(["/", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", digestMap[buildPath(["/", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_010(self):
         """
       Test on a non-empty list containing a non-existent file, passing
@@ -13908,6 +13954,7 @@ class TestBackupFileList(unittest.TestCase):
         fittedList = backupList.generateFitted(2000)
         self.assertEqual(0, len(fittedList))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_002(self):
         """
       Test on a non-empty list containing only valid entries, all of which fit.
@@ -13951,6 +13998,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in fittedList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in fittedList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_003(self):
         """
       Test on a non-empty list containing only valid entries (some containing
@@ -13991,6 +14039,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree11", "dir with spaces", "link002",]) in fittedList)
         self.assertTrue(self.buildPath(["tree11", "dir with spaces", "link with spaces",]) in fittedList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_004(self):
         """
       Test on a non-empty list containing only valid entries, some of which
@@ -14037,6 +14086,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in fittedList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in fittedList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_005(self):
         """
       Test on a non-empty list containing only valid entries, none of which
@@ -14077,6 +14127,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in fittedList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in fittedList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_006(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -14124,6 +14175,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in fittedList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in fittedList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_007(self):
         """
       Test on a non-empty list containing a non-existent file.
@@ -14182,6 +14234,7 @@ class TestBackupFileList(unittest.TestCase):
         spanSet = backupList.generateSpan(2000)
         self.assertEqual(0, len(spanSet))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_002(self):
         """
       Test a set of files that all fit in one span item.
@@ -14230,6 +14283,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in spanItem.fileList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in spanItem.fileList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_003(self):
         """
       Test a set of files that all fit in two span items.
@@ -14283,6 +14337,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "dir002", "file002",]) in spanItem.fileList)
         self.assertTrue(self.buildPath(["tree9", "file001",]) in spanItem.fileList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_004(self):
         """
       Test a set of files that all fit in three span items.
@@ -14341,6 +14396,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual((134.0 / 515.0) * 100.0, spanItem.utilization)
         self.assertTrue(self.buildPath(["tree9", "dir002", "file001",]) in spanItem.fileList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_005(self):
         """
       Test a set of files where one of the files does not fit in the capacity.
@@ -14381,6 +14437,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertRaises(ValueError, backupList.generateTarfile, tarPath)
         self.assertTrue(not os.path.exists(tarPath))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_002(self):
         """
       Test on a non-empty list containing a directory (which shouldn't be
@@ -14437,6 +14494,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_003(self):
         """
       Test on a non-empty list containing a non-existent file, ignore=False.
@@ -14469,6 +14527,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertRaises(tarfile.TarError, backupList.generateTarfile, tarPath, ignore=False)
         self.assertTrue(not os.path.exists(tarPath))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_004(self):
         """
       Test on a non-empty list containing a non-existent file, ignore=True.
@@ -14519,6 +14578,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_005(self):
         """
       Test on a non-empty list containing only valid entries, with an invalid mode.
@@ -14548,6 +14608,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertRaises(ValueError, backupList.generateTarfile, tarPath, mode="bogus")
         self.assertTrue(not os.path.exists(tarPath))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_006(self):
         """
       Test on a non-empty list containing only valid entries, default mode.
@@ -14595,6 +14656,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_007(self):
         """
       Test on a non-empty list (some containing spaces), default mode.
@@ -14638,6 +14700,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree11", "dir with spaces", "link002",]) in tarList)
         self.assertTrue(self.tarPath(["tree11", "dir with spaces", "link with spaces",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_008(self):
         """
       Test on a non-empty list containing only valid entries, 'tar' mode.
@@ -14685,6 +14748,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_009(self):
         """
       Test on a non-empty list containing only valid entries, 'targz' mode.
@@ -14732,6 +14796,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_010(self):
         """
       Test on a non-empty list containing only valid entries, 'tarbz2' mode.
@@ -14779,6 +14844,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_011(self):
         """
       Test on a non-empty list containing only valid entries, 'tar' mode, long target name.
@@ -14826,6 +14892,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_012(self):
         """
       Test on a non-empty list containing only valid entries, 'targz' mode, long target name.
@@ -14873,6 +14940,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.tarPath(["tree9", "link001",]) in tarList)
         self.assertTrue(self.tarPath(["tree9", "link002",]) in tarList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_013(self):
         """
       Test on a non-empty list containing only valid entries, 'tarbz2' mode, long target name.
@@ -14985,6 +15053,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_003(self):
         """
       Test on an non-empty list with an empty digest map.
@@ -15031,6 +15100,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_004(self):
         """
       Test with a digest map containing only entries that are not in the list.
@@ -15084,6 +15154,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_005(self):
         """
       Test with a digest map containing only entries that are in the list, with
@@ -15138,6 +15209,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_006(self):
         """
       Test with a digest map containing only entries that are in the list, with
@@ -15186,6 +15258,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_007(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -15240,6 +15313,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_008(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -15291,6 +15365,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001",]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002",]) in backupList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_009(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -15376,6 +15451,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, len(backupList))
         self.assertEqual(0, len(newDigest))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_012(self):
         """
       Test on an non-empty list with an empty digest map.
@@ -15429,6 +15505,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_013(self):
         """
       Test with a digest map containing only entries that are not in the list.
@@ -15489,6 +15566,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_014(self):
         """
       Test with a digest map containing only entries that are in the list, with
@@ -15550,6 +15628,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_015(self):
         """
       Test with a digest map containing only entries that are in the list, with
@@ -15605,6 +15684,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_016(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -15666,6 +15746,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_017(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -15724,6 +15805,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual("3ef0b16a6237af9200b7a46c1987d6a555973847", newDigest[self.buildPath(["tree9", "file001",])])
         self.assertEqual("fae89085ee97b57ccefa7e30346c573bb0a769db", newDigest[self.buildPath(["tree9", "file002",])])
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_018(self):
         """
       Test with a digest map containing both entries that are and are not in
@@ -16195,6 +16277,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertEqual(0, count)
         self.assertEqual([], purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_029(self):
         """
       Attempt to add an non-empty directory; excludeLinks set.
@@ -16899,6 +16982,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002",]) in purgeList)
         self.assertTrue(self.buildPath(["tree6", "link001",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_061(self):
         """
       Attempt to add a large tree, with excludeLinks set.
@@ -17147,6 +17231,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree6", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_063(self):
         """
       Attempt to add a large tree, with excludePatterns set to exclude some entries.
@@ -17365,6 +17450,7 @@ class TestPurgeItemList(unittest.TestCase):
         purgeList = PurgeItemList()
         self.assertRaises(ValueError, purgeList.addDirContents, path)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_066(self):
         """
       Attempt to add a link to a directory (which should add its contents).
@@ -18007,6 +18093,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree6", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_090(self):
         """
       Attempt to add a directory with linkDepth=1.
@@ -18182,6 +18269,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002",]) in purgeList)
         self.assertTrue(self.buildPath(["tree6", "link001",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_091(self):
         """
       Attempt to add a directory with linkDepth=2.
@@ -18455,6 +18543,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link002",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_093(self):
         """
       Attempt to add a directory with linkDepth=1, dereference=False.
@@ -18481,6 +18570,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_094(self):
         """
       Attempt to add a directory with linkDepth=2, dereference=False.
@@ -18511,6 +18601,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_095(self):
         """
       Attempt to add a directory with linkDepth=3, dereference=False.
@@ -18563,6 +18654,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link002",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_097(self):
         """
       Attempt to add a directory with linkDepth=1, dereference=True.
@@ -18593,6 +18685,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir005", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir005", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_098(self):
         """
       Attempt to add a directory with linkDepth=2, dereference=True.
@@ -18635,6 +18728,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir006", "link001",]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir006", "link002",]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_099(self):
         """
       Attempt to add a directory with linkDepth=3, dereference=True.
@@ -19974,6 +20068,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertRaises(ValueError, fsList.addDirContents, path)
         self.assertTrue(not os.path.exists(path))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testPurgeItems_007(self):
         """
       Test with a list containing various kinds of entries, including links,
@@ -20076,6 +20171,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree1", "file006",]) in fsList)
         self.assertTrue(self.buildPath(["tree1", "file007",]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testPurgeItems_009(self):
         """
       Test with a list containing entries containing spaces.

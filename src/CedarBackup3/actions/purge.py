@@ -49,7 +49,6 @@ import logging
 
 from CedarBackup3.filesystem import PurgeItemList
 
-
 ########################################################################
 # Module-wide constants and variables
 ########################################################################

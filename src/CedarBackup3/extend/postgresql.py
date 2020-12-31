@@ -75,18 +75,24 @@ configuration.
 # Imported modules
 ########################################################################
 
-import os
 import logging
-from gzip import GzipFile
+import os
 from bz2 import BZ2File
 from functools import total_ordering
+from gzip import GzipFile
 
-from CedarBackup3.xmlutil import createInputDom, addContainerNode, addStringNode, addBooleanNode
-from CedarBackup3.xmlutil import readFirstChild, readString, readStringList, readBoolean
 from CedarBackup3.config import VALID_COMPRESS_MODES
-from CedarBackup3.util import resolveCommand, executeCommand
-from CedarBackup3.util import ObjectTypeList, changeOwnership
-
+from CedarBackup3.util import ObjectTypeList, changeOwnership, executeCommand, resolveCommand
+from CedarBackup3.xmlutil import (
+    addBooleanNode,
+    addContainerNode,
+    addStringNode,
+    createInputDom,
+    readBoolean,
+    readFirstChild,
+    readString,
+    readStringList,
+)
 
 ########################################################################
 # Module-wide constants and variables

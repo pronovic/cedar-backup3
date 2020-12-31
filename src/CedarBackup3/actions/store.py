@@ -46,18 +46,16 @@ Implements the standard 'store' action.
 # Imported modules
 ########################################################################
 
-import sys
-import os
-import logging
 import datetime
+import logging
+import os
+import sys
 import tempfile
 
-from CedarBackup3.filesystem import compareContents
-from CedarBackup3.util import isStartOfWeek
-from CedarBackup3.util import mount, unmount, displayBytes
-from CedarBackup3.actions.util import createWriter, checkMediaState, buildMediaLabel, writeIndicatorFile
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR, STORE_INDICATOR
-
+from CedarBackup3.actions.util import buildMediaLabel, checkMediaState, createWriter, writeIndicatorFile
+from CedarBackup3.filesystem import compareContents
+from CedarBackup3.util import displayBytes, isStartOfWeek, mount, unmount
 
 ########################################################################
 # Module-wide constants and variables

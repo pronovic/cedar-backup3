@@ -45,18 +45,15 @@ Implements the standard 'rebuild' action.
 # Imported modules
 ########################################################################
 
-# System modules
-import sys
-import os
-import logging
 import datetime
+import logging
+import os
+import sys
 
-# Cedar Backup modules
-from CedarBackup3.util import deriveDayOfWeek
-from CedarBackup3.actions.util import checkMediaState
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
-from CedarBackup3.actions.store import writeImage, writeStoreIndicator, consistencyCheck
-
+from CedarBackup3.actions.store import consistencyCheck, writeImage, writeStoreIndicator
+from CedarBackup3.actions.util import checkMediaState
+from CedarBackup3.util import deriveDayOfWeek
 
 ########################################################################
 # Module-wide constants and variables

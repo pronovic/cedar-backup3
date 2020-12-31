@@ -53,18 +53,23 @@ Attributes:
 # Imported modules
 ########################################################################
 
+import logging
 import os
 import re
-import logging
 import tempfile
 import time
 
-from CedarBackup3.writers.util import IsoImage
-from CedarBackup3.util import resolveCommand, executeCommand
-from CedarBackup3.util import convertSize, displayBytes, encodePath
-from CedarBackup3.util import UNIT_SECTORS, UNIT_BYTES, UNIT_GBYTES
-from CedarBackup3.writers.util import validateDevice, validateDriveSpeed
-
+from CedarBackup3.util import (
+    UNIT_BYTES,
+    UNIT_GBYTES,
+    UNIT_SECTORS,
+    convertSize,
+    displayBytes,
+    encodePath,
+    executeCommand,
+    resolveCommand,
+)
+from CedarBackup3.writers.util import IsoImage, validateDevice, validateDriveSpeed
 
 ########################################################################
 # Module-wide constants and variables

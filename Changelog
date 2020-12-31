@@ -1,3 +1,8 @@
+Version 3.5.0     unreleased
+
+	* Changes to support the Windows platform, for the first time since 3.0.1.
+	* Minor tweaks to the codebase to make the PyCharm code inspector happy.
+
 Version 3.4.1     20 Dec 2020
 
 	* Fix Python dependencies to work with Python 3.9.1 and not just 3.9.0.

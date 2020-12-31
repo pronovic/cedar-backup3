@@ -6,6 +6,7 @@ envlist =
 ignore_basepython_conflict = true
 
 [testenv]
+passenv = USERNAME   # See: https://github.com/tox-dev/tox/issues/1455 and https://github.com/gitpython-developers/GitPython/issues/356
 whitelist_externals = poetry
 commands =
    nocoverage: poetry run python -m unittest discover -s tests -t tests

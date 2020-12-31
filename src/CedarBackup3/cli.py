@@ -648,11 +648,11 @@ class _ActionSet(object):
         if hooks is not None:
             for hook in hooks:
                 if hook.before:
-                    if not hook.action in preHookMap:
+                    if hook.action not in preHookMap:
                         preHookMap[hook.action] = []
                     preHookMap[hook.action].append(hook)
                 elif hook.after:
-                    if not hook.action in postHookMap:
+                    if hook.action not in postHookMap:
                         postHookMap[hook.action] = []
                     postHookMap[hook.action].append(hook)
         return (preHookMap, postHookMap)
@@ -1188,7 +1188,8 @@ def _setupLogfile(options):
                 (uid, gid) = getUidGid(DEFAULT_OWNERSHIP[0], DEFAULT_OWNERSHIP[1])
             else:
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
-            os.chown(logfile, uid, gid)
+            if sys.platform != "win32":
+                os.chown(logfile, uid, gid)  # pylint: disable=no-member
         except:
             pass
     return logfile

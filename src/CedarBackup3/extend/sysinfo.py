@@ -64,12 +64,11 @@ note will be logged at the INFO level.
 # Imported modules
 ########################################################################
 
-import os
 import logging
+import os
 from bz2 import BZ2File
 
-from CedarBackup3.util import resolveCommand, executeCommand, changeOwnership
-
+from CedarBackup3.util import changeOwnership, executeCommand, resolveCommand
 
 ########################################################################
 # Module-wide constants and variables

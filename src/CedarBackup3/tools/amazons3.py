@@ -50,22 +50,21 @@ to get that.
 # Imported modules and constants
 ########################################################################
 
-import sys
-import os
-import logging
 import getopt
 import json
+import logging
+import os
+import sys
 import warnings
 from functools import total_ordering
 from pathlib import Path
+
 import chardet
 
-from CedarBackup3.release import AUTHOR, EMAIL, VERSION, DATE, COPYRIGHT
+from CedarBackup3.cli import DEFAULT_LOGFILE, DEFAULT_MODE, DEFAULT_OWNERSHIP, setupLogging
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.cli import setupLogging, DEFAULT_LOGFILE, DEFAULT_OWNERSHIP, DEFAULT_MODE
-from CedarBackup3.util import Diagnostics, splitCommandLine, encodePath
-from CedarBackup3.util import executeCommand
-
+from CedarBackup3.release import AUTHOR, COPYRIGHT, DATE, EMAIL, VERSION
+from CedarBackup3.util import Diagnostics, encodePath, executeCommand, splitCommandLine
 
 ########################################################################
 # Module-wide constants and variables
@@ -1239,7 +1238,7 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
         if os.path.isfile(entry):
             key = entry.replace(sourceDir, "")
             size = int(os.stat(entry).st_size)
-            if not key in contents:
+            if key not in contents:
                 logger.error("File was apparently not uploaded: [%s]", entry)
                 failed = True
             else:
