@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cedar-backup3"
-version = "3.4.1"
+version = "3.5.0"
 description = "Implements local and remote backups to CD/DVD and Amazon S3"
 keywords = [ 'local', 'remote', 'backup', 'scp' ]
 authors = ["Kenneth J. Pronovici <pronovic@ieee.org>"]
