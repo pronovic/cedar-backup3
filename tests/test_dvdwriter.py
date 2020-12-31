@@ -199,6 +199,7 @@ class TestMediaCapacity(unittest.TestCase):
 ######################
 
 
+# noinspection PyListCreation
 class TestDvdWriter(unittest.TestCase):
 
     """Tests for the DvdWriter class."""

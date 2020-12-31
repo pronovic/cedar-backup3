@@ -1492,6 +1492,7 @@ class TestMboxConfig(unittest.TestCase):
 ########################
 
 
+# noinspection PyListCreation
 class TestLocalConfig(unittest.TestCase):
 
     """Tests for the LocalConfig class."""

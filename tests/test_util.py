@@ -2130,6 +2130,7 @@ class TestDiagnostics(unittest.TestCase):
         self.assertFalse(diagnostics.encoding is None)
         self.assertNotEqual("", diagnostics.encoding)
 
+    # noinspection PyStatementEffect
     def testMethods_005(self):
         """
       Test the locale attribute.
@@ -2186,6 +2187,7 @@ class TestDiagnostics(unittest.TestCase):
 ######################
 
 
+# noinspection PyUnusedLocal,PyShadowingBuiltins
 class TestFunctions(unittest.TestCase):
 
     """Tests for the various public functions."""
@@ -3754,7 +3756,6 @@ class TestFunctions(unittest.TestCase):
         """
       Test with simple string, a non-ascii path.
       """
-        encoding = sys.getfilesystemencoding() or sys.getdefaultencoding()
         path = "\xe2\x99\xaa\xe2\x99\xac"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -4056,6 +4057,7 @@ class TestFunctions(unittest.TestCase):
     # Test isStartOfWeek()
     #######################
 
+    # noinspection PyUnboundLocalVariable
     def testIsStartOfWeek001(self):
         """
       Test positive case.
@@ -4077,6 +4079,7 @@ class TestFunctions(unittest.TestCase):
             result = isStartOfWeek("sunday")
         self.assertEqual(True, result)
 
+    # noinspection PyUnboundLocalVariable
     def testIsStartOfWeek002(self):
         """
       Test negative case.

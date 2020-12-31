@@ -858,7 +858,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
         if os.path.isfile(entry):
             key = entry.replace(stagingDir, "")
             size = int(os.stat(entry).st_size)
-            if not key in contents:
+            if key not in contents:
                 raise IOError("File was apparently not uploaded: [%s]" % entry)
             else:
                 if size != contents[key]:

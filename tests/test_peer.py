@@ -693,6 +693,7 @@ class TestLocalPeer(unittest.TestCase):
 ######################
 
 
+# noinspection PyDictCreation
 class TestRemotePeer(unittest.TestCase):
 
     """Tests for the RemotePeer class."""

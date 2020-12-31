@@ -91,7 +91,6 @@ Full vs. Reduced Tests
 ########################################################################
 
 import os
-import sys
 import tempfile
 import time
 import unittest
@@ -340,6 +339,7 @@ class TestFunctions(unittest.TestCase):
 #####################
 
 
+# noinspection PyDictCreation
 class TestIsoImage(unittest.TestCase):
 
     """Tests for the IsoImage class."""

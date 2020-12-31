@@ -1238,7 +1238,7 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
         if os.path.isfile(entry):
             key = entry.replace(sourceDir, "")
             size = int(os.stat(entry).st_size)
-            if not key in contents:
+            if key not in contents:
                 logger.error("File was apparently not uploaded: [%s]", entry)
                 failed = True
             else:

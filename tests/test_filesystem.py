@@ -96,7 +96,6 @@ Full vs. Reduced Tests
 
 import hashlib
 import os
-import sys
 import tarfile
 import tempfile
 import unittest
@@ -200,6 +199,7 @@ class TestFilesystemList(unittest.TestCase):
         components.insert(0, self.tmpdir)
         return buildPath(components)
 
+    # noinspection PyMethodMayBeStatic
     def pathPattern(self, path):
         """Returns properly-escaped regular expression pattern matching the indicated path."""
         return ".*%s.*" % path.replace("\\", "\\\\")
@@ -13205,7 +13205,6 @@ class TestBackupFileList(unittest.TestCase):
         self.assertEqual(0, len(backupList))
         if platformSupportsLinks():
             dirPath = self.buildPath(["tree5", "dir002", "link001",])
-            dirPath = self.buildPath(["tree5", "dir002", "link001",])
             count = backupList.addDir(dirPath)
             self.assertEqual(1, count)
             self.assertEqual([dirPath], backupList)
@@ -15890,6 +15889,7 @@ class TestBackupFileList(unittest.TestCase):
 ##########################
 
 
+# noinspection PyMethodMayBeStatic
 class TestPurgeItemList(unittest.TestCase):
 
     """Tests for the PurgeItemList class."""
@@ -15928,6 +15928,7 @@ class TestPurgeItemList(unittest.TestCase):
         components.insert(0, self.tmpdir)
         return buildPath(components)
 
+    # noinspection PyMethodMayBeStatic
     def pathPattern(self, path):
         """Returns properly-escaped regular expression pattern matching the indicated path."""
         return ".*%s.*" % path.replace("\\", "\\\\")

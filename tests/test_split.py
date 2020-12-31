@@ -796,6 +796,7 @@ class TestFunctions(unittest.TestCase):
             self.assertTrue(os.path.exists(splitPath))
             self.assertEqual(leftoverBytes, os.stat(splitPath).st_size)
 
+    # noinspection PyMethodMayBeStatic
     def findBadLocale(self):
         """
       The split command localizes its output for certain locales.  This breaks

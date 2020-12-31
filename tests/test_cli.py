@@ -9747,7 +9747,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 1)
@@ -9765,7 +9764,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("store", "whatever"),
@@ -9787,7 +9785,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = [
             PostActionHook("store", "whatever"),
         ]
@@ -9807,7 +9804,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -9829,7 +9825,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
         ]
@@ -9849,7 +9844,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension2"),
@@ -9873,7 +9867,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9896,7 +9889,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("purge", "rm -f"),
@@ -9923,7 +9915,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = [
             PostActionHook("purge", "rm -f"),
         ]
@@ -9948,7 +9939,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("collect", "something"),
@@ -9975,7 +9965,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = [
             PostActionHook("collect", "something"),
         ]
@@ -10000,7 +9989,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -10027,7 +10015,6 @@ class TestActionSet(unittest.TestCase):
         dependencies = ActionDependencies(["collect",], [])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
-        options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
         ]
@@ -10052,7 +10039,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["collect",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -10083,7 +10069,6 @@ class TestActionSet(unittest.TestCase):
         ]
         dependencies = ActionDependencies(["stage",], None)
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
-        options = OptionsConfig()
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
