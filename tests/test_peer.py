@@ -395,7 +395,7 @@ class TestLocalPeer(unittest.TestCase):
         """
       Attempt to write stage indicator with non-writable collect directory.
       """
-        if not runningAsRoot():  # root doesn't get this error
+        if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
             collectDir = self.buildPath(["collect",])
             os.mkdir(collectDir)
@@ -410,7 +410,7 @@ class TestLocalPeer(unittest.TestCase):
         """
       Attempt to write stage indicator with non-writable collect directory, custom name.
       """
-        if not runningAsRoot():  # root doesn't get this error
+        if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
             collectDir = self.buildPath(["collect",])
             os.mkdir(collectDir)
@@ -537,7 +537,7 @@ class TestLocalPeer(unittest.TestCase):
         """
       Attempt to stage files with non-writable target directory.
       """
-        if not runningAsRoot():  # root doesn't get this error
+        if not isRunningAsRoot():  # root doesn't get this error
             self.extractTar("tree1")
             name = "peer1"
             collectDir = self.buildPath(["tree1"])
