@@ -103,6 +103,13 @@
 # Jupyter notebook
 *.ipynb    text eol=lf
 
+# Specific project files to override
+# ============
+
+pyproject.toml        text=auto
+poetry.lock           text=auto
+docs/requirements.txt text=auto
+
 # Note: .db, .p, and .pkl files are associated
 # with the python modules ``pickle``, ``dbm.*``,
 # ``shelve``, ``marshal``, ``anydbm``, & ``bsddb``
