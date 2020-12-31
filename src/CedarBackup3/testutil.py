@@ -508,21 +508,6 @@ def platformSupportsLinks():
     return not platformWindows()
 
 
-###########################
-# runningAsRoot() function
-###########################
-
-
-def runningAsRoot():
-    """
-   Returns boolean indicating whether the effective user id is root.
-   """
-    if sys.platform == "win32":
-        # we're sort of always root on Windows, at least for the purposes of this check
-        return True
-    return os.geteuid() == 0  # pylint: disable=no-member
-
-
 ##############################
 # availableLocales() function
 ##############################

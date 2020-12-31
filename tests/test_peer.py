@@ -105,8 +105,8 @@ from CedarBackup3.testutil import (
     getMaskAsMode,
     platformWindows,
     removedir,
-    runningAsRoot,
 )
+from CedarBackup3.util import isRunningAsRoot
 
 #######################################################################
 # Module-wide configuration and constants
@@ -405,6 +405,7 @@ class TestLocalPeer(unittest.TestCase):
             self.assertRaises((IOError, OSError), peer.writeStageIndicator)
             os.chmod(collectDir, 0o777)  # so we can remove it safely
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testWriteStageIndicator_003(self):
         """
       Attempt to write stage indicator with non-writable collect directory, custom name.
@@ -531,6 +532,7 @@ class TestLocalPeer(unittest.TestCase):
         peer = LocalPeer(name, collectDir)
         self.assertRaises(ValueError, peer.stagePeer, targetDir=targetDir)
 
+    @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_005(self):
         """
       Attempt to stage files with non-writable target directory.
