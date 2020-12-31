@@ -336,8 +336,6 @@ def getLogin():
 def randomFilename(length, prefix=None, suffix=None):
     """
    Generates a random filename with the given length.
-   Args:
-      length: Length of filename
    @return Random filename
    """
     characters = [None] * length

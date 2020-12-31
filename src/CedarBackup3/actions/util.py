@@ -79,10 +79,6 @@ def findDailyDirs(stagingDir, indicatorFile):
     """
    Returns a list of all daily staging directories that do not contain
    the indicated indicator file.
-
-   Args:
-      stagingDir: Configured staging directory (config.targetDir)
-
    Returns:
        List of absolute paths to daily staging directories
    """

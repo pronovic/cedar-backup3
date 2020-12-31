@@ -339,7 +339,6 @@ class TestFunctions(unittest.TestCase):
 #####################
 
 
-# noinspection PyDictCreation
 class TestIsoImage(unittest.TestCase):
 
     """Tests for the IsoImage class."""

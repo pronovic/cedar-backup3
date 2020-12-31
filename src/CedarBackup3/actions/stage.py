@@ -70,6 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.stage")
 ##########################
 
 # pylint: disable=W0613
+# noinspection PyTypeChecker
 def executeStage(configPath, options, config):
     """
    Executes the stage backup action.

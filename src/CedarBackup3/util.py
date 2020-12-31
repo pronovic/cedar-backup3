@@ -949,6 +949,7 @@ class Pipe(Popen):
    ``2>/dev/null`` construct.
    """
 
+    # noinspection PyArgumentList
     def __init__(self, cmd, bufsize=-1, ignoreStderr=False):
         stderr = STDOUT
         if ignoreStderr:
@@ -1933,10 +1934,10 @@ def buildNormalizedPath(path):
         return "-"
     else:
         normalized = path
-        normalized = re.sub(r"^\/", "", normalized)  # remove leading '/'
+        normalized = re.sub(r"^/", "", normalized)  # remove leading '/'
         normalized = re.sub(r"^\\", "", normalized)  # remove leading '\'
         normalized = re.sub(r"^\.", "_", normalized)  # convert leading '.' to '_' so file won't be hidden
-        normalized = re.sub(r"\/", "-", normalized)  # convert all '/' characters to '-'
+        normalized = re.sub(r"/", "-", normalized)  # convert all '/' characters to '-'
         normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
         normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
         return normalized

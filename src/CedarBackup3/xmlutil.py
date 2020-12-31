@@ -88,8 +88,6 @@ VALID_BOOLEAN_VALUES = TRUE_BOOLEAN_VALUES + FALSE_BOOLEAN_VALUES
 def createInputDom(xmlData, name="cb_config"):
     """
    Creates a DOM tree based on reading an XML string.
-   Args:
-      name: Assumed base name of the document (root node name)
    Returns:
        Tuple (xmlDom, parentNode) for the parsed document
    Raises:
