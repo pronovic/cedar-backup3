@@ -212,6 +212,9 @@ Poetry:
 $ poetry run which python
 ```
 
+> _Note:_ On Windows, remember that Git Bash is is going to give you the translated
+> UNIX-like path.  Work backwards to find the real Windows path. 
+
 #### PyCharm
 
 Go to settings and find the `cedar-backup3` project.  Under **Python Interpreter**,
@@ -226,9 +229,6 @@ Under **Project Structure**, mark both `src` and `tests` as source folders.  In 
 
 Finally, go to the gear icon in the project panel, and uncheck **Show Excluded
 Files**.  This will hide the files and directories that were excluded above.
-
-> _Note:_ On Windows, remember that Git Bash is is going to give you the translated
-> UNIX-like path.  Work backwards to find the real Windows path. 
 
 #### IntelliJ
 
@@ -280,11 +280,11 @@ the tests pass.
 ### External Tools
 
 Optionally, you might want to set up external tools in IntelliJ or PyCharm for
-some of common developer tasks: code reformatting and the PyLint and MyPy
-checks.  One nice advantage of doing this is that you can configure an output
-filter, which makes the Pylint and MyPy errors clickable in IntelliJ.  To set
-up external tools, go to IntelliJ or PyCharm settings and find **Tools >
-External Tools**.  Add the tools as described below. 
+some of common developer tasks: code reformatting and the PyLint checks.  One
+nice advantage of doing this is that you can configure an output filter, which
+makes the Pylint errors clickable in IntelliJ.  To set up external tools, go to
+IntelliJ or PyCharm settings and find **Tools > External Tools**.  Add the
+tools as described below. 
 
 #### Linux or MacOS
 

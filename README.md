@@ -75,7 +75,7 @@ the [API Reference](https://cedar-backup3.readthedocs.io/en/latest/autoapi/index
 ## Package Distributions
 
 Cedar Backup is primarily distributed as a Python 3 package.  You can install
-it using pip:
+it from [PyPI](https://pypi.org/project/cedar-backup3/) using pip:
 
 ```
 $ pip install cedar-backup3
