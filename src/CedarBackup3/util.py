@@ -1609,6 +1609,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
                 else:
                     return (pipe.wait(), None)
             except OSError as e:
+                logger.debug("Command returned OSError: %s", e)
                 if returnOutput:
                     if output != []:
                         return (pipe.wait(), output)
@@ -1617,8 +1618,9 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
                 else:
                     return (pipe.wait(), None)
     except OSError as e:
+        logger.debug("Command returned OSError: %s", e)
         if returnOutput:
-            return (256, [])
+            return (256, output)
         else:
             return (256, None)
 
