@@ -14,15 +14,8 @@ run_activate() {
 
 # Regenerate the docs/requirements.txt file
 run_requirements() {
-
-   # Even with sane .gitattributes, we end up with spurious differences each
-   # time the requirements file is regenerated (either here or in the
-   # pre-commit hooks), so we always just convert to UNIX line endings.
-   # Unfortunately, there's no simple one-liner to accomplish that in Python.
-
    poetry export --format=requirements.txt --without-hashes --dev --output=docs/requirements.txt
-   poetry run python ./dos2unix.py docs/requirements.txt
-
+   poetry run python ./dos2unix.py docs/requirements.txt  # see notes in DEVELOPER.md
 }
 
 # Run the Pylint code checker
