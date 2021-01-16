@@ -108,7 +108,7 @@
 
 pyproject.toml        text=auto
 poetry.lock           text=auto
-docs/requirements.txt text=lf
+docs/requirements.txt text eol=lf
 
 # Note: .db, .p, and .pkl files are associated
 # with the python modules ``pickle``, ``dbm.*``,
