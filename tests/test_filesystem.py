@@ -305,28 +305,28 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludePaths = [
             "/path/to/something/absolute",
         ]
-        self.assertEqual(["/path/to/something/absolute",], fsList.excludePaths)
+        self.assertEqual(["/path/to/something/absolute"], fsList.excludePaths)
         fsList.excludePaths = [
             "/path/to/something/absolute",
             "/path/to/something/else",
         ]
-        self.assertEqual(["/path/to/something/absolute", "/path/to/something/else",], fsList.excludePaths)
+        self.assertEqual(["/path/to/something/absolute", "/path/to/something/else"], fsList.excludePaths)
         self.failUnlessAssignRaises(ValueError, fsList, "excludePaths", ["path/to/something/relative"])
         self.failUnlessAssignRaises(
-            ValueError, fsList, "excludePaths", ["/path/to/something/absolute", "path/to/something/relative",]
+            ValueError, fsList, "excludePaths", ["/path/to/something/absolute", "path/to/something/relative"]
         )
         fsList.excludePaths = [
             "/path/to/something/absolute",
         ]
-        self.assertEqual(["/path/to/something/absolute",], fsList.excludePaths)
+        self.assertEqual(["/path/to/something/absolute"], fsList.excludePaths)
         fsList.excludePaths.insert(0, "/ken")
-        self.assertEqual(["/ken", "/path/to/something/absolute",], fsList.excludePaths)
+        self.assertEqual(["/ken", "/path/to/something/absolute"], fsList.excludePaths)
         fsList.excludePaths.append("/file")
-        self.assertEqual(["/ken", "/path/to/something/absolute", "/file",], fsList.excludePaths)
+        self.assertEqual(["/ken", "/path/to/something/absolute", "/file"], fsList.excludePaths)
         fsList.excludePaths.extend(
-            ["/one", "/two",]
+            ["/one", "/two"]
         )
-        self.assertEqual(["/ken", "/path/to/something/absolute", "/file", "/one", "/two",], fsList.excludePaths)
+        self.assertEqual(["/ken", "/path/to/something/absolute", "/file", "/one", "/two"], fsList.excludePaths)
         fsList.excludePaths = [
             "/path/to/something/absolute",
         ]
@@ -345,35 +345,35 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludePatterns = [
             r".*\.jpg",
         ]
-        self.assertEqual([r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludePatterns)
         fsList.excludePatterns = [
             r".*\.jpg",
             "[a-zA-Z0-9]*",
         ]
-        self.assertEqual([r".*\.jpg", "[a-zA-Z0-9]*",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg", "[a-zA-Z0-9]*"], fsList.excludePatterns)
         self.failUnlessAssignRaises(ValueError, fsList, "excludePatterns", ["*.jpg"])
         self.failUnlessAssignRaises(ValueError, fsList, "excludePatterns", ["*.jpg", "[a-zA-Z0-9]*"])
         fsList.excludePatterns = [
             r".*\.jpg",
         ]
-        self.assertEqual([r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludePatterns)
         fsList.excludePatterns.insert(0, "ken")
-        self.assertEqual(["ken", r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual(["ken", r".*\.jpg"], fsList.excludePatterns)
         fsList.excludePatterns.append("pattern")
-        self.assertEqual(["ken", r".*\.jpg", "pattern",], fsList.excludePatterns)
+        self.assertEqual(["ken", r".*\.jpg", "pattern"], fsList.excludePatterns)
         fsList.excludePatterns.extend(
-            ["one", "two",]
+            ["one", "two"]
         )
-        self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two",], fsList.excludePatterns)
+        self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two"], fsList.excludePatterns)
         fsList.excludePatterns = [
             r".*\.jpg",
         ]
         self.assertRaises(ValueError, fsList.excludePatterns.insert, 0, "*.jpg")
-        self.assertEqual([r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludePatterns)
         self.assertRaises(ValueError, fsList.excludePatterns.append, "*.jpg")
-        self.assertEqual([r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludePatterns)
         self.assertRaises(ValueError, fsList.excludePatterns.extend, ["*.jpg"])
-        self.assertEqual([r".*\.jpg",], fsList.excludePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludePatterns)
 
     def testAssignment_010(self):
         """
@@ -386,35 +386,35 @@ class TestFilesystemList(unittest.TestCase):
         fsList.excludeBasenamePatterns = [
             r".*\.jpg",
         ]
-        self.assertEqual([r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns = [
             r".*\.jpg",
             "[a-zA-Z0-9]*",
         ]
-        self.assertEqual([r".*\.jpg", "[a-zA-Z0-9]*",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg", "[a-zA-Z0-9]*"], fsList.excludeBasenamePatterns)
         self.failUnlessAssignRaises(ValueError, fsList, "excludeBasenamePatterns", ["*.jpg"])
         self.failUnlessAssignRaises(ValueError, fsList, "excludeBasenamePatterns", ["*.jpg", "[a-zA-Z0-9]*"])
         fsList.excludeBasenamePatterns = [
             r".*\.jpg",
         ]
-        self.assertEqual([r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns.insert(0, "ken")
-        self.assertEqual(["ken", r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual(["ken", r".*\.jpg"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns.append("pattern")
-        self.assertEqual(["ken", r".*\.jpg", "pattern",], fsList.excludeBasenamePatterns)
+        self.assertEqual(["ken", r".*\.jpg", "pattern"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns.extend(
-            ["one", "two",]
+            ["one", "two"]
         )
-        self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two",], fsList.excludeBasenamePatterns)
+        self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns = [
             r".*\.jpg",
         ]
         self.assertRaises(ValueError, fsList.excludeBasenamePatterns.insert, 0, "*.jpg")
-        self.assertEqual([r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludeBasenamePatterns)
         self.assertRaises(ValueError, fsList.excludeBasenamePatterns.append, "*.jpg")
-        self.assertEqual([r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludeBasenamePatterns)
         self.assertRaises(ValueError, fsList.excludeBasenamePatterns.extend, ["*.jpg"])
-        self.assertEqual([r".*\.jpg",], fsList.excludeBasenamePatterns)
+        self.assertEqual([r".*\.jpg"], fsList.excludeBasenamePatterns)
 
     ################################
     # Test basic list functionality

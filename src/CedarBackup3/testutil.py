@@ -196,7 +196,7 @@ def commandAvailable(command):
 def buildPath(components):
     """
    Builds a complete path from a list of components.
-   For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c",]``.
+   For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c"]``.
    Args:
       components: List of components
    Returns:

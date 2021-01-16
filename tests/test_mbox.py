@@ -464,12 +464,12 @@ class TestMboxDir(unittest.TestCase):
         """
       Test constructor with all values filled in.
       """
-        mboxDir = MboxDir("/path/to/it", "daily", "gzip", ["whatever",], [".*SPAM.*"])
+        mboxDir = MboxDir("/path/to/it", "daily", "gzip", ["whatever"], [".*SPAM.*"])
         self.assertEqual("/path/to/it", mboxDir.absolutePath)
         self.assertEqual("daily", mboxDir.collectMode)
         self.assertEqual("gzip", mboxDir.compressMode)
-        self.assertEqual(["whatever",], mboxDir.relativeExcludePaths)
-        self.assertEqual([".*SPAM.*",], mboxDir.excludePatterns)
+        self.assertEqual(["whatever"], mboxDir.relativeExcludePaths)
+        self.assertEqual([".*SPAM.*"], mboxDir.excludePatterns)
 
     def testConstructor_003(self):
         """
@@ -614,9 +614,9 @@ class TestMboxDir(unittest.TestCase):
         mboxDir.relativeExcludePaths = [
             "stuff",
         ]
-        self.assertEqual(["stuff",], mboxDir.relativeExcludePaths)
+        self.assertEqual(["stuff"], mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths.insert(0, "bogus")
-        self.assertEqual(["bogus", "stuff",], mboxDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff"], mboxDir.relativeExcludePaths)
 
     def testConstructor_018(self):
         """
@@ -629,9 +629,9 @@ class TestMboxDir(unittest.TestCase):
             "bogus",
             "stuff",
         ]
-        self.assertEqual(["bogus", "stuff",], mboxDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff"], mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths.append("more")
-        self.assertEqual(["bogus", "stuff", "more",], mboxDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff", "more"], mboxDir.relativeExcludePaths)
 
     def testConstructor_019(self):
         """
@@ -660,9 +660,9 @@ class TestMboxDir(unittest.TestCase):
         mboxDir.excludePatterns = [
             "valid",
         ]
-        self.assertEqual(["valid",], mboxDir.excludePatterns)
+        self.assertEqual(["valid"], mboxDir.excludePatterns)
         mboxDir.excludePatterns.append("more")
-        self.assertEqual(["valid", "more",], mboxDir.excludePatterns)
+        self.assertEqual(["valid", "more"], mboxDir.excludePatterns)
 
     def testConstructor_022(self):
         """
@@ -674,9 +674,9 @@ class TestMboxDir(unittest.TestCase):
             "valid",
             "more",
         ]
-        self.assertEqual(["valid", "more",], mboxDir.excludePatterns)
+        self.assertEqual(["valid", "more"], mboxDir.excludePatterns)
         mboxDir.excludePatterns.insert(1, "bogus")
-        self.assertEqual(["valid", "bogus", "more",], mboxDir.excludePatterns)
+        self.assertEqual(["valid", "bogus", "more"], mboxDir.excludePatterns)
 
     def testConstructor_023(self):
         """
@@ -857,7 +857,7 @@ class TestMboxDir(unittest.TestCase):
       Test comparison of two differing objects, relativeExcludePaths differs
       (one empty, one not empty).
       """
-        mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one",], [])
+        mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one"], [])
         mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], [])
         self.assertNotEqual(mboxDir1, mboxDir2)
         self.assertTrue(not mboxDir1 == mboxDir2)
@@ -872,8 +872,8 @@ class TestMboxDir(unittest.TestCase):
       Test comparison of two differing objects, relativeExcludePaths differs
       (both not empty).
       """
-        mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one",], [])
-        mboxDir2 = MboxDir("/etc/whatever", "incr", "none", ["two",], [])
+        mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one"], [])
+        mboxDir2 = MboxDir("/etc/whatever", "incr", "none", ["two"], [])
         self.assertNotEqual(mboxDir1, mboxDir2)
         self.assertTrue(not mboxDir1 == mboxDir2)
         self.assertTrue(mboxDir1 < mboxDir2)
@@ -1139,9 +1139,9 @@ class TestMboxConfig(unittest.TestCase):
         mbox.mboxFiles = [
             MboxFile(),
         ]
-        self.assertEqual([MboxFile(),], mbox.mboxFiles)
+        self.assertEqual([MboxFile()], mbox.mboxFiles)
         mbox.mboxFiles.append(MboxFile(collectMode="daily"))
-        self.assertEqual([MboxFile(), MboxFile(collectMode="daily"),], mbox.mboxFiles)
+        self.assertEqual([MboxFile(), MboxFile(collectMode="daily")], mbox.mboxFiles)
 
     def testConstructor_016(self):
         """
@@ -1153,10 +1153,10 @@ class TestMboxConfig(unittest.TestCase):
             MboxFile(collectMode="daily"),
             MboxFile(collectMode="weekly"),
         ]
-        self.assertEqual([MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"),], mbox.mboxFiles)
+        self.assertEqual([MboxFile(collectMode="daily"), MboxFile(collectMode="weekly")], mbox.mboxFiles)
         mbox.mboxFiles.append(MboxFile(collectMode="incr"))
         self.assertEqual(
-            [MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), MboxFile(collectMode="incr"),], mbox.mboxFiles
+            [MboxFile(collectMode="daily"), MboxFile(collectMode="weekly"), MboxFile(collectMode="incr")], mbox.mboxFiles
         )
 
     def testConstructor_017(self):
@@ -1213,9 +1213,9 @@ class TestMboxConfig(unittest.TestCase):
         mbox.mboxDirs = [
             MboxDir(),
         ]
-        self.assertEqual([MboxDir(),], mbox.mboxDirs)
+        self.assertEqual([MboxDir()], mbox.mboxDirs)
         mbox.mboxDirs.append(MboxDir(collectMode="daily"))
-        self.assertEqual([MboxDir(), MboxDir(collectMode="daily"),], mbox.mboxDirs)
+        self.assertEqual([MboxDir(), MboxDir(collectMode="daily")], mbox.mboxDirs)
 
     def testConstructor_023(self):
         """
@@ -1227,9 +1227,9 @@ class TestMboxConfig(unittest.TestCase):
             MboxDir(collectMode="daily"),
             MboxDir(collectMode="weekly"),
         ]
-        self.assertEqual([MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"),], mbox.mboxDirs)
+        self.assertEqual([MboxDir(collectMode="daily"), MboxDir(collectMode="weekly")], mbox.mboxDirs)
         mbox.mboxDirs.append(MboxDir(collectMode="incr"))
-        self.assertEqual([MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), MboxDir(collectMode="incr"),], mbox.mboxDirs)
+        self.assertEqual([MboxDir(collectMode="daily"), MboxDir(collectMode="weekly"), MboxDir(collectMode="incr")], mbox.mboxDirs)
 
     def testConstructor_024(self):
         """
@@ -1308,8 +1308,8 @@ class TestMboxConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None, lists non-empty.
       """
-        mbox1 = MboxConfig("daily", "gzip", [MboxFile(),], [MboxDir()])
-        mbox2 = MboxConfig("daily", "gzip", [MboxFile(),], [MboxDir()])
+        mbox1 = MboxConfig("daily", "gzip", [MboxFile()], [MboxDir()])
+        mbox2 = MboxConfig("daily", "gzip", [MboxFile()], [MboxDir()])
         self.assertEqual(mbox1, mbox2)
         self.assertTrue(mbox1 == mbox2)
         self.assertTrue(not mbox1 < mbox2)
@@ -1407,7 +1407,7 @@ class TestMboxConfig(unittest.TestCase):
       Test comparison of two differing objects, mboxFiles differs (one empty, one not empty).
       """
         mbox1 = MboxConfig("daily", "gzip", [], None)
-        mbox2 = MboxConfig("daily", "gzip", [MboxFile(),], None)
+        mbox2 = MboxConfig("daily", "gzip", [MboxFile()], None)
         self.assertNotEqual(mbox1, mbox2)
         self.assertTrue(not mbox1 == mbox2)
         self.assertTrue(mbox1 < mbox2)
@@ -1420,8 +1420,8 @@ class TestMboxConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, mboxFiles differs (both not empty).
       """
-        mbox1 = MboxConfig("daily", "gzip", [MboxFile(),], None)
-        mbox2 = MboxConfig("daily", "gzip", [MboxFile(), MboxFile(),], None)
+        mbox1 = MboxConfig("daily", "gzip", [MboxFile()], None)
+        mbox2 = MboxConfig("daily", "gzip", [MboxFile(), MboxFile()], None)
         self.assertNotEqual(mbox1, mbox2)
         self.assertTrue(not mbox1 == mbox2)
         self.assertTrue(mbox1 < mbox2)
@@ -2012,8 +2012,8 @@ class TestLocalConfig(unittest.TestCase):
         mboxDirs.append(mboxDir)
         mboxDir = MboxDir(
             absolutePath="/home/billybob/mail",
-            relativeExcludePaths=["debian-devel", "debian-python",],
-            excludePatterns=[".*SPAM.*", ".*JUNK.*",],
+            relativeExcludePaths=["debian-devel", "debian-python"],
+            excludePatterns=[".*SPAM.*", ".*JUNK.*"],
         )
         mboxDirs.append(mboxDir)
         path = self.resources["mbox.conf.4"]

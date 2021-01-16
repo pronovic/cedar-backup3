@@ -194,10 +194,10 @@ class TestUnorderedList(unittest.TestCase):
         list1.append(2)
         list1.append(3)
         list1.append(4)
-        self.assertEqual([1, 2, 3, 4,], list1)
-        self.assertEqual([2, 3, 4, 1,], list1)
-        self.assertEqual([3, 4, 1, 2,], list1)
-        self.assertEqual([4, 1, 2, 3,], list1)
+        self.assertEqual([1, 2, 3, 4], list1)
+        self.assertEqual([2, 3, 4, 1], list1)
+        self.assertEqual([3, 4, 1, 2], list1)
+        self.assertEqual([4, 1, 2, 3], list1)
         self.assertEqual(list1, [4, 3, 2, 1])
         self.assertEqual(list1, [3, 2, 1, 4])
         self.assertEqual(list1, [2, 1, 4, 3])
@@ -219,18 +219,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append("b")
         list2.append("c")
         list2.append("d")
-        self.assertEqual([1, 2, 3, 4,], list1)
-        self.assertEqual([2, 3, 4, 1,], list1)
-        self.assertEqual([3, 4, 1, 2,], list1)
-        self.assertEqual([4, 1, 2, 3,], list1)
+        self.assertEqual([1, 2, 3, 4], list1)
+        self.assertEqual([2, 3, 4, 1], list1)
+        self.assertEqual([3, 4, 1, 2], list1)
+        self.assertEqual([4, 1, 2, 3], list1)
         self.assertEqual(list1, [4, 3, 2, 1])
         self.assertEqual(list1, [3, 2, 1, 4])
         self.assertEqual(list1, [2, 1, 4, 3])
         self.assertEqual(list1, [1, 4, 3, 2])
-        self.assertEqual(["a", "b", "c", "d",], list2)
-        self.assertEqual(["b", "c", "d", "a",], list2)
-        self.assertEqual(["c", "d", "a", "b",], list2)
-        self.assertEqual(["d", "a", "b", "c",], list2)
+        self.assertEqual(["a", "b", "c", "d"], list2)
+        self.assertEqual(["b", "c", "d", "a"], list2)
+        self.assertEqual(["c", "d", "a", "b"], list2)
+        self.assertEqual(["d", "a", "b", "c"], list2)
         self.assertEqual(list2, ["d", "c", "b", "a"])
         self.assertEqual(list2, ["c", "b", "a", "d"])
         self.assertEqual(list2, ["b", "a", "d", "c"])
@@ -252,18 +252,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append(4)
         list2.append("a")
         list2.append("b")
-        self.assertEqual([1, 2, 3, 4,], list1)
-        self.assertEqual([2, 3, 4, 1,], list1)
-        self.assertEqual([3, 4, 1, 2,], list1)
-        self.assertEqual([4, 1, 2, 3,], list1)
+        self.assertEqual([1, 2, 3, 4], list1)
+        self.assertEqual([2, 3, 4, 1], list1)
+        self.assertEqual([3, 4, 1, 2], list1)
+        self.assertEqual([4, 1, 2, 3], list1)
         self.assertEqual(list1, [4, 3, 2, 1])
         self.assertEqual(list1, [3, 2, 1, 4])
         self.assertEqual(list1, [2, 1, 4, 3])
         self.assertEqual(list1, [1, 4, 3, 2])
-        self.assertEqual([3, 4, "a", "b",], list2)
-        self.assertEqual([4, "a", "b", 3,], list2)
-        self.assertEqual(["a", "b", 3, 4,], list2)
-        self.assertEqual(["b", 3, 4, "a",], list2)
+        self.assertEqual([3, 4, "a", "b"], list2)
+        self.assertEqual([4, "a", "b", 3], list2)
+        self.assertEqual(["a", "b", 3, 4], list2)
+        self.assertEqual(["b", 3, 4, "a"], list2)
         self.assertEqual(list2, ["b", "a", 4, 3])
         self.assertEqual(list2, ["a", 4, 3, "b"])
         self.assertEqual(list2, [4, 3, "b", "a"])
@@ -285,18 +285,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append(2)
         list2.append(3)
         list2.append(4)
-        self.assertEqual([1, 2, 3, 4,], list1)
-        self.assertEqual([2, 3, 4, 1,], list1)
-        self.assertEqual([3, 4, 1, 2,], list1)
-        self.assertEqual([4, 1, 2, 3,], list1)
+        self.assertEqual([1, 2, 3, 4], list1)
+        self.assertEqual([2, 3, 4, 1], list1)
+        self.assertEqual([3, 4, 1, 2], list1)
+        self.assertEqual([4, 1, 2, 3], list1)
         self.assertEqual(list1, [4, 3, 2, 1])
         self.assertEqual(list1, [3, 2, 1, 4])
         self.assertEqual(list1, [2, 1, 4, 3])
         self.assertEqual(list1, [1, 4, 3, 2])
-        self.assertEqual([1, 2, 3, 4,], list2)
-        self.assertEqual([2, 3, 4, 1,], list2)
-        self.assertEqual([3, 4, 1, 2,], list2)
-        self.assertEqual([4, 1, 2, 3,], list2)
+        self.assertEqual([1, 2, 3, 4], list2)
+        self.assertEqual([2, 3, 4, 1], list2)
+        self.assertEqual([3, 4, 1, 2], list2)
+        self.assertEqual([4, 1, 2, 3], list2)
         self.assertEqual(list2, [4, 3, 2, 1])
         self.assertEqual(list2, [3, 2, 1, 4])
         self.assertEqual(list2, [2, 1, 4, 3])
@@ -318,18 +318,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append(1)
         list2.append(2)
         list2.append(4)
-        self.assertEqual([1, 2, 3, 4,], list1)
-        self.assertEqual([2, 3, 4, 1,], list1)
-        self.assertEqual([3, 4, 1, 2,], list1)
-        self.assertEqual([4, 1, 2, 3,], list1)
+        self.assertEqual([1, 2, 3, 4], list1)
+        self.assertEqual([2, 3, 4, 1], list1)
+        self.assertEqual([3, 4, 1, 2], list1)
+        self.assertEqual([4, 1, 2, 3], list1)
         self.assertEqual(list1, [4, 3, 2, 1])
         self.assertEqual(list1, [3, 2, 1, 4])
         self.assertEqual(list1, [2, 1, 4, 3])
         self.assertEqual(list1, [1, 4, 3, 2])
-        self.assertEqual([1, 2, 3, 4,], list2)
-        self.assertEqual([2, 3, 4, 1,], list2)
-        self.assertEqual([3, 4, 1, 2,], list2)
-        self.assertEqual([4, 1, 2, 3,], list2)
+        self.assertEqual([1, 2, 3, 4], list2)
+        self.assertEqual([2, 3, 4, 1], list2)
+        self.assertEqual([3, 4, 1, 2], list2)
+        self.assertEqual([4, 1, 2, 3], list2)
         self.assertEqual(list2, [4, 3, 2, 1])
         self.assertEqual(list2, [3, 2, 1, 4])
         self.assertEqual(list2, [2, 1, 4, 3])
@@ -356,18 +356,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append(3)
         list2.append(4)
         list2.append(4)
-        self.assertEqual([1, 2, 2, 3, 4, 4,], list1)
-        self.assertEqual([2, 2, 3, 4, 1, 4,], list1)
-        self.assertEqual([2, 3, 4, 1, 4, 2,], list1)
-        self.assertEqual([2, 4, 1, 4, 2, 3,], list1)
+        self.assertEqual([1, 2, 2, 3, 4, 4], list1)
+        self.assertEqual([2, 2, 3, 4, 1, 4], list1)
+        self.assertEqual([2, 3, 4, 1, 4, 2], list1)
+        self.assertEqual([2, 4, 1, 4, 2, 3], list1)
         self.assertEqual(list1, [1, 2, 2, 3, 4, 4])
         self.assertEqual(list1, [2, 2, 3, 4, 1, 4])
         self.assertEqual(list1, [2, 3, 4, 1, 4, 2])
         self.assertEqual(list1, [2, 4, 1, 4, 2, 3])
-        self.assertEqual([1, 2, 2, 3, 4, 4,], list2)
-        self.assertEqual([2, 2, 3, 4, 1, 4,], list2)
-        self.assertEqual([2, 3, 4, 1, 4, 2,], list2)
-        self.assertEqual([2, 4, 1, 4, 2, 3,], list2)
+        self.assertEqual([1, 2, 2, 3, 4, 4], list2)
+        self.assertEqual([2, 2, 3, 4, 1, 4], list2)
+        self.assertEqual([2, 3, 4, 1, 4, 2], list2)
+        self.assertEqual([2, 4, 1, 4, 2, 3], list2)
         self.assertEqual(list2, [1, 2, 2, 3, 4, 4])
         self.assertEqual(list2, [2, 2, 3, 4, 1, 4])
         self.assertEqual(list2, [2, 3, 4, 1, 4, 2])
@@ -394,18 +394,18 @@ class TestUnorderedList(unittest.TestCase):
         list2.append(2)
         list2.append(4)
         list2.append(4)
-        self.assertEqual([1, 2, 2, 3, 4, 4,], list1)
-        self.assertEqual([2, 2, 3, 4, 1, 4,], list1)
-        self.assertEqual([2, 3, 4, 1, 4, 2,], list1)
-        self.assertEqual([2, 4, 1, 4, 2, 3,], list1)
+        self.assertEqual([1, 2, 2, 3, 4, 4], list1)
+        self.assertEqual([2, 2, 3, 4, 1, 4], list1)
+        self.assertEqual([2, 3, 4, 1, 4, 2], list1)
+        self.assertEqual([2, 4, 1, 4, 2, 3], list1)
         self.assertEqual(list1, [1, 2, 2, 3, 4, 4])
         self.assertEqual(list1, [2, 2, 3, 4, 1, 4])
         self.assertEqual(list1, [2, 3, 4, 1, 4, 2])
         self.assertEqual(list1, [2, 4, 1, 4, 2, 3])
-        self.assertEqual([1, 2, 2, 3, 4, 4,], list2)
-        self.assertEqual([2, 2, 3, 4, 1, 4,], list2)
-        self.assertEqual([2, 3, 4, 1, 4, 2,], list2)
-        self.assertEqual([2, 4, 1, 4, 2, 3,], list2)
+        self.assertEqual([1, 2, 2, 3, 4, 4], list2)
+        self.assertEqual([2, 2, 3, 4, 1, 4], list2)
+        self.assertEqual([2, 3, 4, 1, 4, 2], list2)
+        self.assertEqual([2, 4, 1, 4, 2, 3], list2)
         self.assertEqual(list2, [1, 2, 2, 3, 4, 4])
         self.assertEqual(list2, [2, 2, 3, 4, 1, 4])
         self.assertEqual(list2, [2, 3, 4, 1, 4, 2])
@@ -489,12 +489,12 @@ class TestAbsolutePathList(unittest.TestCase):
       """
         list1 = AbsolutePathList()
         list1.extend(
-            ["/path/to/something/absolute",]
+            ["/path/to/something/absolute"]
         )
         self.assertEqual(list1, ["/path/to/something/absolute"])
         self.assertEqual(list1[0], "/path/to/something/absolute")
         list1.extend(
-            ["/path/to/something/else",]
+            ["/path/to/something/else"]
         )
         self.assertEqual(list1, ["/path/to/something/absolute", "/path/to/something/else"])
         self.assertEqual(list1[0], "/path/to/something/absolute")
@@ -587,12 +587,12 @@ class TestObjectTypeList(unittest.TestCase):
       """
         list1 = ObjectTypeList(str, "str")
         list1.extend(
-            ["string",]
+            ["string"]
         )
         self.assertEqual(list1, ["string"])
         self.assertEqual(list1[0], "string")
         list1.extend(
-            ["string2",]
+            ["string2"]
         )
         self.assertEqual(list1, ["string", "string2"])
         self.assertEqual(list1[0], "string")
@@ -635,7 +635,7 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test append() for a valid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.append("a")
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
@@ -653,7 +653,7 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test append() for an invalid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "d")
         self.assertEqual(list1, [])
@@ -666,7 +666,7 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test insert() for a valid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.insert(0, "a")
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
@@ -684,7 +684,7 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test insert() for an invalid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.insert, 0, "d")
         self.assertEqual(list1, [])
@@ -697,20 +697,20 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test extend() for a valid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.extend(
-            ["a",]
+            ["a"]
         )
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
         list1.extend(
-            ["b",]
+            ["b"]
         )
         self.assertEqual(list1, ["a", "b"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "b")
         list1.extend(
-            ["c",]
+            ["c"]
         )
         self.assertEqual(list1, ["a", "b", "c"])
         self.assertEqual(list1[0], "a")
@@ -721,7 +721,7 @@ class TestRestrictedContentList(unittest.TestCase):
         """
       Test extend() for an invalid value.
       """
-        list1 = RestrictedContentList(["a", "b", "c",], "values")
+        list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["d"])
         self.assertEqual(list1, [])
@@ -842,25 +842,25 @@ class TestRegexMatchList(unittest.TestCase):
       """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         list1.extend(
-            ["a",]
+            ["a"]
         )
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
         list1.extend(
-            ["1",]
+            ["1"]
         )
         self.assertEqual(list1, ["a", "1"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
         list1.extend(
-            ["abcd12345",]
+            ["abcd12345"]
         )
         self.assertEqual(list1, ["a", "1", "abcd12345"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
         self.assertEqual(list1[2], "abcd12345")
         list1.extend(
-            ["",]
+            [""]
         )
         self.assertEqual(list1, ["a", "1", "abcd12345", ""])
         self.assertEqual(list1[0], "a")
@@ -965,18 +965,18 @@ class TestRegexMatchList(unittest.TestCase):
       """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         list1.extend(
-            ["a",]
+            ["a"]
         )
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
         list1.extend(
-            ["1",]
+            ["1"]
         )
         self.assertEqual(list1, ["a", "1"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
         list1.extend(
-            ["abcd12345",]
+            ["abcd12345"]
         )
         self.assertEqual(list1, ["a", "1", "abcd12345"])
         self.assertEqual(list1[0], "a")
@@ -1074,12 +1074,12 @@ class TestRegexList(unittest.TestCase):
       """
         list1 = RegexList()
         list1.extend(
-            [r".*\.jpg",]
+            [r".*\.jpg"]
         )
         self.assertEqual(list1, [r".*\.jpg"])
         self.assertEqual(list1[0], r".*\.jpg")
         list1.extend(
-            ["[a-zA-Z0-9]*",]
+            ["[a-zA-Z0-9]*"]
         )
         self.assertEqual(list1, [r".*\.jpg", "[a-zA-Z0-9]*"])
         self.assertEqual(list1[0], r".*\.jpg")
@@ -1152,7 +1152,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph = DirectedGraph("test")
         graph.createVertex("1")
         path = graph.topologicalSort()
-        self.assertEqual(["1",], path)
+        self.assertEqual(["1"], path)
 
     def testTopologicalSort_003(self):
         """
@@ -1162,7 +1162,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createVertex("2")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1",], path)
+        self.assertEqual(["2", "1"], path)
 
     def testTopologicalSort_004(self):
         """
@@ -1173,7 +1173,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createVertex("3")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_005(self):
         """
@@ -1185,7 +1185,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createVertex("4")
         path = graph.topologicalSort()
-        self.assertEqual(["4", "2", "1", "3",], path)
+        self.assertEqual(["4", "2", "1", "3"], path)
 
     def testTopologicalSort_006(self):
         """
@@ -1198,7 +1198,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("4")
         graph.createVertex("5")
         path = graph.topologicalSort()
-        self.assertEqual(["5", "4", "2", "1", "3",], path)
+        self.assertEqual(["5", "4", "2", "1", "3"], path)
 
     def testTopologicalSort_007(self):
         """
@@ -1211,7 +1211,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_008(self):
         """
@@ -1224,7 +1224,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_009(self):
         """
@@ -1237,7 +1237,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_010(self):
         """
@@ -1250,7 +1250,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_011(self):
         """
@@ -1263,7 +1263,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_012(self):
         """
@@ -1276,7 +1276,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_013(self):
         """
@@ -1289,7 +1289,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_014(self):
         """
@@ -1302,7 +1302,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_015(self):
         """
@@ -1315,7 +1315,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_016(self):
         """
@@ -1328,7 +1328,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_017(self):
         """
@@ -1341,7 +1341,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_018(self):
         """
@@ -1354,7 +1354,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_019(self):
         """
@@ -1366,7 +1366,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_020(self):
         """
@@ -1378,7 +1378,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_021(self):
         """
@@ -1390,7 +1390,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "3", "2",], path)
+        self.assertEqual(["1", "3", "2"], path)
 
     def testTopologicalSort_022(self):
         """
@@ -1402,7 +1402,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_023(self):
         """
@@ -1414,7 +1414,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_024(self):
         """
@@ -1426,7 +1426,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_025(self):
         """
@@ -1438,7 +1438,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_026(self):
         """
@@ -1450,7 +1450,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_027(self):
         """
@@ -1462,7 +1462,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "3", "2",], path)
+        self.assertEqual(["1", "3", "2"], path)
 
     def testTopologicalSort_028(self):
         """
@@ -1474,7 +1474,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "3", "2",], path)
+        self.assertEqual(["1", "3", "2"], path)
 
     def testTopologicalSort_029(self):
         """
@@ -1486,7 +1486,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_030(self):
         """
@@ -1498,7 +1498,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("1", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_031(self):
         """
@@ -1510,7 +1510,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_032(self):
         """
@@ -1522,7 +1522,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_033(self):
         """
@@ -1534,7 +1534,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_034(self):
         """
@@ -1546,7 +1546,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_035(self):
         """
@@ -1558,7 +1558,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_036(self):
         """
@@ -1570,7 +1570,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("2", "3")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3",], path)
+        self.assertEqual(["1", "2", "3"], path)
 
     def testTopologicalSort_037(self):
         """
@@ -1582,7 +1582,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_038(self):
         """
@@ -1594,7 +1594,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_039(self):
         """
@@ -1606,7 +1606,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_040(self):
         """
@@ -1618,7 +1618,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_041(self):
         """
@@ -1630,7 +1630,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_042(self):
         """
@@ -1642,7 +1642,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("2", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "3",], path)
+        self.assertEqual(["2", "1", "3"], path)
 
     def testTopologicalSort_043(self):
         """
@@ -1654,7 +1654,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_044(self):
         """
@@ -1666,7 +1666,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_045(self):
         """
@@ -1678,7 +1678,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_046(self):
         """
@@ -1690,7 +1690,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_047(self):
         """
@@ -1702,7 +1702,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_048(self):
         """
@@ -1714,7 +1714,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("3", "1")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "3", "1",], path)
+        self.assertEqual(["2", "3", "1"], path)
 
     def testTopologicalSort_049(self):
         """
@@ -1726,7 +1726,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("3", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_050(self):
         """
@@ -1738,7 +1738,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("3", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "2", "1",], path)
+        self.assertEqual(["3", "2", "1"], path)
 
     def testTopologicalSort_051(self):
         """
@@ -1750,7 +1750,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("1")
         graph.createEdge("3", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "3", "2",], path)
+        self.assertEqual(["1", "3", "2"], path)
 
     def testTopologicalSort_052(self):
         """
@@ -1762,7 +1762,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("3")
         graph.createEdge("3", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["3", "1", "2",], path)
+        self.assertEqual(["3", "1", "2"], path)
 
     def testTopologicalSort_053(self):
         """
@@ -1774,7 +1774,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createVertex("2")
         graph.createEdge("3", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "3", "2",], path)
+        self.assertEqual(["1", "3", "2"], path)
 
     def testTopologicalSort_054(self):
         """
@@ -1848,7 +1848,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "4")
         graph.createEdge("1", "5")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "5", "4", "3",], path)
+        self.assertEqual(["2", "1", "5", "4", "3"], path)
 
     def testTopologicalSort_060(self):
         """
@@ -1865,7 +1865,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "5")
         graph.createEdge("2", "5")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "5", "4", "3",], path)
+        self.assertEqual(["2", "1", "5", "4", "3"], path)
 
     def testTopologicalSort_061(self):
         """
@@ -1883,7 +1883,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("2", "5")
         graph.createEdge("3", "4")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "5", "3", "4",], path)
+        self.assertEqual(["2", "1", "5", "3", "4"], path)
 
     def testTopologicalSort_062(self):
         """
@@ -1902,7 +1902,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("3", "4")
         graph.createEdge("5", "4")
         path = graph.topologicalSort()
-        self.assertEqual(["2", "1", "5", "3", "4",], path)
+        self.assertEqual(["2", "1", "5", "3", "4"], path)
 
     def testTopologicalSort_063(self):
         """
@@ -1922,7 +1922,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("5", "4")
         graph.createEdge("1", "2")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "5", "3", "4",], path)
+        self.assertEqual(["1", "2", "5", "3", "4"], path)
 
     def testTopologicalSort_064(self):
         """
@@ -1943,7 +1943,7 @@ class TestDirectedGraph(unittest.TestCase):
         graph.createEdge("1", "2")
         graph.createEdge("3", "5")
         path = graph.topologicalSort()
-        self.assertEqual(["1", "2", "3", "5", "4",], path)
+        self.assertEqual(["1", "2", "3", "5", "4"], path)
 
     def testTopologicalSort_065(self):
         """
@@ -2246,7 +2246,7 @@ class TestFunctions(unittest.TestCase):
       """
         d = {"a": 1}
         result = sortDict(d)
-        self.assertEqual(["a",], result)
+        self.assertEqual(["a"], result)
 
     def testSortDict_003(self):
         """
@@ -2257,7 +2257,7 @@ class TestFunctions(unittest.TestCase):
             "b": 1,
         }
         result = sortDict(d)
-        self.assertEqual(["a", "b",], result)
+        self.assertEqual(["a", "b"], result)
 
     def testSortDict_004(self):
         """
@@ -2268,7 +2268,7 @@ class TestFunctions(unittest.TestCase):
             "b": 2,
         }
         result = sortDict(d)
-        self.assertEqual(["a", "b",], result)
+        self.assertEqual(["a", "b"], result)
 
     def testSortDict_005(self):
         """
@@ -2276,7 +2276,7 @@ class TestFunctions(unittest.TestCase):
       """
         d = {"rebuild": 0, "purge": 400, "collect": 100, "validate": 0, "store": 300, "stage": 200}
         result = sortDict(d)
-        self.assertEqual(["rebuild", "validate", "collect", "stage", "store", "purge",], result)
+        self.assertEqual(["rebuild", "validate", "collect", "stage", "store", "purge"], result)
 
     ##############################
     # Test getFunctionReference()
@@ -4280,7 +4280,7 @@ class TestFunctions(unittest.TestCase):
       """
         commandLine = "cback --verbose stage store purge"
         result = splitCommandLine(commandLine)
-        self.assertEqual(["cback", "--verbose", "stage", "store", "purge",], result)
+        self.assertEqual(["cback", "--verbose", "stage", "store", "purge"], result)
 
     def testSplitCommandLine_004(self):
         """
@@ -4288,7 +4288,7 @@ class TestFunctions(unittest.TestCase):
       """
         commandLine = 'cback "this is a really long double-quoted argument"'
         result = splitCommandLine(commandLine)
-        self.assertEqual(["cback", "this is a really long double-quoted argument",], result)
+        self.assertEqual(["cback", "this is a really long double-quoted argument"], result)
 
     def testSplitCommandLine_005(self):
         """
@@ -4296,7 +4296,7 @@ class TestFunctions(unittest.TestCase):
       """
         commandLine = "cback 'this is a really long single-quoted argument'"
         result = splitCommandLine(commandLine)
-        self.assertEqual(["cback", "'this", "is", "a", "really", "long", "single-quoted", "argument'",], result)
+        self.assertEqual(["cback", "'this", "is", "a", "really", "long", "single-quoted", "argument'"], result)
 
     #########################
     # Test dereferenceLink()
@@ -4415,7 +4415,7 @@ class TestFunctions(unittest.TestCase):
       Test parseCommaSeparatedString() for a string with one value.
       """
         actual = parseCommaSeparatedString("ken")
-        self.assertEqual(["ken",], actual)
+        self.assertEqual(["ken"], actual)
 
     def testParseCommaSeparatedString_004(self):
         """
@@ -4423,7 +4423,7 @@ class TestFunctions(unittest.TestCase):
       spaces.
       """
         actual = parseCommaSeparatedString("a,b,c")
-        self.assertEqual(["a", "b", "c",], actual)
+        self.assertEqual(["a", "b", "c"], actual)
 
     def testParseCommaSeparatedString_005(self):
         """
@@ -4431,7 +4431,7 @@ class TestFunctions(unittest.TestCase):
       spaces.
       """
         actual = parseCommaSeparatedString("a, b, c")
-        self.assertEqual(["a", "b", "c",], actual)
+        self.assertEqual(["a", "b", "c"], actual)
 
     def testParseCommaSeparatedString_006(self):
         """
@@ -4439,4 +4439,4 @@ class TestFunctions(unittest.TestCase):
       worst-case kind of value.
       """
         actual = parseCommaSeparatedString("   one,  two,three,   four , five   , six,   seven,,eight    ,")
-        self.assertEqual(["one", "two", "three", "four", "five", "six", "seven", "eight",], actual)
+        self.assertEqual(["one", "two", "three", "four", "five", "six", "seven", "eight"], actual)

@@ -266,7 +266,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--help", ], validate=False.
       """
-        options = Options(argumentList=["--help",], validate=False)
+        options = Options(argumentList=["--help"], validate=False)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -310,7 +310,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-h", ], validate=False.
       """
-        options = Options(argumentList=["-h",], validate=False)
+        options = Options(argumentList=["-h"], validate=False)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -354,7 +354,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--version", ], validate=False.
       """
-        options = Options(argumentList=["--version",], validate=False)
+        options = Options(argumentList=["--version"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -398,7 +398,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-V", ], validate=False.
       """
-        options = Options(argumentList=["-V",], validate=False)
+        options = Options(argumentList=["-V"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -442,7 +442,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verbose", ], validate=False.
       """
-        options = Options(argumentList=["--verbose",], validate=False)
+        options = Options(argumentList=["--verbose"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -486,7 +486,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-b", ], validate=False.
       """
-        options = Options(argumentList=["-b",], validate=False)
+        options = Options(argumentList=["-b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -530,7 +530,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--quiet", ], validate=False.
       """
-        options = Options(argumentList=["--quiet",], validate=False)
+        options = Options(argumentList=["--quiet"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -574,7 +574,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-q", ], validate=False.
       """
-        options = Options(argumentList=["-q",], validate=False)
+        options = Options(argumentList=["-q"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -618,7 +618,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--logfile",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--logfile"], validate=False)
 
     def testConstructor_022(self):
         """
@@ -630,7 +630,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-l",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-l"], validate=False)
 
     def testConstructor_024(self):
         """
@@ -642,7 +642,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", "something", ], validate=False.
       """
-        options = Options(argumentList=["--logfile", "something",], validate=False)
+        options = Options(argumentList=["--logfile", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -686,7 +686,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", "something", ], validate=False.
       """
-        options = Options(argumentList=["-l", "something",], validate=False)
+        options = Options(argumentList=["-l", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -730,7 +730,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--owner",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--owner"], validate=False)
 
     def testConstructor_030(self):
         """
@@ -742,7 +742,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-o",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-o"], validate=False)
 
     def testConstructor_041(self):
         """
@@ -754,7 +754,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "something"], validate=False)
 
     def testConstructor_043(self):
         """
@@ -766,7 +766,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "something"], validate=False)
 
     def testConstructor_045(self):
         """
@@ -778,7 +778,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "a:b", ], validate=False.
       """
-        options = Options(argumentList=["--owner", "a:b",], validate=False)
+        options = Options(argumentList=["--owner", "a:b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -822,7 +822,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "a:b", ], validate=False.
       """
-        options = Options(argumentList=["-o", "a:b",], validate=False)
+        options = Options(argumentList=["-o", "a:b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -866,7 +866,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--mode",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--mode"], validate=False)
 
     def testConstructor_051(self):
         """
@@ -878,7 +878,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-m",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-m"], validate=False)
 
     def testConstructor_053(self):
         """
@@ -890,7 +890,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "something"], validate=False)
 
     def testConstructor_055(self):
         """
@@ -902,7 +902,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "something"], validate=False)
 
     def testConstructor_057(self):
         """
@@ -914,7 +914,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "631", ], validate=False.
       """
-        options = Options(argumentList=["--mode", "631",], validate=False)
+        options = Options(argumentList=["--mode", "631"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -958,7 +958,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "631", ], validate=False.
       """
-        options = Options(argumentList=["-m", "631",], validate=False)
+        options = Options(argumentList=["-m", "631"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1002,7 +1002,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--output", ], validate=False.
       """
-        options = Options(argumentList=["--output",], validate=False)
+        options = Options(argumentList=["--output"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1046,7 +1046,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-O", ], validate=False.
       """
-        options = Options(argumentList=["-O",], validate=False)
+        options = Options(argumentList=["-O"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1090,7 +1090,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--debug", ], validate=False.
       """
-        options = Options(argumentList=["--debug",], validate=False)
+        options = Options(argumentList=["--debug"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1134,7 +1134,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", ], validate=False.
       """
-        options = Options(argumentList=["-d",], validate=False)
+        options = Options(argumentList=["-d"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1178,7 +1178,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--stack", ], validate=False.
       """
-        options = Options(argumentList=["--stack",], validate=False)
+        options = Options(argumentList=["--stack"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1222,7 +1222,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-s", ], validate=False.
       """
-        options = Options(argumentList=["-s",], validate=False)
+        options = Options(argumentList=["-s"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1266,7 +1266,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--diagnostics", ], validate=False.
       """
-        options = Options(argumentList=["--diagnostics",], validate=False)
+        options = Options(argumentList=["--diagnostics"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1310,7 +1310,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-D", ], validate=False.
       """
-        options = Options(argumentList=["-D",], validate=False)
+        options = Options(argumentList=["-D"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1354,7 +1354,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verifyOnly", ], validate=False.
       """
-        options = Options(argumentList=["--verifyOnly",], validate=False)
+        options = Options(argumentList=["--verifyOnly"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1398,7 +1398,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-v", ], validate=False.
       """
-        options = Options(argumentList=["-v",], validate=False)
+        options = Options(argumentList=["-v"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1442,7 +1442,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--ignoreWarnings", ], validate=False.
       """
-        options = Options(argumentList=["--ignoreWarnings",], validate=False)
+        options = Options(argumentList=["--ignoreWarnings"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1486,7 +1486,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-w", ], validate=False.
       """
-        options = Options(argumentList=["-w",], validate=False)
+        options = Options(argumentList=["-w"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1530,7 +1530,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["source", "bucket", ], validate=False.
       """
-        options = Options(argumentList=["source", "bucket",], validate=False)
+        options = Options(argumentList=["source", "bucket"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1574,7 +1574,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket", ], validate=False.
       """
-        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket",], validate=False)
+        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -1630,7 +1630,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--help", ], validate=True.
       """
-        options = Options(argumentList=["--help",], validate=True)
+        options = Options(argumentList=["--help"], validate=True)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1674,7 +1674,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-h", ], validate=True.
       """
-        options = Options(argumentList=["-h",], validate=True)
+        options = Options(argumentList=["-h"], validate=True)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1718,7 +1718,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--version", ], validate=True.
       """
-        options = Options(argumentList=["--version",], validate=True)
+        options = Options(argumentList=["--version"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -1762,7 +1762,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-V", ], validate=True.
       """
-        options = Options(argumentList=["-V",], validate=True)
+        options = Options(argumentList=["-V"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -1806,7 +1806,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verbose", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--verbose",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--verbose"], validate=True)
 
     def testConstructor_101(self):
         """
@@ -1818,7 +1818,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-b"], validate=True)
 
     def testConstructor_103(self):
         """
@@ -1830,7 +1830,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--quiet", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--quiet",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--quiet"], validate=True)
 
     def testConstructor_105(self):
         """
@@ -1842,7 +1842,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-q", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-q",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-q"], validate=True)
 
     def testConstructor_107(self):
         """
@@ -1854,7 +1854,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--logfile",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--logfile"], validate=True)
 
     def testConstructor_109(self):
         """
@@ -1866,7 +1866,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-l",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-l"], validate=True)
 
     def testConstructor_111(self):
         """
@@ -1878,7 +1878,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--logfile", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--logfile", "something"], validate=True)
 
     def testConstructor_113(self):
         """
@@ -1890,7 +1890,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-l", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-l", "something"], validate=True)
 
     def testConstructor_115(self):
         """
@@ -1902,7 +1902,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--owner",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--owner"], validate=True)
 
     def testConstructor_117(self):
         """
@@ -1914,7 +1914,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-o",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-o"], validate=True)
 
     def testConstructor_119(self):
         """
@@ -1926,7 +1926,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "something"], validate=True)
 
     def testConstructor_121(self):
         """
@@ -1938,7 +1938,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "something"], validate=True)
 
     def testConstructor_123(self):
         """
@@ -1950,7 +1950,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "a:b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "a:b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "a:b"], validate=True)
 
     def testConstructor_125(self):
         """
@@ -1962,7 +1962,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "a:b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "a:b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "a:b"], validate=True)
 
     def testConstructor_127(self):
         """
@@ -1974,7 +1974,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--mode",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--mode"], validate=True)
 
     def testConstructor_129(self):
         """
@@ -1986,7 +1986,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-m",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-m"], validate=True)
 
     def testConstructor_131(self):
         """
@@ -1998,7 +1998,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "something"], validate=True)
 
     def testConstructor_133(self):
         """
@@ -2010,7 +2010,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "something"], validate=True)
 
     def testConstructor_135(self):
         """
@@ -2022,7 +2022,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "631", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "631",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "631"], validate=True)
 
     def testConstructor_137(self):
         """
@@ -2034,7 +2034,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "631", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "631",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "631"], validate=True)
 
     def testConstructor_139(self):
         """
@@ -2046,7 +2046,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--output", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--output",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--output"], validate=True)
 
     def testConstructor_141(self):
         """
@@ -2058,7 +2058,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-O", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-O",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-O"], validate=True)
 
     def testConstructor_143(self):
         """
@@ -2070,7 +2070,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--debug", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--debug",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--debug"], validate=True)
 
     def testConstructor_145(self):
         """
@@ -2082,7 +2082,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-d",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-d"], validate=True)
 
     def testConstructor_147(self):
         """
@@ -2094,7 +2094,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--stack", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--stack",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--stack"], validate=True)
 
     def testConstructor_149(self):
         """
@@ -2106,7 +2106,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-s", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-s",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-s"], validate=True)
 
     def testConstructor_151(self):
         """
@@ -2118,7 +2118,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--diagnostics", ], validate=True.
       """
-        options = Options(argumentList=["--diagnostics",], validate=True)
+        options = Options(argumentList=["--diagnostics"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2162,7 +2162,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-D", ], validate=True.
       """
-        options = Options(argumentList=["-D",], validate=True)
+        options = Options(argumentList=["-D"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2206,7 +2206,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verifyOnly", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--verifyOnly",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--verifyOnly"], validate=True)
 
     def testConstructor_157(self):
         """
@@ -2218,7 +2218,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-v", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-v",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-v"], validate=True)
 
     def testConstructor_159(self):
         """
@@ -2230,7 +2230,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--ignoreWarnings", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--ignoreWarnings",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--ignoreWarnings"], validate=True)
 
     def testConstructor_161(self):
         """
@@ -2242,7 +2242,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-w", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-w",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-w"], validate=True)
 
     def testConstructor_163(self):
         """
@@ -2254,7 +2254,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["source", "bucket", ], validate=True.
       """
-        options = Options(argumentList=["source", "bucket",], validate=True)
+        options = Options(argumentList=["source", "bucket"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2298,7 +2298,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["source", "bucket", ], validate=True.
       """
-        options = Options(argumentList=["source", "bucket",], validate=True)
+        options = Options(argumentList=["source", "bucket"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2342,7 +2342,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket", ], validate=True.
       """
-        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket",], validate=True)
+        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "source", "bucket"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -2386,7 +2386,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--uploadOnly", ], validate=False.
       """
-        options = Options(argumentList=["--uploadOnly",], validate=False)
+        options = Options(argumentList=["--uploadOnly"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2430,7 +2430,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-u", ], validate=False.
       """
-        options = Options(argumentList=["-u",], validate=False)
+        options = Options(argumentList=["-u"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3287,91 +3287,91 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.help = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--help",], argumentList)
+        self.assertEqual(["--help"], argumentList)
 
     def testBuildArgumentList_003(self):
         """Test with version set, validate=False."""
         options = Options()
         options.version = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--version",], argumentList)
+        self.assertEqual(["--version"], argumentList)
 
     def testBuildArgumentList_004(self):
         """Test with verbose set, validate=False."""
         options = Options()
         options.verbose = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--verbose",], argumentList)
+        self.assertEqual(["--verbose"], argumentList)
 
     def testBuildArgumentList_005(self):
         """Test with quiet set, validate=False."""
         options = Options()
         options.quiet = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--quiet",], argumentList)
+        self.assertEqual(["--quiet"], argumentList)
 
     def testBuildArgumentList_006(self):
         """Test with logfile set, validate=False."""
         options = Options()
         options.logfile = "bogus"
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--logfile", "bogus",], argumentList)
+        self.assertEqual(["--logfile", "bogus"], argumentList)
 
     def testBuildArgumentList_007(self):
         """Test with owner set, validate=False."""
         options = Options()
         options.owner = ("ken", "group")
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--owner", "ken:group",], argumentList)
+        self.assertEqual(["--owner", "ken:group"], argumentList)
 
     def testBuildArgumentList_008(self):
         """Test with mode set, validate=False."""
         options = Options()
         options.mode = 0o644
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--mode", "644",], argumentList)
+        self.assertEqual(["--mode", "644"], argumentList)
 
     def testBuildArgumentList_009(self):
         """Test with output set, validate=False."""
         options = Options()
         options.output = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--output",], argumentList)
+        self.assertEqual(["--output"], argumentList)
 
     def testBuildArgumentList_010(self):
         """Test with debug set, validate=False."""
         options = Options()
         options.debug = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--debug",], argumentList)
+        self.assertEqual(["--debug"], argumentList)
 
     def testBuildArgumentList_011(self):
         """Test with stacktrace set, validate=False."""
         options = Options()
         options.stacktrace = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--stack",], argumentList)
+        self.assertEqual(["--stack"], argumentList)
 
     def testBuildArgumentList_012(self):
         """Test with diagnostics set, validate=False."""
         options = Options()
         options.diagnostics = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--diagnostics",], argumentList)
+        self.assertEqual(["--diagnostics"], argumentList)
 
     def testBuildArgumentList_013(self):
         """Test with verifyOnly set, validate=False."""
         options = Options()
         options.verifyOnly = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--verifyOnly",], argumentList)
+        self.assertEqual(["--verifyOnly"], argumentList)
 
     def testBuildArgumentList_014(self):
         """Test with ignoreWarnings set, validate=False."""
         options = Options()
         options.ignoreWarnings = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--ignoreWarnings",], argumentList)
+        self.assertEqual(["--ignoreWarnings"], argumentList)
 
     def testBuildArgumentList_015(self):
         """Test with valid source and target, validate=False."""
@@ -3379,7 +3379,7 @@ class TestOptions(unittest.TestCase):
         options.sourceDir = "source"
         options.s3BucketUrl = "bucket"
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["source", "bucket",], argumentList)
+        self.assertEqual(["source", "bucket"], argumentList)
 
     def testBuildArgumentList_016(self):
         """Test with all values set, actions containing one item, validate=False."""
@@ -3434,14 +3434,14 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.help = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--help",], argumentList)
+        self.assertEqual(["--help"], argumentList)
 
     def testBuildArgumentList_019(self):
         """Test with version set, validate=True."""
         options = Options()
         options.version = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--version",], argumentList)
+        self.assertEqual(["--version"], argumentList)
 
     def testBuildArgumentList_020(self):
         """Test with verbose set, validate=True."""
@@ -3496,7 +3496,7 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.diagnostics = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--diagnostics",], argumentList)
+        self.assertEqual(["--diagnostics"], argumentList)
 
     def testBuildArgumentList_029(self):
         """Test with verifyOnly set, validate=True."""
@@ -3516,7 +3516,7 @@ class TestOptions(unittest.TestCase):
         options.sourceDir = "source"
         options.s3BucketUrl = "bucket"
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["source", "bucket",], argumentList)
+        self.assertEqual(["source", "bucket"], argumentList)
 
     def testBuildArgumentList_032(self):
         """Test with all values set (except managed ones), actions containing one item, validate=True."""
@@ -3566,7 +3566,7 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.uploadOnly = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--uploadOnly",], argumentList)
+        self.assertEqual(["--uploadOnly"], argumentList)
 
     #############################
     # Test buildArgumentString()

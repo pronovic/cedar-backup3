@@ -211,7 +211,7 @@ class TestMysqlConfig(unittest.TestCase):
         self.assertEqual("password", mysql.password)
         self.assertEqual("gzip", mysql.compressMode)
         self.assertEqual(True, mysql.all)
-        self.assertEqual(["one",], mysql.databases)
+        self.assertEqual(["one"], mysql.databases)
 
     def testConstructor_005(self):
         """
@@ -222,7 +222,7 @@ class TestMysqlConfig(unittest.TestCase):
         self.assertEqual("password", mysql.password)
         self.assertEqual("bzip2", mysql.compressMode)
         self.assertEqual(True, mysql.all)
-        self.assertEqual(["one", "two",], mysql.databases)
+        self.assertEqual(["one", "two"], mysql.databases)
 
     def testConstructor_006(self):
         """
@@ -382,9 +382,9 @@ class TestMysqlConfig(unittest.TestCase):
         mysql.databases = [
             "/whatever",
         ]
-        self.assertEqual(["/whatever",], mysql.databases)
+        self.assertEqual(["/whatever"], mysql.databases)
         mysql.databases.append("/stuff")
-        self.assertEqual(["/whatever", "/stuff",], mysql.databases)
+        self.assertEqual(["/whatever", "/stuff"], mysql.databases)
 
     def testConstructor_022(self):
         """
@@ -396,9 +396,9 @@ class TestMysqlConfig(unittest.TestCase):
             "/whatever",
             "/stuff",
         ]
-        self.assertEqual(["/whatever", "/stuff",], mysql.databases)
+        self.assertEqual(["/whatever", "/stuff"], mysql.databases)
         mysql.databases.append("/etc/X11")
-        self.assertEqual(["/whatever", "/stuff", "/etc/X11",], mysql.databases)
+        self.assertEqual(["/whatever", "/stuff", "/etc/X11"], mysql.databases)
 
     def testConstructor_023(self):
         """
@@ -978,14 +978,14 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual("password", config.mysql.password)
         self.assertEqual("gzip", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database",], config.mysql.databases)
+        self.assertEqual(["database"], config.mysql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.mysql)
         self.assertEqual("user", config.mysql.user)
         self.assertEqual("password", config.mysql.password)
         self.assertEqual("gzip", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database",], config.mysql.databases)
+        self.assertEqual(["database"], config.mysql.databases)
 
     def testParse_005(self):
         """
@@ -1000,14 +1000,14 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual("password", config.mysql.password)
         self.assertEqual("bzip2", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database1", "database2",], config.mysql.databases)
+        self.assertEqual(["database1", "database2"], config.mysql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.mysql)
         self.assertEqual("user", config.mysql.user)
         self.assertEqual("password", config.mysql.password)
         self.assertEqual("bzip2", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database1", "database2",], config.mysql.databases)
+        self.assertEqual(["database1", "database2"], config.mysql.databases)
 
     def testParse_006(self):
         """
@@ -1022,14 +1022,14 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual(None, config.mysql.password)
         self.assertEqual("bzip2", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database1", "database2",], config.mysql.databases)
+        self.assertEqual(["database1", "database2"], config.mysql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.mysql)
         self.assertEqual(None, config.mysql.user)
         self.assertEqual(None, config.mysql.password)
         self.assertEqual("bzip2", config.mysql.compressMode)
         self.assertEqual(False, config.mysql.all)
-        self.assertEqual(["database1", "database2",], config.mysql.databases)
+        self.assertEqual(["database1", "database2"], config.mysql.databases)
 
     ###################
     # Test addConfig()

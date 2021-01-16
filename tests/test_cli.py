@@ -286,7 +286,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--help", ], validate=False.
       """
-        options = Options(argumentList=["--help",], validate=False)
+        options = Options(argumentList=["--help"], validate=False)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -330,7 +330,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-h", ], validate=False.
       """
-        options = Options(argumentList=["-h",], validate=False)
+        options = Options(argumentList=["-h"], validate=False)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -374,7 +374,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--version", ], validate=False.
       """
-        options = Options(argumentList=["--version",], validate=False)
+        options = Options(argumentList=["--version"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -418,7 +418,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-V", ], validate=False.
       """
-        options = Options(argumentList=["-V",], validate=False)
+        options = Options(argumentList=["-V"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -462,7 +462,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verbose", ], validate=False.
       """
-        options = Options(argumentList=["--verbose",], validate=False)
+        options = Options(argumentList=["--verbose"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -506,7 +506,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-b", ], validate=False.
       """
-        options = Options(argumentList=["-b",], validate=False)
+        options = Options(argumentList=["-b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -550,7 +550,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--quiet", ], validate=False.
       """
-        options = Options(argumentList=["--quiet",], validate=False)
+        options = Options(argumentList=["--quiet"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -594,7 +594,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-q", ], validate=False.
       """
-        options = Options(argumentList=["-q",], validate=False)
+        options = Options(argumentList=["-q"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -638,7 +638,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--config", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--config",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--config"], validate=False)
 
     def testConstructor_022(self):
         """
@@ -650,7 +650,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-c", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-c",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-c"], validate=False)
 
     def testConstructor_024(self):
         """
@@ -662,7 +662,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--config", "something", ], validate=False.
       """
-        options = Options(argumentList=["--config", "something",], validate=False)
+        options = Options(argumentList=["--config", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -706,7 +706,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-c", "something", ], validate=False.
       """
-        options = Options(argumentList=["-c", "something",], validate=False)
+        options = Options(argumentList=["-c", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -750,7 +750,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--full", ], validate=False.
       """
-        options = Options(argumentList=["--full",], validate=False)
+        options = Options(argumentList=["--full"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -796,7 +796,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-f", ], validate=False.
       """
-        options = Options(argumentList=["-f",], validate=False)
+        options = Options(argumentList=["-f"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -840,7 +840,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--logfile",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--logfile"], validate=False)
 
     def testConstructor_034(self):
         """
@@ -852,7 +852,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-l",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-l"], validate=False)
 
     def testConstructor_036(self):
         """
@@ -864,7 +864,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", "something", ], validate=False.
       """
-        options = Options(argumentList=["--logfile", "something",], validate=False)
+        options = Options(argumentList=["--logfile", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -908,7 +908,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", "something", ], validate=False.
       """
-        options = Options(argumentList=["-l", "something",], validate=False)
+        options = Options(argumentList=["-l", "something"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -952,7 +952,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--owner",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--owner"], validate=False)
 
     def testConstructor_042(self):
         """
@@ -964,7 +964,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-o",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-o"], validate=False)
 
     def testConstructor_044(self):
         """
@@ -976,7 +976,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "something"], validate=False)
 
     def testConstructor_046(self):
         """
@@ -988,7 +988,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "something"], validate=False)
 
     def testConstructor_048(self):
         """
@@ -1000,7 +1000,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "a:b", ], validate=False.
       """
-        options = Options(argumentList=["--owner", "a:b",], validate=False)
+        options = Options(argumentList=["--owner", "a:b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1044,7 +1044,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "a:b", ], validate=False.
       """
-        options = Options(argumentList=["-o", "a:b",], validate=False)
+        options = Options(argumentList=["-o", "a:b"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1088,7 +1088,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--mode",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["--mode"], validate=False)
 
     def testConstructor_054(self):
         """
@@ -1100,7 +1100,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", ], validate=False.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-m",], validate=False)
+        self.assertRaises(GetoptError, Options, argumentList=["-m"], validate=False)
 
     def testConstructor_056(self):
         """
@@ -1112,7 +1112,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "something"], validate=False)
 
     def testConstructor_058(self):
         """
@@ -1124,7 +1124,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "something", ], validate=False.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "something",], validate=False)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "something"], validate=False)
 
     def testConstructor_060(self):
         """
@@ -1136,7 +1136,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "631", ], validate=False.
       """
-        options = Options(argumentList=["--mode", "631",], validate=False)
+        options = Options(argumentList=["--mode", "631"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1180,7 +1180,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "631", ], validate=False.
       """
-        options = Options(argumentList=["-m", "631",], validate=False)
+        options = Options(argumentList=["-m", "631"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1224,7 +1224,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--output", ], validate=False.
       """
-        options = Options(argumentList=["--output",], validate=False)
+        options = Options(argumentList=["--output"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1268,7 +1268,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-O", ], validate=False.
       """
-        options = Options(argumentList=["-O",], validate=False)
+        options = Options(argumentList=["-O"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1312,7 +1312,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--debug", ], validate=False.
       """
-        options = Options(argumentList=["--debug",], validate=False)
+        options = Options(argumentList=["--debug"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1356,7 +1356,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", ], validate=False.
       """
-        options = Options(argumentList=["-d",], validate=False)
+        options = Options(argumentList=["-d"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1400,7 +1400,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--stack", ], validate=False.
       """
-        options = Options(argumentList=["--stack",], validate=False)
+        options = Options(argumentList=["--stack"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1444,7 +1444,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-s", ], validate=False.
       """
-        options = Options(argumentList=["-s",], validate=False)
+        options = Options(argumentList=["-s"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1487,7 +1487,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["all", ], validate=False.
       """
-        options = Options(argumentList=["all",], validate=False)
+        options = Options(argumentList=["all"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1503,7 +1503,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["all",], options.actions)
+        self.assertEqual(["all"], options.actions)
 
     def testConstructor_078(self):
         """
@@ -1525,13 +1525,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["all",], options.actions)
+        self.assertEqual(["all"], options.actions)
 
     def testConstructor_079(self):
         """
       Test constructor with argumentList=["collect", ], validate=False.
       """
-        options = Options(argumentList=["collect",], validate=False)
+        options = Options(argumentList=["collect"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1547,7 +1547,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect",], options.actions)
+        self.assertEqual(["collect"], options.actions)
 
     def testConstructor_080(self):
         """
@@ -1569,13 +1569,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect",], options.actions)
+        self.assertEqual(["collect"], options.actions)
 
     def testConstructor_081(self):
         """
       Test constructor with argumentList=["stage", ], validate=False.
       """
-        options = Options(argumentList=["stage",], validate=False)
+        options = Options(argumentList=["stage"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1591,7 +1591,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["stage",], options.actions)
+        self.assertEqual(["stage"], options.actions)
 
     def testConstructor_082(self):
         """
@@ -1613,13 +1613,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["stage",], options.actions)
+        self.assertEqual(["stage"], options.actions)
 
     def testConstructor_083(self):
         """
       Test constructor with argumentList=["store", ], validate=False.
       """
-        options = Options(argumentList=["store",], validate=False)
+        options = Options(argumentList=["store"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1635,7 +1635,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["store",], options.actions)
+        self.assertEqual(["store"], options.actions)
 
     def testConstructor_084(self):
         """
@@ -1657,13 +1657,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["store",], options.actions)
+        self.assertEqual(["store"], options.actions)
 
     def testConstructor_085(self):
         """
       Test constructor with argumentList=["purge", ], validate=False.
       """
-        options = Options(argumentList=["purge",], validate=False)
+        options = Options(argumentList=["purge"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1679,7 +1679,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["purge",], options.actions)
+        self.assertEqual(["purge"], options.actions)
 
     def testConstructor_086(self):
         """
@@ -1701,13 +1701,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["purge",], options.actions)
+        self.assertEqual(["purge"], options.actions)
 
     def testConstructor_087(self):
         """
       Test constructor with argumentList=["rebuild", ], validate=False.
       """
-        options = Options(argumentList=["rebuild",], validate=False)
+        options = Options(argumentList=["rebuild"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1723,7 +1723,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["rebuild",], options.actions)
+        self.assertEqual(["rebuild"], options.actions)
 
     def testConstructor_088(self):
         """
@@ -1745,13 +1745,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["rebuild",], options.actions)
+        self.assertEqual(["rebuild"], options.actions)
 
     def testConstructor_089(self):
         """
       Test constructor with argumentList=["validate", ], validate=False.
       """
-        options = Options(argumentList=["validate",], validate=False)
+        options = Options(argumentList=["validate"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1767,7 +1767,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["validate",], options.actions)
+        self.assertEqual(["validate"], options.actions)
 
     def testConstructor_090(self):
         """
@@ -1789,13 +1789,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["validate",], options.actions)
+        self.assertEqual(["validate"], options.actions)
 
     def testConstructor_091(self):
         """
       Test constructor with argumentList=["collect", "all", ], validate=False.
       """
-        options = Options(argumentList=["collect", "all",], validate=False)
+        options = Options(argumentList=["collect", "all"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1811,7 +1811,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "all",], options.actions)
+        self.assertEqual(["collect", "all"], options.actions)
 
     def testConstructor_092(self):
         """
@@ -1833,13 +1833,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "all",], options.actions)
+        self.assertEqual(["collect", "all"], options.actions)
 
     def testConstructor_093(self):
         """
       Test constructor with argumentList=["collect", "rebuild", ], validate=False.
       """
-        options = Options(argumentList=["collect", "rebuild",], validate=False)
+        options = Options(argumentList=["collect", "rebuild"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1855,7 +1855,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "rebuild",], options.actions)
+        self.assertEqual(["collect", "rebuild"], options.actions)
 
     def testConstructor_094(self):
         """
@@ -1877,13 +1877,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "rebuild",], options.actions)
+        self.assertEqual(["collect", "rebuild"], options.actions)
 
     def testConstructor_095(self):
         """
       Test constructor with argumentList=["collect", "validate", ], validate=False.
       """
-        options = Options(argumentList=["collect", "validate",], validate=False)
+        options = Options(argumentList=["collect", "validate"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -1899,7 +1899,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "validate",], options.actions)
+        self.assertEqual(["collect", "validate"], options.actions)
 
     def testConstructor_096(self):
         """
@@ -1921,13 +1921,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "validate",], options.actions)
+        self.assertEqual(["collect", "validate"], options.actions)
 
     def testConstructor_097(self):
         """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=False.
       """
-        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage",], validate=False)
+        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -1943,7 +1943,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "stage",], options.actions)
+        self.assertEqual(["collect", "stage"], options.actions)
 
     def testConstructor_098(self):
         """
@@ -1965,7 +1965,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "stage",], options.actions)
+        self.assertEqual(["collect", "stage"], options.actions)
 
     def testConstructor_099(self):
         """
@@ -1983,7 +1983,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--help", ], validate=True.
       """
-        options = Options(argumentList=["--help",], validate=True)
+        options = Options(argumentList=["--help"], validate=True)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2027,7 +2027,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-h", ], validate=True.
       """
-        options = Options(argumentList=["-h",], validate=True)
+        options = Options(argumentList=["-h"], validate=True)
         self.assertEqual(True, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2071,7 +2071,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--version", ], validate=True.
       """
-        options = Options(argumentList=["--version",], validate=True)
+        options = Options(argumentList=["--version"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -2115,7 +2115,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-V", ], validate=True.
       """
-        options = Options(argumentList=["-V",], validate=True)
+        options = Options(argumentList=["-V"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(True, options.version)
         self.assertEqual(False, options.verbose)
@@ -2159,7 +2159,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--verbose", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--verbose",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--verbose"], validate=True)
 
     def testConstructor_110(self):
         """
@@ -2171,7 +2171,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-b"], validate=True)
 
     def testConstructor_112(self):
         """
@@ -2183,7 +2183,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--quiet", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--quiet",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--quiet"], validate=True)
 
     def testConstructor_114(self):
         """
@@ -2195,7 +2195,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-q", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-q",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-q"], validate=True)
 
     def testConstructor_116(self):
         """
@@ -2207,7 +2207,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--config", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--config",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--config"], validate=True)
 
     def testConstructor_118(self):
         """
@@ -2219,7 +2219,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-c", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-c",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-c"], validate=True)
 
     def testConstructor_120(self):
         """
@@ -2231,7 +2231,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--config", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--config", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--config", "something"], validate=True)
 
     def testConstructor_122(self):
         """
@@ -2243,7 +2243,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-c", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-c", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-c", "something"], validate=True)
 
     def testConstructor_124(self):
         """
@@ -2255,7 +2255,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--full", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--full",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--full"], validate=True)
 
     def testConstructor_126(self):
         """
@@ -2267,7 +2267,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-f", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-f",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-f"], validate=True)
 
     def testConstructor_128(self):
         """
@@ -2279,7 +2279,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--logfile",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--logfile"], validate=True)
 
     def testConstructor_130(self):
         """
@@ -2291,7 +2291,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-l",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-l"], validate=True)
 
     def testConstructor_132(self):
         """
@@ -2303,7 +2303,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--logfile", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--logfile", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--logfile", "something"], validate=True)
 
     def testConstructor_134(self):
         """
@@ -2315,7 +2315,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-l", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-l", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-l", "something"], validate=True)
 
     def testConstructor_136(self):
         """
@@ -2327,7 +2327,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--owner",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--owner"], validate=True)
 
     def testConstructor_138(self):
         """
@@ -2339,7 +2339,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-o",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-o"], validate=True)
 
     def testConstructor_140(self):
         """
@@ -2351,7 +2351,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "something"], validate=True)
 
     def testConstructor_142(self):
         """
@@ -2363,7 +2363,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "something"], validate=True)
 
     def testConstructor_144(self):
         """
@@ -2375,7 +2375,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--owner", "a:b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--owner", "a:b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--owner", "a:b"], validate=True)
 
     def testConstructor_146(self):
         """
@@ -2387,7 +2387,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-o", "a:b", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-o", "a:b",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-o", "a:b"], validate=True)
 
     def testConstructor_148(self):
         """
@@ -2399,7 +2399,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["--mode",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["--mode"], validate=True)
 
     def testConstructor_150(self):
         """
@@ -2411,7 +2411,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", ], validate=True.
       """
-        self.assertRaises(GetoptError, Options, argumentList=["-m",], validate=True)
+        self.assertRaises(GetoptError, Options, argumentList=["-m"], validate=True)
 
     def testConstructor_152(self):
         """
@@ -2423,7 +2423,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "something"], validate=True)
 
     def testConstructor_154(self):
         """
@@ -2435,7 +2435,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "something", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "something",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "something"], validate=True)
 
     def testConstructor_156(self):
         """
@@ -2447,7 +2447,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--mode", "631", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--mode", "631",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--mode", "631"], validate=True)
 
     def testConstructor_158(self):
         """
@@ -2459,7 +2459,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-m", "631", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-m", "631",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-m", "631"], validate=True)
 
     def testConstructor_160(self):
         """
@@ -2471,7 +2471,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--output", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--output",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--output"], validate=True)
 
     def testConstructor_162(self):
         """
@@ -2483,7 +2483,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-O", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-O",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-O"], validate=True)
 
     def testConstructor_164(self):
         """
@@ -2495,7 +2495,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--debug", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--debug",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--debug"], validate=True)
 
     def testConstructor_166(self):
         """
@@ -2507,7 +2507,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-d", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-d",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-d"], validate=True)
 
     def testConstructor_168(self):
         """
@@ -2519,7 +2519,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--stack", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--stack",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--stack"], validate=True)
 
     def testConstructor_170(self):
         """
@@ -2531,7 +2531,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-s", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-s",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-s"], validate=True)
 
     def testConstructor_172(self):
         """
@@ -2543,7 +2543,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["all", ], validate=True.
       """
-        options = Options(argumentList=["all",], validate=True)
+        options = Options(argumentList=["all"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2559,7 +2559,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["all",], options.actions)
+        self.assertEqual(["all"], options.actions)
 
     def testConstructor_174(self):
         """
@@ -2581,13 +2581,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["all",], options.actions)
+        self.assertEqual(["all"], options.actions)
 
     def testConstructor_175(self):
         """
       Test constructor with argumentList=["collect", ], validate=True.
       """
-        options = Options(argumentList=["collect",], validate=True)
+        options = Options(argumentList=["collect"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2603,7 +2603,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect",], options.actions)
+        self.assertEqual(["collect"], options.actions)
 
     def testConstructor_176(self):
         """
@@ -2625,13 +2625,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect",], options.actions)
+        self.assertEqual(["collect"], options.actions)
 
     def testConstructor_177(self):
         """
       Test constructor with argumentList=["stage", ], validate=True.
       """
-        options = Options(argumentList=["stage",], validate=True)
+        options = Options(argumentList=["stage"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2647,7 +2647,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["stage",], options.actions)
+        self.assertEqual(["stage"], options.actions)
 
     def testConstructor_178(self):
         """
@@ -2669,13 +2669,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["stage",], options.actions)
+        self.assertEqual(["stage"], options.actions)
 
     def testConstructor_179(self):
         """
       Test constructor with argumentList=["store", ], validate=True.
       """
-        options = Options(argumentList=["store",], validate=True)
+        options = Options(argumentList=["store"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2691,7 +2691,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["store",], options.actions)
+        self.assertEqual(["store"], options.actions)
 
     def testConstructor_180(self):
         """
@@ -2713,13 +2713,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["store",], options.actions)
+        self.assertEqual(["store"], options.actions)
 
     def testConstructor_181(self):
         """
       Test constructor with argumentList=["purge", ], validate=True.
       """
-        options = Options(argumentList=["purge",], validate=True)
+        options = Options(argumentList=["purge"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2735,7 +2735,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["purge",], options.actions)
+        self.assertEqual(["purge"], options.actions)
 
     def testConstructor_182(self):
         """
@@ -2755,13 +2755,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["purge",], options.actions)
+        self.assertEqual(["purge"], options.actions)
 
     def testConstructor_183(self):
         """
       Test constructor with argumentList=["rebuild", ], validate=True.
       """
-        options = Options(argumentList=["rebuild",], validate=True)
+        options = Options(argumentList=["rebuild"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2777,7 +2777,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["rebuild",], options.actions)
+        self.assertEqual(["rebuild"], options.actions)
 
     def testConstructor_184(self):
         """
@@ -2799,13 +2799,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["rebuild",], options.actions)
+        self.assertEqual(["rebuild"], options.actions)
 
     def testConstructor_185(self):
         """
       Test constructor with argumentList=["validate", ], validate=True.
       """
-        options = Options(argumentList=["validate",], validate=True)
+        options = Options(argumentList=["validate"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2821,7 +2821,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["validate",], options.actions)
+        self.assertEqual(["validate"], options.actions)
 
     def testConstructor_186(self):
         """
@@ -2843,13 +2843,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(False, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["validate",], options.actions)
+        self.assertEqual(["validate"], options.actions)
 
     def testConstructor_187(self):
         """
       Test constructor with argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage", ], validate=True.
       """
-        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage",], validate=True)
+        options = Options(argumentList=["-d", "--verbose", "-O", "--mode", "600", "collect", "stage"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(True, options.verbose)
@@ -2865,7 +2865,7 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "stage",], options.actions)
+        self.assertEqual(["collect", "stage"], options.actions)
 
     def testConstructor_188(self):
         """
@@ -2887,13 +2887,13 @@ class TestOptions(unittest.TestCase):
         self.assertEqual(True, options.debug)
         self.assertEqual(False, options.stacktrace)
         self.assertEqual(False, options.diagnostics)
-        self.assertEqual(["collect", "stage",], options.actions)
+        self.assertEqual(["collect", "stage"], options.actions)
 
     def testConstructor_189(self):
         """
       Test constructor with argumentList=["--managed", ], validate=False.
       """
-        options = Options(argumentList=["--managed",], validate=False)
+        options = Options(argumentList=["--managed"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2937,7 +2937,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-M", ], validate=False.
       """
-        options = Options(argumentList=["-M",], validate=False)
+        options = Options(argumentList=["-M"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -2981,7 +2981,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--managed-only", ], validate=False.
       """
-        options = Options(argumentList=["--managed-only",], validate=False)
+        options = Options(argumentList=["--managed-only"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3025,7 +3025,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-N", ], validate=False.
       """
-        options = Options(argumentList=["-N",], validate=False)
+        options = Options(argumentList=["-N"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3069,7 +3069,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--managed", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--managed",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--managed"], validate=True)
 
     def testConstructor_198(self):
         """
@@ -3081,7 +3081,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-M", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-M",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-M"], validate=True)
 
     def testConstructor_200(self):
         """
@@ -3093,7 +3093,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--managed-only", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["--managed-only",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["--managed-only"], validate=True)
 
     def testConstructor_202(self):
         """
@@ -3105,7 +3105,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-N", ], validate=True.
       """
-        self.assertRaises(ValueError, Options, argumentList=["-N",], validate=True)
+        self.assertRaises(ValueError, Options, argumentList=["-N"], validate=True)
 
     def testConstructor_204(self):
         """
@@ -3117,7 +3117,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--diagnostics", ], validate=False.
       """
-        options = Options(argumentList=["--diagnostics",], validate=False)
+        options = Options(argumentList=["--diagnostics"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3161,7 +3161,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-D", ], validate=False.
       """
-        options = Options(argumentList=["-D",], validate=False)
+        options = Options(argumentList=["-D"], validate=False)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3205,7 +3205,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["--diagnostics", ], validate=True.
       """
-        options = Options(argumentList=["--diagnostics",], validate=True)
+        options = Options(argumentList=["--diagnostics"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -3249,7 +3249,7 @@ class TestOptions(unittest.TestCase):
         """
       Test constructor with argumentList=["-D", ], validate=True.
       """
-        options = Options(argumentList=["-D",], validate=True)
+        options = Options(argumentList=["-D"], validate=True)
         self.assertEqual(False, options.help)
         self.assertEqual(False, options.version)
         self.assertEqual(False, options.verbose)
@@ -4170,84 +4170,84 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.help = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--help",], argumentList)
+        self.assertEqual(["--help"], argumentList)
 
     def testBuildArgumentList_003(self):
         """Test with version set, validate=False."""
         options = Options()
         options.version = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--version",], argumentList)
+        self.assertEqual(["--version"], argumentList)
 
     def testBuildArgumentList_004(self):
         """Test with verbose set, validate=False."""
         options = Options()
         options.verbose = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--verbose",], argumentList)
+        self.assertEqual(["--verbose"], argumentList)
 
     def testBuildArgumentList_005(self):
         """Test with quiet set, validate=False."""
         options = Options()
         options.quiet = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--quiet",], argumentList)
+        self.assertEqual(["--quiet"], argumentList)
 
     def testBuildArgumentList_006(self):
         """Test with config set, validate=False."""
         options = Options()
         options.config = "stuff"
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--config", "stuff",], argumentList)
+        self.assertEqual(["--config", "stuff"], argumentList)
 
     def testBuildArgumentList_007(self):
         """Test with full set, validate=False."""
         options = Options()
         options.full = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--full",], argumentList)
+        self.assertEqual(["--full"], argumentList)
 
     def testBuildArgumentList_008(self):
         """Test with logfile set, validate=False."""
         options = Options()
         options.logfile = "bogus"
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--logfile", "bogus",], argumentList)
+        self.assertEqual(["--logfile", "bogus"], argumentList)
 
     def testBuildArgumentList_009(self):
         """Test with owner set, validate=False."""
         options = Options()
         options.owner = ("ken", "group")
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--owner", "ken:group",], argumentList)
+        self.assertEqual(["--owner", "ken:group"], argumentList)
 
     def testBuildArgumentList_010(self):
         """Test with mode set, validate=False."""
         options = Options()
         options.mode = 0o644
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--mode", "644",], argumentList)
+        self.assertEqual(["--mode", "644"], argumentList)
 
     def testBuildArgumentList_011(self):
         """Test with output set, validate=False."""
         options = Options()
         options.output = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--output",], argumentList)
+        self.assertEqual(["--output"], argumentList)
 
     def testBuildArgumentList_012(self):
         """Test with debug set, validate=False."""
         options = Options()
         options.debug = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--debug",], argumentList)
+        self.assertEqual(["--debug"], argumentList)
 
     def testBuildArgumentList_013(self):
         """Test with stacktrace set, validate=False."""
         options = Options()
         options.stacktrace = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--stack",], argumentList)
+        self.assertEqual(["--stack"], argumentList)
 
     def testBuildArgumentList_014(self):
         """Test with actions containing one item, validate=False."""
@@ -4256,7 +4256,7 @@ class TestOptions(unittest.TestCase):
             "collect",
         ]
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["collect",], argumentList)
+        self.assertEqual(["collect"], argumentList)
 
     def testBuildArgumentList_015(self):
         """Test with actions containing multiple items, validate=False."""
@@ -4268,7 +4268,7 @@ class TestOptions(unittest.TestCase):
             "purge",
         ]
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["collect", "stage", "store", "purge",], argumentList)
+        self.assertEqual(["collect", "stage", "store", "purge"], argumentList)
 
     def testBuildArgumentList_016(self):
         """Test with all values set, actions containing one item, validate=False."""
@@ -4378,14 +4378,14 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.help = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--help",], argumentList)
+        self.assertEqual(["--help"], argumentList)
 
     def testBuildArgumentList_020(self):
         """Test with version set, validate=True."""
         options = Options()
         options.version = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--version",], argumentList)
+        self.assertEqual(["--version"], argumentList)
 
     def testBuildArgumentList_021(self):
         """Test with verbose set, validate=True."""
@@ -4454,7 +4454,7 @@ class TestOptions(unittest.TestCase):
             "collect",
         ]
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["collect",], argumentList)
+        self.assertEqual(["collect"], argumentList)
 
     def testBuildArgumentList_032(self):
         """Test with actions containing multiple items, validate=True."""
@@ -4466,7 +4466,7 @@ class TestOptions(unittest.TestCase):
             "purge",
         ]
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["collect", "stage", "store", "purge",], argumentList)
+        self.assertEqual(["collect", "stage", "store", "purge"], argumentList)
 
     def testBuildArgumentList_033(self):
         """Test with all values set (except managed ones), actions containing one item, validate=True."""
@@ -4563,7 +4563,7 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.managed = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--managed",], argumentList)
+        self.assertEqual(["--managed"], argumentList)
 
     def testBuildArgumentList_036(self):
         """Test with managed set, validate=True."""
@@ -4576,7 +4576,7 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.managedOnly = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--managed-only",], argumentList)
+        self.assertEqual(["--managed-only"], argumentList)
 
     def testBuildArgumentList_038(self):
         """Test with managedOnly set, validate=True."""
@@ -4636,14 +4636,14 @@ class TestOptions(unittest.TestCase):
         options = Options()
         options.diagnostics = True
         argumentList = options.buildArgumentList(validate=False)
-        self.assertEqual(["--diagnostics",], argumentList)
+        self.assertEqual(["--diagnostics"], argumentList)
 
     def testBuildArgumentList_042(self):
         """Test with diagnostics set, validate=True."""
         options = Options()
         options.diagnostics = True
         argumentList = options.buildArgumentList(validate=True)
-        self.assertEqual(["--diagnostics",], argumentList)
+        self.assertEqual(["--diagnostics"], argumentList)
 
     #############################
     # Test buildArgumentString()
@@ -6112,7 +6112,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6135,7 +6135,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6158,7 +6158,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6181,7 +6181,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6204,7 +6204,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6216,7 +6216,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6228,7 +6228,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6240,7 +6240,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6263,7 +6263,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6286,7 +6286,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6309,7 +6309,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6332,7 +6332,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6344,7 +6344,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6356,7 +6356,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6368,7 +6368,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6391,7 +6391,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6414,7 +6414,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6437,7 +6437,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6460,7 +6460,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6472,7 +6472,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6484,7 +6484,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 250)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6496,7 +6496,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6519,7 +6519,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6542,7 +6542,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6565,7 +6565,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6588,7 +6588,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6600,7 +6600,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6612,7 +6612,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 350)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6624,7 +6624,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6647,7 +6647,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6670,7 +6670,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6693,7 +6693,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6716,7 +6716,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6728,7 +6728,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6740,7 +6740,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -6752,7 +6752,7 @@ class TestActionSet(unittest.TestCase):
             "one",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 450)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -6992,7 +6992,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 1)
@@ -7074,7 +7074,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual(100, actionSet.actionSet[0].index)
         self.assertEqual("collect", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("collect", "something"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("collect", "something")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
@@ -7094,7 +7094,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(100, actionSet.actionSet[0].index)
         self.assertEqual("collect", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("collect", "something"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("collect", "something")], actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
     def testActionSet_114(self):
@@ -7112,8 +7112,8 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual(100, actionSet.actionSet[0].index)
         self.assertEqual("collect", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("collect", "something1"),], actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("collect", "something2"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PreActionHook("collect", "something1")], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PostActionHook("collect", "something2")], actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
     def testActionSet_115(self):
@@ -7123,7 +7123,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -7141,7 +7141,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("store", "whatever"),
@@ -7161,7 +7161,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("store", "whatever"),
@@ -7181,7 +7181,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -7190,7 +7190,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("one", "extension")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
@@ -7201,7 +7201,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -7211,7 +7211,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
     def testActionSet_120(self):
@@ -7221,7 +7221,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension2"),
@@ -7231,8 +7231,8 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension1"),], actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension2"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PreActionHook("one", "extension1")], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PostActionHook("one", "extension2")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
     def testActionSet_121(self):
@@ -7243,7 +7243,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -7267,7 +7267,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("purge", "rm -f"),
@@ -7293,7 +7293,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("purge", "rm -f"),
@@ -7319,7 +7319,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("collect", "something"),
@@ -7333,7 +7333,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual(100, actionSet.actionSet[1].index)
         self.assertEqual("collect", actionSet.actionSet[1].name)
-        self.assertEqual([PreActionHook("collect", "something"),], actionSet.actionSet[1].preHooks)
+        self.assertEqual([PreActionHook("collect", "something")], actionSet.actionSet[1].preHooks)
         self.assertEqual(None, actionSet.actionSet[1].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
@@ -7345,7 +7345,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("collect", "something"),
@@ -7360,7 +7360,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(100, actionSet.actionSet[1].index)
         self.assertEqual("collect", actionSet.actionSet[1].name)
         self.assertEqual(None, actionSet.actionSet[1].preHooks)
-        self.assertEqual([PostActionHook("collect", "something"),], actionSet.actionSet[1].postHooks)
+        self.assertEqual([PostActionHook("collect", "something")], actionSet.actionSet[1].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
     def testActionSet_126(self):
@@ -7371,7 +7371,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -7380,7 +7380,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 2)
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("one", "extension")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual(100, actionSet.actionSet[1].index)
@@ -7397,7 +7397,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -7407,7 +7407,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual(100, actionSet.actionSet[1].index)
         self.assertEqual("collect", actionSet.actionSet[1].name)
@@ -7423,7 +7423,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -7437,7 +7437,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual(100, actionSet.actionSet[1].index)
         self.assertEqual("collect", actionSet.actionSet[1].name)
@@ -7455,7 +7455,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -7469,7 +7469,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(50, actionSet.actionSet[0].index)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual(200, actionSet.actionSet[1].index)
         self.assertEqual("stage", actionSet.actionSet[1].name)
@@ -8516,8 +8516,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8538,8 +8538,8 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8560,8 +8560,8 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8582,8 +8582,8 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(["purge",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["purge"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8604,8 +8604,8 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8617,8 +8617,8 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8630,8 +8630,8 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8644,7 +8644,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8666,7 +8666,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8688,7 +8688,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8710,7 +8710,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8731,8 +8731,8 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8753,8 +8753,8 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8775,8 +8775,8 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8798,7 +8798,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8811,7 +8811,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8824,7 +8824,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["collect"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -8837,7 +8837,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8859,7 +8859,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8881,7 +8881,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8903,7 +8903,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8924,8 +8924,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8946,8 +8946,8 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8968,8 +8968,8 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -8990,8 +8990,8 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9013,7 +9013,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9026,7 +9026,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9039,7 +9039,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["stage"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9051,8 +9051,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9073,8 +9073,8 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9095,8 +9095,8 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9117,8 +9117,8 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9140,7 +9140,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9162,7 +9162,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9184,7 +9184,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9206,7 +9206,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9227,8 +9227,8 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9240,8 +9240,8 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9253,8 +9253,8 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        dependencies = ActionDependencies(["store",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["store"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9267,7 +9267,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9289,7 +9289,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9311,7 +9311,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9333,7 +9333,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9355,7 +9355,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9368,7 +9368,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9381,7 +9381,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies(None, ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -9394,7 +9394,7 @@ class TestActionSet(unittest.TestCase):
             "one",
         ]
         dependencies = ActionDependencies([], ["purge"])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
@@ -9493,17 +9493,17 @@ class TestActionSet(unittest.TestCase):
             "four",
             "five",
         ]
-        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], None)
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge"], None)
+        dependencies2 = ActionDependencies(["stage", "store", "purge"], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge"], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge"], ["collect", "stage", "store"])
         dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
         eaction4 = ExtendedAction("four", "os.path", "isabs", dependencies=dependencies4)
         eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
-        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5,], "dependency")
+        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 9)
@@ -9560,17 +9560,17 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "two",
         ]
-        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge"], [])
+        dependencies2 = ActionDependencies(["stage", "store", "purge"], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge"], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge"], ["collect", "stage", "store"])
         dependencies5 = ActionDependencies(None, ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
         eaction4 = ExtendedAction("four", "os.path", "isabs", dependencies=dependencies4)
         eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
-        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5,], "dependency")
+        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 9)
@@ -9618,8 +9618,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 1)
@@ -9697,7 +9697,7 @@ class TestActionSet(unittest.TestCase):
         self.assertFalse(actionSet.actionSet is None)
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("collect", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("collect", "something"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("collect", "something")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
@@ -9716,7 +9716,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("collect", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("collect", "something"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("collect", "something")], actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
     def testDependencyMode_125(self):
@@ -9733,8 +9733,8 @@ class TestActionSet(unittest.TestCase):
         self.assertFalse(actionSet.actionSet is None)
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("collect", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("collect", "something1"),], actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("collect", "something2"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PreActionHook("collect", "something1")], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PostActionHook("collect", "something2")], actionSet.actionSet[0].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[0].function)
 
     def testDependencyMode_126(self):
@@ -9744,8 +9744,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9762,8 +9762,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("store", "whatever"),
@@ -9782,8 +9782,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("store", "whatever"),
@@ -9802,8 +9802,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -9811,7 +9811,7 @@ class TestActionSet(unittest.TestCase):
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("one", "extension")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
@@ -9822,8 +9822,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -9832,7 +9832,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
     def testDependencyMode_131(self):
@@ -9842,8 +9842,8 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension2"),
@@ -9852,8 +9852,8 @@ class TestActionSet(unittest.TestCase):
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 1)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension1"),], actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension2"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PreActionHook("one", "extension1")], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PostActionHook("one", "extension2")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
 
     def testDependencyMode_132(self):
@@ -9864,8 +9864,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = []
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9887,8 +9887,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("purge", "rm -f"),
@@ -9912,8 +9912,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("purge", "rm -f"),
@@ -9937,8 +9937,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("collect", "something"),
@@ -9950,7 +9950,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("collect", actionSet.actionSet[1].name)
-        self.assertEqual([PreActionHook("collect", "something"),], actionSet.actionSet[1].preHooks)
+        self.assertEqual([PreActionHook("collect", "something")], actionSet.actionSet[1].preHooks)
         self.assertEqual(None, actionSet.actionSet[1].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
@@ -9962,8 +9962,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("collect", "something"),
@@ -9976,7 +9976,7 @@ class TestActionSet(unittest.TestCase):
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("collect", actionSet.actionSet[1].name)
         self.assertEqual(None, actionSet.actionSet[1].preHooks)
-        self.assertEqual([PostActionHook("collect", "something"),], actionSet.actionSet[1].postHooks)
+        self.assertEqual([PostActionHook("collect", "something")], actionSet.actionSet[1].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[1].function)
 
     def testDependencyMode_137(self):
@@ -9987,8 +9987,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PreActionHook("one", "extension"),
@@ -9996,7 +9996,7 @@ class TestActionSet(unittest.TestCase):
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
         self.assertTrue(len(actionSet.actionSet) == 2)
         self.assertEqual("one", actionSet.actionSet[0].name)
-        self.assertEqual([PreActionHook("one", "extension"),], actionSet.actionSet[0].preHooks)
+        self.assertEqual([PreActionHook("one", "extension")], actionSet.actionSet[0].preHooks)
         self.assertEqual(None, actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("collect", actionSet.actionSet[1].name)
@@ -10012,8 +10012,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], [])
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], [])
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -10022,7 +10022,7 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 2)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("collect", actionSet.actionSet[1].name)
         self.assertEqual(None, actionSet.actionSet[1].preHooks)
@@ -10037,8 +10037,8 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(["collect",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["collect"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -10050,11 +10050,11 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 2)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("collect", actionSet.actionSet[1].name)
         self.assertEqual(
-            [PreActionHook("collect", "something1"), PreActionHook("collect", "something2"),], actionSet.actionSet[1].preHooks
+            [PreActionHook("collect", "something1"), PreActionHook("collect", "something2")], actionSet.actionSet[1].preHooks
         )
         self.assertEqual(None, actionSet.actionSet[1].postHooks)
         self.assertEqual(executeCollect, actionSet.actionSet[1].function)
@@ -10067,8 +10067,8 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(["stage",], None)
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
+        dependencies = ActionDependencies(["stage"], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies)], "dependency")
         options = OptionsConfig()
         options.hooks = [
             PostActionHook("one", "extension"),
@@ -10080,12 +10080,12 @@ class TestActionSet(unittest.TestCase):
         self.assertTrue(len(actionSet.actionSet) == 2)
         self.assertEqual("one", actionSet.actionSet[0].name)
         self.assertEqual(None, actionSet.actionSet[0].preHooks)
-        self.assertEqual([PostActionHook("one", "extension"),], actionSet.actionSet[0].postHooks)
+        self.assertEqual([PostActionHook("one", "extension")], actionSet.actionSet[0].postHooks)
         self.assertEqual(isdir, actionSet.actionSet[0].function)
         self.assertEqual("stage", actionSet.actionSet[1].name)
         self.assertEqual(None, actionSet.actionSet[1].preHooks)
         self.assertEqual(
-            [PostActionHook("stage", "whatever1"), PostActionHook("stage", "whatever2"),], actionSet.actionSet[1].postHooks
+            [PostActionHook("stage", "whatever1"), PostActionHook("stage", "whatever2")], actionSet.actionSet[1].postHooks
         )
         self.assertEqual(executeStage, actionSet.actionSet[1].function)
 
@@ -10105,17 +10105,17 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "two",
         ]
-        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
-        dependencies5 = ActionDependencies(["one",], ["collect", "stage", "store", "purge"])
+        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge"], [])
+        dependencies2 = ActionDependencies(["stage", "store", "purge"], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge"], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge"], ["collect", "stage", "store"])
+        dependencies5 = ActionDependencies(["one"], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
         eaction4 = ExtendedAction("four", "os.path", "isabs", dependencies=dependencies4)
         eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
-        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5,], "dependency")
+        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -10135,17 +10135,17 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "two",
         ]
-        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
-        dependencies3 = ActionDependencies(["store", "bogus",], ["collect", "stage"])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies1 = ActionDependencies(["collect", "stage", "store", "purge"], [])
+        dependencies2 = ActionDependencies(["stage", "store", "purge"], ["collect"])
+        dependencies3 = ActionDependencies(["store", "bogus"], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge"], ["collect", "stage", "store"])
         dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
         eaction4 = ExtendedAction("four", "os.path", "isabs", dependencies=dependencies4)
         eaction5 = ExtendedAction("five", "os.path", "exists", dependencies=dependencies5)
-        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5,], "dependency")
+        extensions = ExtensionsConfig([eaction1, eaction2, eaction3, eaction4, eaction5], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
 
@@ -10498,7 +10498,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -10523,7 +10523,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -10548,7 +10548,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -10573,7 +10573,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -10693,7 +10693,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11065,7 +11065,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11091,7 +11091,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11117,7 +11117,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11143,7 +11143,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11266,7 +11266,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11567,7 +11567,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11587,7 +11587,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11607,7 +11607,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11627,7 +11627,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -11705,7 +11705,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12087,7 +12087,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12113,7 +12113,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12139,7 +12139,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12165,7 +12165,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12261,7 +12261,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12749,7 +12749,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12795,7 +12795,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12831,7 +12831,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -12877,7 +12877,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13033,7 +13033,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13546,7 +13546,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13593,7 +13593,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13630,7 +13630,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13677,7 +13677,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -13836,7 +13836,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -14398,7 +14398,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -14455,7 +14455,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -14497,7 +14497,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -14554,7 +14554,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -14743,7 +14743,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -15455,7 +15455,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -15524,7 +15524,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -15578,7 +15578,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -15647,7 +15647,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 150)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",
@@ -15905,7 +15905,7 @@ class TestActionSet(unittest.TestCase):
         actions = [
             "one",
         ]
-        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50),], None)
+        extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", 50)], None)
         options = OptionsConfig()
         options.managedActions = [
             "collect",

@@ -207,7 +207,7 @@ class TestPostgresqlConfig(unittest.TestCase):
         self.assertEqual("user", postgresql.user)
         self.assertEqual("gzip", postgresql.compressMode)
         self.assertEqual(True, postgresql.all)
-        self.assertEqual(["one",], postgresql.databases)
+        self.assertEqual(["one"], postgresql.databases)
 
     def testConstructor_005(self):
         """
@@ -217,7 +217,7 @@ class TestPostgresqlConfig(unittest.TestCase):
         self.assertEqual("user", postgresql.user)
         self.assertEqual("bzip2", postgresql.compressMode)
         self.assertEqual(True, postgresql.all)
-        self.assertEqual(["one", "two",], postgresql.databases)
+        self.assertEqual(["one", "two"], postgresql.databases)
 
     def testConstructor_006(self):
         """
@@ -350,9 +350,9 @@ class TestPostgresqlConfig(unittest.TestCase):
         postgresql.databases = [
             "/whatever",
         ]
-        self.assertEqual(["/whatever",], postgresql.databases)
+        self.assertEqual(["/whatever"], postgresql.databases)
         postgresql.databases.append("/stuff")
-        self.assertEqual(["/whatever", "/stuff",], postgresql.databases)
+        self.assertEqual(["/whatever", "/stuff"], postgresql.databases)
 
     def testConstructor_019(self):
         """
@@ -364,9 +364,9 @@ class TestPostgresqlConfig(unittest.TestCase):
             "/whatever",
             "/stuff",
         ]
-        self.assertEqual(["/whatever", "/stuff",], postgresql.databases)
+        self.assertEqual(["/whatever", "/stuff"], postgresql.databases)
         postgresql.databases.append("/etc/X11")
-        self.assertEqual(["/whatever", "/stuff", "/etc/X11",], postgresql.databases)
+        self.assertEqual(["/whatever", "/stuff", "/etc/X11"], postgresql.databases)
 
     def testConstructor_020(self):
         """
@@ -898,13 +898,13 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual("user", config.postgresql.user)
         self.assertEqual("gzip", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database",], config.postgresql.databases)
+        self.assertEqual(["database"], config.postgresql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.postgresql)
         self.assertEqual("user", config.postgresql.user)
         self.assertEqual("gzip", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database",], config.postgresql.databases)
+        self.assertEqual(["database"], config.postgresql.databases)
 
     def testParse_005(self):
         """
@@ -918,13 +918,13 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual("user", config.postgresql.user)
         self.assertEqual("bzip2", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database1", "database2",], config.postgresql.databases)
+        self.assertEqual(["database1", "database2"], config.postgresql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.postgresql)
         self.assertEqual("user", config.postgresql.user)
         self.assertEqual("bzip2", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database1", "database2",], config.postgresql.databases)
+        self.assertEqual(["database1", "database2"], config.postgresql.databases)
 
     def testParse_006(self):
         """
@@ -938,13 +938,13 @@ class TestLocalConfig(unittest.TestCase):
         self.assertEqual(None, config.postgresql.user)
         self.assertEqual("bzip2", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database1", "database2",], config.postgresql.databases)
+        self.assertEqual(["database1", "database2"], config.postgresql.databases)
         config = LocalConfig(xmlData=contents, validate=False)
         self.assertNotEqual(None, config.postgresql)
         self.assertEqual(None, config.postgresql.user)
         self.assertEqual("bzip2", config.postgresql.compressMode)
         self.assertEqual(False, config.postgresql.all)
-        self.assertEqual(["database1", "database2",], config.postgresql.databases)
+        self.assertEqual(["database1", "database2"], config.postgresql.databases)
 
     ###################
     # Test addConfig()

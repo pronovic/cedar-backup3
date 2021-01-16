@@ -715,7 +715,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.applicationId = "one"
         result = isoImage._buildGeneralArgs()
-        self.assertEqual(["-A", "one",], result)
+        self.assertEqual(["-A", "one"], result)
 
     def testUtilityMethods_007(self):
         """
@@ -724,7 +724,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.biblioFile = "two"
         result = isoImage._buildGeneralArgs()
-        self.assertEqual(["-biblio", "two",], result)
+        self.assertEqual(["-biblio", "two"], result)
 
     def testUtilityMethods_008(self):
         """
@@ -733,7 +733,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.publisherId = "three"
         result = isoImage._buildGeneralArgs()
-        self.assertEqual(["-publisher", "three",], result)
+        self.assertEqual(["-publisher", "three"], result)
 
     def testUtilityMethods_009(self):
         """
@@ -742,7 +742,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.preparerId = "four"
         result = isoImage._buildGeneralArgs()
-        self.assertEqual(["-p", "four",], result)
+        self.assertEqual(["-p", "four"], result)
 
     def testUtilityMethods_010(self):
         """
@@ -751,7 +751,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.volumeId = "five"
         result = isoImage._buildGeneralArgs()
-        self.assertEqual(["-V", "five",], result)
+        self.assertEqual(["-V", "five"], result)
 
     def testUtilityMethods_011(self):
         """
@@ -761,7 +761,7 @@ class TestIsoImage(unittest.TestCase):
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_012(self):
         """
@@ -773,7 +773,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.useRockRidge = True
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_013(self):
         """
@@ -785,7 +785,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.useRockRidge = False
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_014(self):
         """
@@ -795,7 +795,7 @@ class TestIsoImage(unittest.TestCase):
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device=None, boundaries=(1, 2))
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_015(self):
         """
@@ -805,7 +805,7 @@ class TestIsoImage(unittest.TestCase):
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "-r", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_016(self):
         """
@@ -815,7 +815,7 @@ class TestIsoImage(unittest.TestCase):
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=(1, 2))
         result = isoImage._buildSizeArgs(entries)
-        self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-print-size", "-graft-points", "-r", "-C", "1,2", "-M", "/dev/cdrw", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_017(self):
         """
@@ -825,7 +825,7 @@ class TestIsoImage(unittest.TestCase):
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-        self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_018(self):
         """
@@ -837,7 +837,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.useRockRidge = True
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-        self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-graft-points", "-r", "-o", "/tmp/file.iso", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_019(self):
         """
@@ -849,7 +849,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         isoImage.useRockRidge = False
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_020(self):
         """
@@ -860,7 +860,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(device=None, boundaries=(3, 4))
         isoImage.useRockRidge = False
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_021(self):
         """
@@ -871,7 +871,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
         isoImage.useRockRidge = False
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
-        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three",], result)
+        self.assertEqual(["-graft-points", "-o", "/tmp/file.iso", "backup1/=/one/two/three"], result)
 
     def testUtilityMethods_022(self):
         """
@@ -883,7 +883,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage.useRockRidge = False
         result = isoImage._buildWriteArgs(entries, "/tmp/file.iso")
         self.assertEqual(
-            ["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three",], result
+            ["-graft-points", "-o", "/tmp/file.iso", "-C", "3,4", "-M", "/dev/cdrw", "backup1/=/one/two/three"], result
         )
 
     ##################

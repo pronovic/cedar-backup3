@@ -805,77 +805,77 @@ class TestCdWriter(unittest.TestCase):
       Test _buildOpenTrayArgs().
       """
         args = CdWriter._buildOpenTrayArgs(device="/dev/stuff")
-        self.assertEqual(["/dev/stuff",], args)
+        self.assertEqual(["/dev/stuff"], args)
 
     def testBuildArgs_002(self):
         """
       Test _buildCloseTrayArgs().
       """
         args = CdWriter._buildCloseTrayArgs(device="/dev/stuff")
-        self.assertEqual(["-t", "/dev/stuff",], args)
+        self.assertEqual(["-t", "/dev/stuff"], args)
 
     def testBuildArgs_003(self):
         """
       Test _buildPropertiesArgs().
       """
         args = CdWriter._buildPropertiesArgs(hardwareId="0,0,0")
-        self.assertEqual(["-prcap", "dev=0,0,0",], args)
+        self.assertEqual(["-prcap", "dev=0,0,0"], args)
 
     def testBuildArgs_004(self):
         """
       Test _buildBoundariesArgs().
       """
         args = CdWriter._buildBoundariesArgs(hardwareId="ATA:0,0,0")
-        self.assertEqual(["-msinfo", "dev=ATA:0,0,0",], args)
+        self.assertEqual(["-msinfo", "dev=ATA:0,0,0"], args)
 
     def testBuildArgs_005(self):
         """
       Test _buildBoundariesArgs().
       """
         args = CdWriter._buildBoundariesArgs(hardwareId="ATAPI:0,0,0")
-        self.assertEqual(["-msinfo", "dev=ATAPI:0,0,0",], args)
+        self.assertEqual(["-msinfo", "dev=ATAPI:0,0,0"], args)
 
     def testBuildArgs_006(self):
         """
       Test _buildBlankArgs(), default drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="ATA:0,0,0")
-        self.assertEqual(["-v", "blank=fast", "dev=ATA:0,0,0",], args)
+        self.assertEqual(["-v", "blank=fast", "dev=ATA:0,0,0"], args)
 
     def testBuildArgs_007(self):
         """
       Test _buildBlankArgs(), default drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="ATAPI:0,0,0")
-        self.assertEqual(["-v", "blank=fast", "dev=ATAPI:0,0,0",], args)
+        self.assertEqual(["-v", "blank=fast", "dev=ATAPI:0,0,0"], args)
 
     def testBuildArgs_008(self):
         """
       Test _buildBlankArgs(), with None for drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=None)
-        self.assertEqual(["-v", "blank=fast", "dev=0,0,0",], args)
+        self.assertEqual(["-v", "blank=fast", "dev=0,0,0"], args)
 
     def testBuildArgs_009(self):
         """
       Test _buildBlankArgs(), with 1 for drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=1)
-        self.assertEqual(["-v", "blank=fast", "speed=1", "dev=0,0,0",], args)
+        self.assertEqual(["-v", "blank=fast", "speed=1", "dev=0,0,0"], args)
 
     def testBuildArgs_010(self):
         """
       Test _buildBlankArgs(), with 5 for drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="ATA:1,2,3", driveSpeed=5)
-        self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATA:1,2,3",], args)
+        self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATA:1,2,3"], args)
 
     def testBuildArgs_011(self):
         """
       Test _buildBlankArgs(), with 5 for drive speed.
       """
         args = CdWriter._buildBlankArgs(hardwareId="ATAPI:1,2,3", driveSpeed=5)
-        self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATAPI:1,2,3",], args)
+        self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATAPI:1,2,3"], args)
 
     def testBuildArgs_012(self):
         """

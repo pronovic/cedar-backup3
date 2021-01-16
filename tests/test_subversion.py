@@ -1131,13 +1131,13 @@ class TestRepositoryDir(unittest.TestCase):
         """
       Test constructor with all values filled in.
       """
-        repositoryDir = RepositoryDir("type", "/path/to/it", "daily", "gzip", ["whatever",], [".*software.*"])
+        repositoryDir = RepositoryDir("type", "/path/to/it", "daily", "gzip", ["whatever"], [".*software.*"])
         self.assertEqual("type", repositoryDir.repositoryType)
         self.assertEqual("/path/to/it", repositoryDir.directoryPath)
         self.assertEqual("daily", repositoryDir.collectMode)
         self.assertEqual("gzip", repositoryDir.compressMode)
-        self.assertEqual(["whatever",], repositoryDir.relativeExcludePaths)
-        self.assertEqual([".*software.*",], repositoryDir.excludePatterns)
+        self.assertEqual(["whatever"], repositoryDir.relativeExcludePaths)
+        self.assertEqual([".*software.*"], repositoryDir.excludePatterns)
 
     def testConstructor_003(self):
         """
@@ -1302,9 +1302,9 @@ class TestRepositoryDir(unittest.TestCase):
         repositoryDir.relativeExcludePaths = [
             "stuff",
         ]
-        self.assertEqual(["stuff",], repositoryDir.relativeExcludePaths)
+        self.assertEqual(["stuff"], repositoryDir.relativeExcludePaths)
         repositoryDir.relativeExcludePaths.insert(0, "bogus")
-        self.assertEqual(["bogus", "stuff",], repositoryDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff"], repositoryDir.relativeExcludePaths)
 
     def testConstructor_020(self):
         """
@@ -1317,9 +1317,9 @@ class TestRepositoryDir(unittest.TestCase):
             "bogus",
             "stuff",
         ]
-        self.assertEqual(["bogus", "stuff",], repositoryDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff"], repositoryDir.relativeExcludePaths)
         repositoryDir.relativeExcludePaths.append("more")
-        self.assertEqual(["bogus", "stuff", "more",], repositoryDir.relativeExcludePaths)
+        self.assertEqual(["bogus", "stuff", "more"], repositoryDir.relativeExcludePaths)
 
     def testConstructor_021(self):
         """
@@ -1348,9 +1348,9 @@ class TestRepositoryDir(unittest.TestCase):
         repositoryDir.excludePatterns = [
             "valid",
         ]
-        self.assertEqual(["valid",], repositoryDir.excludePatterns)
+        self.assertEqual(["valid"], repositoryDir.excludePatterns)
         repositoryDir.excludePatterns.append("more")
-        self.assertEqual(["valid", "more",], repositoryDir.excludePatterns)
+        self.assertEqual(["valid", "more"], repositoryDir.excludePatterns)
 
     def testConstructor_024(self):
         """
@@ -1362,9 +1362,9 @@ class TestRepositoryDir(unittest.TestCase):
             "valid",
             "more",
         ]
-        self.assertEqual(["valid", "more",], repositoryDir.excludePatterns)
+        self.assertEqual(["valid", "more"], repositoryDir.excludePatterns)
         repositoryDir.excludePatterns.insert(1, "bogus")
-        self.assertEqual(["valid", "bogus", "more",], repositoryDir.excludePatterns)
+        self.assertEqual(["valid", "bogus", "more"], repositoryDir.excludePatterns)
 
     def testConstructor_025(self):
         """
@@ -1713,9 +1713,9 @@ class TestSubversionConfig(unittest.TestCase):
         subversion.repositories = [
             Repository(),
         ]
-        self.assertEqual([Repository(),], subversion.repositories)
+        self.assertEqual([Repository()], subversion.repositories)
         subversion.repositories.append(Repository(collectMode="daily"))
-        self.assertEqual([Repository(), Repository(collectMode="daily"),], subversion.repositories)
+        self.assertEqual([Repository(), Repository(collectMode="daily")], subversion.repositories)
 
     def testConstructor_015(self):
         """
@@ -1727,10 +1727,10 @@ class TestSubversionConfig(unittest.TestCase):
             Repository(collectMode="daily"),
             Repository(collectMode="weekly"),
         ]
-        self.assertEqual([Repository(collectMode="daily"), Repository(collectMode="weekly"),], subversion.repositories)
+        self.assertEqual([Repository(collectMode="daily"), Repository(collectMode="weekly")], subversion.repositories)
         subversion.repositories.append(Repository(collectMode="incr"))
         self.assertEqual(
-            [Repository(collectMode="daily"), Repository(collectMode="weekly"), Repository(collectMode="incr"),],
+            [Repository(collectMode="daily"), Repository(collectMode="weekly"), Repository(collectMode="incr")],
             subversion.repositories,
         )
 
@@ -2533,7 +2533,7 @@ class TestLocalConfig(unittest.TestCase):
         repositoryDirs.append(RepositoryDir(directoryPath="/opt/public/svn/one"))
         repositoryDirs.append(
             RepositoryDir(
-                repositoryType="BDB", directoryPath="/opt/public/svn/two", collectMode="weekly", relativeExcludePaths=["software",]
+                repositoryType="BDB", directoryPath="/opt/public/svn/two", collectMode="weekly", relativeExcludePaths=["software"]
             )
         )
         repositoryDirs.append(
@@ -2545,8 +2545,8 @@ class TestLocalConfig(unittest.TestCase):
                 directoryPath="/opt/public/svn/four",
                 collectMode="incr",
                 compressMode="bzip2",
-                relativeExcludePaths=["cedar", "banner",],
-                excludePatterns=[".*software.*", ".*database.*",],
+                relativeExcludePaths=["cedar", "banner"],
+                excludePatterns=[".*software.*", ".*database.*"],
             )
         )
         path = self.resources["subversion.conf.7"]

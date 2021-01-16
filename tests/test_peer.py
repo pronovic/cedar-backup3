@@ -834,7 +834,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertEqual(rcpCommand, peer.rcpCommand)
         self.assertEqual(None, peer.rshCommand)
         self.assertEqual(None, peer.cbackCommand)
-        self.assertEqual(["rcp", "-one", "--two", "three", "four five", "'six", "seven'", "eight",], peer._rcpCommandList)
+        self.assertEqual(["rcp", "-one", "--two", "three", "four five", "'six", "seven'", "eight"], peer._rcpCommandList)
         self.assertEqual(DEF_RSH_COMMAND, peer._rshCommandList)
 
     def testBasic_005(self):
@@ -874,7 +874,7 @@ class TestRemotePeer(unittest.TestCase):
         self.assertEqual(None, peer.cbackCommand)
         self.assertEqual(DEF_RCP_COMMAND, peer._rcpCommandList)
         self.assertEqual(DEF_RCP_COMMAND, peer._rcpCommandList)
-        self.assertEqual(["rsh", "--whatever", "-something", "a b", "else",], peer._rshCommandList)
+        self.assertEqual(["rsh", "--whatever", "-something", "a b", "else"], peer._rshCommandList)
 
     def testBasic_007(self):
         """
