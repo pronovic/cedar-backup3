@@ -492,7 +492,7 @@ class TestDvdWriter(unittest.TestCase):
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
         dvdwriter.addImageEntry(path, None)
-        self.assertEqual({path: None,}, dvdwriter._image.entries)
+        self.assertEqual({path: None}, dvdwriter._image.entries)
 
     def testAddImageEntry_006(self):
         """
@@ -504,7 +504,7 @@ class TestDvdWriter(unittest.TestCase):
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
         dvdwriter.addImageEntry(path, "ken")
-        self.assertEqual({path: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path: "ken"}, dvdwriter._image.entries)
 
     def testAddImageEntry_007(self):
         """
@@ -538,13 +538,13 @@ class TestDvdWriter(unittest.TestCase):
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
         dvdwriter.addImageEntry(path, "ken")
-        self.assertEqual({path: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path: "ken"}, dvdwriter._image.entries)
         dvdwriter.addImageEntry(path, "ken")
-        self.assertEqual({path: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path: "ken"}, dvdwriter._image.entries)
         dvdwriter.addImageEntry(path, "ken")
-        self.assertEqual({path: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path: "ken"}, dvdwriter._image.entries)
         dvdwriter.addImageEntry(path, "ken")
-        self.assertEqual({path: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path: "ken"}, dvdwriter._image.entries)
 
     def testAddImageEntry_010(self):
         """
@@ -560,11 +560,11 @@ class TestDvdWriter(unittest.TestCase):
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
         dvdwriter.addImageEntry(path1, None)
-        self.assertEqual({path1: None,}, dvdwriter._image.entries)
+        self.assertEqual({path1: None}, dvdwriter._image.entries)
         dvdwriter.addImageEntry(path2, "ken")
-        self.assertEqual({path1: None, path2: "ken",}, dvdwriter._image.entries)
+        self.assertEqual({path1: None, path2: "ken"}, dvdwriter._image.entries)
         dvdwriter.addImageEntry(path3, "another")
-        self.assertEqual({path1: None, path2: "ken", path3: "another",}, dvdwriter._image.entries)
+        self.assertEqual({path1: None, path2: "ken", path3: "another"}, dvdwriter._image.entries)
 
     ############################
     # Test _searchForOverburn()

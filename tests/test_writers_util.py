@@ -927,7 +927,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
 
     def testAddEntry_005(self):
         """
@@ -938,7 +938,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
-        self.assertEqual({file1: "whatever",}, isoImage.entries)
+        self.assertEqual({file1: "whatever"}, isoImage.entries)
 
     def testAddEntry_006(self):
         """
@@ -949,7 +949,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff")
-        self.assertEqual({file1: "stuff",}, isoImage.entries)
+        self.assertEqual({file1: "stuff"}, isoImage.entries)
 
     def testAddEntry_007(self):
         """
@@ -960,7 +960,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff")
-        self.assertEqual({file1: "stuff",}, isoImage.entries)
+        self.assertEqual({file1: "stuff"}, isoImage.entries)
 
     def testAddEntry_008(self):
         """
@@ -973,7 +973,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint=None)
-        self.assertEqual({file1: "whatever",}, isoImage.entries)
+        self.assertEqual({file1: "whatever"}, isoImage.entries)
 
     def testAddEntry_009(self):
         """
@@ -984,7 +984,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1)
-        self.assertEqual({dir1: os.path.basename(dir1),}, isoImage.entries)
+        self.assertEqual({dir1: os.path.basename(dir1)}, isoImage.entries)
 
     def testAddEntry_010(self):
         """
@@ -1006,7 +1006,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1, graftPoint="s")
-        self.assertEqual({dir1: os.path.join("s", "tree9"),}, isoImage.entries)
+        self.assertEqual({dir1: os.path.join("s", "tree9")}, isoImage.entries)
 
     def testAddEntry_012(self):
         """
@@ -1017,7 +1017,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, contentsOnly=True)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
 
     def testAddEntry_013(self):
         """
@@ -1029,7 +1029,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, contentsOnly=True)
-        self.assertEqual({file1: "whatever",}, isoImage.entries)
+        self.assertEqual({file1: "whatever"}, isoImage.entries)
 
     def testAddEntry_014(self):
         """
@@ -1041,7 +1041,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
-        self.assertEqual({file1: "stuff",}, isoImage.entries)
+        self.assertEqual({file1: "stuff"}, isoImage.entries)
 
     def testAddEntry_015(self):
         """
@@ -1053,7 +1053,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
-        self.assertEqual({file1: "stuff",}, isoImage.entries)
+        self.assertEqual({file1: "stuff"}, isoImage.entries)
 
     def testAddEntry_016(self):
         """
@@ -1066,7 +1066,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint=None, contentsOnly=True)
-        self.assertEqual({file1: "whatever",}, isoImage.entries)
+        self.assertEqual({file1: "whatever"}, isoImage.entries)
 
     def testAddEntry_017(self):
         """
@@ -1077,7 +1077,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1, contentsOnly=True)
-        self.assertEqual({dir1: None,}, isoImage.entries)
+        self.assertEqual({dir1: None}, isoImage.entries)
 
     def testAddEntry_018(self):
         """
@@ -1101,7 +1101,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-        self.assertEqual({dir1: "s",}, isoImage.entries)
+        self.assertEqual({dir1: "s"}, isoImage.entries)
 
     def testAddEntry_020(self):
         """
@@ -1113,7 +1113,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="p")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-        self.assertEqual({dir1: "s",}, isoImage.entries)
+        self.assertEqual({dir1: "s"}, isoImage.entries)
 
     def testAddEntry_021(self):
         """
@@ -1125,7 +1125,7 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="p")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(dir1, graftPoint="s", contentsOnly=True)
-        self.assertEqual({dir1: "s",}, isoImage.entries)
+        self.assertEqual({dir1: "s"}, isoImage.entries)
 
     def testAddEntry_022(self):
         """
@@ -1136,9 +1136,9 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
         self.assertRaises(ValueError, isoImage.addEntry, file1, override=False)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
 
     def testAddEntry_023(self):
         """
@@ -1149,9 +1149,9 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
         isoImage.addEntry(file1, override=True)
-        self.assertEqual({file1: None,}, isoImage.entries)
+        self.assertEqual({file1: None}, isoImage.entries)
 
     def testAddEntry_024(self):
         """
@@ -1162,9 +1162,9 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="one")
-        self.assertEqual({file1: "one",}, isoImage.entries)
+        self.assertEqual({file1: "one"}, isoImage.entries)
         self.assertRaises(ValueError, isoImage.addEntry, file1, graftPoint="two", override=False)
-        self.assertEqual({file1: "one",}, isoImage.entries)
+        self.assertEqual({file1: "one"}, isoImage.entries)
 
     def testAddEntry_025(self):
         """
@@ -1175,9 +1175,9 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="one")
-        self.assertEqual({file1: "one",}, isoImage.entries)
+        self.assertEqual({file1: "one"}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="two", override=True)
-        self.assertEqual({file1: "two",}, isoImage.entries)
+        self.assertEqual({file1: "two"}, isoImage.entries)
 
     ##########################
     # Test getEstimatedSize()
