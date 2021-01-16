@@ -11,7 +11,7 @@ repos:
     hooks:
       - id: system
         name: Line Endings
-        entry: poetry run x2y -f dos -t unx docs/requirements.txt
+        entry: poetry run python -c "import sys; from x2y.x2y import main as x2y; sys.exit(0) if x2y(['-f', 'dos', '-t', 'unx', 'docs/requirements.txt']) in [0, 1] else sys.exit(1)"
         pass_filenames: false
         language: system
   - repo: local
