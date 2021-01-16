@@ -67,19 +67,19 @@ logger = logging.getLogger("CedarBackup3.log.actions.purge")
 # pylint: disable=W0613
 def executePurge(configPath, options, config):
     """
-   Executes the purge backup action.
+    Executes the purge backup action.
 
-   For each configured directory, we create a purge item list, remove from the
-   list anything that's younger than the configured retain days value, and then
-   purge from the filesystem what's left.
+    For each configured directory, we create a purge item list, remove from the
+    list anything that's younger than the configured retain days value, and then
+    purge from the filesystem what's left.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+    """
     logger.debug("Executing the 'purge' action.")
     if config.options is None or config.purge is None:
         raise ValueError("Purge configuration is not properly filled in.")

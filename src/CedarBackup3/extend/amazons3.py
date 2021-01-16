@@ -136,36 +136,36 @@ STORE_INDICATOR = "cback.amazons3"
 class AmazonS3Config(object):
 
     """
-   Class representing Amazon S3 configuration.
+    Class representing Amazon S3 configuration.
 
-   Amazon S3 configuration is used for storing backup data in Amazon's S3 cloud
-   storage using the ``s3cmd`` tool.
+    Amazon S3 configuration is used for storing backup data in Amazon's S3 cloud
+    storage using the ``s3cmd`` tool.
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The s3Bucket value must be a non-empty string
-      - The encryptCommand value, if set, must be a non-empty string
-      - The full backup size limit, if set, must be a ByteQuantity >= 0
-      - The incremental backup size limit, if set, must be a ByteQuantity >= 0
+       - The s3Bucket value must be a non-empty string
+       - The encryptCommand value, if set, must be a non-empty string
+       - The full backup size limit, if set, must be a ByteQuantity >= 0
+       - The incremental backup size limit, if set, must be a ByteQuantity >= 0
 
-   """
+    """
 
     def __init__(
         self, warnMidnite=None, s3Bucket=None, encryptCommand=None, fullBackupSizeLimit=None, incrementalBackupSizeLimit=None
     ):
         """
-      Constructor for the ``AmazonS3Config`` class.
+        Constructor for the ``AmazonS3Config`` class.
 
-      Args:
-         warnMidnite: Whether to generate warnings for crossing midnite
-         s3Bucket: Name of the Amazon S3 bucket in which to store the data
-         encryptCommand: Command used to encrypt backup data before upload to S3
-         fullBackupSizeLimit: Maximum size of a full backup, a ByteQuantity
-         incrementalBackupSizeLimit: Maximum size of an incremental backup, a ByteQuantity
+        Args:
+           warnMidnite: Whether to generate warnings for crossing midnite
+           s3Bucket: Name of the Amazon S3 bucket in which to store the data
+           encryptCommand: Command used to encrypt backup data before upload to S3
+           fullBackupSizeLimit: Maximum size of a full backup, a ByteQuantity
+           incrementalBackupSizeLimit: Maximum size of an incremental backup, a ByteQuantity
 
-      Raises:
-         ValueError: If one of the values is invalid
-      """
+        Raises:
+           ValueError: If one of the values is invalid
+        """
         self._warnMidnite = None
         self._s3Bucket = None
         self._encryptCommand = None
@@ -179,8 +179,8 @@ class AmazonS3Config(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "AmazonS3Config(%s, %s, %s, %s, %s)" % (
             self.warnMidnite,
             self.s3Bucket,
@@ -191,8 +191,8 @@ class AmazonS3Config(object):
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -209,12 +209,12 @@ class AmazonS3Config(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.warnMidnite != other.warnMidnite:
@@ -246,9 +246,9 @@ class AmazonS3Config(object):
 
     def _setWarnMidnite(self, value):
         """
-      Property target used to set the midnite warning flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the midnite warning flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._warnMidnite = True
         else:
@@ -256,14 +256,14 @@ class AmazonS3Config(object):
 
     def _getWarnMidnite(self):
         """
-      Property target used to get the midnite warning flag.
-      """
+        Property target used to get the midnite warning flag.
+        """
         return self._warnMidnite
 
     def _setS3Bucket(self, value):
         """
-      Property target used to set the S3 bucket.
-      """
+        Property target used to set the S3 bucket.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("S3 bucket must be non-empty string.")
@@ -271,14 +271,14 @@ class AmazonS3Config(object):
 
     def _getS3Bucket(self):
         """
-      Property target used to get the S3 bucket.
-      """
+        Property target used to get the S3 bucket.
+        """
         return self._s3Bucket
 
     def _setEncryptCommand(self, value):
         """
-      Property target used to set the encrypt command.
-      """
+        Property target used to set the encrypt command.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("Encrypt command must be non-empty string.")
@@ -286,17 +286,17 @@ class AmazonS3Config(object):
 
     def _getEncryptCommand(self):
         """
-      Property target used to get the encrypt command.
-      """
+        Property target used to get the encrypt command.
+        """
         return self._encryptCommand
 
     def _setFullBackupSizeLimit(self, value):
         """
-      Property target used to set the full backup size limit.
-      The value must be an integer >= 0.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the full backup size limit.
+        The value must be an integer >= 0.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is None:
             self._fullBackupSizeLimit = None
         else:
@@ -307,17 +307,17 @@ class AmazonS3Config(object):
 
     def _getFullBackupSizeLimit(self):
         """
-      Property target used to get the full backup size limit.
-      """
+        Property target used to get the full backup size limit.
+        """
         return self._fullBackupSizeLimit
 
     def _setIncrementalBackupSizeLimit(self, value):
         """
-      Property target used to set the incremental backup size limit.
-      The value must be an integer >= 0.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the incremental backup size limit.
+        The value must be an integer >= 0.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is None:
             self._incrementalBackupSizeLimit = None
         else:
@@ -328,8 +328,8 @@ class AmazonS3Config(object):
 
     def _getIncrementalBackupSizeLimit(self):
         """
-      Property target used to get the incremental backup size limit.
-      """
+        Property target used to get the incremental backup size limit.
+        """
         return self._incrementalBackupSizeLimit
 
     warnMidnite = property(_getWarnMidnite, _setWarnMidnite, None, "Whether to generate warnings for crossing midnite.")
@@ -355,49 +355,49 @@ class AmazonS3Config(object):
 class LocalConfig(object):
 
     """
-   Class representing this extension's configuration document.
+    Class representing this extension's configuration document.
 
-   This is not a general-purpose configuration object like the main Cedar
-   Backup configuration object.  Instead, it just knows how to parse and emit
-   amazons3-specific configuration values.  Third parties who need to read and
-   write configuration related to this extension should access it through the
-   constructor, ``validate`` and ``addConfig`` methods.
+    This is not a general-purpose configuration object like the main Cedar
+    Backup configuration object.  Instead, it just knows how to parse and emit
+    amazons3-specific configuration values.  Third parties who need to read and
+    write configuration related to this extension should access it through the
+    constructor, ``validate`` and ``addConfig`` methods.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, xmlData=None, xmlPath=None, validate=True):
         """
-      Initializes a configuration object.
+        Initializes a configuration object.
 
-      If you initialize the object without passing either ``xmlData`` or
-      ``xmlPath`` then configuration will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``xmlData`` or
+        ``xmlPath`` then configuration will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original XML data or original path is saved off by
-      this class.  Once the data has been parsed (successfully or not) this
-      original information is discarded.
+        No reference to the original XML data or original path is saved off by
+        this class.  Once the data has been parsed (successfully or not) this
+        original information is discarded.
 
-      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
-      method will be called (with its default arguments) against configuration
-      after successfully parsing any passed-in XML.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      XML document if lower-level validations fail.
+        Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
+        method will be called (with its default arguments) against configuration
+        after successfully parsing any passed-in XML.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        XML document if lower-level validations fail.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid configuration from disk.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid configuration from disk.
 
-      Args:
-         xmlData (String data): XML data representing configuration
-         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
-         validate (Boolean true/false): Validate the document after parsing it
-      Raises:
-         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
-         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
-         ValueError: If the parsed configuration document is not valid
-      """
+        Args:
+           xmlData (String data): XML data representing configuration
+           xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+           validate (Boolean true/false): Validate the document after parsing it
+        Raises:
+           ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+           ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+           ValueError: If the parsed configuration document is not valid
+        """
         self._amazons3 = None
         self.amazons3 = None
         if xmlData is not None and xmlPath is not None:
@@ -415,14 +415,14 @@ class LocalConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "LocalConfig(%s)" % (self.amazons3)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -439,13 +439,13 @@ class LocalConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.amazons3 != other.amazons3:
@@ -457,11 +457,11 @@ class LocalConfig(object):
 
     def _setAmazonS3(self, value):
         """
-      Property target used to set the amazons3 configuration value.
-      If not ``None``, the value must be a ``AmazonS3Config`` object.
-      Raises:
-         ValueError: If the value is not a ``AmazonS3Config``
-      """
+        Property target used to set the amazons3 configuration value.
+        If not ``None``, the value must be a ``AmazonS3Config`` object.
+        Raises:
+           ValueError: If the value is not a ``AmazonS3Config``
+        """
         if value is None:
             self._amazons3 = None
         else:
@@ -471,21 +471,21 @@ class LocalConfig(object):
 
     def _getAmazonS3(self):
         """
-      Property target used to get the amazons3 configuration value.
-      """
+        Property target used to get the amazons3 configuration value.
+        """
         return self._amazons3
 
     amazons3 = property(_getAmazonS3, _setAmazonS3, None, "AmazonS3 configuration in terms of a ``AmazonS3Config`` object.")
 
     def validate(self):
         """
-      Validates configuration represented by the object.
+        Validates configuration represented by the object.
 
-      AmazonS3 configuration must be filled in.  Within that, the s3Bucket target must be filled in
+        AmazonS3 configuration must be filled in.  Within that, the s3Bucket target must be filled in
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if self.amazons3 is None:
             raise ValueError("AmazonS3 section is required.")
         if self.amazons3.s3Bucket is None:
@@ -493,23 +493,23 @@ class LocalConfig(object):
 
     def addConfig(self, xmlDom, parentNode):
         """
-      Adds an <amazons3> configuration section as the next child of a parent.
+        Adds an <amazons3> configuration section as the next child of a parent.
 
-      Third parties should use this function to write configuration related to
-      this extension.
+        Third parties should use this function to write configuration related to
+        this extension.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         warnMidnite                 //cb_config/amazons3/warn_midnite
-         s3Bucket                    //cb_config/amazons3/s3_bucket
-         encryptCommand              //cb_config/amazons3/encrypt
-         fullBackupSizeLimit         //cb_config/amazons3/full_size_limit
-         incrementalBackupSizeLimit  //cb_config/amazons3/incr_size_limit
+           warnMidnite                 //cb_config/amazons3/warn_midnite
+           s3Bucket                    //cb_config/amazons3/s3_bucket
+           encryptCommand              //cb_config/amazons3/encrypt
+           fullBackupSizeLimit         //cb_config/amazons3/full_size_limit
+           incrementalBackupSizeLimit  //cb_config/amazons3/incr_size_limit
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+        """
         if self.amazons3 is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "amazons3")
             addBooleanNode(xmlDom, sectionNode, "warn_midnite", self.amazons3.warnMidnite)
@@ -520,40 +520,40 @@ class LocalConfig(object):
 
     def _parseXmlData(self, xmlData):
         """
-      Internal method to parse an XML string into the object.
+        Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (``xmlDom``) and then
-      calls a static method to parse the amazons3 configuration section.
+        This method parses the XML document into a DOM tree (``xmlDom``) and then
+        calls a static method to parse the amazons3 configuration section.
 
-      Args:
-         xmlData (String data): XML data to be parsed
-      Raises:
-         ValueError: If the XML cannot be successfully parsed
-      """
+        Args:
+           xmlData (String data): XML data to be parsed
+        Raises:
+           ValueError: If the XML cannot be successfully parsed
+        """
         (xmlDom, parentNode) = createInputDom(xmlData)
         self._amazons3 = LocalConfig._parseAmazonS3(parentNode)
 
     @staticmethod
     def _parseAmazonS3(parent):
         """
-      Parses an amazons3 configuration section.
+        Parses an amazons3 configuration section.
 
-      We read the following individual fields::
+        We read the following individual fields::
 
-         warnMidnite                 //cb_config/amazons3/warn_midnite
-         s3Bucket                    //cb_config/amazons3/s3_bucket
-         encryptCommand              //cb_config/amazons3/encrypt
-         fullBackupSizeLimit         //cb_config/amazons3/full_size_limit
-         incrementalBackupSizeLimit  //cb_config/amazons3/incr_size_limit
+           warnMidnite                 //cb_config/amazons3/warn_midnite
+           s3Bucket                    //cb_config/amazons3/s3_bucket
+           encryptCommand              //cb_config/amazons3/encrypt
+           fullBackupSizeLimit         //cb_config/amazons3/full_size_limit
+           incrementalBackupSizeLimit  //cb_config/amazons3/incr_size_limit
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          ``AmazonS3Config`` object or ``None`` if the section does not exist
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            ``AmazonS3Config`` object or ``None`` if the section does not exist
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         amazons3 = None
         section = readFirstChild(parent, "amazons3")
         if section is not None:
@@ -577,16 +577,16 @@ class LocalConfig(object):
 
 def executeAction(configPath, options, config):
     """
-   Executes the amazons3 backup action.
+    Executes the amazons3 backup action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there are I/O problems reading or writing files
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there are I/O problems reading or writing files
+    """
     logger.debug("Executing amazons3 extended action.")
     if not isRunningAsRoot():
         logger.error("Error: the amazons3 extended action must be run as root.")
@@ -615,21 +615,21 @@ def executeAction(configPath, options, config):
 
 def _findCorrectDailyDir(options, config, local):
     """
-   Finds the correct daily staging directory to be written to Amazon S3.
+    Finds the correct daily staging directory to be written to Amazon S3.
 
-   This is substantially similar to the same function in store.py.  The
-   main difference is that it doesn't rely on store configuration at all.
+    This is substantially similar to the same function in store.py.  The
+    main difference is that it doesn't rely on store configuration at all.
 
-   Args:
-      options: Options object
-      config: Config object
-      local: Local config object
+    Args:
+       options: Options object
+       config: Config object
+       local: Local config object
 
-   Returns:
-       Correct staging dir, as a dict mapping directory to date suffix
-   Raises:
-      IOError: If the staging directory cannot be found
-   """
+    Returns:
+        Correct staging dir, as a dict mapping directory to date suffix
+    Raises:
+       IOError: If the staging directory cannot be found
+    """
     oneDay = datetime.timedelta(days=1)
     today = datetime.date.today()
     yesterday = today - oneDay
@@ -675,23 +675,23 @@ def _findCorrectDailyDir(options, config, local):
 
 def _applySizeLimits(options, config, local, stagingDirs):
     """
-   Apply size limits, throwing an exception if any limits are exceeded.
+    Apply size limits, throwing an exception if any limits are exceeded.
 
-   Size limits are optional.  If a limit is set to None, it does not apply.
-   The full size limit applies if the full option is set or if today is the
-   start of the week.  The incremental size limit applies otherwise.  Limits
-   are applied to the total size of all the relevant staging directories.
+    Size limits are optional.  If a limit is set to None, it does not apply.
+    The full size limit applies if the full option is set or if today is the
+    start of the week.  The incremental size limit applies otherwise.  Limits
+    are applied to the total size of all the relevant staging directories.
 
-   Args:
-      options: Options object
-      config: Config object
-      local: Local config object
-      stagingDirs: Dictionary mapping directory path to date suffix
+    Args:
+       options: Options object
+       config: Config object
+       local: Local config object
+       stagingDirs: Dictionary mapping directory path to date suffix
 
-   Raises:
-      ValueError: Under many generic error conditions
-      ValueError: If a size limit has been exceeded
-   """
+    Raises:
+       ValueError: Under many generic error conditions
+       ValueError: If a size limit has been exceeded
+    """
     if options.full or isStartOfWeek(config.options.startingDay):
         logger.debug("Using Amazon S3 size limit for full backups.")
         limit = local.amazons3.fullBackupSizeLimit
@@ -721,23 +721,23 @@ def _applySizeLimits(options, config, local, stagingDirs):
 
 def _writeToAmazonS3(config, local, stagingDirs):
     """
-   Writes the indicated staging directories to an Amazon S3 bucket.
+    Writes the indicated staging directories to an Amazon S3 bucket.
 
-   Each of the staging directories listed in ``stagingDirs`` will be written to
-   the configured Amazon S3 bucket from local configuration.  The directories
-   will be placed into the image at the root by date, so staging directory
-   ``/opt/stage/2005/02/10`` will be placed into the S3 bucket at ``/2005/02/10``.
-   If an encrypt commmand is provided, the files will be encrypted first.
+    Each of the staging directories listed in ``stagingDirs`` will be written to
+    the configured Amazon S3 bucket from local configuration.  The directories
+    will be placed into the image at the root by date, so staging directory
+    ``/opt/stage/2005/02/10`` will be placed into the S3 bucket at ``/2005/02/10``.
+    If an encrypt commmand is provided, the files will be encrypted first.
 
-   Args:
-      config: Config object
-      local: Local config object
-      stagingDirs: Dictionary mapping directory path to date suffix
+    Args:
+       config: Config object
+       local: Local config object
+       stagingDirs: Dictionary mapping directory path to date suffix
 
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there is a problem writing to Amazon S3
-   """
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there is a problem writing to Amazon S3
+    """
     for stagingDir in list(stagingDirs.keys()):
         logger.debug("Storing stage directory to Amazon S3 [%s].", stagingDir)
         dateSuffix = stagingDirs[stagingDir]
@@ -768,11 +768,11 @@ def _writeToAmazonS3(config, local, stagingDirs):
 
 def _writeStoreIndicator(config, stagingDirs):
     """
-   Writes a store indicator file into staging directories.
-   Args:
-      config: Config object
-      stagingDirs: Dictionary mapping directory path to date suffix
-   """
+    Writes a store indicator file into staging directories.
+    Args:
+       config: Config object
+       stagingDirs: Dictionary mapping directory path to date suffix
+    """
     for stagingDir in list(stagingDirs.keys()):
         writeIndicatorFile(stagingDir, STORE_INDICATOR, config.options.backupUser, config.options.backupGroup)
 
@@ -784,11 +784,11 @@ def _writeStoreIndicator(config, stagingDirs):
 
 def _clearExistingBackup(config, s3BucketUrl):
     """
-   Clear any existing backup files for an S3 bucket URL.
-   Args:
-      config: Config object
-      s3BucketUrl: S3 bucket URL associated with the staging directory
-   """
+    Clear any existing backup files for an S3 bucket URL.
+    Args:
+       config: Config object
+       s3BucketUrl: S3 bucket URL associated with the staging directory
+    """
     suCommand = resolveCommand(SU_COMMAND)
     awsCommand = resolveCommand(AWS_COMMAND)
     actualCommand = "%s s3 rm --recursive %s/" % (awsCommand[0], s3BucketUrl)
@@ -805,12 +805,12 @@ def _clearExistingBackup(config, s3BucketUrl):
 
 def _uploadStagingDir(config, stagingDir, s3BucketUrl):
     """
-   Upload the contents of a staging directory out to the Amazon S3 cloud.
-   Args:
-      config: Config object
-      stagingDir: Staging directory to upload
-      s3BucketUrl: S3 bucket URL associated with the staging directory
-   """
+    Upload the contents of a staging directory out to the Amazon S3 cloud.
+    Args:
+       config: Config object
+       stagingDir: Staging directory to upload
+       s3BucketUrl: S3 bucket URL associated with the staging directory
+    """
     # The version of awscli in Debian stretch (1.11.13-1) has a problem
     # uploading empty files, due to running with Python 3 rather than Python 2
     # as the upstream maintainers intended.  To work around this, I'm explicitly
@@ -832,12 +832,12 @@ def _uploadStagingDir(config, stagingDir, s3BucketUrl):
 
 def _verifyUpload(config, stagingDir, s3BucketUrl):
     """
-   Verify that a staging directory was properly uploaded to the Amazon S3 cloud.
-   Args:
-      config: Config object
-      stagingDir: Staging directory to verify
-      s3BucketUrl: S3 bucket URL associated with the staging directory
-   """
+    Verify that a staging directory was properly uploaded to the Amazon S3 cloud.
+    Args:
+       config: Config object
+       stagingDir: Staging directory to verify
+       s3BucketUrl: S3 bucket URL associated with the staging directory
+    """
     (bucket, prefix) = s3BucketUrl.replace("s3://", "").split("/", 1)
     suCommand = resolveCommand(SU_COMMAND)
     awsCommand = resolveCommand(AWS_COMMAND)
@@ -873,12 +873,12 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
 
 def _encryptStagingDir(config, local, stagingDir, encryptedDir):
     """
-   Encrypt a staging directory, creating a new directory in the process.
-   Args:
-      config: Config object
-      stagingDir: Staging directory to use as source
-      encryptedDir: Target directory into which encrypted files should be written
-   """
+    Encrypt a staging directory, creating a new directory in the process.
+    Args:
+       config: Config object
+       stagingDir: Staging directory to use as source
+       encryptedDir: Target directory into which encrypted files should be written
+    """
     suCommand = resolveCommand(SU_COMMAND)
     files = FilesystemList()
     files.addDirContents(stagingDir)

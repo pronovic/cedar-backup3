@@ -159,8 +159,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = MysqlConfig()
         obj.__repr__()
         obj.__str__()
@@ -171,8 +171,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.user)
         self.assertEqual(None, mysql.password)
@@ -182,8 +182,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values, databases=None.
-      """
+        Test constructor with all values filled in, with valid values, databases=None.
+        """
         mysql = MysqlConfig("user", "password", "none", False, None)
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
@@ -193,8 +193,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test constructor with all values filled in, with valid values, no databases.
-      """
+        Test constructor with all values filled in, with valid values, no databases.
+        """
         mysql = MysqlConfig("user", "password", "none", True, [])
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
@@ -204,8 +204,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test constructor with all values filled in, with valid values, with one database.
-      """
+        Test constructor with all values filled in, with valid values, with one database.
+        """
         mysql = MysqlConfig("user", "password", "gzip", True, ["one"])
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
@@ -215,8 +215,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test constructor with all values filled in, with valid values, with multiple databases.
-      """
+        Test constructor with all values filled in, with valid values, with multiple databases.
+        """
         mysql = MysqlConfig("user", "password", "bzip2", True, ["one", "two"])
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
@@ -226,8 +226,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of user attribute, None value.
-      """
+        Test assignment of user attribute, None value.
+        """
         mysql = MysqlConfig(user="user")
         self.assertEqual("user", mysql.user)
         mysql.user = None
@@ -235,8 +235,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of user attribute, valid value.
-      """
+        Test assignment of user attribute, valid value.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.user)
         mysql.user = "user"
@@ -244,8 +244,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of user attribute, invalid value (empty).
-      """
+        Test assignment of user attribute, invalid value (empty).
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.user)
         self.failUnlessAssignRaises(ValueError, mysql, "user", "")
@@ -253,8 +253,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of password attribute, None value.
-      """
+        Test assignment of password attribute, None value.
+        """
         mysql = MysqlConfig(password="password")
         self.assertEqual("password", mysql.password)
         mysql.password = None
@@ -262,8 +262,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of password attribute, valid value.
-      """
+        Test assignment of password attribute, valid value.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.password)
         mysql.password = "password"
@@ -271,8 +271,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_011(self):
         """
-      Test assignment of password attribute, invalid value (empty).
-      """
+        Test assignment of password attribute, invalid value (empty).
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.password)
         self.failUnlessAssignRaises(ValueError, mysql, "password", "")
@@ -280,8 +280,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_012(self):
         """
-      Test assignment of compressMode attribute, None value.
-      """
+        Test assignment of compressMode attribute, None value.
+        """
         mysql = MysqlConfig(compressMode="none")
         self.assertEqual("none", mysql.compressMode)
         mysql.compressMode = None
@@ -289,8 +289,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test assignment of compressMode attribute, valid value.
-      """
+        Test assignment of compressMode attribute, valid value.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.compressMode)
         mysql.compressMode = "none"
@@ -302,8 +302,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test assignment of compressMode attribute, invalid value (empty).
-      """
+        Test assignment of compressMode attribute, invalid value (empty).
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.compressMode)
         self.failUnlessAssignRaises(ValueError, mysql, "compressMode", "")
@@ -311,8 +311,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_015(self):
         """
-      Test assignment of compressMode attribute, invalid value (not in list).
-      """
+        Test assignment of compressMode attribute, invalid value (not in list).
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.compressMode)
         self.failUnlessAssignRaises(ValueError, mysql, "compressMode", "bogus")
@@ -320,8 +320,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_016(self):
         """
-      Test assignment of all attribute, None value.
-      """
+        Test assignment of all attribute, None value.
+        """
         mysql = MysqlConfig(all=True)
         self.assertEqual(True, mysql.all)
         mysql.all = None
@@ -329,8 +329,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_017(self):
         """
-      Test assignment of all attribute, valid value (real boolean).
-      """
+        Test assignment of all attribute, valid value (real boolean).
+        """
         mysql = MysqlConfig()
         self.assertEqual(False, mysql.all)
         mysql.all = True
@@ -340,8 +340,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_018(self):
         """
-      Test assignment of all attribute, valid value (expression).
-      """
+        Test assignment of all attribute, valid value (expression).
+        """
         mysql = MysqlConfig()
         self.assertEqual(False, mysql.all)
         mysql.all = 0
@@ -357,8 +357,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_019(self):
         """
-      Test assignment of databases attribute, None value.
-      """
+        Test assignment of databases attribute, None value.
+        """
         mysql = MysqlConfig(databases=[])
         self.assertEqual([], mysql.databases)
         mysql.databases = None
@@ -366,8 +366,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_020(self):
         """
-      Test assignment of databases attribute, [] value.
-      """
+        Test assignment of databases attribute, [] value.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
         mysql.databases = []
@@ -375,8 +375,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_021(self):
         """
-      Test assignment of databases attribute, single valid entry.
-      """
+        Test assignment of databases attribute, single valid entry.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
         mysql.databases = [
@@ -388,8 +388,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_022(self):
         """
-      Test assignment of databases attribute, multiple valid entries.
-      """
+        Test assignment of databases attribute, multiple valid entries.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
         mysql.databases = [
@@ -402,8 +402,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_023(self):
         """
-      Test assignment of databases attribute, single invalid entry (empty).
-      """
+        Test assignment of databases attribute, single invalid entry (empty).
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
         self.failUnlessAssignRaises(ValueError, mysql, "databases", [""])
@@ -411,8 +411,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testConstructor_024(self):
         """
-      Test assignment of databases attribute, mixed valid and invalid entries.
-      """
+        Test assignment of databases attribute, mixed valid and invalid entries.
+        """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
         self.failUnlessAssignRaises(ValueError, mysql, "databases", ["good", "", "alsogood"])
@@ -424,8 +424,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig()
         self.assertEqual(mysql1, mysql2)
@@ -438,8 +438,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list None.
-      """
+        Test comparison of two identical objects, all attributes non-None, list None.
+        """
         mysql1 = MysqlConfig("user", "password", "gzip", True, None)
         mysql2 = MysqlConfig("user", "password", "gzip", True, None)
         self.assertEqual(mysql1, mysql2)
@@ -452,8 +452,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, list empty.
+        """
         mysql1 = MysqlConfig("user", "password", "bzip2", True, [])
         mysql2 = MysqlConfig("user", "password", "bzip2", True, [])
         self.assertEqual(mysql1, mysql2)
@@ -466,8 +466,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list non-empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, list non-empty.
+        """
         mysql1 = MysqlConfig("user", "password", "none", True, ["whatever"])
         mysql2 = MysqlConfig("user", "password", "none", True, ["whatever"])
         self.assertEqual(mysql1, mysql2)
@@ -480,8 +480,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, user differs (one None).
-      """
+        Test comparison of two differing objects, user differs (one None).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(user="user")
         self.assertNotEqual(mysql1, mysql2)
@@ -494,8 +494,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, user differs.
-      """
+        Test comparison of two differing objects, user differs.
+        """
         mysql1 = MysqlConfig("user1", "password", "gzip", True, ["whatever"])
         mysql2 = MysqlConfig("user2", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -508,8 +508,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test comparison of two differing objects, password differs (one None).
-      """
+        Test comparison of two differing objects, password differs (one None).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(password="password")
         self.assertNotEqual(mysql1, mysql2)
@@ -522,8 +522,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test comparison of two differing objects, password differs.
-      """
+        Test comparison of two differing objects, password differs.
+        """
         mysql1 = MysqlConfig("user", "password1", "gzip", True, ["whatever"])
         mysql2 = MysqlConfig("user", "password2", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -536,8 +536,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_009(self):
         """
-      Test comparison of two differing objects, compressMode differs (one None).
-      """
+        Test comparison of two differing objects, compressMode differs (one None).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(compressMode="gzip")
         self.assertNotEqual(mysql1, mysql2)
@@ -550,8 +550,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_010(self):
         """
-      Test comparison of two differing objects, compressMode differs.
-      """
+        Test comparison of two differing objects, compressMode differs.
+        """
         mysql1 = MysqlConfig("user", "password", "bzip2", True, ["whatever"])
         mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -564,8 +564,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_011(self):
         """
-      Test comparison of two differing objects, all differs (one None).
-      """
+        Test comparison of two differing objects, all differs (one None).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(all=True)
         self.assertNotEqual(mysql1, mysql2)
@@ -578,8 +578,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_012(self):
         """
-      Test comparison of two differing objects, all differs.
-      """
+        Test comparison of two differing objects, all differs.
+        """
         mysql1 = MysqlConfig("user", "password", "gzip", False, ["whatever"])
         mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -592,8 +592,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_013(self):
         """
-      Test comparison of two differing objects, databases differs (one None, one empty).
-      """
+        Test comparison of two differing objects, databases differs (one None, one empty).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(databases=[])
         self.assertNotEqual(mysql1, mysql2)
@@ -606,8 +606,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_014(self):
         """
-      Test comparison of two differing objects, databases differs (one None, one not empty).
-      """
+        Test comparison of two differing objects, databases differs (one None, one not empty).
+        """
         mysql1 = MysqlConfig()
         mysql2 = MysqlConfig(databases=["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -620,8 +620,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_015(self):
         """
-      Test comparison of two differing objects, databases differs (one empty, one not empty).
-      """
+        Test comparison of two differing objects, databases differs (one empty, one not empty).
+        """
         mysql1 = MysqlConfig("user", "password", "gzip", True, [])
         mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
@@ -634,8 +634,8 @@ class TestMysqlConfig(unittest.TestCase):
 
     def testComparison_016(self):
         """
-      Test comparison of two differing objects, databases differs (both not empty).
-      """
+        Test comparison of two differing objects, databases differs (both not empty).
+        """
         mysql1 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever", "bogus"])
         self.assertNotEqual(mysql1, mysql2)
@@ -683,19 +683,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the mysql configuration, and then make
-      sure that if we push that document back into the ``LocalConfig`` object,
-      that the resulting object matches the original.
+        We dump a document containing just the mysql configuration, and then make
+        sure that if we push that document back into the ``LocalConfig`` object,
+        that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -708,8 +708,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -720,22 +720,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.mysql)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.mysql)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["mysql.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -743,24 +743,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of mysql attribute, None value.
-      """
+        Test assignment of mysql attribute, None value.
+        """
         config = LocalConfig()
         config.mysql = None
         self.assertEqual(None, config.mysql)
 
     def testConstructor_005(self):
         """
-      Test assignment of mysql attribute, valid value.
-      """
+        Test assignment of mysql attribute, valid value.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig()
         self.assertEqual(MysqlConfig(), config.mysql)
 
     def testConstructor_006(self):
         """
-      Test assignment of mysql attribute, invalid value (not MysqlConfig).
-      """
+        Test assignment of mysql attribute, invalid value (not MysqlConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "mysql", "STRING!")
 
@@ -770,8 +770,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -784,8 +784,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.mysql = MysqlConfig()
 
@@ -802,8 +802,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, mysql differs (one None).
-      """
+        Test comparison of two differing objects, mysql differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.mysql = MysqlConfig()
@@ -817,8 +817,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, mysql differs.
-      """
+        Test comparison of two differing objects, mysql differs.
+        """
         config1 = LocalConfig()
         config1.mysql = MysqlConfig(user="one")
 
@@ -839,88 +839,88 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None mysql section.
-      """
+        Test validate on a None mysql section.
+        """
         config = LocalConfig()
         config.mysql = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty mysql section.
-      """
+        Test validate on an empty mysql section.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty mysql section, all=True, databases=None.
-      """
+        Test validate on a non-empty mysql section, all=True, databases=None.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "gzip", True, None)
         config.validate()
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty mysql section, all=True, empty databases.
-      """
+        Test validate on a non-empty mysql section, all=True, empty databases.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "none", True, [])
         config.validate()
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty mysql section, all=True, non-empty databases.
-      """
+        Test validate on a non-empty mysql section, all=True, non-empty databases.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "bzip2", True, ["whatever"])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_006(self):
         """
-      Test validate on a non-empty mysql section, all=False, databases=None.
-      """
+        Test validate on a non-empty mysql section, all=False, databases=None.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "gzip", False, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_007(self):
         """
-      Test validate on a non-empty mysql section, all=False, empty databases.
-      """
+        Test validate on a non-empty mysql section, all=False, empty databases.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "bzip2", False, [])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_008(self):
         """
-      Test validate on a non-empty mysql section, all=False, non-empty databases.
-      """
+        Test validate on a non-empty mysql section, all=False, non-empty databases.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "gzip", False, ["whatever"])
         config.validate()
 
     def testValidate_009(self):
         """
-      Test validate on a non-empty mysql section, with user=None.
-      """
+        Test validate on a non-empty mysql section, with user=None.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig(None, "password", "gzip", True, None)
         config.validate()
 
     def testValidate_010(self):
         """
-      Test validate on a non-empty mysql section, with password=None.
-      """
+        Test validate on a non-empty mysql section, with password=None.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", None, "gzip", True, None)
         config.validate()
 
     def testValidate_011(self):
         """
-      Test validate on a non-empty mysql section, with user=None and password=None.
-      """
+        Test validate on a non-empty mysql section, with user=None and password=None.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig(None, None, "gzip", True, None)
         config.validate()
@@ -931,8 +931,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["mysql.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -945,8 +945,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_003(self):
         """
-      Parse config document containing only a mysql section, no databases, all=True.
-      """
+        Parse config document containing only a mysql section, no databases, all=True.
+        """
         path = self.resources["mysql.conf.2"]
         with open(path) as f:
             contents = f.read()
@@ -967,8 +967,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_004(self):
         """
-      Parse config document containing only a mysql section, single database, all=False.
-      """
+        Parse config document containing only a mysql section, single database, all=False.
+        """
         path = self.resources["mysql.conf.3"]
         with open(path) as f:
             contents = f.read()
@@ -989,8 +989,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_005(self):
         """
-      Parse config document containing only a mysql section, multiple databases, all=False.
-      """
+        Parse config document containing only a mysql section, multiple databases, all=False.
+        """
         path = self.resources["mysql.conf.4"]
         with open(path) as f:
             contents = f.read()
@@ -1011,8 +1011,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_006(self):
         """
-      Parse config document containing only a mysql section, no user or password, multiple databases, all=False.
-      """
+        Parse config document containing only a mysql section, no user or password, multiple databases, all=False.
+        """
         path = self.resources["mysql.conf.5"]
         with open(path) as f:
             contents = f.read()
@@ -1037,79 +1037,79 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document
-      """
+        Test with empty config document
+        """
         config = LocalConfig()
         self.validateAddConfig(config)
 
     def testAddConfig_003(self):
         """
-      Test with no databases, all other values filled in, all=True.
-      """
+        Test with no databases, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "none", True, None)
         self.validateAddConfig(config)
 
     def testAddConfig_004(self):
         """
-      Test with no databases, all other values filled in, all=False.
-      """
+        Test with no databases, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "gzip", False, None)
         self.validateAddConfig(config)
 
     def testAddConfig_005(self):
         """
-      Test with single database, all other values filled in, all=True.
-      """
+        Test with single database, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_006(self):
         """
-      Test with single database, all other values filled in, all=False.
-      """
+        Test with single database, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "none", False, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_007(self):
         """
-      Test with multiple databases, all other values filled in, all=True.
-      """
+        Test with multiple databases, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_008(self):
         """
-      Test with multiple databases, all other values filled in, all=False.
-      """
+        Test with multiple databases, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", "password", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_009(self):
         """
-      Test with multiple databases, user=None but all other values filled in, all=False.
-      """
+        Test with multiple databases, user=None but all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig(None, "password", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_010(self):
         """
-      Test with multiple databases, password=None but all other values filled in, all=False.
-      """
+        Test with multiple databases, password=None but all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig("user", None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_011(self):
         """
-      Test with multiple databases, user=None and password=None but all other values filled in, all=False.
-      """
+        Test with multiple databases, user=None and password=None but all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.mysql = MysqlConfig(None, None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)

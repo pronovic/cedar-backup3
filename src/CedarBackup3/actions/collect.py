@@ -72,21 +72,21 @@ logger = logging.getLogger("CedarBackup3.log.actions.collect")
 # pylint: disable=W0613
 def executeCollect(configPath, options, config):
     """
-   Executes the collect backup action.
+    Executes the collect backup action.
 
-   *Note:* When the collect action is complete, we will write a collect
-   indicator to the collect directory, so it's obvious that the collect action
-   has completed.  The stage process uses this indicator to decide whether a
-   peer is ready to be staged.
+    *Note:* When the collect action is complete, we will write a collect
+    indicator to the collect directory, so it's obvious that the collect action
+    has completed.  The stage process uses this indicator to decide whether a
+    peer is ready to be staged.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      TarError: If there is a problem creating a tar file
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       TarError: If there is a problem creating a tar file
+    """
     logger.debug("Executing the 'collect' action.")
     if config.options is None or config.collect is None:
         raise ValueError("Collect configuration is not properly filled in.")
@@ -155,26 +155,26 @@ def executeCollect(configPath, options, config):
 
 def _collectFile(config, absolutePath, tarfilePath, collectMode, archiveMode, resetDigest, digestPath):
     """
-   Collects a configured collect file.
+    Collects a configured collect file.
 
-   The indicated collect file is collected into the indicated tarfile.
-   For files that are collected incrementally, we'll use the indicated
-   digest path and pay attention to the reset digest flag (basically, the reset
-   digest flag ignores any existing digest, but a new digest is always
-   rewritten).
+    The indicated collect file is collected into the indicated tarfile.
+    For files that are collected incrementally, we'll use the indicated
+    digest path and pay attention to the reset digest flag (basically, the reset
+    digest flag ignores any existing digest, but a new digest is always
+    rewritten).
 
-   The caller must decide what the collect and archive modes are, since they
-   can be on both the collect configuration and the collect file itself.
+    The caller must decide what the collect and archive modes are, since they
+    can be on both the collect configuration and the collect file itself.
 
-   Args:
-      config: Config object
-      absolutePath: Absolute path of file to collect
-      tarfilePath: Path to tarfile that should be created
-      collectMode: Collect mode to use
-      archiveMode: Archive mode to use
-      resetDigest: Reset digest flag
-      digestPath: Path to digest file on disk, if needed
-   """
+    Args:
+       config: Config object
+       absolutePath: Absolute path of file to collect
+       tarfilePath: Path to tarfile that should be created
+       collectMode: Collect mode to use
+       archiveMode: Archive mode to use
+       resetDigest: Reset digest flag
+       digestPath: Path to digest file on disk, if needed
+    """
     backupList = BackupFileList()
     backupList.addFile(absolutePath)
     _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, archiveMode, resetDigest, digestPath)
@@ -199,30 +199,30 @@ def _collectDirectory(
     recursionLevel,
 ):
     """
-   Collects a configured collect directory.
+    Collects a configured collect directory.
 
-   The indicated collect directory is collected into the indicated tarfile.
-   For directories that are collected incrementally, we'll use the indicated
-   digest path and pay attention to the reset digest flag (basically, the reset
-   digest flag ignores any existing digest, but a new digest is always
-   rewritten).
+    The indicated collect directory is collected into the indicated tarfile.
+    For directories that are collected incrementally, we'll use the indicated
+    digest path and pay attention to the reset digest flag (basically, the reset
+    digest flag ignores any existing digest, but a new digest is always
+    rewritten).
 
-   The caller must decide what the collect and archive modes are, since they
-   can be on both the collect configuration and the collect directory itself.
+    The caller must decide what the collect and archive modes are, since they
+    can be on both the collect configuration and the collect directory itself.
 
-   Args:
-      config: Config object
-      absolutePath: Absolute path of directory to collect
-      collectMode: Collect mode to use
-      archiveMode: Archive mode to use
-      ignoreFile: Ignore file to use
-      linkDepth: Link depth value to use
-      dereference: Dereference flag to use
-      resetDigest: Reset digest flag
-      excludePaths: List of absolute paths to exclude
-      excludePatterns: List of patterns to exclude
-      recursionLevel: Recursion level (zero for no recursion)
-   """
+    Args:
+       config: Config object
+       absolutePath: Absolute path of directory to collect
+       collectMode: Collect mode to use
+       archiveMode: Archive mode to use
+       ignoreFile: Ignore file to use
+       linkDepth: Link depth value to use
+       dereference: Dereference flag to use
+       resetDigest: Reset digest flag
+       excludePaths: List of absolute paths to exclude
+       excludePatterns: List of patterns to exclude
+       recursionLevel: Recursion level (zero for no recursion)
+    """
     if recursionLevel == 0:
         # Collect the actual directory because we're at recursion level 0
         logger.info("Collecting directory [%s]", absolutePath)
@@ -285,28 +285,28 @@ def _collectDirectory(
 
 def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, archiveMode, resetDigest, digestPath):
     """
-   Execute the backup process for the indicated backup list.
+    Execute the backup process for the indicated backup list.
 
-   This function exists mainly to consolidate functionality between the
-   :any:`_collectFile` and :any:`_collectDirectory` functions.  Those functions build
-   the backup list; this function causes the backup to execute properly and
-   also manages usage of the digest file on disk as explained in their
-   comments.
+    This function exists mainly to consolidate functionality between the
+    :any:`_collectFile` and :any:`_collectDirectory` functions.  Those functions build
+    the backup list; this function causes the backup to execute properly and
+    also manages usage of the digest file on disk as explained in their
+    comments.
 
-   For collect files, the digest file will always just contain the single file
-   that is being backed up.  This might little wasteful in terms of the number
-   of files that we keep around, but it's consistent and easy to understand.
+    For collect files, the digest file will always just contain the single file
+    that is being backed up.  This might little wasteful in terms of the number
+    of files that we keep around, but it's consistent and easy to understand.
 
-   Args:
-      config: Config object
-      backupList: List to execute backup for
-      absolutePath: Absolute path of directory or file to collect
-      tarfilePath: Path to tarfile that should be created
-      collectMode: Collect mode to use
-      archiveMode: Archive mode to use
-      resetDigest: Reset digest flag
-      digestPath: Path to digest file on disk, if needed
-   """
+    Args:
+       config: Config object
+       backupList: List to execute backup for
+       absolutePath: Absolute path of directory or file to collect
+       tarfilePath: Path to tarfile that should be created
+       collectMode: Collect mode to use
+       archiveMode: Archive mode to use
+       resetDigest: Reset digest flag
+       digestPath: Path to digest file on disk, if needed
+    """
     if collectMode != "incr":
         logger.debug("Collect mode is [%s]; no digest will be used.", collectMode)
         if len(backupList) == 1 and backupList[0] == absolutePath:  # special case for individual file
@@ -342,18 +342,18 @@ def _executeBackup(config, backupList, absolutePath, tarfilePath, collectMode, a
 
 def _loadDigest(digestPath):
     """
-   Loads the indicated digest path from disk into a dictionary.
+    Loads the indicated digest path from disk into a dictionary.
 
-   If we can't load the digest successfully (either because it doesn't exist or
-   for some other reason), then an empty dictionary will be returned - but the
-   condition will be logged.
+    If we can't load the digest successfully (either because it doesn't exist or
+    for some other reason), then an empty dictionary will be returned - but the
+    condition will be logged.
 
-   Args:
-      digestPath: Path to the digest file on disk
+    Args:
+       digestPath: Path to the digest file on disk
 
-   Returns:
-       Dictionary representing contents of digest path
-   """
+    Returns:
+        Dictionary representing contents of digest path
+    """
     if not os.path.isfile(digestPath):
         digest = {}
         logger.debug("Digest [%s] does not exist on disk.", digestPath)
@@ -375,16 +375,16 @@ def _loadDigest(digestPath):
 
 def _writeDigest(config, digest, digestPath):
     """
-   Writes the digest dictionary to the indicated digest path on disk.
+    Writes the digest dictionary to the indicated digest path on disk.
 
-   If we can't write the digest successfully for any reason, we'll log the
-   condition but won't throw an exception.
+    If we can't write the digest successfully for any reason, we'll log the
+    condition but won't throw an exception.
 
-   Args:
-      config: Config object
-      digest: Digest dictionary to write to disk
-      digestPath: Path to the digest file on disk
-   """
+    Args:
+       config: Config object
+       digest: Digest dictionary to write to disk
+       digestPath: Path to the digest file on disk
+    """
     try:
         with open(digestPath, "wb") as f:
             pickle.dump(digest, f, 0, fix_imports=True)  # be compatible with Python 2
@@ -405,14 +405,14 @@ def _writeDigest(config, digest, digestPath):
 
 def _getCollectMode(config, item):
     """
-   Gets the collect mode that should be used for a collect directory or file.
-   If possible, use the one on the file or directory, otherwise take from collect section.
-   Args:
-      config: Config object
-      item: ``CollectFile`` or ``CollectDir`` object
-   Returns:
-       Collect mode to use
-   """
+    Gets the collect mode that should be used for a collect directory or file.
+    If possible, use the one on the file or directory, otherwise take from collect section.
+    Args:
+       config: Config object
+       item: ``CollectFile`` or ``CollectDir`` object
+    Returns:
+        Collect mode to use
+    """
     if item.collectMode is None:
         collectMode = config.collect.collectMode
     else:
@@ -428,14 +428,14 @@ def _getCollectMode(config, item):
 
 def _getArchiveMode(config, item):
     """
-   Gets the archive mode that should be used for a collect directory or file.
-   If possible, use the one on the file or directory, otherwise take from collect section.
-   Args:
-      config: Config object
-      item: ``CollectFile`` or ``CollectDir`` object
-   Returns:
-       Archive mode to use
-   """
+    Gets the archive mode that should be used for a collect directory or file.
+    If possible, use the one on the file or directory, otherwise take from collect section.
+    Args:
+       config: Config object
+       item: ``CollectFile`` or ``CollectDir`` object
+    Returns:
+        Archive mode to use
+    """
     if item.archiveMode is None:
         archiveMode = config.collect.archiveMode
     else:
@@ -451,14 +451,14 @@ def _getArchiveMode(config, item):
 
 def _getIgnoreFile(config, item):
     """
-   Gets the ignore file that should be used for a collect directory or file.
-   If possible, use the one on the file or directory, otherwise take from collect section.
-   Args:
-      config: Config object
-      item: ``CollectFile`` or ``CollectDir`` object
-   Returns:
-       Ignore file to use
-   """
+    Gets the ignore file that should be used for a collect directory or file.
+    If possible, use the one on the file or directory, otherwise take from collect section.
+    Args:
+       config: Config object
+       item: ``CollectFile`` or ``CollectDir`` object
+    Returns:
+        Ignore file to use
+    """
     if item.ignoreFile is None:
         ignoreFile = config.collect.ignoreFile
     else:
@@ -474,13 +474,13 @@ def _getIgnoreFile(config, item):
 
 def _getLinkDepth(item):
     """
-   Gets the link depth that should be used for a collect directory.
-   If possible, use the one on the directory, otherwise set a value of 0 (zero).
-   Args:
-      item: ``CollectDir`` object
-   Returns:
-       Link depth to use
-   """
+    Gets the link depth that should be used for a collect directory.
+    If possible, use the one on the directory, otherwise set a value of 0 (zero).
+    Args:
+       item: ``CollectDir`` object
+    Returns:
+        Link depth to use
+    """
     if item.linkDepth is None:
         linkDepth = 0
     else:
@@ -496,13 +496,13 @@ def _getLinkDepth(item):
 
 def _getDereference(item):
     """
-   Gets the dereference flag that should be used for a collect directory.
-   If possible, use the one on the directory, otherwise set a value of False.
-   Args:
-      item: ``CollectDir`` object
-   Returns:
-       Dereference flag to use
-   """
+    Gets the dereference flag that should be used for a collect directory.
+    If possible, use the one on the directory, otherwise set a value of False.
+    Args:
+       item: ``CollectDir`` object
+    Returns:
+        Dereference flag to use
+    """
     if item.dereference is None:
         dereference = False
     else:
@@ -518,13 +518,13 @@ def _getDereference(item):
 
 def _getRecursionLevel(item):
     """
-   Gets the recursion level that should be used for a collect directory.
-   If possible, use the one on the directory, otherwise set a value of 0 (zero).
-   Args:
-      item: ``CollectDir`` object
-   Returns:
-       Recursion level to use
-   """
+    Gets the recursion level that should be used for a collect directory.
+    If possible, use the one on the directory, otherwise set a value of 0 (zero).
+    Args:
+       item: ``CollectDir`` object
+    Returns:
+        Recursion level to use
+    """
     if item.recursionLevel is None:
         recursionLevel = 0
     else:
@@ -540,13 +540,13 @@ def _getRecursionLevel(item):
 
 def _getDigestPath(config, absolutePath):
     """
-   Gets the digest path associated with a collect directory or file.
-   Args:
-      config: Config object
-      absolutePath: Absolute path to generate digest for
-   Returns:
-       Absolute path to the digest associated with the collect directory or file
-   """
+    Gets the digest path associated with a collect directory or file.
+    Args:
+       config: Config object
+       absolutePath: Absolute path to generate digest for
+    Returns:
+        Absolute path to the digest associated with the collect directory or file
+    """
     normalized = buildNormalizedPath(absolutePath)
     filename = "%s.%s" % (normalized, DIGEST_EXTENSION)
     digestPath = os.path.join(config.options.workingDir, filename)
@@ -561,14 +561,14 @@ def _getDigestPath(config, absolutePath):
 
 def _getTarfilePath(config, absolutePath, archiveMode):
     """
-   Gets the tarfile path (including correct extension) associated with a collect directory.
-   Args:
-      config: Config object
-      absolutePath: Absolute path to generate tarfile for
-      archiveMode: Archive mode to use for this tarfile
-   Returns:
-       Absolute path to the tarfile associated with the collect directory
-   """
+    Gets the tarfile path (including correct extension) associated with a collect directory.
+    Args:
+       config: Config object
+       absolutePath: Absolute path to generate tarfile for
+       archiveMode: Archive mode to use for this tarfile
+    Returns:
+        Absolute path to the tarfile associated with the collect directory
+    """
     if archiveMode == "tar":
         extension = "tar"
     elif archiveMode == "targz":
@@ -589,24 +589,24 @@ def _getTarfilePath(config, absolutePath, archiveMode):
 
 def _getExclusions(config, collectDir):
     """
-   Gets exclusions (file and patterns) associated with a collect directory.
+    Gets exclusions (file and patterns) associated with a collect directory.
 
-   The returned files value is a list of absolute paths to be excluded from the
-   backup for a given directory.  It is derived from the collect configuration
-   absolute exclude paths and the collect directory's absolute and relative
-   exclude paths.
+    The returned files value is a list of absolute paths to be excluded from the
+    backup for a given directory.  It is derived from the collect configuration
+    absolute exclude paths and the collect directory's absolute and relative
+    exclude paths.
 
-   The returned patterns value is a list of patterns to be excluded from the
-   backup for a given directory.  It is derived from the list of patterns from
-   the collect configuration and from the collect directory itself.
+    The returned patterns value is a list of patterns to be excluded from the
+    backup for a given directory.  It is derived from the list of patterns from
+    the collect configuration and from the collect directory itself.
 
-   Args:
-      config: Config object
-      collectDir: Collect directory object
+    Args:
+       config: Config object
+       collectDir: Collect directory object
 
-   Returns:
-       Tuple (files, patterns) indicating what to exclude
-   """
+    Returns:
+        Tuple (files, patterns) indicating what to exclude
+    """
     paths = []
     if config.collect.absoluteExcludePaths is not None:
         paths.extend(config.collect.absoluteExcludePaths)

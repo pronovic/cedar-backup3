@@ -206,16 +206,16 @@ class TestLocalPeer(unittest.TestCase):
 
     def testBasic_001(self):
         """
-      Make sure exception is thrown for non-absolute collect directory.
-      """
+        Make sure exception is thrown for non-absolute collect directory.
+        """
         name = "peer1"
         collectDir = "whatever/something/else/not/absolute"
         self.assertRaises(ValueError, LocalPeer, name, collectDir)
 
     def testBasic_002(self):
         """
-      Make sure attributes are set properly for valid constructor input.
-      """
+        Make sure attributes are set properly for valid constructor input.
+        """
         name = "peer1"
         collectDir = "/absolute/path/name"
         ignoreFailureMode = "all"
@@ -226,9 +226,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testBasic_003(self):
         """
-      Make sure attributes are set properly for valid constructor input, with
-      spaces in the collect directory path.
-      """
+        Make sure attributes are set properly for valid constructor input, with
+        spaces in the collect directory path.
+        """
         name = "peer1"
         collectDir = "/ absolute / path/   name "
         peer = LocalPeer(name, collectDir)
@@ -237,8 +237,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testBasic_004(self):
         """
-      Make sure assignment works for all valid failure modes.
-      """
+        Make sure assignment works for all valid failure modes.
+        """
         name = "peer1"
         collectDir = "/absolute/path/name"
         ignoreFailureMode = "all"
@@ -258,8 +258,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_001(self):
         """
-      Attempt to check collect indicator with non-existent collect directory.
-      """
+        Attempt to check collect indicator with non-existent collect directory.
+        """
         name = "peer1"
         collectDir = self.buildPath([NONEXISTENT_FILE])
         self.assertTrue(not os.path.exists(collectDir))
@@ -269,8 +269,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_002(self):
         """
-      Attempt to check collect indicator with non-readable collect directory.
-      """
+        Attempt to check collect indicator with non-readable collect directory.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         os.mkdir(collectDir)
@@ -283,8 +283,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_003(self):
         """
-      Attempt to check collect indicator collect indicator file that does not exist.
-      """
+        Attempt to check collect indicator collect indicator file that does not exist.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
@@ -297,8 +297,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_004(self):
         """
-      Attempt to check collect indicator collect indicator file that does not exist, custom name.
-      """
+        Attempt to check collect indicator collect indicator file that does not exist, custom name.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         collectIndicator = self.buildPath(["collect", NONEXISTENT_FILE])
@@ -311,8 +311,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_005(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist.
-      """
+        Attempt to check collect indicator collect indicator file that does exist.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
@@ -327,8 +327,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_006(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist, custom name.
-      """
+        Attempt to check collect indicator collect indicator file that does exist, custom name.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         collectIndicator = self.buildPath(["collect", "different"])
@@ -343,9 +343,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testCheckCollectIndicator_007(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist,
-      with spaces in the collect directory path.
-      """
+        Attempt to check collect indicator collect indicator file that does exist,
+        with spaces in the collect directory path.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect directory here"])
         collectIndicator = self.buildPath(["collect directory here", DEF_COLLECT_INDICATOR])
@@ -361,9 +361,9 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testCheckCollectIndicator_008(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist, custom name,
-      with spaces in the collect directory path and collect indicator file name.
-      """
+        Attempt to check collect indicator collect indicator file that does exist, custom name,
+        with spaces in the collect directory path and collect indicator file name.
+        """
         name = "peer1"
         collectDir = self.buildPath([" collect dir "])
         collectIndicator = self.buildPath([" collect dir ", "different, file"])
@@ -382,8 +382,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testWriteStageIndicator_001(self):
         """
-      Attempt to write stage indicator with non-existent collect directory.
-      """
+        Attempt to write stage indicator with non-existent collect directory.
+        """
         name = "peer1"
         collectDir = self.buildPath([NONEXISTENT_FILE])
         self.assertTrue(not os.path.exists(collectDir))
@@ -393,8 +393,8 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testWriteStageIndicator_002(self):
         """
-      Attempt to write stage indicator with non-writable collect directory.
-      """
+        Attempt to write stage indicator with non-writable collect directory.
+        """
         if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
             collectDir = self.buildPath(["collect"])
@@ -408,8 +408,8 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testWriteStageIndicator_003(self):
         """
-      Attempt to write stage indicator with non-writable collect directory, custom name.
-      """
+        Attempt to write stage indicator with non-writable collect directory, custom name.
+        """
         if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
             collectDir = self.buildPath(["collect"])
@@ -422,8 +422,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testWriteStageIndicator_004(self):
         """
-      Attempt to write stage indicator in a valid directory.
-      """
+        Attempt to write stage indicator in a valid directory.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR])
@@ -435,8 +435,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testWriteStageIndicator_005(self):
         """
-      Attempt to write stage indicator in a valid directory, custom name.
-      """
+        Attempt to write stage indicator in a valid directory, custom name.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         stageIndicator = self.buildPath(["collect", "whatever"])
@@ -448,9 +448,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testWriteStageIndicator_006(self):
         """
-      Attempt to write stage indicator in a valid directory, with spaces
-      in the directory name.
-      """
+        Attempt to write stage indicator in a valid directory, with spaces
+        in the directory name.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect from this directory"])
         stageIndicator = self.buildPath(["collect from this directory", DEF_STAGE_INDICATOR])
@@ -462,9 +462,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testWriteStageIndicator_007(self):
         """
-      Attempt to write stage indicator in a valid directory, custom name,
-      with spaces in the directory name and the file name.
-      """
+        Attempt to write stage indicator in a valid directory, custom name,
+        with spaces in the directory name and the file name.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect ME"])
         stageIndicator = self.buildPath(["collect ME", "   whatever-it-takes you"])
@@ -480,8 +480,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_001(self):
         """
-      Attempt to stage files with non-existent collect directory.
-      """
+        Attempt to stage files with non-existent collect directory.
+        """
         name = "peer1"
         collectDir = self.buildPath([NONEXISTENT_FILE])
         targetDir = self.buildPath(["target"])
@@ -493,8 +493,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_002(self):
         """
-      Attempt to stage files with non-readable collect directory.
-      """
+        Attempt to stage files with non-readable collect directory.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         targetDir = self.buildPath(["target"])
@@ -509,8 +509,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_003(self):
         """
-      Attempt to stage files with non-absolute target directory.
-      """
+        Attempt to stage files with non-absolute target directory.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         targetDir = "this/is/not/absolute"
@@ -521,8 +521,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_004(self):
         """
-      Attempt to stage files with non-existent target directory.
-      """
+        Attempt to stage files with non-existent target directory.
+        """
         name = "peer1"
         collectDir = self.buildPath(["collect"])
         targetDir = self.buildPath(["target"])
@@ -535,8 +535,8 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_005(self):
         """
-      Attempt to stage files with non-writable target directory.
-      """
+        Attempt to stage files with non-writable target directory.
+        """
         if not isRunningAsRoot():  # root doesn't get this error
             self.extractTar("tree1")
             name = "peer1"
@@ -553,9 +553,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_006(self):
         """
-      Attempt to stage files with empty collect directory.
-      *Note:* This test assumes that scp returns an error if the directory is empty.
-      """
+        Attempt to stage files with empty collect directory.
+        *Note:* This test assumes that scp returns an error if the directory is empty.
+        """
         self.extractTar("tree2")
         name = "peer1"
         collectDir = self.buildPath(["tree2", "dir001"])
@@ -571,9 +571,9 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_007(self):
         """
-      Attempt to stage files with empty collect directory, where the target
-      directory name contains spaces.
-      """
+        Attempt to stage files with empty collect directory, where the target
+        directory name contains spaces.
+        """
         self.extractTar("tree2")
         name = "peer1"
         collectDir = self.buildPath(["tree2", "dir001"])
@@ -588,8 +588,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_008(self):
         """
-      Attempt to stage files with non-empty collect directory.
-      """
+        Attempt to stage files with non-empty collect directory.
+        """
         self.extractTar("tree1")
         name = "peer1"
         collectDir = self.buildPath(["tree1"])
@@ -613,9 +613,9 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_009(self):
         """
-      Attempt to stage files with non-empty collect directory, where the
-      target directory name contains spaces.
-      """
+        Attempt to stage files with non-empty collect directory, where the
+        target directory name contains spaces.
+        """
         self.extractTar("tree1")
         name = "peer1"
         collectDir = self.buildPath(["tree1"])
@@ -639,8 +639,8 @@ class TestLocalPeer(unittest.TestCase):
 
     def testStagePeer_010(self):
         """
-      Attempt to stage files with non-empty collect directory containing links and directories.
-      """
+        Attempt to stage files with non-empty collect directory containing links and directories.
+        """
         self.extractTar("tree9")
         name = "peer1"
         collectDir = self.buildPath(["tree9"])
@@ -655,8 +655,8 @@ class TestLocalPeer(unittest.TestCase):
     @unittest.skipIf(platformWindows(), "Behavior differs on Windows")
     def testStagePeer_011(self):
         """
-      Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
-      """
+        Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
+        """
         self.extractTar("tree1")
         name = "peer1"
         collectDir = self.buildPath(["tree1"])
@@ -760,8 +760,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_001(self):
         """
-      Make sure exception is thrown for non-absolute collect or working directory.
-      """
+        Make sure exception is thrown for non-absolute collect or working directory.
+        """
         name = REMOTE_HOST
         collectDir = "whatever/something/else/not/absolute"
         workingDir = "/tmp"
@@ -776,8 +776,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_002(self):
         """
-      Make sure attributes are set properly for valid constructor input.
-      """
+        Make sure attributes are set properly for valid constructor input.
+        """
         name = REMOTE_HOST
         collectDir = "/absolute/path/name"
         workingDir = "/tmp"
@@ -797,9 +797,9 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_003(self):
         """
-      Make sure attributes are set properly for valid constructor input, where
-      the collect directory contains spaces.
-      """
+        Make sure attributes are set properly for valid constructor input, where
+        the collect directory contains spaces.
+        """
         name = REMOTE_HOST
         collectDir = "/absolute/path/to/ a large directory"
         workingDir = "/tmp"
@@ -818,8 +818,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_004(self):
         """
-      Make sure attributes are set properly for valid constructor input, custom rcp command.
-      """
+        Make sure attributes are set properly for valid constructor input, custom rcp command.
+        """
         name = REMOTE_HOST
         collectDir = "/absolute/path/name"
         workingDir = "/tmp"
@@ -839,8 +839,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_005(self):
         """
-      Make sure attributes are set properly for valid constructor input, custom local user command.
-      """
+        Make sure attributes are set properly for valid constructor input, custom local user command.
+        """
         name = REMOTE_HOST
         collectDir = "/absolute/path/to/ a large directory"
         workingDir = "/tmp"
@@ -858,8 +858,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_006(self):
         """
-      Make sure attributes are set properly for valid constructor input, custom rsh command.
-      """
+        Make sure attributes are set properly for valid constructor input, custom rsh command.
+        """
         name = REMOTE_HOST
         remoteUser = getLogin()
         rshCommand = 'rsh --whatever -something "a b" else'
@@ -878,8 +878,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_007(self):
         """
-      Make sure attributes are set properly for valid constructor input, custom cback command.
-      """
+        Make sure attributes are set properly for valid constructor input, custom cback command.
+        """
         name = REMOTE_HOST
         remoteUser = getLogin()
         cbackCommand = "cback --config=whatever --logfile=whatever --mode=064"
@@ -895,8 +895,8 @@ class TestRemotePeer(unittest.TestCase):
 
     def testBasic_008(self):
         """
-      Make sure assignment works for all valid failure modes.
-      """
+        Make sure assignment works for all valid failure modes.
+        """
         peer = RemotePeer(name="name", remoteUser="user", ignoreFailureMode="all")
         self.assertEqual("all", peer.ignoreFailureMode)
         peer.ignoreFailureMode = "none"
@@ -914,8 +914,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_001(self):
         """
-      Attempt to check collect indicator with invalid hostname.
-      """
+        Attempt to check collect indicator with invalid hostname.
+        """
         name = NONEXISTENT_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -929,8 +929,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_002(self):
         """
-      Attempt to check collect indicator with invalid remote user.
-      """
+        Attempt to check collect indicator with invalid remote user.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -944,8 +944,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_003(self):
         """
-      Attempt to check collect indicator with invalid rcp command.
-      """
+        Attempt to check collect indicator with invalid rcp command.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -960,8 +960,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_004(self):
         """
-      Attempt to check collect indicator with non-existent collect directory.
-      """
+        Attempt to check collect indicator with non-existent collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -974,8 +974,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_005(self):
         """
-      Attempt to check collect indicator with non-readable collect directory.
-      """
+        Attempt to check collect indicator with non-readable collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -991,8 +991,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_006(self):
         """
-      Attempt to check collect indicator collect indicator file that does not exist.
-      """
+        Attempt to check collect indicator collect indicator file that does not exist.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1008,8 +1008,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_007(self):
         """
-      Attempt to check collect indicator collect indicator file that does not exist, custom name.
-      """
+        Attempt to check collect indicator collect indicator file that does not exist, custom name.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1025,9 +1025,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_008(self):
         """
-      Attempt to check collect indicator collect indicator file that does not
-      exist, where the collect directory contains spaces.
-      """
+        Attempt to check collect indicator collect indicator file that does not
+        exist, where the collect directory contains spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect directory path"])
         workingDir = "/tmp"
@@ -1043,9 +1043,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_009(self):
         """
-      Attempt to check collect indicator collect indicator file that does not
-      exist, custom name, where the collect directory contains spaces.
-      """
+        Attempt to check collect indicator collect indicator file that does not
+        exist, custom name, where the collect directory contains spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["  you collect here   "])
         workingDir = "/tmp"
@@ -1061,8 +1061,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_010(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist.
-      """
+        Attempt to check collect indicator collect indicator file that does exist.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1080,8 +1080,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_011(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist, custom name.
-      """
+        Attempt to check collect indicator collect indicator file that does exist, custom name.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1099,9 +1099,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_012(self):
         """
-      Attempt to check collect indicator collect indicator file that does exist,
-      where the collect directory contains spaces.
-      """
+        Attempt to check collect indicator collect indicator file that does exist,
+        where the collect directory contains spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect NOT"])
         workingDir = "/tmp"
@@ -1119,10 +1119,10 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testCheckCollectIndicator_013(self):
         """
-      Attempt to check collect indicator collect indicator file that does
-      exist, custom name, where the collect directory and indicator file
-      contain spaces.
-      """
+        Attempt to check collect indicator collect indicator file that does
+        exist, custom name, where the collect directory and indicator file
+        contain spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath([" from here collect!"])
         workingDir = "/tmp"
@@ -1144,8 +1144,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_001(self):
         """
-      Attempt to write stage indicator with invalid hostname.
-      """
+        Attempt to write stage indicator with invalid hostname.
+        """
         name = NONEXISTENT_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1158,8 +1158,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_002(self):
         """
-      Attempt to write stage indicator with invalid remote user.
-      """
+        Attempt to write stage indicator with invalid remote user.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1172,8 +1172,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_003(self):
         """
-      Attempt to write stage indicator with invalid rcp command.
-      """
+        Attempt to write stage indicator with invalid rcp command.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1187,8 +1187,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_004(self):
         """
-      Attempt to write stage indicator with non-existent collect directory.
-      """
+        Attempt to write stage indicator with non-existent collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1200,8 +1200,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_005(self):
         """
-      Attempt to write stage indicator with non-writable collect directory.
-      """
+        Attempt to write stage indicator with non-writable collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1219,8 +1219,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_006(self):
         """
-      Attempt to write stage indicator in a valid directory.
-      """
+        Attempt to write stage indicator in a valid directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1236,8 +1236,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_007(self):
         """
-      Attempt to write stage indicator in a valid directory, custom name.
-      """
+        Attempt to write stage indicator in a valid directory, custom name.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1253,9 +1253,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_008(self):
         """
-      Attempt to write stage indicator in a valid directory that contains
-      spaces.
-      """
+        Attempt to write stage indicator in a valid directory that contains
+        spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["with spaces collect"])
         workingDir = "/tmp"
@@ -1271,9 +1271,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteStageIndicator_009(self):
         """
-      Attempt to write stage indicator in a valid directory, custom name, where
-      the collect directory and the custom name contain spaces.
-      """
+        Attempt to write stage indicator in a valid directory, custom name, where
+        the collect directory and the custom name contain spaces.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect, soon"])
         workingDir = "/tmp"
@@ -1293,8 +1293,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_001(self):
         """
-      Attempt to stage files with invalid hostname.
-      """
+        Attempt to stage files with invalid hostname.
+        """
         name = NONEXISTENT_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1310,8 +1310,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_002(self):
         """
-      Attempt to stage files with invalid remote user.
-      """
+        Attempt to stage files with invalid remote user.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1327,8 +1327,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_003(self):
         """
-      Attempt to stage files with invalid rcp command.
-      """
+        Attempt to stage files with invalid rcp command.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1345,8 +1345,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_004(self):
         """
-      Attempt to stage files with non-existent collect directory.
-      """
+        Attempt to stage files with non-existent collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1361,8 +1361,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_005(self):
         """
-      Attempt to stage files with non-readable collect directory.
-      """
+        Attempt to stage files with non-readable collect directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1380,8 +1380,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_006(self):
         """
-      Attempt to stage files with non-absolute target directory.
-      """
+        Attempt to stage files with non-absolute target directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1394,8 +1394,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_007(self):
         """
-      Attempt to stage files with non-existent target directory.
-      """
+        Attempt to stage files with non-existent target directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1410,8 +1410,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_008(self):
         """
-      Attempt to stage files with non-writable target directory.
-      """
+        Attempt to stage files with non-writable target directory.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1430,9 +1430,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_009(self):
         """
-      Attempt to stage files with empty collect directory.
-      *Note:* This test assumes that scp returns an error if the directory is empty.
-      """
+        Attempt to stage files with empty collect directory.
+        *Note:* This test assumes that scp returns an error if the directory is empty.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1450,10 +1450,10 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_010(self):
         """
-      Attempt to stage files with empty collect directory, with a target
-      directory that contains spaces.
-      *Note:* This test assumes that scp returns an error if the directory is empty.
-      """
+        Attempt to stage files with empty collect directory, with a target
+        directory that contains spaces.
+        *Note:* This test assumes that scp returns an error if the directory is empty.
+        """
         name = REMOTE_HOST
         collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
@@ -1471,8 +1471,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_011(self):
         """
-      Attempt to stage files with non-empty collect directory.
-      """
+        Attempt to stage files with non-empty collect directory.
+        """
         self.extractTar("tree1")
         name = REMOTE_HOST
         collectDir = self.buildPath(["tree1"])
@@ -1499,9 +1499,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_012(self):
         """
-      Attempt to stage files with non-empty collect directory, with a target
-      directory that contains spaces.
-      """
+        Attempt to stage files with non-empty collect directory, with a target
+        directory that contains spaces.
+        """
         self.extractTar("tree1")
         name = REMOTE_HOST
         collectDir = self.buildPath(["tree1"])
@@ -1528,9 +1528,9 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_013(self):
         """
-      Attempt to stage files with non-empty collect directory containing links and directories.
-      *Note:* We assume that scp copies the files even though it returns an error due to directories.
-      """
+        Attempt to stage files with non-empty collect directory containing links and directories.
+        *Note:* We assume that scp copies the files even though it returns an error due to directories.
+        """
         self.extractTar("tree9")
         name = REMOTE_HOST
         collectDir = self.buildPath(["tree9"])
@@ -1551,8 +1551,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testStagePeer_014(self):
         """
-      Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
-      """
+        Attempt to stage files with non-empty collect directory and attempt to set valid permissions.
+        """
         self.extractTar("tree1")
         name = REMOTE_HOST
         collectDir = self.buildPath(["tree1"])
@@ -1594,8 +1594,8 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testExecuteRemoteCommand(self):
         """
-      Test that a simple remote command succeeds.
-      """
+        Test that a simple remote command succeeds.
+        """
         target = self.buildPath(["test.txt"])
         name = REMOTE_HOST
         remoteUser = getLogin()
@@ -1612,30 +1612,30 @@ class TestRemotePeer(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_001(self):
         """
-      Test with None for cbackCommand and action, False for fullBackup.
-      """
+        Test with None for cbackCommand and action, False for fullBackup.
+        """
         self.assertRaises(ValueError, RemotePeer._buildCbackCommand, None, None, False)
 
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_002(self):
         """
-      Test with None for cbackCommand, "collect" for action, False for fullBackup.
-      """
+        Test with None for cbackCommand, "collect" for action, False for fullBackup.
+        """
         result = RemotePeer._buildCbackCommand(None, "collect", False)
         self.assertEqual("/usr/bin/cback3 collect", result)
 
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_003(self):
         """
-      Test with "cback" for cbackCommand, "collect" for action, False for fullBackup.
-      """
+        Test with "cback" for cbackCommand, "collect" for action, False for fullBackup.
+        """
         result = RemotePeer._buildCbackCommand("cback", "collect", False)
         self.assertEqual("cback collect", result)
 
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testBuildCbackCommand_004(self):
         """
-      Test with "cback" for cbackCommand, "collect" for action, True for fullBackup.
-      """
+        Test with "cback" for cbackCommand, "collect" for action, True for fullBackup.
+        """
         result = RemotePeer._buildCbackCommand("cback", "collect", True)
         self.assertEqual("cback --full collect", result)

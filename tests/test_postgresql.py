@@ -159,8 +159,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = PostgresqlConfig()
         obj.__repr__()
         obj.__str__()
@@ -171,8 +171,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.user)
         self.assertEqual(None, postgresql.compressMode)
@@ -181,8 +181,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values, databases=None.
-      """
+        Test constructor with all values filled in, with valid values, databases=None.
+        """
         postgresql = PostgresqlConfig("user", "none", False, None)
         self.assertEqual("user", postgresql.user)
         self.assertEqual("none", postgresql.compressMode)
@@ -191,8 +191,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test constructor with all values filled in, with valid values, no databases.
-      """
+        Test constructor with all values filled in, with valid values, no databases.
+        """
         postgresql = PostgresqlConfig("user", "none", True, [])
         self.assertEqual("user", postgresql.user)
         self.assertEqual("none", postgresql.compressMode)
@@ -201,8 +201,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test constructor with all values filled in, with valid values, with one database.
-      """
+        Test constructor with all values filled in, with valid values, with one database.
+        """
         postgresql = PostgresqlConfig("user", "gzip", True, ["one"])
         self.assertEqual("user", postgresql.user)
         self.assertEqual("gzip", postgresql.compressMode)
@@ -211,8 +211,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test constructor with all values filled in, with valid values, with multiple databases.
-      """
+        Test constructor with all values filled in, with valid values, with multiple databases.
+        """
         postgresql = PostgresqlConfig("user", "bzip2", True, ["one", "two"])
         self.assertEqual("user", postgresql.user)
         self.assertEqual("bzip2", postgresql.compressMode)
@@ -221,8 +221,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of user attribute, None value.
-      """
+        Test assignment of user attribute, None value.
+        """
         postgresql = PostgresqlConfig(user="user")
         self.assertEqual("user", postgresql.user)
         postgresql.user = None
@@ -230,8 +230,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of user attribute, valid value.
-      """
+        Test assignment of user attribute, valid value.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.user)
         postgresql.user = "user"
@@ -239,8 +239,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of user attribute, invalid value (empty).
-      """
+        Test assignment of user attribute, invalid value (empty).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.user)
         self.failUnlessAssignRaises(ValueError, postgresql, "user", "")
@@ -248,8 +248,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of compressMode attribute, None value.
-      """
+        Test assignment of compressMode attribute, None value.
+        """
         postgresql = PostgresqlConfig(compressMode="none")
         self.assertEqual("none", postgresql.compressMode)
         postgresql.compressMode = None
@@ -257,8 +257,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of compressMode attribute, valid value.
-      """
+        Test assignment of compressMode attribute, valid value.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.compressMode)
         postgresql.compressMode = "none"
@@ -270,8 +270,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_011(self):
         """
-      Test assignment of compressMode attribute, invalid value (empty).
-      """
+        Test assignment of compressMode attribute, invalid value (empty).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.compressMode)
         self.failUnlessAssignRaises(ValueError, postgresql, "compressMode", "")
@@ -279,8 +279,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_012(self):
         """
-      Test assignment of compressMode attribute, invalid value (not in list).
-      """
+        Test assignment of compressMode attribute, invalid value (not in list).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.compressMode)
         self.failUnlessAssignRaises(ValueError, postgresql, "compressMode", "bogus")
@@ -288,8 +288,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test assignment of all attribute, None value.
-      """
+        Test assignment of all attribute, None value.
+        """
         postgresql = PostgresqlConfig(all=True)
         self.assertEqual(True, postgresql.all)
         postgresql.all = None
@@ -297,8 +297,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test assignment of all attribute, valid value (real boolean).
-      """
+        Test assignment of all attribute, valid value (real boolean).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(False, postgresql.all)
         postgresql.all = True
@@ -308,8 +308,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_015(self):
         """
-      Test assignment of all attribute, valid value (expression).
-      """
+        Test assignment of all attribute, valid value (expression).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(False, postgresql.all)
         postgresql.all = 0
@@ -325,8 +325,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_016(self):
         """
-      Test assignment of databases attribute, None value.
-      """
+        Test assignment of databases attribute, None value.
+        """
         postgresql = PostgresqlConfig(databases=[])
         self.assertEqual([], postgresql.databases)
         postgresql.databases = None
@@ -334,8 +334,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_017(self):
         """
-      Test assignment of databases attribute, [] value.
-      """
+        Test assignment of databases attribute, [] value.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
         postgresql.databases = []
@@ -343,8 +343,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_018(self):
         """
-      Test assignment of databases attribute, single valid entry.
-      """
+        Test assignment of databases attribute, single valid entry.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
         postgresql.databases = [
@@ -356,8 +356,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_019(self):
         """
-      Test assignment of databases attribute, multiple valid entries.
-      """
+        Test assignment of databases attribute, multiple valid entries.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
         postgresql.databases = [
@@ -370,8 +370,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_020(self):
         """
-      Test assignment of databases attribute, single invalid entry (empty).
-      """
+        Test assignment of databases attribute, single invalid entry (empty).
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
         self.failUnlessAssignRaises(ValueError, postgresql, "databases", [""])
@@ -379,8 +379,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testConstructor_021(self):
         """
-      Test assignment of databases attribute, mixed valid and invalid entries.
-      """
+        Test assignment of databases attribute, mixed valid and invalid entries.
+        """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
         self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["good", "", "alsogood"])
@@ -392,8 +392,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig()
         self.assertEqual(postgresql1, postgresql2)
@@ -406,8 +406,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list None.
-      """
+        Test comparison of two identical objects, all attributes non-None, list None.
+        """
         postgresql1 = PostgresqlConfig("user", "gzip", True, None)
         postgresql2 = PostgresqlConfig("user", "gzip", True, None)
         self.assertEqual(postgresql1, postgresql2)
@@ -420,8 +420,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, list empty.
+        """
         postgresql1 = PostgresqlConfig("user", "bzip2", True, [])
         postgresql2 = PostgresqlConfig("user", "bzip2", True, [])
         self.assertEqual(postgresql1, postgresql2)
@@ -434,8 +434,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two identical objects, all attributes non-None, list non-empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, list non-empty.
+        """
         postgresql1 = PostgresqlConfig("user", "none", True, ["whatever"])
         postgresql2 = PostgresqlConfig("user", "none", True, ["whatever"])
         self.assertEqual(postgresql1, postgresql2)
@@ -448,8 +448,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, user differs (one None).
-      """
+        Test comparison of two differing objects, user differs (one None).
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig(user="user")
         self.assertNotEqual(postgresql1, postgresql2)
@@ -462,8 +462,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, user differs.
-      """
+        Test comparison of two differing objects, user differs.
+        """
         postgresql1 = PostgresqlConfig("user1", "gzip", True, ["whatever"])
         postgresql2 = PostgresqlConfig("user2", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -476,8 +476,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test comparison of two differing objects, compressMode differs (one None).
-      """
+        Test comparison of two differing objects, compressMode differs (one None).
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig(compressMode="gzip")
         self.assertNotEqual(postgresql1, postgresql2)
@@ -490,8 +490,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test comparison of two differing objects, compressMode differs.
-      """
+        Test comparison of two differing objects, compressMode differs.
+        """
         postgresql1 = PostgresqlConfig("user", "bzip2", True, ["whatever"])
         postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -504,8 +504,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_009(self):
         """
-      Test comparison of two differing objects, all differs (one None).
-      """
+        Test comparison of two differing objects, all differs (one None).
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig(all=True)
         self.assertNotEqual(postgresql1, postgresql2)
@@ -518,8 +518,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_010(self):
         """
-      Test comparison of two differing objects, all differs.
-      """
+        Test comparison of two differing objects, all differs.
+        """
         postgresql1 = PostgresqlConfig("user", "gzip", False, ["whatever"])
         postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -532,8 +532,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_011(self):
         """
-      Test comparison of two differing objects, databases differs (one None, one empty).
-      """
+        Test comparison of two differing objects, databases differs (one None, one empty).
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig(databases=[])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -546,8 +546,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_012(self):
         """
-      Test comparison of two differing objects, databases differs (one None, one not empty).
-      """
+        Test comparison of two differing objects, databases differs (one None, one not empty).
+        """
         postgresql1 = PostgresqlConfig()
         postgresql2 = PostgresqlConfig(databases=["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -560,8 +560,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_013(self):
         """
-      Test comparison of two differing objects, databases differs (one empty, one not empty).
-      """
+        Test comparison of two differing objects, databases differs (one empty, one not empty).
+        """
         postgresql1 = PostgresqlConfig("user", "gzip", True, [])
         postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -574,8 +574,8 @@ class TestPostgresqlConfig(unittest.TestCase):
 
     def testComparison_014(self):
         """
-      Test comparison of two differing objects, databases differs (both not empty).
-      """
+        Test comparison of two differing objects, databases differs (both not empty).
+        """
         postgresql1 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever", "bogus"])
         self.assertNotEqual(postgresql1, postgresql2)
@@ -623,19 +623,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the postgresql configuration, and then make
-      sure that if we push that document back into the ``LocalConfig`` object,
-      that the resulting object matches the original.
+        We dump a document containing just the postgresql configuration, and then make
+        sure that if we push that document back into the ``LocalConfig`` object,
+        that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -648,8 +648,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -660,22 +660,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.postgresql)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.postgresql)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["postgresql.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -683,24 +683,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of postgresql attribute, None value.
-      """
+        Test assignment of postgresql attribute, None value.
+        """
         config = LocalConfig()
         config.postgresql = None
         self.assertEqual(None, config.postgresql)
 
     def testConstructor_005(self):
         """
-      Test assignment of postgresql attribute, valid value.
-      """
+        Test assignment of postgresql attribute, valid value.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig()
         self.assertEqual(PostgresqlConfig(), config.postgresql)
 
     def testConstructor_006(self):
         """
-      Test assignment of postgresql attribute, invalid value (not PostgresqlConfig).
-      """
+        Test assignment of postgresql attribute, invalid value (not PostgresqlConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "postgresql", "STRING!")
 
@@ -710,8 +710,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -724,8 +724,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.postgresql = PostgresqlConfig()
 
@@ -742,8 +742,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, postgresql differs (one None).
-      """
+        Test comparison of two differing objects, postgresql differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.postgresql = PostgresqlConfig()
@@ -757,8 +757,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, postgresql differs.
-      """
+        Test comparison of two differing objects, postgresql differs.
+        """
         config1 = LocalConfig()
         config1.postgresql = PostgresqlConfig(user="one")
 
@@ -779,72 +779,72 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None postgresql section.
-      """
+        Test validate on a None postgresql section.
+        """
         config = LocalConfig()
         config.postgresql = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty postgresql section.
-      """
+        Test validate on an empty postgresql section.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty postgresql section, all=True, databases=None.
-      """
+        Test validate on a non-empty postgresql section, all=True, databases=None.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "gzip", True, None)
         config.validate()
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty postgresql section, all=True, empty databases.
-      """
+        Test validate on a non-empty postgresql section, all=True, empty databases.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "none", True, [])
         config.validate()
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty postgresql section, all=True, non-empty databases.
-      """
+        Test validate on a non-empty postgresql section, all=True, non-empty databases.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "bzip2", True, ["whatever"])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_006(self):
         """
-      Test validate on a non-empty postgresql section, all=False, databases=None.
-      """
+        Test validate on a non-empty postgresql section, all=False, databases=None.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "gzip", False, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_007(self):
         """
-      Test validate on a non-empty postgresql section, all=False, empty databases.
-      """
+        Test validate on a non-empty postgresql section, all=False, empty databases.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "bzip2", False, [])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_008(self):
         """
-      Test validate on a non-empty postgresql section, all=False, non-empty databases.
-      """
+        Test validate on a non-empty postgresql section, all=False, non-empty databases.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "gzip", False, ["whatever"])
         config.validate()
 
     def testValidate_009(self):
         """
-      Test validate on a non-empty postgresql section, with user=None.
-      """
+        Test validate on a non-empty postgresql section, with user=None.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig(None, "gzip", True, None)
         config.validate()
@@ -855,8 +855,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["postgresql.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -869,8 +869,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_003(self):
         """
-      Parse config document containing only a postgresql section, no databases, all=True.
-      """
+        Parse config document containing only a postgresql section, no databases, all=True.
+        """
         path = self.resources["postgresql.conf.2"]
         with open(path) as f:
             contents = f.read()
@@ -888,8 +888,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_004(self):
         """
-      Parse config document containing only a postgresql section, single database, all=False.
-      """
+        Parse config document containing only a postgresql section, single database, all=False.
+        """
         path = self.resources["postgresql.conf.3"]
         with open(path) as f:
             contents = f.read()
@@ -908,8 +908,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_005(self):
         """
-      Parse config document containing only a postgresql section, multiple databases, all=False.
-      """
+        Parse config document containing only a postgresql section, multiple databases, all=False.
+        """
         path = self.resources["postgresql.conf.4"]
         with open(path) as f:
             contents = f.read()
@@ -928,8 +928,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_006(self):
         """
-      Parse config document containing only a postgresql section, no user, multiple databases, all=False.
-      """
+        Parse config document containing only a postgresql section, no user, multiple databases, all=False.
+        """
         path = self.resources["postgresql.conf.5"]
         with open(path) as f:
             contents = f.read()
@@ -952,63 +952,63 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document
-      """
+        Test with empty config document
+        """
         config = LocalConfig()
         self.validateAddConfig(config)
 
     def testAddConfig_003(self):
         """
-      Test with no databases, all other values filled in, all=True.
-      """
+        Test with no databases, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "none", True, None)
         self.validateAddConfig(config)
 
     def testAddConfig_004(self):
         """
-      Test with no databases, all other values filled in, all=False.
-      """
+        Test with no databases, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "gzip", False, None)
         self.validateAddConfig(config)
 
     def testAddConfig_005(self):
         """
-      Test with single database, all other values filled in, all=True.
-      """
+        Test with single database, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_006(self):
         """
-      Test with single database, all other values filled in, all=False.
-      """
+        Test with single database, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "none", False, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_007(self):
         """
-      Test with multiple databases, all other values filled in, all=True.
-      """
+        Test with multiple databases, all other values filled in, all=True.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_008(self):
         """
-      Test with multiple databases, all other values filled in, all=False.
-      """
+        Test with multiple databases, all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig("user", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_009(self):
         """
-      Test with multiple databases, user=None but all other values filled in, all=False.
-      """
+        Test with multiple databases, user=None but all other values filled in, all=False.
+        """
         config = LocalConfig()
         config.postgresql = PostgresqlConfig(None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)

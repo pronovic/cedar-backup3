@@ -77,17 +77,17 @@ DEBIAN_MKISOFS = "/usr/bin/genisoimage"
 
 def customizeOverrides(config, platform=PLATFORM):
     """
-   Modify command overrides based on the configured platform.
+    Modify command overrides based on the configured platform.
 
-   On some platforms, we want to add command overrides to configuration.  Each
-   override will only be added if the configuration does not already contain an
-   override with the same name.  That way, the user still has a way to choose
-   their own version of the command if they want.
+    On some platforms, we want to add command overrides to configuration.  Each
+    override will only be added if the configuration does not already contain an
+    override with the same name.  That way, the user still has a way to choose
+    their own version of the command if they want.
 
-   Args:
-      config: Configuration to modify
-      platform: Platform that is in use
-   """
+    Args:
+       config: Configuration to modify
+       platform: Platform that is in use
+    """
     if platform == "debian":
         logger.info("Overriding cdrecord for Debian platform: %s", DEBIAN_CDRECORD)
         config.options.addOverride("cdrecord", DEBIAN_CDRECORD)

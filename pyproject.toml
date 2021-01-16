@@ -39,7 +39,7 @@ pylint = "^2.6.0"
 sphinx = "^3.4.3"
 toml = "^0.10.0"
 pre-commit = "^2.2.0"
-black = "^19.10b0"
+black = "^20.8b1"
 isort = "^5.0.0"
 sphinx-autoapi = "^1.2.1"
 

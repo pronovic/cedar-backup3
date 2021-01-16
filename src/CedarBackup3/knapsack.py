@@ -73,39 +73,39 @@ possible.
 def firstFit(items, capacity):
 
     """
-   Implements the first-fit knapsack algorithm.
+    Implements the first-fit knapsack algorithm.
 
-   The first-fit algorithm proceeds through an unsorted list of items until
-   running out of items or meeting capacity exactly.  If capacity is exceeded,
-   the item that caused capacity to be exceeded is thrown away and the next one
-   is tried.  This algorithm generally performs more poorly than the other
-   algorithms both in terms of capacity utilization and item utilization, but
-   can be as much as an order of magnitude faster on large lists of items
-   because it doesn't require any sorting.
+    The first-fit algorithm proceeds through an unsorted list of items until
+    running out of items or meeting capacity exactly.  If capacity is exceeded,
+    the item that caused capacity to be exceeded is thrown away and the next one
+    is tried.  This algorithm generally performs more poorly than the other
+    algorithms both in terms of capacity utilization and item utilization, but
+    can be as much as an order of magnitude faster on large lists of items
+    because it doesn't require any sorting.
 
-   The "size" values in the items and capacity arguments must be comparable,
-   but they are unitless from the perspective of this function.  Zero-sized
-   items and capacity are considered degenerate cases.  If capacity is zero,
-   no items fit, period, even if the items list contains zero-sized items.
+    The "size" values in the items and capacity arguments must be comparable,
+    but they are unitless from the perspective of this function.  Zero-sized
+    items and capacity are considered degenerate cases.  If capacity is zero,
+    no items fit, period, even if the items list contains zero-sized items.
 
-   The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate
-   easy sorting of the list on key if needed.
+    The dictionary is indexed by its key, and then includes its key.  This
+    seems kind of strange on first glance.  It works this way to facilitate
+    easy sorting of the list on key if needed.
 
-   The function assumes that the list of items may be used destructively, if
-   needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass ``items.copy()`` if they
-   do not want their version of the list modified.
+    The function assumes that the list of items may be used destructively, if
+    needed.  This avoids the overhead of having the function make a copy of the
+    list, if this is not required.  Callers should pass ``items.copy()`` if they
+    do not want their version of the list modified.
 
-   The function returns a list of chosen items and the unitless amount of
-   capacity used by the items.
+    The function returns a list of chosen items and the unitless amount of
+    capacity used by the items.
 
-   Args:
-      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
-      capacity (integer): Capacity of container to fit to
-   Returns:
-       Tuple ``(items, used)`` as described above
-   """
+    Args:
+       items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
+       capacity (integer): Capacity of container to fit to
+    Returns:
+        Tuple ``(items, used)`` as described above
+    """
 
     # Use dict since insert into dict is faster than list append
     included = {}
@@ -133,42 +133,42 @@ def firstFit(items, capacity):
 def bestFit(items, capacity):
 
     """
-   Implements the best-fit knapsack algorithm.
+    Implements the best-fit knapsack algorithm.
 
-   The best-fit algorithm proceeds through a sorted list of items (sorted from
-   largest to smallest) until running out of items or meeting capacity exactly.
-   If capacity is exceeded, the item that caused capacity to be exceeded is
-   thrown away and the next one is tried.  The algorithm effectively includes
-   the minimum number of items possible in its search for optimal capacity
-   utilization.  For large lists of mixed-size items, it's not ususual to see
-   the algorithm achieve 100% capacity utilization by including fewer than 1%
-   of the items.  Probably because it often has to look at fewer of the items
-   before completing, it tends to be a little faster than the worst-fit or
-   alternate-fit algorithms.
+    The best-fit algorithm proceeds through a sorted list of items (sorted from
+    largest to smallest) until running out of items or meeting capacity exactly.
+    If capacity is exceeded, the item that caused capacity to be exceeded is
+    thrown away and the next one is tried.  The algorithm effectively includes
+    the minimum number of items possible in its search for optimal capacity
+    utilization.  For large lists of mixed-size items, it's not ususual to see
+    the algorithm achieve 100% capacity utilization by including fewer than 1%
+    of the items.  Probably because it often has to look at fewer of the items
+    before completing, it tends to be a little faster than the worst-fit or
+    alternate-fit algorithms.
 
-   The "size" values in the items and capacity arguments must be comparable,
-   but they are unitless from the perspective of this function.  Zero-sized
-   items and capacity are considered degenerate cases.  If capacity is zero,
-   no items fit, period, even if the items list contains zero-sized items.
+    The "size" values in the items and capacity arguments must be comparable,
+    but they are unitless from the perspective of this function.  Zero-sized
+    items and capacity are considered degenerate cases.  If capacity is zero,
+    no items fit, period, even if the items list contains zero-sized items.
 
-   The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate
-   easy sorting of the list on key if needed.
+    The dictionary is indexed by its key, and then includes its key.  This
+    seems kind of strange on first glance.  It works this way to facilitate
+    easy sorting of the list on key if needed.
 
-   The function assumes that the list of items may be used destructively, if
-   needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass ``items.copy()`` if they
-   do not want their version of the list modified.
+    The function assumes that the list of items may be used destructively, if
+    needed.  This avoids the overhead of having the function make a copy of the
+    list, if this is not required.  Callers should pass ``items.copy()`` if they
+    do not want their version of the list modified.
 
-   The function returns a list of chosen items and the unitless amount of
-   capacity used by the items.
+    The function returns a list of chosen items and the unitless amount of
+    capacity used by the items.
 
-   Args:
-      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
-      capacity (integer): Capacity of container to fit to
-   Returns:
-       Tuple ``(items, used)`` as described above
-   """
+    Args:
+       items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
+       capacity (integer): Capacity of container to fit to
+    Returns:
+        Tuple ``(items, used)`` as described above
+    """
 
     # Use dict since insert into dict is faster than list append
     included = {}
@@ -203,40 +203,40 @@ def bestFit(items, capacity):
 def worstFit(items, capacity):
 
     """
-   Implements the worst-fit knapsack algorithm.
+    Implements the worst-fit knapsack algorithm.
 
-   The worst-fit algorithm proceeds through an a sorted list of items (sorted
-   from smallest to largest) until running out of items or meeting capacity
-   exactly.  If capacity is exceeded, the item that caused capacity to be
-   exceeded is thrown away and the next one is tried.  The algorithm
-   effectively includes the maximum number of items possible in its search for
-   optimal capacity utilization.  It tends to be somewhat slower than either
-   the best-fit or alternate-fit algorithm, probably because on average it has
-   to look at more items before completing.
+    The worst-fit algorithm proceeds through an a sorted list of items (sorted
+    from smallest to largest) until running out of items or meeting capacity
+    exactly.  If capacity is exceeded, the item that caused capacity to be
+    exceeded is thrown away and the next one is tried.  The algorithm
+    effectively includes the maximum number of items possible in its search for
+    optimal capacity utilization.  It tends to be somewhat slower than either
+    the best-fit or alternate-fit algorithm, probably because on average it has
+    to look at more items before completing.
 
-   The "size" values in the items and capacity arguments must be comparable,
-   but they are unitless from the perspective of this function.  Zero-sized
-   items and capacity are considered degenerate cases.  If capacity is zero,
-   no items fit, period, even if the items list contains zero-sized items.
+    The "size" values in the items and capacity arguments must be comparable,
+    but they are unitless from the perspective of this function.  Zero-sized
+    items and capacity are considered degenerate cases.  If capacity is zero,
+    no items fit, period, even if the items list contains zero-sized items.
 
-   The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate
-   easy sorting of the list on key if needed.
+    The dictionary is indexed by its key, and then includes its key.  This
+    seems kind of strange on first glance.  It works this way to facilitate
+    easy sorting of the list on key if needed.
 
-   The function assumes that the list of items may be used destructively, if
-   needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass ``items.copy()`` if they
-   do not want their version of the list modified.
+    The function assumes that the list of items may be used destructively, if
+    needed.  This avoids the overhead of having the function make a copy of the
+    list, if this is not required.  Callers should pass ``items.copy()`` if they
+    do not want their version of the list modified.
 
-   The function returns a list of chosen items and the unitless amount of
-   capacity used by the items.
+    The function returns a list of chosen items and the unitless amount of
+    capacity used by the items.
 
-   Args:
-      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
-      capacity (integer): Capacity of container to fit to
-   Returns:
-       Tuple ``(items, used)`` as described above
-   """
+    Args:
+       items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
+       capacity (integer): Capacity of container to fit to
+    Returns:
+        Tuple ``(items, used)`` as described above
+    """
 
     # Use dict since insert into dict is faster than list append
     included = {}
@@ -271,42 +271,42 @@ def worstFit(items, capacity):
 def alternateFit(items, capacity):
 
     """
-   Implements the alternate-fit knapsack algorithm.
+    Implements the alternate-fit knapsack algorithm.
 
-   This algorithm (which I'm calling "alternate-fit" as in "alternate from one
-   to the other") tries to balance small and large items to achieve better
-   end-of-disk performance.  Instead of just working one direction through a
-   list, it alternately works from the start and end of a sorted list (sorted
-   from smallest to largest), throwing away any item which causes capacity to
-   be exceeded.  The algorithm tends to be slower than the best-fit and
-   first-fit algorithms, and slightly faster than the worst-fit algorithm,
-   probably because of the number of items it considers on average before
-   completing.  It often achieves slightly better capacity utilization than the
-   worst-fit algorithm, while including slighly fewer items.
+    This algorithm (which I'm calling "alternate-fit" as in "alternate from one
+    to the other") tries to balance small and large items to achieve better
+    end-of-disk performance.  Instead of just working one direction through a
+    list, it alternately works from the start and end of a sorted list (sorted
+    from smallest to largest), throwing away any item which causes capacity to
+    be exceeded.  The algorithm tends to be slower than the best-fit and
+    first-fit algorithms, and slightly faster than the worst-fit algorithm,
+    probably because of the number of items it considers on average before
+    completing.  It often achieves slightly better capacity utilization than the
+    worst-fit algorithm, while including slighly fewer items.
 
-   The "size" values in the items and capacity arguments must be comparable,
-   but they are unitless from the perspective of this function.  Zero-sized
-   items and capacity are considered degenerate cases.  If capacity is zero,
-   no items fit, period, even if the items list contains zero-sized items.
+    The "size" values in the items and capacity arguments must be comparable,
+    but they are unitless from the perspective of this function.  Zero-sized
+    items and capacity are considered degenerate cases.  If capacity is zero,
+    no items fit, period, even if the items list contains zero-sized items.
 
-   The dictionary is indexed by its key, and then includes its key.  This
-   seems kind of strange on first glance.  It works this way to facilitate
-   easy sorting of the list on key if needed.
+    The dictionary is indexed by its key, and then includes its key.  This
+    seems kind of strange on first glance.  It works this way to facilitate
+    easy sorting of the list on key if needed.
 
-   The function assumes that the list of items may be used destructively, if
-   needed.  This avoids the overhead of having the function make a copy of the
-   list, if this is not required.  Callers should pass ``items.copy()`` if they
-   do not want their version of the list modified.
+    The function assumes that the list of items may be used destructively, if
+    needed.  This avoids the overhead of having the function make a copy of the
+    list, if this is not required.  Callers should pass ``items.copy()`` if they
+    do not want their version of the list modified.
 
-   The function returns a list of chosen items and the unitless amount of
-   capacity used by the items.
+    The function returns a list of chosen items and the unitless amount of
+    capacity used by the items.
 
-   Args:
-      items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
-      capacity (integer): Capacity of container to fit to
-   Returns:
-       Tuple ``(items, used)`` as described above
-   """
+    Args:
+       items (dictionary, keyed on item, of ``item, size`` tuples, item as string and size as integer): Items to operate on
+       capacity (integer): Capacity of container to fit to
+    Returns:
+        Tuple ``(items, used)`` as described above
+    """
 
     # Use dict since insert into dict is faster than list append
     included = {}

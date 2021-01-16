@@ -183,8 +183,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = SplitConfig()
         obj.__repr__()
         obj.__str__()
@@ -195,24 +195,24 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         split = SplitConfig()
         self.assertEqual(None, split.sizeLimit)
         self.assertEqual(None, split.splitSize)
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values.
-      """
+        Test constructor with all values filled in, with valid values.
+        """
         split = SplitConfig(ByteQuantity("1.0", UNIT_BYTES), ByteQuantity("2.0", UNIT_KBYTES))
         self.assertEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
         self.assertEqual(ByteQuantity("2.0", UNIT_KBYTES), split.splitSize)
 
     def testConstructor_003(self):
         """
-      Test assignment of sizeLimit attribute, None value.
-      """
+        Test assignment of sizeLimit attribute, None value.
+        """
         split = SplitConfig(sizeLimit=ByteQuantity("1.0", UNIT_BYTES))
         self.assertEqual(ByteQuantity("1.0", UNIT_BYTES), split.sizeLimit)
         split.sizeLimit = None
@@ -220,8 +220,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of sizeLimit attribute, valid value.
-      """
+        Test assignment of sizeLimit attribute, valid value.
+        """
         split = SplitConfig()
         self.assertEqual(None, split.sizeLimit)
         split.sizeLimit = ByteQuantity("1.0", UNIT_BYTES)
@@ -229,8 +229,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of sizeLimit attribute, invalid value (empty).
-      """
+        Test assignment of sizeLimit attribute, invalid value (empty).
+        """
         split = SplitConfig()
         self.assertEqual(None, split.sizeLimit)
         self.failUnlessAssignRaises(ValueError, split, "sizeLimit", "")
@@ -238,8 +238,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of sizeLimit attribute, invalid value (not a ByteQuantity).
-      """
+        Test assignment of sizeLimit attribute, invalid value (not a ByteQuantity).
+        """
         split = SplitConfig()
         self.assertEqual(None, split.sizeLimit)
         self.failUnlessAssignRaises(ValueError, split, "sizeLimit", "1.0 GB")
@@ -247,8 +247,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of splitSize attribute, None value.
-      """
+        Test assignment of splitSize attribute, None value.
+        """
         split = SplitConfig(splitSize=ByteQuantity("1.00", UNIT_KBYTES))
         self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), split.splitSize)
         split.splitSize = None
@@ -256,8 +256,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of splitSize attribute, valid value.
-      """
+        Test assignment of splitSize attribute, valid value.
+        """
         split = SplitConfig()
         self.assertEqual(None, split.splitSize)
         split.splitSize = ByteQuantity("1.00", UNIT_KBYTES)
@@ -265,8 +265,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of splitSize attribute, invalid value (empty).
-      """
+        Test assignment of splitSize attribute, invalid value (empty).
+        """
         split = SplitConfig()
         self.assertEqual(None, split.splitSize)
         self.failUnlessAssignRaises(ValueError, split, "splitSize", "")
@@ -274,8 +274,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of splitSize attribute, invalid value (not a ByteQuantity).
-      """
+        Test assignment of splitSize attribute, invalid value (not a ByteQuantity).
+        """
         split = SplitConfig()
         self.assertEqual(None, split.splitSize)
         self.failUnlessAssignRaises(ValueError, split, "splitSize", 12)
@@ -287,8 +287,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         split1 = SplitConfig()
         split2 = SplitConfig()
         self.assertEqual(split1, split2)
@@ -301,8 +301,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         split1 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
         split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertEqual(split1, split2)
@@ -315,8 +315,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, sizeLimit differs (one None).
-      """
+        Test comparison of two differing objects, sizeLimit differs (one None).
+        """
         split1 = SplitConfig()
         split2 = SplitConfig(sizeLimit=ByteQuantity("99", UNIT_KBYTES))
         self.assertNotEqual(split1, split2)
@@ -329,8 +329,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, sizeLimit differs.
-      """
+        Test comparison of two differing objects, sizeLimit differs.
+        """
         split1 = SplitConfig(ByteQuantity("99", UNIT_BYTES), ByteQuantity("1.00", UNIT_MBYTES))
         split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(split1, split2)
@@ -343,8 +343,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, splitSize differs (one None).
-      """
+        Test comparison of two differing objects, splitSize differs (one None).
+        """
         split1 = SplitConfig()
         split2 = SplitConfig(splitSize=ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(split1, split2)
@@ -357,8 +357,8 @@ class TestSplitConfig(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, splitSize differs.
-      """
+        Test comparison of two differing objects, splitSize differs.
+        """
         split1 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("0.5", UNIT_MBYTES))
         split2 = SplitConfig(ByteQuantity("99", UNIT_KBYTES), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(split1, split2)
@@ -406,19 +406,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the split configuration, and then
-      make sure that if we push that document back into the ``LocalConfig``
-      object, that the resulting object matches the original.
+        We dump a document containing just the split configuration, and then
+        make sure that if we push that document back into the ``LocalConfig``
+        object, that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -431,8 +431,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -443,22 +443,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.split)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.split)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["split.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -466,24 +466,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of split attribute, None value.
-      """
+        Test assignment of split attribute, None value.
+        """
         config = LocalConfig()
         config.split = None
         self.assertEqual(None, config.split)
 
     def testConstructor_005(self):
         """
-      Test assignment of split attribute, valid value.
-      """
+        Test assignment of split attribute, valid value.
+        """
         config = LocalConfig()
         config.split = SplitConfig()
         self.assertEqual(SplitConfig(), config.split)
 
     def testConstructor_006(self):
         """
-      Test assignment of split attribute, invalid value (not SplitConfig).
-      """
+        Test assignment of split attribute, invalid value (not SplitConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "split", "STRING!")
 
@@ -493,8 +493,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -507,8 +507,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.split = SplitConfig()
 
@@ -525,8 +525,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, split differs (one None).
-      """
+        Test comparison of two differing objects, split differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.split = SplitConfig()
@@ -540,8 +540,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, split differs.
-      """
+        Test comparison of two differing objects, split differs.
+        """
         config1 = LocalConfig()
         config1.split = SplitConfig(sizeLimit=ByteQuantity("0.1", UNIT_MBYTES))
 
@@ -562,32 +562,32 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None split section.
-      """
+        Test validate on a None split section.
+        """
         config = LocalConfig()
         config.split = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty split section.
-      """
+        Test validate on an empty split section.
+        """
         config = LocalConfig()
         config.split = SplitConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty split section with no values filled in.
-      """
+        Test validate on a non-empty split section with no values filled in.
+        """
         config = LocalConfig()
         config.split = SplitConfig(None, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty split section with only one value filled in.
-      """
+        Test validate on a non-empty split section with only one value filled in.
+        """
         config = LocalConfig()
         config.split = SplitConfig(ByteQuantity("1.00", UNIT_MBYTES), None)
         self.assertRaises(ValueError, config.validate)
@@ -596,8 +596,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty split section with valid values filled in.
-      """
+        Test validate on a non-empty split section with valid values filled in.
+        """
         config = LocalConfig()
         config.split = SplitConfig(ByteQuantity("1.00", UNIT_MBYTES), ByteQuantity("1.00", UNIT_MBYTES))
         config.validate()
@@ -608,8 +608,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["split.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -622,8 +622,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_002(self):
         """
-      Parse config document with filled-in values, size in bytes.
-      """
+        Parse config document with filled-in values, size in bytes.
+        """
         path = self.resources["split.conf.2"]
         with open(path) as f:
             contents = f.read()
@@ -638,8 +638,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_003(self):
         """
-      Parse config document with filled-in values, size in KB.
-      """
+        Parse config document with filled-in values, size in KB.
+        """
         path = self.resources["split.conf.3"]
         with open(path) as f:
             contents = f.read()
@@ -654,8 +654,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_004(self):
         """
-      Parse config document with filled-in values, size in MB.
-      """
+        Parse config document with filled-in values, size in MB.
+        """
         path = self.resources["split.conf.4"]
         with open(path) as f:
             contents = f.read()
@@ -670,8 +670,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_005(self):
         """
-      Parse config document with filled-in values, size in GB.
-      """
+        Parse config document with filled-in values, size in GB.
+        """
         path = self.resources["split.conf.5"]
         with open(path) as f:
             contents = f.read()
@@ -690,8 +690,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document.
-      """
+        Test with empty config document.
+        """
         split = SplitConfig()
         config = LocalConfig()
         config.split = split
@@ -699,8 +699,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_002(self):
         """
-      Test with values set, byte values.
-      """
+        Test with values set, byte values.
+        """
         split = SplitConfig(ByteQuantity("57521.0", UNIT_BYTES), ByteQuantity("121231", UNIT_BYTES))
         config = LocalConfig()
         config.split = split
@@ -708,8 +708,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_003(self):
         """
-      Test with values set, KB values.
-      """
+        Test with values set, KB values.
+        """
         split = SplitConfig(ByteQuantity("12", UNIT_KBYTES), ByteQuantity("63352", UNIT_KBYTES))
         config = LocalConfig()
         config.split = split
@@ -717,8 +717,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_004(self):
         """
-      Test with values set, MB values.
-      """
+        Test with values set, MB values.
+        """
         split = SplitConfig(ByteQuantity("12", UNIT_MBYTES), ByteQuantity("63352", UNIT_MBYTES))
         config = LocalConfig()
         config.split = split
@@ -726,8 +726,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_005(self):
         """
-      Test with values set, GB values.
-      """
+        Test with values set, GB values.
+        """
         split = SplitConfig(ByteQuantity("12", UNIT_GBYTES), ByteQuantity("63352", UNIT_GBYTES))
         config = LocalConfig()
         config.split = split
@@ -798,11 +798,11 @@ class TestFunctions(unittest.TestCase):
 
     def findBadLocale(self):
         """
-      The split command localizes its output for certain locales.  This breaks
-      the parsing code in split.py.  This method returns a list of the locales
-      (if any) that are currently configured which could be expected to cause a
-      failure if the localization-fixing code doesn't work.
-      """
+        The split command localizes its output for certain locales.  This breaks
+        the parsing code in split.py.  This method returns a list of the locales
+        (if any) that are currently configured which could be expected to cause a
+        failure if the localization-fixing code doesn't work.
+        """
         locales = availableLocales()
         if "fr_FR" in locales:
             return "fr_FR"
@@ -818,8 +818,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitFile_001(self):
         """
-      Test with a nonexistent file.
-      """
+        Test with a nonexistent file.
+        """
         self.extractTar("tree21")
         sourcePath = self.buildPath(["tree21", "2007", "01", "01", INVALID_PATH])
         self.assertFalse(os.path.exists(sourcePath))
@@ -828,8 +828,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitFile_002(self):
         """
-      Test with integer split size, removeSource=False.
-      """
+        Test with integer split size, removeSource=False.
+        """
         self.extractTar("tree21")
         sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
@@ -840,8 +840,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitFile_003(self):
         """
-      Test with floating point split size, removeSource=False.
-      """
+        Test with floating point split size, removeSource=False.
+        """
         self.extractTar("tree21")
         sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
@@ -852,8 +852,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitFile_004(self):
         """
-      Test with integer split size, removeSource=True.
-      """
+        Test with integer split size, removeSource=True.
+        """
         self.extractTar("tree21")
         sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
@@ -864,8 +864,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitFile_005(self):
         """
-      Test with a local other than "C" or "en_US" set.
-      """
+        Test with a local other than "C" or "en_US" set.
+        """
         locale = self.findBadLocale()
         if locale is not None:
             os.environ["LANG"] = locale
@@ -896,8 +896,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_001(self):
         """
-      Test with a nonexistent daily staging directory.
-      """
+        Test with a nonexistent daily staging directory.
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", INVALID_PATH])
         self.assertFalse(os.path.exists(dailyDir))
@@ -907,8 +907,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_002(self):
         """
-      Test with 1.0 MB limit.
-      """
+        Test with 1.0 MB limit.
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
@@ -936,8 +936,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_003(self):
         """
-      Test with 100,000 byte limit, chopped down to 10 KB
-      """
+        Test with 100,000 byte limit, chopped down to 10 KB
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
@@ -967,8 +967,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_004(self):
         """
-      Test with 99,999 byte limit, chopped down to 5,000 bytes
-      """
+        Test with 99,999 byte limit, chopped down to 5,000 bytes
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
@@ -1000,8 +1000,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_005(self):
         """
-      Test with 99,998 byte limit, chopped down to 2500 bytes
-      """
+        Test with 99,998 byte limit, chopped down to 2500 bytes
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
@@ -1035,8 +1035,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_006(self):
         """
-      Test with 10,000 byte limit, chopped down to 1024 bytes
-      """
+        Test with 10,000 byte limit, chopped down to 1024 bytes
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
@@ -1070,8 +1070,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitDailyDir_007(self):
         """
-      Test with 9,999 byte limit, chopped down to 1000 bytes
-      """
+        Test with 9,999 byte limit, chopped down to 1000 bytes
+        """
         self.extractTar("tree21")
         dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))

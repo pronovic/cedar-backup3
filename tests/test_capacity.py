@@ -147,8 +147,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = PercentageQuantity()
         obj.__repr__()
         obj.__str__()
@@ -159,24 +159,24 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.assertEqual(0.0, quantity.percentage)
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values.
-      """
+        Test constructor with all values filled in, with valid values.
+        """
         quantity = PercentageQuantity("6")
         self.assertEqual("6", quantity.quantity)
         self.assertEqual(6.0, quantity.percentage)
 
     def testConstructor_003(self):
         """
-      Test assignment of quantity attribute, None value.
-      """
+        Test assignment of quantity attribute, None value.
+        """
         quantity = PercentageQuantity(quantity="1.0")
         self.assertEqual("1.0", quantity.quantity)
         self.assertEqual(1.0, quantity.percentage)
@@ -186,8 +186,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of quantity attribute, valid values.
-      """
+        Test assignment of quantity attribute, valid values.
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.assertEqual(0.0, quantity.percentage)
@@ -209,8 +209,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of quantity attribute, invalid value (empty).
-      """
+        Test assignment of quantity attribute, invalid value (empty).
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.failUnlessAssignRaises(ValueError, quantity, "quantity", "")
@@ -218,8 +218,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of quantity attribute, invalid value (not a floating point number).
-      """
+        Test assignment of quantity attribute, invalid value (not a floating point number).
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.failUnlessAssignRaises(ValueError, quantity, "quantity", "blech")
@@ -227,8 +227,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of quantity attribute, invalid value (negative number).
-      """
+        Test assignment of quantity attribute, invalid value (negative number).
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.failUnlessAssignRaises(ValueError, quantity, "quantity", "-3")
@@ -242,8 +242,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of quantity attribute, invalid value (larger than 100%).
-      """
+        Test assignment of quantity attribute, invalid value (larger than 100%).
+        """
         quantity = PercentageQuantity()
         self.assertEqual(None, quantity.quantity)
         self.failUnlessAssignRaises(ValueError, quantity, "quantity", "100.0001")
@@ -259,8 +259,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         quantity1 = PercentageQuantity()
         quantity2 = PercentageQuantity()
         self.assertEqual(quantity1, quantity2)
@@ -273,8 +273,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         quantity1 = PercentageQuantity("12")
         quantity2 = PercentageQuantity("12")
         self.assertEqual(quantity1, quantity2)
@@ -287,8 +287,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, quantity differs (one None).
-      """
+        Test comparison of two differing objects, quantity differs (one None).
+        """
         quantity1 = PercentageQuantity()
         quantity2 = PercentageQuantity(quantity="12")
         self.assertNotEqual(quantity1, quantity2)
@@ -301,8 +301,8 @@ class TestPercentageQuantity(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, quantity differs.
-      """
+        Test comparison of two differing objects, quantity differs.
+        """
         quantity1 = PercentageQuantity("10")
         quantity2 = PercentageQuantity("12")
         self.assertNotEqual(quantity1, quantity2)
@@ -345,8 +345,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = CapacityConfig()
         obj.__repr__()
         obj.__str__()
@@ -357,24 +357,24 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.maxPercentage)
         self.assertEqual(None, capacity.minBytes)
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values.
-      """
+        Test constructor with all values filled in, with valid values.
+        """
         capacity = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("2.0", UNIT_KBYTES))
         self.assertEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
         self.assertEqual(ByteQuantity("2.0", UNIT_KBYTES), capacity.minBytes)
 
     def testConstructor_003(self):
         """
-      Test assignment of maxPercentage attribute, None value.
-      """
+        Test assignment of maxPercentage attribute, None value.
+        """
         capacity = CapacityConfig(maxPercentage=PercentageQuantity("63.2"))
         self.assertEqual(PercentageQuantity("63.2"), capacity.maxPercentage)
         capacity.maxPercentage = None
@@ -382,8 +382,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of maxPercentage attribute, valid value.
-      """
+        Test assignment of maxPercentage attribute, valid value.
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.maxPercentage)
         capacity.maxPercentage = PercentageQuantity("63.2")
@@ -391,8 +391,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of maxPercentage attribute, invalid value (empty).
-      """
+        Test assignment of maxPercentage attribute, invalid value (empty).
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.maxPercentage)
         self.failUnlessAssignRaises(ValueError, capacity, "maxPercentage", "")
@@ -400,8 +400,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of maxPercentage attribute, invalid value (not a PercentageQuantity).
-      """
+        Test assignment of maxPercentage attribute, invalid value (not a PercentageQuantity).
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.maxPercentage)
         self.failUnlessAssignRaises(ValueError, capacity, "maxPercentage", "1.0 GB")
@@ -409,8 +409,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of minBytes attribute, None value.
-      """
+        Test assignment of minBytes attribute, None value.
+        """
         capacity = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_KBYTES))
         self.assertEqual(ByteQuantity("1.00", UNIT_KBYTES), capacity.minBytes)
         capacity.minBytes = None
@@ -418,8 +418,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of minBytes attribute, valid value.
-      """
+        Test assignment of minBytes attribute, valid value.
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.minBytes)
         capacity.minBytes = ByteQuantity("1.00", UNIT_KBYTES)
@@ -427,8 +427,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of minBytes attribute, invalid value (empty).
-      """
+        Test assignment of minBytes attribute, invalid value (empty).
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.minBytes)
         self.failUnlessAssignRaises(ValueError, capacity, "minBytes", "")
@@ -436,8 +436,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of minBytes attribute, invalid value (not a ByteQuantity).
-      """
+        Test assignment of minBytes attribute, invalid value (not a ByteQuantity).
+        """
         capacity = CapacityConfig()
         self.assertEqual(None, capacity.minBytes)
         self.failUnlessAssignRaises(ValueError, capacity, "minBytes", 12)
@@ -449,8 +449,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         capacity1 = CapacityConfig()
         capacity2 = CapacityConfig()
         self.assertEqual(capacity1, capacity2)
@@ -463,8 +463,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         capacity1 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
         capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertEqual(capacity1, capacity2)
@@ -477,8 +477,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, maxPercentage differs (one None).
-      """
+        Test comparison of two differing objects, maxPercentage differs (one None).
+        """
         capacity1 = CapacityConfig()
         capacity2 = CapacityConfig(maxPercentage=PercentageQuantity("63.2"))
         self.assertNotEqual(capacity1, capacity2)
@@ -491,8 +491,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, maxPercentage differs.
-      """
+        Test comparison of two differing objects, maxPercentage differs.
+        """
         capacity1 = CapacityConfig(PercentageQuantity("15.0"), ByteQuantity("1.00", UNIT_MBYTES))
         capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(capacity1, capacity2)
@@ -505,8 +505,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, minBytes differs (one None).
-      """
+        Test comparison of two differing objects, minBytes differs (one None).
+        """
         capacity1 = CapacityConfig()
         capacity2 = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(capacity1, capacity2)
@@ -519,8 +519,8 @@ class TestCapacityConfig(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, minBytes differs.
-      """
+        Test comparison of two differing objects, minBytes differs.
+        """
         capacity1 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("0.5", UNIT_MBYTES))
         capacity2 = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertNotEqual(capacity1, capacity2)
@@ -572,19 +572,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the capacity configuration, and then
-      make sure that if we push that document back into the ``LocalConfig``
-      object, that the resulting object matches the original.
+        We dump a document containing just the capacity configuration, and then
+        make sure that if we push that document back into the ``LocalConfig``
+        object, that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -597,8 +597,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -609,22 +609,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.capacity)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.capacity)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["capacity.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -632,24 +632,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of capacity attribute, None value.
-      """
+        Test assignment of capacity attribute, None value.
+        """
         config = LocalConfig()
         config.capacity = None
         self.assertEqual(None, config.capacity)
 
     def testConstructor_005(self):
         """
-      Test assignment of capacity attribute, valid value.
-      """
+        Test assignment of capacity attribute, valid value.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig()
         self.assertEqual(CapacityConfig(), config.capacity)
 
     def testConstructor_006(self):
         """
-      Test assignment of capacity attribute, invalid value (not CapacityConfig).
-      """
+        Test assignment of capacity attribute, invalid value (not CapacityConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "capacity", "STRING!")
 
@@ -659,8 +659,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -673,8 +673,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.capacity = CapacityConfig()
 
@@ -691,8 +691,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, capacity differs (one None).
-      """
+        Test comparison of two differing objects, capacity differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.capacity = CapacityConfig()
@@ -706,8 +706,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, capacity differs.
-      """
+        Test comparison of two differing objects, capacity differs.
+        """
         config1 = LocalConfig()
         config1.capacity = CapacityConfig(minBytes=ByteQuantity("0.1", UNIT_MBYTES))
 
@@ -728,48 +728,48 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None capacity section.
-      """
+        Test validate on a None capacity section.
+        """
         config = LocalConfig()
         config.capacity = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty capacity section.
-      """
+        Test validate on an empty capacity section.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty capacity section with no values filled in.
-      """
+        Test validate on a non-empty capacity section with no values filled in.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig(None, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty capacity section with both max percentage and min bytes filled in.
-      """
+        Test validate on a non-empty capacity section with both max percentage and min bytes filled in.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig(PercentageQuantity("63.2"), ByteQuantity("1.00", UNIT_MBYTES))
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty capacity section with only max percentage filled in.
-      """
+        Test validate on a non-empty capacity section with only max percentage filled in.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig(maxPercentage=PercentageQuantity("63.2"))
         config.validate()
 
     def testValidate_006(self):
         """
-      Test validate on a non-empty capacity section with only min bytes filled in.
-      """
+        Test validate on a non-empty capacity section with only min bytes filled in.
+        """
         config = LocalConfig()
         config.capacity = CapacityConfig(minBytes=ByteQuantity("1.00", UNIT_MBYTES))
         config.validate()
@@ -782,8 +782,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["capacity.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -796,8 +796,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_002(self):
         """
-      Parse config document that configures max percentage.
-      """
+        Parse config document that configures max percentage.
+        """
         path = self.resources["capacity.conf.2"]
         with open(path) as f:
             contents = f.read()
@@ -812,8 +812,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_003(self):
         """
-      Parse config document that configures min bytes, size in bytes.
-      """
+        Parse config document that configures min bytes, size in bytes.
+        """
         path = self.resources["capacity.conf.3"]
         with open(path) as f:
             contents = f.read()
@@ -828,8 +828,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_004(self):
         """
-      Parse config document with filled-in values, size in KB.
-      """
+        Parse config document with filled-in values, size in KB.
+        """
         path = self.resources["capacity.conf.4"]
         with open(path) as f:
             contents = f.read()
@@ -848,8 +848,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document.
-      """
+        Test with empty config document.
+        """
         capacity = CapacityConfig()
         config = LocalConfig()
         config.capacity = capacity
@@ -857,8 +857,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_002(self):
         """
-      Test with max percentage value set.
-      """
+        Test with max percentage value set.
+        """
         capacity = CapacityConfig(maxPercentage=PercentageQuantity("63.29128310980123"))
         config = LocalConfig()
         config.capacity = capacity
@@ -866,8 +866,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_003(self):
         """
-      Test with min bytes value set, byte values.
-      """
+        Test with min bytes value set, byte values.
+        """
         capacity = CapacityConfig(minBytes=ByteQuantity("121231", UNIT_BYTES))
         config = LocalConfig()
         config.capacity = capacity
@@ -875,8 +875,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_004(self):
         """
-      Test with min bytes value set, KB values.
-      """
+        Test with min bytes value set, KB values.
+        """
         capacity = CapacityConfig(minBytes=ByteQuantity("63352", UNIT_KBYTES))
         config = LocalConfig()
         config.capacity = capacity
@@ -884,8 +884,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_005(self):
         """
-      Test with min bytes value set, MB values.
-      """
+        Test with min bytes value set, MB values.
+        """
         capacity = CapacityConfig(minBytes=ByteQuantity("63352", UNIT_MBYTES))
         config = LocalConfig()
         config.capacity = capacity
@@ -893,8 +893,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_006(self):
         """
-      Test with min bytes value set, GB values.
-      """
+        Test with min bytes value set, GB values.
+        """
         capacity = CapacityConfig(minBytes=ByteQuantity("63352", UNIT_GBYTES))
         config = LocalConfig()
         config.capacity = capacity

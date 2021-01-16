@@ -154,15 +154,15 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_001(self):
         """
-      Test with a nonexistent staging directory.
-      """
+        Test with a nonexistent staging directory.
+        """
         stagingDir = self.buildPath([INVALID_PATH])
         self.assertRaises(ValueError, findDailyDirs, stagingDir, ENCRYPT_INDICATOR)
 
     def testFindDailyDirs_002(self):
         """
-      Test with an empty staging directory.
-      """
+        Test with an empty staging directory.
+        """
         self.extractTar("tree8")
         stagingDir = self.buildPath(["tree8", "dir001"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -170,8 +170,8 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_003(self):
         """
-      Test with a staging directory containing only files.
-      """
+        Test with a staging directory containing only files.
+        """
         self.extractTar("tree1")
         stagingDir = self.buildPath(["tree1"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -179,8 +179,8 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_004(self):
         """
-      Test with a staging directory containing only links.
-      """
+        Test with a staging directory containing only links.
+        """
         self.extractTar("tree15")
         stagingDir = self.buildPath(["tree15", "dir001"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -188,9 +188,9 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_005(self):
         """
-      Test with a valid staging directory, where the daily directories do NOT
-      contain the encrypt indicator.
-      """
+        Test with a valid staging directory, where the daily directories do NOT
+        contain the encrypt indicator.
+        """
         self.extractTar("tree17")
         stagingDir = self.buildPath(["tree17"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -204,9 +204,9 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_006(self):
         """
-      Test with a valid staging directory, where the daily directories DO
-      contain the encrypt indicator.
-      """
+        Test with a valid staging directory, where the daily directories DO
+        contain the encrypt indicator.
+        """
         self.extractTar("tree18")
         stagingDir = self.buildPath(["tree18"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -214,9 +214,9 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_007(self):
         """
-      Test with a valid staging directory, where some daily directories contain
-      the encrypt indicator and others do not.
-      """
+        Test with a valid staging directory, where some daily directories contain
+        the encrypt indicator and others do not.
+        """
         self.extractTar("tree19")
         stagingDir = self.buildPath(["tree19"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -227,9 +227,9 @@ class TestFunctions(unittest.TestCase):
 
     def testFindDailyDirs_008(self):
         """
-      Test for case where directories other than daily directories contain the
-      encrypt indicator (the indicator should be ignored).
-      """
+        Test for case where directories other than daily directories contain the
+        encrypt indicator (the indicator should be ignored).
+        """
         self.extractTar("tree20")
         stagingDir = self.buildPath(["tree20"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
@@ -247,15 +247,15 @@ class TestFunctions(unittest.TestCase):
 
     def testWriteIndicatorFile_001(self):
         """
-      Test with a nonexistent staging directory.
-      """
+        Test with a nonexistent staging directory.
+        """
         stagingDir = self.buildPath([INVALID_PATH])
         self.assertRaises(IOError, writeIndicatorFile, stagingDir, ENCRYPT_INDICATOR, None, None)
 
     def testWriteIndicatorFile_002(self):
         """
-      Test with a valid staging directory.
-      """
+        Test with a valid staging directory.
+        """
         self.extractTar("tree8")
         stagingDir = self.buildPath(["tree8", "dir001"])
         writeIndicatorFile(stagingDir, ENCRYPT_INDICATOR, None, None)

@@ -86,28 +86,28 @@ SPLIT_INDICATOR = "cback.split"
 class SplitConfig(object):
 
     """
-   Class representing split configuration.
+    Class representing split configuration.
 
-   Split configuration is used for splitting staging directories.
+    Split configuration is used for splitting staging directories.
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The size limit must be a ByteQuantity
-      - The split size must be a ByteQuantity
+       - The size limit must be a ByteQuantity
+       - The split size must be a ByteQuantity
 
-   """
+    """
 
     def __init__(self, sizeLimit=None, splitSize=None):
         """
-      Constructor for the ``SplitCOnfig`` class.
+        Constructor for the ``SplitCOnfig`` class.
 
-      Args:
-         sizeLimit: Size limit of the files, in bytes
-         splitSize: Size that files exceeding the limit will be split into, in bytes
+        Args:
+           sizeLimit: Size limit of the files, in bytes
+           splitSize: Size that files exceeding the limit will be split into, in bytes
 
-      Raises:
-         ValueError: If one of the values is invalid
-      """
+        Raises:
+           ValueError: If one of the values is invalid
+        """
         self._sizeLimit = None
         self._splitSize = None
         self.sizeLimit = sizeLimit
@@ -115,14 +115,14 @@ class SplitConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "SplitConfig(%s, %s)" % (self.sizeLimit, self.splitSize)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -139,13 +139,13 @@ class SplitConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.sizeLimit != other.sizeLimit:
@@ -162,11 +162,11 @@ class SplitConfig(object):
 
     def _setSizeLimit(self, value):
         """
-      Property target used to set the size limit.
-      If not ``None``, the value must be a ``ByteQuantity`` object.
-      Raises:
-         ValueError: If the value is not a ``ByteQuantity``
-      """
+        Property target used to set the size limit.
+        If not ``None``, the value must be a ``ByteQuantity`` object.
+        Raises:
+           ValueError: If the value is not a ``ByteQuantity``
+        """
         if value is None:
             self._sizeLimit = None
         else:
@@ -176,17 +176,17 @@ class SplitConfig(object):
 
     def _getSizeLimit(self):
         """
-      Property target used to get the size limit.
-      """
+        Property target used to get the size limit.
+        """
         return self._sizeLimit
 
     def _setSplitSize(self, value):
         """
-      Property target used to set the split size.
-      If not ``None``, the value must be a ``ByteQuantity`` object.
-      Raises:
-         ValueError: If the value is not a ``ByteQuantity``
-      """
+        Property target used to set the split size.
+        If not ``None``, the value must be a ``ByteQuantity`` object.
+        Raises:
+           ValueError: If the value is not a ``ByteQuantity``
+        """
         if value is None:
             self._splitSize = None
         else:
@@ -196,8 +196,8 @@ class SplitConfig(object):
 
     def _getSplitSize(self):
         """
-      Property target used to get the split size.
-      """
+        Property target used to get the split size.
+        """
         return self._splitSize
 
     sizeLimit = property(_getSizeLimit, _setSizeLimit, None, doc="Size limit, as a ByteQuantity")
@@ -213,49 +213,49 @@ class SplitConfig(object):
 class LocalConfig(object):
 
     """
-   Class representing this extension's configuration document.
+    Class representing this extension's configuration document.
 
-   This is not a general-purpose configuration object like the main Cedar
-   Backup configuration object.  Instead, it just knows how to parse and emit
-   split-specific configuration values.  Third parties who need to read and
-   write configuration related to this extension should access it through the
-   constructor, ``validate`` and ``addConfig`` methods.
+    This is not a general-purpose configuration object like the main Cedar
+    Backup configuration object.  Instead, it just knows how to parse and emit
+    split-specific configuration values.  Third parties who need to read and
+    write configuration related to this extension should access it through the
+    constructor, ``validate`` and ``addConfig`` methods.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, xmlData=None, xmlPath=None, validate=True):
         """
-      Initializes a configuration object.
+        Initializes a configuration object.
 
-      If you initialize the object without passing either ``xmlData`` or
-      ``xmlPath`` then configuration will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``xmlData`` or
+        ``xmlPath`` then configuration will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original XML data or original path is saved off by
-      this class.  Once the data has been parsed (successfully or not) this
-      original information is discarded.
+        No reference to the original XML data or original path is saved off by
+        this class.  Once the data has been parsed (successfully or not) this
+        original information is discarded.
 
-      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
-      method will be called (with its default arguments) against configuration
-      after successfully parsing any passed-in XML.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      XML document if lower-level validations fail.
+        Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
+        method will be called (with its default arguments) against configuration
+        after successfully parsing any passed-in XML.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        XML document if lower-level validations fail.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid configuration from disk.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid configuration from disk.
 
-      Args:
-         xmlData (String data): XML data representing configuration
-         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
-         validate (Boolean true/false): Validate the document after parsing it
-      Raises:
-         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
-         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
-         ValueError: If the parsed configuration document is not valid
-      """
+        Args:
+           xmlData (String data): XML data representing configuration
+           xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+           validate (Boolean true/false): Validate the document after parsing it
+        Raises:
+           ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+           ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+           ValueError: If the parsed configuration document is not valid
+        """
         self._split = None
         self.split = None
         if xmlData is not None and xmlPath is not None:
@@ -273,14 +273,14 @@ class LocalConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "LocalConfig(%s)" % (self.split)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -297,13 +297,13 @@ class LocalConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.split != other.split:
@@ -315,11 +315,11 @@ class LocalConfig(object):
 
     def _setSplit(self, value):
         """
-      Property target used to set the split configuration value.
-      If not ``None``, the value must be a ``SplitConfig`` object.
-      Raises:
-         ValueError: If the value is not a ``SplitConfig``
-      """
+        Property target used to set the split configuration value.
+        If not ``None``, the value must be a ``SplitConfig`` object.
+        Raises:
+           ValueError: If the value is not a ``SplitConfig``
+        """
         if value is None:
             self._split = None
         else:
@@ -329,22 +329,22 @@ class LocalConfig(object):
 
     def _getSplit(self):
         """
-      Property target used to get the split configuration value.
-      """
+        Property target used to get the split configuration value.
+        """
         return self._split
 
     split = property(_getSplit, _setSplit, None, "Split configuration in terms of a ``SplitConfig`` object.")
 
     def validate(self):
         """
-      Validates configuration represented by the object.
+        Validates configuration represented by the object.
 
-      Split configuration must be filled in.  Within that, both the size limit
-      and split size must be filled in.
+        Split configuration must be filled in.  Within that, both the size limit
+        and split size must be filled in.
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if self.split is None:
             raise ValueError("Split section is required.")
         if self.split.sizeLimit is None:
@@ -354,20 +354,20 @@ class LocalConfig(object):
 
     def addConfig(self, xmlDom, parentNode):
         """
-      Adds a <split> configuration section as the next child of a parent.
+        Adds a <split> configuration section as the next child of a parent.
 
-      Third parties should use this function to write configuration related to
-      this extension.
+        Third parties should use this function to write configuration related to
+        this extension.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         sizeLimit      //cb_config/split/size_limit
-         splitSize      //cb_config/split/split_size
+           sizeLimit      //cb_config/split/size_limit
+           splitSize      //cb_config/split/split_size
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+        """
         if self.split is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "split")
             addByteQuantityNode(xmlDom, sectionNode, "size_limit", self.split.sizeLimit)
@@ -375,37 +375,37 @@ class LocalConfig(object):
 
     def _parseXmlData(self, xmlData):
         """
-      Internal method to parse an XML string into the object.
+        Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (``xmlDom``) and then
-      calls a static method to parse the split configuration section.
+        This method parses the XML document into a DOM tree (``xmlDom``) and then
+        calls a static method to parse the split configuration section.
 
-      Args:
-         xmlData (String data): XML data to be parsed
-      Raises:
-         ValueError: If the XML cannot be successfully parsed
-      """
+        Args:
+           xmlData (String data): XML data to be parsed
+        Raises:
+           ValueError: If the XML cannot be successfully parsed
+        """
         (xmlDom, parentNode) = createInputDom(xmlData)
         self._split = LocalConfig._parseSplit(parentNode)
 
     @staticmethod
     def _parseSplit(parent):
         """
-      Parses an split configuration section.
+        Parses an split configuration section.
 
-      We read the following individual fields::
+        We read the following individual fields::
 
-         sizeLimit      //cb_config/split/size_limit
-         splitSize      //cb_config/split/split_size
+           sizeLimit      //cb_config/split/size_limit
+           splitSize      //cb_config/split/split_size
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          ``EncryptConfig`` object or ``None`` if the section does not exist
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            ``EncryptConfig`` object or ``None`` if the section does not exist
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         split = None
         section = readFirstChild(parent, "split")
         if section is not None:
@@ -426,16 +426,16 @@ class LocalConfig(object):
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
-   Executes the split backup action.
+    Executes the split backup action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there are I/O problems reading or writing files
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there are I/O problems reading or writing files
+    """
     logger.debug("Executing split extended action.")
     if config.options is None or config.stage is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
@@ -456,23 +456,23 @@ def executeAction(configPath, options, config):
 
 def _splitDailyDir(dailyDir, sizeLimit, splitSize, backupUser, backupGroup):
     """
-   Splits large files in a daily staging directory.
+    Splits large files in a daily staging directory.
 
-   Files that match INDICATOR_PATTERNS (i.e. ``"cback.store"``,
-   ``"cback.stage"``, etc.) are assumed to be indicator files and are ignored.
-   All other files are split.
+    Files that match INDICATOR_PATTERNS (i.e. ``"cback.store"``,
+    ``"cback.stage"``, etc.) are assumed to be indicator files and are ignored.
+    All other files are split.
 
-   Args:
-      dailyDir: Daily directory to encrypt
-      sizeLimit: Size limit, in bytes
-      splitSize: Split size, in bytes
-      backupUser: User that target files should be owned by
-      backupGroup: Group that target files should be owned by
+    Args:
+       dailyDir: Daily directory to encrypt
+       sizeLimit: Size limit, in bytes
+       splitSize: Split size, in bytes
+       backupUser: User that target files should be owned by
+       backupGroup: Group that target files should be owned by
 
-   Raises:
-      ValueError: If the encrypt mode is not supported
-      ValueError: If the daily staging directory does not exist
-   """
+    Raises:
+       ValueError: If the encrypt mode is not supported
+       ValueError: If the daily staging directory does not exist
+    """
     logger.debug("Begin splitting contents of [%s].", dailyDir)
     fileList = getBackupFiles(dailyDir)  # ignores indicator files
     for path in fileList:
@@ -489,22 +489,22 @@ def _splitDailyDir(dailyDir, sizeLimit, splitSize, backupUser, backupGroup):
 
 def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=False):
     """
-   Splits the source file into chunks of the indicated size.
+    Splits the source file into chunks of the indicated size.
 
-   The split files will be owned by the indicated backup user and group.  If
-   ``removeSource`` is ``True``, then the source file will be removed after it is
-   successfully split.
+    The split files will be owned by the indicated backup user and group.  If
+    ``removeSource`` is ``True``, then the source file will be removed after it is
+    successfully split.
 
-   Args:
-      sourcePath: Absolute path of the source file to split
-      splitSize: Encryption mode (only "gpg" is allowed)
-      backupUser: User that target files should be owned by
-      backupGroup: Group that target files should be owned by
-      removeSource: Indicates whether to remove the source file
+    Args:
+       sourcePath: Absolute path of the source file to split
+       splitSize: Encryption mode (only "gpg" is allowed)
+       backupUser: User that target files should be owned by
+       backupGroup: Group that target files should be owned by
+       removeSource: Indicates whether to remove the source file
 
-   Raises:
-      IOError: If there is a problem accessing, splitting or removing the source file
-   """
+    Raises:
+       IOError: If there is a problem accessing, splitting or removing the source file
+    """
     cwd = os.getcwd()
     try:
         if not os.path.exists(sourcePath):

@@ -140,27 +140,27 @@ REVISION_PATH_EXTENSION = "mboxlast"
 class MboxFile(object):
 
     """
-   Class representing mbox file configuration..
+    Class representing mbox file configuration..
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The absolute path must be absolute.
-      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+       - The absolute path must be absolute.
+       - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+       - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
 
-   """
+    """
 
     def __init__(self, absolutePath=None, collectMode=None, compressMode=None):
         """
-      Constructor for the ``MboxFile`` class.
+        Constructor for the ``MboxFile`` class.
 
-      You should never directly instantiate this class.
+        You should never directly instantiate this class.
 
-      Args:
-         absolutePath: Absolute path to an mbox file on disk
-         collectMode: Overridden collect mode for this directory
-         compressMode: Overridden compression mode for this directory
-      """
+        Args:
+           absolutePath: Absolute path to an mbox file on disk
+           collectMode: Overridden collect mode for this directory
+           compressMode: Overridden compression mode for this directory
+        """
         self._absolutePath = None
         self._collectMode = None
         self._compressMode = None
@@ -170,14 +170,14 @@ class MboxFile(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "MboxFile(%s, %s, %s)" % (self.absolutePath, self.collectMode, self.compressMode)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -194,12 +194,12 @@ class MboxFile(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.absolutePath != other.absolutePath:
@@ -221,13 +221,13 @@ class MboxFile(object):
 
     def _setAbsolutePath(self, value):
         """
-      Property target used to set the absolute path.
-      The value must be an absolute path if it is not ``None``.
-      It does not have to exist on disk at the time of assignment.
-      Raises:
-         ValueError: If the value is not an absolute path
-         ValueError: If the value cannot be encoded properly
-      """
+        Property target used to set the absolute path.
+        The value must be an absolute path if it is not ``None``.
+        It does not have to exist on disk at the time of assignment.
+        Raises:
+           ValueError: If the value is not an absolute path
+           ValueError: If the value cannot be encoded properly
+        """
         if value is not None:
             if not os.path.isabs(value):
                 raise ValueError("Absolute path must be, er, an absolute path.")
@@ -235,17 +235,17 @@ class MboxFile(object):
 
     def _getAbsolutePath(self):
         """
-      Property target used to get the absolute path.
-      """
+        Property target used to get the absolute path.
+        """
         return self._absolutePath
 
     def _setCollectMode(self, value):
         """
-      Property target used to set the collect mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the collect mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COLLECT_MODES:
                 raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
@@ -253,17 +253,17 @@ class MboxFile(object):
 
     def _getCollectMode(self):
         """
-      Property target used to get the collect mode.
-      """
+        Property target used to get the collect mode.
+        """
         return self._collectMode
 
     def _setCompressMode(self, value):
         """
-      Property target used to set the compress mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the compress mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COMPRESS_MODES:
                 raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
@@ -271,8 +271,8 @@ class MboxFile(object):
 
     def _getCompressMode(self):
         """
-      Property target used to get the compress mode.
-      """
+        Property target used to get the compress mode.
+        """
         return self._compressMode
 
     absolutePath = property(_getAbsolutePath, _setAbsolutePath, None, doc="Absolute path to the mbox file.")
@@ -289,34 +289,34 @@ class MboxFile(object):
 class MboxDir(object):
 
     """
-   Class representing mbox directory configuration..
+    Class representing mbox directory configuration..
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The absolute path must be absolute.
-      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+       - The absolute path must be absolute.
+       - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+       - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
 
-   Unlike collect directory configuration, this is the only place exclusions
-   are allowed (no global exclusions at the <mbox> configuration level).  Also,
-   we only allow relative exclusions and there is no configured ignore file.
-   This is because mbox directory backups are not recursive.
+    Unlike collect directory configuration, this is the only place exclusions
+    are allowed (no global exclusions at the <mbox> configuration level).  Also,
+    we only allow relative exclusions and there is no configured ignore file.
+    This is because mbox directory backups are not recursive.
 
-   """
+    """
 
     def __init__(self, absolutePath=None, collectMode=None, compressMode=None, relativeExcludePaths=None, excludePatterns=None):
         """
-      Constructor for the ``MboxDir`` class.
+        Constructor for the ``MboxDir`` class.
 
-      You should never directly instantiate this class.
+        You should never directly instantiate this class.
 
-      Args:
-         absolutePath: Absolute path to a mbox file on disk
-         collectMode: Overridden collect mode for this directory
-         compressMode: Overridden compression mode for this directory
-         relativeExcludePaths: List of relative paths to exclude
-         excludePatterns: List of regular expression patterns to exclude
-      """
+        Args:
+           absolutePath: Absolute path to a mbox file on disk
+           collectMode: Overridden collect mode for this directory
+           compressMode: Overridden compression mode for this directory
+           relativeExcludePaths: List of relative paths to exclude
+           excludePatterns: List of regular expression patterns to exclude
+        """
         self._absolutePath = None
         self._collectMode = None
         self._compressMode = None
@@ -330,8 +330,8 @@ class MboxDir(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "MboxDir(%s, %s, %s, %s, %s)" % (
             self.absolutePath,
             self.collectMode,
@@ -342,8 +342,8 @@ class MboxDir(object):
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -360,12 +360,12 @@ class MboxDir(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.absolutePath != other.absolutePath:
@@ -397,13 +397,13 @@ class MboxDir(object):
 
     def _setAbsolutePath(self, value):
         """
-      Property target used to set the absolute path.
-      The value must be an absolute path if it is not ``None``.
-      It does not have to exist on disk at the time of assignment.
-      Raises:
-         ValueError: If the value is not an absolute path
-         ValueError: If the value cannot be encoded properly
-      """
+        Property target used to set the absolute path.
+        The value must be an absolute path if it is not ``None``.
+        It does not have to exist on disk at the time of assignment.
+        Raises:
+           ValueError: If the value is not an absolute path
+           ValueError: If the value cannot be encoded properly
+        """
         if value is not None:
             if not os.path.isabs(value):
                 raise ValueError("Absolute path must be, er, an absolute path.")
@@ -411,17 +411,17 @@ class MboxDir(object):
 
     def _getAbsolutePath(self):
         """
-      Property target used to get the absolute path.
-      """
+        Property target used to get the absolute path.
+        """
         return self._absolutePath
 
     def _setCollectMode(self, value):
         """
-      Property target used to set the collect mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the collect mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COLLECT_MODES:
                 raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
@@ -429,17 +429,17 @@ class MboxDir(object):
 
     def _getCollectMode(self):
         """
-      Property target used to get the collect mode.
-      """
+        Property target used to get the collect mode.
+        """
         return self._collectMode
 
     def _setCompressMode(self, value):
         """
-      Property target used to set the compress mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the compress mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COMPRESS_MODES:
                 raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
@@ -447,15 +447,15 @@ class MboxDir(object):
 
     def _getCompressMode(self):
         """
-      Property target used to get the compress mode.
-      """
+        Property target used to get the compress mode.
+        """
         return self._compressMode
 
     def _setRelativeExcludePaths(self, value):
         """
-      Property target used to set the relative exclude paths list.
-      Elements do not have to exist on disk at the time of assignment.
-      """
+        Property target used to set the relative exclude paths list.
+        Elements do not have to exist on disk at the time of assignment.
+        """
         if value is None:
             self._relativeExcludePaths = None
         else:
@@ -469,14 +469,14 @@ class MboxDir(object):
 
     def _getRelativeExcludePaths(self):
         """
-      Property target used to get the relative exclude paths list.
-      """
+        Property target used to get the relative exclude paths list.
+        """
         return self._relativeExcludePaths
 
     def _setExcludePatterns(self, value):
         """
-      Property target used to set the exclude patterns list.
-      """
+        Property target used to set the exclude patterns list.
+        """
         if value is None:
             self._excludePatterns = None
         else:
@@ -490,8 +490,8 @@ class MboxDir(object):
 
     def _getExcludePatterns(self):
         """
-      Property target used to get the exclude patterns list.
-      """
+        Property target used to get the exclude patterns list.
+        """
         return self._excludePatterns
 
     absolutePath = property(_getAbsolutePath, _setAbsolutePath, None, doc="Absolute path to the mbox directory.")
@@ -510,44 +510,44 @@ class MboxDir(object):
 class MboxConfig(object):
 
     """
-   Class representing mbox configuration.
+    Class representing mbox configuration.
 
-   Mbox configuration is used for backing up mbox email files.
+    Mbox configuration is used for backing up mbox email files.
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      - The ``mboxFiles`` list must be a list of ``MboxFile`` objects
-      - The ``mboxDirs`` list must be a list of ``MboxDir`` objects
+       - The collect mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+       - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+       - The ``mboxFiles`` list must be a list of ``MboxFile`` objects
+       - The ``mboxDirs`` list must be a list of ``MboxDir`` objects
 
-   For the ``mboxFiles`` and ``mboxDirs`` lists, validation is accomplished
-   through the :any:`util.ObjectTypeList` list implementation that overrides common
-   list methods and transparently ensures that each element is of the proper
-   type.
+    For the ``mboxFiles`` and ``mboxDirs`` lists, validation is accomplished
+    through the :any:`util.ObjectTypeList` list implementation that overrides common
+    list methods and transparently ensures that each element is of the proper
+    type.
 
-   Unlike collect configuration, no global exclusions are allowed on this
-   level.  We only allow relative exclusions at the mbox directory level.
-   Also, there is no configured ignore file.  This is because mbox directory
-   backups are not recursive.
+    Unlike collect configuration, no global exclusions are allowed on this
+    level.  We only allow relative exclusions at the mbox directory level.
+    Also, there is no configured ignore file.  This is because mbox directory
+    backups are not recursive.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, collectMode=None, compressMode=None, mboxFiles=None, mboxDirs=None):
         """
-      Constructor for the ``MboxConfig`` class.
+        Constructor for the ``MboxConfig`` class.
 
-      Args:
-         collectMode: Default collect mode
-         compressMode: Default compress mode
-         mboxFiles: List of mbox files to back up
-         mboxDirs: List of mbox directories to back up
+        Args:
+           collectMode: Default collect mode
+           compressMode: Default compress mode
+           mboxFiles: List of mbox files to back up
+           mboxDirs: List of mbox directories to back up
 
-      Raises:
-         ValueError: If one of the values is invalid
-      """
+        Raises:
+           ValueError: If one of the values is invalid
+        """
         self._collectMode = None
         self._compressMode = None
         self._mboxFiles = None
@@ -559,14 +559,14 @@ class MboxConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "MboxConfig(%s, %s, %s, %s)" % (self.collectMode, self.compressMode, self.mboxFiles, self.mboxDirs)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -583,13 +583,13 @@ class MboxConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.collectMode != other.collectMode:
@@ -616,11 +616,11 @@ class MboxConfig(object):
 
     def _setCollectMode(self, value):
         """
-      Property target used to set the collect mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the collect mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COLLECT_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COLLECT_MODES:
                 raise ValueError("Collect mode must be one of %s." % VALID_COLLECT_MODES)
@@ -628,17 +628,17 @@ class MboxConfig(object):
 
     def _getCollectMode(self):
         """
-      Property target used to get the collect mode.
-      """
+        Property target used to get the collect mode.
+        """
         return self._collectMode
 
     def _setCompressMode(self, value):
         """
-      Property target used to set the compress mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the compress mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COMPRESS_MODES:
                 raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
@@ -646,17 +646,17 @@ class MboxConfig(object):
 
     def _getCompressMode(self):
         """
-      Property target used to get the compress mode.
-      """
+        Property target used to get the compress mode.
+        """
         return self._compressMode
 
     def _setMboxFiles(self, value):
         """
-      Property target used to set the mboxFiles list.
-      Either the value must be ``None`` or each element must be an ``MboxFile``.
-      Raises:
-         ValueError: If the value is not an ``MboxFile``
-      """
+        Property target used to set the mboxFiles list.
+        Either the value must be ``None`` or each element must be an ``MboxFile``.
+        Raises:
+           ValueError: If the value is not an ``MboxFile``
+        """
         if value is None:
             self._mboxFiles = None
         else:
@@ -670,17 +670,17 @@ class MboxConfig(object):
 
     def _getMboxFiles(self):
         """
-      Property target used to get the mboxFiles list.
-      """
+        Property target used to get the mboxFiles list.
+        """
         return self._mboxFiles
 
     def _setMboxDirs(self, value):
         """
-      Property target used to set the mboxDirs list.
-      Either the value must be ``None`` or each element must be an ``MboxDir``.
-      Raises:
-         ValueError: If the value is not an ``MboxDir``
-      """
+        Property target used to set the mboxDirs list.
+        Either the value must be ``None`` or each element must be an ``MboxDir``.
+        Raises:
+           ValueError: If the value is not an ``MboxDir``
+        """
         if value is None:
             self._mboxDirs = None
         else:
@@ -694,8 +694,8 @@ class MboxConfig(object):
 
     def _getMboxDirs(self):
         """
-      Property target used to get the mboxDirs list.
-      """
+        Property target used to get the mboxDirs list.
+        """
         return self._mboxDirs
 
     collectMode = property(_getCollectMode, _setCollectMode, None, doc="Default collect mode.")
@@ -713,49 +713,49 @@ class MboxConfig(object):
 class LocalConfig(object):
 
     """
-   Class representing this extension's configuration document.
+    Class representing this extension's configuration document.
 
-   This is not a general-purpose configuration object like the main Cedar
-   Backup configuration object.  Instead, it just knows how to parse and emit
-   Mbox-specific configuration values.  Third parties who need to read and
-   write configuration related to this extension should access it through the
-   constructor, ``validate`` and ``addConfig`` methods.
+    This is not a general-purpose configuration object like the main Cedar
+    Backup configuration object.  Instead, it just knows how to parse and emit
+    Mbox-specific configuration values.  Third parties who need to read and
+    write configuration related to this extension should access it through the
+    constructor, ``validate`` and ``addConfig`` methods.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, xmlData=None, xmlPath=None, validate=True):
         """
-      Initializes a configuration object.
+        Initializes a configuration object.
 
-      If you initialize the object without passing either ``xmlData`` or
-      ``xmlPath`` then configuration will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``xmlData`` or
+        ``xmlPath`` then configuration will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original XML data or original path is saved off by
-      this class.  Once the data has been parsed (successfully or not) this
-      original information is discarded.
+        No reference to the original XML data or original path is saved off by
+        this class.  Once the data has been parsed (successfully or not) this
+        original information is discarded.
 
-      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
-      method will be called (with its default arguments) against configuration
-      after successfully parsing any passed-in XML.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      XML document if lower-level validations fail.
+        Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
+        method will be called (with its default arguments) against configuration
+        after successfully parsing any passed-in XML.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        XML document if lower-level validations fail.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid configuration from disk.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid configuration from disk.
 
-      Args:
-         xmlData (String data): XML data representing configuration
-         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
-         validate (Boolean true/false): Validate the document after parsing it
-      Raises:
-         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
-         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
-         ValueError: If the parsed configuration document is not valid
-      """
+        Args:
+           xmlData (String data): XML data representing configuration
+           xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+           validate (Boolean true/false): Validate the document after parsing it
+        Raises:
+           ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+           ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+           ValueError: If the parsed configuration document is not valid
+        """
         self._mbox = None
         self.mbox = None
         if xmlData is not None and xmlPath is not None:
@@ -773,14 +773,14 @@ class LocalConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "LocalConfig(%s)" % (self.mbox)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -797,13 +797,13 @@ class LocalConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.mbox != other.mbox:
@@ -815,11 +815,11 @@ class LocalConfig(object):
 
     def _setMbox(self, value):
         """
-      Property target used to set the mbox configuration value.
-      If not ``None``, the value must be a ``MboxConfig`` object.
-      Raises:
-         ValueError: If the value is not a ``MboxConfig``
-      """
+        Property target used to set the mbox configuration value.
+        If not ``None``, the value must be a ``MboxConfig`` object.
+        Raises:
+           ValueError: If the value is not a ``MboxConfig``
+        """
         if value is None:
             self._mbox = None
         else:
@@ -829,27 +829,27 @@ class LocalConfig(object):
 
     def _getMbox(self):
         """
-      Property target used to get the mbox configuration value.
-      """
+        Property target used to get the mbox configuration value.
+        """
         return self._mbox
 
     mbox = property(_getMbox, _setMbox, None, "Mbox configuration in terms of a ``MboxConfig`` object.")
 
     def validate(self):
         """
-      Validates configuration represented by the object.
+        Validates configuration represented by the object.
 
-      Mbox configuration must be filled in.  Within that, the collect mode and
-      compress mode are both optional, but the list of repositories must
-      contain at least one entry.
+        Mbox configuration must be filled in.  Within that, the collect mode and
+        compress mode are both optional, but the list of repositories must
+        contain at least one entry.
 
-      Each configured file or directory must contain an absolute path, and then
-      must be either able to take collect mode and compress mode configuration
-      from the parent ``MboxConfig`` object, or must set each value on its own.
+        Each configured file or directory must contain an absolute path, and then
+        must be either able to take collect mode and compress mode configuration
+        from the parent ``MboxConfig`` object, or must set each value on its own.
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if self.mbox is None:
             raise ValueError("Mbox section is required.")
         if (self.mbox.mboxFiles is None or len(self.mbox.mboxFiles) < 1) and (
@@ -875,29 +875,29 @@ class LocalConfig(object):
 
     def addConfig(self, xmlDom, parentNode):
         """
-      Adds an <mbox> configuration section as the next child of a parent.
+        Adds an <mbox> configuration section as the next child of a parent.
 
-      Third parties should use this function to write configuration related to
-      this extension.
+        Third parties should use this function to write configuration related to
+        this extension.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         collectMode    //cb_config/mbox/collectMode
-         compressMode   //cb_config/mbox/compressMode
+           collectMode    //cb_config/mbox/collectMode
+           compressMode   //cb_config/mbox/compressMode
 
-      We also add groups of the following items, one list element per
-      item::
+        We also add groups of the following items, one list element per
+        item::
 
-         mboxFiles      //cb_config/mbox/file
-         mboxDirs       //cb_config/mbox/dir
+           mboxFiles      //cb_config/mbox/file
+           mboxDirs       //cb_config/mbox/dir
 
-      The mbox files and mbox directories are added by ``_addMboxFile`` and
-      ``_addMboxDir``.
+        The mbox files and mbox directories are added by ``_addMboxFile`` and
+        ``_addMboxDir``.
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+        """
         if self.mbox is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "mbox")
             addStringNode(xmlDom, sectionNode, "collect_mode", self.mbox.collectMode)
@@ -911,46 +911,46 @@ class LocalConfig(object):
 
     def _parseXmlData(self, xmlData):
         """
-      Internal method to parse an XML string into the object.
+        Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (``xmlDom``) and then
-      calls a static method to parse the mbox configuration section.
+        This method parses the XML document into a DOM tree (``xmlDom``) and then
+        calls a static method to parse the mbox configuration section.
 
-      Args:
-         xmlData (String data): XML data to be parsed
-      Raises:
-         ValueError: If the XML cannot be successfully parsed
-      """
+        Args:
+           xmlData (String data): XML data to be parsed
+        Raises:
+           ValueError: If the XML cannot be successfully parsed
+        """
         (xmlDom, parentNode) = createInputDom(xmlData)
         self._mbox = LocalConfig._parseMbox(parentNode)
 
     @staticmethod
     def _parseMbox(parent):
         """
-      Parses an mbox configuration section.
+        Parses an mbox configuration section.
 
-      We read the following individual fields::
+        We read the following individual fields::
 
-         collectMode    //cb_config/mbox/collect_mode
-         compressMode   //cb_config/mbox/compress_mode
+           collectMode    //cb_config/mbox/collect_mode
+           compressMode   //cb_config/mbox/compress_mode
 
-      We also read groups of the following item, one list element per
-      item::
+        We also read groups of the following item, one list element per
+        item::
 
-         mboxFiles      //cb_config/mbox/file
-         mboxDirs       //cb_config/mbox/dir
+           mboxFiles      //cb_config/mbox/file
+           mboxDirs       //cb_config/mbox/dir
 
-      The mbox files are parsed by :any:`_parseMboxFiles` and the mbox
-      directories are parsed by :any:`_parseMboxDirs`.
+        The mbox files are parsed by :any:`_parseMboxFiles` and the mbox
+        directories are parsed by :any:`_parseMboxDirs`.
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          ``MboxConfig`` object or ``None`` if the section does not exist
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            ``MboxConfig`` object or ``None`` if the section does not exist
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         mbox = None
         section = readFirstChild(parent, "mbox")
         if section is not None:
@@ -964,22 +964,22 @@ class LocalConfig(object):
     @staticmethod
     def _parseMboxFiles(parent):
         """
-      Reads a list of ``MboxFile`` objects from immediately beneath the parent.
+        Reads a list of ``MboxFile`` objects from immediately beneath the parent.
 
-      We read the following individual fields::
+        We read the following individual fields::
 
-         absolutePath            abs_path
-         collectMode             collect_mode
-         compressMode            compess_mode
+           absolutePath            abs_path
+           collectMode             collect_mode
+           compressMode            compess_mode
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          List of ``MboxFile`` objects or ``None`` if none are found
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            List of ``MboxFile`` objects or ``None`` if none are found
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         lst = []
         for entry in readChildren(parent, "file"):
             if isElement(entry):
@@ -995,30 +995,30 @@ class LocalConfig(object):
     @staticmethod
     def _parseMboxDirs(parent):
         """
-      Reads a list of ``MboxDir`` objects from immediately beneath the parent.
+        Reads a list of ``MboxDir`` objects from immediately beneath the parent.
 
-      We read the following individual fields::
+        We read the following individual fields::
 
-         absolutePath            abs_path
-         collectMode             collect_mode
-         compressMode            compess_mode
+           absolutePath            abs_path
+           collectMode             collect_mode
+           compressMode            compess_mode
 
-      We also read groups of the following items, one list element per
-      item::
+        We also read groups of the following items, one list element per
+        item::
 
-         relativeExcludePaths    exclude/rel_path
-         excludePatterns         exclude/pattern
+           relativeExcludePaths    exclude/rel_path
+           excludePatterns         exclude/pattern
 
-      The exclusions are parsed by :any:`_parseExclusions`.
+        The exclusions are parsed by :any:`_parseExclusions`.
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          List of ``MboxDir`` objects or ``None`` if none are found
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            List of ``MboxDir`` objects or ``None`` if none are found
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         lst = []
         for entry in readChildren(parent, "dir"):
             if isElement(entry):
@@ -1035,22 +1035,22 @@ class LocalConfig(object):
     @staticmethod
     def _parseExclusions(parentNode):
         """
-      Reads exclusions data from immediately beneath the parent.
+        Reads exclusions data from immediately beneath the parent.
 
-      We read groups of the following items, one list element per item::
+        We read groups of the following items, one list element per item::
 
-         relative    exclude/rel_path
-         patterns    exclude/pattern
+           relative    exclude/rel_path
+           patterns    exclude/pattern
 
-      If there are none of some pattern (i.e. no relative path items) then
-      ``None`` will be returned for that item in the tuple.
+        If there are none of some pattern (i.e. no relative path items) then
+        ``None`` will be returned for that item in the tuple.
 
-      Args:
-         parentNode: Parent node to search beneath
+        Args:
+           parentNode: Parent node to search beneath
 
-      Returns:
-          Tuple of (relative, patterns) exclusions
-      """
+        Returns:
+            Tuple of (relative, patterns) exclusions
+        """
         section = readFirstChild(parentNode, "exclude")
         if section is None:
             return (None, None)
@@ -1062,25 +1062,25 @@ class LocalConfig(object):
     @staticmethod
     def _addMboxFile(xmlDom, parentNode, mboxFile):
         """
-      Adds an mbox file container as the next child of a parent.
+        Adds an mbox file container as the next child of a parent.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         absolutePath            file/abs_path
-         collectMode             file/collect_mode
-         compressMode            file/compress_mode
+           absolutePath            file/abs_path
+           collectMode             file/collect_mode
+           compressMode            file/compress_mode
 
-      The <file> node itself is created as the next child of the parent node.
-      This method only adds one mbox file node.  The parent must loop for each
-      mbox file in the ``MboxConfig`` object.
+        The <file> node itself is created as the next child of the parent node.
+        This method only adds one mbox file node.  The parent must loop for each
+        mbox file in the ``MboxConfig`` object.
 
-      If ``mboxFile`` is ``None``, this method call will be a no-op.
+        If ``mboxFile`` is ``None``, this method call will be a no-op.
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-         mboxFile: MboxFile to be added to the document
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+           mboxFile: MboxFile to be added to the document
+        """
         if mboxFile is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "file")
             addStringNode(xmlDom, sectionNode, "abs_path", mboxFile.absolutePath)
@@ -1090,30 +1090,30 @@ class LocalConfig(object):
     @staticmethod
     def _addMboxDir(xmlDom, parentNode, mboxDir):
         """
-      Adds an mbox directory container as the next child of a parent.
+        Adds an mbox directory container as the next child of a parent.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         absolutePath            dir/abs_path
-         collectMode             dir/collect_mode
-         compressMode            dir/compress_mode
+           absolutePath            dir/abs_path
+           collectMode             dir/collect_mode
+           compressMode            dir/compress_mode
 
-      We also add groups of the following items, one list element per item::
+        We also add groups of the following items, one list element per item::
 
-         relativeExcludePaths    dir/exclude/rel_path
-         excludePatterns         dir/exclude/pattern
+           relativeExcludePaths    dir/exclude/rel_path
+           excludePatterns         dir/exclude/pattern
 
-      The <dir> node itself is created as the next child of the parent node.
-      This method only adds one mbox directory node.  The parent must loop for
-      each mbox directory in the ``MboxConfig`` object.
+        The <dir> node itself is created as the next child of the parent node.
+        This method only adds one mbox directory node.  The parent must loop for
+        each mbox directory in the ``MboxConfig`` object.
 
-      If ``mboxDir`` is ``None``, this method call will be a no-op.
+        If ``mboxDir`` is ``None``, this method call will be a no-op.
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-         mboxDir: MboxDir to be added to the document
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+           mboxDir: MboxDir to be added to the document
+        """
         if mboxDir is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "dir")
             addStringNode(xmlDom, sectionNode, "abs_path", mboxDir.absolutePath)
@@ -1142,16 +1142,16 @@ class LocalConfig(object):
 
 def executeAction(configPath, options, config):
     """
-   Executes the mbox backup action.
+    Executes the mbox backup action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If a backup could not be written for some reason
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If a backup could not be written for some reason
+    """
     logger.debug("Executing mbox extended action.")
     newRevision = datetime.datetime.today()  # mark here so all actions are after this date/time
     if config.options is None or config.collect is None:
@@ -1202,14 +1202,14 @@ def executeAction(configPath, options, config):
 
 def _getCollectMode(local, item):
     """
-   Gets the collect mode that should be used for an mbox file or directory.
-   Use file- or directory-specific value if possible, otherwise take from mbox section.
-   Args:
-      local: LocalConfig object
-      item: Mbox file or directory
-   Returns:
-       Collect mode to use
-   """
+    Gets the collect mode that should be used for an mbox file or directory.
+    Use file- or directory-specific value if possible, otherwise take from mbox section.
+    Args:
+       local: LocalConfig object
+       item: Mbox file or directory
+    Returns:
+        Collect mode to use
+    """
     if item.collectMode is None:
         collectMode = local.mbox.collectMode
     else:
@@ -1220,14 +1220,14 @@ def _getCollectMode(local, item):
 
 def _getCompressMode(local, item):
     """
-   Gets the compress mode that should be used for an mbox file or directory.
-   Use file- or directory-specific value if possible, otherwise take from mbox section.
-   Args:
-      local: LocalConfig object
-      item: Mbox file or directory
-   Returns:
-       Compress mode to use
-   """
+    Gets the compress mode that should be used for an mbox file or directory.
+    Use file- or directory-specific value if possible, otherwise take from mbox section.
+    Args:
+       local: LocalConfig object
+       item: Mbox file or directory
+    Returns:
+        Compress mode to use
+    """
     if item.compressMode is None:
         compressMode = local.mbox.compressMode
     else:
@@ -1238,13 +1238,13 @@ def _getCompressMode(local, item):
 
 def _getRevisionPath(config, item):
     """
-   Gets the path to the revision file associated with a repository.
-   Args:
-      config: Cedar Backup configuration
-      item: Mbox file or directory
-   Returns:
-       Absolute path to the revision file associated with the repository
-   """
+    Gets the path to the revision file associated with a repository.
+    Args:
+       config: Cedar Backup configuration
+       item: Mbox file or directory
+    Returns:
+        Absolute path to the revision file associated with the repository
+    """
     normalized = buildNormalizedPath(item.absolutePath)
     filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
     revisionPath = os.path.join(config.options.workingDir, filename)
@@ -1254,25 +1254,25 @@ def _getRevisionPath(config, item):
 
 def _loadLastRevision(config, item, fullBackup, collectMode):
     """
-   Loads the last revision date for this item from disk and returns it.
+    Loads the last revision date for this item from disk and returns it.
 
-   If this is a full backup, or if the revision file cannot be loaded for some
-   reason, then ``None`` is returned.  This indicates that there is no previous
-   revision, so the entire mail file or directory should be backed up.
+    If this is a full backup, or if the revision file cannot be loaded for some
+    reason, then ``None`` is returned.  This indicates that there is no previous
+    revision, so the entire mail file or directory should be backed up.
 
-   *Note:* We write the actual revision object to disk via pickle, so we don't
-   deal with the datetime precision or format at all.  Whatever's in the object
-   is what we write.
+    *Note:* We write the actual revision object to disk via pickle, so we don't
+    deal with the datetime precision or format at all.  Whatever's in the object
+    is what we write.
 
-   Args:
-      config: Cedar Backup configuration
-      item: Mbox file or directory
-      fullBackup: Indicates whether this is a full backup
-      collectMode: Indicates the collect mode for this item
+    Args:
+       config: Cedar Backup configuration
+       item: Mbox file or directory
+       fullBackup: Indicates whether this is a full backup
+       collectMode: Indicates the collect mode for this item
 
-   Returns:
-       Revision date as a datetime.datetime object or ``None``
-   """
+    Returns:
+        Revision date as a datetime.datetime object or ``None``
+    """
     revisionPath = _getRevisionPath(config, item)
     if fullBackup:
         revisionDate = None
@@ -1298,20 +1298,20 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
 
 def _writeNewRevision(config, item, newRevision):
     """
-   Writes new revision information to disk.
+    Writes new revision information to disk.
 
-   If we can't write the revision file successfully for any reason, we'll log
-   the condition but won't throw an exception.
+    If we can't write the revision file successfully for any reason, we'll log
+    the condition but won't throw an exception.
 
-   *Note:* We write the actual revision object to disk via pickle, so we don't
-   deal with the datetime precision or format at all.  Whatever's in the object
-   is what we write.
+    *Note:* We write the actual revision object to disk via pickle, so we don't
+    deal with the datetime precision or format at all.  Whatever's in the object
+    is what we write.
 
-   Args:
-      config: Cedar Backup configuration
-      item: Mbox file or directory
-      newRevision: Revision date as a datetime.datetime object
-   """
+    Args:
+       config: Cedar Backup configuration
+       item: Mbox file or directory
+       newRevision: Revision date as a datetime.datetime object
+    """
     revisionPath = _getRevisionPath(config, item)
     try:
         with open(revisionPath, "wb") as f:
@@ -1324,22 +1324,22 @@ def _writeNewRevision(config, item, newRevision):
 
 def _getExclusions(mboxDir):
     """
-   Gets exclusions (file and patterns) associated with an mbox directory.
+    Gets exclusions (file and patterns) associated with an mbox directory.
 
-   The returned files value is a list of absolute paths to be excluded from the
-   backup for a given directory.  It is derived from the mbox directory's
-   relative exclude paths.
+    The returned files value is a list of absolute paths to be excluded from the
+    backup for a given directory.  It is derived from the mbox directory's
+    relative exclude paths.
 
-   The returned patterns value is a list of patterns to be excluded from the
-   backup for a given directory.  It is derived from the mbox directory's list
-   of patterns.
+    The returned patterns value is a list of patterns to be excluded from the
+    backup for a given directory.  It is derived from the mbox directory's list
+    of patterns.
 
-   Args:
-      mboxDir: Mbox directory object
+    Args:
+       mboxDir: Mbox directory object
 
-   Returns:
-       Tuple (files, patterns) indicating what to exclude
-   """
+    Returns:
+        Tuple (files, patterns) indicating what to exclude
+    """
     paths = []
     if mboxDir.relativeExcludePaths is not None:
         for relativePath in mboxDir.relativeExcludePaths:
@@ -1354,26 +1354,26 @@ def _getExclusions(mboxDir):
 
 def _getBackupPath(config, mboxPath, compressMode, newRevision, targetDir=None):
     """
-   Gets the backup file path (including correct extension) associated with an mbox path.
+    Gets the backup file path (including correct extension) associated with an mbox path.
 
-   We assume that if the target directory is passed in, that we're backing up a
-   directory.  Under these circumstances, we'll just use the basename of the
-   individual path as the output file.
+    We assume that if the target directory is passed in, that we're backing up a
+    directory.  Under these circumstances, we'll just use the basename of the
+    individual path as the output file.
 
-   *Note:* The backup path only contains the current date in YYYYMMDD format,
-   but that's OK because the index information (stored elsewhere) is the actual
-   date object.
+    *Note:* The backup path only contains the current date in YYYYMMDD format,
+    but that's OK because the index information (stored elsewhere) is the actual
+    date object.
 
-   Args:
-      config: Cedar Backup configuration
-      mboxPath: Path to the indicated mbox file or directory
-      compressMode: Compress mode to use for this mbox path
-      newRevision: Revision this backup path represents
-      targetDir: Target directory in which the path should exist
+    Args:
+       config: Cedar Backup configuration
+       mboxPath: Path to the indicated mbox file or directory
+       compressMode: Compress mode to use for this mbox path
+       newRevision: Revision this backup path represents
+       targetDir: Target directory in which the path should exist
 
-   Returns:
-       Absolute path to the backup file associated with the repository
-   """
+    Returns:
+        Absolute path to the backup file associated with the repository
+    """
     if targetDir is None:
         normalizedPath = buildNormalizedPath(mboxPath)
         revisionDate = newRevision.strftime("%Y%m%d")
@@ -1394,25 +1394,25 @@ def _getBackupPath(config, mboxPath, compressMode, newRevision, targetDir=None):
 
 def _getTarfilePath(config, mboxPath, compressMode, newRevision):
     """
-   Gets the tarfile backup file path (including correct extension) associated
-   with an mbox path.
+    Gets the tarfile backup file path (including correct extension) associated
+    with an mbox path.
 
-   Along with the path, the tar archive mode is returned in a form that can
-   be used with :any:`BackupFileList.generateTarfile`.
+    Along with the path, the tar archive mode is returned in a form that can
+    be used with :any:`BackupFileList.generateTarfile`.
 
-   *Note:* The tarfile path only contains the current date in YYYYMMDD format,
-   but that's OK because the index information (stored elsewhere) is the actual
-   date object.
+    *Note:* The tarfile path only contains the current date in YYYYMMDD format,
+    but that's OK because the index information (stored elsewhere) is the actual
+    date object.
 
-   Args:
-      config: Cedar Backup configuration
-      mboxPath: Path to the indicated mbox file or directory
-      compressMode: Compress mode to use for this mbox path
-      newRevision: Revision this backup path represents
+    Args:
+       config: Cedar Backup configuration
+       mboxPath: Path to the indicated mbox file or directory
+       compressMode: Compress mode to use for this mbox path
+       newRevision: Revision this backup path represents
 
-   Returns:
-       Tuple of (absolute path to tarfile, tar archive mode)
-   """
+    Returns:
+        Tuple of (absolute path to tarfile, tar archive mode)
+    """
     normalizedPath = buildNormalizedPath(mboxPath)
     revisionDate = newRevision.strftime("%Y%m%d")
     filename = "mbox-%s-%s.tar" % (revisionDate, normalizedPath)
@@ -1431,19 +1431,19 @@ def _getTarfilePath(config, mboxPath, compressMode, newRevision):
 
 def _getOutputFile(backupPath, compressMode):
     """
-   Opens the output file used for saving backup information.
+    Opens the output file used for saving backup information.
 
-   If the compress mode is "gzip", we'll open a ``GzipFile``, and if the
-   compress mode is "bzip2", we'll open a ``BZ2File``.  Otherwise, we'll just
-   return an object from the normal ``open()`` method.
+    If the compress mode is "gzip", we'll open a ``GzipFile``, and if the
+    compress mode is "bzip2", we'll open a ``BZ2File``.  Otherwise, we'll just
+    return an object from the normal ``open()`` method.
 
-   Args:
-      backupPath: Path to file to open
-      compressMode: Compress mode of file ("none", "gzip", "bzip")
+    Args:
+       backupPath: Path to file to open
+       compressMode: Compress mode of file ("none", "gzip", "bzip")
 
-   Returns:
-       Output file object, opened in binary mode for use with executeCommand()
-   """
+    Returns:
+        Output file object, opened in binary mode for use with executeCommand()
+    """
     if compressMode == "gzip":
         return GzipFile(backupPath, "wb")
     elif compressMode == "bzip2":
@@ -1454,22 +1454,22 @@ def _getOutputFile(backupPath, compressMode):
 
 def _backupMboxFile(config, absolutePath, fullBackup, collectMode, compressMode, lastRevision, newRevision, targetDir=None):
     """
-   Backs up an individual mbox file.
+    Backs up an individual mbox file.
 
-   Args:
-      config: Cedar Backup configuration
-      absolutePath: Path to mbox file to back up
-      fullBackup: Indicates whether this should be a full backup
-      collectMode: Indicates the collect mode for this item
-      compressMode: Compress mode of file ("none", "gzip", "bzip")
-      lastRevision: Date of last backup as datetime.datetime
-      newRevision: Date of new (current) backup as datetime.datetime
-      targetDir: Target directory to write the backed-up file into
+    Args:
+       config: Cedar Backup configuration
+       absolutePath: Path to mbox file to back up
+       fullBackup: Indicates whether this should be a full backup
+       collectMode: Indicates the collect mode for this item
+       compressMode: Compress mode of file ("none", "gzip", "bzip")
+       lastRevision: Date of last backup as datetime.datetime
+       newRevision: Date of new (current) backup as datetime.datetime
+       targetDir: Target directory to write the backed-up file into
 
-   Raises:
-      ValueError: If some value is missing or invalid
-      IOError: If there is a problem backing up the mbox file
-   """
+    Raises:
+       ValueError: If some value is missing or invalid
+       IOError: If there is a problem backing up the mbox file
+    """
     if fullBackup or collectMode != "incr" or lastRevision is None:
         args = ["-a", "-u", absolutePath]  # remove duplicates but fetch entire mailbox
     else:
@@ -1489,23 +1489,23 @@ def _backupMboxDir(
     config, absolutePath, fullBackup, collectMode, compressMode, lastRevision, newRevision, excludePaths, excludePatterns
 ):
     """
-   Backs up a directory containing mbox files.
+    Backs up a directory containing mbox files.
 
-   Args:
-      config: Cedar Backup configuration
-      absolutePath: Path to mbox directory to back up
-      fullBackup: Indicates whether this should be a full backup
-      collectMode: Indicates the collect mode for this item
-      compressMode: Compress mode of file ("none", "gzip", "bzip")
-      lastRevision: Date of last backup as datetime.datetime
-      newRevision: Date of new (current) backup as datetime.datetime
-      excludePaths: List of absolute paths to exclude
-      excludePatterns: List of patterns to exclude
+    Args:
+       config: Cedar Backup configuration
+       absolutePath: Path to mbox directory to back up
+       fullBackup: Indicates whether this should be a full backup
+       collectMode: Indicates the collect mode for this item
+       compressMode: Compress mode of file ("none", "gzip", "bzip")
+       lastRevision: Date of last backup as datetime.datetime
+       newRevision: Date of new (current) backup as datetime.datetime
+       excludePaths: List of absolute paths to exclude
+       excludePatterns: List of patterns to exclude
 
-   Raises:
-      ValueError: If some value is missing or invalid
-      IOError: If there is a problem backing up the mbox file
-   """
+    Raises:
+       ValueError: If some value is missing or invalid
+       IOError: If there is a problem backing up the mbox file
+    """
     try:
         tmpdir = tempfile.mkdtemp(dir=config.options.workingDir)
         mboxList = FilesystemList()

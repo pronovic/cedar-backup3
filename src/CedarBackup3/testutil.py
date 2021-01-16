@@ -83,14 +83,14 @@ from CedarBackup3.util import encodePath, executeCommand, nullDevice
 
 def setupDebugLogger():
     """
-   Sets up a screen logger for debugging purposes.
+    Sets up a screen logger for debugging purposes.
 
-   Normally, the CLI functionality configures the logger so that
-   things get written to the right place.  However, for debugging
-   it's sometimes nice to just get everything -- debug information
-   and output -- dumped to the screen.  This function takes care
-   of that.
-   """
+    Normally, the CLI functionality configures the logger so that
+    things get written to the right place.  However, for debugging
+    it's sometimes nice to just get everything -- debug information
+    and output -- dumped to the screen.  This function takes care
+    of that.
+    """
     logger = logging.getLogger("CedarBackup3")
     logger.setLevel(logging.DEBUG)  # let the logger see all messages
     formatter = logging.Formatter(fmt="%(message)s")
@@ -118,18 +118,18 @@ def configureLogging():
 
 def setupOverrides():
     """
-   Set up any platform-specific overrides that might be required.
+    Set up any platform-specific overrides that might be required.
 
-   When packages are built, this is done manually (hardcoded) in customize.py
-   and the overrides are set up in cli.cli().  This way, no runtime checks need
-   to be done.  This is safe, because the package maintainer knows exactly
-   which platform (Debian or not) the package is being built for.
+    When packages are built, this is done manually (hardcoded) in customize.py
+    and the overrides are set up in cli.cli().  This way, no runtime checks need
+    to be done.  This is safe, because the package maintainer knows exactly
+    which platform (Debian or not) the package is being built for.
 
-   Unit tests are different, because they might be run anywhere.  So, we
-   attempt to make a guess about plaform using platformDebian(), and use that
-   to set up the custom overrides so that platform-specific unit tests continue
-   to work.
-   """
+    Unit tests are different, because they might be run anywhere.  So, we
+    attempt to make a guess about plaform using platformDebian(), and use that
+    to set up the custom overrides so that platform-specific unit tests continue
+    to work.
+    """
     config = Config()
     config.options = OptionsConfig()
     if platformDebian():
@@ -146,15 +146,15 @@ def setupOverrides():
 
 def findResources(resources, dataDirs):
     """
-   Returns a dictionary of locations for various resources.
-   Args:
-      resources: List of required resources
-      dataDirs: List of data directories to search within for resources
-   Returns:
-       Dictionary mapping resource name to resource path
-   Raises:
-      Exception: If some resource cannot be found
-   """
+    Returns a dictionary of locations for various resources.
+    Args:
+       resources: List of required resources
+       dataDirs: List of data directories to search within for resources
+    Returns:
+        Dictionary mapping resource name to resource path
+    Raises:
+       Exception: If some resource cannot be found
+    """
     mapping = {}
     for resource in resources:
         for resourceDir in dataDirs:
@@ -174,13 +174,13 @@ def findResources(resources, dataDirs):
 
 def commandAvailable(command):
     """
-   Indicates whether a command is available on $PATH somewhere.
-   This should work on both Windows and UNIX platforms.
-   Args:
-      command: Commang to search for
-   Returns:
-       Boolean true/false depending on whether command is available
-   """
+    Indicates whether a command is available on $PATH somewhere.
+    This should work on both Windows and UNIX platforms.
+    Args:
+       command: Commang to search for
+    Returns:
+        Boolean true/false depending on whether command is available
+    """
     if "PATH" in os.environ:
         for path in os.environ["PATH"].split(os.sep):
             if os.path.exists(os.path.join(path, command)):
@@ -195,15 +195,15 @@ def commandAvailable(command):
 
 def buildPath(components):
     """
-   Builds a complete path from a list of components.
-   For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c"]``.
-   Args:
-      components: List of components
-   Returns:
-       String path constructed from components
-   Raises:
-      ValueError: If a path cannot be encoded properly
-   """
+    Builds a complete path from a list of components.
+    For instance, constructs ``"/a/b/c"`` from ``["/a", "b", "c"]``.
+    Args:
+       components: List of components
+    Returns:
+        String path constructed from components
+    Raises:
+       ValueError: If a path cannot be encoded properly
+    """
     path = components[0]
     for component in components[1:]:
         path = os.path.join(path, component)
@@ -217,13 +217,13 @@ def buildPath(components):
 
 def removedir(tree):
     """
-   Recursively removes an entire directory.
-   This is basically taken from an example on python.com.
-   Args:
-      tree: Directory tree to remove
-   Raises:
-      ValueError: If a path cannot be encoded properly
-   """
+    Recursively removes an entire directory.
+    This is basically taken from an example on python.com.
+    Args:
+       tree: Directory tree to remove
+    Raises:
+       ValueError: If a path cannot be encoded properly
+    """
     tree = encodePath(tree)
     for root, dirs, files in os.walk(tree, topdown=False):
         for name in files:
@@ -248,13 +248,13 @@ def removedir(tree):
 
 def extractTar(tmpdir, filepath):
     """
-   Extracts the indicated tar file to the indicated tmpdir.
-   Args:
-      tmpdir: Temp directory to extract to
-      filepath: Path to tarfile to extract
-   Raises:
-      ValueError: If a path cannot be encoded properly
-   """
+    Extracts the indicated tar file to the indicated tmpdir.
+    Args:
+       tmpdir: Temp directory to extract to
+       filepath: Path to tarfile to extract
+    Raises:
+       ValueError: If a path cannot be encoded properly
+    """
     # pylint: disable=E1101
     tmpdir = encodePath(tmpdir)
     filepath = encodePath(filepath)
@@ -274,23 +274,23 @@ def extractTar(tmpdir, filepath):
 
 def changeFileAge(filename, subtract=None):
     """
-   Changes a file age using the ``os.utime`` function.
+    Changes a file age using the ``os.utime`` function.
 
-   *Note:* Some platforms don't seem to be able to set an age precisely.  As a
-   result, whereas we might have intended to set an age of 86400 seconds, we
-   actually get an age of 86399.375 seconds.  When util.calculateFileAge()
-   looks at that the file, it calculates an age of 0.999992766204 days, which
-   then gets truncated down to zero whole days.  The tests get very confused.
-   To work around this, I always subtract off one additional second as a fudge
-   factor.  That way, the file age will be *at least* as old as requested
-   later on.
+    *Note:* Some platforms don't seem to be able to set an age precisely.  As a
+    result, whereas we might have intended to set an age of 86400 seconds, we
+    actually get an age of 86399.375 seconds.  When util.calculateFileAge()
+    looks at that the file, it calculates an age of 0.999992766204 days, which
+    then gets truncated down to zero whole days.  The tests get very confused.
+    To work around this, I always subtract off one additional second as a fudge
+    factor.  That way, the file age will be *at least* as old as requested
+    later on.
 
-   Args:
-      filename: File to operate on
-      subtract: Number of seconds to subtract from the current time
-   Raises:
-      ValueError: If a path cannot be encoded properly
-   """
+    Args:
+       filename: File to operate on
+       subtract: Number of seconds to subtract from the current time
+    Raises:
+       ValueError: If a path cannot be encoded properly
+    """
     filename = encodePath(filename)
     newTime = time.time() - 1
     if subtract is not None:
@@ -305,11 +305,11 @@ def changeFileAge(filename, subtract=None):
 
 def getMaskAsMode():
     """
-   Returns the user's current umask inverted to a mode.
-   A mode is mostly a bitwise inversion of a mask, i.e. mask 002 is mode 775.
-   Returns:
-       Umask converted to a mode, as an integer
-   """
+    Returns the user's current umask inverted to a mode.
+    A mode is mostly a bitwise inversion of a mask, i.e. mask 002 is mode 775.
+    Returns:
+        Umask converted to a mode, as an integer
+    """
     umask = os.umask(0o777)
     os.umask(umask)
     return int(~umask & 0o777)  # invert, then use only lower bytes
@@ -322,9 +322,9 @@ def getMaskAsMode():
 
 def getLogin():
     """
-   Returns the name of the currently-logged in user.  This might fail under
-   some circumstances - but if it does, our tests would fail anyway.
-   """
+    Returns the name of the currently-logged in user.  This might fail under
+    some circumstances - but if it does, our tests would fail anyway.
+    """
     return getpass.getuser()
 
 
@@ -335,9 +335,9 @@ def getLogin():
 
 def randomFilename(length, prefix=None, suffix=None):
     """
-   Generates a random filename with the given length.
-   @return Random filename
-   """
+    Generates a random filename with the given length.
+    @return Random filename
+    """
     characters = [None] * length
     for i in range(length):
         characters[i] = random.choice(string.ascii_uppercase)
@@ -355,43 +355,43 @@ def randomFilename(length, prefix=None, suffix=None):
 # pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
     """
-   Equivalent of ``failUnlessRaises``, but used for property assignments instead.
+    Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 
-   It's nice to be able to use ``failUnlessRaises`` to check that a method call
-   raises the exception that you expect.  Unfortunately, this method can't be
-   used to check Python propery assignments, even though these property
-   assignments are actually implemented underneath as methods.
+    It's nice to be able to use ``failUnlessRaises`` to check that a method call
+    raises the exception that you expect.  Unfortunately, this method can't be
+    used to check Python propery assignments, even though these property
+    assignments are actually implemented underneath as methods.
 
-   This function (which can be easily called by unit test classes) provides an
-   easy way to wrap the assignment checks.  It's not pretty, or as intuitive as
-   the original check it's modeled on, but it does work.
+    This function (which can be easily called by unit test classes) provides an
+    easy way to wrap the assignment checks.  It's not pretty, or as intuitive as
+    the original check it's modeled on, but it does work.
 
-   Let's assume you make this method call::
+    Let's assume you make this method call::
 
-      testCase.failUnlessAssignRaises(ValueError, collectDir, "absolutePath", absolutePath)
+       testCase.failUnlessAssignRaises(ValueError, collectDir, "absolutePath", absolutePath)
 
-   If you do this, a test case failure will be raised unless the assignment::
+    If you do this, a test case failure will be raised unless the assignment::
 
-      collectDir.absolutePath = absolutePath
+       collectDir.absolutePath = absolutePath
 
-   fails with a ``ValueError`` exception.  The failure message differentiates
-   between the case where no exception was raised and the case where the wrong
-   exception was raised.
+    fails with a ``ValueError`` exception.  The failure message differentiates
+    between the case where no exception was raised and the case where the wrong
+    exception was raised.
 
-   *Note:* Internally, the ``missed`` and ``instead`` variables are used rather
-   than directly calling ``testCase.fail`` upon noticing a problem because the
-   act of "failure" itself generates an exception that would be caught by the
-   general ``except`` clause.
+    *Note:* Internally, the ``missed`` and ``instead`` variables are used rather
+    than directly calling ``testCase.fail`` upon noticing a problem because the
+    act of "failure" itself generates an exception that would be caught by the
+    general ``except`` clause.
 
-   Args:
-      testCase: PyUnit test case object (i.e. self)
-      exception: Exception that is expected to be raised
-      obj: Object whose property is to be assigned to
-      prop: Name of the property, as a string
-      value: Value that is to be assigned to the property
+    Args:
+       testCase: PyUnit test case object (i.e. self)
+       exception: Exception that is expected to be raised
+       obj: Object whose property is to be assigned to
+       prop: Name of the property, as a string
+       value: Value that is to be assigned to the property
 
-   @see: ``unittest.TestCase.failUnlessRaises``
-   """
+    @see: ``unittest.TestCase.failUnlessRaises``
+    """
     missed = False
     instead = None
     try:
@@ -414,24 +414,24 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
 
 def captureOutput(c):
     """
-   Captures the output (stdout, stderr) of a function or a method.
+    Captures the output (stdout, stderr) of a function or a method.
 
-   Some of our functions don't do anything other than just print output.  We
-   need a way to test these functions (at least nominally) but we don't want
-   any of the output spoiling the test suite output.
+    Some of our functions don't do anything other than just print output.  We
+    need a way to test these functions (at least nominally) but we don't want
+    any of the output spoiling the test suite output.
 
-   This function just creates a dummy file descriptor that can be used as a
-   target by the callable function, rather than ``stdout`` or ``stderr``.
+    This function just creates a dummy file descriptor that can be used as a
+    target by the callable function, rather than ``stdout`` or ``stderr``.
 
-   *Note:* This method assumes that ``callable`` doesn't take any arguments
-   besides keyword argument ``fd`` to specify the file descriptor.
+    *Note:* This method assumes that ``callable`` doesn't take any arguments
+    besides keyword argument ``fd`` to specify the file descriptor.
 
-   Args:
-      c: Callable function or method
+    Args:
+       c: Callable function or method
 
-   Returns:
-       Output of function, as one big string
-   """
+    Returns:
+        Output of function, as one big string
+    """
     fd = StringIO()
     c(fd=fd)
     result = fd.getvalue()
@@ -446,10 +446,10 @@ def captureOutput(c):
 
 def _isPlatform(name):
     """
-   Returns boolean indicating whether we're running on the indicated platform.
-   Args:
-      name: Platform name to check, currently one of "windows" or "macosx"
-   """
+    Returns boolean indicating whether we're running on the indicated platform.
+    Args:
+       name: Platform name to check, currently one of "windows" or "macosx"
+    """
     if name == "windows":
         return sys.platform == "win32"
     elif name == "macosx":
@@ -469,8 +469,8 @@ def _isPlatform(name):
 
 def platformDebian():
     """
-   Returns boolean indicating whether this is the Debian platform.
-   """
+    Returns boolean indicating whether this is the Debian platform.
+    """
     return _isPlatform("debian")
 
 
@@ -481,8 +481,8 @@ def platformDebian():
 
 def platformMacOsX():
     """
-   Returns boolean indicating whether this is the Mac OS X platform.
-   """
+    Returns boolean indicating whether this is the Mac OS X platform.
+    """
     return _isPlatform("macosx")
 
 
@@ -493,8 +493,8 @@ def platformMacOsX():
 
 def platformWindows():
     """
-   Returns boolean indicating whether this is the Windows platform.
-   """
+    Returns boolean indicating whether this is the Windows platform.
+    """
     return _isPlatform("windows")
 
 
@@ -515,10 +515,10 @@ def platformSupportsLinks():
 
 def availableLocales():
     """
-   Returns a list of available locales on the system
-   Returns:
-       List of string locale names
-   """
+    Returns a list of available locales on the system
+    Returns:
+        List of string locale names
+    """
     locales = []
     output = executeCommand(["locale"], ["-a"], returnOutput=True, ignoreStderr=True)[1]
     for line in output:

@@ -113,16 +113,16 @@ class TestFunctions(unittest.TestCase):
 
     def testSimpleFuncs_001(self):
         """
-      Test that the _usage() function runs without errors.
-      We don't care what the output is, and we don't check.
-      """
+        Test that the _usage() function runs without errors.
+        We don't care what the output is, and we don't check.
+        """
         captureOutput(_usage)
 
     def testSimpleFuncs_002(self):
         """
-      Test that the _version() function runs without errors.
-      We don't care what the output is, and we don't check.
-      """
+        Test that the _version() function runs without errors.
+        We don't care what the output is, and we don't check.
+        """
         captureOutput(_version)
 
 
@@ -155,8 +155,8 @@ class TestSpanOptions(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = Options()
         obj.__repr__()
         obj.__str__()

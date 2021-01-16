@@ -67,18 +67,18 @@ logger = logging.getLogger("CedarBackup3.log.actions.initialize")
 # pylint: disable=W0613
 def executeInitialize(configPath, options, config):
     """
-   Executes the initialize action.
+    Executes the initialize action.
 
-   The initialize action initializes the media currently in the writer
-   device so that Cedar Backup can recognize it later.  This is an optional
-   step; it's only required if checkMedia is set on the store configuration.
+    The initialize action initializes the media currently in the writer
+    device so that Cedar Backup can recognize it later.  This is an optional
+    step; it's only required if checkMedia is set on the store configuration.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
 
-   """
+    """
     logger.debug("Executing the 'initialize' action.")
     if config.options is None or config.store is None:
         raise ValueError("Store configuration is not properly filled in.")

@@ -69,29 +69,29 @@ logger = logging.getLogger("CedarBackup3.log.actions.validate")
 # pylint: disable=W0613
 def executeValidate(configPath, options, config):
     """
-   Executes the validate action.
+    Executes the validate action.
 
-   This action validates each of the individual sections in the config file.
-   This is a "runtime" validation.  The config file itself is already valid in
-   a structural sense, so what we check here that is that we can actually use
-   the configuration without any problems.
+    This action validates each of the individual sections in the config file.
+    This is a "runtime" validation.  The config file itself is already valid in
+    a structural sense, so what we check here that is that we can actually use
+    the configuration without any problems.
 
-   There's a separate validation function for each of the configuration
-   sections.  Each validation function returns a true/false indication for
-   whether configuration was valid, and then logs any configuration problems it
-   finds.  This way, one pass over configuration indicates most or all of the
-   obvious problems, rather than finding just one problem at a time.
+    There's a separate validation function for each of the configuration
+    sections.  Each validation function returns a true/false indication for
+    whether configuration was valid, and then logs any configuration problems it
+    finds.  This way, one pass over configuration indicates most or all of the
+    obvious problems, rather than finding just one problem at a time.
 
-   Any reported problems will be logged at the ERROR level normally, or at the
-   INFO level if the quiet flag is enabled.
+    Any reported problems will be logged at the ERROR level normally, or at the
+    INFO level if the quiet flag is enabled.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: If some configuration value is invalid
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: If some configuration value is invalid
+    """
     logger.debug("Executing the 'validate' action.")
     if options.quiet:
         logfunc = logger.info  # info so it goes to the log
@@ -122,20 +122,20 @@ def executeValidate(configPath, options, config):
 
 def _checkDir(path, writable, logfunc, prefix):
     """
-   Checks that the indicated directory is OK.
+    Checks that the indicated directory is OK.
 
-   The path must exist, must be a directory, must be readable and executable,
-   and must optionally be writable.
+    The path must exist, must be a directory, must be readable and executable,
+    and must optionally be writable.
 
-   Args:
-      path: Path to check
-      writable: Check that path is writable
-      logfunc: Function to use for logging errors
-      prefix: Prefix to use on logged errors
+    Args:
+       path: Path to check
+       writable: Check that path is writable
+       logfunc: Function to use for logging errors
+       prefix: Prefix to use on logged errors
 
-   Returns:
-       True if the directory is OK, False otherwise
-   """
+    Returns:
+        True if the directory is OK, False otherwise
+    """
     if not os.path.exists(path):
         logfunc("%s [%s] does not exist." % (prefix, path))
         return False
@@ -161,17 +161,17 @@ def _checkDir(path, writable, logfunc, prefix):
 
 def _validateReference(config, logfunc):
     """
-   Execute runtime validations on reference configuration.
+    Execute runtime validations on reference configuration.
 
-   We only validate that reference configuration exists at all.
+    We only validate that reference configuration exists at all.
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, false otherwise
-   """
+    Returns:
+        True if configuration is valid, false otherwise
+    """
     valid = True
     if config.reference is None:
         logfunc("Required reference configuration does not exist.")
@@ -186,21 +186,21 @@ def _validateReference(config, logfunc):
 
 def _validateOptions(config, logfunc):
     """
-   Execute runtime validations on options configuration.
+    Execute runtime validations on options configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - The options section must exist
-      - The working directory must exist and must be writable
-      - The backup user and backup group must exist
+       - The options section must exist
+       - The working directory must exist and must be writable
+       - The backup user and backup group must exist
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, false otherwise
-   """
+    Returns:
+        True if configuration is valid, false otherwise
+    """
     valid = True
     if config.options is None:
         logfunc("Required options configuration does not exist.")
@@ -222,20 +222,20 @@ def _validateOptions(config, logfunc):
 
 def _validateCollect(config, logfunc):
     """
-   Execute runtime validations on collect configuration.
+    Execute runtime validations on collect configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - The target directory must exist and must be writable
-      - Each of the individual collect directories must exist and must be readable
+       - The target directory must exist and must be writable
+       - Each of the individual collect directories must exist and must be readable
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, false otherwise
-   """
+    Returns:
+        True if configuration is valid, false otherwise
+    """
     valid = True
     if config.collect is not None:
         valid &= _checkDir(config.collect.targetDir, True, logfunc, "Collect target directory")
@@ -252,25 +252,25 @@ def _validateCollect(config, logfunc):
 
 def _validateStage(config, logfunc):
     """
-   Execute runtime validations on stage configuration.
+    Execute runtime validations on stage configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - The target directory must exist and must be writable
-      - Each local peer's collect directory must exist and must be readable
+       - The target directory must exist and must be writable
+       - Each local peer's collect directory must exist and must be readable
 
-   *Note:* We currently do not validate anything having to do with remote peers,
-   since we don't have a straightforward way of doing it.  It would require
-   adding an rsh command rather than just an rcp command to configuration, and
-   that just doesn't seem worth it right now.
+    *Note:* We currently do not validate anything having to do with remote peers,
+    since we don't have a straightforward way of doing it.  It would require
+    adding an rsh command rather than just an rcp command to configuration, and
+    that just doesn't seem worth it right now.
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, False otherwise
-   """
+    Returns:
+        True if configuration is valid, False otherwise
+    """
     valid = True
     if config.stage is not None:
         valid &= _checkDir(config.stage.targetDir, True, logfunc, "Stage target dir ")
@@ -287,20 +287,20 @@ def _validateStage(config, logfunc):
 
 def _validateStore(config, logfunc):
     """
-   Execute runtime validations on store configuration.
+    Execute runtime validations on store configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - The source directory must exist and must be readable
-      - The backup device (path and SCSI device) must be valid
+       - The source directory must exist and must be readable
+       - The backup device (path and SCSI device) must be valid
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, False otherwise
-   """
+    Returns:
+        True if configuration is valid, False otherwise
+    """
     valid = True
     if config.store is not None:
         valid &= _checkDir(config.store.sourceDir, False, logfunc, "Store source directory")
@@ -319,19 +319,19 @@ def _validateStore(config, logfunc):
 
 def _validatePurge(config, logfunc):
     """
-   Execute runtime validations on purge configuration.
+    Execute runtime validations on purge configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - Each purge directory must exist and must be writable
+       - Each purge directory must exist and must be writable
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, False otherwise
-   """
+    Returns:
+        True if configuration is valid, False otherwise
+    """
     valid = True
     if config.purge is not None:
         if config.purge.purgeDirs is not None:
@@ -347,19 +347,19 @@ def _validatePurge(config, logfunc):
 
 def _validateExtensions(config, logfunc):
     """
-   Execute runtime validations on extensions configuration.
+    Execute runtime validations on extensions configuration.
 
-   The following validations are enforced:
+    The following validations are enforced:
 
-      - Each indicated extension function must exist.
+       - Each indicated extension function must exist.
 
-   Args:
-      config: Program configuration
-      logfunc: Function to use for logging errors
+    Args:
+       config: Program configuration
+       logfunc: Function to use for logging errors
 
-   Returns:
-       True if configuration is valid, False otherwise
-   """
+    Returns:
+        True if configuration is valid, False otherwise
+    """
     valid = True
     if config.extensions is not None:
         if config.extensions.actions is not None:

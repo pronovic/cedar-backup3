@@ -73,24 +73,24 @@ logger = logging.getLogger("CedarBackup3.log.actions.rebuild")
 # pylint: disable=W0613
 def executeRebuild(configPath, options, config):
     """
-   Executes the rebuild backup action.
+    Executes the rebuild backup action.
 
-   This function exists mainly to recreate a disc that has been "trashed" due
-   to media or hardware problems.  Note that the "stage complete" indicator
-   isn't checked for this action.
+    This function exists mainly to recreate a disc that has been "trashed" due
+    to media or hardware problems.  Note that the "stage complete" indicator
+    isn't checked for this action.
 
-   Note that the rebuild action and the store action are very similar.  The
-   main difference is that while store only stores a single day's staging
-   directory, the rebuild action operates on multiple staging directories.
+    Note that the rebuild action and the store action are very similar.  The
+    main difference is that while store only stores a single day's staging
+    directory, the rebuild action operates on multiple staging directories.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there are problems reading or writing files
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there are problems reading or writing files
+    """
     logger.debug("Executing the 'rebuild' action.")
     if sys.platform == "darwin":
         logger.warning("Warning: the rebuild action is not fully supported on Mac OS X.")
@@ -123,23 +123,23 @@ def executeRebuild(configPath, options, config):
 
 def _findRebuildDirs(config):
     """
-   Finds the set of directories to be included in a disc rebuild.
+    Finds the set of directories to be included in a disc rebuild.
 
-   A the rebuild action is supposed to recreate the "last week's" disc.  This
-   won't always be possible if some of the staging directories are missing.
-   However, the general procedure is to look back into the past no further than
-   the previous "starting day of week", and then work forward from there trying
-   to find all of the staging directories between then and now that still exist
-   and have a stage indicator.
+    A the rebuild action is supposed to recreate the "last week's" disc.  This
+    won't always be possible if some of the staging directories are missing.
+    However, the general procedure is to look back into the past no further than
+    the previous "starting day of week", and then work forward from there trying
+    to find all of the staging directories between then and now that still exist
+    and have a stage indicator.
 
-   Args:
-      config: Config object
+    Args:
+       config: Config object
 
-   Returns:
-       Correct staging dir, as a dict mapping directory to date suffix
-   Raises:
-      IOError: If we do not find at least one staging directory
-   """
+    Returns:
+        Correct staging dir, as a dict mapping directory to date suffix
+    Raises:
+       IOError: If we do not find at least one staging directory
+    """
     stagingDirs = {}
     start = deriveDayOfWeek(config.options.startingDay)
     today = datetime.date.today()

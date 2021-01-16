@@ -174,108 +174,108 @@ class TestFunctions(unittest.TestCase):
 
     def testValidateScsiId_001(self):
         """
-      Test with simple scsibus,target,lun address.
-      """
+        Test with simple scsibus,target,lun address.
+        """
         scsiId = "0,0,0"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_002(self):
         """
-      Test with simple scsibus,target,lun address containing spaces.
-      """
+        Test with simple scsibus,target,lun address containing spaces.
+        """
         scsiId = " 0,   0, 0 "
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_003(self):
         """
-      Test with simple ATA address.
-      """
+        Test with simple ATA address.
+        """
         scsiId = "ATA:3,2,1"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_004(self):
         """
-      Test with simple ATA address containing spaces.
-      """
+        Test with simple ATA address containing spaces.
+        """
         scsiId = "ATA: 3, 2,1  "
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_005(self):
         """
-      Test with simple ATAPI address.
-      """
+        Test with simple ATAPI address.
+        """
         scsiId = "ATAPI:1,2,3"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_006(self):
         """
-      Test with simple ATAPI address containing spaces.
-      """
+        Test with simple ATAPI address containing spaces.
+        """
         scsiId = "  ATAPI:1,   2, 3"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_007(self):
         """
-      Test with default-device Mac address.
-      """
+        Test with default-device Mac address.
+        """
         scsiId = "IOCompactDiscServices"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_008(self):
         """
-      Test with an alternate-device Mac address.
-      """
+        Test with an alternate-device Mac address.
+        """
         scsiId = "IOCompactDiscServices/2"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_009(self):
         """
-      Test with an alternate-device Mac address.
-      """
+        Test with an alternate-device Mac address.
+        """
         scsiId = "IOCompactDiscServices/12"
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
 
     def testValidateScsiId_010(self):
         """
-      Test with an invalid address with a missing field.
-      """
+        Test with an invalid address with a missing field.
+        """
         scsiId = "1,2"
         self.assertRaises(ValueError, validateScsiId, scsiId)
 
     def testValidateScsiId_011(self):
         """
-      Test with an invalid Mac-style address with a backslash.
-      """
+        Test with an invalid Mac-style address with a backslash.
+        """
         scsiId = "IOCompactDiscServices\\3"
         self.assertRaises(ValueError, validateScsiId, scsiId)
 
     def testValidateScsiId_012(self):
         """
-      Test with an invalid address with an invalid prefix separator.
-      """
+        Test with an invalid address with an invalid prefix separator.
+        """
         scsiId = "ATAPI;1,2,3"
         self.assertRaises(ValueError, validateScsiId, scsiId)
 
     def testValidateScsiId_013(self):
         """
-      Test with an invalid address with an invalid prefix separator.
-      """
+        Test with an invalid address with an invalid prefix separator.
+        """
         scsiId = "ATA-1,2,3"
         self.assertRaises(ValueError, validateScsiId, scsiId)
 
     def testValidateScsiId_014(self):
         """
-      Test with a None SCSI id.
-      """
+        Test with a None SCSI id.
+        """
         scsiId = None
         result = validateScsiId(scsiId)
         self.assertEqual(scsiId, result)
@@ -286,8 +286,8 @@ class TestFunctions(unittest.TestCase):
 
     def testValidateDriveSpeed_001(self):
         """
-      Test for a valid drive speed.
-      """
+        Test for a valid drive speed.
+        """
         speed = 1
         result = validateDriveSpeed(speed)
         self.assertEqual(result, speed)
@@ -306,30 +306,30 @@ class TestFunctions(unittest.TestCase):
 
     def testValidateDriveSpeed_002(self):
         """
-      Test for a None drive speed (special case).
-      """
+        Test for a None drive speed (special case).
+        """
         speed = None
         result = validateDriveSpeed(speed)
         self.assertEqual(result, speed)
 
     def testValidateDriveSpeed_003(self):
         """
-      Test for an invalid drive speed (zero)
-      """
+        Test for an invalid drive speed (zero)
+        """
         speed = 0
         self.assertRaises(ValueError, validateDriveSpeed, speed)
 
     def testValidateDriveSpeed_004(self):
         """
-      Test for an invalid drive speed (negative)
-      """
+        Test for an invalid drive speed (negative)
+        """
         speed = -1
         self.assertRaises(ValueError, validateDriveSpeed, speed)
 
     def testValidateDriveSpeed_005(self):
         """
-      Test for an invalid drive speed (not integer)
-      """
+        Test for an invalid drive speed (not integer)
+        """
         speed = "ken"
         self.assertRaises(ValueError, validateDriveSpeed, speed)
 
@@ -381,17 +381,17 @@ class TestIsoImage(unittest.TestCase):
 
     def mountImage(self, imagePath):
         """
-      Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
+        Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
 
-      This function chooses the correct operating system-specific function and
-      calls it.  If there is no operating-system-specific function, we fall
-      back to the generic function, which uses 'sudo mount'.
+        This function chooses the correct operating system-specific function and
+        calls it.  If there is no operating-system-specific function, we fall
+        back to the generic function, which uses 'sudo mount'.
 
-      Returns:
-          Path the image is mounted at
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Returns:
+            Path the image is mounted at
+        Raises:
+           IOError: If the command cannot be executed
+        """
         if platformMacOsX():
             return self.mountImageDarwin(imagePath)
         else:
@@ -399,21 +399,21 @@ class TestIsoImage(unittest.TestCase):
 
     def mountImageDarwin(self, imagePath):
         """
-      Mounts an ISO image at ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
+        Mounts an ISO image at ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
 
-      Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
-      mount command doesn't really exist (or rather, doesn't know what to do
-      with ISO 9660 volumes).
+        Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
+        mount command doesn't really exist (or rather, doesn't know what to do
+        with ISO 9660 volumes).
 
-      *Note:* According to the manpage, the mountpoint path can't be any longer
-      than MNAMELEN characters (currently 90?) so you might have problems with
-      this depending on how your test environment is set up.
+        *Note:* According to the manpage, the mountpoint path can't be any longer
+        than MNAMELEN characters (currently 90?) so you might have problems with
+        this depending on how your test environment is set up.
 
-      Returns:
-          Path the image is mounted at
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Returns:
+            Path the image is mounted at
+        Raises:
+           IOError: If the command cannot be executed
+        """
         mountPath = self.buildPath(["mnt"])
         os.mkdir(mountPath)
         args = [
@@ -430,21 +430,21 @@ class TestIsoImage(unittest.TestCase):
 
     def mountImageGeneric(self, imagePath):
         """
-      Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
+        Mounts an ISO image at ``self.tmpdir/mnt`` using loopback.
 
-      Note that this will fail unless the user has been granted permissions via
-      sudo, using something like this:
+        Note that this will fail unless the user has been granted permissions via
+        sudo, using something like this:
 
-         Cmnd_Alias LOOPMOUNT = /bin/mount -d -t iso9660 -o loop * *
+           Cmnd_Alias LOOPMOUNT = /bin/mount -d -t iso9660 -o loop * *
 
-      Keep in mind that this entry is a security hole, so you might not want to
-      keep it in ``/etc/sudoers`` all of the time.
+        Keep in mind that this entry is a security hole, so you might not want to
+        keep it in ``/etc/sudoers`` all of the time.
 
-      Returns:
-          Path the image is mounted at
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Returns:
+            Path the image is mounted at
+        Raises:
+           IOError: If the command cannot be executed
+        """
         mountPath = self.buildPath(["mnt"])
         os.mkdir(mountPath)
         args = [
@@ -464,15 +464,15 @@ class TestIsoImage(unittest.TestCase):
 
     def unmountImage(self):
         """
-      Unmounts an ISO image from ``self.tmpdir/mnt``.
+        Unmounts an ISO image from ``self.tmpdir/mnt``.
 
-      This function chooses the correct operating system-specific function and
-      calls it.  If there is no operating-system-specific function, we fall
-      back to the generic function, which uses 'sudo unmount'.
+        This function chooses the correct operating system-specific function and
+        calls it.  If there is no operating-system-specific function, we fall
+        back to the generic function, which uses 'sudo unmount'.
 
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Raises:
+           IOError: If the command cannot be executed
+        """
         if platformMacOsX():
             self.unmountImageDarwin()
         else:
@@ -480,19 +480,19 @@ class TestIsoImage(unittest.TestCase):
 
     def unmountImageDarwin(self):
         """
-      Unmounts an ISO image from ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
+        Unmounts an ISO image from ``self.tmpdir/mnt`` using Darwin's ``hdiutil`` program.
 
-      Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
-      mount command doesn't really exist (or rather, doesn't know what to do
-      with ISO 9660 volumes).
+        Darwin (Mac OS X) uses the ``hdiutil`` program to mount volumes.  The
+        mount command doesn't really exist (or rather, doesn't know what to do
+        with ISO 9660 volumes).
 
-      *Note:* According to the manpage, the mountpoint path can't be any longer
-      than MNAMELEN characters (currently 90?) so you might have problems with
-      this depending on how your test environment is set up.
+        *Note:* According to the manpage, the mountpoint path can't be any longer
+        than MNAMELEN characters (currently 90?) so you might have problems with
+        this depending on how your test environment is set up.
 
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Raises:
+           IOError: If the command cannot be executed
+        """
         mountPath = self.buildPath(["mnt"])
         args = [
             "detach",
@@ -505,25 +505,25 @@ class TestIsoImage(unittest.TestCase):
 
     def unmountImageGeneric(self):
         """
-      Unmounts an ISO image from ``self.tmpdir/mnt``.
+        Unmounts an ISO image from ``self.tmpdir/mnt``.
 
-      Sometimes, multiple tries are needed because the ISO filesystem is still
-      in use.  We try twice with a 1-second pause between attempts.  If this
-      isn't successful, you may run out of loopback devices.  Check for leftover
-      mounts using 'losetup -a' as root.  You can remove a leftover mount using
-      something like 'losetup -d /dev/loop0'.
+        Sometimes, multiple tries are needed because the ISO filesystem is still
+        in use.  We try twice with a 1-second pause between attempts.  If this
+        isn't successful, you may run out of loopback devices.  Check for leftover
+        mounts using 'losetup -a' as root.  You can remove a leftover mount using
+        something like 'losetup -d /dev/loop0'.
 
-      Note that this will fail unless the user has been granted permissions via
-      sudo, using something like this:
+        Note that this will fail unless the user has been granted permissions via
+        sudo, using something like this:
 
-         Cmnd_Alias LOOPUNMOUNT  = /bin/umount -d -t iso9660 *
+           Cmnd_Alias LOOPUNMOUNT  = /bin/umount -d -t iso9660 *
 
-      Keep in mind that this entry is a security hole, so you might not want to
-      keep it in ``/etc/sudoers`` all of the time.
+        Keep in mind that this entry is a security hole, so you might not want to
+        keep it in ``/etc/sudoers`` all of the time.
 
-      Raises:
-         IOError: If the command cannot be executed
-      """
+        Raises:
+           IOError: If the command cannot be executed
+        """
         mountPath = self.buildPath(["mnt"])
         args = [
             "umount",
@@ -542,17 +542,17 @@ class TestIsoImage(unittest.TestCase):
 
     def disableGnomeAutomount(self):
         """
-      Disables GNOME auto-mounting of ISO volumes when full tests are enabled.
+        Disables GNOME auto-mounting of ISO volumes when full tests are enabled.
 
-      As of this writing (October 2011), recent versions of GNOME in Debian
-      come pre-configured to auto-mount various kinds of media (like CDs and
-      thumb drives).  Besides auto-mounting the media, GNOME also often opens
-      up a Nautilus browser window to explore the newly-mounted media.
+        As of this writing (October 2011), recent versions of GNOME in Debian
+        come pre-configured to auto-mount various kinds of media (like CDs and
+        thumb drives).  Besides auto-mounting the media, GNOME also often opens
+        up a Nautilus browser window to explore the newly-mounted media.
 
-      This causes lots of problems for these unit tests, which assume that they
-      have complete control over the mounting and unmounting process.  So, for
-      these tests to work, we need to disable GNOME auto-mounting.
-      """
+        This causes lots of problems for these unit tests, which assume that they
+        have complete control over the mounting and unmounting process.  So, for
+        these tests to work, we need to disable GNOME auto-mounting.
+        """
         self.origMediaAutomount = None
         self.origMediaAutomountOpen = None
         if runAllTests():
@@ -591,8 +591,8 @@ class TestIsoImage(unittest.TestCase):
 
     def enableGnomeAutomount(self):
         """
-      Resets GNOME auto-mounting options back to their state prior to disableGnomeAutomount().
-      """
+        Resets GNOME auto-mounting options back to their state prior to disableGnomeAutomount().
+        """
         if self.origMediaAutomount == "true":
             args = [
                 "--type",
@@ -618,8 +618,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor using all default arguments.
-      """
+        Test the constructor using all default arguments.
+        """
         isoImage = IsoImage()
         self.assertEqual(None, isoImage.device)
         self.assertEqual(None, isoImage.boundaries)
@@ -633,8 +633,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test the constructor using non-default arguments.
-      """
+        Test the constructor using non-default arguments.
+        """
         isoImage = IsoImage("/dev/cdrw", boundaries=(1, 2), graftPoint="/france")
         self.assertEqual("/dev/cdrw", isoImage.device)
         self.assertEqual((1, 2), isoImage.boundaries)
@@ -652,16 +652,16 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_001(self):
         """
-      Test _buildDirEntries() with an empty entries dictionary.
-      """
+        Test _buildDirEntries() with an empty entries dictionary.
+        """
         entries = {}
         result = IsoImage._buildDirEntries(entries)
         self.assertEqual(0, len(result))
 
     def testUtilityMethods_002(self):
         """
-      Test _buildDirEntries() with an entries dictionary that has no graft points.
-      """
+        Test _buildDirEntries() with an entries dictionary that has no graft points.
+        """
         entries = {}
         entries["/one/two/three"] = None
         entries["/four/five/six"] = None
@@ -674,8 +674,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_003(self):
         """
-      Test _buildDirEntries() with an entries dictionary that has all graft points.
-      """
+        Test _buildDirEntries() with an entries dictionary that has all graft points.
+        """
         entries = {}
         entries["/one/two/three"] = "/backup1"
         entries["/four/five/six"] = "backup2"
@@ -688,8 +688,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_004(self):
         """
-      Test _buildDirEntries() with an entries dictionary that has mixed graft points and not.
-      """
+        Test _buildDirEntries() with an entries dictionary that has mixed graft points and not.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         entries["/four/five/six"] = None
@@ -702,16 +702,16 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_005(self):
         """
-      Test _buildGeneralArgs() with all optional values as None.
-      """
+        Test _buildGeneralArgs() with all optional values as None.
+        """
         isoImage = IsoImage()
         result = isoImage._buildGeneralArgs()
         self.assertEqual(0, len(result))
 
     def testUtilityMethods_006(self):
         """
-      Test _buildGeneralArgs() with applicationId set.
-      """
+        Test _buildGeneralArgs() with applicationId set.
+        """
         isoImage = IsoImage()
         isoImage.applicationId = "one"
         result = isoImage._buildGeneralArgs()
@@ -719,8 +719,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_007(self):
         """
-      Test _buildGeneralArgs() with biblioFile set.
-      """
+        Test _buildGeneralArgs() with biblioFile set.
+        """
         isoImage = IsoImage()
         isoImage.biblioFile = "two"
         result = isoImage._buildGeneralArgs()
@@ -728,8 +728,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_008(self):
         """
-      Test _buildGeneralArgs() with publisherId set.
-      """
+        Test _buildGeneralArgs() with publisherId set.
+        """
         isoImage = IsoImage()
         isoImage.publisherId = "three"
         result = isoImage._buildGeneralArgs()
@@ -737,8 +737,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_009(self):
         """
-      Test _buildGeneralArgs() with preparerId set.
-      """
+        Test _buildGeneralArgs() with preparerId set.
+        """
         isoImage = IsoImage()
         isoImage.preparerId = "four"
         result = isoImage._buildGeneralArgs()
@@ -746,8 +746,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_010(self):
         """
-      Test _buildGeneralArgs() with volumeId set.
-      """
+        Test _buildGeneralArgs() with volumeId set.
+        """
         isoImage = IsoImage()
         isoImage.volumeId = "five"
         result = isoImage._buildGeneralArgs()
@@ -755,8 +755,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_011(self):
         """
-      Test _buildSizeArgs() with device and boundaries at defaults.
-      """
+        Test _buildSizeArgs() with device and boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -765,9 +765,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_012(self):
         """
-      Test _buildSizeArgs() with useRockRidge set to True and device and
-      boundaries at defaults.
-      """
+        Test _buildSizeArgs() with useRockRidge set to True and device and
+        boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -777,9 +777,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_013(self):
         """
-      Test _buildSizeArgs() with useRockRidge set to False and device and
-      boundaries at defaults.
-      """
+        Test _buildSizeArgs() with useRockRidge set to False and device and
+        boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -789,8 +789,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_014(self):
         """
-      Test _buildSizeArgs() with device as None and boundaries as non-None.
-      """
+        Test _buildSizeArgs() with device as None and boundaries as non-None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device=None, boundaries=(1, 2))
@@ -799,8 +799,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_015(self):
         """
-      Test _buildSizeArgs() with device as non-None and boundaries as None.
-      """
+        Test _buildSizeArgs() with device as non-None and boundaries as None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
@@ -809,8 +809,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_016(self):
         """
-      Test _buildSizeArgs() with device and boundaries as non-None.
-      """
+        Test _buildSizeArgs() with device and boundaries as non-None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=(1, 2))
@@ -819,8 +819,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_017(self):
         """
-      Test _buildWriteArgs() with device and boundaries at defaults.
-      """
+        Test _buildWriteArgs() with device and boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -829,9 +829,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_018(self):
         """
-      Test _buildWriteArgs() with useRockRidge set to True and device and
-      boundaries at defaults.
-      """
+        Test _buildWriteArgs() with useRockRidge set to True and device and
+        boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -841,9 +841,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_019(self):
         """
-      Test _buildWriteArgs() with useRockRidge set to False and device and
-      boundaries at defaults.
-      """
+        Test _buildWriteArgs() with useRockRidge set to False and device and
+        boundaries at defaults.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage()
@@ -853,8 +853,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_020(self):
         """
-      Test _buildWriteArgs() with device as None and boundaries as non-None.
-      """
+        Test _buildWriteArgs() with device as None and boundaries as non-None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device=None, boundaries=(3, 4))
@@ -864,8 +864,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_021(self):
         """
-      Test _buildWriteArgs() with device as non-None and boundaries as None.
-      """
+        Test _buildWriteArgs() with device as non-None and boundaries as None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=None)
@@ -875,8 +875,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testUtilityMethods_022(self):
         """
-      Test _buildWriteArgs() with device and boundaries as non-None.
-      """
+        Test _buildWriteArgs() with device and boundaries as non-None.
+        """
         entries = {}
         entries["/one/two/three"] = "backup1"
         isoImage = IsoImage(device="/dev/cdrw", boundaries=(3, 4))
@@ -892,8 +892,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_001(self):
         """
-      Attempt to add a non-existent entry.
-      """
+        Attempt to add a non-existent entry.
+        """
         file1 = self.buildPath([INVALID_FILE])
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
@@ -901,8 +901,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddEntry_002(self):
         """
-      Attempt to add a an entry that is a soft link to a file.
-      """
+        Attempt to add a an entry that is a soft link to a file.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "dir002", "link003"])
         isoImage = IsoImage()
@@ -911,8 +911,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddEntry_003(self):
         """
-      Attempt to add a an entry that is a soft link to a directory
-      """
+        Attempt to add a an entry that is a soft link to a directory
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "link001"])
         isoImage = IsoImage()
@@ -920,8 +920,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_004(self):
         """
-      Attempt to add a file, no graft point set.
-      """
+        Attempt to add a file, no graft point set.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -931,8 +931,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_005(self):
         """
-      Attempt to add a file, graft point set on the object level.
-      """
+        Attempt to add a file, graft point set on the object level.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -942,8 +942,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_006(self):
         """
-      Attempt to add a file, graft point set on the method level.
-      """
+        Attempt to add a file, graft point set on the method level.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -953,8 +953,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_007(self):
         """
-      Attempt to add a file, graft point set on the object and method levels.
-      """
+        Attempt to add a file, graft point set on the object and method levels.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -964,10 +964,10 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_008(self):
         """
-      Attempt to add a file, graft point set on the object and method levels,
-      where method value is None (which can't be distinguished from the method
-      value being unset).
-      """
+        Attempt to add a file, graft point set on the object and method levels,
+        where method value is None (which can't be distinguished from the method
+        value being unset).
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -977,8 +977,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_009(self):
         """
-      Attempt to add a directory, no graft point set.
-      """
+        Attempt to add a directory, no graft point set.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
@@ -988,8 +988,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_010(self):
         """
-      Attempt to add a directory, graft point set on the object level.
-      """
+        Attempt to add a directory, graft point set on the object level.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage(graftPoint="p")
@@ -999,8 +999,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_011(self):
         """
-      Attempt to add a directory, graft point set on the method level.
-      """
+        Attempt to add a directory, graft point set on the method level.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
@@ -1010,8 +1010,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_012(self):
         """
-      Attempt to add a file, no graft point set, contentsOnly=True.
-      """
+        Attempt to add a file, no graft point set, contentsOnly=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -1021,9 +1021,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_013(self):
         """
-      Attempt to add a file, graft point set on the object level,
-      contentsOnly=True.
-      """
+        Attempt to add a file, graft point set on the object level,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -1033,9 +1033,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_014(self):
         """
-      Attempt to add a file, graft point set on the method level,
-      contentsOnly=True.
-      """
+        Attempt to add a file, graft point set on the method level,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -1045,9 +1045,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_015(self):
         """
-      Attempt to add a file, graft point set on the object and method levels,
-      contentsOnly=True.
-      """
+        Attempt to add a file, graft point set on the object and method levels,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -1057,10 +1057,10 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_016(self):
         """
-      Attempt to add a file, graft point set on the object and method levels,
-      where method value is None (which can't be distinguished from the method
-      value being unset), contentsOnly=True.
-      """
+        Attempt to add a file, graft point set on the object and method levels,
+        where method value is None (which can't be distinguished from the method
+        value being unset), contentsOnly=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -1070,8 +1070,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_017(self):
         """
-      Attempt to add a directory, no graft point set, contentsOnly=True.
-      """
+        Attempt to add a directory, no graft point set, contentsOnly=True.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
@@ -1081,9 +1081,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_018(self):
         """
-      Attempt to add a directory, graft point set on the object level,
-      contentsOnly=True.
-      """
+        Attempt to add a directory, graft point set on the object level,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage(graftPoint="p")
@@ -1093,9 +1093,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_019(self):
         """
-      Attempt to add a directory, graft point set on the method level,
-      contentsOnly=True.
-      """
+        Attempt to add a directory, graft point set on the method level,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
@@ -1105,9 +1105,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_020(self):
         """
-      Attempt to add a directory, graft point set on the object and methods
-      levels, contentsOnly=True.
-      """
+        Attempt to add a directory, graft point set on the object and methods
+        levels, contentsOnly=True.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage(graftPoint="p")
@@ -1117,9 +1117,9 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_021(self):
         """
-      Attempt to add a directory, graft point set on the object and methods
-      levels, contentsOnly=True.
-      """
+        Attempt to add a directory, graft point set on the object and methods
+        levels, contentsOnly=True.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage(graftPoint="p")
@@ -1129,8 +1129,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_022(self):
         """
-      Attempt to add a file that has already been added, override=False.
-      """
+        Attempt to add a file that has already been added, override=False.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -1142,8 +1142,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_023(self):
         """
-      Attempt to add a file that has already been added, override=True.
-      """
+        Attempt to add a file that has already been added, override=True.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
@@ -1155,8 +1155,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_024(self):
         """
-      Attempt to add a directory that has already been added, override=False, changing the graft point.
-      """
+        Attempt to add a directory that has already been added, override=False, changing the graft point.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -1168,8 +1168,8 @@ class TestIsoImage(unittest.TestCase):
 
     def testAddEntry_025(self):
         """
-      Attempt to add a directory that has already been added, override=True, changing the graft point.
-      """
+        Attempt to add a directory that has already been added, override=True, changing the graft point.
+        """
         self.extractTar("tree9")
         file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
@@ -1186,8 +1186,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testGetEstimatedSize_001(self):
         """
-      Test with an empty list.
-      """
+        Test with an empty list.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.getEstimatedSize)
@@ -1195,8 +1195,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testGetEstimatedSize_002(self):
         """
-      Test with non-empty empty list.
-      """
+        Test with non-empty empty list.
+        """
         self.extractTar("tree9")
         dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
@@ -1211,8 +1211,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_001(self):
         """
-      Attempt to write an image containing no entries.
-      """
+        Attempt to write an image containing no entries.
+        """
         isoImage = IsoImage()
         imagePath = self.buildPath(["image.iso"])
         self.assertRaises(ValueError, isoImage.writeImage, imagePath)
@@ -1220,8 +1220,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_002(self):
         """
-      Attempt to write an image containing only an empty directory, no graft point.
-      """
+        Attempt to write an image containing only an empty directory, no graft point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir001", "dir002"])
@@ -1238,8 +1238,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_003(self):
         """
-      Attempt to write an image containing only an empty directory, with a graft point.
-      """
+        Attempt to write an image containing only an empty directory, with a graft point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir001", "dir002"])
@@ -1257,9 +1257,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_004(self):
         """
-      Attempt to write an image containing only a non-empty directory, no graft
-      point.
-      """
+        Attempt to write an image containing only a non-empty directory, no graft
+        point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
@@ -1284,9 +1284,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_005(self):
         """
-      Attempt to write an image containing only a non-empty directory, with a
-      graft point.
-      """
+        Attempt to write an image containing only a non-empty directory, with a
+        graft point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
@@ -1313,8 +1313,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_006(self):
         """
-      Attempt to write an image containing only a file, no graft point.
-      """
+        Attempt to write an image containing only a file, no graft point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1331,8 +1331,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_007(self):
         """
-      Attempt to write an image containing only a file, with a graft point.
-      """
+        Attempt to write an image containing only a file, with a graft point.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1350,9 +1350,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_008(self):
         """
-      Attempt to write an image containing a file and an empty directory, no
-      graft points.
-      """
+        Attempt to write an image containing a file and an empty directory, no
+        graft points.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1372,9 +1372,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_009(self):
         """
-      Attempt to write an image containing a file and an empty directory, with
-      graft points.
-      """
+        Attempt to write an image containing a file and an empty directory, with
+        graft points.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
@@ -1396,9 +1396,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_010(self):
         """
-      Attempt to write an image containing a file and a non-empty directory,
-      mixed graft points.
-      """
+        Attempt to write an image containing a file and a non-empty directory,
+        mixed graft points.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
@@ -1426,9 +1426,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_011(self):
         """
-      Attempt to write an image containing several files and a non-empty
-      directory, mixed graft points.
-      """
+        Attempt to write an image containing several files and a non-empty
+        directory, mixed graft points.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1460,8 +1460,8 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_012(self):
         """
-      Attempt to write an image containing a deeply-nested directory.
-      """
+        Attempt to write an image containing a deeply-nested directory.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9"])
@@ -1500,9 +1500,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_013(self):
         """
-      Attempt to write an image containing only an empty directory, no graft
-      point, contentsOnly=True.
-      """
+        Attempt to write an image containing only an empty directory, no graft
+        point, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir001", "dir002"])
@@ -1518,9 +1518,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_014(self):
         """
-      Attempt to write an image containing only an empty directory, with a
-      graft point, contentsOnly=True.
-      """
+        Attempt to write an image containing only an empty directory, with a
+        graft point, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir001", "dir002"])
@@ -1537,9 +1537,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_015(self):
         """
-      Attempt to write an image containing only a non-empty directory, no graft
-      point, contentsOnly=True.
-      """
+        Attempt to write an image containing only a non-empty directory, no graft
+        point, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
@@ -1563,9 +1563,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_016(self):
         """
-      Attempt to write an image containing only a non-empty directory, with a
-      graft point, contentsOnly=True.
-      """
+        Attempt to write an image containing only a non-empty directory, with a
+        graft point, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
@@ -1591,9 +1591,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_017(self):
         """
-      Attempt to write an image containing only a file, no graft point,
-      contentsOnly=True.
-      """
+        Attempt to write an image containing only a file, no graft point,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1610,9 +1610,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_018(self):
         """
-      Attempt to write an image containing only a file, with a graft point,
-      contentsOnly=True.
-      """
+        Attempt to write an image containing only a file, with a graft point,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1630,9 +1630,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_019(self):
         """
-      Attempt to write an image containing a file and an empty directory, no
-      graft points, contentsOnly=True.
-      """
+        Attempt to write an image containing a file and an empty directory, no
+        graft points, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1651,9 +1651,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_020(self):
         """
-      Attempt to write an image containing a file and an empty directory, with
-      graft points, contentsOnly=True.
-      """
+        Attempt to write an image containing a file and an empty directory, with
+        graft points, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
@@ -1674,9 +1674,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_021(self):
         """
-      Attempt to write an image containing a file and a non-empty directory,
-      mixed graft points, contentsOnly=True.
-      """
+        Attempt to write an image containing a file and a non-empty directory,
+        mixed graft points, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
@@ -1689,9 +1689,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_022(self):
         """
-      Attempt to write an image containing several files and a non-empty
-      directory, mixed graft points, contentsOnly=True.
-      """
+        Attempt to write an image containing several files and a non-empty
+        directory, mixed graft points, contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
@@ -1722,9 +1722,9 @@ class TestIsoImage(unittest.TestCase):
     @unittest.skipUnless(runAllTests(), "Limited test suite")
     def testWriteImage_023(self):
         """
-      Attempt to write an image containing a deeply-nested directory,
-      contentsOnly=True.
-      """
+        Attempt to write an image containing a deeply-nested directory,
+        contentsOnly=True.
+        """
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9"])

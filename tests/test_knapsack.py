@@ -284,17 +284,17 @@ ITEMS_19 = {
 
 def buildItemDict(origDict):
     """
-   Creates an item dictionary suitable for passing to a knapsack function.
+    Creates an item dictionary suitable for passing to a knapsack function.
 
-   The knapsack functions take a dictionary, keyed on item, of (item, size)
-   tuples.  This function converts a simple item/size dictionary to a knapsack
-   dictionary.  It exists for convenience.
+    The knapsack functions take a dictionary, keyed on item, of (item, size)
+    tuples.  This function converts a simple item/size dictionary to a knapsack
+    dictionary.  It exists for convenience.
 
-   Args:
-      origDict (Simple dictionary mapping item to size, like ``ITEMS_02``): Dictionary to convert
-   Returns:
-       Dictionary suitable for passing to a knapsack function
-   """
+    Args:
+       origDict (Simple dictionary mapping item to size, like ``ITEMS_02``): Dictionary to convert
+    Returns:
+        Dictionary suitable for passing to a knapsack function
+    """
     itemDict = {}
     for key in list(origDict.keys()):
         itemDict[key] = (key, origDict[key])
@@ -334,8 +334,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_001(self):
         """
-      Test firstFit() behavior for an empty items dictionary, zero capacity.
-      """
+        Test firstFit() behavior for an empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 0
         result = firstFit(items, capacity)
@@ -343,8 +343,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_002(self):
         """
-      Test firstFit() behavior for an empty items dictionary, non-zero capacity.
-      """
+        Test firstFit() behavior for an empty items dictionary, non-zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 10000
         result = firstFit(items, capacity)
@@ -352,8 +352,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_003(self):
         """
-      Test firstFit() behavior for an non-empty items dictionary, zero capacity.
-      """
+        Test firstFit() behavior for an non-empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = firstFit(items, capacity)
@@ -371,8 +371,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_004(self):
         """
-      Test firstFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
-      """
+        Test firstFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = firstFit(items, capacity)
@@ -380,8 +380,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_005(self):
         """
-      Test firstFit() behavior for items dictionary where only one item fits.
-      """
+        Test firstFit() behavior for items dictionary where only one item fits.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 1
         result = firstFit(items, capacity)
@@ -426,8 +426,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_006(self):
         """
-      Test firstFit() behavior for items dictionary where only 25% of items fit.
-      """
+        Test firstFit() behavior for items dictionary where only 25% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 2
         result = firstFit(items, capacity)
@@ -500,8 +500,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_007(self):
         """
-      Test firstFit() behavior for items dictionary where only 50% of items fit.
-      """
+        Test firstFit() behavior for items dictionary where only 50% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 4
         result = firstFit(items, capacity)
@@ -574,8 +574,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_008(self):
         """
-      Test firstFit() behavior for items dictionary where only 75% of items fit.
-      """
+        Test firstFit() behavior for items dictionary where only 75% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 6
         result = firstFit(items, capacity)
@@ -648,9 +648,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_009(self):
         """
-      Test firstFit() behavior for items dictionary where all items individually
-      exceed the capacity.
-      """
+        Test firstFit() behavior for items dictionary where all items individually
+        exceed the capacity.
+        """
         items = buildItemDict(ITEMS_06)
         capacity = 9
         result = firstFit(items, capacity)
@@ -678,9 +678,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_010(self):
         """
-      Test firstFit() behavior for items dictionary where first half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where first half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 200
         result = firstFit(items, capacity)
@@ -690,9 +690,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_011(self):
         """
-      Test firstFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 5
         result = firstFit(items, capacity)
@@ -723,9 +723,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_012(self):
         """
-      Test firstFit() behavior for items dictionary where second half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where second half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 200
         result = firstFit(items, capacity)
@@ -735,9 +735,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_013(self):
         """
-      Test firstFit() behavior for items dictionary where first half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where first half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 50
         result = firstFit(items, capacity)
@@ -746,9 +746,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_014(self):
         """
-      Test firstFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 3
         result = firstFit(items, capacity)
@@ -775,9 +775,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_015(self):
         """
-      Test firstFit() behavior for items dictionary where second half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test firstFit() behavior for items dictionary where second half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 50
         result = firstFit(items, capacity)
@@ -786,8 +786,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_016(self):
         """
-      Test firstFit() behavior for items dictionary where all items fit.
-      """
+        Test firstFit() behavior for items dictionary where all items fit.
+        """
         items = buildItemDict(ITEMS_02)
         capacity = 1000000
         result = firstFit(items, capacity)
@@ -909,8 +909,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testFirstFit_017(self):
         """
-      Test firstFit() behavior for a more realistic set of items
-      """
+        Test firstFit() behavior for a more realistic set of items
+        """
         items = buildItemDict(ITEMS_19)
         capacity = 760
         result = firstFit(items, capacity)
@@ -923,8 +923,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_001(self):
         """
-      Test bestFit() behavior for an empty items dictionary, zero capacity.
-      """
+        Test bestFit() behavior for an empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 0
         result = bestFit(items, capacity)
@@ -932,8 +932,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_002(self):
         """
-      Test bestFit() behavior for an empty items dictionary, non-zero capacity.
-      """
+        Test bestFit() behavior for an empty items dictionary, non-zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 10000
         result = bestFit(items, capacity)
@@ -941,8 +941,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_003(self):
         """
-      Test bestFit() behavior for an non-empty items dictionary, zero capacity.
-      """
+        Test bestFit() behavior for an non-empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = bestFit(items, capacity)
@@ -960,8 +960,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_004(self):
         """
-      Test bestFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
-      """
+        Test bestFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = bestFit(items, capacity)
@@ -969,8 +969,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_005(self):
         """
-      Test bestFit() behavior for items dictionary where only one item fits.
-      """
+        Test bestFit() behavior for items dictionary where only one item fits.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 1
         result = bestFit(items, capacity)
@@ -1015,8 +1015,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_006(self):
         """
-      Test bestFit() behavior for items dictionary where only 25% of items fit.
-      """
+        Test bestFit() behavior for items dictionary where only 25% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 2
         result = bestFit(items, capacity)
@@ -1089,8 +1089,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_007(self):
         """
-      Test bestFit() behavior for items dictionary where only 50% of items fit.
-      """
+        Test bestFit() behavior for items dictionary where only 50% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 4
         result = bestFit(items, capacity)
@@ -1163,8 +1163,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_008(self):
         """
-      Test bestFit() behavior for items dictionary where only 75% of items fit.
-      """
+        Test bestFit() behavior for items dictionary where only 75% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 6
         result = bestFit(items, capacity)
@@ -1237,9 +1237,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_009(self):
         """
-      Test bestFit() behavior for items dictionary where all items individually
-      exceed the capacity.
-      """
+        Test bestFit() behavior for items dictionary where all items individually
+        exceed the capacity.
+        """
         items = buildItemDict(ITEMS_06)
         capacity = 9
         result = bestFit(items, capacity)
@@ -1267,9 +1267,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_010(self):
         """
-      Test bestFit() behavior for items dictionary where first half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where first half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 200
         result = bestFit(items, capacity)
@@ -1279,9 +1279,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_011(self):
         """
-      Test bestFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 5
         result = bestFit(items, capacity)
@@ -1312,9 +1312,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_012(self):
         """
-      Test bestFit() behavior for items dictionary where second half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where second half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 200
         result = bestFit(items, capacity)
@@ -1324,9 +1324,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_013(self):
         """
-      Test bestFit() behavior for items dictionary where first half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where first half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 50
         result = bestFit(items, capacity)
@@ -1335,9 +1335,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_014(self):
         """
-      Test bestFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 3
         result = bestFit(items, capacity)
@@ -1364,9 +1364,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_015(self):
         """
-      Test bestFit() behavior for items dictionary where second half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test bestFit() behavior for items dictionary where second half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 50
         result = bestFit(items, capacity)
@@ -1375,8 +1375,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_016(self):
         """
-      Test bestFit() behavior for items dictionary where all items fit.
-      """
+        Test bestFit() behavior for items dictionary where all items fit.
+        """
         items = buildItemDict(ITEMS_02)
         capacity = 1000000
         result = bestFit(items, capacity)
@@ -1498,8 +1498,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testBestFit_017(self):
         """
-      Test bestFit() behavior for a more realistic set of items
-      """
+        Test bestFit() behavior for a more realistic set of items
+        """
         items = buildItemDict(ITEMS_19)
         capacity = 760
         result = bestFit(items, capacity)
@@ -1518,8 +1518,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_001(self):
         """
-      Test worstFit() behavior for an empty items dictionary, zero capacity.
-      """
+        Test worstFit() behavior for an empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 0
         result = worstFit(items, capacity)
@@ -1527,8 +1527,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_002(self):
         """
-      Test worstFit() behavior for an empty items dictionary, non-zero capacity.
-      """
+        Test worstFit() behavior for an empty items dictionary, non-zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 10000
         result = worstFit(items, capacity)
@@ -1536,8 +1536,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_003(self):
         """
-      Test worstFit() behavior for an non-empty items dictionary, zero capacity.
-      """
+        Test worstFit() behavior for an non-empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = worstFit(items, capacity)
@@ -1555,8 +1555,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_004(self):
         """
-      Test worstFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
-      """
+        Test worstFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = worstFit(items, capacity)
@@ -1564,8 +1564,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_005(self):
         """
-      Test worstFit() behavior for items dictionary where only one item fits.
-      """
+        Test worstFit() behavior for items dictionary where only one item fits.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 1
         result = worstFit(items, capacity)
@@ -1610,8 +1610,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_006(self):
         """
-      Test worstFit() behavior for items dictionary where only 25% of items fit.
-      """
+        Test worstFit() behavior for items dictionary where only 25% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 2
         result = worstFit(items, capacity)
@@ -1684,8 +1684,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_007(self):
         """
-      Test worstFit() behavior for items dictionary where only 50% of items fit.
-      """
+        Test worstFit() behavior for items dictionary where only 50% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 4
         result = worstFit(items, capacity)
@@ -1758,8 +1758,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_008(self):
         """
-      Test worstFit() behavior for items dictionary where only 75% of items fit.
-      """
+        Test worstFit() behavior for items dictionary where only 75% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 6
         result = worstFit(items, capacity)
@@ -1832,9 +1832,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_009(self):
         """
-      Test worstFit() behavior for items dictionary where all items individually
-      exceed the capacity.
-      """
+        Test worstFit() behavior for items dictionary where all items individually
+        exceed the capacity.
+        """
         items = buildItemDict(ITEMS_06)
         capacity = 9
         result = worstFit(items, capacity)
@@ -1862,9 +1862,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_010(self):
         """
-      Test worstFit() behavior for items dictionary where first half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where first half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 200
         result = worstFit(items, capacity)
@@ -1874,9 +1874,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_011(self):
         """
-      Test worstFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 5
         result = worstFit(items, capacity)
@@ -1907,9 +1907,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_012(self):
         """
-      Test worstFit() behavior for items dictionary where second half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where second half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 200
         result = worstFit(items, capacity)
@@ -1919,9 +1919,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_013(self):
         """
-      Test worstFit() behavior for items dictionary where first half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where first half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 50
         result = worstFit(items, capacity)
@@ -1930,9 +1930,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_014(self):
         """
-      Test worstFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 3
         result = worstFit(items, capacity)
@@ -1959,9 +1959,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_015(self):
         """
-      Test worstFit() behavior for items dictionary where second half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test worstFit() behavior for items dictionary where second half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 50
         result = worstFit(items, capacity)
@@ -1970,8 +1970,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_016(self):
         """
-      Test worstFit() behavior for items dictionary where all items fit.
-      """
+        Test worstFit() behavior for items dictionary where all items fit.
+        """
         items = buildItemDict(ITEMS_02)
         capacity = 1000000
         result = worstFit(items, capacity)
@@ -2093,8 +2093,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testWorstFit_017(self):
         """
-      Test worstFit() behavior for a more realistic set of items
-      """
+        Test worstFit() behavior for a more realistic set of items
+        """
         items = buildItemDict(ITEMS_19)
         capacity = 760
         result = worstFit(items, capacity)
@@ -2114,8 +2114,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_001(self):
         """
-      Test alternateFit() behavior for an empty items dictionary, zero capacity.
-      """
+        Test alternateFit() behavior for an empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 0
         result = alternateFit(items, capacity)
@@ -2123,8 +2123,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_002(self):
         """
-      Test alternateFit() behavior for an empty items dictionary, non-zero capacity.
-      """
+        Test alternateFit() behavior for an empty items dictionary, non-zero capacity.
+        """
         items = buildItemDict(ITEMS_01)
         capacity = 10000
         result = alternateFit(items, capacity)
@@ -2132,8 +2132,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_003(self):
         """
-      Test alternateFit() behavior for an non-empty items dictionary, zero capacity.
-      """
+        Test alternateFit() behavior for an non-empty items dictionary, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = alternateFit(items, capacity)
@@ -2151,8 +2151,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_004(self):
         """
-      Test alternateFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
-      """
+        Test alternateFit() behavior for non-empty items dictionary with zero-sized items, zero capacity.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 0
         result = alternateFit(items, capacity)
@@ -2160,8 +2160,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_005(self):
         """
-      Test alternateFit() behavior for items dictionary where only one item fits.
-      """
+        Test alternateFit() behavior for items dictionary where only one item fits.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 1
         result = alternateFit(items, capacity)
@@ -2206,8 +2206,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_006(self):
         """
-      Test alternateFit() behavior for items dictionary where only 25% of items fit.
-      """
+        Test alternateFit() behavior for items dictionary where only 25% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 2
         result = alternateFit(items, capacity)
@@ -2280,8 +2280,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_007(self):
         """
-      Test alternateFit() behavior for items dictionary where only 50% of items fit.
-      """
+        Test alternateFit() behavior for items dictionary where only 50% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 4
         result = alternateFit(items, capacity)
@@ -2354,8 +2354,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_008(self):
         """
-      Test alternateFit() behavior for items dictionary where only 75% of items fit.
-      """
+        Test alternateFit() behavior for items dictionary where only 75% of items fit.
+        """
         items = buildItemDict(ITEMS_05)
         capacity = 6
         result = alternateFit(items, capacity)
@@ -2428,9 +2428,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_009(self):
         """
-      Test alternateFit() behavior for items dictionary where all items individually
-      exceed the capacity.
-      """
+        Test alternateFit() behavior for items dictionary where all items individually
+        exceed the capacity.
+        """
         items = buildItemDict(ITEMS_06)
         capacity = 9
         result = alternateFit(items, capacity)
@@ -2458,9 +2458,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_010(self):
         """
-      Test alternateFit() behavior for items dictionary where first half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where first half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 200
         result = alternateFit(items, capacity)
@@ -2470,9 +2470,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_011(self):
         """
-      Test alternateFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 5
         result = alternateFit(items, capacity)
@@ -2503,9 +2503,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_012(self):
         """
-      Test alternateFit() behavior for items dictionary where second half of items
-      individually exceed capacity and remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where second half of items
+        individually exceed capacity and remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 200
         result = alternateFit(items, capacity)
@@ -2515,9 +2515,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_013(self):
         """
-      Test alternateFit() behavior for items dictionary where first half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where first half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_04)
         capacity = 50
         result = alternateFit(items, capacity)
@@ -2526,9 +2526,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_014(self):
         """
-      Test alternateFit() behavior for items dictionary where middle half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where middle half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_11)
         capacity = 3
         result = alternateFit(items, capacity)
@@ -2555,9 +2555,9 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_015(self):
         """
-      Test alternateFit() behavior for items dictionary where second half of items
-      individually exceed capacity and only some of remainder fit.
-      """
+        Test alternateFit() behavior for items dictionary where second half of items
+        individually exceed capacity and only some of remainder fit.
+        """
         items = buildItemDict(ITEMS_03)
         capacity = 50
         result = alternateFit(items, capacity)
@@ -2566,8 +2566,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_016(self):
         """
-      Test alternateFit() behavior for items dictionary where all items fit.
-      """
+        Test alternateFit() behavior for items dictionary where all items fit.
+        """
         items = buildItemDict(ITEMS_02)
         capacity = 1000000
         result = alternateFit(items, capacity)
@@ -2689,8 +2689,8 @@ class TestKnapsack(unittest.TestCase):
 
     def testAlternateFit_017(self):
         """
-      Test alternateFit() behavior for a more realistic set of items
-      """
+        Test alternateFit() behavior for a more realistic set of items
+        """
         items = buildItemDict(ITEMS_19)
         capacity = 760
         result = alternateFit(items, capacity)

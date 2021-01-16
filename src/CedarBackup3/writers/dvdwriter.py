@@ -92,30 +92,30 @@ EJECT_COMMAND = ["eject"]
 class MediaDefinition(object):
 
     """
-   Class encapsulating information about DVD media definitions.
+    Class encapsulating information about DVD media definitions.
 
-   The following media types are accepted:
+    The following media types are accepted:
 
-         - ``MEDIA_DVDPLUSR``: DVD+R media (4.4 GB capacity)
-         - ``MEDIA_DVDPLUSRW``: DVD+RW media (4.4 GB capacity)
+          - ``MEDIA_DVDPLUSR``: DVD+R media (4.4 GB capacity)
+          - ``MEDIA_DVDPLUSRW``: DVD+RW media (4.4 GB capacity)
 
-   Note that the capacity attribute returns capacity in terms of ISO sectors
-   (``util.ISO_SECTOR_SIZE)``.  This is for compatibility with the CD writer
-   functionality.
+    Note that the capacity attribute returns capacity in terms of ISO sectors
+    (``util.ISO_SECTOR_SIZE)``.  This is for compatibility with the CD writer
+    functionality.
 
-   The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
-   of 1024*1024*1024 bytes per gigabyte.
+    The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
+    of 1024*1024*1024 bytes per gigabyte.
 
-   """
+    """
 
     def __init__(self, mediaType):
         """
-      Creates a media definition for the indicated media type.
-      Args:
-         mediaType: Type of the media, as discussed above
-      Raises:
-         ValueError: If the media type is unknown or unsupported
-      """
+        Creates a media definition for the indicated media type.
+        Args:
+           mediaType: Type of the media, as discussed above
+        Raises:
+           ValueError: If the media type is unknown or unsupported
+        """
         self._mediaType = None
         self._rewritable = False
         self._capacity = 0.0
@@ -123,12 +123,12 @@ class MediaDefinition(object):
 
     def _setValues(self, mediaType):
         """
-      Sets values based on media type.
-      Args:
-         mediaType: Type of the media, as discussed above
-      Raises:
-         ValueError: If the media type is unknown or unsupported
-      """
+        Sets values based on media type.
+        Args:
+           mediaType: Type of the media, as discussed above
+        Raises:
+           ValueError: If the media type is unknown or unsupported
+        """
         if mediaType not in [MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW]:
             raise ValueError("Invalid media type %d." % mediaType)
         self._mediaType = mediaType
@@ -141,20 +141,20 @@ class MediaDefinition(object):
 
     def _getMediaType(self):
         """
-      Property target used to get the media type value.
-      """
+        Property target used to get the media type value.
+        """
         return self._mediaType
 
     def _getRewritable(self):
         """
-      Property target used to get the rewritable flag value.
-      """
+        Property target used to get the rewritable flag value.
+        """
         return self._rewritable
 
     def _getCapacity(self):
         """
-      Property target used to get the capacity value.
-      """
+        Property target used to get the capacity value.
+        """
         return self._capacity
 
     mediaType = property(_getMediaType, None, None, doc="Configured media type.")
@@ -170,51 +170,51 @@ class MediaDefinition(object):
 class MediaCapacity(object):
 
     """
-   Class encapsulating information about DVD media capacity.
+    Class encapsulating information about DVD media capacity.
 
-   Space used and space available do not include any information about media
-   lead-in or other overhead.
+    Space used and space available do not include any information about media
+    lead-in or other overhead.
 
-   """
+    """
 
     def __init__(self, bytesUsed, bytesAvailable):
         """
-      Initializes a capacity object.
+        Initializes a capacity object.
 
-      Raises:
-         ValueError: If the bytes used and available values are not floats
-      """
+        Raises:
+           ValueError: If the bytes used and available values are not floats
+        """
         self._bytesUsed = float(bytesUsed)
         self._bytesAvailable = float(bytesAvailable)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
 
     def _getBytesUsed(self):
         """
-      Property target used to get the bytes-used value.
-      """
+        Property target used to get the bytes-used value.
+        """
         return self._bytesUsed
 
     def _getBytesAvailable(self):
         """
-      Property target available to get the bytes-available value.
-      """
+        Property target available to get the bytes-available value.
+        """
         return self._bytesAvailable
 
     def _getTotalCapacity(self):
         """
-      Property target to get the total capacity (used + available).
-      """
+        Property target to get the total capacity (used + available).
+        """
         return self.bytesUsed + self.bytesAvailable
 
     def _getUtilized(self):
         """
-      Property target to get the percent of capacity which is utilized.
-      """
+        Property target to get the percent of capacity which is utilized.
+        """
         if self.bytesAvailable <= 0.0:
             return 100.0
         elif self.bytesUsed <= 0.0:
@@ -234,8 +234,8 @@ class MediaCapacity(object):
 
 class _ImageProperties(object):
     """
-   Simple value object to hold image properties for ``DvdWriter``.
-   """
+    Simple value object to hold image properties for ``DvdWriter``.
+    """
 
     def __init__(self):
         self.newDisc = False
@@ -256,108 +256,108 @@ class DvdWriter(object):
     ######################
 
     """
-   Class representing a device that knows how to write some kinds of DVD media.
+    Class representing a device that knows how to write some kinds of DVD media.
 
-   **Summary**
+    **Summary**
 
-   This is a class representing a device that knows how to write some kinds
-   of DVD media.  It provides common operations for the device, such as
-   ejecting the media and writing data to the media.
+    This is a class representing a device that knows how to write some kinds
+    of DVD media.  It provides common operations for the device, such as
+    ejecting the media and writing data to the media.
 
-   This class is implemented in terms of the ``eject`` and ``growisofs``
-   utilities, all of which should be available on most UN*X platforms.
+    This class is implemented in terms of the ``eject`` and ``growisofs``
+    utilities, all of which should be available on most UN*X platforms.
 
-   **Image Writer Interface**
+    **Image Writer Interface**
 
-   The following methods make up the "image writer" interface shared
-   with other kinds of writers::
+    The following methods make up the "image writer" interface shared
+    with other kinds of writers::
 
-      __init__
-      initializeImage()
-      addImageEntry()
-      writeImage()
-      setImageNewDisc()
-      retrieveCapacity()
-      getEstimatedImageSize()
+       __init__
+       initializeImage()
+       addImageEntry()
+       writeImage()
+       setImageNewDisc()
+       retrieveCapacity()
+       getEstimatedImageSize()
 
-   Only these methods will be used by other Cedar Backup functionality
-   that expects a compatible image writer.
+    Only these methods will be used by other Cedar Backup functionality
+    that expects a compatible image writer.
 
-   The media attribute is also assumed to be available.
+    The media attribute is also assumed to be available.
 
-   Unlike the ``CdWriter``, the ``DvdWriter`` can only operate in terms of
-   filesystem devices, not SCSI devices.  So, although the constructor
-   interface accepts a SCSI device parameter for the sake of compatibility,
-   it's not used.
+    Unlike the ``CdWriter``, the ``DvdWriter`` can only operate in terms of
+    filesystem devices, not SCSI devices.  So, although the constructor
+    interface accepts a SCSI device parameter for the sake of compatibility,
+    it's not used.
 
-   **Media Types**
+    **Media Types**
 
-   This class knows how to write to DVD+R and DVD+RW media, represented
-   by the following constants:
+    This class knows how to write to DVD+R and DVD+RW media, represented
+    by the following constants:
 
-      - ``MEDIA_DVDPLUSR``: DVD+R media (4.4 GB capacity)
-      - ``MEDIA_DVDPLUSRW``: DVD+RW media (4.4 GB capacity)
+       - ``MEDIA_DVDPLUSR``: DVD+R media (4.4 GB capacity)
+       - ``MEDIA_DVDPLUSRW``: DVD+RW media (4.4 GB capacity)
 
-   The difference is that DVD+RW media can be rewritten, while DVD+R media
-   cannot be (although at present, ``DvdWriter`` does not really
-   differentiate between rewritable and non-rewritable media).
+    The difference is that DVD+RW media can be rewritten, while DVD+R media
+    cannot be (although at present, ``DvdWriter`` does not really
+    differentiate between rewritable and non-rewritable media).
 
-   The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
-   of 1024*1024*1024 bytes per gigabyte.
+    The capacities are 4.4 GB because Cedar Backup deals in "true" gigabytes
+    of 1024*1024*1024 bytes per gigabyte.
 
-   The underlying ``growisofs`` utility does support other kinds of media
-   (including DVD-R, DVD-RW and BlueRay) which work somewhat differently
-   than standard DVD+R and DVD+RW media.  I don't support these other kinds
-   of media because I haven't had any opportunity to work with them.  The
-   same goes for dual-layer media of any type.
+    The underlying ``growisofs`` utility does support other kinds of media
+    (including DVD-R, DVD-RW and BlueRay) which work somewhat differently
+    than standard DVD+R and DVD+RW media.  I don't support these other kinds
+    of media because I haven't had any opportunity to work with them.  The
+    same goes for dual-layer media of any type.
 
-   **Device Attributes vs. Media Attributes**
+    **Device Attributes vs. Media Attributes**
 
-   As with the cdwriter functionality, a given dvdwriter instance has two
-   different kinds of attributes associated with it.  I call these device
-   attributes and media attributes.
+    As with the cdwriter functionality, a given dvdwriter instance has two
+    different kinds of attributes associated with it.  I call these device
+    attributes and media attributes.
 
-   Device attributes are things which can be determined without looking at
-   the media.  Media attributes are attributes which vary depending on the
-   state of the media.  In general, device attributes are available via
-   instance variables and are constant over the life of an object, while
-   media attributes can be retrieved through method calls.
+    Device attributes are things which can be determined without looking at
+    the media.  Media attributes are attributes which vary depending on the
+    state of the media.  In general, device attributes are available via
+    instance variables and are constant over the life of an object, while
+    media attributes can be retrieved through method calls.
 
-   Compared to cdwriters, dvdwriters have very few attributes.  This is due
-   to differences between the way ``growisofs`` works relative to
-   ``cdrecord``.
+    Compared to cdwriters, dvdwriters have very few attributes.  This is due
+    to differences between the way ``growisofs`` works relative to
+    ``cdrecord``.
 
-   **Media Capacity**
+    **Media Capacity**
 
-   One major difference between the ``cdrecord``/``mkisofs`` utilities used by
-   the cdwriter class and the ``growisofs`` utility used here is that the
-   process of estimating remaining capacity and image size is more
-   straightforward with ``cdrecord``/``mkisofs`` than with ``growisofs``.
+    One major difference between the ``cdrecord``/``mkisofs`` utilities used by
+    the cdwriter class and the ``growisofs`` utility used here is that the
+    process of estimating remaining capacity and image size is more
+    straightforward with ``cdrecord``/``mkisofs`` than with ``growisofs``.
 
-   In this class, remaining capacity is calculated by asking doing a dry run
-   of ``growisofs`` and grabbing some information from the output of that
-   command.  Image size is estimated by asking the ``IsoImage`` class for an
-   estimate and then adding on a "fudge factor" determined through
-   experimentation.
+    In this class, remaining capacity is calculated by asking doing a dry run
+    of ``growisofs`` and grabbing some information from the output of that
+    command.  Image size is estimated by asking the ``IsoImage`` class for an
+    estimate and then adding on a "fudge factor" determined through
+    experimentation.
 
-   **Testing**
+    **Testing**
 
-   It's rather difficult to test this code in an automated fashion, even if
-   you have access to a physical DVD writer drive.  It's even more difficult
-   to test it if you are running on some build daemon (think of a Debian
-   autobuilder) which can't be expected to have any hardware or any media
-   that you could write to.
+    It's rather difficult to test this code in an automated fashion, even if
+    you have access to a physical DVD writer drive.  It's even more difficult
+    to test it if you are running on some build daemon (think of a Debian
+    autobuilder) which can't be expected to have any hardware or any media
+    that you could write to.
 
-   Because of this, some of the implementation below is in terms of static
-   methods that are supposed to take defined actions based on their
-   arguments.  Public methods are then implemented in terms of a series of
-   calls to simplistic static methods.  This way, we can test as much as
-   possible of the "difficult" functionality via testing the static methods,
-   while hoping that if the static methods are called appropriately, things
-   will work properly.  It's not perfect, but it's much better than no
-   testing at all.
+    Because of this, some of the implementation below is in terms of static
+    methods that are supposed to take defined actions based on their
+    arguments.  Public methods are then implemented in terms of a series of
+    calls to simplistic static methods.  This way, we can test as much as
+    possible of the "difficult" functionality via testing the static methods,
+    while hoping that if the static methods are called appropriately, things
+    will work properly.  It's not perfect, but it's much better than no
+    testing at all.
 
-   """
+    """
 
     ##############
     # Constructor
@@ -375,38 +375,38 @@ class DvdWriter(object):
         unittest=False,
     ):
         """
-      Initializes a DVD writer object.
+        Initializes a DVD writer object.
 
-      Since ``growisofs`` can only address devices using the device path (i.e.
-      ``/dev/dvd``), the hardware id will always be set based on the device.  If
-      passed in, it will be saved for reference purposes only.
+        Since ``growisofs`` can only address devices using the device path (i.e.
+        ``/dev/dvd``), the hardware id will always be set based on the device.  If
+        passed in, it will be saved for reference purposes only.
 
-      We have no way to query the device to ask whether it has a tray or can be
-      safely opened and closed.  So, the ``noEject`` flag is used to set these
-      values.  If ``noEject=False``, then we assume a tray exists and open/close
-      is safe.  If ``noEject=True``, then we assume that there is no tray and
-      open/close is not safe.
+        We have no way to query the device to ask whether it has a tray or can be
+        safely opened and closed.  So, the ``noEject`` flag is used to set these
+        values.  If ``noEject=False``, then we assume a tray exists and open/close
+        is safe.  If ``noEject=True``, then we assume that there is no tray and
+        open/close is not safe.
 
-      The SCSI id, if provided, is in the form ``[<method>:]scsibus,target,lun``.
+        The SCSI id, if provided, is in the form ``[<method>:]scsibus,target,lun``.
 
-      *Note:* The ``unittest`` parameter should never be set to ``True``
-      outside of Cedar Backup code.  It is intended for use in unit testing
-      Cedar Backup internals and has no other sensible purpose.
+        *Note:* The ``unittest`` parameter should never be set to ``True``
+        outside of Cedar Backup code.  It is intended for use in unit testing
+        Cedar Backup internals and has no other sensible purpose.
 
-      Args:
-         device: Absolute path to the writer filesystem device, like ``/dev/dvd``
-         scsiId: SCSI id for the device (optional, for reference only)
-         driveSpeed: Speed at which the drive writes, like 2 for a 2x device, or None for device default
-         mediaType: Type of the media that is assumed to be in the drive
-         noEject (Boolean true/false): Tells Cedar Backup that the device cannot safely be ejected
-         refreshMediaDelay (Integer >= 0): Refresh media delay to use, if any
-         ejectDelay (Integer >= 0): Eject delay to use, if any
-         unittest (Boolean true/false): Turns off certain validations, for use in unit testing
-      Raises:
-         ValueError: If the device is not valid for some reason
-         ValueError: If the SCSI id is not in a valid form
-         ValueError: If the drive speed is not an integer >= 1
-      """
+        Args:
+           device: Absolute path to the writer filesystem device, like ``/dev/dvd``
+           scsiId: SCSI id for the device (optional, for reference only)
+           driveSpeed: Speed at which the drive writes, like 2 for a 2x device, or None for device default
+           mediaType: Type of the media that is assumed to be in the drive
+           noEject (Boolean true/false): Tells Cedar Backup that the device cannot safely be ejected
+           refreshMediaDelay (Integer >= 0): Refresh media delay to use, if any
+           ejectDelay (Integer >= 0): Eject delay to use, if any
+           unittest (Boolean true/false): Turns off certain validations, for use in unit testing
+        Raises:
+           ValueError: If the device is not valid for some reason
+           ValueError: If the SCSI id is not in a valid form
+           ValueError: If the drive speed is not an integer >= 1
+        """
         if scsiId is not None:
             logger.warning("SCSI id [%s] will be ignored by DvdWriter.", scsiId)
         self._image = None  # optionally filled in by initializeImage()
@@ -429,56 +429,56 @@ class DvdWriter(object):
 
     def _getDevice(self):
         """
-      Property target used to get the device value.
-      """
+        Property target used to get the device value.
+        """
         return self._device
 
     def _getScsiId(self):
         """
-      Property target used to get the SCSI id value.
-      """
+        Property target used to get the SCSI id value.
+        """
         return self._scsiId
 
     def _getHardwareId(self):
         """
-      Property target used to get the hardware id value.
-      """
+        Property target used to get the hardware id value.
+        """
         return self._device
 
     def _getDriveSpeed(self):
         """
-      Property target used to get the drive speed.
-      """
+        Property target used to get the drive speed.
+        """
         return self._driveSpeed
 
     def _getMedia(self):
         """
-      Property target used to get the media description.
-      """
+        Property target used to get the media description.
+        """
         return self._media
 
     def _getDeviceHasTray(self):
         """
-      Property target used to get the device-has-tray flag.
-      """
+        Property target used to get the device-has-tray flag.
+        """
         return self._deviceHasTray
 
     def _getDeviceCanEject(self):
         """
-      Property target used to get the device-can-eject flag.
-      """
+        Property target used to get the device-can-eject flag.
+        """
         return self._deviceCanEject
 
     def _getRefreshMediaDelay(self):
         """
-      Property target used to get the configured refresh media delay, in seconds.
-      """
+        Property target used to get the configured refresh media delay, in seconds.
+        """
         return self._refreshMediaDelay
 
     def _getEjectDelay(self):
         """
-      Property target used to get the configured eject delay, in seconds.
-      """
+        Property target used to get the configured eject delay, in seconds.
+        """
         return self._ejectDelay
 
     device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
@@ -501,24 +501,24 @@ class DvdWriter(object):
 
     def retrieveCapacity(self, entireDisc=False):
         """
-      Retrieves capacity for the current media in terms of a ``MediaCapacity``
-      object.
+        Retrieves capacity for the current media in terms of a ``MediaCapacity``
+        object.
 
-      If ``entireDisc`` is passed in as ``True``, the capacity will be for the
-      entire disc, as if it were to be rewritten from scratch.  The same will
-      happen if the disc can't be read for some reason. Otherwise, the capacity
-      will be calculated by subtracting the sectors currently used on the disc,
-      as reported by ``growisofs`` itself.
+        If ``entireDisc`` is passed in as ``True``, the capacity will be for the
+        entire disc, as if it were to be rewritten from scratch.  The same will
+        happen if the disc can't be read for some reason. Otherwise, the capacity
+        will be calculated by subtracting the sectors currently used on the disc,
+        as reported by ``growisofs`` itself.
 
-      Args:
-         entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
-      Returns:
-          ``MediaCapacity`` object describing the capacity of the media
+        Args:
+           entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
+        Returns:
+            ``MediaCapacity`` object describing the capacity of the media
 
-      Raises:
-         ValueError: If there is a problem parsing the ``growisofs`` output
-         IOError: If the media could not be read for some reason
-      """
+        Raises:
+           ValueError: If there is a problem parsing the ``growisofs`` output
+           IOError: If the media could not be read for some reason
+        """
         sectorsUsed = 0.0
         if not entireDisc:
             sectorsUsed = self._retrieveSectorsUsed()
@@ -533,18 +533,18 @@ class DvdWriter(object):
 
     def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
         """
-      Initializes the writer's associated ISO image.
+        Initializes the writer's associated ISO image.
 
-      This method initializes the ``image`` instance variable so that the caller
-      can use the ``addImageEntry`` method.  Once entries have been added, the
-      ``writeImage`` method can be called with no arguments.
+        This method initializes the ``image`` instance variable so that the caller
+        can use the ``addImageEntry`` method.  Once entries have been added, the
+        ``writeImage`` method can be called with no arguments.
 
-      Args:
-         newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
-         tmpdir (String representing a directory path on disk): Temporary directory to use if needed
-         mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
+        Args:
+           newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
+           tmpdir (String representing a directory path on disk): Temporary directory to use if needed
+           mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
 
-      """
+        """
         self._image = _ImageProperties()
         self._image.newDisc = newDisc
         self._image.tmpdir = encodePath(tmpdir)
@@ -553,21 +553,21 @@ class DvdWriter(object):
 
     def addImageEntry(self, path, graftPoint):
         """
-      Adds a filepath entry to the writer's associated ISO image.
+        Adds a filepath entry to the writer's associated ISO image.
 
-      The contents of the filepath -- but not the path itself -- will be added
-      to the image at the indicated graft point.  If you don't want to use a
-      graft point, just pass ``None``.
+        The contents of the filepath -- but not the path itself -- will be added
+        to the image at the indicated graft point.  If you don't want to use a
+        graft point, just pass ``None``.
 
-      *Note:* Before calling this method, you must call :any:`initializeImage`.
+        *Note:* Before calling this method, you must call :any:`initializeImage`.
 
-      Args:
-         path (String representing a path on disk): File or directory to be added to the image
-         graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
-      Raises:
-         ValueError: If initializeImage() was not previously called
-         ValueError: If the path is not a valid file or directory
-      """
+        Args:
+           path (String representing a path on disk): File or directory to be added to the image
+           graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
+        Raises:
+           ValueError: If initializeImage() was not previously called
+           ValueError: If the path is not a valid file or directory
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         if not os.path.exists(path):
@@ -576,30 +576,30 @@ class DvdWriter(object):
 
     def setImageNewDisc(self, newDisc):
         """
-      Resets (overrides) the newDisc flag on the internal image.
-      Args:
-         newDisc: New disc flag to set
-      Raises:
-         ValueError: If initializeImage() was not previously called
-      """
+        Resets (overrides) the newDisc flag on the internal image.
+        Args:
+           newDisc: New disc flag to set
+        Raises:
+           ValueError: If initializeImage() was not previously called
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         self._image.newDisc = newDisc
 
     def getEstimatedImageSize(self):
         """
-      Gets the estimated size of the image associated with the writer.
+        Gets the estimated size of the image associated with the writer.
 
-      This is an estimate and is conservative.  The actual image could be as
-      much as 450 blocks (sectors) smaller under some circmstances.
+        This is an estimate and is conservative.  The actual image could be as
+        much as 450 blocks (sectors) smaller under some circmstances.
 
-      Returns:
-          Estimated size of the image, in bytes
+        Returns:
+            Estimated size of the image, in bytes
 
-      Raises:
-         IOError: If there is a problem calling ``mkisofs``
-         ValueError: If initializeImage() was not previously called
-      """
+        Raises:
+           IOError: If there is a problem calling ``mkisofs``
+           ValueError: If initializeImage() was not previously called
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         return DvdWriter._getEstimatedImageSize(self._image.entries)
@@ -610,31 +610,31 @@ class DvdWriter(object):
 
     def openTray(self):
         """
-      Opens the device's tray and leaves it open.
+        Opens the device's tray and leaves it open.
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.
 
-      Starting with Debian wheezy on my backup hardware, I started seeing
-      consistent problems with the eject command.  I couldn't tell whether
-      these problems were due to the device management system or to the new
-      kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
-      I was opening and closing the tray too quickly.  I worked around that
-      behavior with the new ejectDelay flag.
+        Starting with Debian wheezy on my backup hardware, I started seeing
+        consistent problems with the eject command.  I couldn't tell whether
+        these problems were due to the device management system or to the new
+        kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
+        I was opening and closing the tray too quickly.  I worked around that
+        behavior with the new ejectDelay flag.
 
-      Later, I sometimes ran into issues after writing an image to a disc:
-      eject would give errors like "unable to eject, last error: Inappropriate
-      ioctl for device".  Various sources online (like Ubuntu bug #875543)
-      suggested that the drive was being locked somehow, and that the
-      workaround was to run 'eject -i off' to unlock it.  Sure enough, that
-      fixed the problem for me, so now it's a normal error-handling strategy.
+        Later, I sometimes ran into issues after writing an image to a disc:
+        eject would give errors like "unable to eject, last error: Inappropriate
+        ioctl for device".  Various sources online (like Ubuntu bug #875543)
+        suggested that the drive was being locked somehow, and that the
+        workaround was to run 'eject -i off' to unlock it.  Sure enough, that
+        fixed the problem for me, so now it's a normal error-handling strategy.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         if self._deviceHasTray and self._deviceCanEject:
             command = resolveCommand(EJECT_COMMAND)
             args = [self.device]
@@ -652,10 +652,10 @@ class DvdWriter(object):
 
     def unlockTray(self):
         """
-      Unlocks the device's tray via 'eject -i off'.
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Unlocks the device's tray via 'eject -i off'.
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         command = resolveCommand(EJECT_COMMAND)
         args = ["-i", "off", self.device]
         result = executeCommand(command, args)[0]
@@ -664,17 +664,17 @@ class DvdWriter(object):
 
     def closeTray(self):
         """
-      Closes the device's tray.
+        Closes the device's tray.
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         if self._deviceHasTray and self._deviceCanEject:
             command = resolveCommand(EJECT_COMMAND)
             args = ["-t", self.device]
@@ -684,24 +684,24 @@ class DvdWriter(object):
 
     def refreshMedia(self):
         """
-      Opens and then immediately closes the device's tray, to refresh the
-      device's idea of the media.
+        Opens and then immediately closes the device's tray, to refresh the
+        device's idea of the media.
 
-      Sometimes, a device gets confused about the state of its media.  Often,
-      all it takes to solve the problem is to eject the media and then
-      immediately reload it.  (There are also configurable eject and refresh
-      media delays which can be applied, for situations where this makes a
-      difference.)
+        Sometimes, a device gets confused about the state of its media.  Often,
+        all it takes to solve the problem is to eject the media and then
+        immediately reload it.  (There are also configurable eject and refresh
+        media delays which can be applied, for situations where this makes a
+        difference.)
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.  The configured delays still apply, though.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.  The configured delays still apply, though.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         self.openTray()
         self.closeTray()
         self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
@@ -712,36 +712,36 @@ class DvdWriter(object):
 
     def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
         """
-      Writes an ISO image to the media in the device.
+        Writes an ISO image to the media in the device.
 
-      If ``newDisc`` is passed in as ``True``, we assume that the entire disc
-      will be re-created from scratch.  Note that unlike ``CdWriter``,
-      ``DvdWriter`` does not blank rewritable media before reusing it; however,
-      ``growisofs`` is called such that the media will be re-initialized as
-      needed.
+        If ``newDisc`` is passed in as ``True``, we assume that the entire disc
+        will be re-created from scratch.  Note that unlike ``CdWriter``,
+        ``DvdWriter`` does not blank rewritable media before reusing it; however,
+        ``growisofs`` is called such that the media will be re-initialized as
+        needed.
 
-      If ``imagePath`` is passed in as ``None``, then the existing image
-      configured with ``initializeImage()`` will be used.  Under these
-      circumstances, the passed-in ``newDisc`` flag will be ignored and the
-      value passed in to ``initializeImage()`` will apply instead.
+        If ``imagePath`` is passed in as ``None``, then the existing image
+        configured with ``initializeImage()`` will be used.  Under these
+        circumstances, the passed-in ``newDisc`` flag will be ignored and the
+        value passed in to ``initializeImage()`` will apply instead.
 
-      The ``writeMulti`` argument is ignored.  It exists for compatibility with
-      the Cedar Backup image writer interface.
+        The ``writeMulti`` argument is ignored.  It exists for compatibility with
+        the Cedar Backup image writer interface.
 
-      *Note:* The image size indicated in the log ("Image size will be...") is
-      an estimate.  The estimate is conservative and is probably larger than
-      the actual space that ``dvdwriter`` will use.
+        *Note:* The image size indicated in the log ("Image size will be...") is
+        an estimate.  The estimate is conservative and is probably larger than
+        the actual space that ``dvdwriter`` will use.
 
-      Args:
-         imagePath (String representing a path on disk): Path to an ISO image on disk, or ``None`` to use writer's image
-         newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
-         writeMulti (Boolean true/false): Unused
-      Raises:
-         ValueError: If the image path is not absolute
-         ValueError: If some path cannot be encoded properly
-         IOError: If the media could not be written to for some reason
-         ValueError: If no image is passed in and initializeImage() was not previously called
-      """
+        Args:
+           imagePath (String representing a path on disk): Path to an ISO image on disk, or ``None`` to use writer's image
+           newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
+           writeMulti (Boolean true/false): Unused
+        Raises:
+           ValueError: If the image path is not absolute
+           ValueError: If some path cannot be encoded properly
+           IOError: If the media could not be written to for some reason
+           ValueError: If no image is passed in and initializeImage() was not previously called
+        """
         if not writeMulti:
             logger.warning("writeMulti value of [%s] ignored.", writeMulti)
         if imagePath is None:
@@ -766,20 +766,20 @@ class DvdWriter(object):
 
     def _writeImage(self, newDisc, imagePath, entries, mediaLabel=None):
         """
-      Writes an image to disc using either an entries list or an ISO image on
-      disk.
+        Writes an image to disc using either an entries list or an ISO image on
+        disk.
 
-      Callers are assumed to have done validation on paths, etc. before calling
-      this method.
+        Callers are assumed to have done validation on paths, etc. before calling
+        this method.
 
-      Args:
-         newDisc: Indicates whether the disc should be re-initialized
-         imagePath: Path to an ISO image on disk, or c{None} to use ``entries``
-         entries: Mapping from path to graft point, or ``None`` to use ``imagePath``
+        Args:
+           newDisc: Indicates whether the disc should be re-initialized
+           imagePath: Path to an ISO image on disk, or c{None} to use ``entries``
+           entries: Mapping from path to graft point, or ``None`` to use ``imagePath``
 
-      Raises:
-         IOError: If the media could not be written to for some reason
-      """
+        Raises:
+           IOError: If the media could not be written to for some reason
+        """
         command = resolveCommand(GROWISOFS_COMMAND)
         args = DvdWriter._buildWriteArgs(newDisc, self.hardwareId, self._driveSpeed, imagePath, entries, mediaLabel, dryRun=False)
         (result, output) = executeCommand(command, args, returnOutput=True)
@@ -791,25 +791,25 @@ class DvdWriter(object):
     @staticmethod
     def _getEstimatedImageSize(entries):
         """
-      Gets the estimated size of a set of image entries.
+        Gets the estimated size of a set of image entries.
 
-      This is implemented in terms of the ``IsoImage`` class.  The returned
-      value is calculated by adding a "fudge factor" to the value from
-      ``IsoImage``.  This fudge factor was determined by experimentation and is
-      conservative -- the actual image could be as much as 450 blocks smaller
-      under some circumstances.
+        This is implemented in terms of the ``IsoImage`` class.  The returned
+        value is calculated by adding a "fudge factor" to the value from
+        ``IsoImage``.  This fudge factor was determined by experimentation and is
+        conservative -- the actual image could be as much as 450 blocks smaller
+        under some circumstances.
 
-      Args:
-         entries: Dictionary mapping path to graft point
+        Args:
+           entries: Dictionary mapping path to graft point
 
-      Returns:
-          Total estimated size of image, in bytes
+        Returns:
+            Total estimated size of image, in bytes
 
-      Raises:
-         ValueError: If there are no entries in the dictionary
-         ValueError: If any path in the dictionary does not exist
-         IOError: If there is a problem calling ``mkisofs``
-      """
+        Raises:
+           ValueError: If there are no entries in the dictionary
+           ValueError: If any path in the dictionary does not exist
+           IOError: If there is a problem calling ``mkisofs``
+        """
         fudgeFactor = convertSize(2500.0, UNIT_SECTORS, UNIT_BYTES)  # determined through experimentation
         if len(list(entries.keys())) == 0:
             raise ValueError("Must add at least one entry with addImageEntry().")
@@ -821,19 +821,19 @@ class DvdWriter(object):
 
     def _retrieveSectorsUsed(self):
         """
-      Retrieves the number of sectors used on the current media.
+        Retrieves the number of sectors used on the current media.
 
-      This is a little ugly.  We need to call growisofs in "dry-run" mode and
-      parse some information from its output.  However, to do that, we need to
-      create a dummy file that we can pass to the command -- and we have to
-      make sure to remove it later.
+        This is a little ugly.  We need to call growisofs in "dry-run" mode and
+        parse some information from its output.  However, to do that, we need to
+        create a dummy file that we can pass to the command -- and we have to
+        make sure to remove it later.
 
-      Once growisofs has been run, then we call ``_parseSectorsUsed`` to parse
-      the output and calculate the number of sectors used on the media.
+        Once growisofs has been run, then we call ``_parseSectorsUsed`` to parse
+        the output and calculate the number of sectors used on the media.
 
-      Returns:
-          Number of sectors used on the media
-      """
+        Returns:
+            Number of sectors used on the media
+        """
         tempdir = tempfile.mkdtemp()
         try:
             entries = {tempdir: None}
@@ -857,25 +857,25 @@ class DvdWriter(object):
     @staticmethod
     def _parseSectorsUsed(output):
         """
-      Parse sectors used information out of ``growisofs`` output.
+        Parse sectors used information out of ``growisofs`` output.
 
-      The first line of a growisofs run looks something like this::
+        The first line of a growisofs run looks something like this::
 
-         Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'
+           Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'
 
-      Dmitry has determined that the seek value in this line gives us
-      information about how much data has previously been written to the media.
-      That value multiplied by 16 yields the number of sectors used.
+        Dmitry has determined that the seek value in this line gives us
+        information about how much data has previously been written to the media.
+        That value multiplied by 16 yields the number of sectors used.
 
-      If the seek line cannot be found in the output, then sectors used of zero
-      is assumed.
+        If the seek line cannot be found in the output, then sectors used of zero
+        is assumed.
 
-      Returns:
-          Sectors used on the media, as a floating point number
+        Returns:
+            Sectors used on the media, as a floating point number
 
-      Raises:
-         ValueError: If the output cannot be parsed properly
-      """
+        Raises:
+           ValueError: If the output cannot be parsed properly
+        """
         if output is not None:
             pattern = re.compile(r"(^)(.*)(seek=)(.*)('$)")
             for line in output:
@@ -891,27 +891,27 @@ class DvdWriter(object):
     @staticmethod
     def _searchForOverburn(output):
         """
-      Search for an "overburn" error message in ``growisofs`` output.
+        Search for an "overburn" error message in ``growisofs`` output.
 
-      The ``growisofs`` command returns a non-zero exit code and puts a message
-      into the output -- even on a dry run -- if there is not enough space on
-      the media.  This is called an "overburn" condition.
+        The ``growisofs`` command returns a non-zero exit code and puts a message
+        into the output -- even on a dry run -- if there is not enough space on
+        the media.  This is called an "overburn" condition.
 
-      The error message looks like this::
+        The error message looks like this::
 
-         :-( /dev/cdrom: 894048 blocks are free, 2033746 to be written!
+           :-( /dev/cdrom: 894048 blocks are free, 2033746 to be written!
 
-      This method looks for the overburn error message anywhere in the output.
-      If a matching error message is found, an ``IOError`` exception is raised
-      containing relevant information about the problem.  Otherwise, the method
-      call returns normally.
+        This method looks for the overburn error message anywhere in the output.
+        If a matching error message is found, an ``IOError`` exception is raised
+        containing relevant information about the problem.  Otherwise, the method
+        call returns normally.
 
-      Args:
-         output: List of output lines to search, as from ``executeCommand``
+        Args:
+           output: List of output lines to search, as from ``executeCommand``
 
-      Raises:
-         IOError: If an overburn condition is found
-      """
+        Raises:
+           IOError: If an overburn condition is found
+        """
         if output is None:
             return
         pattern = re.compile(r"(^)(:-[(])(\s*.*:\s*)(.* )(blocks are free, )(.* )(to be written!)")
@@ -929,42 +929,42 @@ class DvdWriter(object):
     @staticmethod
     def _buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel=None, dryRun=False):
         """
-      Builds a list of arguments to be passed to a ``growisofs`` command.
+        Builds a list of arguments to be passed to a ``growisofs`` command.
 
-      The arguments will either cause ``growisofs`` to write the indicated image
-      file to disc, or will pass ``growisofs`` a list of directories or files
-      that should be written to disc.
+        The arguments will either cause ``growisofs`` to write the indicated image
+        file to disc, or will pass ``growisofs`` a list of directories or files
+        that should be written to disc.
 
-      If a new image is created, it will always be created with Rock Ridge
-      extensions (-r).  A volume name will be applied (-V) if ``mediaLabel`` is
-      not ``None``.
+        If a new image is created, it will always be created with Rock Ridge
+        extensions (-r).  A volume name will be applied (-V) if ``mediaLabel`` is
+        not ``None``.
 
-      Args:
-         newDisc: Indicates whether the disc should be re-initialized
-         hardwareId: Hardware id for the device
-         driveSpeed: Speed at which the drive writes
-         imagePath: Path to an ISO image on disk, or c{None} to use ``entries``
-         entries: Mapping from path to graft point, or ``None`` to use ``imagePath``
-         mediaLabel: Media label to set on the image, if any
-         dryRun: Says whether to make this a dry run (for checking capacity)
+        Args:
+           newDisc: Indicates whether the disc should be re-initialized
+           hardwareId: Hardware id for the device
+           driveSpeed: Speed at which the drive writes
+           imagePath: Path to an ISO image on disk, or c{None} to use ``entries``
+           entries: Mapping from path to graft point, or ``None`` to use ``imagePath``
+           mediaLabel: Media label to set on the image, if any
+           dryRun: Says whether to make this a dry run (for checking capacity)
 
-      *Note:* If we write an existing image to disc, then the mediaLabel is
-      ignored.  The media label is an attribute of the image, and should be set
-      on the image when it is created.
+        *Note:* If we write an existing image to disc, then the mediaLabel is
+        ignored.  The media label is an attribute of the image, and should be set
+        on the image when it is created.
 
-      *Note:* We always pass the undocumented option ``-use-the-force-like=tty``
-      to growisofs.  Without this option, growisofs will refuse to execute
-      certain actions when running from cron.  A good example is -Z, which
-      happily overwrites an existing DVD from the command-line, but fails when
-      run from cron.  It took a while to figure that out, since it worked every
-      time I tested it by hand. :(
+        *Note:* We always pass the undocumented option ``-use-the-force-like=tty``
+        to growisofs.  Without this option, growisofs will refuse to execute
+        certain actions when running from cron.  A good example is -Z, which
+        happily overwrites an existing DVD from the command-line, but fails when
+        run from cron.  It took a while to figure that out, since it worked every
+        time I tested it by hand. :(
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
 
-      Raises:
-         ValueError: If caller does not pass one or the other of imagePath or entries
-      """
+        Raises:
+           ValueError: If caller does not pass one or the other of imagePath or entries
+        """
         args = []
         if (imagePath is None and entries is None) or (imagePath is not None and entries is not None):
             raise ValueError("Must use either imagePath or entries.")

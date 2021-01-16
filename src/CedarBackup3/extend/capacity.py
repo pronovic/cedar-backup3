@@ -74,43 +74,43 @@ logger = logging.getLogger("CedarBackup3.log.extend.capacity")
 class PercentageQuantity(object):
 
     """
-   Class representing a percentage quantity.
+    Class representing a percentage quantity.
 
-   The percentage is maintained internally as a string so that issues of
-   precision can be avoided.  It really isn't possible to store a floating
-   point number here while being able to losslessly translate back and forth
-   between XML and object representations.  (Perhaps the Python 2.4 Decimal
-   class would have been an option, but I originally wanted to stay compatible
-   with Python 2.3.)
+    The percentage is maintained internally as a string so that issues of
+    precision can be avoided.  It really isn't possible to store a floating
+    point number here while being able to losslessly translate back and forth
+    between XML and object representations.  (Perhaps the Python 2.4 Decimal
+    class would have been an option, but I originally wanted to stay compatible
+    with Python 2.3.)
 
-   Even though the quantity is maintained as a string, the string must be in a
-   valid floating point positive number.  Technically, any floating point
-   string format supported by Python is allowble.  However, it does not make
-   sense to have a negative percentage in this context.
+    Even though the quantity is maintained as a string, the string must be in a
+    valid floating point positive number.  Technically, any floating point
+    string format supported by Python is allowble.  However, it does not make
+    sense to have a negative percentage in this context.
 
-   """
+    """
 
     def __init__(self, quantity=None):
         """
-      Constructor for the ``PercentageQuantity`` class.
-      Args:
-         quantity: Percentage quantity, as a string (i.e. "99.9" or "12")
-      Raises:
-         ValueError: If the quantity value is invaid
-      """
+        Constructor for the ``PercentageQuantity`` class.
+        Args:
+           quantity: Percentage quantity, as a string (i.e. "99.9" or "12")
+        Raises:
+           ValueError: If the quantity value is invaid
+        """
         self._quantity = None
         self.quantity = quantity
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "PercentageQuantity(%s)" % (self.quantity)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -127,13 +127,13 @@ class PercentageQuantity(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.quantity != other.quantity:
@@ -145,13 +145,13 @@ class PercentageQuantity(object):
 
     def _setQuantity(self, value):
         """
-      Property target used to set the quantity
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-         ValueError: If the value is not a valid floating point number
-         ValueError: If the value is less than zero
-      """
+        Property target used to set the quantity
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+           ValueError: If the value is not a valid floating point number
+           ValueError: If the value is less than zero
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("Percentage must be a non-empty string.")
@@ -162,15 +162,15 @@ class PercentageQuantity(object):
 
     def _getQuantity(self):
         """
-      Property target used to get the quantity.
-      """
+        Property target used to get the quantity.
+        """
         return self._quantity
 
     def _getPercentage(self):
         """
-      Property target used to get the quantity as a floating point number.
-      If there is no quantity set, then a value of 0.0 is returned.
-      """
+        Property target used to get the quantity as a floating point number.
+        If there is no quantity set, then a value of 0.0 is returned.
+        """
         if self.quantity is not None:
             return float(self.quantity)
         return 0.0
@@ -188,23 +188,23 @@ class PercentageQuantity(object):
 class CapacityConfig(object):
 
     """
-   Class representing capacity configuration.
+    Class representing capacity configuration.
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The maximum percentage utilized must be a PercentageQuantity
-      - The minimum bytes remaining must be a ByteQuantity
+       - The maximum percentage utilized must be a PercentageQuantity
+       - The minimum bytes remaining must be a ByteQuantity
 
-   """
+    """
 
     def __init__(self, maxPercentage=None, minBytes=None):
         """
-      Constructor for the ``CapacityConfig`` class.
+        Constructor for the ``CapacityConfig`` class.
 
-      Args:
-         maxPercentage: Maximum percentage of the media that may be utilized
-         minBytes: Minimum number of free bytes that must be available
-      """
+        Args:
+           maxPercentage: Maximum percentage of the media that may be utilized
+           minBytes: Minimum number of free bytes that must be available
+        """
         self._maxPercentage = None
         self._minBytes = None
         self.maxPercentage = maxPercentage
@@ -212,14 +212,14 @@ class CapacityConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "CapacityConfig(%s, %s)" % (self.maxPercentage, self.minBytes)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -236,12 +236,12 @@ class CapacityConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.maxPercentage != other.maxPercentage:
@@ -258,11 +258,11 @@ class CapacityConfig(object):
 
     def _setMaxPercentage(self, value):
         """
-      Property target used to set the maxPercentage value.
-      If not ``None``, the value must be a ``PercentageQuantity`` object.
-      Raises:
-         ValueError: If the value is not a ``PercentageQuantity``
-      """
+        Property target used to set the maxPercentage value.
+        If not ``None``, the value must be a ``PercentageQuantity`` object.
+        Raises:
+           ValueError: If the value is not a ``PercentageQuantity``
+        """
         if value is None:
             self._maxPercentage = None
         else:
@@ -272,17 +272,17 @@ class CapacityConfig(object):
 
     def _getMaxPercentage(self):
         """
-      Property target used to get the maxPercentage value
-      """
+        Property target used to get the maxPercentage value
+        """
         return self._maxPercentage
 
     def _setMinBytes(self, value):
         """
-      Property target used to set the bytes utilized value.
-      If not ``None``, the value must be a ``ByteQuantity`` object.
-      Raises:
-         ValueError: If the value is not a ``ByteQuantity``
-      """
+        Property target used to set the bytes utilized value.
+        If not ``None``, the value must be a ``ByteQuantity`` object.
+        Raises:
+           ValueError: If the value is not a ``ByteQuantity``
+        """
         if value is None:
             self._minBytes = None
         else:
@@ -292,8 +292,8 @@ class CapacityConfig(object):
 
     def _getMinBytes(self):
         """
-      Property target used to get the bytes remaining value.
-      """
+        Property target used to get the bytes remaining value.
+        """
         return self._minBytes
 
     maxPercentage = property(_getMaxPercentage, _setMaxPercentage, None, "Maximum percentage of the media that may be utilized.")
@@ -309,49 +309,49 @@ class CapacityConfig(object):
 class LocalConfig(object):
 
     """
-   Class representing this extension's configuration document.
+    Class representing this extension's configuration document.
 
-   This is not a general-purpose configuration object like the main Cedar
-   Backup configuration object.  Instead, it just knows how to parse and emit
-   specific configuration values to this extension.  Third parties who need to
-   read and write configuration related to this extension should access it
-   through the constructor, ``validate`` and ``addConfig`` methods.
+    This is not a general-purpose configuration object like the main Cedar
+    Backup configuration object.  Instead, it just knows how to parse and emit
+    specific configuration values to this extension.  Third parties who need to
+    read and write configuration related to this extension should access it
+    through the constructor, ``validate`` and ``addConfig`` methods.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, xmlData=None, xmlPath=None, validate=True):
         """
-      Initializes a configuration object.
+        Initializes a configuration object.
 
-      If you initialize the object without passing either ``xmlData`` or
-      ``xmlPath`` then configuration will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``xmlData`` or
+        ``xmlPath`` then configuration will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original XML data or original path is saved off by
-      this class.  Once the data has been parsed (successfully or not) this
-      original information is discarded.
+        No reference to the original XML data or original path is saved off by
+        this class.  Once the data has been parsed (successfully or not) this
+        original information is discarded.
 
-      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
-      method will be called (with its default arguments) against configuration
-      after successfully parsing any passed-in XML.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      XML document if lower-level validations fail.
+        Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
+        method will be called (with its default arguments) against configuration
+        after successfully parsing any passed-in XML.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        XML document if lower-level validations fail.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid configuration from disk.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid configuration from disk.
 
-      Args:
-         xmlData (String data): XML data representing configuration
-         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
-         validate (Boolean true/false): Validate the document after parsing it
-      Raises:
-         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
-         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
-         ValueError: If the parsed configuration document is not valid
-      """
+        Args:
+           xmlData (String data): XML data representing configuration
+           xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+           validate (Boolean true/false): Validate the document after parsing it
+        Raises:
+           ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+           ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+           ValueError: If the parsed configuration document is not valid
+        """
         self._capacity = None
         self.capacity = None
         if xmlData is not None and xmlPath is not None:
@@ -369,14 +369,14 @@ class LocalConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "LocalConfig(%s)" % (self.capacity)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -393,13 +393,13 @@ class LocalConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.capacity != other.capacity:
@@ -411,11 +411,11 @@ class LocalConfig(object):
 
     def _setCapacity(self, value):
         """
-      Property target used to set the capacity configuration value.
-      If not ``None``, the value must be a ``CapacityConfig`` object.
-      Raises:
-         ValueError: If the value is not a ``CapacityConfig``
-      """
+        Property target used to set the capacity configuration value.
+        If not ``None``, the value must be a ``CapacityConfig`` object.
+        Raises:
+           ValueError: If the value is not a ``CapacityConfig``
+        """
         if value is None:
             self._capacity = None
         else:
@@ -425,19 +425,19 @@ class LocalConfig(object):
 
     def _getCapacity(self):
         """
-      Property target used to get the capacity configuration value.
-      """
+        Property target used to get the capacity configuration value.
+        """
         return self._capacity
 
     capacity = property(_getCapacity, _setCapacity, None, "Capacity configuration in terms of a ``CapacityConfig`` object.")
 
     def validate(self):
         """
-      Validates configuration represented by the object.
-      THere must be either a percentage, or a byte capacity, but not both.
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Validates configuration represented by the object.
+        THere must be either a percentage, or a byte capacity, but not both.
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if self.capacity is None:
             raise ValueError("Capacity section is required.")
         if self.capacity.maxPercentage is None and self.capacity.minBytes is None:
@@ -447,20 +447,20 @@ class LocalConfig(object):
 
     def addConfig(self, xmlDom, parentNode):
         """
-      Adds a <capacity> configuration section as the next child of a parent.
+        Adds a <capacity> configuration section as the next child of a parent.
 
-      Third parties should use this function to write configuration related to
-      this extension.
+        Third parties should use this function to write configuration related to
+        this extension.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         maxPercentage  //cb_config/capacity/max_percentage
-         minBytes       //cb_config/capacity/min_bytes
+           maxPercentage  //cb_config/capacity/max_percentage
+           minBytes       //cb_config/capacity/min_bytes
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+        """
         if self.capacity is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "capacity")
             LocalConfig._addPercentageQuantity(xmlDom, sectionNode, "max_percentage", self.capacity.maxPercentage)
@@ -469,37 +469,37 @@ class LocalConfig(object):
 
     def _parseXmlData(self, xmlData):
         """
-      Internal method to parse an XML string into the object.
+        Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (``xmlDom``) and then
-      calls a static method to parse the capacity configuration section.
+        This method parses the XML document into a DOM tree (``xmlDom``) and then
+        calls a static method to parse the capacity configuration section.
 
-      Args:
-         xmlData (String data): XML data to be parsed
-      Raises:
-         ValueError: If the XML cannot be successfully parsed
-      """
+        Args:
+           xmlData (String data): XML data to be parsed
+        Raises:
+           ValueError: If the XML cannot be successfully parsed
+        """
         (xmlDom, parentNode) = createInputDom(xmlData)
         self._capacity = LocalConfig._parseCapacity(parentNode)
 
     @staticmethod
     def _parseCapacity(parentNode):
         """
-      Parses a capacity configuration section.
+        Parses a capacity configuration section.
 
-      We read the following fields::
+        We read the following fields::
 
-         maxPercentage  //cb_config/capacity/max_percentage
-         minBytes       //cb_config/capacity/min_bytes
+           maxPercentage  //cb_config/capacity/max_percentage
+           minBytes       //cb_config/capacity/min_bytes
 
-      Args:
-         parentNode: Parent node to search beneath
+        Args:
+           parentNode: Parent node to search beneath
 
-      Returns:
-          ``CapacityConfig`` object or ``None`` if the section does not exist
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            ``CapacityConfig`` object or ``None`` if the section does not exist
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         capacity = None
         section = readFirstChild(parentNode, "capacity")
         if section is not None:
@@ -511,13 +511,13 @@ class LocalConfig(object):
     @staticmethod
     def _readPercentageQuantity(parent, name):
         """
-      Read a percentage quantity value from an XML document.
-      Args:
-         parent: Parent node to search beneath
-         name: Name of node to search for
-      Returns:
-          Percentage quantity parsed from XML document
-      """
+        Read a percentage quantity value from an XML document.
+        Args:
+           parent: Parent node to search beneath
+           name: Name of node to search for
+        Returns:
+            Percentage quantity parsed from XML document
+        """
         quantity = readString(parent, name)
         if quantity is None:
             return None
@@ -526,19 +526,19 @@ class LocalConfig(object):
     @staticmethod
     def _addPercentageQuantity(xmlDom, parentNode, nodeName, percentageQuantity):
         """
-      Adds a text node as the next child of a parent, to contain a percentage quantity.
+        Adds a text node as the next child of a parent, to contain a percentage quantity.
 
-      If the ``percentageQuantity`` is None, then no node will be created.
+        If the ``percentageQuantity`` is None, then no node will be created.
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent node to create child for
-         nodeName: Name of the new container node
-         percentageQuantity: PercentageQuantity object to put into the XML document
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent node to create child for
+           nodeName: Name of the new container node
+           percentageQuantity: PercentageQuantity object to put into the XML document
 
-      Returns:
-          Reference to the newly-created node
-      """
+        Returns:
+            Reference to the newly-created node
+        """
         if percentageQuantity is not None:
             addStringNode(xmlDom, parentNode, nodeName, percentageQuantity.quantity)
 
@@ -554,16 +554,16 @@ class LocalConfig(object):
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
-   Executes the capacity action.
+    Executes the capacity action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there are I/O problems reading or writing files
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there are I/O problems reading or writing files
+    """
     logger.debug("Executing capacity extended action.")
     if config.options is None or config.store is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")

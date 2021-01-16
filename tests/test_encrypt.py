@@ -182,8 +182,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = EncryptConfig()
         obj.__repr__()
         obj.__str__()
@@ -194,24 +194,24 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         encrypt = EncryptConfig()
         self.assertEqual(None, encrypt.encryptMode)
         self.assertEqual(None, encrypt.encryptTarget)
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values.
-      """
+        Test constructor with all values filled in, with valid values.
+        """
         encrypt = EncryptConfig("gpg", "Backup User")
         self.assertEqual("gpg", encrypt.encryptMode)
         self.assertEqual("Backup User", encrypt.encryptTarget)
 
     def testConstructor_003(self):
         """
-      Test assignment of encryptMode attribute, None value.
-      """
+        Test assignment of encryptMode attribute, None value.
+        """
         encrypt = EncryptConfig(encryptMode="gpg")
         self.assertEqual("gpg", encrypt.encryptMode)
         encrypt.encryptMode = None
@@ -219,8 +219,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of encryptMode attribute, valid value.
-      """
+        Test assignment of encryptMode attribute, valid value.
+        """
         encrypt = EncryptConfig()
         self.assertEqual(None, encrypt.encryptMode)
         encrypt.encryptMode = "gpg"
@@ -228,8 +228,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of encryptMode attribute, invalid value (empty).
-      """
+        Test assignment of encryptMode attribute, invalid value (empty).
+        """
         encrypt = EncryptConfig()
         self.assertEqual(None, encrypt.encryptMode)
         self.failUnlessAssignRaises(ValueError, encrypt, "encryptMode", "")
@@ -237,8 +237,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of encryptTarget attribute, None value.
-      """
+        Test assignment of encryptTarget attribute, None value.
+        """
         encrypt = EncryptConfig(encryptTarget="Backup User")
         self.assertEqual("Backup User", encrypt.encryptTarget)
         encrypt.encryptTarget = None
@@ -246,8 +246,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of encryptTarget attribute, valid value.
-      """
+        Test assignment of encryptTarget attribute, valid value.
+        """
         encrypt = EncryptConfig()
         self.assertEqual(None, encrypt.encryptTarget)
         encrypt.encryptTarget = "Backup User"
@@ -255,8 +255,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of encryptTarget attribute, invalid value (empty).
-      """
+        Test assignment of encryptTarget attribute, invalid value (empty).
+        """
         encrypt = EncryptConfig()
         self.assertEqual(None, encrypt.encryptTarget)
         self.failUnlessAssignRaises(ValueError, encrypt, "encryptTarget", "")
@@ -268,8 +268,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         encrypt1 = EncryptConfig()
         encrypt2 = EncryptConfig()
         self.assertEqual(encrypt1, encrypt2)
@@ -282,8 +282,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         encrypt1 = EncryptConfig("gpg", "Backup User")
         encrypt2 = EncryptConfig("gpg", "Backup User")
         self.assertEqual(encrypt1, encrypt2)
@@ -296,8 +296,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, encryptMode differs (one None).
-      """
+        Test comparison of two differing objects, encryptMode differs (one None).
+        """
         encrypt1 = EncryptConfig()
         encrypt2 = EncryptConfig(encryptMode="gpg")
         self.assertNotEqual(encrypt1, encrypt2)
@@ -312,8 +312,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, encryptTarget differs (one None).
-      """
+        Test comparison of two differing objects, encryptTarget differs (one None).
+        """
         encrypt1 = EncryptConfig()
         encrypt2 = EncryptConfig(encryptTarget="Backup User")
         self.assertNotEqual(encrypt1, encrypt2)
@@ -326,8 +326,8 @@ class TestEncryptConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, encryptTarget differs.
-      """
+        Test comparison of two differing objects, encryptTarget differs.
+        """
         encrypt1 = EncryptConfig("gpg", "Another User")
         encrypt2 = EncryptConfig("gpg", "Backup User")
         self.assertNotEqual(encrypt1, encrypt2)
@@ -375,19 +375,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the encrypt configuration, and then
-      make sure that if we push that document back into the ``LocalConfig``
-      object, that the resulting object matches the original.
+        We dump a document containing just the encrypt configuration, and then
+        make sure that if we push that document back into the ``LocalConfig``
+        object, that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -400,8 +400,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -412,22 +412,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.encrypt)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.encrypt)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["encrypt.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -435,24 +435,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of encrypt attribute, None value.
-      """
+        Test assignment of encrypt attribute, None value.
+        """
         config = LocalConfig()
         config.encrypt = None
         self.assertEqual(None, config.encrypt)
 
     def testConstructor_005(self):
         """
-      Test assignment of encrypt attribute, valid value.
-      """
+        Test assignment of encrypt attribute, valid value.
+        """
         config = LocalConfig()
         config.encrypt = EncryptConfig()
         self.assertEqual(EncryptConfig(), config.encrypt)
 
     def testConstructor_006(self):
         """
-      Test assignment of encrypt attribute, invalid value (not EncryptConfig).
-      """
+        Test assignment of encrypt attribute, invalid value (not EncryptConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "encrypt", "STRING!")
 
@@ -462,8 +462,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -476,8 +476,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.encrypt = EncryptConfig()
 
@@ -494,8 +494,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, encrypt differs (one None).
-      """
+        Test comparison of two differing objects, encrypt differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.encrypt = EncryptConfig()
@@ -509,8 +509,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, encrypt differs.
-      """
+        Test comparison of two differing objects, encrypt differs.
+        """
         config1 = LocalConfig()
         config1.encrypt = EncryptConfig(encryptTarget="Another User")
 
@@ -531,32 +531,32 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None encrypt section.
-      """
+        Test validate on a None encrypt section.
+        """
         config = LocalConfig()
         config.encrypt = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty encrypt section.
-      """
+        Test validate on an empty encrypt section.
+        """
         config = LocalConfig()
         config.encrypt = EncryptConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty encrypt section with no values filled in.
-      """
+        Test validate on a non-empty encrypt section with no values filled in.
+        """
         config = LocalConfig()
         config.encrypt = EncryptConfig(None, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty encrypt section with only one value filled in.
-      """
+        Test validate on a non-empty encrypt section with only one value filled in.
+        """
         config = LocalConfig()
         config.encrypt = EncryptConfig("gpg", None)
         self.assertRaises(ValueError, config.validate)
@@ -565,8 +565,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty encrypt section with valid values filled in.
-      """
+        Test validate on a non-empty encrypt section with valid values filled in.
+        """
         config = LocalConfig()
         config.encrypt = EncryptConfig("gpg", "Backup User")
         config.validate()
@@ -577,8 +577,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["encrypt.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -591,8 +591,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_002(self):
         """
-      Parse config document with filled-in values.
-      """
+        Parse config document with filled-in values.
+        """
         path = self.resources["encrypt.conf.2"]
         with open(path) as f:
             contents = f.read()
@@ -611,8 +611,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document.
-      """
+        Test with empty config document.
+        """
         encrypt = EncryptConfig()
         config = LocalConfig()
         config.encrypt = encrypt
@@ -620,8 +620,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_002(self):
         """
-      Test with values set.
-      """
+        Test with values set.
+        """
         encrypt = EncryptConfig(encryptMode="gpg", encryptTarget="Backup User")
         config = LocalConfig()
         config.encrypt = encrypt
@@ -678,23 +678,23 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFileWithGpg_001(self):
         """
-      Test for a non-existent file in a non-existent directory.
-      """
+        Test for a non-existent file in a non-existent directory.
+        """
         sourceFile = self.buildPath([INVALID_PATH, INVALID_PATH])
         self.assertRaises(IOError, _encryptFileWithGpg, sourceFile, INVALID_GPG_RECIPIENT)
 
     def testEncryptFileWithGpg_002(self):
         """
-      Test for a non-existent file in an existing directory.
-      """
+        Test for a non-existent file in an existing directory.
+        """
         self.extractTar("tree8")
         sourceFile = self.buildPath(["tree8", "dir001", INVALID_PATH])
         self.assertRaises(IOError, _encryptFileWithGpg, sourceFile, INVALID_GPG_RECIPIENT)
 
     def testEncryptFileWithGpg_003(self):
         """
-      Test for an unknown recipient.
-      """
+        Test for an unknown recipient.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -704,8 +704,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFileWithGpg_004(self):
         """
-      Test for a valid recipient.
-      """
+        Test for a valid recipient.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -720,8 +720,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_001(self):
         """
-      Test for a mode other than "gpg".
-      """
+        Test for a mode other than "gpg".
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -731,8 +731,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_002(self):
         """
-      Test for a source path that does not exist.
-      """
+        Test for a source path that does not exist.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", INVALID_PATH])
         expectedFile = self.buildPath(["tree1", "%s.gpg" % INVALID_PATH])
@@ -742,8 +742,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_003(self):
         """
-      Test "gpg" mode with a valid source path and invalid recipient, removeSource=False.
-      """
+        Test "gpg" mode with a valid source path and invalid recipient, removeSource=False.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -753,8 +753,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_004(self):
         """
-      Test "gpg" mode with a valid source path and invalid recipient, removeSource=True.
-      """
+        Test "gpg" mode with a valid source path and invalid recipient, removeSource=True.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -764,8 +764,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_005(self):
         """
-      Test "gpg" mode with a valid source path and recipient, removeSource=False.
-      """
+        Test "gpg" mode with a valid source path and recipient, removeSource=False.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -776,8 +776,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptFile_006(self):
         """
-      Test "gpg" mode with a valid source path and recipient, removeSource=True.
-      """
+        Test "gpg" mode with a valid source path and recipient, removeSource=True.
+        """
         self.extractTar("tree1")
         sourceFile = self.buildPath(["tree1", "file001"])
         expectedFile = self.buildPath(["tree1", "file001.gpg"])
@@ -792,16 +792,16 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptDailyDir_001(self):
         """
-      Test with a nonexistent daily staging directory.
-      """
+        Test with a nonexistent daily staging directory.
+        """
         self.extractTar("tree1")
         dailyDir = self.buildPath(["tree1", "dir001"])
         self.assertRaises(ValueError, _encryptDailyDir, dailyDir, "gpg", VALID_GPG_RECIPIENT, None, None)
 
     def testEncryptDailyDir_002(self):
         """
-      Test with a valid staging directory containing only links.
-      """
+        Test with a valid staging directory containing only links.
+        """
         self.extractTar("tree15")
         dailyDir = self.buildPath(["tree15", "dir001"])
         fsList = FilesystemList()
@@ -820,8 +820,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptDailyDir_003(self):
         """
-      Test with a valid staging directory containing only directories.
-      """
+        Test with a valid staging directory containing only directories.
+        """
         self.extractTar("tree2")
         dailyDir = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -856,8 +856,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptDailyDir_004(self):
         """
-      Test with a valid staging directory containing only files.
-      """
+        Test with a valid staging directory containing only files.
+        """
         self.extractTar("tree1")
         dailyDir = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -886,10 +886,10 @@ class TestFunctions(unittest.TestCase):
 
     def testEncryptDailyDir_005(self):
         """
-      Test with a valid staging directory containing files, directories and
-      links, including various files that match the general Cedar Backup
-      indicator file pattern ("cback.<something>").
-      """
+        Test with a valid staging directory containing files, directories and
+        links, including various files that match the general Cedar Backup
+        indicator file pattern ("cback.<something>").
+        """
         self.extractTar("tree16")
         dailyDir = self.buildPath(["tree16"])
         fsList = FilesystemList()

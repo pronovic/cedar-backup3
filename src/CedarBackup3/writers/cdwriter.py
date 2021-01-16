@@ -97,28 +97,28 @@ MKISOFS_COMMAND = ["mkisofs"]
 class MediaDefinition(object):
 
     """
-   Class encapsulating information about CD media definitions.
+    Class encapsulating information about CD media definitions.
 
-   The following media types are accepted:
+    The following media types are accepted:
 
-      - ``MEDIA_CDR_74``: 74-minute CD-R media (650 MB capacity)
-      - ``MEDIA_CDRW_74``: 74-minute CD-RW media (650 MB capacity)
-      - ``MEDIA_CDR_80``: 80-minute CD-R media (700 MB capacity)
-      - ``MEDIA_CDRW_80``: 80-minute CD-RW media (700 MB capacity)
+       - ``MEDIA_CDR_74``: 74-minute CD-R media (650 MB capacity)
+       - ``MEDIA_CDRW_74``: 74-minute CD-RW media (650 MB capacity)
+       - ``MEDIA_CDR_80``: 80-minute CD-R media (700 MB capacity)
+       - ``MEDIA_CDRW_80``: 80-minute CD-RW media (700 MB capacity)
 
-   Note that all of the capacities associated with a media definition are in
-   terms of ISO sectors (``util.ISO_SECTOR_SIZE)``.
+    Note that all of the capacities associated with a media definition are in
+    terms of ISO sectors (``util.ISO_SECTOR_SIZE)``.
 
-   """
+    """
 
     def __init__(self, mediaType):
         """
-      Creates a media definition for the indicated media type.
-      Args:
-         mediaType: Type of the media, as discussed above
-      Raises:
-         ValueError: If the media type is unknown or unsupported
-      """
+        Creates a media definition for the indicated media type.
+        Args:
+           mediaType: Type of the media, as discussed above
+        Raises:
+           ValueError: If the media type is unknown or unsupported
+        """
         self._mediaType = None
         self._rewritable = False
         self._initialLeadIn = 0.0
@@ -128,12 +128,12 @@ class MediaDefinition(object):
 
     def _setValues(self, mediaType):
         """
-      Sets values based on media type.
-      Args:
-         mediaType: Type of the media, as discussed above
-      Raises:
-         ValueError: If the media type is unknown or unsupported
-      """
+        Sets values based on media type.
+        Args:
+           mediaType: Type of the media, as discussed above
+        Raises:
+           ValueError: If the media type is unknown or unsupported
+        """
         if mediaType not in [MEDIA_CDR_74, MEDIA_CDRW_74, MEDIA_CDR_80, MEDIA_CDRW_80]:
             raise ValueError("Invalid media type %d." % mediaType)
         self._mediaType = mediaType
@@ -154,32 +154,32 @@ class MediaDefinition(object):
 
     def _getMediaType(self):
         """
-      Property target used to get the media type value.
-      """
+        Property target used to get the media type value.
+        """
         return self._mediaType
 
     def _getRewritable(self):
         """
-      Property target used to get the rewritable flag value.
-      """
+        Property target used to get the rewritable flag value.
+        """
         return self._rewritable
 
     def _getInitialLeadIn(self):
         """
-      Property target used to get the initial lead-in value.
-      """
+        Property target used to get the initial lead-in value.
+        """
         return self._initialLeadIn
 
     def _getLeadIn(self):
         """
-      Property target used to get the lead-in value.
-      """
+        Property target used to get the lead-in value.
+        """
         return self._leadIn
 
     def _getCapacity(self):
         """
-      Property target used to get the capacity value.
-      """
+        Property target used to get the capacity value.
+        """
         return self._capacity
 
     mediaType = property(_getMediaType, None, None, doc="Configured media type.")
@@ -197,27 +197,27 @@ class MediaDefinition(object):
 class MediaCapacity(object):
 
     """
-   Class encapsulating information about CD media capacity.
+    Class encapsulating information about CD media capacity.
 
-   Space used includes the required media lead-in (unless the disk is unused).
-   Space available attempts to provide a picture of how many bytes are
-   available for data storage, including any required lead-in.
+    Space used includes the required media lead-in (unless the disk is unused).
+    Space available attempts to provide a picture of how many bytes are
+    available for data storage, including any required lead-in.
 
-   The boundaries value is either ``None`` (if multisession discs are not
-   supported or if the disc has no boundaries) or in exactly the form provided
-   by ``cdrecord -msinfo``.  It can be passed as-is to the ``IsoImage`` class.
+    The boundaries value is either ``None`` (if multisession discs are not
+    supported or if the disc has no boundaries) or in exactly the form provided
+    by ``cdrecord -msinfo``.  It can be passed as-is to the ``IsoImage`` class.
 
-   """
+    """
 
     def __init__(self, bytesUsed, bytesAvailable, boundaries):
         """
-      Initializes a capacity object.
+        Initializes a capacity object.
 
-      Raises:
-         IndexError: If the boundaries tuple does not have enough elements
-         ValueError: If the boundaries values are not integers
-         ValueError: If the bytes used and available values are not floats
-      """
+        Raises:
+           IndexError: If the boundaries tuple does not have enough elements
+           ValueError: If the boundaries values are not integers
+           ValueError: If the bytes used and available values are not floats
+        """
         self._bytesUsed = float(bytesUsed)
         self._bytesAvailable = float(bytesAvailable)
         if boundaries is None:
@@ -227,38 +227,38 @@ class MediaCapacity(object):
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return "utilized %s of %s (%.2f%%)" % (displayBytes(self.bytesUsed), displayBytes(self.totalCapacity), self.utilized)
 
     def _getBytesUsed(self):
         """
-      Property target to get the bytes-used value.
-      """
+        Property target to get the bytes-used value.
+        """
         return self._bytesUsed
 
     def _getBytesAvailable(self):
         """
-      Property target to get the bytes-available value.
-      """
+        Property target to get the bytes-available value.
+        """
         return self._bytesAvailable
 
     def _getBoundaries(self):
         """
-      Property target to get the boundaries tuple.
-      """
+        Property target to get the boundaries tuple.
+        """
         return self._boundaries
 
     def _getTotalCapacity(self):
         """
-      Property target to get the total capacity (used + available).
-      """
+        Property target to get the total capacity (used + available).
+        """
         return self.bytesUsed + self.bytesAvailable
 
     def _getUtilized(self):
         """
-      Property target to get the percent of capacity which is utilized.
-      """
+        Property target to get the percent of capacity which is utilized.
+        """
         if self.bytesAvailable <= 0.0:
             return 100.0
         elif self.bytesUsed <= 0.0:
@@ -279,8 +279,8 @@ class MediaCapacity(object):
 
 class _ImageProperties(object):
     """
-   Simple value object to hold image properties for ``DvdWriter``.
-   """
+    Simple value object to hold image properties for ``DvdWriter``.
+    """
 
     def __init__(self):
         self.newDisc = False
@@ -301,109 +301,109 @@ class CdWriter(object):
     ######################
 
     """
-   Class representing a device that knows how to write CD media.
+    Class representing a device that knows how to write CD media.
 
-   This is a class representing a device that knows how to write CD media.  It
-   provides common operations for the device, such as ejecting the media,
-   writing an ISO image to the media, or checking for the current media
-   capacity.  It also provides a place to store device attributes, such as
-   whether the device supports writing multisession discs, etc.
+    This is a class representing a device that knows how to write CD media.  It
+    provides common operations for the device, such as ejecting the media,
+    writing an ISO image to the media, or checking for the current media
+    capacity.  It also provides a place to store device attributes, such as
+    whether the device supports writing multisession discs, etc.
 
-   This class is implemented in terms of the ``eject`` and ``cdrecord``
-   programs, both of which should be available on most UN*X platforms.
+    This class is implemented in terms of the ``eject`` and ``cdrecord``
+    programs, both of which should be available on most UN*X platforms.
 
-   **Image Writer Interface**
+    **Image Writer Interface**
 
-   The following methods make up the "image writer" interface shared
-   with other kinds of writers (such as DVD writers)::
+    The following methods make up the "image writer" interface shared
+    with other kinds of writers (such as DVD writers)::
 
-      __init__
-      initializeImage()
-      addImageEntry()
-      writeImage()
-      setImageNewDisc()
-      retrieveCapacity()
-      getEstimatedImageSize()
+       __init__
+       initializeImage()
+       addImageEntry()
+       writeImage()
+       setImageNewDisc()
+       retrieveCapacity()
+       getEstimatedImageSize()
 
-   Only these methods will be used by other Cedar Backup functionality
-   that expects a compatible image writer.
+    Only these methods will be used by other Cedar Backup functionality
+    that expects a compatible image writer.
 
-   The media attribute is also assumed to be available.
+    The media attribute is also assumed to be available.
 
-   **Media Types**
+    **Media Types**
 
-   This class knows how to write to two different kinds of media, represented
-   by the following constants:
+    This class knows how to write to two different kinds of media, represented
+    by the following constants:
 
-      - ``MEDIA_CDR_74``: 74-minute CD-R media (650 MB capacity)
-      - ``MEDIA_CDRW_74``: 74-minute CD-RW media (650 MB capacity)
-      - ``MEDIA_CDR_80``: 80-minute CD-R media (700 MB capacity)
-      - ``MEDIA_CDRW_80``: 80-minute CD-RW media (700 MB capacity)
+       - ``MEDIA_CDR_74``: 74-minute CD-R media (650 MB capacity)
+       - ``MEDIA_CDRW_74``: 74-minute CD-RW media (650 MB capacity)
+       - ``MEDIA_CDR_80``: 80-minute CD-R media (700 MB capacity)
+       - ``MEDIA_CDRW_80``: 80-minute CD-RW media (700 MB capacity)
 
-   Most hardware can read and write both 74-minute and 80-minute CD-R and
-   CD-RW media.  Some older drives may only be able to write CD-R media.
-   The difference between the two is that CD-RW media can be rewritten
-   (erased), while CD-R media cannot be.
+    Most hardware can read and write both 74-minute and 80-minute CD-R and
+    CD-RW media.  Some older drives may only be able to write CD-R media.
+    The difference between the two is that CD-RW media can be rewritten
+    (erased), while CD-R media cannot be.
 
-   I do not support any other configurations for a couple of reasons.  The
-   first is that I've never tested any other kind of media.  The second is
-   that anything other than 74 or 80 minute is apparently non-standard.
+    I do not support any other configurations for a couple of reasons.  The
+    first is that I've never tested any other kind of media.  The second is
+    that anything other than 74 or 80 minute is apparently non-standard.
 
-   **Device Attributes vs. Media Attributes**
+    **Device Attributes vs. Media Attributes**
 
-   A given writer instance has two different kinds of attributes associated
-   with it, which I call device attributes and media attributes.  Device
-   attributes are things which can be determined without looking at the
-   media, such as whether the drive supports writing multisession disks or
-   has a tray.  Media attributes are attributes which vary depending on the
-   state of the media, such as the remaining capacity on a disc.  In
-   general, device attributes are available via instance variables and are
-   constant over the life of an object, while media attributes can be
-   retrieved through method calls.
+    A given writer instance has two different kinds of attributes associated
+    with it, which I call device attributes and media attributes.  Device
+    attributes are things which can be determined without looking at the
+    media, such as whether the drive supports writing multisession disks or
+    has a tray.  Media attributes are attributes which vary depending on the
+    state of the media, such as the remaining capacity on a disc.  In
+    general, device attributes are available via instance variables and are
+    constant over the life of an object, while media attributes can be
+    retrieved through method calls.
 
-   **Talking to Hardware**
+    **Talking to Hardware**
 
-   This class needs to talk to CD writer hardware in two different ways:
-   through cdrecord to actually write to the media, and through the
-   filesystem to do things like open and close the tray.
+    This class needs to talk to CD writer hardware in two different ways:
+    through cdrecord to actually write to the media, and through the
+    filesystem to do things like open and close the tray.
 
-   Historically, CdWriter has interacted with cdrecord using the scsiId
-   attribute, and with most other utilities using the device attribute.
-   This changed somewhat in Cedar Backup 2.9.0.
+    Historically, CdWriter has interacted with cdrecord using the scsiId
+    attribute, and with most other utilities using the device attribute.
+    This changed somewhat in Cedar Backup 2.9.0.
 
-   When Cedar Backup was first written, the only way to interact with
-   cdrecord was by using a SCSI device id.  IDE devices were mapped to
-   pseudo-SCSI devices through the kernel.  Later, extended SCSI "methods"
-   arrived, and it became common to see ``ATA:1,0,0`` or ``ATAPI:0,0,0`` as a
-   way to address IDE hardware.  By late 2006, ``ATA`` and ``ATAPI`` had
-   apparently been deprecated in favor of just addressing the IDE device
-   directly by name, i.e. ``/dev/cdrw``.
+    When Cedar Backup was first written, the only way to interact with
+    cdrecord was by using a SCSI device id.  IDE devices were mapped to
+    pseudo-SCSI devices through the kernel.  Later, extended SCSI "methods"
+    arrived, and it became common to see ``ATA:1,0,0`` or ``ATAPI:0,0,0`` as a
+    way to address IDE hardware.  By late 2006, ``ATA`` and ``ATAPI`` had
+    apparently been deprecated in favor of just addressing the IDE device
+    directly by name, i.e. ``/dev/cdrw``.
 
-   Because of this latest development, it no longer makes sense to require a
-   CdWriter to be created with a SCSI id -- there might not be one.  So, the
-   passed-in SCSI id is now optional.  Also, there is now a hardwareId
-   attribute.  This attribute is filled in with either the SCSI id (if
-   provided) or the device (otherwise).  The hardware id is the value that
-   will be passed to cdrecord in the ``dev=`` argument.
+    Because of this latest development, it no longer makes sense to require a
+    CdWriter to be created with a SCSI id -- there might not be one.  So, the
+    passed-in SCSI id is now optional.  Also, there is now a hardwareId
+    attribute.  This attribute is filled in with either the SCSI id (if
+    provided) or the device (otherwise).  The hardware id is the value that
+    will be passed to cdrecord in the ``dev=`` argument.
 
-   **Testing**
+    **Testing**
 
-   It's rather difficult to test this code in an automated fashion, even if
-   you have access to a physical CD writer drive.  It's even more difficult
-   to test it if you are running on some build daemon (think of a Debian
-   autobuilder) which can't be expected to have any hardware or any media
-   that you could write to.
+    It's rather difficult to test this code in an automated fashion, even if
+    you have access to a physical CD writer drive.  It's even more difficult
+    to test it if you are running on some build daemon (think of a Debian
+    autobuilder) which can't be expected to have any hardware or any media
+    that you could write to.
 
-   Because of this, much of the implementation below is in terms of static
-   methods that are supposed to take defined actions based on their
-   arguments.  Public methods are then implemented in terms of a series of
-   calls to simplistic static methods.  This way, we can test as much as
-   possible of the functionality via testing the static methods, while
-   hoping that if the static methods are called appropriately, things will
-   work properly.  It's not perfect, but it's much better than no testing at
-   all.
+    Because of this, much of the implementation below is in terms of static
+    methods that are supposed to take defined actions based on their
+    arguments.  Public methods are then implemented in terms of a series of
+    calls to simplistic static methods.  This way, we can test as much as
+    possible of the functionality via testing the static methods, while
+    hoping that if the static methods are called appropriately, things will
+    work properly.  It's not perfect, but it's much better than no testing at
+    all.
 
-   """
+    """
 
     ##############
     # Constructor
@@ -421,45 +421,45 @@ class CdWriter(object):
         unittest=False,
     ):
         """
-      Initializes a CD writer object.
+        Initializes a CD writer object.
 
-      The current user must have write access to the device at the time the
-      object is instantiated, or an exception will be thrown.  However, no
-      media-related validation is done, and in fact there is no need for any
-      media to be in the drive until one of the other media attribute-related
-      methods is called.
+        The current user must have write access to the device at the time the
+        object is instantiated, or an exception will be thrown.  However, no
+        media-related validation is done, and in fact there is no need for any
+        media to be in the drive until one of the other media attribute-related
+        methods is called.
 
-      The various instance variables such as ``deviceType``, ``deviceVendor``,
-      etc. might be ``None``, if we're unable to parse this specific information
-      from the ``cdrecord`` output.  This information is just for reference.
+        The various instance variables such as ``deviceType``, ``deviceVendor``,
+        etc. might be ``None``, if we're unable to parse this specific information
+        from the ``cdrecord`` output.  This information is just for reference.
 
-      The SCSI id is optional, but the device path is required.  If the SCSI id
-      is passed in, then the hardware id attribute will be taken from the SCSI
-      id.  Otherwise, the hardware id will be taken from the device.
+        The SCSI id is optional, but the device path is required.  If the SCSI id
+        is passed in, then the hardware id attribute will be taken from the SCSI
+        id.  Otherwise, the hardware id will be taken from the device.
 
-      If cdrecord improperly detects whether your writer device has a tray and
-      can be safely opened and closed, then pass in ``noEject=False``.  This
-      will override the properties and the device will never be ejected.
+        If cdrecord improperly detects whether your writer device has a tray and
+        can be safely opened and closed, then pass in ``noEject=False``.  This
+        will override the properties and the device will never be ejected.
 
-      *Note:* The ``unittest`` parameter should never be set to ``True``
-      outside of Cedar Backup code.  It is intended for use in unit testing
-      Cedar Backup internals and has no other sensible purpose.
+        *Note:* The ``unittest`` parameter should never be set to ``True``
+        outside of Cedar Backup code.  It is intended for use in unit testing
+        Cedar Backup internals and has no other sensible purpose.
 
-      Args:
-         device (Absolute path to a filesystem device, i.e. ``/dev/cdrw``): Filesystem device associated with this writer
-         scsiId (If provided, SCSI id in the form ``[<method>:]scsibus,target,lun``): SCSI id for the device (optional)
-         driveSpeed (Use ``2`` for 2x device, etc. or ``None`` to use device default): Speed at which the drive writes
-         mediaType (One of the valid media type as discussed above): Type of the media that is assumed to be in the drive
-         noEject (Boolean true/false): Overrides properties to indicate that the device does not support eject
-         refreshMediaDelay (Number of seconds, an integer >= 0): Refresh media delay to use, if any
-         ejectDelay (Number of seconds, an integer >= 0): Eject delay to use, if any
-         unittest (Boolean true/false): Turns off certain validations, for use in unit testing
-      Raises:
-         ValueError: If the device is not valid for some reason
-         ValueError: If the SCSI id is not in a valid form
-         ValueError: If the drive speed is not an integer >= 1
-         IOError: If device properties could not be read for some reason
-      """
+        Args:
+           device (Absolute path to a filesystem device, i.e. ``/dev/cdrw``): Filesystem device associated with this writer
+           scsiId (If provided, SCSI id in the form ``[<method>:]scsibus,target,lun``): SCSI id for the device (optional)
+           driveSpeed (Use ``2`` for 2x device, etc. or ``None`` to use device default): Speed at which the drive writes
+           mediaType (One of the valid media type as discussed above): Type of the media that is assumed to be in the drive
+           noEject (Boolean true/false): Overrides properties to indicate that the device does not support eject
+           refreshMediaDelay (Number of seconds, an integer >= 0): Refresh media delay to use, if any
+           ejectDelay (Number of seconds, an integer >= 0): Eject delay to use, if any
+           unittest (Boolean true/false): Turns off certain validations, for use in unit testing
+        Raises:
+           ValueError: If the device is not valid for some reason
+           ValueError: If the SCSI id is not in a valid form
+           ValueError: If the drive speed is not an integer >= 1
+           IOError: If device properties could not be read for some reason
+        """
         self._image = None  # optionally filled in by initializeImage()
         self._device = validateDevice(device, unittest)
         self._scsiId = validateScsiId(scsiId)
@@ -485,88 +485,88 @@ class CdWriter(object):
 
     def _getDevice(self):
         """
-      Property target used to get the device value.
-      """
+        Property target used to get the device value.
+        """
         return self._device
 
     def _getScsiId(self):
         """
-      Property target used to get the SCSI id value.
-      """
+        Property target used to get the SCSI id value.
+        """
         return self._scsiId
 
     def _getHardwareId(self):
         """
-      Property target used to get the hardware id value.
-      """
+        Property target used to get the hardware id value.
+        """
         if self._scsiId is None:
             return self._device
         return self._scsiId
 
     def _getDriveSpeed(self):
         """
-      Property target used to get the drive speed.
-      """
+        Property target used to get the drive speed.
+        """
         return self._driveSpeed
 
     def _getMedia(self):
         """
-      Property target used to get the media description.
-      """
+        Property target used to get the media description.
+        """
         return self._media
 
     def _getDeviceType(self):
         """
-      Property target used to get the device type.
-      """
+        Property target used to get the device type.
+        """
         return self._deviceType
 
     def _getDeviceVendor(self):
         """
-      Property target used to get the device vendor.
-      """
+        Property target used to get the device vendor.
+        """
         return self._deviceVendor
 
     def _getDeviceId(self):
         """
-      Property target used to get the device id.
-      """
+        Property target used to get the device id.
+        """
         return self._deviceId
 
     def _getDeviceBufferSize(self):
         """
-      Property target used to get the device buffer size.
-      """
+        Property target used to get the device buffer size.
+        """
         return self._deviceBufferSize
 
     def _getDeviceSupportsMulti(self):
         """
-      Property target used to get the device-support-multi flag.
-      """
+        Property target used to get the device-support-multi flag.
+        """
         return self._deviceSupportsMulti
 
     def _getDeviceHasTray(self):
         """
-      Property target used to get the device-has-tray flag.
-      """
+        Property target used to get the device-has-tray flag.
+        """
         return self._deviceHasTray
 
     def _getDeviceCanEject(self):
         """
-      Property target used to get the device-can-eject flag.
-      """
+        Property target used to get the device-can-eject flag.
+        """
         return self._deviceCanEject
 
     def _getRefreshMediaDelay(self):
         """
-      Property target used to get the configured refresh media delay, in seconds.
-      """
+        Property target used to get the configured refresh media delay, in seconds.
+        """
         return self._refreshMediaDelay
 
     def _getEjectDelay(self):
         """
-      Property target used to get the configured eject delay, in seconds.
-      """
+        Property target used to get the configured eject delay, in seconds.
+        """
         return self._ejectDelay
 
     device = property(_getDevice, None, None, doc="Filesystem device name for this writer.")
@@ -594,18 +594,18 @@ class CdWriter(object):
 
     def _retrieveProperties(self):
         """
-      Retrieves properties for a device from ``cdrecord``.
+        Retrieves properties for a device from ``cdrecord``.
 
-      The results are returned as a tuple of the object device attributes as
-      returned from :any:`_parsePropertiesOutput`: C{(deviceType, deviceVendor,
-      deviceId, deviceBufferSize, deviceSupportsMulti, deviceHasTray,
-      deviceCanEject)}.
+        The results are returned as a tuple of the object device attributes as
+        returned from :any:`_parsePropertiesOutput`: C{(deviceType, deviceVendor,
+        deviceId, deviceBufferSize, deviceSupportsMulti, deviceHasTray,
+        deviceCanEject)}.
 
-      Returns:
-          Results tuple as described above
-      Raises:
-         IOError: If there is a problem talking to the device
-      """
+        Returns:
+            Results tuple as described above
+        Raises:
+           IOError: If there is a problem talking to the device
+        """
         args = CdWriter._buildPropertiesArgs(self.hardwareId)
         command = resolveCommand(CDRECORD_COMMAND)
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
@@ -615,54 +615,54 @@ class CdWriter(object):
 
     def retrieveCapacity(self, entireDisc=False, useMulti=True):
         """
-      Retrieves capacity for the current media in terms of a ``MediaCapacity``
-      object.
+        Retrieves capacity for the current media in terms of a ``MediaCapacity``
+        object.
 
-      If ``entireDisc`` is passed in as ``True`` the capacity will be for the
-      entire disc, as if it were to be rewritten from scratch.  If the drive
-      does not support writing multisession discs or if ``useMulti`` is passed
-      in as ``False``, the capacity will also be as if the disc were to be
-      rewritten from scratch, but the indicated boundaries value will be
-      ``None``.  The same will happen if the disc cannot be read for some
-      reason.  Otherwise, the capacity (including the boundaries) will
-      represent whatever space remains on the disc to be filled by future
-      sessions.
+        If ``entireDisc`` is passed in as ``True`` the capacity will be for the
+        entire disc, as if it were to be rewritten from scratch.  If the drive
+        does not support writing multisession discs or if ``useMulti`` is passed
+        in as ``False``, the capacity will also be as if the disc were to be
+        rewritten from scratch, but the indicated boundaries value will be
+        ``None``.  The same will happen if the disc cannot be read for some
+        reason.  Otherwise, the capacity (including the boundaries) will
+        represent whatever space remains on the disc to be filled by future
+        sessions.
 
-      Args:
-         entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
-         useMulti (Boolean true/false): Indicates whether a multisession disc should be assumed, if possible
-      Returns:
-          ``MediaCapacity`` object describing the capacity of the media
-      Raises:
-         IOError: If the media could not be read for some reason
-      """
+        Args:
+           entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
+           useMulti (Boolean true/false): Indicates whether a multisession disc should be assumed, if possible
+        Returns:
+            ``MediaCapacity`` object describing the capacity of the media
+        Raises:
+           IOError: If the media could not be read for some reason
+        """
         boundaries = self._getBoundaries(entireDisc, useMulti)
         return CdWriter._calculateCapacity(self._media, boundaries)
 
     def _getBoundaries(self, entireDisc=False, useMulti=True):
         """
-      Gets the ISO boundaries for the media.
+        Gets the ISO boundaries for the media.
 
-      If ``entireDisc`` is passed in as ``True`` the boundaries will be ``None``,
-      as if the disc were to be rewritten from scratch.  If the drive does not
-      support writing multisession discs, the returned value will be ``None``.
-      The same will happen if the disc can't be read for some reason.
-      Otherwise, the returned value will be represent the boundaries of the
-      disc's current contents.
+        If ``entireDisc`` is passed in as ``True`` the boundaries will be ``None``,
+        as if the disc were to be rewritten from scratch.  If the drive does not
+        support writing multisession discs, the returned value will be ``None``.
+        The same will happen if the disc can't be read for some reason.
+        Otherwise, the returned value will be represent the boundaries of the
+        disc's current contents.
 
-      The results are returned as a tuple of (lower, upper) as needed by the
-      ``IsoImage`` class.  Note that these values are in terms of ISO sectors,
-      not bytes.  Clients should generally consider the boundaries value
-      opaque, however.
+        The results are returned as a tuple of (lower, upper) as needed by the
+        ``IsoImage`` class.  Note that these values are in terms of ISO sectors,
+        not bytes.  Clients should generally consider the boundaries value
+        opaque, however.
 
-      Args:
-         entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
-         useMulti (Boolean true/false): Indicates whether a multisession disc should be assumed, if possible
-      Returns:
-          Boundaries tuple or ``None``, as described above
-      Raises:
-         IOError: If the media could not be read for some reason
-      """
+        Args:
+           entireDisc (Boolean true/false): Indicates whether to return capacity for entire disc
+           useMulti (Boolean true/false): Indicates whether a multisession disc should be assumed, if possible
+        Returns:
+            Boundaries tuple or ``None``, as described above
+        Raises:
+           IOError: If the media could not be read for some reason
+        """
         if not self._deviceSupportsMulti:
             logger.debug("Device does not support multisession discs; returning boundaries None.")
             return None
@@ -690,20 +690,20 @@ class CdWriter(object):
     @staticmethod
     def _calculateCapacity(media, boundaries):
         """
-      Calculates capacity for the media in terms of boundaries.
+        Calculates capacity for the media in terms of boundaries.
 
-      If ``boundaries`` is ``None`` or the lower bound is 0 (zero), then the
-      capacity will be for the entire disc minus the initial lead in.
-      Otherwise, capacity will be as if the caller wanted to add an additional
-      session to the end of the existing data on the disc.
+        If ``boundaries`` is ``None`` or the lower bound is 0 (zero), then the
+        capacity will be for the entire disc minus the initial lead in.
+        Otherwise, capacity will be as if the caller wanted to add an additional
+        session to the end of the existing data on the disc.
 
-      Args:
-         media: MediaDescription object describing the media capacity
-         boundaries: Session boundaries as returned from :any:`_getBoundaries`
+        Args:
+           media: MediaDescription object describing the media capacity
+           boundaries: Session boundaries as returned from :any:`_getBoundaries`
 
-      Returns:
-          ``MediaCapacity`` object describing the capacity of the media
-      """
+        Returns:
+            ``MediaCapacity`` object describing the capacity of the media
+        """
         if boundaries is None or boundaries[1] == 0:
             logger.debug("Capacity calculations are based on a complete disc rewrite.")
             sectorsAvailable = media.capacity - media.initialLeadIn
@@ -727,18 +727,18 @@ class CdWriter(object):
 
     def initializeImage(self, newDisc, tmpdir, mediaLabel=None):
         """
-      Initializes the writer's associated ISO image.
+        Initializes the writer's associated ISO image.
 
-      This method initializes the ``image`` instance variable so that the caller
-      can use the ``addImageEntry`` method.  Once entries have been added, the
-      ``writeImage`` method can be called with no arguments.
+        This method initializes the ``image`` instance variable so that the caller
+        can use the ``addImageEntry`` method.  Once entries have been added, the
+        ``writeImage`` method can be called with no arguments.
 
-      Args:
-         newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
-         tmpdir (String representing a directory path on disk): Temporary directory to use if needed
-         mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
+        Args:
+           newDisc (Boolean true/false): Indicates whether the disc should be re-initialized
+           tmpdir (String representing a directory path on disk): Temporary directory to use if needed
+           mediaLabel (String, no more than 25 characters long): Media label to be applied to the image, if any
 
-      """
+        """
         self._image = _ImageProperties()
         self._image.newDisc = newDisc
         self._image.tmpdir = encodePath(tmpdir)
@@ -747,20 +747,20 @@ class CdWriter(object):
 
     def addImageEntry(self, path, graftPoint):
         """
-      Adds a filepath entry to the writer's associated ISO image.
+        Adds a filepath entry to the writer's associated ISO image.
 
-      The contents of the filepath -- but not the path itself -- will be added
-      to the image at the indicated graft point.  If you don't want to use a
-      graft point, just pass ``None``.
+        The contents of the filepath -- but not the path itself -- will be added
+        to the image at the indicated graft point.  If you don't want to use a
+        graft point, just pass ``None``.
 
-      *Note:* Before calling this method, you must call :any:`initializeImage`.
+        *Note:* Before calling this method, you must call :any:`initializeImage`.
 
-      Args:
-         path (String representing a path on disk): File or directory to be added to the image
-         graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
-      Raises:
-         ValueError: If initializeImage() was not previously called
-      """
+        Args:
+           path (String representing a path on disk): File or directory to be added to the image
+           graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
+        Raises:
+           ValueError: If initializeImage() was not previously called
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         if not os.path.exists(path):
@@ -769,25 +769,25 @@ class CdWriter(object):
 
     def setImageNewDisc(self, newDisc):
         """
-      Resets (overrides) the newDisc flag on the internal image.
-      Args:
-         newDisc: New disc flag to set
-      Raises:
-         ValueError: If initializeImage() was not previously called
-      """
+        Resets (overrides) the newDisc flag on the internal image.
+        Args:
+           newDisc: New disc flag to set
+        Raises:
+           ValueError: If initializeImage() was not previously called
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         self._image.newDisc = newDisc
 
     def getEstimatedImageSize(self):
         """
-      Gets the estimated size of the image associated with the writer.
-      Returns:
-          Estimated size of the image, in bytes
-      Raises:
-         IOError: If there is a problem calling ``mkisofs``
-         ValueError: If initializeImage() was not previously called
-      """
+        Gets the estimated size of the image associated with the writer.
+        Returns:
+            Estimated size of the image, in bytes
+        Raises:
+           IOError: If there is a problem calling ``mkisofs``
+           ValueError: If initializeImage() was not previously called
+        """
         if self._image is None:
             raise ValueError("Must call initializeImage() before using this method.")
         image = IsoImage()
@@ -801,33 +801,33 @@ class CdWriter(object):
 
     def openTray(self):
         """
-      Opens the device's tray and leaves it open.
+        Opens the device's tray and leaves it open.
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.
 
-      If the writer was constructed with ``noEject=True``, then this is a no-op.
+        If the writer was constructed with ``noEject=True``, then this is a no-op.
 
-      Starting with Debian wheezy on my backup hardware, I started seeing
-      consistent problems with the eject command.  I couldn't tell whether
-      these problems were due to the device management system or to the new
-      kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
-      I was opening and closing the tray too quickly.  I worked around that
-      behavior with the new ejectDelay flag.
+        Starting with Debian wheezy on my backup hardware, I started seeing
+        consistent problems with the eject command.  I couldn't tell whether
+        these problems were due to the device management system or to the new
+        kernel (3.2.0).  Initially, I saw simple eject failures, possibly because
+        I was opening and closing the tray too quickly.  I worked around that
+        behavior with the new ejectDelay flag.
 
-      Later, I sometimes ran into issues after writing an image to a disc:
-      eject would give errors like "unable to eject, last error: Inappropriate
-      ioctl for device".  Various sources online (like Ubuntu bug #875543)
-      suggested that the drive was being locked somehow, and that the
-      workaround was to run 'eject -i off' to unlock it.  Sure enough, that
-      fixed the problem for me, so now it's a normal error-handling strategy.
+        Later, I sometimes ran into issues after writing an image to a disc:
+        eject would give errors like "unable to eject, last error: Inappropriate
+        ioctl for device".  Various sources online (like Ubuntu bug #875543)
+        suggested that the drive was being locked somehow, and that the
+        workaround was to run 'eject -i off' to unlock it.  Sure enough, that
+        fixed the problem for me, so now it's a normal error-handling strategy.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         if not self._noEject:
             if self._deviceHasTray and self._deviceCanEject:
                 args = CdWriter._buildOpenTrayArgs(self._device)
@@ -847,10 +847,10 @@ class CdWriter(object):
 
     def unlockTray(self):
         """
-      Unlocks the device's tray.
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Unlocks the device's tray.
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         args = CdWriter._buildUnlockTrayArgs(self._device)
         command = resolveCommand(EJECT_COMMAND)
         result = executeCommand(command, args)[0]
@@ -859,19 +859,19 @@ class CdWriter(object):
 
     def closeTray(self):
         """
-      Closes the device's tray.
+        Closes the device's tray.
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.
 
-      If the writer was constructed with ``noEject=True``, then this is a no-op.
+        If the writer was constructed with ``noEject=True``, then this is a no-op.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         if not self._noEject:
             if self._deviceHasTray and self._deviceCanEject:
                 args = CdWriter._buildCloseTrayArgs(self._device)
@@ -882,24 +882,24 @@ class CdWriter(object):
 
     def refreshMedia(self):
         """
-      Opens and then immediately closes the device's tray, to refresh the
-      device's idea of the media.
+        Opens and then immediately closes the device's tray, to refresh the
+        device's idea of the media.
 
-      Sometimes, a device gets confused about the state of its media.  Often,
-      all it takes to solve the problem is to eject the media and then
-      immediately reload it.  (There are also configurable eject and refresh
-      media delays which can be applied, for situations where this makes a
-      difference.)
+        Sometimes, a device gets confused about the state of its media.  Often,
+        all it takes to solve the problem is to eject the media and then
+        immediately reload it.  (There are also configurable eject and refresh
+        media delays which can be applied, for situations where this makes a
+        difference.)
 
-      This only works if the device has a tray and supports ejecting its media.
-      We have no way to know if the tray is currently open or closed, so we
-      just send the appropriate command and hope for the best.  If the device
-      does not have a tray or does not support ejecting its media, then we do
-      nothing.  The configured delays still apply, though.
+        This only works if the device has a tray and supports ejecting its media.
+        We have no way to know if the tray is currently open or closed, so we
+        just send the appropriate command and hope for the best.  If the device
+        does not have a tray or does not support ejecting its media, then we do
+        nothing.  The configured delays still apply, though.
 
-      Raises:
-         IOError: If there is an error talking to the device
-      """
+        Raises:
+           IOError: If there is an error talking to the device
+        """
         self.openTray()
         self.closeTray()
         self.unlockTray()  # on some systems, writing a disc leaves the tray locked, yikes!
@@ -910,35 +910,35 @@ class CdWriter(object):
 
     def writeImage(self, imagePath=None, newDisc=False, writeMulti=True):
         """
-      Writes an ISO image to the media in the device.
+        Writes an ISO image to the media in the device.
 
-      If ``newDisc`` is passed in as ``True``, we assume that the entire disc
-      will be overwritten, and the media will be blanked before writing it if
-      possible (i.e. if the media is rewritable).
+        If ``newDisc`` is passed in as ``True``, we assume that the entire disc
+        will be overwritten, and the media will be blanked before writing it if
+        possible (i.e. if the media is rewritable).
 
-      If ``writeMulti`` is passed in as ``True``, then a multisession disc will
-      be written if possible (i.e. if the drive supports writing multisession
-      discs).
+        If ``writeMulti`` is passed in as ``True``, then a multisession disc will
+        be written if possible (i.e. if the drive supports writing multisession
+        discs).
 
-      if ``imagePath`` is passed in as ``None``, then the existing image
-      configured with ``initializeImage`` will be used.  Under these
-      circumstances, the passed-in ``newDisc`` flag will be ignored.
+        if ``imagePath`` is passed in as ``None``, then the existing image
+        configured with ``initializeImage`` will be used.  Under these
+        circumstances, the passed-in ``newDisc`` flag will be ignored.
 
-      By default, we assume that the disc can be written multisession and that
-      we should append to the current contents of the disc.  In any case, the
-      ISO image must be generated appropriately (i.e. must take into account
-      any existing session boundaries, etc.)
+        By default, we assume that the disc can be written multisession and that
+        we should append to the current contents of the disc.  In any case, the
+        ISO image must be generated appropriately (i.e. must take into account
+        any existing session boundaries, etc.)
 
-      Args:
-         imagePath (String representing a path on disk): Path to an ISO image on disk, or ``None`` to use writer's image
-         newDisc (Boolean true/false): Indicates whether the entire disc will overwritten
-         writeMulti (Boolean true/false): Indicates whether a multisession disc should be written, if possible
-      Raises:
-         ValueError: If the image path is not absolute
-         ValueError: If some path cannot be encoded properly
-         IOError: If the media could not be written to for some reason
-         ValueError: If no image is passed in and initializeImage() was not previously called
-      """
+        Args:
+           imagePath (String representing a path on disk): Path to an ISO image on disk, or ``None`` to use writer's image
+           newDisc (Boolean true/false): Indicates whether the entire disc will overwritten
+           writeMulti (Boolean true/false): Indicates whether a multisession disc should be written, if possible
+        Raises:
+           ValueError: If the image path is not absolute
+           ValueError: If some path cannot be encoded properly
+           IOError: If the media could not be written to for some reason
+           ValueError: If no image is passed in and initializeImage() was not previously called
+        """
         if imagePath is None:
             if self._image is None:
                 raise ValueError("Must call initializeImage() before using this method with no image path.")
@@ -959,14 +959,14 @@ class CdWriter(object):
 
     def _createImage(self):
         """
-      Creates an ISO image based on configuration in self._image.
-      Returns:
-          Path to the newly-created ISO image on disk
-      Raises:
-         IOError: If there is an error writing the image to disk
-         ValueError: If there are no filesystem entries in the image
-         ValueError: If a path cannot be encoded properly
-      """
+        Creates an ISO image based on configuration in self._image.
+        Returns:
+            Path to the newly-created ISO image on disk
+        Raises:
+           IOError: If there is an error writing the image to disk
+           ValueError: If there are no filesystem entries in the image
+           ValueError: If a path cannot be encoded properly
+        """
         path = None
         capacity = self.retrieveCapacity(entireDisc=self._image.newDisc)
         image = IsoImage(self.device, capacity.boundaries)
@@ -999,13 +999,13 @@ class CdWriter(object):
 
     def _writeImage(self, imagePath, writeMulti, newDisc):
         """
-      Write an ISO image to disc using cdrecord.
-      The disc is blanked first if ``newDisc`` is ``True``.
-      Args:
-         imagePath: Path to an ISO image on disk
-         writeMulti: Indicates whether a multisession disc should be written, if possible
-         newDisc: Indicates whether the entire disc will overwritten
-      """
+        Write an ISO image to disc using cdrecord.
+        The disc is blanked first if ``newDisc`` is ``True``.
+        Args:
+           imagePath: Path to an ISO image on disk
+           writeMulti: Indicates whether a multisession disc should be written, if possible
+           newDisc: Indicates whether the entire disc will overwritten
+        """
         if newDisc:
             self._blankMedia()
         args = CdWriter._buildWriteArgs(self.hardwareId, imagePath, self._driveSpeed, writeMulti and self._deviceSupportsMulti)
@@ -1017,10 +1017,10 @@ class CdWriter(object):
 
     def _blankMedia(self):
         """
-      Blanks the media in the device, if the media is rewritable.
-      Raises:
-         IOError: If the media could not be written to for some reason
-      """
+        Blanks the media in the device, if the media is rewritable.
+        Raises:
+           IOError: If the media could not be written to for some reason
+        """
         if self.isRewritable():
             args = CdWriter._buildBlankArgs(self.hardwareId)
             command = resolveCommand(CDRECORD_COMMAND)
@@ -1036,40 +1036,40 @@ class CdWriter(object):
     @staticmethod
     def _parsePropertiesOutput(output):
         """
-      Parses the output from a ``cdrecord`` properties command.
+        Parses the output from a ``cdrecord`` properties command.
 
-      The ``output`` parameter should be a list of strings as returned from
-      ``executeCommand`` for a ``cdrecord`` command with arguments as from
-      ``_buildPropertiesArgs``.  The list of strings will be parsed to yield
-      information about the properties of the device.
+        The ``output`` parameter should be a list of strings as returned from
+        ``executeCommand`` for a ``cdrecord`` command with arguments as from
+        ``_buildPropertiesArgs``.  The list of strings will be parsed to yield
+        information about the properties of the device.
 
-      The output is expected to be a huge long list of strings.  Unfortunately,
-      the strings aren't in a completely regular format.  However, the format
-      of individual lines seems to be regular enough that we can look for
-      specific values.  Two kinds of parsing take place: one kind of parsing
-      picks out out specific values like the device id, device vendor, etc.
-      The other kind of parsing just sets a boolean flag ``True`` if a matching
-      line is found.  All of the parsing is done with regular expressions.
+        The output is expected to be a huge long list of strings.  Unfortunately,
+        the strings aren't in a completely regular format.  However, the format
+        of individual lines seems to be regular enough that we can look for
+        specific values.  Two kinds of parsing take place: one kind of parsing
+        picks out out specific values like the device id, device vendor, etc.
+        The other kind of parsing just sets a boolean flag ``True`` if a matching
+        line is found.  All of the parsing is done with regular expressions.
 
-      Right now, pretty much nothing in the output is required and we should
-      parse an empty document successfully (albeit resulting in a device that
-      can't eject, doesn't have a tray and doesnt't support multisession
-      discs).   I had briefly considered erroring out if certain lines weren't
-      found or couldn't be parsed, but that seems like a bad idea given that
-      most of the information is just for reference.
+        Right now, pretty much nothing in the output is required and we should
+        parse an empty document successfully (albeit resulting in a device that
+        can't eject, doesn't have a tray and doesnt't support multisession
+        discs).   I had briefly considered erroring out if certain lines weren't
+        found or couldn't be parsed, but that seems like a bad idea given that
+        most of the information is just for reference.
 
-      The results are returned as a tuple of the object device attributes:
-      C{(deviceType, deviceVendor, deviceId, deviceBufferSize,
-      deviceSupportsMulti, deviceHasTray, deviceCanEject)}.
+        The results are returned as a tuple of the object device attributes:
+        C{(deviceType, deviceVendor, deviceId, deviceBufferSize,
+        deviceSupportsMulti, deviceHasTray, deviceCanEject)}.
 
-      Args:
-         output: Output from a ``cdrecord -prcap`` command
+        Args:
+           output: Output from a ``cdrecord -prcap`` command
 
-      Returns:
-          Results tuple as described above
-      Raises:
-         IOError: If there is problem parsing the output
-      """
+        Returns:
+            Results tuple as described above
+        Raises:
+           IOError: If there is problem parsing the output
+        """
         deviceType = None
         deviceVendor = None
         deviceId = None
@@ -1115,36 +1115,36 @@ class CdWriter(object):
     @staticmethod
     def _parseBoundariesOutput(output):
         """
-      Parses the output from a ``cdrecord`` capacity command.
+        Parses the output from a ``cdrecord`` capacity command.
 
-      The ``output`` parameter should be a list of strings as returned from
-      ``executeCommand`` for a ``cdrecord`` command with arguments as from
-      ``_buildBoundaryArgs``.  The list of strings will be parsed to yield
-      information about the capacity of the media in the device.
+        The ``output`` parameter should be a list of strings as returned from
+        ``executeCommand`` for a ``cdrecord`` command with arguments as from
+        ``_buildBoundaryArgs``.  The list of strings will be parsed to yield
+        information about the capacity of the media in the device.
 
-      Basically, we expect the list of strings to include just one line, a pair
-      of values.  There isn't supposed to be whitespace, but we allow it anyway
-      in the regular expression.  Any lines below the one line we parse are
-      completely ignored.  It would be a good idea to ignore ``stderr`` when
-      executing the ``cdrecord`` command that generates output for this method,
-      because sometimes ``cdrecord`` spits out kernel warnings about the actual
-      output.
+        Basically, we expect the list of strings to include just one line, a pair
+        of values.  There isn't supposed to be whitespace, but we allow it anyway
+        in the regular expression.  Any lines below the one line we parse are
+        completely ignored.  It would be a good idea to ignore ``stderr`` when
+        executing the ``cdrecord`` command that generates output for this method,
+        because sometimes ``cdrecord`` spits out kernel warnings about the actual
+        output.
 
-      The results are returned as a tuple of (lower, upper) as needed by the
-      ``IsoImage`` class.  Note that these values are in terms of ISO sectors,
-      not bytes.  Clients should generally consider the boundaries value
-      opaque, however.
+        The results are returned as a tuple of (lower, upper) as needed by the
+        ``IsoImage`` class.  Note that these values are in terms of ISO sectors,
+        not bytes.  Clients should generally consider the boundaries value
+        opaque, however.
 
-      *Note:* If the boundaries output can't be parsed, we return ``None``.
+        *Note:* If the boundaries output can't be parsed, we return ``None``.
 
-      Args:
-         output: Output from a ``cdrecord -msinfo`` command
+        Args:
+           output: Output from a ``cdrecord -msinfo`` command
 
-      Returns:
-          Boundaries tuple as described above
-      Raises:
-         IOError: If there is problem parsing the output
-      """
+        Returns:
+            Boundaries tuple as described above
+        Raises:
+           IOError: If there is problem parsing the output
+        """
         if len(output) < 1:
             logger.warning("Unable to read disc (might not be initialized); returning full capacity.")
             return None
@@ -1165,18 +1165,18 @@ class CdWriter(object):
     @staticmethod
     def _buildOpenTrayArgs(device):
         """
-      Builds a list of arguments to be passed to a ``eject`` command.
+        Builds a list of arguments to be passed to a ``eject`` command.
 
-      The arguments will cause the ``eject`` command to open the tray and
-      eject the media.  No validation is done by this method as to whether
-      this action actually makes sense.
+        The arguments will cause the ``eject`` command to open the tray and
+        eject the media.  No validation is done by this method as to whether
+        this action actually makes sense.
 
-      Args:
-         device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
+        Args:
+           device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append(device)
         return args
@@ -1184,16 +1184,16 @@ class CdWriter(object):
     @staticmethod
     def _buildUnlockTrayArgs(device):
         """
-      Builds a list of arguments to be passed to a ``eject`` command.
+        Builds a list of arguments to be passed to a ``eject`` command.
 
-      The arguments will cause the ``eject`` command to unlock the tray.
+        The arguments will cause the ``eject`` command to unlock the tray.
 
-      Args:
-         device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
+        Args:
+           device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-i")
         args.append("off")
@@ -1203,18 +1203,18 @@ class CdWriter(object):
     @staticmethod
     def _buildCloseTrayArgs(device):
         """
-      Builds a list of arguments to be passed to a ``eject`` command.
+        Builds a list of arguments to be passed to a ``eject`` command.
 
-      The arguments will cause the ``eject`` command to close the tray and reload
-      the media.  No validation is done by this method as to whether this
-      action actually makes sense.
+        The arguments will cause the ``eject`` command to close the tray and reload
+        the media.  No validation is done by this method as to whether this
+        action actually makes sense.
 
-      Args:
-         device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
+        Args:
+           device: Filesystem device name for this writer, i.e. ``/dev/cdrw``
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-t")
         args.append(device)
@@ -1223,17 +1223,17 @@ class CdWriter(object):
     @staticmethod
     def _buildPropertiesArgs(hardwareId):
         """
-      Builds a list of arguments to be passed to a ``cdrecord`` command.
+        Builds a list of arguments to be passed to a ``cdrecord`` command.
 
-      The arguments will cause the ``cdrecord`` command to ask the device
-      for a list of its capacities via the ``-prcap`` switch.
+        The arguments will cause the ``cdrecord`` command to ask the device
+        for a list of its capacities via the ``-prcap`` switch.
 
-      Args:
-         hardwareId: Hardware id for the device (either SCSI id or device path)
+        Args:
+           hardwareId: Hardware id for the device (either SCSI id or device path)
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-prcap")
         args.append("dev=%s" % hardwareId)
@@ -1242,18 +1242,18 @@ class CdWriter(object):
     @staticmethod
     def _buildBoundariesArgs(hardwareId):
         """
-      Builds a list of arguments to be passed to a ``cdrecord`` command.
+        Builds a list of arguments to be passed to a ``cdrecord`` command.
 
-      The arguments will cause the ``cdrecord`` command to ask the device for
-      the current multisession boundaries of the media using the ``-msinfo``
-      switch.
+        The arguments will cause the ``cdrecord`` command to ask the device for
+        the current multisession boundaries of the media using the ``-msinfo``
+        switch.
 
-      Args:
-         hardwareId: Hardware id for the device (either SCSI id or device path)
+        Args:
+           hardwareId: Hardware id for the device (either SCSI id or device path)
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-msinfo")
         args.append("dev=%s" % hardwareId)
@@ -1262,20 +1262,20 @@ class CdWriter(object):
     @staticmethod
     def _buildBlankArgs(hardwareId, driveSpeed=None):
         """
-      Builds a list of arguments to be passed to a ``cdrecord`` command.
+        Builds a list of arguments to be passed to a ``cdrecord`` command.
 
-      The arguments will cause the ``cdrecord`` command to blank the media in
-      the device identified by ``hardwareId``.  No validation is done by this method
-      as to whether the action makes sense (i.e. to whether the media even can
-      be blanked).
+        The arguments will cause the ``cdrecord`` command to blank the media in
+        the device identified by ``hardwareId``.  No validation is done by this method
+        as to whether the action makes sense (i.e. to whether the media even can
+        be blanked).
 
-      Args:
-         hardwareId: Hardware id for the device (either SCSI id or device path)
-         driveSpeed: Speed at which the drive writes
+        Args:
+           hardwareId: Hardware id for the device (either SCSI id or device path)
+           driveSpeed: Speed at which the drive writes
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-v")
         args.append("blank=fast")
@@ -1287,24 +1287,24 @@ class CdWriter(object):
     @staticmethod
     def _buildWriteArgs(hardwareId, imagePath, driveSpeed=None, writeMulti=True):
         """
-      Builds a list of arguments to be passed to a ``cdrecord`` command.
+        Builds a list of arguments to be passed to a ``cdrecord`` command.
 
-      The arguments will cause the ``cdrecord`` command to write the indicated
-      ISO image (``imagePath``) to the media in the device identified by
-      ``hardwareId``.  The ``writeMulti`` argument controls whether to write a
-      multisession disc.  No validation is done by this method as to whether
-      the action makes sense (i.e. to whether the device even can write
-      multisession discs, for instance).
+        The arguments will cause the ``cdrecord`` command to write the indicated
+        ISO image (``imagePath``) to the media in the device identified by
+        ``hardwareId``.  The ``writeMulti`` argument controls whether to write a
+        multisession disc.  No validation is done by this method as to whether
+        the action makes sense (i.e. to whether the device even can write
+        multisession discs, for instance).
 
-      Args:
-         hardwareId: Hardware id for the device (either SCSI id or device path)
-         imagePath: Path to an ISO image on disk
-         driveSpeed: Speed at which the drive writes
-         writeMulti: Indicates whether to write a multisession disc
+        Args:
+           hardwareId: Hardware id for the device (either SCSI id or device path)
+           imagePath: Path to an ISO image on disk
+           driveSpeed: Speed at which the drive writes
+           writeMulti: Indicates whether to write a multisession disc
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         args.append("-v")
         if driveSpeed is not None:

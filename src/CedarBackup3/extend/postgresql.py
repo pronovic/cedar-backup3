@@ -112,29 +112,29 @@ POSTGRESQLDUMPALL_COMMAND = ["pg_dumpall"]
 class PostgresqlConfig(object):
 
     """
-   Class representing PostgreSQL configuration.
+    Class representing PostgreSQL configuration.
 
-   The PostgreSQL configuration information is used for backing up PostgreSQL databases.
+    The PostgreSQL configuration information is used for backing up PostgreSQL databases.
 
-   The following restrictions exist on data in this class:
+    The following restrictions exist on data in this class:
 
-      - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      - The 'all' flag must be 'Y' if no databases are defined.
-      - The 'all' flag must be 'N' if any databases are defined.
-      - Any values in the databases list must be strings.
+       - The compress mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+       - The 'all' flag must be 'Y' if no databases are defined.
+       - The 'all' flag must be 'N' if any databases are defined.
+       - Any values in the databases list must be strings.
 
-   """
+    """
 
     def __init__(self, user=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
         """
-      Constructor for the ``PostgresqlConfig`` class.
+        Constructor for the ``PostgresqlConfig`` class.
 
-      Args:
-         user: User to execute backup as
-         compressMode: Compress mode for backed-up files
-         all: Indicates whether to back up all databases
-         databases: List of databases to back up
-      """
+        Args:
+           user: User to execute backup as
+           compressMode: Compress mode for backed-up files
+           all: Indicates whether to back up all databases
+           databases: List of databases to back up
+        """
         self._user = None
         self._compressMode = None
         self._all = None
@@ -146,14 +146,14 @@ class PostgresqlConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "PostgresqlConfig(%s, %s, %s)" % (self.user, self.all, self.databases)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -170,12 +170,12 @@ class PostgresqlConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.user != other.user:
@@ -202,8 +202,8 @@ class PostgresqlConfig(object):
 
     def _setUser(self, value):
         """
-      Property target used to set the user value.
-      """
+        Property target used to set the user value.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("User must be non-empty string.")
@@ -211,17 +211,17 @@ class PostgresqlConfig(object):
 
     def _getUser(self):
         """
-      Property target used to get the user value.
-      """
+        Property target used to get the user value.
+        """
         return self._user
 
     def _setCompressMode(self, value):
         """
-      Property target used to set the compress mode.
-      If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the compress mode.
+        If not ``None``, the mode must be one of the values in :any:`VALID_COMPRESS_MODES`.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is not None:
             if value not in VALID_COMPRESS_MODES:
                 raise ValueError("Compress mode must be one of %s." % VALID_COMPRESS_MODES)
@@ -229,15 +229,15 @@ class PostgresqlConfig(object):
 
     def _getCompressMode(self):
         """
-      Property target used to get the compress mode.
-      """
+        Property target used to get the compress mode.
+        """
         return self._compressMode
 
     def _setAll(self, value):
         """
-      Property target used to set the 'all' flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the 'all' flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._all = True
         else:
@@ -245,17 +245,17 @@ class PostgresqlConfig(object):
 
     def _getAll(self):
         """
-      Property target used to get the 'all' flag.
-      """
+        Property target used to get the 'all' flag.
+        """
         return self._all
 
     def _setDatabases(self, value):
         """
-      Property target used to set the databases list.
-      Either the value must be ``None`` or each element must be a string.
-      Raises:
-         ValueError: If the value is not a string
-      """
+        Property target used to set the databases list.
+        Either the value must be ``None`` or each element must be a string.
+        Raises:
+           ValueError: If the value is not a string
+        """
         if value is None:
             self._databases = None
         else:
@@ -272,8 +272,8 @@ class PostgresqlConfig(object):
 
     def _getDatabases(self):
         """
-      Property target used to get the databases list.
-      """
+        Property target used to get the databases list.
+        """
         return self._databases
 
     user = property(_getUser, _setUser, None, "User to execute backup as.")
@@ -291,49 +291,49 @@ class PostgresqlConfig(object):
 class LocalConfig(object):
 
     """
-   Class representing this extension's configuration document.
+    Class representing this extension's configuration document.
 
-   This is not a general-purpose configuration object like the main Cedar
-   Backup configuration object.  Instead, it just knows how to parse and emit
-   PostgreSQL-specific configuration values.  Third parties who need to read and
-   write configuration related to this extension should access it through the
-   constructor, ``validate`` and ``addConfig`` methods.
+    This is not a general-purpose configuration object like the main Cedar
+    Backup configuration object.  Instead, it just knows how to parse and emit
+    PostgreSQL-specific configuration values.  Third parties who need to read and
+    write configuration related to this extension should access it through the
+    constructor, ``validate`` and ``addConfig`` methods.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     def __init__(self, xmlData=None, xmlPath=None, validate=True):
         """
-      Initializes a configuration object.
+        Initializes a configuration object.
 
-      If you initialize the object without passing either ``xmlData`` or
-      ``xmlPath`` then configuration will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``xmlData`` or
+        ``xmlPath`` then configuration will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original XML data or original path is saved off by
-      this class.  Once the data has been parsed (successfully or not) this
-      original information is discarded.
+        No reference to the original XML data or original path is saved off by
+        this class.  Once the data has been parsed (successfully or not) this
+        original information is discarded.
 
-      Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
-      method will be called (with its default arguments) against configuration
-      after successfully parsing any passed-in XML.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      XML document if lower-level validations fail.
+        Unless the ``validate`` argument is ``False``, the :any:`LocalConfig.validate`
+        method will be called (with its default arguments) against configuration
+        after successfully parsing any passed-in XML.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        XML document if lower-level validations fail.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid configuration from disk.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid configuration from disk.
 
-      Args:
-         xmlData (String data): XML data representing configuration
-         xmlPath (Absolute path to a file on disk): Path to an XML file on disk
-         validate (Boolean true/false): Validate the document after parsing it
-      Raises:
-         ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
-         ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
-         ValueError: If the parsed configuration document is not valid
-      """
+        Args:
+           xmlData (String data): XML data representing configuration
+           xmlPath (Absolute path to a file on disk): Path to an XML file on disk
+           validate (Boolean true/false): Validate the document after parsing it
+        Raises:
+           ValueError: If both ``xmlData`` and ``xmlPath`` are passed-in
+           ValueError: If the XML data in ``xmlData`` or ``xmlPath`` cannot be parsed
+           ValueError: If the parsed configuration document is not valid
+        """
         self._postgresql = None
         self.postgresql = None
         if xmlData is not None and xmlPath is not None:
@@ -351,14 +351,14 @@ class LocalConfig(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return "LocalConfig(%s)" % (self.postgresql)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     def __eq__(self, other):
@@ -375,13 +375,13 @@ class LocalConfig(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.postgresql != other.postgresql:
@@ -393,11 +393,11 @@ class LocalConfig(object):
 
     def _setPostgresql(self, value):
         """
-      Property target used to set the postgresql configuration value.
-      If not ``None``, the value must be a ``PostgresqlConfig`` object.
-      Raises:
-         ValueError: If the value is not a ``PostgresqlConfig``
-      """
+        Property target used to set the postgresql configuration value.
+        If not ``None``, the value must be a ``PostgresqlConfig`` object.
+        Raises:
+           ValueError: If the value is not a ``PostgresqlConfig``
+        """
         if value is None:
             self._postgresql = None
         else:
@@ -407,8 +407,8 @@ class LocalConfig(object):
 
     def _getPostgresql(self):
         """
-      Property target used to get the postgresql configuration value.
-      """
+        Property target used to get the postgresql configuration value.
+        """
         return self._postgresql
 
     postgresql = property(
@@ -417,15 +417,15 @@ class LocalConfig(object):
 
     def validate(self):
         """
-      Validates configuration represented by the object.
+        Validates configuration represented by the object.
 
-      The compress mode must be filled in.  Then, if the 'all' flag
-      *is* set, no databases are allowed, and if the 'all' flag is
-      *not* set, at least one database is required.
+        The compress mode must be filled in.  Then, if the 'all' flag
+        *is* set, no databases are allowed, and if the 'all' flag is
+        *not* set, at least one database is required.
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if self.postgresql is None:
             raise ValueError("PostgreSQL section is required.")
         if self.postgresql.compressMode is None:
@@ -439,26 +439,26 @@ class LocalConfig(object):
 
     def addConfig(self, xmlDom, parentNode):
         """
-      Adds a <postgresql> configuration section as the next child of a parent.
+        Adds a <postgresql> configuration section as the next child of a parent.
 
-      Third parties should use this function to write configuration related to
-      this extension.
+        Third parties should use this function to write configuration related to
+        this extension.
 
-      We add the following fields to the document::
+        We add the following fields to the document::
 
-         user           //cb_config/postgresql/user
-         compressMode   //cb_config/postgresql/compress_mode
-         all            //cb_config/postgresql/all
+           user           //cb_config/postgresql/user
+           compressMode   //cb_config/postgresql/compress_mode
+           all            //cb_config/postgresql/all
 
-      We also add groups of the following items, one list element per
-      item::
+        We also add groups of the following items, one list element per
+        item::
 
-         database       //cb_config/postgresql/database
+           database       //cb_config/postgresql/database
 
-      Args:
-         xmlDom: DOM tree as from ``impl.createDocument()``
-         parentNode: Parent that the section should be appended to
-      """
+        Args:
+           xmlDom: DOM tree as from ``impl.createDocument()``
+           parentNode: Parent that the section should be appended to
+        """
         if self.postgresql is not None:
             sectionNode = addContainerNode(xmlDom, parentNode, "postgresql")
             addStringNode(xmlDom, sectionNode, "user", self.postgresql.user)
@@ -470,43 +470,43 @@ class LocalConfig(object):
 
     def _parseXmlData(self, xmlData):
         """
-      Internal method to parse an XML string into the object.
+        Internal method to parse an XML string into the object.
 
-      This method parses the XML document into a DOM tree (``xmlDom``) and then
-      calls a static method to parse the postgresql configuration section.
+        This method parses the XML document into a DOM tree (``xmlDom``) and then
+        calls a static method to parse the postgresql configuration section.
 
-      Args:
-         xmlData (String data): XML data to be parsed
-      Raises:
-         ValueError: If the XML cannot be successfully parsed
-      """
+        Args:
+           xmlData (String data): XML data to be parsed
+        Raises:
+           ValueError: If the XML cannot be successfully parsed
+        """
         (xmlDom, parentNode) = createInputDom(xmlData)
         self._postgresql = LocalConfig._parsePostgresql(parentNode)
 
     @staticmethod
     def _parsePostgresql(parent):
         """
-      Parses a postgresql configuration section.
+        Parses a postgresql configuration section.
 
-      We read the following fields::
+        We read the following fields::
 
-         user           //cb_config/postgresql/user
-         compressMode   //cb_config/postgresql/compress_mode
-         all            //cb_config/postgresql/all
+           user           //cb_config/postgresql/user
+           compressMode   //cb_config/postgresql/compress_mode
+           all            //cb_config/postgresql/all
 
-      We also read groups of the following item, one list element per
-      item::
+        We also read groups of the following item, one list element per
+        item::
 
-         databases      //cb_config/postgresql/database
+           databases      //cb_config/postgresql/database
 
-      Args:
-         parent: Parent node to search beneath
+        Args:
+           parent: Parent node to search beneath
 
-      Returns:
-          ``PostgresqlConfig`` object or ``None`` if the section does not exist
-      Raises:
-         ValueError: If some filled-in value is invalid
-      """
+        Returns:
+            ``PostgresqlConfig`` object or ``None`` if the section does not exist
+        Raises:
+           ValueError: If some filled-in value is invalid
+        """
         postgresql = None
         section = readFirstChild(parent, "postgresql")
         if section is not None:
@@ -529,16 +529,16 @@ class LocalConfig(object):
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
-   Executes the PostgreSQL backup action.
+    Executes the PostgreSQL backup action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If a backup could not be written for some reason
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If a backup could not be written for some reason
+    """
     logger.debug("Executing PostgreSQL extended action.")
     if config.options is None or config.collect is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
@@ -570,26 +570,26 @@ def executeAction(configPath, options, config):
 
 def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, database=None):
     """
-   Backs up an individual PostgreSQL database, or all databases.
+    Backs up an individual PostgreSQL database, or all databases.
 
-   This internal method wraps the public method and adds some functionality,
-   like figuring out a filename, etc.
+    This internal method wraps the public method and adds some functionality,
+    like figuring out a filename, etc.
 
-   Args:
-      targetDir:  Directory into which backups should be written
-      compressMode: Compress mode to be used for backed-up files
-      user: User to use for connecting to the database
-      backupUser: User to own resulting file
-      backupGroup: Group to own resulting file
-      database: Name of database, or ``None`` for all databases
+    Args:
+       targetDir:  Directory into which backups should be written
+       compressMode: Compress mode to be used for backed-up files
+       user: User to use for connecting to the database
+       backupUser: User to own resulting file
+       backupGroup: Group to own resulting file
+       database: Name of database, or ``None`` for all databases
 
-   Returns:
-       Name of the generated backup file
+    Returns:
+        Name of the generated backup file
 
-   Raises:
-      ValueError: If some value is missing or invalid
-      IOError: If there is a problem executing the PostgreSQL dump
-   """
+    Raises:
+       ValueError: If some value is missing or invalid
+       IOError: If there is a problem executing the PostgreSQL dump
+    """
     (outputFile, filename) = _getOutputFile(targetDir, database, compressMode)
     with outputFile:
         backupDatabase(user, outputFile, database)
@@ -600,20 +600,20 @@ def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, data
 
 def _getOutputFile(targetDir, database, compressMode):
     """
-   Opens the output file used for saving the PostgreSQL dump.
+    Opens the output file used for saving the PostgreSQL dump.
 
-   The filename is either ``"postgresqldump.txt"`` or
-   ``"postgresqldump-<database>.txt"``.  The ``".gz"`` or ``".bz2"`` extension is
-   added if ``compress`` is ``True``.
+    The filename is either ``"postgresqldump.txt"`` or
+    ``"postgresqldump-<database>.txt"``.  The ``".gz"`` or ``".bz2"`` extension is
+    added if ``compress`` is ``True``.
 
-   Args:
-      targetDir: Target directory to write file in
-      database: Name of the database (if any)
-      compressMode: Compress mode to be used for backed-up files
+    Args:
+       targetDir: Target directory to write file in
+       database: Name of the database (if any)
+       compressMode: Compress mode to be used for backed-up files
 
-   Returns:
-       Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
-   """
+    Returns:
+        Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
+    """
     if database is None:
         filename = os.path.join(targetDir, "postgresqldump.txt")
     else:
@@ -637,28 +637,28 @@ def _getOutputFile(targetDir, database, compressMode):
 
 def backupDatabase(user, backupFile, database=None):
     """
-   Backs up an individual PostgreSQL database, or all databases.
+    Backs up an individual PostgreSQL database, or all databases.
 
-   This function backs up either a named local PostgreSQL database or all local
-   PostgreSQL databases, using the passed in user for connectivity.
-   This is *always* a full backup.  There is no facility for incremental
-   backups.
+    This function backs up either a named local PostgreSQL database or all local
+    PostgreSQL databases, using the passed in user for connectivity.
+    This is *always* a full backup.  There is no facility for incremental
+    backups.
 
-   The backup data will be written into the passed-in back file.  Normally,
-   this would be an object as returned from ``open``, but it is possible to
-   use something like a ``GzipFile`` to write compressed output.  The caller is
-   responsible for closing the passed-in backup file.
+    The backup data will be written into the passed-in back file.  Normally,
+    this would be an object as returned from ``open``, but it is possible to
+    use something like a ``GzipFile`` to write compressed output.  The caller is
+    responsible for closing the passed-in backup file.
 
-   *Note:* Typically, you would use the ``root`` user to back up all databases.
+    *Note:* Typically, you would use the ``root`` user to back up all databases.
 
-   Args:
-      user (String representing PostgreSQL username): User to use for connecting to the database
-      backupFile (Python file object as from ``open`` or ``file``): File use for writing backup
-      database (String representing database name, or ``None`` for all databases): Name of the database to be backed up
-   Raises:
-      ValueError: If some value is missing or invalid
-      IOError: If there is a problem executing the PostgreSQL dump
-   """
+    Args:
+       user (String representing PostgreSQL username): User to use for connecting to the database
+       backupFile (Python file object as from ``open`` or ``file``): File use for writing backup
+       database (String representing database name, or ``None`` for all databases): Name of the database to be backed up
+    Raises:
+       ValueError: If some value is missing or invalid
+       IOError: If there is a problem executing the PostgreSQL dump
+    """
     args = []
     if user is not None:
         args.append("-U")

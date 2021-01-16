@@ -147,8 +147,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = MboxFile()
         obj.__repr__()
         obj.__str__()
@@ -159,8 +159,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.absolutePath)
         self.assertEqual(None, mboxFile.collectMode)
@@ -168,8 +168,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in.
-      """
+        Test constructor with all values filled in.
+        """
         mboxFile = MboxFile("/path/to/it", "daily", "gzip")
         self.assertEqual("/path/to/it", mboxFile.absolutePath)
         self.assertEqual("daily", mboxFile.collectMode)
@@ -177,8 +177,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test assignment of absolutePath attribute, None value.
-      """
+        Test assignment of absolutePath attribute, None value.
+        """
         mboxFile = MboxFile(absolutePath="/path/to/something")
         self.assertEqual("/path/to/something", mboxFile.absolutePath)
         mboxFile.absolutePath = None
@@ -186,8 +186,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of absolutePath attribute, valid value.
-      """
+        Test assignment of absolutePath attribute, valid value.
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.absolutePath)
         mboxFile.absolutePath = "/path/to/whatever"
@@ -195,8 +195,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of absolutePath attribute, invalid value (empty).
-      """
+        Test assignment of absolutePath attribute, invalid value (empty).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.absolutePath)
         self.failUnlessAssignRaises(ValueError, mboxFile, "absolutePath", "")
@@ -204,8 +204,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of absolutePath attribute, invalid value (not absolute).
-      """
+        Test assignment of absolutePath attribute, invalid value (not absolute).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.absolutePath)
         self.failUnlessAssignRaises(ValueError, mboxFile, "absolutePath", "relative/path")
@@ -213,8 +213,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of collectMode attribute, None value.
-      """
+        Test assignment of collectMode attribute, None value.
+        """
         mboxFile = MboxFile(collectMode="daily")
         self.assertEqual("daily", mboxFile.collectMode)
         mboxFile.collectMode = None
@@ -222,8 +222,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of collectMode attribute, valid value.
-      """
+        Test assignment of collectMode attribute, valid value.
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.collectMode)
         mboxFile.collectMode = "daily"
@@ -235,8 +235,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of collectMode attribute, invalid value (empty).
-      """
+        Test assignment of collectMode attribute, invalid value (empty).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.collectMode)
         self.failUnlessAssignRaises(ValueError, mboxFile, "collectMode", "")
@@ -244,8 +244,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of collectMode attribute, invalid value (not in list).
-      """
+        Test assignment of collectMode attribute, invalid value (not in list).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.collectMode)
         self.failUnlessAssignRaises(ValueError, mboxFile, "collectMode", "monthly")
@@ -253,8 +253,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_011(self):
         """
-      Test assignment of compressMode attribute, None value.
-      """
+        Test assignment of compressMode attribute, None value.
+        """
         mboxFile = MboxFile(compressMode="gzip")
         self.assertEqual("gzip", mboxFile.compressMode)
         mboxFile.compressMode = None
@@ -262,8 +262,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_012(self):
         """
-      Test assignment of compressMode attribute, valid value.
-      """
+        Test assignment of compressMode attribute, valid value.
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.compressMode)
         mboxFile.compressMode = "none"
@@ -275,8 +275,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test assignment of compressMode attribute, invalid value (empty).
-      """
+        Test assignment of compressMode attribute, invalid value (empty).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.compressMode)
         self.failUnlessAssignRaises(ValueError, mboxFile, "compressMode", "")
@@ -284,8 +284,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test assignment of compressMode attribute, invalid value (not in list).
-      """
+        Test assignment of compressMode attribute, invalid value (not in list).
+        """
         mboxFile = MboxFile()
         self.assertEqual(None, mboxFile.compressMode)
         self.failUnlessAssignRaises(ValueError, mboxFile, "compressMode", "compress")
@@ -297,8 +297,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         mboxFile1 = MboxFile()
         mboxFile2 = MboxFile()
         self.assertEqual(mboxFile1, mboxFile2)
@@ -311,8 +311,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         mboxFile1 = MboxFile("/path", "daily", "gzip")
         mboxFile2 = MboxFile("/path", "daily", "gzip")
         self.assertEqual(mboxFile1, mboxFile2)
@@ -325,8 +325,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, absolutePath differs (one None).
-      """
+        Test comparison of two differing objects, absolutePath differs (one None).
+        """
         mboxFile1 = MboxFile()
         mboxFile2 = MboxFile(absolutePath="/zippy")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -339,8 +339,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, absolutePath differs.
-      """
+        Test comparison of two differing objects, absolutePath differs.
+        """
         mboxFile1 = MboxFile("/path", "daily", "gzip")
         mboxFile2 = MboxFile("/zippy", "daily", "gzip")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -353,8 +353,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, collectMode differs (one None).
-      """
+        Test comparison of two differing objects, collectMode differs (one None).
+        """
         mboxFile1 = MboxFile()
         mboxFile2 = MboxFile(collectMode="incr")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -367,8 +367,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, collectMode differs.
-      """
+        Test comparison of two differing objects, collectMode differs.
+        """
         mboxFile1 = MboxFile("/path", "daily", "gzip")
         mboxFile2 = MboxFile("/path", "incr", "gzip")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -381,8 +381,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test comparison of two differing objects, compressMode differs (one None).
-      """
+        Test comparison of two differing objects, compressMode differs (one None).
+        """
         mboxFile1 = MboxFile()
         mboxFile2 = MboxFile(compressMode="gzip")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -395,8 +395,8 @@ class TestMboxFile(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test comparison of two differing objects, compressMode differs.
-      """
+        Test comparison of two differing objects, compressMode differs.
+        """
         mboxFile1 = MboxFile("/path", "daily", "bzip2")
         mboxFile2 = MboxFile("/path", "daily", "gzip")
         self.assertNotEqual(mboxFile1, mboxFile2)
@@ -439,8 +439,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = MboxDir()
         obj.__repr__()
         obj.__str__()
@@ -451,8 +451,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.absolutePath)
         self.assertEqual(None, mboxDir.collectMode)
@@ -462,8 +462,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in.
-      """
+        Test constructor with all values filled in.
+        """
         mboxDir = MboxDir("/path/to/it", "daily", "gzip", ["whatever"], [".*SPAM.*"])
         self.assertEqual("/path/to/it", mboxDir.absolutePath)
         self.assertEqual("daily", mboxDir.collectMode)
@@ -473,8 +473,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test assignment of absolutePath attribute, None value.
-      """
+        Test assignment of absolutePath attribute, None value.
+        """
         mboxDir = MboxDir(absolutePath="/path/to/something")
         self.assertEqual("/path/to/something", mboxDir.absolutePath)
         mboxDir.absolutePath = None
@@ -482,8 +482,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of absolutePath attribute, valid value.
-      """
+        Test assignment of absolutePath attribute, valid value.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.absolutePath)
         mboxDir.absolutePath = "/path/to/whatever"
@@ -491,8 +491,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test assignment of absolutePath attribute, invalid value (empty).
-      """
+        Test assignment of absolutePath attribute, invalid value (empty).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.absolutePath)
         self.failUnlessAssignRaises(ValueError, mboxDir, "absolutePath", "")
@@ -500,8 +500,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test assignment of absolutePath attribute, invalid value (not absolute).
-      """
+        Test assignment of absolutePath attribute, invalid value (not absolute).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.absolutePath)
         self.failUnlessAssignRaises(ValueError, mboxDir, "absolutePath", "relative/path")
@@ -509,8 +509,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of collectMode attribute, None value.
-      """
+        Test assignment of collectMode attribute, None value.
+        """
         mboxDir = MboxDir(collectMode="daily")
         self.assertEqual("daily", mboxDir.collectMode)
         mboxDir.collectMode = None
@@ -518,8 +518,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of collectMode attribute, valid value.
-      """
+        Test assignment of collectMode attribute, valid value.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.collectMode)
         mboxDir.collectMode = "daily"
@@ -531,8 +531,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of collectMode attribute, invalid value (empty).
-      """
+        Test assignment of collectMode attribute, invalid value (empty).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.collectMode)
         self.failUnlessAssignRaises(ValueError, mboxDir, "collectMode", "")
@@ -540,8 +540,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of collectMode attribute, invalid value (not in list).
-      """
+        Test assignment of collectMode attribute, invalid value (not in list).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.collectMode)
         self.failUnlessAssignRaises(ValueError, mboxDir, "collectMode", "monthly")
@@ -549,8 +549,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_011(self):
         """
-      Test assignment of compressMode attribute, None value.
-      """
+        Test assignment of compressMode attribute, None value.
+        """
         mboxDir = MboxDir(compressMode="gzip")
         self.assertEqual("gzip", mboxDir.compressMode)
         mboxDir.compressMode = None
@@ -558,8 +558,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_012(self):
         """
-      Test assignment of compressMode attribute, valid value.
-      """
+        Test assignment of compressMode attribute, valid value.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.compressMode)
         mboxDir.compressMode = "none"
@@ -571,8 +571,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test assignment of compressMode attribute, invalid value (empty).
-      """
+        Test assignment of compressMode attribute, invalid value (empty).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.compressMode)
         self.failUnlessAssignRaises(ValueError, mboxDir, "compressMode", "")
@@ -580,8 +580,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test assignment of compressMode attribute, invalid value (not in list).
-      """
+        Test assignment of compressMode attribute, invalid value (not in list).
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.compressMode)
         self.failUnlessAssignRaises(ValueError, mboxDir, "compressMode", "compress")
@@ -589,8 +589,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_015(self):
         """
-      Test assignment of relativeExcludePaths attribute, None value.
-      """
+        Test assignment of relativeExcludePaths attribute, None value.
+        """
         mboxDir = MboxDir(relativeExcludePaths=[])
         self.assertEqual([], mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths = None
@@ -598,8 +598,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_016(self):
         """
-      Test assignment of relativeExcludePaths attribute, [] value.
-      """
+        Test assignment of relativeExcludePaths attribute, [] value.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths = []
@@ -607,8 +607,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_017(self):
         """
-      Test assignment of relativeExcludePaths attribute, single valid entry.
-      """
+        Test assignment of relativeExcludePaths attribute, single valid entry.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths = [
@@ -620,9 +620,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_018(self):
         """
-      Test assignment of relativeExcludePaths attribute, multiple valid
-      entries.
-      """
+        Test assignment of relativeExcludePaths attribute, multiple valid
+        entries.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.relativeExcludePaths)
         mboxDir.relativeExcludePaths = [
@@ -635,8 +635,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_019(self):
         """
-      Test assignment of excludePatterns attribute, None value.
-      """
+        Test assignment of excludePatterns attribute, None value.
+        """
         mboxDir = MboxDir(excludePatterns=[])
         self.assertEqual([], mboxDir.excludePatterns)
         mboxDir.excludePatterns = None
@@ -644,8 +644,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_020(self):
         """
-      Test assignment of excludePatterns attribute, [] value.
-      """
+        Test assignment of excludePatterns attribute, [] value.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         mboxDir.excludePatterns = []
@@ -653,8 +653,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_021(self):
         """
-      Test assignment of excludePatterns attribute, single valid entry.
-      """
+        Test assignment of excludePatterns attribute, single valid entry.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         mboxDir.excludePatterns = [
@@ -666,8 +666,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_022(self):
         """
-      Test assignment of excludePatterns attribute, multiple valid entries.
-      """
+        Test assignment of excludePatterns attribute, multiple valid entries.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         mboxDir.excludePatterns = [
@@ -680,8 +680,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_023(self):
         """
-      Test assignment of excludePatterns attribute, single invalid entry.
-      """
+        Test assignment of excludePatterns attribute, single invalid entry.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg"])
@@ -689,8 +689,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_024(self):
         """
-      Test assignment of excludePatterns attribute, multiple invalid entries.
-      """
+        Test assignment of excludePatterns attribute, multiple invalid entries.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg", "*"])
@@ -698,9 +698,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testConstructor_025(self):
         """
-      Test assignment of excludePatterns attribute, mixed valid and invalid
-      entries.
-      """
+        Test assignment of excludePatterns attribute, mixed valid and invalid
+        entries.
+        """
         mboxDir = MboxDir()
         self.assertEqual(None, mboxDir.excludePatterns)
         self.failUnlessAssignRaises(ValueError, mboxDir, "excludePatterns", ["*.jpg", "valid"])
@@ -712,8 +712,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir()
         self.assertEqual(mboxDir1, mboxDir2)
@@ -726,8 +726,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         mboxDir1 = MboxDir("/path", "daily", "gzip")
         mboxDir2 = MboxDir("/path", "daily", "gzip")
         self.assertEqual(mboxDir1, mboxDir2)
@@ -740,8 +740,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, absolutePath differs (one None).
-      """
+        Test comparison of two differing objects, absolutePath differs (one None).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(absolutePath="/zippy")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -754,8 +754,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, absolutePath differs.
-      """
+        Test comparison of two differing objects, absolutePath differs.
+        """
         mboxDir1 = MboxDir("/path", "daily", "gzip")
         mboxDir2 = MboxDir("/zippy", "daily", "gzip")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -768,8 +768,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, collectMode differs (one None).
-      """
+        Test comparison of two differing objects, collectMode differs (one None).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(collectMode="incr")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -782,8 +782,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, collectMode differs.
-      """
+        Test comparison of two differing objects, collectMode differs.
+        """
         mboxDir1 = MboxDir("/path", "daily", "gzip")
         mboxDir2 = MboxDir("/path", "incr", "gzip")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -796,8 +796,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test comparison of two differing objects, compressMode differs (one None).
-      """
+        Test comparison of two differing objects, compressMode differs (one None).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(compressMode="gzip")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -810,8 +810,8 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test comparison of two differing objects, compressMode differs.
-      """
+        Test comparison of two differing objects, compressMode differs.
+        """
         mboxDir1 = MboxDir("/path", "daily", "bzip2")
         mboxDir2 = MboxDir("/path", "daily", "gzip")
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -824,9 +824,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_009(self):
         """
-      Test comparison of two differing objects, relativeExcludePaths differs
-      (one None, one empty).
-      """
+        Test comparison of two differing objects, relativeExcludePaths differs
+        (one None, one empty).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(relativeExcludePaths=[])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -839,9 +839,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_010(self):
         """
-      Test comparison of two differing objects, relativeExcludePaths differs
-      (one None, one not empty).
-      """
+        Test comparison of two differing objects, relativeExcludePaths differs
+        (one None, one not empty).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(relativeExcludePaths=["stuff", "other"])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -854,9 +854,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_011(self):
         """
-      Test comparison of two differing objects, relativeExcludePaths differs
-      (one empty, one not empty).
-      """
+        Test comparison of two differing objects, relativeExcludePaths differs
+        (one empty, one not empty).
+        """
         mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one"], [])
         mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], [])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -869,9 +869,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_012(self):
         """
-      Test comparison of two differing objects, relativeExcludePaths differs
-      (both not empty).
-      """
+        Test comparison of two differing objects, relativeExcludePaths differs
+        (both not empty).
+        """
         mboxDir1 = MboxDir("/etc/whatever", "incr", "none", ["one"], [])
         mboxDir2 = MboxDir("/etc/whatever", "incr", "none", ["two"], [])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -884,9 +884,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_013(self):
         """
-      Test comparison of two differing objects, excludePatterns differs (one
-      None, one empty).
-      """
+        Test comparison of two differing objects, excludePatterns differs (one
+        None, one empty).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(excludePatterns=[])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -899,9 +899,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_014(self):
         """
-      Test comparison of two differing objects, excludePatterns differs (one
-      None, one not empty).
-      """
+        Test comparison of two differing objects, excludePatterns differs (one
+        None, one not empty).
+        """
         mboxDir1 = MboxDir()
         mboxDir2 = MboxDir(excludePatterns=["one", "two", "three"])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -914,9 +914,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_015(self):
         """
-      Test comparison of two differing objects, excludePatterns differs (one
-      empty, one not empty).
-      """
+        Test comparison of two differing objects, excludePatterns differs (one
+        empty, one not empty).
+        """
         mboxDir1 = MboxDir("/etc/whatever", "incr", "none", [], [])
         mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], ["pattern"])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -929,9 +929,9 @@ class TestMboxDir(unittest.TestCase):
 
     def testComparison_016(self):
         """
-      Test comparison of two differing objects, excludePatterns differs (both
-      not empty).
-      """
+        Test comparison of two differing objects, excludePatterns differs (both
+        not empty).
+        """
         mboxDir1 = MboxDir("/etc/whatever", "incr", "none", [], ["p1"])
         mboxDir2 = MboxDir("/etc/whatever", "incr", "none", [], ["p2"])
         self.assertNotEqual(mboxDir1, mboxDir2)
@@ -974,8 +974,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = MboxConfig()
         obj.__repr__()
         obj.__str__()
@@ -986,8 +986,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with no values filled in.
-      """
+        Test constructor with no values filled in.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.collectMode)
         self.assertEqual(None, mbox.compressMode)
@@ -996,8 +996,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test constructor with all values filled in, with valid values, mboxFiles=None and mboxDirs=None.
-      """
+        Test constructor with all values filled in, with valid values, mboxFiles=None and mboxDirs=None.
+        """
         mbox = MboxConfig("daily", "gzip", None, None)
         self.assertEqual("daily", mbox.collectMode)
         self.assertEqual("gzip", mbox.compressMode)
@@ -1006,8 +1006,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test constructor with all values filled in, with valid values, no mboxFiles, no mboxDirs.
-      """
+        Test constructor with all values filled in, with valid values, no mboxFiles, no mboxDirs.
+        """
         mbox = MboxConfig("daily", "gzip", [], [])
         self.assertEqual("daily", mbox.collectMode)
         self.assertEqual("gzip", mbox.compressMode)
@@ -1016,8 +1016,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test constructor with all values filled in, with valid values, with one mboxFile, no mboxDirs.
-      """
+        Test constructor with all values filled in, with valid values, with one mboxFile, no mboxDirs.
+        """
         mboxFiles = [
             MboxFile(),
         ]
@@ -1029,8 +1029,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test constructor with all values filled in, with valid values, with no mboxFiles, one mboxDir.
-      """
+        Test constructor with all values filled in, with valid values, with no mboxFiles, one mboxDir.
+        """
         mboxDirs = [
             MboxDir(),
         ]
@@ -1042,8 +1042,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test constructor with all values filled in, with valid values, with multiple mboxFiles and mboxDirs.
-      """
+        Test constructor with all values filled in, with valid values, with multiple mboxFiles and mboxDirs.
+        """
         mboxFiles = [
             MboxFile(collectMode="daily"),
             MboxFile(collectMode="weekly"),
@@ -1060,8 +1060,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test assignment of collectMode attribute, None value.
-      """
+        Test assignment of collectMode attribute, None value.
+        """
         mbox = MboxConfig(collectMode="daily")
         self.assertEqual("daily", mbox.collectMode)
         mbox.collectMode = None
@@ -1069,8 +1069,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test assignment of collectMode attribute, valid value.
-      """
+        Test assignment of collectMode attribute, valid value.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.collectMode)
         mbox.collectMode = "weekly"
@@ -1078,8 +1078,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_009(self):
         """
-      Test assignment of collectMode attribute, invalid value (empty).
-      """
+        Test assignment of collectMode attribute, invalid value (empty).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.collectMode)
         self.failUnlessAssignRaises(ValueError, mbox, "collectMode", "")
@@ -1087,8 +1087,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test assignment of compressMode attribute, None value.
-      """
+        Test assignment of compressMode attribute, None value.
+        """
         mbox = MboxConfig(compressMode="gzip")
         self.assertEqual("gzip", mbox.compressMode)
         mbox.compressMode = None
@@ -1096,8 +1096,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_011(self):
         """
-      Test assignment of compressMode attribute, valid value.
-      """
+        Test assignment of compressMode attribute, valid value.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.compressMode)
         mbox.compressMode = "bzip2"
@@ -1105,8 +1105,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_012(self):
         """
-      Test assignment of compressMode attribute, invalid value (empty).
-      """
+        Test assignment of compressMode attribute, invalid value (empty).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.compressMode)
         self.failUnlessAssignRaises(ValueError, mbox, "compressMode", "")
@@ -1114,8 +1114,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test assignment of mboxFiles attribute, None value.
-      """
+        Test assignment of mboxFiles attribute, None value.
+        """
         mbox = MboxConfig(mboxFiles=[])
         self.assertEqual([], mbox.mboxFiles)
         mbox.mboxFiles = None
@@ -1123,8 +1123,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test assignment of mboxFiles attribute, [] value.
-      """
+        Test assignment of mboxFiles attribute, [] value.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         mbox.mboxFiles = []
@@ -1132,8 +1132,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_015(self):
         """
-      Test assignment of mboxFiles attribute, single valid entry.
-      """
+        Test assignment of mboxFiles attribute, single valid entry.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         mbox.mboxFiles = [
@@ -1145,8 +1145,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_016(self):
         """
-      Test assignment of mboxFiles attribute, multiple valid entries.
-      """
+        Test assignment of mboxFiles attribute, multiple valid entries.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         mbox.mboxFiles = [
@@ -1161,8 +1161,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_017(self):
         """
-      Test assignment of mboxFiles attribute, single invalid entry (None).
-      """
+        Test assignment of mboxFiles attribute, single invalid entry (None).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [None])
@@ -1170,8 +1170,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_018(self):
         """
-      Test assignment of mboxFiles attribute, single invalid entry (wrong type).
-      """
+        Test assignment of mboxFiles attribute, single invalid entry (wrong type).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [MboxDir()])
@@ -1179,8 +1179,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_019(self):
         """
-      Test assignment of mboxFiles attribute, mixed valid and invalid entries.
-      """
+        Test assignment of mboxFiles attribute, mixed valid and invalid entries.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxFiles)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxFiles", [MboxFile(), MboxDir()])
@@ -1188,8 +1188,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_020(self):
         """
-      Test assignment of mboxDirs attribute, None value.
-      """
+        Test assignment of mboxDirs attribute, None value.
+        """
         mbox = MboxConfig(mboxDirs=[])
         self.assertEqual([], mbox.mboxDirs)
         mbox.mboxDirs = None
@@ -1197,8 +1197,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_021(self):
         """
-      Test assignment of mboxDirs attribute, [] value.
-      """
+        Test assignment of mboxDirs attribute, [] value.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         mbox.mboxDirs = []
@@ -1206,8 +1206,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_022(self):
         """
-      Test assignment of mboxDirs attribute, single valid entry.
-      """
+        Test assignment of mboxDirs attribute, single valid entry.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         mbox.mboxDirs = [
@@ -1219,8 +1219,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_023(self):
         """
-      Test assignment of mboxDirs attribute, multiple valid entries.
-      """
+        Test assignment of mboxDirs attribute, multiple valid entries.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         mbox.mboxDirs = [
@@ -1233,8 +1233,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_024(self):
         """
-      Test assignment of mboxDirs attribute, single invalid entry (None).
-      """
+        Test assignment of mboxDirs attribute, single invalid entry (None).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [None])
@@ -1242,8 +1242,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_025(self):
         """
-      Test assignment of mboxDirs attribute, single invalid entry (wrong type).
-      """
+        Test assignment of mboxDirs attribute, single invalid entry (wrong type).
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [MboxFile()])
@@ -1251,8 +1251,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testConstructor_026(self):
         """
-      Test assignment of mboxDirs attribute, mixed valid and invalid entries.
-      """
+        Test assignment of mboxDirs attribute, mixed valid and invalid entries.
+        """
         mbox = MboxConfig()
         self.assertEqual(None, mbox.mboxDirs)
         self.failUnlessAssignRaises(ValueError, mbox, "mboxDirs", [MboxDir(), MboxFile()])
@@ -1264,8 +1264,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig()
         self.assertEqual(mbox1, mbox2)
@@ -1278,8 +1278,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None, lists None.
-      """
+        Test comparison of two identical objects, all attributes non-None, lists None.
+        """
         mbox1 = MboxConfig("daily", "gzip", None, None)
         mbox2 = MboxConfig("daily", "gzip", None, None)
         self.assertEqual(mbox1, mbox2)
@@ -1292,8 +1292,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two identical objects, all attributes non-None, lists empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, lists empty.
+        """
         mbox1 = MboxConfig("daily", "gzip", [], [])
         mbox2 = MboxConfig("daily", "gzip", [], [])
         self.assertEqual(mbox1, mbox2)
@@ -1306,8 +1306,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two identical objects, all attributes non-None, lists non-empty.
-      """
+        Test comparison of two identical objects, all attributes non-None, lists non-empty.
+        """
         mbox1 = MboxConfig("daily", "gzip", [MboxFile()], [MboxDir()])
         mbox2 = MboxConfig("daily", "gzip", [MboxFile()], [MboxDir()])
         self.assertEqual(mbox1, mbox2)
@@ -1320,8 +1320,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test comparison of two differing objects, collectMode differs (one None).
-      """
+        Test comparison of two differing objects, collectMode differs (one None).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(collectMode="daily")
         self.assertNotEqual(mbox1, mbox2)
@@ -1334,8 +1334,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test comparison of two differing objects, collectMode differs.
-      """
+        Test comparison of two differing objects, collectMode differs.
+        """
         mbox1 = MboxConfig("daily", "gzip", [MboxFile()])
         mbox2 = MboxConfig("weekly", "gzip", [MboxFile()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1348,8 +1348,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test comparison of two differing objects, compressMode differs (one None).
-      """
+        Test comparison of two differing objects, compressMode differs (one None).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(compressMode="bzip2")
         self.assertNotEqual(mbox1, mbox2)
@@ -1362,8 +1362,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test comparison of two differing objects, compressMode differs.
-      """
+        Test comparison of two differing objects, compressMode differs.
+        """
         mbox1 = MboxConfig("daily", "bzip2", [MboxFile()])
         mbox2 = MboxConfig("daily", "gzip", [MboxFile()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1376,8 +1376,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_009(self):
         """
-      Test comparison of two differing objects, mboxFiles differs (one None, one empty).
-      """
+        Test comparison of two differing objects, mboxFiles differs (one None, one empty).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(mboxFiles=[])
         self.assertNotEqual(mbox1, mbox2)
@@ -1390,8 +1390,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_010(self):
         """
-      Test comparison of two differing objects, mboxFiles differs (one None, one not empty).
-      """
+        Test comparison of two differing objects, mboxFiles differs (one None, one not empty).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(mboxFiles=[MboxFile()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1404,8 +1404,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_011(self):
         """
-      Test comparison of two differing objects, mboxFiles differs (one empty, one not empty).
-      """
+        Test comparison of two differing objects, mboxFiles differs (one empty, one not empty).
+        """
         mbox1 = MboxConfig("daily", "gzip", [], None)
         mbox2 = MboxConfig("daily", "gzip", [MboxFile()], None)
         self.assertNotEqual(mbox1, mbox2)
@@ -1418,8 +1418,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_012(self):
         """
-      Test comparison of two differing objects, mboxFiles differs (both not empty).
-      """
+        Test comparison of two differing objects, mboxFiles differs (both not empty).
+        """
         mbox1 = MboxConfig("daily", "gzip", [MboxFile()], None)
         mbox2 = MboxConfig("daily", "gzip", [MboxFile(), MboxFile()], None)
         self.assertNotEqual(mbox1, mbox2)
@@ -1432,8 +1432,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_013(self):
         """
-      Test comparison of two differing objects, mboxDirs differs (one None, one empty).
-      """
+        Test comparison of two differing objects, mboxDirs differs (one None, one empty).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(mboxDirs=[])
         self.assertNotEqual(mbox1, mbox2)
@@ -1446,8 +1446,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_014(self):
         """
-      Test comparison of two differing objects, mboxDirs differs (one None, one not empty).
-      """
+        Test comparison of two differing objects, mboxDirs differs (one None, one not empty).
+        """
         mbox1 = MboxConfig()
         mbox2 = MboxConfig(mboxDirs=[MboxDir()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1460,8 +1460,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_015(self):
         """
-      Test comparison of two differing objects, mboxDirs differs (one empty, one not empty).
-      """
+        Test comparison of two differing objects, mboxDirs differs (one empty, one not empty).
+        """
         mbox1 = MboxConfig("daily", "gzip", None, [])
         mbox2 = MboxConfig("daily", "gzip", None, [MboxDir()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1474,8 +1474,8 @@ class TestMboxConfig(unittest.TestCase):
 
     def testComparison_016(self):
         """
-      Test comparison of two differing objects, mboxDirs differs (both not empty).
-      """
+        Test comparison of two differing objects, mboxDirs differs (both not empty).
+        """
         mbox1 = MboxConfig("daily", "gzip", None, [MboxDir()])
         mbox2 = MboxConfig("daily", "gzip", None, [MboxDir(), MboxDir()])
         self.assertNotEqual(mbox1, mbox2)
@@ -1523,19 +1523,19 @@ class TestLocalConfig(unittest.TestCase):
 
     def validateAddConfig(self, origConfig):
         """
-      Validates that document dumped from ``LocalConfig.addConfig`` results in
-      identical object.
+        Validates that document dumped from ``LocalConfig.addConfig`` results in
+        identical object.
 
-      We dump a document containing just the mbox configuration, and then
-      make sure that if we push that document back into the ``LocalConfig``
-      object, that the resulting object matches the original.
+        We dump a document containing just the mbox configuration, and then
+        make sure that if we push that document back into the ``LocalConfig``
+        object, that the resulting object matches the original.
 
-      The ``self.failUnlessEqual`` method is used for the validation, so if the
-      method call returns normally, everything is OK.
+        The ``self.failUnlessEqual`` method is used for the validation, so if the
+        method call returns normally, everything is OK.
 
-      Args:
-         origConfig: Original configuration
-      """
+        Args:
+           origConfig: Original configuration
+        """
         (xmlDom, parentNode) = createOutputDom()
         origConfig.addConfig(xmlDom, parentNode)
         xmlData = serializeDom(xmlDom)
@@ -1548,8 +1548,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = LocalConfig()
         obj.__repr__()
         obj.__str__()
@@ -1560,22 +1560,22 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test empty constructor, validate=False.
-      """
+        Test empty constructor, validate=False.
+        """
         config = LocalConfig(validate=False)
         self.assertEqual(None, config.mbox)
 
     def testConstructor_002(self):
         """
-      Test empty constructor, validate=True.
-      """
+        Test empty constructor, validate=True.
+        """
         config = LocalConfig(validate=True)
         self.assertEqual(None, config.mbox)
 
     def testConstructor_003(self):
         """
-      Test with empty config document as both data and file, validate=False.
-      """
+        Test with empty config document as both data and file, validate=False.
+        """
         path = self.resources["mbox.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -1583,24 +1583,24 @@ class TestLocalConfig(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test assignment of mbox attribute, None value.
-      """
+        Test assignment of mbox attribute, None value.
+        """
         config = LocalConfig()
         config.mbox = None
         self.assertEqual(None, config.mbox)
 
     def testConstructor_005(self):
         """
-      Test assignment of mbox attribute, valid value.
-      """
+        Test assignment of mbox attribute, valid value.
+        """
         config = LocalConfig()
         config.mbox = MboxConfig()
         self.assertEqual(MboxConfig(), config.mbox)
 
     def testConstructor_006(self):
         """
-      Test assignment of mbox attribute, invalid value (not MboxConfig).
-      """
+        Test assignment of mbox attribute, invalid value (not MboxConfig).
+        """
         config = LocalConfig()
         self.failUnlessAssignRaises(ValueError, config, "mbox", "STRING!")
 
@@ -1610,8 +1610,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test comparison of two identical objects, all attributes None.
-      """
+        Test comparison of two identical objects, all attributes None.
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         self.assertEqual(config1, config2)
@@ -1624,8 +1624,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test comparison of two identical objects, all attributes non-None.
-      """
+        Test comparison of two identical objects, all attributes non-None.
+        """
         config1 = LocalConfig()
         config1.mbox = MboxConfig()
 
@@ -1642,8 +1642,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test comparison of two differing objects, mbox differs (one None).
-      """
+        Test comparison of two differing objects, mbox differs (one None).
+        """
         config1 = LocalConfig()
         config2 = LocalConfig()
         config2.mbox = MboxConfig()
@@ -1657,8 +1657,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test comparison of two differing objects, mbox differs.
-      """
+        Test comparison of two differing objects, mbox differs.
+        """
         config1 = LocalConfig()
         config1.mbox = MboxConfig(collectMode="daily")
 
@@ -1679,41 +1679,41 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_001(self):
         """
-      Test validate on a None mbox section.
-      """
+        Test validate on a None mbox section.
+        """
         config = LocalConfig()
         config.mbox = None
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_002(self):
         """
-      Test validate on an empty mbox section.
-      """
+        Test validate on an empty mbox section.
+        """
         config = LocalConfig()
         config.mbox = MboxConfig()
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_003(self):
         """
-      Test validate on a non-empty mbox section, mboxFiles=None and mboxDirs=None.
-      """
+        Test validate on a non-empty mbox section, mboxFiles=None and mboxDirs=None.
+        """
         config = LocalConfig()
         config.mbox = MboxConfig("weekly", "gzip", None, None)
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_004(self):
         """
-      Test validate on a non-empty mbox section, mboxFiles=[] and mboxDirs=[].
-      """
+        Test validate on a non-empty mbox section, mboxFiles=[] and mboxDirs=[].
+        """
         config = LocalConfig()
         config.mbox = MboxConfig("weekly", "gzip", [], [])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_005(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      defaults set, no values on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        defaults set, no values on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/one"), MboxFile(absolutePath="/two")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1725,9 +1725,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_006(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      defaults set, no values on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        defaults set, no values on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/one"), MboxDir(absolutePath="/two")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1739,9 +1739,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_007(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      no defaults set, no values on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        no defaults set, no values on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/one"), MboxFile(absolutePath="/two")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1751,9 +1751,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_008(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      no defaults set, no values on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        no defaults set, no values on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/one"), MboxDir(absolutePath="/two")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1763,9 +1763,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_009(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      no defaults set, both values on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        no defaults set, both values on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", collectMode="weekly", compressMode="gzip")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1775,9 +1775,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_010(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      no defaults set, both values on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        no defaults set, both values on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", collectMode="weekly", compressMode="gzip")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1787,9 +1787,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_011(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      collectMode only on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        collectMode only on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", collectMode="weekly")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1800,9 +1800,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_012(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      collectMode only on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        collectMode only on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", collectMode="weekly")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1813,9 +1813,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_013(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      compressMode only on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        compressMode only on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1826,9 +1826,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_014(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      compressMode only on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        compressMode only on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1839,9 +1839,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_015(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      compressMode default and on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        compressMode default and on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1853,9 +1853,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_016(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      compressMode default and on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        compressMode default and on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1867,9 +1867,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_017(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      collectMode default and on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        collectMode default and on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", collectMode="daily")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1881,9 +1881,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_018(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      collectMode default and on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        collectMode default and on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", collectMode="daily")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1895,9 +1895,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_019(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxFiles,
-      collectMode and compressMode default and on files.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxFiles,
+        collectMode and compressMode default and on files.
+        """
         mboxFiles = [MboxFile(absolutePath="/two", collectMode="daily", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1909,9 +1909,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testValidate_020(self):
         """
-      Test validate on a non-empty mbox section, non-empty mboxDirs,
-      collectMode and compressMode default and on directories.
-      """
+        Test validate on a non-empty mbox section, non-empty mboxDirs,
+        collectMode and compressMode default and on directories.
+        """
         mboxDirs = [MboxDir(absolutePath="/two", collectMode="daily", compressMode="bzip2")]
         config = LocalConfig()
         config.mbox = MboxConfig()
@@ -1927,8 +1927,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_001(self):
         """
-      Parse empty config document.
-      """
+        Parse empty config document.
+        """
         path = self.resources["mbox.conf.1"]
         with open(path) as f:
             contents = f.read()
@@ -1941,8 +1941,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_002(self):
         """
-      Parse config document with default modes, one collect file and one collect dir.
-      """
+        Parse config document with default modes, one collect file and one collect dir.
+        """
         mboxFiles = [
             MboxFile(absolutePath="/home/joebob/mail/cedar-backup-users"),
         ]
@@ -1967,8 +1967,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_003(self):
         """
-      Parse config document with no default modes, one collect file and one collect dir.
-      """
+        Parse config document with no default modes, one collect file and one collect dir.
+        """
         mboxFiles = [
             MboxFile(absolutePath="/home/joebob/mail/cedar-backup-users", collectMode="daily", compressMode="gzip"),
         ]
@@ -1993,9 +1993,9 @@ class TestLocalConfig(unittest.TestCase):
 
     def testParse_004(self):
         """
-      Parse config document with default modes, several files with
-      various overrides and exclusions.
-      """
+        Parse config document with default modes, several files with
+        various overrides and exclusions.
+        """
         mboxFiles = []
         mboxFile = MboxFile(absolutePath="/home/jimbo/mail/cedar-backup-users")
         mboxFiles.append(mboxFile)
@@ -2038,8 +2038,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_001(self):
         """
-      Test with empty config document.
-      """
+        Test with empty config document.
+        """
         mbox = MboxConfig()
         config = LocalConfig()
         config.mbox = mbox
@@ -2047,8 +2047,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_002(self):
         """
-      Test with defaults set, single mbox file with no optional values.
-      """
+        Test with defaults set, single mbox file with no optional values.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxFiles=mboxFiles)
@@ -2058,8 +2058,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_003(self):
         """
-      Test with defaults set, single mbox directory with no optional values.
-      """
+        Test with defaults set, single mbox directory with no optional values.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2069,8 +2069,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_004(self):
         """
-      Test with defaults set, single mbox file with collectMode set.
-      """
+        Test with defaults set, single mbox file with collectMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="incr"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxFiles=mboxFiles)
@@ -2080,8 +2080,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_005(self):
         """
-      Test with defaults set, single mbox directory with collectMode set.
-      """
+        Test with defaults set, single mbox directory with collectMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="incr"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2091,8 +2091,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_006(self):
         """
-      Test with defaults set, single mbox file with compressMode set.
-      """
+        Test with defaults set, single mbox file with compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", compressMode="bzip2"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxFiles=mboxFiles)
@@ -2102,8 +2102,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_007(self):
         """
-      Test with defaults set, single mbox directory with compressMode set.
-      """
+        Test with defaults set, single mbox directory with compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", compressMode="bzip2"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2113,8 +2113,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_008(self):
         """
-      Test with defaults set, single mbox file with collectMode and compressMode set.
-      """
+        Test with defaults set, single mbox file with collectMode and compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="weekly", compressMode="bzip2"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxFiles=mboxFiles)
@@ -2124,8 +2124,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_009(self):
         """
-      Test with defaults set, single mbox directory with collectMode and compressMode set.
-      """
+        Test with defaults set, single mbox directory with collectMode and compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="weekly", compressMode="bzip2"))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2135,8 +2135,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_010(self):
         """
-      Test with no defaults set, single mbox file with collectMode and compressMode set.
-      """
+        Test with no defaults set, single mbox file with collectMode and compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="weekly", compressMode="bzip2"))
         mbox = MboxConfig(mboxFiles=mboxFiles)
@@ -2146,8 +2146,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_011(self):
         """
-      Test with no defaults set, single mbox directory with collectMode and compressMode set.
-      """
+        Test with no defaults set, single mbox directory with collectMode and compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="weekly", compressMode="bzip2"))
         mbox = MboxConfig(mboxDirs=mboxDirs)
@@ -2157,8 +2157,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_012(self):
         """
-      Test with compressMode set, single mbox file with collectMode set.
-      """
+        Test with compressMode set, single mbox file with collectMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="weekly"))
         mbox = MboxConfig(compressMode="gzip", mboxFiles=mboxFiles)
@@ -2168,8 +2168,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_013(self):
         """
-      Test with compressMode set, single mbox directory with collectMode set.
-      """
+        Test with compressMode set, single mbox directory with collectMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="weekly"))
         mbox = MboxConfig(compressMode="gzip", mboxDirs=mboxDirs)
@@ -2179,8 +2179,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_014(self):
         """
-      Test with collectMode set, single mbox file with compressMode set.
-      """
+        Test with collectMode set, single mbox file with compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", compressMode="gzip"))
         mbox = MboxConfig(collectMode="weekly", mboxFiles=mboxFiles)
@@ -2190,8 +2190,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_015(self):
         """
-      Test with collectMode set, single mbox directory with compressMode set.
-      """
+        Test with collectMode set, single mbox directory with compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", compressMode="gzip"))
         mbox = MboxConfig(collectMode="weekly", mboxDirs=mboxDirs)
@@ -2201,8 +2201,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_016(self):
         """
-      Test with compressMode set, single mbox file with collectMode and compressMode set.
-      """
+        Test with compressMode set, single mbox file with collectMode and compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="incr", compressMode="gzip"))
         mbox = MboxConfig(compressMode="bzip2", mboxFiles=mboxFiles)
@@ -2212,8 +2212,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_017(self):
         """
-      Test with compressMode set, single mbox directory with collectMode and compressMode set.
-      """
+        Test with compressMode set, single mbox directory with collectMode and compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="incr", compressMode="gzip"))
         mbox = MboxConfig(compressMode="bzip2", mboxDirs=mboxDirs)
@@ -2223,8 +2223,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_018(self):
         """
-      Test with collectMode set, single mbox file with collectMode and compressMode set.
-      """
+        Test with collectMode set, single mbox file with collectMode and compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path", collectMode="weekly", compressMode="gzip"))
         mbox = MboxConfig(collectMode="incr", mboxFiles=mboxFiles)
@@ -2234,8 +2234,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_019(self):
         """
-      Test with collectMode set, single mbox directory with collectMode and compressMode set.
-      """
+        Test with collectMode set, single mbox directory with collectMode and compressMode set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", collectMode="weekly", compressMode="gzip"))
         mbox = MboxConfig(collectMode="incr", mboxDirs=mboxDirs)
@@ -2245,8 +2245,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_020(self):
         """
-      Test with defaults set, single mbox directory with relativeExcludePaths set.
-      """
+        Test with defaults set, single mbox directory with relativeExcludePaths set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", relativeExcludePaths=["one", "two"]))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2256,8 +2256,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_021(self):
         """
-      Test with defaults set, single mbox directory with excludePatterns set.
-      """
+        Test with defaults set, single mbox directory with excludePatterns set.
+        """
         mboxDirs = []
         mboxDirs.append(MboxDir(absolutePath="/path", excludePatterns=["one", "two"]))
         mbox = MboxConfig(collectMode="daily", compressMode="gzip", mboxDirs=mboxDirs)
@@ -2267,8 +2267,8 @@ class TestLocalConfig(unittest.TestCase):
 
     def testAddConfig_022(self):
         """
-      Test with defaults set, multiple mbox files and directories with collectMode and compressMode set.
-      """
+        Test with defaults set, multiple mbox files and directories with collectMode and compressMode set.
+        """
         mboxFiles = []
         mboxFiles.append(MboxFile(absolutePath="/path1", collectMode="daily", compressMode="gzip"))
         mboxFiles.append(MboxFile(absolutePath="/path2", collectMode="weekly", compressMode="gzip"))

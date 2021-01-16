@@ -157,14 +157,14 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor with an invalid media type.
-      """
+        Test the constructor with an invalid media type.
+        """
         self.assertRaises(ValueError, MediaDefinition, 100)
 
     def testConstructor_002(self):
         """
-      Test the constructor with the ``MEDIA_CDR_74`` media type.
-      """
+        Test the constructor with the ``MEDIA_CDR_74`` media type.
+        """
         media = MediaDefinition(MEDIA_CDR_74)
         self.assertEqual(MEDIA_CDR_74, media.mediaType)
         self.assertEqual(False, media.rewritable)
@@ -174,8 +174,8 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test the constructor with the ``MEDIA_CDRW_74`` media type.
-      """
+        Test the constructor with the ``MEDIA_CDRW_74`` media type.
+        """
         media = MediaDefinition(MEDIA_CDRW_74)
         self.assertEqual(MEDIA_CDRW_74, media.mediaType)
         self.assertEqual(True, media.rewritable)
@@ -185,8 +185,8 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test the constructor with the ``MEDIA_CDR_80`` media type.
-      """
+        Test the constructor with the ``MEDIA_CDR_80`` media type.
+        """
         media = MediaDefinition(MEDIA_CDR_80)
         self.assertEqual(MEDIA_CDR_80, media.mediaType)
         self.assertEqual(False, media.rewritable)
@@ -196,8 +196,8 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test the constructor with the ``MEDIA_CDRW_80`` media type.
-      """
+        Test the constructor with the ``MEDIA_CDRW_80`` media type.
+        """
         media = MediaDefinition(MEDIA_CDRW_80)
         self.assertEqual(MEDIA_CDRW_80, media.mediaType)
         self.assertEqual(True, media.rewritable)
@@ -221,8 +221,8 @@ class TestMediaCapacity(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor.
-      """
+        Test the constructor.
+        """
         capacity = MediaCapacity(100, 200, (300, 400))
         self.assertEqual(100, capacity.bytesUsed)
         self.assertEqual(200, capacity.bytesAvailable)
@@ -258,10 +258,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and exists.
-      Use a valid non-ATA SCSI id and defaults for the remaining arguments.  Make sure
-      that ``unittest=True``
-      """
+        Test the constructor with device ``/dev/null``, which is writable and exists.
+        Use a valid non-ATA SCSI id and defaults for the remaining arguments.  Make sure
+        that ``unittest=True``
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -273,10 +273,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_002(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and exists.
-      Use a valid ATA SCSI id and defaults for the remaining arguments.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and exists.
+        Use a valid ATA SCSI id and defaults for the remaining arguments.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="ATA:0,0,0", unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("ATA:0,0,0", writer.scsiId)
@@ -288,10 +288,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and exists.
-      Use a valid ATAPI SCSI id and defaults for the remaining arguments.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and exists.
+        Use a valid ATAPI SCSI id and defaults for the remaining arguments.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="ATAPI:0,0,0", unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("ATAPI:0,0,0", writer.scsiId)
@@ -303,48 +303,48 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test the constructor with device ``/dev/null`` (which is writable and exists).
-      Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
-      ``unittest=False``.
-      """
+        Test the constructor with device ``/dev/null`` (which is writable and exists).
+        Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
+        ``unittest=False``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=False)
 
     def testConstructor_005(self):
         """
-      Test the constructor with device ``/dev/null`` (which is writable and exists).
-      Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
-      ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null`` (which is writable and exists).
+        Use an invalid SCSI id and defaults for the remaining arguments.  Make sure that
+        ``unittest=True``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="blech", unittest=True)
 
     def testConstructor_006(self):
         """
-      Test the constructor with a non-absolute device path.  Use a valid SCSI
-      id and defaults for the remaining arguments.  Make sure that ``unittest=False``.
-      """
+        Test the constructor with a non-absolute device path.  Use a valid SCSI
+        id and defaults for the remaining arguments.  Make sure that ``unittest=False``.
+        """
         self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=False)
 
     def testConstructor_007(self):
         """
-      Test the constructor with a non-absolute device path.  Use a valid SCSI
-      id and defaults for the remaining arguments.  Make sure that ``unittest=True``.
-      """
+        Test the constructor with a non-absolute device path.  Use a valid SCSI
+        id and defaults for the remaining arguments.  Make sure that ``unittest=True``.
+        """
         self.assertRaises(ValueError, CdWriter, device="dev/null", scsiId="0,0,0", unittest=True)
 
     def testConstructor_008(self):
         """
-      Test the constructor with an absolute device path that does not exist.
-      Use a valid SCSI id and defaults for the remaining arguments.  Make sure
-      that ``unittest=False``.
-      """
+        Test the constructor with an absolute device path that does not exist.
+        Use a valid SCSI id and defaults for the remaining arguments.  Make sure
+        that ``unittest=False``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/bogus", scsiId="0,0,0", unittest=False)
 
     def testConstructor_009(self):
         """
-      Test the constructor with an absolute device path that does not exist.
-      Use a valid SCSI id and defaults for the remaining arguments.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with an absolute device path that does not exist.
+        Use a valid SCSI id and defaults for the remaining arguments.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/bogus", scsiId="0,0,0", unittest=True)
         self.assertEqual("/bogus", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -356,26 +356,26 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_010(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
-      sure that ``unittest=False``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
+        sure that ``unittest=False``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=False)
 
     def testConstructor_011(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
-      sure that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a value of 0 for the drive speed.  Make
+        sure that ``unittest=True``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", driveSpeed=0, unittest=True)
 
     def testConstructor_012(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a value of 1 for the drive speed.  Make
-      sure that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a value of 1 for the drive speed.  Make
+        sure that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=1, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -387,10 +387,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_013(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a value of 5 for the drive speed.  Make
-      sure that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a value of 5 for the drive speed.  Make
+        sure that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", driveSpeed=5, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -402,26 +402,26 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_014(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and an invalid media type.  Make sure that
-      ``unittest=False``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and an invalid media type.  Make sure that
+        ``unittest=False``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=False)
 
     def testConstructor_015(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and an invalid media type.  Make sure that
-      ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and an invalid media type.  Make sure that
+        ``unittest=True``.
+        """
         self.assertRaises(ValueError, CdWriter, device="/dev/null", scsiId="0,0,0", mediaType=42, unittest=True)
 
     def testConstructor_016(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a media type of MEDIA_CDR_74.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a media type of MEDIA_CDR_74.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_74, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -433,10 +433,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_017(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_74.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_74.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_74, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -448,10 +448,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_018(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a media type of MEDIA_CDR_80.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a media type of MEDIA_CDR_80.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDR_80, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -463,10 +463,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_019(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_80.  Make sure
-      that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use a valid SCSI id and a media type of MEDIA_CDRW_80.  Make sure
+        that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId="0,0,0", mediaType=MEDIA_CDRW_80, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual("0,0,0", writer.scsiId)
@@ -478,10 +478,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_020(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
-      sure that ``unittest=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
+        sure that ``unittest=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual(None, writer.scsiId)
@@ -493,10 +493,10 @@ class TestCdWriter(unittest.TestCase):
 
     def testConstructor_021(self):
         """
-      Test the constructor with device ``/dev/null``, which is writable and
-      exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
-      sure that ``unittest=True``.  Use ``noEject=True``.
-      """
+        Test the constructor with device ``/dev/null``, which is writable and
+        exists.  Use None for SCSI id and a media type of MEDIA_CDRW_80.  Make
+        sure that ``unittest=True``.  Use ``noEject=True``.
+        """
         writer = CdWriter(device="/dev/null", scsiId=None, mediaType=MEDIA_CDRW_80, noEject=True, unittest=True)
         self.assertEqual("/dev/null", writer.device)
         self.assertEqual(None, writer.scsiId)
@@ -512,8 +512,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_001(self):
         """
-      Test _calculateCapacity for boundaries of None and MEDIA_CDR_74.
-      """
+        Test _calculateCapacity for boundaries of None and MEDIA_CDR_74.
+        """
         expectedAvailable = MB650 - ILEAD  # 650 MB, minus initial lead-in
         media = MediaDefinition(MEDIA_CDR_74)
         boundaries = None
@@ -524,8 +524,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_002(self):
         """
-      Test _calculateCapacity for boundaries of None and MEDIA_CDRW_74.
-      """
+        Test _calculateCapacity for boundaries of None and MEDIA_CDRW_74.
+        """
         expectedAvailable = MB650 - ILEAD  # 650 MB, minus initial lead-in
         media = MediaDefinition(MEDIA_CDRW_74)
         boundaries = None
@@ -536,8 +536,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_003(self):
         """
-      Test _calculateCapacity for boundaries of None and MEDIA_CDR_80.
-      """
+        Test _calculateCapacity for boundaries of None and MEDIA_CDR_80.
+        """
         expectedAvailable = MB700 - ILEAD  # 700 MB, minus initial lead-in
         media = MediaDefinition(MEDIA_CDR_80)
         boundaries = None
@@ -548,8 +548,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_004(self):
         """
-      Test _calculateCapacity for boundaries of None and MEDIA_CDRW_80.
-      """
+        Test _calculateCapacity for boundaries of None and MEDIA_CDRW_80.
+        """
         expectedAvailable = MB700 - ILEAD  # 700 MB, minus initial lead-in
         media = MediaDefinition(MEDIA_CDRW_80)
         boundaries = None
@@ -560,8 +560,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_005(self):
         """
-      Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDR_74.
-      """
+        Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDR_74.
+        """
         expectedUsed = 1 * 2048.0  # 1 sector
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 1 sector
         media = MediaDefinition(MEDIA_CDR_74)
@@ -573,8 +573,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_006(self):
         """
-      Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDRW_74.
-      """
+        Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDRW_74.
+        """
         expectedUsed = 1 * 2048.0  # 1 sector
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 1 sector
         media = MediaDefinition(MEDIA_CDRW_74)
@@ -586,8 +586,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_007(self):
         """
-      Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDR_80.
-      """
+        Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDR_80.
+        """
         expectedUsed = 1 * 2048.0  # 1 sector
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 1 sector
         media = MediaDefinition(MEDIA_CDR_80)
@@ -599,8 +599,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_008(self):
         """
-      Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDRW_80.
-      """
+        Test _calculateCapacity for boundaries of (0, 1) and MEDIA_CDRW_80.
+        """
         expectedUsed = 1 * 2048.0  # 1 sector
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 1 sector
         media = MediaDefinition(MEDIA_CDRW_80)
@@ -612,8 +612,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_009(self):
         """
-      Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDR_74.
-      """
+        Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDR_74.
+        """
         expectedUsed = 999 * 2048.0  # 999 sectors
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 999 sectors
         media = MediaDefinition(MEDIA_CDR_74)
@@ -625,8 +625,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_010(self):
         """
-      Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDRW_74.
-      """
+        Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDRW_74.
+        """
         expectedUsed = 999 * 2048.0  # 999 sectors
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 999 sectors
         media = MediaDefinition(MEDIA_CDRW_74)
@@ -638,8 +638,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_011(self):
         """
-      Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDR_80.
-      """
+        Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDR_80.
+        """
         expectedUsed = 999 * 2048.0  # 999 sectors
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 999 sectors
         media = MediaDefinition(MEDIA_CDR_80)
@@ -651,8 +651,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_012(self):
         """
-      Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDRW_80.
-      """
+        Test _calculateCapacity for boundaries of (0, 999) and MEDIA_CDRW_80.
+        """
         expectedUsed = 999 * 2048.0  # 999 sectors
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 999 sectors
         media = MediaDefinition(MEDIA_CDRW_80)
@@ -664,8 +664,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_013(self):
         """
-      Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDR_74.
-      """
+        Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDR_74.
+        """
         expectedUsed = 1000 * 2048.0  # 1000 sectors
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 1000 sectors
         media = MediaDefinition(MEDIA_CDR_74)
@@ -677,8 +677,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_014(self):
         """
-      Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDRW_74.
-      """
+        Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDRW_74.
+        """
         expectedUsed = 1000 * 2048.0  # 1000 sectors
         expectedAvailable = MB650 - SLEAD - expectedUsed  # 650 MB, minus session lead-in, minus 1000 sectors
         media = MediaDefinition(MEDIA_CDRW_74)
@@ -690,8 +690,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_015(self):
         """
-      Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDR_80.
-      """
+        Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDR_80.
+        """
         expectedUsed = 1000 * 2048.0  # 1000 sectors
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 1000 sectors
         media = MediaDefinition(MEDIA_CDR_80)
@@ -703,8 +703,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_016(self):
         """
-      Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDRW_80.
-      """
+        Test _calculateCapacity for boundaries of (500, 1000) and MEDIA_CDRW_80.
+        """
         expectedUsed = 1000 * 2048.0  # 1000 sectors
         expectedAvailable = MB700 - SLEAD - expectedUsed  # 700 MB, minus session lead-in, minus 1000 sectors
         media = MediaDefinition(MEDIA_CDRW_80)
@@ -716,8 +716,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_017(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=False, useMulti=True.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=False, useMulti=True.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = False
         boundaries = writer._getBoundaries(entireDisc=False, useMulti=True)
@@ -725,8 +725,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_018(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=True, useMulti=True.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=True, useMulti=True.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = False
         boundaries = writer._getBoundaries(entireDisc=True, useMulti=True)
@@ -734,8 +734,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_019(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=True, useMulti=False.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=True, useMulti=False.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = False
         boundaries = writer._getBoundaries(entireDisc=False, useMulti=False)
@@ -743,8 +743,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_020(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=False, useMulti=False.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is False; entireDisc=False, useMulti=False.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = False
         boundaries = writer._getBoundaries(entireDisc=False, useMulti=False)
@@ -752,8 +752,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_021(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is True; entireDisc=True, useMulti=True.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is True; entireDisc=True, useMulti=True.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = True
         boundaries = writer._getBoundaries(entireDisc=True, useMulti=True)
@@ -761,8 +761,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_022(self):
         """
-      Test _getBoundaries when self.deviceSupportsMulti is True; entireDisc=True, useMulti=False.
-      """
+        Test _getBoundaries when self.deviceSupportsMulti is True; entireDisc=True, useMulti=False.
+        """
         writer = CdWriter(device="/dev/cdrw", scsiId="0,0,0", unittest=True)
         writer._deviceSupportsMulti = True
         boundaries = writer._getBoundaries(entireDisc=True, useMulti=False)
@@ -770,9 +770,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_023(self):
         """
-      Test _calculateCapacity for boundaries of (321342, 330042) and MEDIA_CDRW_74.
-      This was a bug fixed for v2.1.2.
-      """
+        Test _calculateCapacity for boundaries of (321342, 330042) and MEDIA_CDRW_74.
+        This was a bug fixed for v2.1.2.
+        """
         expectedUsed = 330042 * 2048.0  # 330042 sectors
         expectedAvailable = 0  # nothing should be available
         media = MediaDefinition(MEDIA_CDRW_74)
@@ -784,9 +784,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testCapacity_024(self):
         """
-      Test _calculateCapacity for boundaries of (0, 330042) and MEDIA_CDRW_74.
-      This was a bug fixed for v2.1.3.
-      """
+        Test _calculateCapacity for boundaries of (0, 330042) and MEDIA_CDRW_74.
+        This was a bug fixed for v2.1.3.
+        """
         expectedUsed = 330042 * 2048.0  # 330042 sectors
         expectedAvailable = 0  # nothing should be available
         media = MediaDefinition(MEDIA_CDRW_74)
@@ -802,134 +802,134 @@ class TestCdWriter(unittest.TestCase):
 
     def testBuildArgs_001(self):
         """
-      Test _buildOpenTrayArgs().
-      """
+        Test _buildOpenTrayArgs().
+        """
         args = CdWriter._buildOpenTrayArgs(device="/dev/stuff")
         self.assertEqual(["/dev/stuff"], args)
 
     def testBuildArgs_002(self):
         """
-      Test _buildCloseTrayArgs().
-      """
+        Test _buildCloseTrayArgs().
+        """
         args = CdWriter._buildCloseTrayArgs(device="/dev/stuff")
         self.assertEqual(["-t", "/dev/stuff"], args)
 
     def testBuildArgs_003(self):
         """
-      Test _buildPropertiesArgs().
-      """
+        Test _buildPropertiesArgs().
+        """
         args = CdWriter._buildPropertiesArgs(hardwareId="0,0,0")
         self.assertEqual(["-prcap", "dev=0,0,0"], args)
 
     def testBuildArgs_004(self):
         """
-      Test _buildBoundariesArgs().
-      """
+        Test _buildBoundariesArgs().
+        """
         args = CdWriter._buildBoundariesArgs(hardwareId="ATA:0,0,0")
         self.assertEqual(["-msinfo", "dev=ATA:0,0,0"], args)
 
     def testBuildArgs_005(self):
         """
-      Test _buildBoundariesArgs().
-      """
+        Test _buildBoundariesArgs().
+        """
         args = CdWriter._buildBoundariesArgs(hardwareId="ATAPI:0,0,0")
         self.assertEqual(["-msinfo", "dev=ATAPI:0,0,0"], args)
 
     def testBuildArgs_006(self):
         """
-      Test _buildBlankArgs(), default drive speed.
-      """
+        Test _buildBlankArgs(), default drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="ATA:0,0,0")
         self.assertEqual(["-v", "blank=fast", "dev=ATA:0,0,0"], args)
 
     def testBuildArgs_007(self):
         """
-      Test _buildBlankArgs(), default drive speed.
-      """
+        Test _buildBlankArgs(), default drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="ATAPI:0,0,0")
         self.assertEqual(["-v", "blank=fast", "dev=ATAPI:0,0,0"], args)
 
     def testBuildArgs_008(self):
         """
-      Test _buildBlankArgs(), with None for drive speed.
-      """
+        Test _buildBlankArgs(), with None for drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=None)
         self.assertEqual(["-v", "blank=fast", "dev=0,0,0"], args)
 
     def testBuildArgs_009(self):
         """
-      Test _buildBlankArgs(), with 1 for drive speed.
-      """
+        Test _buildBlankArgs(), with 1 for drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="0,0,0", driveSpeed=1)
         self.assertEqual(["-v", "blank=fast", "speed=1", "dev=0,0,0"], args)
 
     def testBuildArgs_010(self):
         """
-      Test _buildBlankArgs(), with 5 for drive speed.
-      """
+        Test _buildBlankArgs(), with 5 for drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="ATA:1,2,3", driveSpeed=5)
         self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATA:1,2,3"], args)
 
     def testBuildArgs_011(self):
         """
-      Test _buildBlankArgs(), with 5 for drive speed.
-      """
+        Test _buildBlankArgs(), with 5 for drive speed.
+        """
         args = CdWriter._buildBlankArgs(hardwareId="ATAPI:1,2,3", driveSpeed=5)
         self.assertEqual(["-v", "blank=fast", "speed=5", "dev=ATAPI:1,2,3"], args)
 
     def testBuildArgs_012(self):
         """
-      Test _buildWriteArgs(), default drive speed and writeMulti.
-      """
+        Test _buildWriteArgs(), default drive speed and writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever")
         self.assertEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever"], args)
 
     def testBuildArgs_013(self):
         """
-      Test _buildWriteArgs(), None for drive speed, True for writeMulti.
-      """
+        Test _buildWriteArgs(), None for drive speed, True for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=None, writeMulti=True)
         self.assertEqual(["-v", "dev=0,0,0", "-multi", "-data", "/whatever"], args)
 
     def testBuildArgs_014(self):
         """
-      Test _buildWriteArgs(), None for drive speed, False for writeMulti.
-      """
+        Test _buildWriteArgs(), None for drive speed, False for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=None, writeMulti=False)
         self.assertEqual(["-v", "dev=0,0,0", "-data", "/whatever"], args)
 
     def testBuildArgs_015(self):
         """
-      Test _buildWriteArgs(), 1 for drive speed, True for writeMulti.
-      """
+        Test _buildWriteArgs(), 1 for drive speed, True for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/whatever", driveSpeed=1, writeMulti=True)
         self.assertEqual(["-v", "speed=1", "dev=0,0,0", "-multi", "-data", "/whatever"], args)
 
     def testBuildArgs_016(self):
         """
-      Test _buildWriteArgs(), 5 for drive speed, True for writeMulti.
-      """
+        Test _buildWriteArgs(), 5 for drive speed, True for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,1,2", imagePath="/whatever", driveSpeed=5, writeMulti=True)
         self.assertEqual(["-v", "speed=5", "dev=0,1,2", "-multi", "-data", "/whatever"], args)
 
     def testBuildArgs_017(self):
         """
-      Test _buildWriteArgs(), 1 for drive speed, False for writeMulti.
-      """
+        Test _buildWriteArgs(), 1 for drive speed, False for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="0,0,0", imagePath="/dvl/stuff/whatever/more", driveSpeed=1, writeMulti=False)
         self.assertEqual(["-v", "speed=1", "dev=0,0,0", "-data", "/dvl/stuff/whatever/more"], args)
 
     def testBuildArgs_018(self):
         """
-      Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
-      """
+        Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="ATA:1,2,3", imagePath="/whatever", driveSpeed=5, writeMulti=False)
         self.assertEqual(["-v", "speed=5", "dev=ATA:1,2,3", "-data", "/whatever"], args)
 
     def testBuildArgs_019(self):
         """
-      Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
-      """
+        Test _buildWriteArgs(), 5 for drive speed, False for writeMulti.
+        """
         args = CdWriter._buildWriteArgs(hardwareId="ATAPI:1,2,3", imagePath="/whatever", driveSpeed=5, writeMulti=False)
         self.assertEqual(["-v", "speed=5", "dev=ATAPI:1,2,3", "-data", "/whatever"], args)
 
@@ -939,8 +939,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_001(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example.
+        """
         output = [
             "268582,302230\n",
         ]
@@ -949,9 +949,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_002(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      lots of extra whitespace around the values.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        lots of extra whitespace around the values.
+        """
         output = [
             "   268582 ,  302230    \n",
         ]
@@ -960,9 +960,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_003(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      lots of extra garbage after the first line.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        lots of extra garbage after the first line.
+        """
         output = [
             "268582,302230\n",
             "more\n",
@@ -978,9 +978,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_004(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      lots of extra garbage before the first line.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        lots of extra garbage before the first line.
+        """
         output = [
             "more\n",
             "bogus\n",
@@ -995,9 +995,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_005(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with first value converted to negative.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with first value converted to negative.
+        """
         output = [
             "-268582,302230\n",
         ]
@@ -1005,9 +1005,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_006(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with second value converted to negative.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with second value converted to negative.
+        """
         output = [
             "268582,-302230\n",
         ]
@@ -1015,9 +1015,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_007(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with first value converted to zero.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with first value converted to zero.
+        """
         output = [
             "0,302230\n",
         ]
@@ -1026,9 +1026,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_008(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with second value converted to zero.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with second value converted to zero.
+        """
         output = [
             "268582,0\n",
         ]
@@ -1037,9 +1037,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_009(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with first value converted to negative and second value converted to zero.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with first value converted to negative and second value converted to zero.
+        """
         output = [
             "-268582,0\n",
         ]
@@ -1047,9 +1047,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_010(self):
         """
-      Test _parseBoundariesOutput() for valid data, taken from a real example,
-      with first value converted to zero and second value converted to negative.
-      """
+        Test _parseBoundariesOutput() for valid data, taken from a real example,
+        with first value converted to zero and second value converted to negative.
+        """
         output = [
             "0,-302230\n",
         ]
@@ -1057,9 +1057,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_011(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1143,9 +1143,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_012(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including only stdout.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including only stdout.
+        """
         output = [
             "Cdrecord 1.10 (i686-pc-linux-gnu) Copyright (C) 1995-2001 J\xf6rg Schilling\n",
             "Using libscg version 'schily-0.5'\n",
@@ -1226,9 +1226,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_013(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, device type removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, device type removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1311,9 +1311,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_014(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, device vendor removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, device vendor removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1396,9 +1396,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_015(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, device id removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, device id removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1481,9 +1481,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_016(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, buffer size removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, buffer size removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1566,9 +1566,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_017(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, "supports multi" removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, "supports multi" removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1651,9 +1651,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_018(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, "has tray" removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, "has tray" removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1736,9 +1736,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_019(self):
         """
-      Test _parsePropertiesOutput() for valid data, taken from a real example,
-      including stderr and stdout mixed together, "can eject" removed.
-      """
+        Test _parsePropertiesOutput() for valid data, taken from a real example,
+        including stderr and stdout mixed together, "can eject" removed.
+        """
         output = [
             "scsidev: '0,0,0'\n",
             "scsibus: 0 target: 0 lun: 0\n",
@@ -1821,9 +1821,9 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_020(self):
         """
-      Test _parsePropertiesOutput() for nonsensical data, just a bunch of empty
-      lines.
-      """
+        Test _parsePropertiesOutput() for nonsensical data, just a bunch of empty
+        lines.
+        """
         output = [
             "\n",
             "\n",
@@ -1860,8 +1860,8 @@ class TestCdWriter(unittest.TestCase):
 
     def testParseOutput_021(self):
         """
-      Test _parsePropertiesOutput() for nonsensical data, just an empty list.
-      """
+        Test _parsePropertiesOutput() for nonsensical data, just an empty list.
+        """
         output = []
         (
             deviceType,

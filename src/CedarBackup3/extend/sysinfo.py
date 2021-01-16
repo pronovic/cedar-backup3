@@ -95,16 +95,16 @@ LS_COMMAND = ["ls", "-laR", "/"]
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
-   Executes the sysinfo backup action.
+    Executes the sysinfo backup action.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If the backup process fails for some reason
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If the backup process fails for some reason
+    """
     logger.debug("Executing sysinfo extended action.")
     if config.options is None or config.collect is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
@@ -116,15 +116,15 @@ def executeAction(configPath, options, config):
 
 def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
     """
-   Dumps a list of currently installed Debian packages via ``dpkg``.
-   Args:
-      targetDir: Directory to write output file into
-      backupUser: User which should own the resulting file
-      backupGroup: Group which should own the resulting file
-      compress: Indicates whether to compress the output file
-   Raises:
-      IOError: If the dump fails for some reason
-   """
+    Dumps a list of currently installed Debian packages via ``dpkg``.
+    Args:
+       targetDir: Directory to write output file into
+       backupUser: User which should own the resulting file
+       backupGroup: Group which should own the resulting file
+       compress: Indicates whether to compress the output file
+    Raises:
+       IOError: If the dump fails for some reason
+    """
     if not os.path.exists(DPKG_PATH):
         logger.info("Not executing Debian package dump since %s doesn't seem to exist.", DPKG_PATH)
     elif not os.access(DPKG_PATH, os.X_OK):
@@ -143,15 +143,15 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
 
 def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
     """
-   Dumps information about the partition table via ``fdisk``.
-   Args:
-      targetDir: Directory to write output file into
-      backupUser: User which should own the resulting file
-      backupGroup: Group which should own the resulting file
-      compress: Indicates whether to compress the output file
-   Raises:
-      IOError: If the dump fails for some reason
-   """
+    Dumps information about the partition table via ``fdisk``.
+    Args:
+       targetDir: Directory to write output file into
+       backupUser: User which should own the resulting file
+       backupGroup: Group which should own the resulting file
+       compress: Indicates whether to compress the output file
+    Raises:
+       IOError: If the dump fails for some reason
+    """
     if not os.path.exists(FDISK_PATH):
         logger.info("Not executing partition table dump since %s doesn't seem to exist.", FDISK_PATH)
     elif not os.access(FDISK_PATH, os.X_OK):
@@ -170,15 +170,15 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
 
 def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
     """
-   Dumps complete listing of filesystem contents via ``ls -laR``.
-   Args:
-      targetDir: Directory to write output file into
-      backupUser: User which should own the resulting file
-      backupGroup: Group which should own the resulting file
-      compress: Indicates whether to compress the output file
-   Raises:
-      IOError: If the dump fails for some reason
-   """
+    Dumps complete listing of filesystem contents via ``ls -laR``.
+    Args:
+       targetDir: Directory to write output file into
+       backupUser: User which should own the resulting file
+       backupGroup: Group which should own the resulting file
+       compress: Indicates whether to compress the output file
+    Raises:
+       IOError: If the dump fails for some reason
+    """
     (outputFile, filename) = _getOutputFile(targetDir, "ls-laR", compress)
     with outputFile:
         # Note: can't count on return status from 'ls', so we don't check it.
@@ -191,19 +191,19 @@ def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
 
 def _getOutputFile(targetDir, name, compress=True):
     """
-   Opens the output file used for saving a dump to the filesystem.
+    Opens the output file used for saving a dump to the filesystem.
 
-   The filename will be ``name.txt`` (or ``name.txt.bz2`` if ``compress`` is
-   ``True``), written in the target directory.
+    The filename will be ``name.txt`` (or ``name.txt.bz2`` if ``compress`` is
+    ``True``), written in the target directory.
 
-   Args:
-      targetDir: Target directory to write file in
-      name: Name of the file to create
-      compress: Indicates whether to write compressed output
+    Args:
+       targetDir: Target directory to write file in
+       name: Name of the file to create
+       compress: Indicates whether to write compressed output
 
-   Returns:
-       Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
-   """
+    Returns:
+        Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
+    """
     filename = os.path.join(targetDir, "%s.txt" % name)
     if compress:
         filename = "%s.bz2" % filename

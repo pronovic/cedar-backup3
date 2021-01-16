@@ -129,14 +129,14 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor with an invalid media type.
-      """
+        Test the constructor with an invalid media type.
+        """
         self.assertRaises(ValueError, MediaDefinition, 100)
 
     def testConstructor_002(self):
         """
-      Test the constructor with the ``MEDIA_DVDPLUSR`` media type.
-      """
+        Test the constructor with the ``MEDIA_DVDPLUSR`` media type.
+        """
         media = MediaDefinition(MEDIA_DVDPLUSR)
         self.assertEqual(MEDIA_DVDPLUSR, media.mediaType)
         self.assertEqual(False, media.rewritable)
@@ -144,8 +144,8 @@ class TestMediaDefinition(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test the constructor with the ``MEDIA_DVDPLUSRW`` media type.
-      """
+        Test the constructor with the ``MEDIA_DVDPLUSRW`` media type.
+        """
         media = MediaDefinition(MEDIA_DVDPLUSRW)
         self.assertEqual(MEDIA_DVDPLUSRW, media.mediaType)
         self.assertEqual(True, media.rewritable)
@@ -167,30 +167,30 @@ class TestMediaCapacity(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test the constructor with valid, zero values
-      """
+        Test the constructor with valid, zero values
+        """
         capacity = MediaCapacity(0.0, 0.0)
         self.assertEqual(0.0, capacity.bytesUsed)
         self.assertEqual(0.0, capacity.bytesAvailable)
 
     def testConstructor_002(self):
         """
-      Test the constructor with valid, non-zero values.
-      """
+        Test the constructor with valid, non-zero values.
+        """
         capacity = MediaCapacity(1.1, 2.2)
         self.assertEqual(1.1, capacity.bytesUsed)
         self.assertEqual(2.2, capacity.bytesAvailable)
 
     def testConstructor_003(self):
         """
-      Test the constructor with bytesUsed that is not a float.
-      """
+        Test the constructor with bytesUsed that is not a float.
+        """
         self.assertRaises(ValueError, MediaCapacity, 0.0, "ken")
 
     def testConstructor_004(self):
         """
-      Test the constructor with bytesAvailable that is not a float.
-      """
+        Test the constructor with bytesAvailable that is not a float.
+        """
         self.assertRaises(ValueError, MediaCapacity, "a", 0.0)
 
 
@@ -246,14 +246,14 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test with an empty device.
-      """
+        Test with an empty device.
+        """
         self.assertRaises(ValueError, DvdWriter, None)
 
     def testConstructor_002(self):
         """
-      Test with a device only.
-      """
+        Test with a device only.
+        """
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual(None, dvdwriter.scsiId)
@@ -265,8 +265,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_003(self):
         """
-      Test with a device and valid SCSI id.
-      """
+        Test with a device and valid SCSI id.
+        """
         dvdwriter = DvdWriter("/dev/dvd", scsiId="ATA:1,0,0", unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual("ATA:1,0,0", dvdwriter.scsiId)
@@ -278,8 +278,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_004(self):
         """
-      Test with a device and valid drive speed.
-      """
+        Test with a device and valid drive speed.
+        """
         dvdwriter = DvdWriter("/dev/dvd", driveSpeed=3, unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual(None, dvdwriter.scsiId)
@@ -291,8 +291,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_005(self):
         """
-      Test with a device with media type MEDIA_DVDPLUSR.
-      """
+        Test with a device with media type MEDIA_DVDPLUSR.
+        """
         dvdwriter = DvdWriter("/dev/dvd", mediaType=MEDIA_DVDPLUSR, unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual(None, dvdwriter.scsiId)
@@ -304,8 +304,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_006(self):
         """
-      Test with a device with media type MEDIA_DVDPLUSRW.
-      """
+        Test with a device with media type MEDIA_DVDPLUSRW.
+        """
         dvdwriter = DvdWriter("/dev/dvd", mediaType=MEDIA_DVDPLUSR, unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual(None, dvdwriter.scsiId)
@@ -317,8 +317,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_007(self):
         """
-      Test with a device and invalid SCSI id.
-      """
+        Test with a device and invalid SCSI id.
+        """
         dvdwriter = DvdWriter("/dev/dvd", scsiId="00000000", unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual("00000000", dvdwriter.scsiId)
@@ -330,50 +330,50 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_008(self):
         """
-      Test with a device and invalid drive speed.
-      """
+        Test with a device and invalid drive speed.
+        """
         self.assertRaises(ValueError, DvdWriter, "/dev/dvd", driveSpeed="KEN", unittest=True)
 
     def testConstructor_009(self):
         """
-      Test with a device and invalid media type.
-      """
+        Test with a device and invalid media type.
+        """
         self.assertRaises(ValueError, DvdWriter, "/dev/dvd", mediaType=999, unittest=True)
 
     def testConstructor_010(self):
         """
-      Test with all valid parameters, but no device, unittest=True.
-      """
+        Test with all valid parameters, but no device, unittest=True.
+        """
         self.assertRaises(ValueError, DvdWriter, None, "ATA:1,0,0", 1, MEDIA_DVDPLUSRW, unittest=True)
 
     def testConstructor_011(self):
         """
-      Test with all valid parameters, but no device, unittest=False.
-      """
+        Test with all valid parameters, but no device, unittest=False.
+        """
         self.assertRaises(ValueError, DvdWriter, None, "ATA:1,0,0", 1, MEDIA_DVDPLUSRW, unittest=False)
 
     def testConstructor_012(self):
         """
-      Test with all valid parameters, and an invalid device (not absolute path), unittest=True.
-      """
+        Test with all valid parameters, and an invalid device (not absolute path), unittest=True.
+        """
         self.assertRaises(ValueError, DvdWriter, "dev/dvd", "ATA:1,0,0", 1, MEDIA_DVDPLUSRW, unittest=True)
 
     def testConstructor_013(self):
         """
-      Test with all valid parameters, and an invalid device (not absolute path), unittest=False.
-      """
+        Test with all valid parameters, and an invalid device (not absolute path), unittest=False.
+        """
         self.assertRaises(ValueError, DvdWriter, "dev/dvd", "ATA:1,0,0", 1, MEDIA_DVDPLUSRW, unittest=False)
 
     def testConstructor_014(self):
         """
-      Test with all valid parameters, and an invalid device (path does not exist), unittest=False.
-      """
+        Test with all valid parameters, and an invalid device (path does not exist), unittest=False.
+        """
         self.assertRaises(ValueError, DvdWriter, "/dev/bogus", "ATA:1,0,0", 1, MEDIA_DVDPLUSRW, unittest=False)
 
     def testConstructor_015(self):
         """
-      Test with all valid parameters.
-      """
+        Test with all valid parameters.
+        """
         dvdwriter = DvdWriter("/dev/dvd", "ATA:1,0,0", 1, MEDIA_DVDPLUSR, noEject=False, unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual("ATA:1,0,0", dvdwriter.scsiId)
@@ -385,8 +385,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testConstructor_016(self):
         """
-      Test with all valid parameters.
-      """
+        Test with all valid parameters.
+        """
         dvdwriter = DvdWriter("/dev/dvd", "ATA:1,0,0", 1, MEDIA_DVDPLUSR, noEject=True, unittest=True)
         self.assertEqual("/dev/dvd", dvdwriter.device)
         self.assertEqual("ATA:1,0,0", dvdwriter.scsiId)
@@ -402,15 +402,15 @@ class TestDvdWriter(unittest.TestCase):
 
     def testIsRewritable_001(self):
         """
-      Test with MEDIA_DVDPLUSR.
-      """
+        Test with MEDIA_DVDPLUSR.
+        """
         dvdwriter = DvdWriter("/dev/dvd", mediaType=MEDIA_DVDPLUSR, unittest=True)
         self.assertEqual(False, dvdwriter.isRewritable())
 
     def testIsRewritable_002(self):
         """
-      Test with MEDIA_DVDPLUSRW.
-      """
+        Test with MEDIA_DVDPLUSRW.
+        """
         dvdwriter = DvdWriter("/dev/dvd", mediaType=MEDIA_DVDPLUSRW, unittest=True)
         self.assertEqual(True, dvdwriter.isRewritable())
 
@@ -420,8 +420,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testInitializeImage_001(self):
         """
-      Test with newDisc=False, tmpdir=None.
-      """
+        Test with newDisc=False, tmpdir=None.
+        """
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
         self.assertEqual(False, dvdwriter._image.newDisc)
@@ -430,8 +430,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testInitializeImage_002(self):
         """
-      Test with newDisc=True, tmpdir not None.
-      """
+        Test with newDisc=True, tmpdir not None.
+        """
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(True, "/path/to/somewhere")
         self.assertEqual(True, dvdwriter._image.newDisc)
@@ -444,8 +444,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_001(self):
         """
-      Add a valid path with no graft point, before calling initializeImage().
-      """
+        Add a valid path with no graft point, before calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
@@ -454,8 +454,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_002(self):
         """
-      Add a valid path with a graft point, before calling initializeImage().
-      """
+        Add a valid path with a graft point, before calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
@@ -464,8 +464,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_003(self):
         """
-      Add a non-existent path with no graft point, before calling initializeImage().
-      """
+        Add a non-existent path with no graft point, before calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
@@ -474,8 +474,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_004(self):
         """
-      Add a non-existent path with a graft point, before calling initializeImage().
-      """
+        Add a non-existent path with a graft point, before calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
@@ -484,8 +484,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_005(self):
         """
-      Add a valid path with no graft point, after calling initializeImage().
-      """
+        Add a valid path with no graft point, after calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
@@ -496,8 +496,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_006(self):
         """
-      Add a valid path with a graft point, after calling initializeImage().
-      """
+        Add a valid path with a graft point, after calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
@@ -508,8 +508,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_007(self):
         """
-      Add a non-existent path with no graft point, after calling initializeImage().
-      """
+        Add a non-existent path with no graft point, after calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
@@ -519,8 +519,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_008(self):
         """
-      Add a non-existent path with a graft point, after calling initializeImage().
-      """
+        Add a non-existent path with a graft point, after calling initializeImage().
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
@@ -530,8 +530,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_009(self):
         """
-      Add the same path several times.
-      """
+        Add the same path several times.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
@@ -548,8 +548,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testAddImageEntry_010(self):
         """
-      Add several paths.
-      """
+        Add several paths.
+        """
         self.extractTar("tree9")
         path1 = self.buildPath(["tree9", "dir001"])
         path2 = self.buildPath(["tree9", "dir002"])
@@ -572,22 +572,22 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_001(self):
         """
-      Test with output=None.
-      """
+        Test with output=None.
+        """
         output = None
         DvdWriter._searchForOverburn(output)  # no exception should be thrown
 
     def testSearchForOverburn_002(self):
         """
-      Test with output=[].
-      """
+        Test with output=[].
+        """
         output = []
         DvdWriter._searchForOverburn(output)  # no exception should be thrown
 
     def testSearchForOverburn_003(self):
         """
-      Test with one-line output, not containing the pattern.
-      """
+        Test with one-line output, not containing the pattern.
+        """
         output = [
             "This line does not contain the pattern",
         ]
@@ -607,8 +607,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_004(self):
         """
-      Test with one-line output(s), containing the pattern.
-      """
+        Test with one-line output(s), containing the pattern.
+        """
         output = [
             ":-( /dev/cdrom: 894048 blocks are free, 2033746 to be written!",
         ]
@@ -640,8 +640,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_005(self):
         """
-      Test with multi-line output, not containing the pattern.
-      """
+        Test with multi-line output, not containing the pattern.
+        """
         output = []
         output.append(
             "Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'"
@@ -667,8 +667,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_006(self):
         """
-      Test with multi-line output, containing the pattern at the top.
-      """
+        Test with multi-line output, containing the pattern at the top.
+        """
         output = []
         output.append(":-( /dev/cdrom: 894048 blocks are free, 2033746 to be written!")
         output.append(
@@ -695,8 +695,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_007(self):
         """
-      Test with multi-line output, containing the pattern at the bottom.
-      """
+        Test with multi-line output, containing the pattern at the bottom.
+        """
         output = []
         output.append(
             "Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'"
@@ -723,8 +723,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_008(self):
         """
-      Test with multi-line output, containing the pattern in the middle.
-      """
+        Test with multi-line output, containing the pattern in the middle.
+        """
         output = []
         output.append(
             "Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'"
@@ -751,8 +751,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testSearchForOverburn_009(self):
         """
-      Test with multi-line output, containing the pattern several times.
-      """
+        Test with multi-line output, containing the pattern several times.
+        """
         output = []
         output.append(":-( /dev/cdrom: 894048 blocks are free, 2033746 to be written!")
         output.append(
@@ -792,24 +792,24 @@ class TestDvdWriter(unittest.TestCase):
 
     def testParseSectorsUsed_001(self):
         """
-      Test with output=None.
-      """
+        Test with output=None.
+        """
         output = None
         sectorsUsed = DvdWriter._parseSectorsUsed(output)
         self.assertEqual(0.0, sectorsUsed)
 
     def testParseSectorsUsed_002(self):
         """
-      Test with output=[].
-      """
+        Test with output=[].
+        """
         output = []
         sectorsUsed = DvdWriter._parseSectorsUsed(output)
         self.assertEqual(0.0, sectorsUsed)
 
     def testParseSectorsUsed_003(self):
         """
-      Test with one-line output, not containing the pattern.
-      """
+        Test with one-line output, not containing the pattern.
+        """
         output = [
             "This line does not contain the pattern",
         ]
@@ -818,8 +818,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testParseSectorsUsed_004(self):
         """
-      Test with one-line output(s), containing the pattern.
-      """
+        Test with one-line output(s), containing the pattern.
+        """
         output = [
             "'seek=10'",
         ]
@@ -840,8 +840,8 @@ class TestDvdWriter(unittest.TestCase):
 
     def testParseSectorsUsed_005(self):
         """
-      Test with real growisofs output.
-      """
+        Test with real growisofs output.
+        """
         output = []
         output.append(
             "Executing 'mkisofs -C 973744,1401056 -M /dev/fd/3 -r -graft-points music4/=music | builtin_dd of=/dev/cdrom obs=32k seek=87566'"
@@ -872,9 +872,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_001(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=None, mediaLabel=None,dryRun=False.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=None, mediaLabel=None,dryRun=False.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -888,9 +888,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_002(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=None, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=None, mediaLabel=None, dryRun=True.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -904,9 +904,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_003(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -924,9 +924,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_004(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -945,9 +945,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_005(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -965,9 +965,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_006(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -986,9 +986,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_007(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=1,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=1,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = 1
@@ -1007,9 +1007,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_008(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=2,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=2,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = 2
@@ -1029,9 +1029,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_009(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=False.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 3
@@ -1050,9 +1050,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_010(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
-      imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
+        imagePath="/path/to/image", entries=None, mediaLabel=None, dryRun=True.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 4
@@ -1072,9 +1072,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_011(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=<one>, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=<one>, mediaLabel=None, dryRun=False.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -1097,9 +1097,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_012(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=<one>, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=<one>, mediaLabel=None, dryRun=True.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -1123,9 +1123,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_013(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -1152,9 +1152,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_014(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=None,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = None
@@ -1182,9 +1182,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_015(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=1,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=1,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = 1
@@ -1210,9 +1210,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_016(self):
         """
-      Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=2,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=False, hardwareId="/dev/dvd", driveSpeed=2,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
+        """
         newDisc = False
         hardwareId = "/dev/dvd"
         driveSpeed = 2
@@ -1239,9 +1239,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_017(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=False.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 3
@@ -1269,9 +1269,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_018(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
-      imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
+        imagePath=None, entries=<several>, mediaLabel=None, dryRun=True.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 4
@@ -1300,9 +1300,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_019(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
-      imagePath="/path/to/image", entries=None, mediaLabel="BACKUP", dryRun=False.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=3,
+        imagePath="/path/to/image", entries=None, mediaLabel="BACKUP", dryRun=False.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 3
@@ -1321,9 +1321,9 @@ class TestDvdWriter(unittest.TestCase):
 
     def testBuildWriteArgs_020(self):
         """
-      Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
-      imagePath=None, entries=<several>, mediaLabel="BACKUP", dryRun=True.
-      """
+        Test with newDisc=True, hardwareId="/dev/dvd", driveSpeed=4,
+        imagePath=None, entries=<several>, mediaLabel="BACKUP", dryRun=True.
+        """
         newDisc = True
         hardwareId = "/dev/dvd"
         driveSpeed = 4

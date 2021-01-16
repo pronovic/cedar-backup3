@@ -73,27 +73,27 @@ logger = logging.getLogger("CedarBackup3.log.actions.stage")
 # noinspection PyTypeChecker
 def executeStage(configPath, options, config):
     """
-   Executes the stage backup action.
+    Executes the stage backup action.
 
-   *Note:* The daily directory is derived once and then we stick with it, just
-   in case a backup happens to span midnite.
+    *Note:* The daily directory is derived once and then we stick with it, just
+    in case a backup happens to span midnite.
 
-   *Note:* As portions of the stage action is complete, we will write various
-   indicator files so that it's obvious what actions have been completed.  Each
-   peer gets a stage indicator in its collect directory, and then the master
-   gets a stage indicator in its daily staging directory.  The store process
-   uses the master's stage indicator to decide whether a directory is ready to
-   be stored.  Currently, nothing uses the indicator at each peer, and it
-   exists for reference only.
+    *Note:* As portions of the stage action is complete, we will write various
+    indicator files so that it's obvious what actions have been completed.  Each
+    peer gets a stage indicator in its collect directory, and then the master
+    gets a stage indicator in its daily staging directory.  The store process
+    uses the master's stage indicator to decide whether a directory is ready to
+    be stored.  Currently, nothing uses the indicator at each peer, and it
+    exists for reference only.
 
-   Args:
-      configPath (String representing a path on disk): Path to configuration file on disk
-      options (Options object): Program command-line options
-      config (Config object): Program configuration
-   Raises:
-      ValueError: Under many generic error conditions
-      IOError: If there are problems reading or writing files
-   """
+    Args:
+       configPath (String representing a path on disk): Path to configuration file on disk
+       options (Options object): Program command-line options
+       config (Config object): Program configuration
+    Raises:
+       ValueError: Under many generic error conditions
+       IOError: If there are problems reading or writing files
+    """
     logger.debug("Executing the 'stage' action.")
     if config.options is None or config.stage is None:
         raise ValueError("Stage configuration is not properly filled in.")
@@ -142,20 +142,20 @@ def executeStage(configPath, options, config):
 
 def _createStagingDirs(config, dailyDir, peers):
     """
-   Creates staging directories as required.
+    Creates staging directories as required.
 
-   The main staging directory is the passed in daily directory, something like
-   ``staging/2002/05/23``.  Then, individual peers get their own directories,
-   i.e. ``staging/2002/05/23/host``.
+    The main staging directory is the passed in daily directory, something like
+    ``staging/2002/05/23``.  Then, individual peers get their own directories,
+    i.e. ``staging/2002/05/23/host``.
 
-   Args:
-      config: Config object
-      dailyDir: Daily staging directory
-      peers: List of all configured peers
+    Args:
+       config: Config object
+       dailyDir: Daily staging directory
+       peers: List of all configured peers
 
-   Returns:
-       Dictionary mapping peer name to staging directory
-   """
+    Returns:
+        Dictionary mapping peer name to staging directory
+    """
     mapping = {}
     if os.path.isdir(dailyDir):
         logger.warning("Staging directory [%s] already existed.", dailyDir)
@@ -193,14 +193,14 @@ def _createStagingDirs(config, dailyDir, peers):
 
 def _getIgnoreFailuresFlag(options, config, peer):
     """
-   Gets the ignore failures flag based on options, configuration, and peer.
-   Args:
-      options: Options object
-      config: Configuration object
-      peer: Peer to check
-   Returns:
-       Whether to ignore stage failures for this peer
-   """
+    Gets the ignore failures flag based on options, configuration, and peer.
+    Args:
+       options: Options object
+       config: Configuration object
+       peer: Peer to check
+    Returns:
+        Whether to ignore stage failures for this peer
+    """
     logger.debug("Ignore failure mode for this peer: %s", peer.ignoreFailureMode)
     if peer.ignoreFailureMode is None or peer.ignoreFailureMode == "none":
         return False
@@ -220,18 +220,18 @@ def _getIgnoreFailuresFlag(options, config, peer):
 
 def _getDailyDir(config):
     """
-   Gets the daily staging directory.
+    Gets the daily staging directory.
 
-   This is just a directory in the form ``staging/YYYY/MM/DD``, i.e.
-   ``staging/2000/10/07``, except it will be an absolute path based on
-   ``config.stage.targetDir``.
+    This is just a directory in the form ``staging/YYYY/MM/DD``, i.e.
+    ``staging/2000/10/07``, except it will be an absolute path based on
+    ``config.stage.targetDir``.
 
-   Args:
-      config: Config object
+    Args:
+       config: Config object
 
-   Returns:
-       Path of daily staging directory
-   """
+    Returns:
+        Path of daily staging directory
+    """
     dailyDir = os.path.join(config.stage.targetDir, time.strftime(DIR_TIME_FORMAT))
     logger.debug("Daily staging directory is [%s].", dailyDir)
     return dailyDir
@@ -244,12 +244,12 @@ def _getDailyDir(config):
 
 def _getLocalPeers(config):
     """
-   Return a list of :any:`LocalPeer` objects based on configuration.
-   Args:
-      config: Config object
-   Returns:
-       List of :any:`LocalPeer` objects
-   """
+    Return a list of :any:`LocalPeer` objects based on configuration.
+    Args:
+       config: Config object
+    Returns:
+        List of :any:`LocalPeer` objects
+    """
     localPeers = []
     configPeers = None
     if config.stage.hasPeers():
@@ -273,12 +273,12 @@ def _getLocalPeers(config):
 
 def _getRemotePeers(config):
     """
-   Return a list of :any:`RemotePeer` objects based on configuration.
-   Args:
-      config: Config object
-   Returns:
-       List of :any:`RemotePeer` objects
-   """
+    Return a list of :any:`RemotePeer` objects based on configuration.
+    Args:
+       config: Config object
+    Returns:
+        List of :any:`RemotePeer` objects
+    """
     remotePeers = []
     configPeers = None
     if config.stage.hasPeers():
@@ -313,14 +313,14 @@ def _getRemotePeers(config):
 
 def _getRemoteUser(config, remotePeer):
     """
-   Gets the remote user associated with a remote peer.
-   Use peer's if possible, otherwise take from options section.
-   Args:
-      config: Config object
-      remotePeer: Configuration-style remote peer object
-   Returns:
-       Name of remote user associated with remote peer
-   """
+    Gets the remote user associated with a remote peer.
+    Use peer's if possible, otherwise take from options section.
+    Args:
+       config: Config object
+       remotePeer: Configuration-style remote peer object
+    Returns:
+        Name of remote user associated with remote peer
+    """
     if remotePeer.remoteUser is None:
         return config.options.backupUser
     return remotePeer.remoteUser
@@ -333,12 +333,12 @@ def _getRemoteUser(config, remotePeer):
 
 def _getLocalUser(config):
     """
-   Gets the remote user associated with a remote peer.
-   Args:
-      config: Config object
-   Returns:
-       Name of local user that should be used
-   """
+    Gets the remote user associated with a remote peer.
+    Args:
+       config: Config object
+    Returns:
+        Name of local user that should be used
+    """
     if not isRunningAsRoot():
         return None
     return config.options.backupUser
@@ -351,14 +351,14 @@ def _getLocalUser(config):
 
 def _getRcpCommand(config, remotePeer):
     """
-   Gets the RCP command associated with a remote peer.
-   Use peer's if possible, otherwise take from options section.
-   Args:
-      config: Config object
-      remotePeer: Configuration-style remote peer object
-   Returns:
-       RCP command associated with remote peer
-   """
+    Gets the RCP command associated with a remote peer.
+    Use peer's if possible, otherwise take from options section.
+    Args:
+       config: Config object
+       remotePeer: Configuration-style remote peer object
+    Returns:
+        RCP command associated with remote peer
+    """
     if remotePeer.rcpCommand is None:
         return config.options.rcpCommand
     return remotePeer.rcpCommand

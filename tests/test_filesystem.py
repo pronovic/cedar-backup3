@@ -213,8 +213,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_001(self):
         """
-      Test assignment of excludeFiles attribute, true values.
-      """
+        Test assignment of excludeFiles attribute, true values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeFiles)
         fsList.excludeFiles = True
@@ -226,8 +226,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_002(self):
         """
-      Test assignment of excludeFiles attribute, false values.
-      """
+        Test assignment of excludeFiles attribute, false values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeFiles)
         fsList.excludeFiles = False
@@ -237,8 +237,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_003(self):
         """
-      Test assignment of excludeLinks attribute, true values.
-      """
+        Test assignment of excludeLinks attribute, true values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeLinks)
         fsList.excludeLinks = True
@@ -250,8 +250,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_004(self):
         """
-      Test assignment of excludeLinks attribute, false values.
-      """
+        Test assignment of excludeLinks attribute, false values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeLinks)
         fsList.excludeLinks = False
@@ -261,8 +261,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_005(self):
         """
-      Test assignment of excludeDirs attribute, true values.
-      """
+        Test assignment of excludeDirs attribute, true values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeDirs)
         fsList.excludeDirs = True
@@ -274,8 +274,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_006(self):
         """
-      Test assignment of excludeDirs attribute, false values.
-      """
+        Test assignment of excludeDirs attribute, false values.
+        """
         fsList = FilesystemList()
         self.assertEqual(False, fsList.excludeDirs)
         fsList.excludeDirs = False
@@ -285,8 +285,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_007(self):
         """
-      Test assignment of ignoreFile attribute.
-      """
+        Test assignment of ignoreFile attribute.
+        """
         fsList = FilesystemList()
         self.assertEqual(None, fsList.ignoreFile)
         fsList.ignoreFile = "ken"
@@ -296,8 +296,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_008(self):
         """
-      Test assignment of excludePaths attribute.
-      """
+        Test assignment of excludePaths attribute.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList.excludePaths)
         fsList.excludePaths = None
@@ -334,8 +334,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_009(self):
         """
-      Test assignment of excludePatterns attribute.
-      """
+        Test assignment of excludePatterns attribute.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList.excludePatterns)
         fsList.excludePatterns = None
@@ -373,8 +373,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAssignment_010(self):
         """
-      Test assignment of excludeBasenamePatterns attribute.
-      """
+        Test assignment of excludeBasenamePatterns attribute.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns = None
@@ -416,8 +416,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_001(self):
         """
-      Test the append() method.
-      """
+        Test the append() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("a")
@@ -427,8 +427,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_002(self):
         """
-      Test the insert() method.
-      """
+        Test the insert() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.insert(0, "a")
@@ -438,8 +438,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_003(self):
         """
-      Test the remove() method.
-      """
+        Test the remove() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.insert(0, "a")
@@ -452,8 +452,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_004(self):
         """
-      Test the pop() method.
-      """
+        Test the pop() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("a")
@@ -475,8 +475,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_005(self):
         """
-      Test the count() method.
-      """
+        Test the count() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("a")
@@ -489,8 +489,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_006(self):
         """
-      Test the index() method.
-      """
+        Test the index() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("a")
@@ -503,8 +503,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_007(self):
         """
-      Test the reverse() method.
-      """
+        Test the reverse() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("a")
@@ -520,8 +520,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_008(self):
         """
-      Test the sort() method.
-      """
+        Test the sort() method.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("e")
@@ -537,8 +537,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testBasic_009(self):
         """
-      Test slicing.
-      """
+        Test slicing.
+        """
         fsList = FilesystemList()
         self.assertEqual([], fsList)
         fsList.append("e")
@@ -559,16 +559,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_001(self):
         """
-      Attempt to add a file that doesn't exist; no exclusions.
-      """
+        Attempt to add a file that doesn't exist; no exclusions.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         self.assertRaises(ValueError, fsList.addFile, path)
 
     def testAddFile_002(self):
         """
-      Attempt to add a directory; no exclusions.
-      """
+        Attempt to add a directory; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -576,8 +576,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_003(self):
         """
-      Attempt to add a soft link; no exclusions.
-      """
+        Attempt to add a soft link; no exclusions.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -592,8 +592,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_004(self):
         """
-      Attempt to add an existing file; no exclusions.
-      """
+        Attempt to add an existing file; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -603,8 +603,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_005(self):
         """
-      Attempt to add a file that doesn't exist; excludeFiles set.
-      """
+        Attempt to add a file that doesn't exist; excludeFiles set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeFiles = True
@@ -612,8 +612,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_006(self):
         """
-      Attempt to add a directory; excludeFiles set.
-      """
+        Attempt to add a directory; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -622,8 +622,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_007(self):
         """
-      Attempt to add a soft link; excludeFiles set.
-      """
+        Attempt to add a soft link; excludeFiles set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -640,8 +640,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_008(self):
         """
-      Attempt to add an existing file; excludeFiles set.
-      """
+        Attempt to add an existing file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -652,8 +652,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_009(self):
         """
-      Attempt to add a file that doesn't exist; excludeDirs set.
-      """
+        Attempt to add a file that doesn't exist; excludeDirs set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeDirs = True
@@ -661,8 +661,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_010(self):
         """
-      Attempt to add a directory; excludeDirs set.
-      """
+        Attempt to add a directory; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -671,8 +671,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_011(self):
         """
-      Attempt to add a soft link; excludeDirs set.
-      """
+        Attempt to add a soft link; excludeDirs set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -689,8 +689,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_012(self):
         """
-      Attempt to add an existing file; excludeDirs set.
-      """
+        Attempt to add an existing file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -701,8 +701,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_013(self):
         """
-      Attempt to add a file that doesn't exist; excludeLinks set.
-      """
+        Attempt to add a file that doesn't exist; excludeLinks set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeLinks = True
@@ -710,8 +710,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_014(self):
         """
-      Attempt to add a directory; excludeLinks set.
-      """
+        Attempt to add a directory; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -721,8 +721,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddFile_015(self):
         """
-      Attempt to add a soft link; excludeLinks set.
-      """
+        Attempt to add a soft link; excludeLinks set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -739,8 +739,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_016(self):
         """
-      Attempt to add an existing file; excludeLinks set.
-      """
+        Attempt to add an existing file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -751,9 +751,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_017(self):
         """
-      Attempt to add a file that doesn't exist; with excludePaths including the
-      path.
-      """
+        Attempt to add a file that doesn't exist; with excludePaths including the
+        path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [path]
@@ -761,8 +761,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_018(self):
         """
-      Attempt to add a directory; with excludePaths including the path.
-      """
+        Attempt to add a directory; with excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -771,8 +771,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_019(self):
         """
-      Attempt to add a soft link; with excludePaths including the path.
-      """
+        Attempt to add a soft link; with excludePaths including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -789,8 +789,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_020(self):
         """
-      Attempt to add an existing file; with excludePaths including the path.
-      """
+        Attempt to add an existing file; with excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -801,9 +801,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_021(self):
         """
-      Attempt to add a file that doesn't exist; with excludePaths not including
-      the path.
-      """
+        Attempt to add a file that doesn't exist; with excludePaths not including
+        the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [NOMATCH_PATH]
@@ -811,8 +811,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_022(self):
         """
-      Attempt to add a directory; with excludePaths not including the path.
-      """
+        Attempt to add a directory; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -821,8 +821,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_023(self):
         """
-      Attempt to add a soft link; with excludePaths not including the path.
-      """
+        Attempt to add a soft link; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -839,8 +839,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_024(self):
         """
-      Attempt to add an existing file; with excludePaths not including the path.
-      """
+        Attempt to add an existing file; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -851,9 +851,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_025(self):
         """
-      Attempt to add a file that doesn't exist; with excludePatterns matching
-      the path.
-      """
+        Attempt to add a file that doesn't exist; with excludePatterns matching
+        the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [self.pathPattern(path)]
@@ -861,8 +861,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_026(self):
         """
-      Attempt to add a directory; with excludePatterns matching the path.
-      """
+        Attempt to add a directory; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -871,8 +871,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_027(self):
         """
-      Attempt to add a soft link; with excludePatterns matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -889,8 +889,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_028(self):
         """
-      Attempt to add an existing file; with excludePatterns matching the path.
-      """
+        Attempt to add an existing file; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -901,9 +901,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_029(self):
         """
-      Attempt to add a file that doesn't exist; with excludePatterns not
-      matching the path.
-      """
+        Attempt to add a file that doesn't exist; with excludePatterns not
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [NOMATCH_PATH]
@@ -911,8 +911,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_030(self):
         """
-      Attempt to add a directory; with excludePatterns not matching the path.
-      """
+        Attempt to add a directory; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -921,8 +921,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_031(self):
         """
-      Attempt to add a soft link; with excludePatterns not matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -939,9 +939,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_032(self):
         """
-      Attempt to add an existing file; with excludePatterns not matching the
-      path.
-      """
+        Attempt to add an existing file; with excludePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -952,9 +952,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_033(self):
         """
-      Attempt to add an invalid link (i.e. a link that points to something that
-      doesn't exist).
-      """
+        Attempt to add an invalid link (i.e. a link that points to something that
+        doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link001"])
         fsList = FilesystemList()
@@ -962,8 +962,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_034(self):
         """
-      Attempt to add a file that has spaces in its name.
-      """
+        Attempt to add a file that has spaces in its name.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11", "file with spaces"])
         fsList = FilesystemList()
@@ -973,8 +973,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_035(self):
         """
-      Attempt to add a UTF-8 file.
-      """
+        Attempt to add a UTF-8 file.
+        """
         self.extractTar("tree12")
         path = self.buildPath(["tree12", "unicode", encodePath(b"\xe2\x99\xaa\xe2\x99\xac")])
         fsList = FilesystemList()
@@ -984,9 +984,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_036(self):
         """
-      Attempt to add a file that doesn't exist; with excludeBasenamePatterns
-      matching the path.
-      """
+        Attempt to add a file that doesn't exist; with excludeBasenamePatterns
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [INVALID_FILE]
@@ -994,9 +994,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_037(self):
         """
-      Attempt to add a directory; with excludeBasenamePatterns matching the
-      path.
-      """
+        Attempt to add a directory; with excludeBasenamePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1007,9 +1007,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_038(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1030,9 +1030,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_039(self):
         """
-      Attempt to add an existing file; with excludeBasenamePatterns matching
-      the path.
-      """
+        Attempt to add an existing file; with excludeBasenamePatterns matching
+        the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1045,9 +1045,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_040(self):
         """
-      Attempt to add a file that doesn't exist; with excludeBasenamePatterns
-      not matching the path.
-      """
+        Attempt to add a file that doesn't exist; with excludeBasenamePatterns
+        not matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [NOMATCH_BASENAME]
@@ -1055,9 +1055,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_041(self):
         """
-      Attempt to add a directory; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a directory; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1066,9 +1066,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_042(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1085,9 +1085,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddFile_043(self):
         """
-      Attempt to add an existing file; with excludeBasenamePatterns not
-      matching the path.
-      """
+        Attempt to add an existing file; with excludeBasenamePatterns not
+        matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1102,16 +1102,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_001(self):
         """
-      Attempt to add a directory that doesn't exist; no exclusions.
-      """
+        Attempt to add a directory that doesn't exist; no exclusions.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         self.assertRaises(ValueError, fsList.addDir, path)
 
     def testAddDir_002(self):
         """
-      Attempt to add a file; no exclusions.
-      """
+        Attempt to add a file; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1119,8 +1119,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_003(self):
         """
-      Attempt to add a soft link; no exclusions.
-      """
+        Attempt to add a soft link; no exclusions.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1135,8 +1135,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_004(self):
         """
-      Attempt to add an existing directory; no exclusions.
-      """
+        Attempt to add an existing directory; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1146,8 +1146,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_005(self):
         """
-      Attempt to add a directory that doesn't exist; excludeFiles set.
-      """
+        Attempt to add a directory that doesn't exist; excludeFiles set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeFiles = True
@@ -1155,8 +1155,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_006(self):
         """
-      Attempt to add a file; excludeFiles set.
-      """
+        Attempt to add a file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1165,8 +1165,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_007(self):
         """
-      Attempt to add a soft link; excludeFiles set.
-      """
+        Attempt to add a soft link; excludeFiles set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1183,8 +1183,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_008(self):
         """
-      Attempt to add an existing directory; excludeFiles set.
-      """
+        Attempt to add an existing directory; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1195,8 +1195,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_009(self):
         """
-      Attempt to add a directory that doesn't exist; excludeDirs set.
-      """
+        Attempt to add a directory that doesn't exist; excludeDirs set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeDirs = True
@@ -1204,8 +1204,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_010(self):
         """
-      Attempt to add a file; excludeDirs set.
-      """
+        Attempt to add a file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1214,8 +1214,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_011(self):
         """
-      Attempt to add a soft link; excludeDirs set.
-      """
+        Attempt to add a soft link; excludeDirs set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1232,8 +1232,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_012(self):
         """
-      Attempt to add an existing directory; excludeDirs set.
-      """
+        Attempt to add an existing directory; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1244,8 +1244,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_013(self):
         """
-      Attempt to add a directory that doesn't exist; excludeLinks set.
-      """
+        Attempt to add a directory that doesn't exist; excludeLinks set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeLinks = True
@@ -1253,8 +1253,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_014(self):
         """
-      Attempt to add a file; excludeLinks set.
-      """
+        Attempt to add a file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1264,8 +1264,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDir_015(self):
         """
-      Attempt to add a soft link; excludeLinks set.
-      """
+        Attempt to add a soft link; excludeLinks set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1282,8 +1282,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_016(self):
         """
-      Attempt to add an existing directory; excludeLinks set.
-      """
+        Attempt to add an existing directory; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1294,9 +1294,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_017(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [path]
@@ -1304,8 +1304,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_018(self):
         """
-      Attempt to add a file; with excludePaths including the path.
-      """
+        Attempt to add a file; with excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1314,8 +1314,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_019(self):
         """
-      Attempt to add a soft link; with excludePaths including the path.
-      """
+        Attempt to add a soft link; with excludePaths including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1332,9 +1332,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_020(self):
         """
-      Attempt to add an existing directory; with excludePaths including the
-      path.
-      """
+        Attempt to add an existing directory; with excludePaths including the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1345,9 +1345,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_021(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths not
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths not
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [NOMATCH_PATH]
@@ -1355,8 +1355,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_022(self):
         """
-      Attempt to add a file; with excludePaths not including the path.
-      """
+        Attempt to add a file; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1365,8 +1365,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_023(self):
         """
-      Attempt to add a soft link; with excludePaths not including the path.
-      """
+        Attempt to add a soft link; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1383,9 +1383,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_024(self):
         """
-      Attempt to add an existing directory; with excludePaths not including the
-      path.
-      """
+        Attempt to add an existing directory; with excludePaths not including the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1396,9 +1396,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_025(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [self.pathPattern(path)]
@@ -1406,8 +1406,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_026(self):
         """
-      Attempt to add a file; with excludePatterns matching the path.
-      """
+        Attempt to add a file; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1416,8 +1416,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_027(self):
         """
-      Attempt to add a soft link; with excludePatterns matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1434,9 +1434,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_028(self):
         """
-      Attempt to add an existing directory; with excludePatterns matching the
-      path.
-      """
+        Attempt to add an existing directory; with excludePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1447,9 +1447,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_029(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns not
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns not
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [NOMATCH_PATH]
@@ -1457,8 +1457,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_030(self):
         """
-      Attempt to add a file; with excludePatterns not matching the path.
-      """
+        Attempt to add a file; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1467,8 +1467,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_031(self):
         """
-      Attempt to add a soft link; with excludePatterns not matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1485,9 +1485,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_032(self):
         """
-      Attempt to add an existing directory; with excludePatterns not matching
-      the path.
-      """
+        Attempt to add an existing directory; with excludePatterns not matching
+        the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1498,9 +1498,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_033(self):
         """
-      Attempt to add an invalid link (i.e. a link that points to something that
-      doesn't exist).
-      """
+        Attempt to add an invalid link (i.e. a link that points to something that
+        doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link001"])
         fsList = FilesystemList()
@@ -1508,8 +1508,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_034(self):
         """
-      Attempt to add a directory that has spaces in its name.
-      """
+        Attempt to add a directory that has spaces in its name.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11", "dir with spaces"])
         fsList = FilesystemList()
@@ -1519,9 +1519,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_035(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [INVALID_FILE]
@@ -1529,8 +1529,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_036(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1541,9 +1541,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_037(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1564,9 +1564,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_038(self):
         """
-      Attempt to add an existing directory; with excludeBasenamePatterns
-      matching the path.
-      """
+        Attempt to add an existing directory; with excludeBasenamePatterns
+        matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1579,9 +1579,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_039(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns not matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [NOMATCH_BASENAME]
@@ -1589,9 +1589,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_040(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1600,9 +1600,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_041(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1619,9 +1619,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDir_042(self):
         """
-      Attempt to add an existing directory; with excludeBasenamePatterns not
-      matching the path.
-      """
+        Attempt to add an existing directory; with excludeBasenamePatterns not
+        matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1636,16 +1636,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_001(self):
         """
-      Attempt to add a directory that doesn't exist; no exclusions.
-      """
+        Attempt to add a directory that doesn't exist; no exclusions.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         self.assertRaises(ValueError, fsList.addDirContents, path)
 
     def testAddDirContents_002(self):
         """
-      Attempt to add a file; no exclusions.
-      """
+        Attempt to add a file; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1653,8 +1653,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_003(self):
         """
-      Attempt to add a soft link; no exclusions.
-      """
+        Attempt to add a soft link; no exclusions.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1669,8 +1669,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_004(self):
         """
-      Attempt to add an empty directory containing ignore file; no exclusions.
-      """
+        Attempt to add an empty directory containing ignore file; no exclusions.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -1681,8 +1681,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_005(self):
         """
-      Attempt to add an empty directory; no exclusions.
-      """
+        Attempt to add an empty directory; no exclusions.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -1692,9 +1692,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_006(self):
         """
-      Attempt to add an non-empty directory containing ignore file; no
-      exclusions.
-      """
+        Attempt to add an non-empty directory containing ignore file; no
+        exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -1705,8 +1705,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_007(self):
         """
-      Attempt to add an non-empty directory; no exclusions.
-      """
+        Attempt to add an non-empty directory; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1724,8 +1724,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_008(self):
         """
-      Attempt to add a directory that doesn't exist; excludeFiles set.
-      """
+        Attempt to add a directory that doesn't exist; excludeFiles set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeFiles = True
@@ -1733,8 +1733,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_009(self):
         """
-      Attempt to add a file; excludeFiles set.
-      """
+        Attempt to add a file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1743,8 +1743,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_010(self):
         """
-      Attempt to add a soft link; excludeFiles set.
-      """
+        Attempt to add a soft link; excludeFiles set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1761,8 +1761,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_011(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeFiles set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeFiles set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -1774,8 +1774,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_012(self):
         """
-      Attempt to add an empty directory; excludeFiles set.
-      """
+        Attempt to add an empty directory; excludeFiles set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -1786,8 +1786,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_013(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeFiles set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -1799,8 +1799,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_014(self):
         """
-      Attempt to add an non-empty directory; excludeFiles set.
-      """
+        Attempt to add an non-empty directory; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1816,8 +1816,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_015(self):
         """
-      Attempt to add a directory that doesn't exist; excludeDirs set.
-      """
+        Attempt to add a directory that doesn't exist; excludeDirs set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeDirs = True
@@ -1825,8 +1825,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_016(self):
         """
-      Attempt to add a file; excludeDirs set.
-      """
+        Attempt to add a file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1835,8 +1835,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_017(self):
         """
-      Attempt to add a soft link; excludeDirs set.
-      """
+        Attempt to add a soft link; excludeDirs set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1853,8 +1853,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_018(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeDirs set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeDirs set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -1866,8 +1866,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_019(self):
         """
-      Attempt to add an empty directory; excludeDirs set.
-      """
+        Attempt to add an empty directory; excludeDirs set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -1878,8 +1878,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_020(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeDirs set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -1891,8 +1891,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_021(self):
         """
-      Attempt to add an non-empty directory; excludeDirs set.
-      """
+        Attempt to add an non-empty directory; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -1906,8 +1906,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_023(self):
         """
-      Attempt to add a directory that doesn't exist; excludeLinks set.
-      """
+        Attempt to add a directory that doesn't exist; excludeLinks set.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeLinks = True
@@ -1915,8 +1915,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_024(self):
         """
-      Attempt to add a file; excludeLinks set.
-      """
+        Attempt to add a file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -1925,8 +1925,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_025(self):
         """
-      Attempt to add a soft link; excludeLinks set.
-      """
+        Attempt to add a soft link; excludeLinks set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -1944,8 +1944,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_026(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeLinks set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeLinks set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -1957,8 +1957,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_027(self):
         """
-      Attempt to add an empty directory; excludeLinks set.
-      """
+        Attempt to add an empty directory; excludeLinks set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -1969,8 +1969,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_028(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeLinks set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -1983,8 +1983,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_029(self):
         """
-      Attempt to add an non-empty directory; excludeLinks set.
-      """
+        Attempt to add an non-empty directory; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -2002,9 +2002,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_030(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [path]
@@ -2012,8 +2012,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_031(self):
         """
-      Attempt to add a file; with excludePaths including the path.
-      """
+        Attempt to add a file; with excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -2022,8 +2022,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_032(self):
         """
-      Attempt to add a soft link; with excludePaths including the path.
-      """
+        Attempt to add a soft link; with excludePaths including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -2040,9 +2040,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_033(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePaths including the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePaths including the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -2054,8 +2054,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_034(self):
         """
-      Attempt to add an empty directory; with excludePaths including the path.
-      """
+        Attempt to add an empty directory; with excludePaths including the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -2066,9 +2066,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_035(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePaths including the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -2080,9 +2080,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_036(self):
         """
-      Attempt to add an non-empty directory; with excludePaths including the
-      main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePaths including the
+        main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -2093,9 +2093,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_037(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths not
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths not
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePaths = [NOMATCH_PATH]
@@ -2103,8 +2103,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_038(self):
         """
-      Attempt to add a file; with excludePaths not including the path.
-      """
+        Attempt to add a file; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -2113,8 +2113,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_039(self):
         """
-      Attempt to add a soft link; with excludePaths not including the path.
-      """
+        Attempt to add a soft link; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -2131,9 +2131,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_040(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePaths not including the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePaths not including the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -2145,9 +2145,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_041(self):
         """
-      Attempt to add an empty directory; with excludePaths not including the
-      path.
-      """
+        Attempt to add an empty directory; with excludePaths not including the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -2158,9 +2158,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_042(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePaths not including the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -2172,9 +2172,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_043(self):
         """
-      Attempt to add an non-empty directory; with excludePaths not including
-      the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePaths not including
+        the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -2193,9 +2193,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_044(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [self.pathPattern(path)]
@@ -2203,8 +2203,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_045(self):
         """
-      Attempt to add a file; with excludePatterns matching the path.
-      """
+        Attempt to add a file; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -2213,8 +2213,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_046(self):
         """
-      Attempt to add a soft link; with excludePatterns matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -2231,9 +2231,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_047(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePatterns matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePatterns matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -2245,9 +2245,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_048(self):
         """
-      Attempt to add an empty directory; with excludePatterns matching the
-      path.
-      """
+        Attempt to add an empty directory; with excludePatterns matching the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -2258,9 +2258,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_049(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePatterns matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -2272,9 +2272,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_050(self):
         """
-      Attempt to add an non-empty directory; with excludePatterns matching the
-      main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePatterns matching the
+        main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -2285,9 +2285,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_051(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns not
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns not
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludePatterns = [NOMATCH_PATH]
@@ -2295,8 +2295,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_052(self):
         """
-      Attempt to add a file; with excludePatterns not matching the path.
-      """
+        Attempt to add a file; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -2305,8 +2305,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_053(self):
         """
-      Attempt to add a soft link; with excludePatterns not matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -2323,9 +2323,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_054(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePatterns not matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePatterns not matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -2337,9 +2337,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_055(self):
         """
-      Attempt to add an empty directory; with excludePatterns not matching the
-      path.
-      """
+        Attempt to add an empty directory; with excludePatterns not matching the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -2350,9 +2350,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_056(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePatterns not matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -2364,9 +2364,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_057(self):
         """
-      Attempt to add an non-empty directory; with excludePatterns not matching
-      the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePatterns not matching
+        the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -2385,8 +2385,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_058(self):
         """
-      Attempt to add a large tree with no exclusions.
-      """
+        Attempt to add a large tree with no exclusions.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -2532,8 +2532,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_059(self):
         """
-      Attempt to add a large tree, with excludeFiles set.
-      """
+        Attempt to add a large tree, with excludeFiles set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -2586,8 +2586,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_060(self):
         """
-      Attempt to add a large tree, with excludeDirs set.
-      """
+        Attempt to add a large tree, with excludeDirs set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -2693,8 +2693,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_061(self):
         """
-      Attempt to add a large tree, with excludeLinks set.
-      """
+        Attempt to add a large tree, with excludeLinks set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -2801,8 +2801,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_062(self):
         """
-      Attempt to add a large tree, with excludePaths set to exclude some entries.
-      """
+        Attempt to add a large tree, with excludePaths set to exclude some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -2944,8 +2944,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_063(self):
         """
-      Attempt to add a large tree, with excludePatterns set to exclude some entries.
-      """
+        Attempt to add a large tree, with excludePatterns set to exclude some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3064,8 +3064,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_064(self):
         """
-      Attempt to add a large tree, with ignoreFile set to exclude some directories.
-      """
+        Attempt to add a large tree, with ignoreFile set to exclude some directories.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3155,8 +3155,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_065(self):
         """
-      Attempt to add a link to a file.
-      """
+        Attempt to add a link to a file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002", "link003"])
         fsList = FilesystemList()
@@ -3165,8 +3165,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_066(self):
         """
-      Attempt to add a link to a directory (which should add its contents).
-      """
+        Attempt to add a link to a directory (which should add its contents).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "link002"])
         fsList = FilesystemList()
@@ -3185,9 +3185,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_067(self):
         """
-      Attempt to add an invalid link (i.e. a link that points to something that
-      doesn't exist).
-      """
+        Attempt to add an invalid link (i.e. a link that points to something that
+        doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link001"])
         fsList = FilesystemList()
@@ -3195,9 +3195,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_068(self):
         """
-      Attempt to add directory containing an invalid link (i.e. a link that
-      points to something that doesn't exist).
-      """
+        Attempt to add directory containing an invalid link (i.e. a link that
+        points to something that doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10"])
         fsList = FilesystemList()
@@ -3210,8 +3210,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_069(self):
         """
-      Attempt to add a directory containing items with spaces.
-      """
+        Attempt to add a directory containing items with spaces.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -3237,8 +3237,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_070(self):
         """
-      Attempt to add a directory which has a name containing spaces.
-      """
+        Attempt to add a directory which has a name containing spaces.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11", "dir with spaces"])
         fsList = FilesystemList()
@@ -3253,8 +3253,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_071(self):
         """
-      Attempt to add a directory which has a UTF-8 filename in it.
-      """
+        Attempt to add a directory which has a UTF-8 filename in it.
+        """
         self.extractTar("tree12")
         path = self.buildPath(["tree12", "unicode"])
         fsList = FilesystemList()
@@ -3270,20 +3270,20 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_072(self):
         """
-      Attempt to add a directory which has several UTF-8 filenames in it.
+        Attempt to add a directory which has several UTF-8 filenames in it.
 
-      This test data was taken from Rick Lowe's problems around the release of
-      v1.10.  I don't run the test for Darwin (Mac OS X) because the tarball
-      isn't valid on that platform.
+        This test data was taken from Rick Lowe's problems around the release of
+        v1.10.  I don't run the test for Darwin (Mac OS X) because the tarball
+        isn't valid on that platform.
 
-      All of the tests with unicode paths were incredibly painful to get
-      working with Python 3, but these tests in particular were difficult,
-      because character 0x82 is not a valid UTF-8 character.  The key is was to
-      get the filename into the same encoding used by methods like os.listdir(),
-      which uses a "surrogateescape" fallback for encoding filenames.  Once I
-      switched encodePath to do the same thing, this test started passing.
-      There's apparently no other way to represent filenames like this.
-      """
+        All of the tests with unicode paths were incredibly painful to get
+        working with Python 3, but these tests in particular were difficult,
+        because character 0x82 is not a valid UTF-8 character.  The key is was to
+        get the filename into the same encoding used by methods like os.listdir(),
+        which uses a "surrogateescape" fallback for encoding filenames.  Once I
+        switched encodePath to do the same thing, this test started passing.
+        There's apparently no other way to represent filenames like this.
+        """
         if not platformMacOsX():
             self.extractTar("tree13")
             path = self.buildPath(["tree13"])
@@ -3305,8 +3305,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_073(self):
         """
-      Attempt to add a large tree with recursive=False.
-      """
+        Attempt to add a large tree with recursive=False.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3324,9 +3324,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_074(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [INVALID_FILE]
@@ -3334,8 +3334,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_075(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -3346,9 +3346,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_076(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -3369,9 +3369,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_077(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -3385,9 +3385,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_078(self):
         """
-      Attempt to add an empty directory; with excludeBasenamePatterns matching
-      the path.
-      """
+        Attempt to add an empty directory; with excludeBasenamePatterns matching
+        the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -3400,9 +3400,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_079(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -3416,9 +3416,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_080(self):
         """
-      Attempt to add an non-empty directory; with excludeBasenamePatterns
-      matching the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludeBasenamePatterns
+        matching the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -3431,9 +3431,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_081(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns not matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         fsList = FilesystemList()
         fsList.excludeBasenamePatterns = [NOMATCH_BASENAME]
@@ -3441,9 +3441,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_082(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         fsList = FilesystemList()
@@ -3452,9 +3452,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_083(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -3471,9 +3471,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_084(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludeBasenamePatterns not matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         fsList = FilesystemList()
@@ -3485,9 +3485,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_085(self):
         """
-      Attempt to add an empty directory; with excludeBasenamePatterns not
-      matching the path.
-      """
+        Attempt to add an empty directory; with excludeBasenamePatterns not
+        matching the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         fsList = FilesystemList()
@@ -3498,9 +3498,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_086(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludeBasenamePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         fsList = FilesystemList()
@@ -3512,9 +3512,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_087(self):
         """
-      Attempt to add an non-empty directory; with excludeBasenamePatterns not
-      matching the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludeBasenamePatterns not
+        matching the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         fsList = FilesystemList()
@@ -3533,9 +3533,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_088(self):
         """
-      Attempt to add a large tree, with excludeBasenamePatterns set to exclude
-      some entries.
-      """
+        Attempt to add a large tree, with excludeBasenamePatterns set to exclude
+        some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3610,8 +3610,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_089(self):
         """
-      Attempt to add a large tree with no exclusions, addSelf=True.
-      """
+        Attempt to add a large tree with no exclusions, addSelf=True.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3757,8 +3757,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_090(self):
         """
-      Attempt to add a large tree with no exclusions, addSelf=False.
-      """
+        Attempt to add a large tree with no exclusions, addSelf=False.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -3904,8 +3904,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_091(self):
         """
-      Attempt to add a directory with linkDepth=1.
-      """
+        Attempt to add a directory with linkDepth=1.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -4081,8 +4081,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_092(self):
         """
-      Attempt to add a directory with linkDepth=2.
-      """
+        Attempt to add a directory with linkDepth=2.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         fsList = FilesystemList()
@@ -4333,8 +4333,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_093(self):
         """
-      Attempt to add a directory with linkDepth=0, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=0, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4357,8 +4357,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_094(self):
         """
-      Attempt to add a directory with linkDepth=1, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=1, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4385,8 +4385,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_095(self):
         """
-      Attempt to add a directory with linkDepth=2, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=2, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4417,8 +4417,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_096(self):
         """
-      Attempt to add a directory with linkDepth=3, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=3, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4448,8 +4448,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_097(self):
         """
-      Attempt to add a directory with linkDepth=0, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=0, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4472,8 +4472,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_098(self):
         """
-      Attempt to add a directory with linkDepth=1, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=1, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4504,8 +4504,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_099(self):
         """
-      Attempt to add a directory with linkDepth=2, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=2, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4548,8 +4548,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_100(self):
         """
-      Attempt to add a directory with linkDepth=3, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=3, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         fsList = FilesystemList()
@@ -4594,8 +4594,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_101(self):
         """
-      Attempt to add a soft link; excludeFiles and dereference set.
-      """
+        Attempt to add a soft link; excludeFiles and dereference set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4612,8 +4612,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_102(self):
         """
-      Attempt to add a soft link; excludeDirs and dereference set.
-      """
+        Attempt to add a soft link; excludeDirs and dereference set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4631,8 +4631,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_103(self):
         """
-      Attempt to add a soft link; excludeLinks and dereference set.
-      """
+        Attempt to add a soft link; excludeLinks and dereference set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4649,9 +4649,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_104(self):
         """
-      Attempt to add a soft link; with excludePaths including the path,
-      with dereference=True.
-      """
+        Attempt to add a soft link; with excludePaths including the path,
+        with dereference=True.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4668,9 +4668,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_105(self):
         """
-      Attempt to add a soft link; with excludePatterns matching the path,
-      with dereference=True.
-      """
+        Attempt to add a soft link; with excludePatterns matching the path,
+        with dereference=True.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4687,8 +4687,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_106(self):
         """
-      Attempt to add a link to a file, with dereference=True.
-      """
+        Attempt to add a link to a file, with dereference=True.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002", "link003"])
         fsList = FilesystemList()
@@ -4697,9 +4697,9 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_107(self):
         """
-      Attempt to add a link to a directory (which should add its contents),
-      with dereference=True.
-      """
+        Attempt to add a link to a directory (which should add its contents),
+        with dereference=True.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "link002"])
         fsList = FilesystemList()
@@ -4718,9 +4718,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_108(self):
         """
-      Attempt to add an invalid link (i.e. a link that points to something that
-      doesn't exist), and dereference=True.
-      """
+        Attempt to add an invalid link (i.e. a link that points to something that
+        doesn't exist), and dereference=True.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link001"])
         fsList = FilesystemList()
@@ -4728,9 +4728,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_109(self):
         """
-      Attempt to add directory containing an invalid link (i.e. a link that
-      points to something that doesn't exist), and dereference=True.
-      """
+        Attempt to add directory containing an invalid link (i.e. a link that
+        points to something that doesn't exist), and dereference=True.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10"])
         fsList = FilesystemList()
@@ -4743,9 +4743,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testAddDirContents_110(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns matching the
-      path, and dereference=True.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns matching the
+        path, and dereference=True.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -4770,16 +4770,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_001(self):
         """
-      Test with an empty list and a pattern of None.
-      """
+        Test with an empty list and a pattern of None.
+        """
         fsList = FilesystemList()
         count = fsList.removeFiles(pattern=None)
         self.assertEqual(0, count)
 
     def testRemoveFiles_002(self):
         """
-      Test with an empty list and a non-empty pattern.
-      """
+        Test with an empty list and a non-empty pattern.
+        """
         fsList = FilesystemList()
         count = fsList.removeFiles(pattern="pattern")
         self.assertEqual(0, count)
@@ -4787,8 +4787,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_003(self):
         """
-      Test with a non-empty list (files only) and a pattern of None.
-      """
+        Test with a non-empty list (files only) and a pattern of None.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -4810,8 +4810,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_004(self):
         """
-      Test with a non-empty list (directories only) and a pattern of None.
-      """
+        Test with a non-empty list (directories only) and a pattern of None.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -4846,8 +4846,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_005(self):
         """
-      Test with a non-empty list (files and directories) and a pattern of None.
-      """
+        Test with a non-empty list (files and directories) and a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -4978,8 +4978,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_006(self):
         """
-      Test with a non-empty list (files, directories and links) and a pattern of None.
-      """
+        Test with a non-empty list (files, directories and links) and a pattern of None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -5026,9 +5026,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_007(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a pattern of None.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -5162,8 +5162,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_008(self):
         """
-      Test with a non-empty list (spaces in path names) and a pattern of None.
-      """
+        Test with a non-empty list (spaces in path names) and a pattern of None.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -5208,9 +5208,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_009(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches none of the files.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches none of the files.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -5239,9 +5239,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_010(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches none of the files.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches none of the files.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -5276,9 +5276,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_011(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches none of the files.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches none of the files.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -5453,9 +5453,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_012(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches none of the files.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches none of the files.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -5512,9 +5512,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_013(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches none of the files.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches none of the files.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -5692,9 +5692,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_014(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches none of the files.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches none of the files.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -5739,9 +5739,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_015(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches some of the files.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches some of the files.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -5768,9 +5768,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_016(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches some of the files.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches some of the files.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -5805,9 +5805,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_017(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches some of the files.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches some of the files.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -5972,9 +5972,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_018(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches some of the files.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches some of the files.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -6027,9 +6027,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_019(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches some of the files.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches some of the files.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -6206,9 +6206,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_020(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches some of the files.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches some of the files.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -6247,9 +6247,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_021(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches anything.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches anything.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -6271,9 +6271,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_022(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches anything.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches anything.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -6308,9 +6308,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_023(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches anything.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches anything.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -6441,9 +6441,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_024(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches all of the files.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches all of the files.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -6490,9 +6490,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_025(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches all of the files.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches all of the files.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -6626,9 +6626,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveFiles_026(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches all of the files.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches all of the files.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -6666,16 +6666,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_001(self):
         """
-      Test with an empty list and a pattern of None.
-      """
+        Test with an empty list and a pattern of None.
+        """
         fsList = FilesystemList()
         count = fsList.removeDirs(pattern=None)
         self.assertEqual(0, count)
 
     def testRemoveDirs_002(self):
         """
-      Test with an empty list and a non-empty pattern.
-      """
+        Test with an empty list and a non-empty pattern.
+        """
         fsList = FilesystemList()
         count = fsList.removeDirs(pattern="pattern")
         self.assertEqual(0, count)
@@ -6683,8 +6683,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_003(self):
         """
-      Test with a non-empty list (files only) and a pattern of None.
-      """
+        Test with a non-empty list (files only) and a pattern of None.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -6711,8 +6711,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_004(self):
         """
-      Test with a non-empty list (directories only) and a pattern of None.
-      """
+        Test with a non-empty list (directories only) and a pattern of None.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -6736,8 +6736,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_005(self):
         """
-      Test with a non-empty list (files and directories) and a pattern of None.
-      """
+        Test with a non-empty list (files and directories) and a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -6875,8 +6875,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_006(self):
         """
-      Test with a non-empty list (files, directories and links) and a pattern of None.
-      """
+        Test with a non-empty list (files, directories and links) and a pattern of None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -6921,9 +6921,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_007(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a pattern of None.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -7064,8 +7064,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_008(self):
         """
-      Test with a non-empty list (spaces in path names) and a pattern of None.
-      """
+        Test with a non-empty list (spaces in path names) and a pattern of None.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -7105,9 +7105,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_009(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches none of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches none of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -7136,9 +7136,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_010(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -7173,9 +7173,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_011(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -7350,9 +7350,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_012(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -7409,9 +7409,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_013(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -7589,9 +7589,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_014(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -7636,9 +7636,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_015(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches some of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches some of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -7667,9 +7667,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_016(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -7703,9 +7703,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_017(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -7871,9 +7871,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_018(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -7924,9 +7924,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_019(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -8095,9 +8095,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_020(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -8141,9 +8141,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_021(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches all of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches all of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -8171,9 +8171,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_022(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -8197,9 +8197,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_023(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -8337,9 +8337,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_024(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -8384,9 +8384,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_025(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -8527,9 +8527,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveDirs_026(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -8573,16 +8573,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_001(self):
         """
-      Test with an empty list and a pattern of None.
-      """
+        Test with an empty list and a pattern of None.
+        """
         fsList = FilesystemList()
         count = fsList.removeLinks(pattern=None)
         self.assertEqual(0, count)
 
     def testRemoveLinks_002(self):
         """
-      Test with an empty list and a non-empty pattern.
-      """
+        Test with an empty list and a non-empty pattern.
+        """
         fsList = FilesystemList()
         count = fsList.removeLinks(pattern="pattern")
         self.assertEqual(0, count)
@@ -8590,8 +8590,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_003(self):
         """
-      Test with a non-empty list (files only) and a pattern of None.
-      """
+        Test with a non-empty list (files only) and a pattern of None.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -8620,8 +8620,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_004(self):
         """
-      Test with a non-empty list (directories only) and a pattern of None.
-      """
+        Test with a non-empty list (directories only) and a pattern of None.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -8656,8 +8656,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_005(self):
         """
-      Test with a non-empty list (files and directories) and a pattern of None.
-      """
+        Test with a non-empty list (files and directories) and a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -8833,8 +8833,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_006(self):
         """
-      Test with a non-empty list (files, directories and links) and a pattern of None.
-      """
+        Test with a non-empty list (files, directories and links) and a pattern of None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -8882,9 +8882,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_007(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a pattern of None.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a pattern of None.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -9063,8 +9063,8 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_008(self):
         """
-      Test with a non-empty list (spaces in path names) and a pattern of None.
-      """
+        Test with a non-empty list (spaces in path names) and a pattern of None.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -9103,9 +9103,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_009(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches none of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches none of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -9134,9 +9134,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_010(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -9171,9 +9171,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_011(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -9348,9 +9348,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_012(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -9407,9 +9407,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_013(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -9587,9 +9587,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_014(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -9634,9 +9634,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_015(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches some of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches some of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -9665,9 +9665,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_016(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -9702,9 +9702,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_017(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -9880,9 +9880,9 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_018(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -9935,9 +9935,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_019(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -10116,9 +10116,9 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_020(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -10160,9 +10160,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_021(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches all of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches all of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -10191,9 +10191,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_022(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -10228,9 +10228,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_023(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -10406,9 +10406,9 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_024(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -10456,9 +10456,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveLinks_025(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -10637,9 +10637,9 @@ class TestFilesystemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_026(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -10682,15 +10682,15 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_001(self):
         """
-      Test with an empty list and a pattern of None.
-      """
+        Test with an empty list and a pattern of None.
+        """
         fsList = FilesystemList()
         self.assertRaises(TypeError, fsList.removeMatch, pattern=None)
 
     def testRemoveMatch_002(self):
         """
-      Test with an empty list and a non-empty pattern.
-      """
+        Test with an empty list and a non-empty pattern.
+        """
         fsList = FilesystemList()
         count = fsList.removeMatch(pattern="pattern")
         self.assertEqual(0, count)
@@ -10698,9 +10698,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_003(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches none of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches none of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -10729,9 +10729,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_004(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -10766,9 +10766,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_005(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -10943,9 +10943,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_006(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches none of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches none of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -11002,9 +11002,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_007(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches none of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches none of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -11182,9 +11182,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_008(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches none of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches none of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -11229,9 +11229,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_009(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches some of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches some of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -11257,9 +11257,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_010(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -11290,9 +11290,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_011(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -11449,9 +11449,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_012(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches some of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches some of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -11505,9 +11505,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_013(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches some of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches some of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -11660,9 +11660,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_014(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches some of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches some of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -11700,9 +11700,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_015(self):
         """
-      Test with a non-empty list (files only) and a non-empty pattern that
-      matches all of them.
-      """
+        Test with a non-empty list (files only) and a non-empty pattern that
+        matches all of them.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -11723,9 +11723,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_016(self):
         """
-      Test with a non-empty list (directories only) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (directories only) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -11749,9 +11749,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_017(self):
         """
-      Test with a non-empty list (files and directories) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -11845,9 +11845,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_019(self):
         """
-      Test with a non-empty list (files, directories and links) and a non-empty
-      pattern that matches all of them.
-      """
+        Test with a non-empty list (files, directories and links) and a non-empty
+        pattern that matches all of them.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -11882,9 +11882,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_020(self):
         """
-      Test with a non-empty list (files and directories, some nonexistent) and
-      a non-empty pattern that matches all of them.
-      """
+        Test with a non-empty list (files and directories, some nonexistent) and
+        a non-empty pattern that matches all of them.
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -11980,9 +11980,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveMatch_021(self):
         """
-      Test with a non-empty list (spaces in path names) and a non-empty pattern
-      that matches all of them.
-      """
+        Test with a non-empty list (spaces in path names) and a non-empty pattern
+        that matches all of them.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -12015,16 +12015,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_001(self):
         """
-      Test with an empty list.
-      """
+        Test with an empty list.
+        """
         fsList = FilesystemList()
         count = fsList.removeInvalid()
         self.assertEqual(0, count)
 
     def testRemoveInvalid_002(self):
         """
-      Test with a non-empty list containing only invalid entries (some with spaces).
-      """
+        Test with a non-empty list containing only invalid entries (some with spaces).
+        """
         self.extractTar("tree9")
         fsList = FilesystemList()
         fsList.append(self.buildPath(["tree9", "%s-1" % INVALID_FILE]))  # file won't exist on disk
@@ -12044,8 +12044,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_003(self):
         """
-      Test with a non-empty list containing only valid entries (files only).
-      """
+        Test with a non-empty list containing only valid entries (files only).
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -12074,9 +12074,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_004(self):
         """
-      Test with a non-empty list containing only valid entries (directories
-      only).
-      """
+        Test with a non-empty list containing only valid entries (directories
+        only).
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -12111,9 +12111,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_005(self):
         """
-      Test with a non-empty list containing only valid entries (files and
-      directories).
-      """
+        Test with a non-empty list containing only valid entries (files and
+        directories).
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -12288,9 +12288,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_006(self):
         """
-      Test with a non-empty list containing only valid entries (files,
-      directories and links).
-      """
+        Test with a non-empty list containing only valid entries (files,
+        directories and links).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -12347,9 +12347,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_007(self):
         """
-      Test with a non-empty list containing valid and invalid entries (files,
-      directories and links).
-      """
+        Test with a non-empty list containing valid and invalid entries (files,
+        directories and links).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -12415,9 +12415,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testRemoveInvalid_008(self):
         """
-      Test with a non-empty list containing only valid entries (files,
-      directories and links, some with spaces).
-      """
+        Test with a non-empty list containing only valid entries (files,
+        directories and links, some with spaces).
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -12466,8 +12466,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_001(self):
         """
-      Test with an empty list.
-      """
+        Test with an empty list.
+        """
         fsList = FilesystemList()
         self.assertEqual(0, len(fsList))
         fsList.normalize()
@@ -12475,8 +12475,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_002(self):
         """
-      Test with a list containing one entry.
-      """
+        Test with a list containing one entry.
+        """
         fsList = FilesystemList()
         fsList.append("one")
         self.assertEqual(1, len(fsList))
@@ -12486,8 +12486,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_003(self):
         """
-      Test with a list containing two entries, no duplicates.
-      """
+        Test with a list containing two entries, no duplicates.
+        """
         fsList = FilesystemList()
         fsList.append("one")
         fsList.append("two")
@@ -12499,8 +12499,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_004(self):
         """
-      Test with a list containing two entries, with duplicates.
-      """
+        Test with a list containing two entries, with duplicates.
+        """
         fsList = FilesystemList()
         fsList.append("one")
         fsList.append("one")
@@ -12511,8 +12511,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_005(self):
         """
-      Test with a list containing many entries, no duplicates.
-      """
+        Test with a list containing many entries, no duplicates.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -12568,8 +12568,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testNormalize_006(self):
         """
-      Test with a list containing many entries, with duplicates.
-      """
+        Test with a list containing many entries, with duplicates.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -12632,16 +12632,16 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_001(self):
         """
-      Test with an empty list.
-      """
+        Test with an empty list.
+        """
         fsList = FilesystemList()
         ok = fsList.verify()
         self.assertEqual(True, ok)
 
     def testVerify_002(self):
         """
-      Test with a non-empty list containing only invalid entries.
-      """
+        Test with a non-empty list containing only invalid entries.
+        """
         self.extractTar("tree9")
         fsList = FilesystemList()
         fsList.append(self.buildPath(["tree9", "%s-1" % INVALID_FILE]))  # file won't exist on disk
@@ -12663,8 +12663,8 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_003(self):
         """
-      Test with a non-empty list containing only valid entries (files only).
-      """
+        Test with a non-empty list containing only valid entries (files only).
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -12693,9 +12693,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_004(self):
         """
-      Test with a non-empty list containing only valid entries (directories
-      only).
-      """
+        Test with a non-empty list containing only valid entries (directories
+        only).
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -12730,9 +12730,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_005(self):
         """
-      Test with a non-empty list containing only valid entries (files and
-      directories).
-      """
+        Test with a non-empty list containing only valid entries (files and
+        directories).
+        """
         self.extractTar("tree4")
         path = self.buildPath(["tree4"])
         fsList = FilesystemList()
@@ -12907,9 +12907,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_006(self):
         """
-      Test with a non-empty list containing only valid entries (files,
-      directories and links).
-      """
+        Test with a non-empty list containing only valid entries (files,
+        directories and links).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -12966,9 +12966,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_007(self):
         """
-      Test with a non-empty list containing valid and invalid entries (files,
-      directories and links).
-      """
+        Test with a non-empty list containing valid and invalid entries (files,
+        directories and links).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -13038,9 +13038,9 @@ class TestFilesystemList(unittest.TestCase):
 
     def testVerify_008(self):
         """
-      Test with a non-empty list containing valid and invalid entries (some
-      containing spaces).
-      """
+        Test with a non-empty list containing valid and invalid entries (some
+        containing spaces).
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -13163,12 +13163,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_001(self):
         """
-      Test that function is overridden, no exclusions.
+        Test that function is overridden, no exclusions.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         dirPath = self.buildPath(["tree5", "dir001"])
@@ -13183,12 +13183,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_002(self):
         """
-      Test that function is overridden, excludeFiles set.
+        Test that function is overridden, excludeFiles set.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         backupList.excludeFiles = True
@@ -13204,12 +13204,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_003(self):
         """
-      Test that function is overridden, excludeDirs set.
+        Test that function is overridden, excludeDirs set.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         backupList.excludeDirs = True
@@ -13224,12 +13224,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_004(self):
         """
-      Test that function is overridden, excludeLinks set.
+        Test that function is overridden, excludeLinks set.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         backupList.excludeLinks = True
@@ -13244,12 +13244,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_005(self):
         """
-      Test that function is overridden, excludePaths set.
+        Test that function is overridden, excludePaths set.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         backupList.excludePaths = [NOMATCH_PATH]
@@ -13265,12 +13265,12 @@ class TestBackupFileList(unittest.TestCase):
 
     def testAddDir_006(self):
         """
-      Test that function is overridden, excludePatterns set.
+        Test that function is overridden, excludePatterns set.
 
-      Since this function calls the superclass by definition, we can
-      skimp a bit on validation and only ensure that it seems to be
-      overridden properly.
-      """
+        Since this function calls the superclass by definition, we can
+        skimp a bit on validation and only ensure that it seems to be
+        overridden properly.
+        """
         self.extractTar("tree5")
         backupList = BackupFileList()
         backupList.excludePatterns = [NOMATCH_PATH]
@@ -13290,8 +13290,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testTotalSize_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         size = backupList.totalSize()
         self.assertEqual(0, size)
@@ -13299,8 +13299,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_002(self):
         """
-      Test on a non-empty list containing only valid entries.
-      """
+        Test on a non-empty list containing only valid entries.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13328,8 +13328,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_004(self):
         """
-      Test on a non-empty list (some containing spaces).
-      """
+        Test on a non-empty list (some containing spaces).
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -13355,9 +13355,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_005(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible).
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13388,8 +13388,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testTotalSize_006(self):
         """
-      Test on a non-empty list containing a non-existent file.
-      """
+        Test on a non-empty list containing a non-existent file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13423,8 +13423,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateSizeMap_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         sizeMap = backupList.generateSizeMap()
         self.assertEqual(0, len(sizeMap))
@@ -13432,8 +13432,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_002(self):
         """
-      Test on a non-empty list containing only valid entries.
-      """
+        Test on a non-empty list containing only valid entries.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13476,8 +13476,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_004(self):
         """
-      Test on a non-empty list (some containing spaces).
-      """
+        Test on a non-empty list (some containing spaces).
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -13516,9 +13516,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_005(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible).
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13564,8 +13564,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSizeMap_006(self):
         """
-      Test on a non-empty list containing a non-existent file.
-      """
+        Test on a non-empty list containing a non-existent file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13614,8 +13614,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateDigestMap_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         digestMap = backupList.generateDigestMap()
         self.assertEqual(0, len(digestMap))
@@ -13623,8 +13623,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_002(self):
         """
-      Test on a non-empty list containing only valid entries.
-      """
+        Test on a non-empty list containing only valid entries.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13658,9 +13658,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_003(self):
         """
-      Test on a non-empty list containing only valid entries (some containing
-      spaces).
-      """
+        Test on a non-empty list containing only valid entries (some containing
+        spaces).
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -13698,9 +13698,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_004(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible).
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13737,8 +13737,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_005(self):
         """
-      Test on a non-empty list containing a non-existent file.
-      """
+        Test on a non-empty list containing a non-existent file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13774,8 +13774,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateDigestMap_006(self):
         """
-      Test on an empty list, passing stripPrefix not None.
-      """
+        Test on an empty list, passing stripPrefix not None.
+        """
         backupList = BackupFileList()
         prefix = "whatever"
         digestMap = backupList.generateDigestMap(stripPrefix=prefix)
@@ -13784,9 +13784,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_007(self):
         """
-      Test on a non-empty list containing only valid entries, passing
-      stripPrefix not None.
-      """
+        Test on a non-empty list containing only valid entries, passing
+        stripPrefix not None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13821,9 +13821,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_008(self):
         """
-      Test on a non-empty list containing only valid entries (some containing
-      spaces), passing stripPrefix not None.
-      """
+        Test on a non-empty list containing only valid entries (some containing
+        spaces), passing stripPrefix not None.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -13859,9 +13859,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_009(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible), passing stripPrefix not None.
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible), passing stripPrefix not None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13899,9 +13899,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateDigestMap_010(self):
         """
-      Test on a non-empty list containing a non-existent file, passing
-      stripPrefix not None.
-      """
+        Test on a non-empty list containing a non-existent file, passing
+        stripPrefix not None.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13942,8 +13942,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateFitted_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         fittedList = backupList.generateFitted(2000)
         self.assertEqual(0, len(fittedList))
@@ -13951,8 +13951,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_002(self):
         """
-      Test on a non-empty list containing only valid entries, all of which fit.
-      """
+        Test on a non-empty list containing only valid entries, all of which fit.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -13995,9 +13995,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_003(self):
         """
-      Test on a non-empty list containing only valid entries (some containing
-      spaces), all of which fit.
-      """
+        Test on a non-empty list containing only valid entries (some containing
+        spaces), all of which fit.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -14036,16 +14036,16 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_004(self):
         """
-      Test on a non-empty list containing only valid entries, some of which
-      fit.
+        Test on a non-empty list containing only valid entries, some of which
+        fit.
 
-      We can get some strange behavior on Windows, which hits the "links not
-      supported" case.  The file tree9/dir002/file002 is 74 bytes, and is
-      supposed to be the only file included because links are not recognized.
-      However, link004 points at file002, and apparently Windows (sometimes?)
-      sees link004 as a real file with a size of 74 bytes.  Since only one of
-      the two fits in the fitted list, we just check for one or the other.
-      """
+        We can get some strange behavior on Windows, which hits the "links not
+        supported" case.  The file tree9/dir002/file002 is 74 bytes, and is
+        supposed to be the only file included because links are not recognized.
+        However, link004 points at file002, and apparently Windows (sometimes?)
+        sees link004 as a real file with a size of 74 bytes.  Since only one of
+        the two fits in the fitted list, we just check for one or the other.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14083,9 +14083,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_005(self):
         """
-      Test on a non-empty list containing only valid entries, none of which
-      fit.
-      """
+        Test on a non-empty list containing only valid entries, none of which
+        fit.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14124,9 +14124,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_006(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible).
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14172,8 +14172,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateFitted_007(self):
         """
-      Test on a non-empty list containing a non-existent file.
-      """
+        Test on a non-empty list containing a non-existent file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14222,8 +14222,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateSpan_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         spanSet = backupList.generateSpan(2000)
         self.assertEqual(0, len(spanSet))
@@ -14231,8 +14231,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_002(self):
         """
-      Test a set of files that all fit in one span item.
-      """
+        Test a set of files that all fit in one span item.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14280,8 +14280,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_003(self):
         """
-      Test a set of files that all fit in two span items.
-      """
+        Test a set of files that all fit in two span items.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14334,8 +14334,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_004(self):
         """
-      Test a set of files that all fit in three span items.
-      """
+        Test a set of files that all fit in three span items.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14393,8 +14393,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateSpan_005(self):
         """
-      Test a set of files where one of the files does not fit in the capacity.
-      """
+        Test a set of files where one of the files does not fit in the capacity.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14424,8 +14424,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateTarfile_001(self):
         """
-      Test on an empty list.
-      """
+        Test on an empty list.
+        """
         backupList = BackupFileList()
         tarPath = self.buildPath(["file.tar"])
         self.assertRaises(ValueError, backupList.generateTarfile, tarPath)
@@ -14434,9 +14434,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_002(self):
         """
-      Test on a non-empty list containing a directory (which shouldn't be
-      possible).
-      """
+        Test on a non-empty list containing a directory (which shouldn't be
+        possible).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14491,8 +14491,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_003(self):
         """
-      Test on a non-empty list containing a non-existent file, ignore=False.
-      """
+        Test on a non-empty list containing a non-existent file, ignore=False.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14524,8 +14524,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_004(self):
         """
-      Test on a non-empty list containing a non-existent file, ignore=True.
-      """
+        Test on a non-empty list containing a non-existent file, ignore=True.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14575,8 +14575,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_005(self):
         """
-      Test on a non-empty list containing only valid entries, with an invalid mode.
-      """
+        Test on a non-empty list containing only valid entries, with an invalid mode.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14605,8 +14605,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_006(self):
         """
-      Test on a non-empty list containing only valid entries, default mode.
-      """
+        Test on a non-empty list containing only valid entries, default mode.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14653,8 +14653,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_007(self):
         """
-      Test on a non-empty list (some containing spaces), default mode.
-      """
+        Test on a non-empty list (some containing spaces), default mode.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         backupList = BackupFileList()
@@ -14697,8 +14697,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_008(self):
         """
-      Test on a non-empty list containing only valid entries, 'tar' mode.
-      """
+        Test on a non-empty list containing only valid entries, 'tar' mode.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14745,8 +14745,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_009(self):
         """
-      Test on a non-empty list containing only valid entries, 'targz' mode.
-      """
+        Test on a non-empty list containing only valid entries, 'targz' mode.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14793,8 +14793,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_010(self):
         """
-      Test on a non-empty list containing only valid entries, 'tarbz2' mode.
-      """
+        Test on a non-empty list containing only valid entries, 'tarbz2' mode.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14841,8 +14841,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_011(self):
         """
-      Test on a non-empty list containing only valid entries, 'tar' mode, long target name.
-      """
+        Test on a non-empty list containing only valid entries, 'tar' mode, long target name.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14889,8 +14889,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_012(self):
         """
-      Test on a non-empty list containing only valid entries, 'targz' mode, long target name.
-      """
+        Test on a non-empty list containing only valid entries, 'targz' mode, long target name.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14937,8 +14937,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testGenerateTarfile_013(self):
         """
-      Test on a non-empty list containing only valid entries, 'tarbz2' mode, long target name.
-      """
+        Test on a non-empty list containing only valid entries, 'tarbz2' mode, long target name.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         backupList = BackupFileList()
@@ -14984,8 +14984,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testGenerateTarfile_014(self):
         """
-      Test behavior of the flat flag.
-      """
+        Test behavior of the flat flag.
+        """
         self.extractTar("tree11")
         backupList = BackupFileList()
         path = self.buildPath(["tree11", "dir with spaces", "file with spaces"])
@@ -15018,8 +15018,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testRemoveUnchanged_001(self):
         """
-      Test on an empty list with an empty digest map.
-      """
+        Test on an empty list with an empty digest map.
+        """
         digestMap = {}
         backupList = BackupFileList()
         self.assertEqual(0, len(backupList))
@@ -15030,8 +15030,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testRemoveUnchanged_002(self):
         """
-      Test on an empty list with an non-empty digest map.
-      """
+        Test on an empty list with an non-empty digest map.
+        """
         digestMap = {
             self.buildPath(["tree9", "dir001", "file001"]): "4ff529531c7e897cd3df90ed76355de7e21e77ee",
             self.buildPath(["tree9", "dir001", "file002"]): "9d473094a22ecf2ae299c25932c941795d1d6cba",
@@ -15050,8 +15050,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_003(self):
         """
-      Test on an non-empty list with an empty digest map.
-      """
+        Test on an non-empty list with an empty digest map.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {}
@@ -15097,8 +15097,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_004(self):
         """
-      Test with a digest map containing only entries that are not in the list.
-      """
+        Test with a digest map containing only entries that are not in the list.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15151,9 +15151,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_005(self):
         """
-      Test with a digest map containing only entries that are in the list, with
-      non-matching digests.
-      """
+        Test with a digest map containing only entries that are in the list, with
+        non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15206,9 +15206,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_006(self):
         """
-      Test with a digest map containing only entries that are in the list, with
-      matching digests.
-      """
+        Test with a digest map containing only entries that are in the list, with
+        matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15255,9 +15255,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_007(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with non-matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15310,9 +15310,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_008(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15362,9 +15362,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_009(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with matching and non-matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with matching and non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15414,8 +15414,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testRemoveUnchanged_010(self):
         """
-      Test on an empty list with an empty digest map.
-      """
+        Test on an empty list with an empty digest map.
+        """
         digestMap = {}
         backupList = BackupFileList()
         self.assertEqual(0, len(backupList))
@@ -15427,8 +15427,8 @@ class TestBackupFileList(unittest.TestCase):
 
     def testRemoveUnchanged_011(self):
         """
-      Test on an empty list with an non-empty digest map.
-      """
+        Test on an empty list with an non-empty digest map.
+        """
         digestMap = {
             self.buildPath(["tree9", "dir001", "file001"]): "4ff529531c7e897cd3df90ed76355de7e21e77ee",
             self.buildPath(["tree9", "dir001", "file002"]): "9d473094a22ecf2ae299c25932c941795d1d6cba",
@@ -15448,8 +15448,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_012(self):
         """
-      Test on an non-empty list with an empty digest map.
-      """
+        Test on an non-empty list with an empty digest map.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {}
@@ -15502,8 +15502,8 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_013(self):
         """
-      Test with a digest map containing only entries that are not in the list.
-      """
+        Test with a digest map containing only entries that are not in the list.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15563,9 +15563,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_014(self):
         """
-      Test with a digest map containing only entries that are in the list, with
-      non-matching digests.
-      """
+        Test with a digest map containing only entries that are in the list, with
+        non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15625,9 +15625,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_015(self):
         """
-      Test with a digest map containing only entries that are in the list, with
-      matching digests.
-      """
+        Test with a digest map containing only entries that are in the list, with
+        matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15681,9 +15681,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_016(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with non-matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15743,9 +15743,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_017(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15802,9 +15802,9 @@ class TestBackupFileList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveUnchanged_018(self):
         """
-      Test with a digest map containing both entries that are and are not in
-      the list, with matching and non-matching digests.
-      """
+        Test with a digest map containing both entries that are and are not in
+        the list, with matching and non-matching digests.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         digestMap = {
@@ -15866,9 +15866,9 @@ class TestBackupFileList(unittest.TestCase):
     # pylint: disable=E1101
     def testGenerateDigest_001(self):
         """
-      Test that _generateDigest gives back same result as the slower simplistic
-      implementation for a set of files (just using all of the resource files).
-      """
+        Test that _generateDigest gives back same result as the slower simplistic
+        implementation for a set of files (just using all of the resource files).
+        """
         for key in list(self.resources.keys()):
             path = self.resources[key]
             with open(path, mode="rb") as f:  # because generateDigest also uses "rb"
@@ -15930,16 +15930,16 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_001(self):
         """
-      Attempt to add a directory that doesn't exist; no exclusions.
-      """
+        Attempt to add a directory that doesn't exist; no exclusions.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         self.assertRaises(ValueError, purgeList.addDirContents, path)
 
     def testAddDirContents_002(self):
         """
-      Attempt to add a file; no exclusions.
-      """
+        Attempt to add a file; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -15947,8 +15947,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_003(self):
         """
-      Attempt to add a soft link; no exclusions.
-      """
+        Attempt to add a soft link; no exclusions.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -15963,8 +15963,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_004(self):
         """
-      Attempt to add an empty directory containing ignore file; no exclusions.
-      """
+        Attempt to add an empty directory containing ignore file; no exclusions.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -15975,8 +15975,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_005(self):
         """
-      Attempt to add an empty directory; no exclusions.
-      """
+        Attempt to add an empty directory; no exclusions.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -15986,9 +15986,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_006(self):
         """
-      Attempt to add an non-empty directory containing ignore file; no
-      exclusions.
-      """
+        Attempt to add an non-empty directory containing ignore file; no
+        exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -15999,8 +15999,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_007(self):
         """
-      Attempt to add an non-empty directory; no exclusions.
-      """
+        Attempt to add an non-empty directory; no exclusions.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16017,8 +16017,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_008(self):
         """
-      Attempt to add a directory that doesn't exist; excludeFiles set.
-      """
+        Attempt to add a directory that doesn't exist; excludeFiles set.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludeFiles = True
@@ -16026,8 +16026,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_009(self):
         """
-      Attempt to add a file; excludeFiles set.
-      """
+        Attempt to add a file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16036,8 +16036,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_010(self):
         """
-      Attempt to add a soft link; excludeFiles set.
-      """
+        Attempt to add a soft link; excludeFiles set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16054,8 +16054,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_011(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeFiles set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeFiles set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16067,8 +16067,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_012(self):
         """
-      Attempt to add an empty directory; excludeFiles set.
-      """
+        Attempt to add an empty directory; excludeFiles set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16079,8 +16079,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_013(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeFiles set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16092,8 +16092,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_014(self):
         """
-      Attempt to add an non-empty directory; excludeFiles set.
-      """
+        Attempt to add an non-empty directory; excludeFiles set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16108,8 +16108,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_015(self):
         """
-      Attempt to add a directory that doesn't exist; excludeDirs set.
-      """
+        Attempt to add a directory that doesn't exist; excludeDirs set.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludeDirs = True
@@ -16117,8 +16117,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_016(self):
         """
-      Attempt to add a file; excludeDirs set.
-      """
+        Attempt to add a file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16127,8 +16127,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_017(self):
         """
-      Attempt to add a soft link; excludeDirs set.
-      """
+        Attempt to add a soft link; excludeDirs set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16145,8 +16145,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_018(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeDirs set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeDirs set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16158,8 +16158,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_019(self):
         """
-      Attempt to add an empty directory; excludeDirs set.
-      """
+        Attempt to add an empty directory; excludeDirs set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16170,8 +16170,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_020(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeDirs set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16183,8 +16183,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_021(self):
         """
-      Attempt to add an non-empty directory; excludeDirs set.
-      """
+        Attempt to add an non-empty directory; excludeDirs set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16198,8 +16198,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_023(self):
         """
-      Attempt to add a directory that doesn't exist; excludeLinks set.
-      """
+        Attempt to add a directory that doesn't exist; excludeLinks set.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludeLinks = True
@@ -16207,8 +16207,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_024(self):
         """
-      Attempt to add a file; excludeLinks set.
-      """
+        Attempt to add a file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16217,8 +16217,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_025(self):
         """
-      Attempt to add a soft link; excludeLinks set.
-      """
+        Attempt to add a soft link; excludeLinks set.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16235,8 +16235,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_026(self):
         """
-      Attempt to add an empty directory containing ignore file; excludeLinks set.
-      """
+        Attempt to add an empty directory containing ignore file; excludeLinks set.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16248,8 +16248,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_027(self):
         """
-      Attempt to add an empty directory; excludeLinks set.
-      """
+        Attempt to add an empty directory; excludeLinks set.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16260,8 +16260,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_028(self):
         """
-      Attempt to add an non-empty directory containing ignore file; excludeLinks set.
-      """
+        Attempt to add an non-empty directory containing ignore file; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16274,8 +16274,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_029(self):
         """
-      Attempt to add an non-empty directory; excludeLinks set.
-      """
+        Attempt to add an non-empty directory; excludeLinks set.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16292,9 +16292,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_030(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludePaths = [path]
@@ -16302,8 +16302,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_031(self):
         """
-      Attempt to add a file; with excludePaths including the path.
-      """
+        Attempt to add a file; with excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16312,8 +16312,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_032(self):
         """
-      Attempt to add a soft link; with excludePaths including the path.
-      """
+        Attempt to add a soft link; with excludePaths including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16330,9 +16330,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_033(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePaths including the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePaths including the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16344,8 +16344,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_034(self):
         """
-      Attempt to add an empty directory; with excludePaths including the path.
-      """
+        Attempt to add an empty directory; with excludePaths including the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16356,9 +16356,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_035(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePaths including the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePaths including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16370,9 +16370,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_036(self):
         """
-      Attempt to add an non-empty directory; with excludePaths including the
-      main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePaths including the
+        main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16383,9 +16383,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_037(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePaths not
-      including the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePaths not
+        including the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludePaths = [NOMATCH_PATH]
@@ -16393,8 +16393,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_038(self):
         """
-      Attempt to add a file; with excludePaths not including the path.
-      """
+        Attempt to add a file; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16403,8 +16403,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_039(self):
         """
-      Attempt to add a soft link; with excludePaths not including the path.
-      """
+        Attempt to add a soft link; with excludePaths not including the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16421,9 +16421,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_040(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePaths not including the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePaths not including the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16435,9 +16435,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_041(self):
         """
-      Attempt to add an empty directory; with excludePaths not including the
-      path.
-      """
+        Attempt to add an empty directory; with excludePaths not including the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16448,9 +16448,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_042(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePaths not including the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePaths not including the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16462,9 +16462,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_043(self):
         """
-      Attempt to add an non-empty directory; with excludePaths not including
-      the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePaths not including
+        the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16482,9 +16482,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_044(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludePatterns = [self.pathPattern(path)]
@@ -16492,8 +16492,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_045(self):
         """
-      Attempt to add a file; with excludePatterns matching the path.
-      """
+        Attempt to add a file; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16502,8 +16502,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_046(self):
         """
-      Attempt to add a soft link; with excludePatterns matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16520,9 +16520,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_047(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePatterns matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePatterns matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16534,9 +16534,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_048(self):
         """
-      Attempt to add an empty directory; with excludePatterns matching the
-      path.
-      """
+        Attempt to add an empty directory; with excludePatterns matching the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16547,9 +16547,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_049(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePatterns matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16561,9 +16561,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_050(self):
         """
-      Attempt to add an non-empty directory; with excludePatterns matching the
-      main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePatterns matching the
+        main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16574,9 +16574,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_051(self):
         """
-      Attempt to add a directory that doesn't exist; with excludePatterns not
-      matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with excludePatterns not
+        matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludePatterns = [NOMATCH_PATH]
@@ -16584,8 +16584,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_052(self):
         """
-      Attempt to add a file; with excludePatterns not matching the path.
-      """
+        Attempt to add a file; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -16594,8 +16594,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_053(self):
         """
-      Attempt to add a soft link; with excludePatterns not matching the path.
-      """
+        Attempt to add a soft link; with excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -16612,9 +16612,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_054(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludePatterns not matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludePatterns not matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -16626,9 +16626,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_055(self):
         """
-      Attempt to add an empty directory; with excludePatterns not matching the
-      path.
-      """
+        Attempt to add an empty directory; with excludePatterns not matching the
+        path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -16639,9 +16639,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_056(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludePatterns not matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -16653,9 +16653,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_057(self):
         """
-      Attempt to add an non-empty directory; with excludePatterns not matching
-      the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludePatterns not matching
+        the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -16673,8 +16673,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_058(self):
         """
-      Attempt to add a large tree with no exclusions.
-      """
+        Attempt to add a large tree with no exclusions.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -16819,8 +16819,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_059(self):
         """
-      Attempt to add a large tree, with excludeFiles set.
-      """
+        Attempt to add a large tree, with excludeFiles set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -16872,8 +16872,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_060(self):
         """
-      Attempt to add a large tree, with excludeDirs set.
-      """
+        Attempt to add a large tree, with excludeDirs set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -16979,8 +16979,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_061(self):
         """
-      Attempt to add a large tree, with excludeLinks set.
-      """
+        Attempt to add a large tree, with excludeLinks set.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17086,8 +17086,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_062(self):
         """
-      Attempt to add a large tree, with excludePaths set to exclude some entries.
-      """
+        Attempt to add a large tree, with excludePaths set to exclude some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17228,8 +17228,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_063(self):
         """
-      Attempt to add a large tree, with excludePatterns set to exclude some entries.
-      """
+        Attempt to add a large tree, with excludePatterns set to exclude some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17347,8 +17347,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_064(self):
         """
-      Attempt to add a large tree, with ignoreFile set to exclude some directories.
-      """
+        Attempt to add a large tree, with ignoreFile set to exclude some directories.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17437,8 +17437,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_065(self):
         """
-      Attempt to add a link to a file.
-      """
+        Attempt to add a link to a file.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "dir002", "link003"])
         purgeList = PurgeItemList()
@@ -17447,8 +17447,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_066(self):
         """
-      Attempt to add a link to a directory (which should add its contents).
-      """
+        Attempt to add a link to a directory (which should add its contents).
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9", "link002"])
         purgeList = PurgeItemList()
@@ -17466,9 +17466,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_067(self):
         """
-      Attempt to add an invalid link (i.e. a link that points to something that
-      doesn't exist).
-      """
+        Attempt to add an invalid link (i.e. a link that points to something that
+        doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link001"])
         purgeList = PurgeItemList()
@@ -17476,9 +17476,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_068(self):
         """
-      Attempt to add directory containing an invalid link (i.e. a link that
-      points to something that doesn't exist).
-      """
+        Attempt to add directory containing an invalid link (i.e. a link that
+        points to something that doesn't exist).
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10"])
         purgeList = PurgeItemList()
@@ -17490,8 +17490,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_069(self):
         """
-      Attempt to add a directory containing items with spaces.
-      """
+        Attempt to add a directory containing items with spaces.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         purgeList = PurgeItemList()
@@ -17516,8 +17516,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_070(self):
         """
-      Attempt to add a directory which has a name containing spaces.
-      """
+        Attempt to add a directory which has a name containing spaces.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11", "dir with spaces"])
         purgeList = PurgeItemList()
@@ -17531,8 +17531,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_071(self):
         """
-      Attempt to add a directory which has a UTF-8 filename in it.
-      """
+        Attempt to add a directory which has a UTF-8 filename in it.
+        """
         self.extractTar("tree12")
         path = self.buildPath(["tree12", "unicode"])
         purgeList = PurgeItemList()
@@ -17547,19 +17547,19 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_072(self):
         """
-      Attempt to add a directory which has several UTF-8 filenames in it.
+        Attempt to add a directory which has several UTF-8 filenames in it.
 
-      This test data was taken from Rick Lowe's problems around the release of v1.10.
-      I don't run the test for Darwin (Mac OS X) because the tarball isn't valid there.
+        This test data was taken from Rick Lowe's problems around the release of v1.10.
+        I don't run the test for Darwin (Mac OS X) because the tarball isn't valid there.
 
-      All of the tests with unicode paths were incredibly painful to get
-      working with Python 3, but these tests in particular were difficult,
-      because character 0x82 is not a valid UTF-8 character.  The key is was to
-      get the filename into the same encoding used by methods like os.listdir(),
-      which uses a "surrogateescape" fallback for encoding filenames.  Once I
-      switched encodePath to do the same thing, this test started passing.
-      There's apparently no other way to represent filenames like this.
-      """
+        All of the tests with unicode paths were incredibly painful to get
+        working with Python 3, but these tests in particular were difficult,
+        because character 0x82 is not a valid UTF-8 character.  The key is was to
+        get the filename into the same encoding used by methods like os.listdir(),
+        which uses a "surrogateescape" fallback for encoding filenames.  Once I
+        switched encodePath to do the same thing, this test started passing.
+        There's apparently no other way to represent filenames like this.
+        """
         if not platformMacOsX():
             self.extractTar("tree13")
             path = self.buildPath(["tree13"])
@@ -17580,9 +17580,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_073(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludeBasenamePatterns = [INVALID_FILE]
@@ -17590,8 +17590,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_074(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns matching the path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -17602,9 +17602,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_075(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -17625,9 +17625,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_076(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -17641,9 +17641,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_077(self):
         """
-      Attempt to add an empty directory; with excludeBasenamePatterns matching
-      the path.
-      """
+        Attempt to add an empty directory; with excludeBasenamePatterns matching
+        the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -17656,9 +17656,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_078(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludeBasenamePatterns matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludeBasenamePatterns matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -17672,9 +17672,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_079(self):
         """
-      Attempt to add an non-empty directory; with excludeBasenamePatterns
-      matching the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludeBasenamePatterns
+        matching the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -17687,9 +17687,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_080(self):
         """
-      Attempt to add a directory that doesn't exist; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add a directory that doesn't exist; with
+        excludeBasenamePatterns not matching the path.
+        """
         path = self.buildPath([INVALID_FILE])
         purgeList = PurgeItemList()
         purgeList.excludeBasenamePatterns = [NOMATCH_BASENAME]
@@ -17697,9 +17697,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_081(self):
         """
-      Attempt to add a file; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a file; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "file001"])
         purgeList = PurgeItemList()
@@ -17708,9 +17708,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_082(self):
         """
-      Attempt to add a soft link; with excludeBasenamePatterns not matching the
-      path.
-      """
+        Attempt to add a soft link; with excludeBasenamePatterns not matching the
+        path.
+        """
         self.extractTar("tree5")
 
         path = self.buildPath(["tree5", "link001"])  # link to a file
@@ -17727,9 +17727,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_083(self):
         """
-      Attempt to add an empty directory containing ignore file; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add an empty directory containing ignore file; with
+        excludeBasenamePatterns not matching the path.
+        """
         self.extractTar("tree7")
         path = self.buildPath(["tree7", "dir001"])
         purgeList = PurgeItemList()
@@ -17741,9 +17741,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_084(self):
         """
-      Attempt to add an empty directory; with excludeBasenamePatterns not
-      matching the path.
-      """
+        Attempt to add an empty directory; with excludeBasenamePatterns not
+        matching the path.
+        """
         self.extractTar("tree8")
         path = self.buildPath(["tree8", "dir001"])
         purgeList = PurgeItemList()
@@ -17754,9 +17754,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_085(self):
         """
-      Attempt to add an non-empty directory containing ignore file; with
-      excludeBasenamePatterns not matching the path.
-      """
+        Attempt to add an non-empty directory containing ignore file; with
+        excludeBasenamePatterns not matching the path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir008"])
         purgeList = PurgeItemList()
@@ -17768,9 +17768,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_086(self):
         """
-      Attempt to add an non-empty directory; with excludeBasenamePatterns not
-      matching the main directory path.
-      """
+        Attempt to add an non-empty directory; with excludeBasenamePatterns not
+        matching the main directory path.
+        """
         self.extractTar("tree5")
         path = self.buildPath(["tree5", "dir001"])
         purgeList = PurgeItemList()
@@ -17788,9 +17788,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_087(self):
         """
-      Attempt to add a large tree, with excludeBasenamePatterns set to exclude
-      some entries.
-      """
+        Attempt to add a large tree, with excludeBasenamePatterns set to exclude
+        some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17867,9 +17867,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_088(self):
         """
-      Attempt to add a large tree, with excludeBasenamePatterns set to exclude
-      some entries.
-      """
+        Attempt to add a large tree, with excludeBasenamePatterns set to exclude
+        some entries.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -17943,8 +17943,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_089(self):
         """
-      Attempt to add a large tree with no exclusions
-      """
+        Attempt to add a large tree with no exclusions
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -18090,8 +18090,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_090(self):
         """
-      Attempt to add a directory with linkDepth=1.
-      """
+        Attempt to add a directory with linkDepth=1.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -18266,8 +18266,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_091(self):
         """
-      Attempt to add a directory with linkDepth=2.
-      """
+        Attempt to add a directory with linkDepth=2.
+        """
         self.extractTar("tree6")
         path = self.buildPath(["tree6"])
         purgeList = PurgeItemList()
@@ -18517,8 +18517,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_092(self):
         """
-      Attempt to add a directory with linkDepth=0, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=0, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18540,8 +18540,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_093(self):
         """
-      Attempt to add a directory with linkDepth=1, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=1, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18567,8 +18567,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_094(self):
         """
-      Attempt to add a directory with linkDepth=2, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=2, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18598,8 +18598,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_095(self):
         """
-      Attempt to add a directory with linkDepth=3, dereference=False.
-      """
+        Attempt to add a directory with linkDepth=3, dereference=False.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18628,8 +18628,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testAddDirContents_096(self):
         """
-      Attempt to add a directory with linkDepth=0, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=0, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18651,8 +18651,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_097(self):
         """
-      Attempt to add a directory with linkDepth=1, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=1, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18682,8 +18682,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_098(self):
         """
-      Attempt to add a directory with linkDepth=2, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=2, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18725,8 +18725,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_099(self):
         """
-      Attempt to add a directory with linkDepth=3, dereference=True.
-      """
+        Attempt to add a directory with linkDepth=3, dereference=True.
+        """
         self.extractTar("tree22")
         path = self.buildPath(["tree22", "dir003"])
         purgeList = PurgeItemList()
@@ -18774,16 +18774,16 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_001(self):
         """
-      Test on an empty list, daysOld < 0.
-      """
+        Test on an empty list, daysOld < 0.
+        """
         daysOld = -1
         purgeList = PurgeItemList()
         self.assertRaises(ValueError, purgeList.removeYoungFiles, daysOld)
 
     def testRemoveYoungFiles_002(self):
         """
-      Test on a non-empty list, daysOld < 0.
-      """
+        Test on a non-empty list, daysOld < 0.
+        """
         daysOld = -1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18796,8 +18796,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_003(self):
         """
-      Test on an empty list, daysOld = 0
-      """
+        Test on an empty list, daysOld = 0
+        """
         daysOld = 0
         purgeList = PurgeItemList()
         count = purgeList.removeYoungFiles(daysOld)
@@ -18806,8 +18806,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_004(self):
         """
-      Test on a non-empty list containing only directories, daysOld = 0.
-      """
+        Test on a non-empty list containing only directories, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree2")
         purgeList = PurgeItemList()
@@ -18823,8 +18823,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_005(self):
         """
-      Test on a non-empty list containing only links, daysOld = 0.
-      """
+        Test on a non-empty list containing only links, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree9")
         purgeList = PurgeItemList()
@@ -18840,8 +18840,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_006(self):
         """
-      Test on a non-empty list containing only non-existent files, daysOld = 0.
-      """
+        Test on a non-empty list containing only non-existent files, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18857,8 +18857,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_007(self):
         """
-      Test on a non-empty list containing existing files "touched" to current time, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to current time, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18879,8 +18879,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_008(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18901,8 +18901,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_009(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18923,8 +18923,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_010(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18945,8 +18945,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_011(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18967,8 +18967,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_012(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -18989,8 +18989,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_013(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19011,8 +19011,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_014(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19033,8 +19033,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_015(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19055,8 +19055,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_016(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 0.
-      """
+        Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 0.
+        """
         daysOld = 0
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19077,8 +19077,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_017(self):
         """
-      Test on an empty list, daysOld = 1
-      """
+        Test on an empty list, daysOld = 1
+        """
         daysOld = 1
         purgeList = PurgeItemList()
         count = purgeList.removeYoungFiles(daysOld)
@@ -19087,8 +19087,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_018(self):
         """
-      Test on a non-empty list containing only directories, daysOld = 1.
-      """
+        Test on a non-empty list containing only directories, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree2")
         purgeList = PurgeItemList()
@@ -19104,8 +19104,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_019(self):
         """
-      Test on a non-empty list containing only links, daysOld = 1.
-      """
+        Test on a non-empty list containing only links, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree9")
         purgeList = PurgeItemList()
@@ -19121,8 +19121,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_020(self):
         """
-      Test on a non-empty list containing only non-existent files, daysOld = 1.
-      """
+        Test on a non-empty list containing only non-existent files, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19138,8 +19138,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_021(self):
         """
-      Test on a non-empty list containing existing files "touched" to current time, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to current time, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19157,8 +19157,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_022(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19176,8 +19176,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_023(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19195,8 +19195,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_024(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19214,8 +19214,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_025(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19233,8 +19233,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_026(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19254,8 +19254,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_027(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19274,8 +19274,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_028(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19294,8 +19294,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_029(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19314,8 +19314,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_030(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 1.
-      """
+        Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 1.
+        """
         daysOld = 1
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19334,8 +19334,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_031(self):
         """
-      Test on an empty list, daysOld = 2
-      """
+        Test on an empty list, daysOld = 2
+        """
         daysOld = 2
         purgeList = PurgeItemList()
         count = purgeList.removeYoungFiles(daysOld)
@@ -19344,8 +19344,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_032(self):
         """
-      Test on a non-empty list containing only directories, daysOld = 2.
-      """
+        Test on a non-empty list containing only directories, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree2")
         purgeList = PurgeItemList()
@@ -19361,8 +19361,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_033(self):
         """
-      Test on a non-empty list containing only links, daysOld = 2.
-      """
+        Test on a non-empty list containing only links, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree9")
         purgeList = PurgeItemList()
@@ -19378,8 +19378,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_034(self):
         """
-      Test on a non-empty list containing only non-existent files, daysOld = 2.
-      """
+        Test on a non-empty list containing only non-existent files, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19395,8 +19395,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_035(self):
         """
-      Test on a non-empty list containing existing files "touched" to current time, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to current time, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19414,8 +19414,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_036(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19433,8 +19433,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_037(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19452,8 +19452,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_038(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19471,8 +19471,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_039(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19490,8 +19490,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_040(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19509,8 +19509,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_041(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19528,8 +19528,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_042(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19547,8 +19547,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_043(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19567,8 +19567,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_044(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 2.
-      """
+        Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 2.
+        """
         daysOld = 2
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19587,8 +19587,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_045(self):
         """
-      Test on an empty list, daysOld = 3
-      """
+        Test on an empty list, daysOld = 3
+        """
         daysOld = 3
         purgeList = PurgeItemList()
         count = purgeList.removeYoungFiles(daysOld)
@@ -19597,8 +19597,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_046(self):
         """
-      Test on a non-empty list containing only directories, daysOld = 3.
-      """
+        Test on a non-empty list containing only directories, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree2")
         purgeList = PurgeItemList()
@@ -19614,8 +19614,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_047(self):
         """
-      Test on a non-empty list containing only links, daysOld = 3.
-      """
+        Test on a non-empty list containing only links, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree9")
         purgeList = PurgeItemList()
@@ -19631,8 +19631,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_048(self):
         """
-      Test on a non-empty list containing only non-existent files, daysOld = 3.
-      """
+        Test on a non-empty list containing only non-existent files, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19648,8 +19648,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_049(self):
         """
-      Test on a non-empty list containing existing files "touched" to current time, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to current time, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19667,8 +19667,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_050(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 1 hour old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19686,8 +19686,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_051(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 2 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19705,8 +19705,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_052(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 12 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19724,8 +19724,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_053(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 23 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19743,8 +19743,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_054(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 24 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19762,8 +19762,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_055(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 25 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19781,8 +19781,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_056(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 47 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19800,8 +19800,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_057(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 48 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19819,8 +19819,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testRemoveYoungFiles_058(self):
         """
-      Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 3.
-      """
+        Test on a non-empty list containing existing files "touched" to being 49 hours old, daysOld = 3.
+        """
         daysOld = 3
         self.extractTar("tree1")
         purgeList = PurgeItemList()
@@ -19842,8 +19842,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_001(self):
         """
-      Test with an empty list.
-      """
+        Test with an empty list.
+        """
         purgeList = PurgeItemList()
         (files, dirs) = purgeList.purgeItems()
         self.assertEqual(0, files)
@@ -19851,8 +19851,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_002(self):
         """
-      Test with a list containing only non-empty directories.
-      """
+        Test with a list containing only non-empty directories.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -19917,8 +19917,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_003(self):
         """
-      Test with a list containing only empty directories.
-      """
+        Test with a list containing only empty directories.
+        """
         self.extractTar("tree2")
         path = self.buildPath(["tree2"])
         fsList = FilesystemList()
@@ -19958,8 +19958,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_004(self):
         """
-      Test with a list containing only files.
-      """
+        Test with a list containing only files.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -19993,9 +19993,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_005(self):
         """
-      Test with a list containing a directory and some of the files in that
-      directory.
-      """
+        Test with a list containing a directory and some of the files in that
+        directory.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -20030,9 +20030,9 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_006(self):
         """
-      Test with a list containing a directory and all of the files in that
-      directory.
-      """
+        Test with a list containing a directory and all of the files in that
+        directory.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -20065,10 +20065,10 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testPurgeItems_007(self):
         """
-      Test with a list containing various kinds of entries, including links,
-      files and directories.  Make sure that removing a link doesn't remove the
-      file the link points toward.
-      """
+        Test with a list containing various kinds of entries, including links,
+        files and directories.  Make sure that removing a link doesn't remove the
+        file the link points toward.
+        """
         self.extractTar("tree9")
         path = self.buildPath(["tree9"])
         fsList = FilesystemList()
@@ -20130,8 +20130,8 @@ class TestPurgeItemList(unittest.TestCase):
 
     def testPurgeItems_008(self):
         """
-      Test with a list containing non-existent entries.
-      """
+        Test with a list containing non-existent entries.
+        """
         self.extractTar("tree1")
         path = self.buildPath(["tree1"])
         fsList = FilesystemList()
@@ -20168,8 +20168,8 @@ class TestPurgeItemList(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testPurgeItems_009(self):
         """
-      Test with a list containing entries containing spaces.
-      """
+        Test with a list containing entries containing spaces.
+        """
         self.extractTar("tree11")
         path = self.buildPath(["tree11"])
         fsList = FilesystemList()
@@ -20272,8 +20272,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_001(self):
         """
-      Compare two empty directories.
-      """
+        Compare two empty directories.
+        """
         self.extractTar("tree2", within="path1")
         self.extractTar("tree2", within="path2")
         path1 = self.buildPath(["path1", "tree2", "dir001"])
@@ -20283,8 +20283,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_002(self):
         """
-      Compare one empty and one non-empty directory containing only directories.
-      """
+        Compare one empty and one non-empty directory containing only directories.
+        """
         self.extractTar("tree2", within="path1")
         self.extractTar("tree2", within="path2")
         path1 = self.buildPath(["path1", "tree2", "dir001"])
@@ -20294,8 +20294,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_003(self):
         """
-      Compare one empty and one non-empty directory containing only files.
-      """
+        Compare one empty and one non-empty directory containing only files.
+        """
         self.extractTar("tree2", within="path1")
         self.extractTar("tree1", within="path2")
         path1 = self.buildPath(["path1", "tree2", "dir001"])
@@ -20305,8 +20305,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_004(self):
         """
-      Compare two directories containing only directories, same.
-      """
+        Compare two directories containing only directories, same.
+        """
         self.extractTar("tree2", within="path1")
         self.extractTar("tree2", within="path2")
         path1 = self.buildPath(["path1", "tree2"])
@@ -20316,8 +20316,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_005(self):
         """
-      Compare two directories containing only directories, different set.
-      """
+        Compare two directories containing only directories, different set.
+        """
         self.extractTar("tree2", within="path1")
         self.extractTar("tree3", within="path2")
         path1 = self.buildPath(["path1", "tree2"])
@@ -20327,8 +20327,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_006(self):
         """
-      Compare two directories containing only files, same.
-      """
+        Compare two directories containing only files, same.
+        """
         self.extractTar("tree1", within="path1")
         self.extractTar("tree1", within="path2")
         path1 = self.buildPath(["path1", "tree1"])
@@ -20338,8 +20338,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_007(self):
         """
-      Compare two directories containing only files, different contents.
-      """
+        Compare two directories containing only files, different contents.
+        """
         self.extractTar("tree1", within="path1")
         self.extractTar("tree1", within="path2")
         path1 = self.buildPath(["path1", "tree1"])
@@ -20351,8 +20351,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_008(self):
         """
-      Compare two directories containing only files, different set.
-      """
+        Compare two directories containing only files, different set.
+        """
         self.extractTar("tree1", within="path1")
         self.extractTar("tree7", within="path2")
         path1 = self.buildPath(["path1", "tree1"])
@@ -20362,8 +20362,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_009(self):
         """
-      Compare two directories containing files and directories, same.
-      """
+        Compare two directories containing files and directories, same.
+        """
         self.extractTar("tree9", within="path1")
         self.extractTar("tree9", within="path2")
         path1 = self.buildPath(["path1", "tree9"])
@@ -20373,8 +20373,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_010(self):
         """
-      Compare two directories containing files and directories, different contents.
-      """
+        Compare two directories containing files and directories, different contents.
+        """
         self.extractTar("tree9", within="path1")
         self.extractTar("tree9", within="path2")
         path1 = self.buildPath(["path1", "tree9"])
@@ -20386,8 +20386,8 @@ class TestFunctions(unittest.TestCase):
 
     def testCompareContents_011(self):
         """
-      Compare two directories containing files and directories, different set.
-      """
+        Compare two directories containing files and directories, different set.
+        """
         self.extractTar("tree9", within="path1")
         self.extractTar("tree6", within="path2")
         path1 = self.buildPath(["path1", "tree9"])

@@ -106,43 +106,43 @@ class Options(object):
     ######################
 
     """
-   Class representing command-line options for the cback3-amazons3-sync script.
+    Class representing command-line options for the cback3-amazons3-sync script.
 
-   The ``Options`` class is a Python object representation of the command-line
-   options of the cback3-amazons3-sync script.
+    The ``Options`` class is a Python object representation of the command-line
+    options of the cback3-amazons3-sync script.
 
-   The object representation is two-way: a command line string or a list of
-   command line arguments can be used to create an ``Options`` object, and then
-   changes to the object can be propogated back to a list of command-line
-   arguments or to a command-line string.  An ``Options`` object can even be
-   created from scratch programmatically (if you have a need for that).
+    The object representation is two-way: a command line string or a list of
+    command line arguments can be used to create an ``Options`` object, and then
+    changes to the object can be propogated back to a list of command-line
+    arguments or to a command-line string.  An ``Options`` object can even be
+    created from scratch programmatically (if you have a need for that).
 
-   There are two main levels of validation in the ``Options`` class.  The first
-   is field-level validation.  Field-level validation comes into play when a
-   given field in an object is assigned to or updated.  We use Python's
-   ``property`` functionality to enforce specific validations on field values,
-   and in some places we even use customized list classes to enforce
-   validations on list members.  You should expect to catch a ``ValueError``
-   exception when making assignments to fields if you are programmatically
-   filling an object.
+    There are two main levels of validation in the ``Options`` class.  The first
+    is field-level validation.  Field-level validation comes into play when a
+    given field in an object is assigned to or updated.  We use Python's
+    ``property`` functionality to enforce specific validations on field values,
+    and in some places we even use customized list classes to enforce
+    validations on list members.  You should expect to catch a ``ValueError``
+    exception when making assignments to fields if you are programmatically
+    filling an object.
 
-   The second level of validation is post-completion validation.  Certain
-   validations don't make sense until an object representation of options is
-   fully "complete".  We don't want these validations to apply all of the time,
-   because it would make building up a valid object from scratch a real pain.
-   For instance, we might have to do things in the right order to keep from
-   throwing exceptions, etc.
+    The second level of validation is post-completion validation.  Certain
+    validations don't make sense until an object representation of options is
+    fully "complete".  We don't want these validations to apply all of the time,
+    because it would make building up a valid object from scratch a real pain.
+    For instance, we might have to do things in the right order to keep from
+    throwing exceptions, etc.
 
-   All of these post-completion validations are encapsulated in the
-   :any:`Options.validate` method.  This method can be called at any time by a
-   client, and will always be called immediately after creating a ``Options``
-   object from a command line and before exporting a ``Options`` object back to
-   a command line.  This way, we get acceptable ease-of-use but we also don't
-   accept or emit invalid command lines.
+    All of these post-completion validations are encapsulated in the
+    :any:`Options.validate` method.  This method can be called at any time by a
+    client, and will always be called immediately after creating a ``Options``
+    object from a command line and before exporting a ``Options`` object back to
+    a command line.  This way, we get acceptable ease-of-use but we also don't
+    accept or emit invalid command lines.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     ##############
     # Constructor
@@ -150,48 +150,48 @@ class Options(object):
 
     def __init__(self, argumentList=None, argumentString=None, validate=True):
         """
-      Initializes an options object.
+        Initializes an options object.
 
-      If you initialize the object without passing either ``argumentList`` or
-      ``argumentString``, the object will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``argumentList`` or
+        ``argumentString``, the object will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original arguments is saved off by this class.  Once
-      the data has been parsed (successfully or not) this original information
-      is discarded.
+        No reference to the original arguments is saved off by this class.  Once
+        the data has been parsed (successfully or not) this original information
+        is discarded.
 
-      The argument list is assumed to be a list of arguments, not including the
-      name of the command, something like ``sys.argv[1:]``.  If you pass
-      ``sys.argv`` instead, things are not going to work.
+        The argument list is assumed to be a list of arguments, not including the
+        name of the command, something like ``sys.argv[1:]``.  If you pass
+        ``sys.argv`` instead, things are not going to work.
 
-      The argument string will be parsed into an argument list by the
-      :any:`util.splitCommandLine` function (see the documentation for that
-      function for some important notes about its limitations).  There is an
-      assumption that the resulting list will be equivalent to ``sys.argv[1:]``,
-      just like ``argumentList``.
+        The argument string will be parsed into an argument list by the
+        :any:`util.splitCommandLine` function (see the documentation for that
+        function for some important notes about its limitations).  There is an
+        assumption that the resulting list will be equivalent to ``sys.argv[1:]``,
+        just like ``argumentList``.
 
-      Unless the ``validate`` argument is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) after successfully
-      parsing any passed-in command line.  This validation ensures that
-      appropriate actions, etc. have been specified.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      command line, so an exception might still be raised.
+        Unless the ``validate`` argument is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) after successfully
+        parsing any passed-in command line.  This validation ensures that
+        appropriate actions, etc. have been specified.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        command line, so an exception might still be raised.
 
-      *Note:* The command line format is specified by the ``_usage`` function.
-      Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
+        *Note:* The command line format is specified by the ``_usage`` function.
+        Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid command line arguments.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid command line arguments.
 
-      Args:
-         argumentList (List of arguments, i.e. ``sys.argv``): Command line for a program
-         argumentString (String, i.e. "cback3-amazons3-sync --verbose stage store"): Command line for a program
-         validate (Boolean true/false): Validate the command line after parsing it
-      Raises:
-         getopt.GetoptError: If the command-line arguments could not be parsed
-         ValueError: If the command-line arguments are invalid
-      """
+        Args:
+           argumentList (List of arguments, i.e. ``sys.argv``): Command line for a program
+           argumentString (String, i.e. "cback3-amazons3-sync --verbose stage store"): Command line for a program
+           validate (Boolean true/false): Validate the command line after parsing it
+        Raises:
+           getopt.GetoptError: If the command-line arguments could not be parsed
+           ValueError: If the command-line arguments are invalid
+        """
         self._help = False
         self._version = False
         self._verbose = False
@@ -223,14 +223,14 @@ class Options(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return self.buildArgumentString(validate=False)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     #############################
@@ -251,13 +251,13 @@ class Options(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.help != other.help:
@@ -348,9 +348,9 @@ class Options(object):
 
     def _setHelp(self, value):
         """
-      Property target used to set the help flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the help flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._help = True
         else:
@@ -358,15 +358,15 @@ class Options(object):
 
     def _getHelp(self):
         """
-      Property target used to get the help flag.
-      """
+        Property target used to get the help flag.
+        """
         return self._help
 
     def _setVersion(self, value):
         """
-      Property target used to set the version flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the version flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._version = True
         else:
@@ -374,15 +374,15 @@ class Options(object):
 
     def _getVersion(self):
         """
-      Property target used to get the version flag.
-      """
+        Property target used to get the version flag.
+        """
         return self._version
 
     def _setVerbose(self, value):
         """
-      Property target used to set the verbose flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the verbose flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._verbose = True
         else:
@@ -390,15 +390,15 @@ class Options(object):
 
     def _getVerbose(self):
         """
-      Property target used to get the verbose flag.
-      """
+        Property target used to get the verbose flag.
+        """
         return self._verbose
 
     def _setQuiet(self, value):
         """
-      Property target used to set the quiet flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the quiet flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._quiet = True
         else:
@@ -406,16 +406,16 @@ class Options(object):
 
     def _getQuiet(self):
         """
-      Property target used to get the quiet flag.
-      """
+        Property target used to get the quiet flag.
+        """
         return self._quiet
 
     def _setLogfile(self, value):
         """
-      Property target used to set the logfile parameter.
-      Raises:
-         ValueError: If the value cannot be encoded properly
-      """
+        Property target used to set the logfile parameter.
+        Raises:
+           ValueError: If the value cannot be encoded properly
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The logfile parameter must be a non-empty string.")
@@ -423,19 +423,19 @@ class Options(object):
 
     def _getLogfile(self):
         """
-      Property target used to get the logfile parameter.
-      """
+        Property target used to get the logfile parameter.
+        """
         return self._logfile
 
     def _setOwner(self, value):
         """
-      Property target used to set the owner parameter.
-      If not ``None``, the owner must be a ``(user,group)`` tuple or list.
-      Strings (and inherited children of strings) are explicitly disallowed.
-      The value will be normalized to a tuple.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the owner parameter.
+        If not ``None``, the owner must be a ``(user,group)`` tuple or list.
+        Strings (and inherited children of strings) are explicitly disallowed.
+        The value will be normalized to a tuple.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is None:
             self._owner = None
         else:
@@ -449,15 +449,15 @@ class Options(object):
 
     def _getOwner(self):
         """
-      Property target used to get the owner parameter.
-      The parameter is a tuple of ``(user, group)``.
-      """
+        Property target used to get the owner parameter.
+        The parameter is a tuple of ``(user, group)``.
+        """
         return self._owner
 
     def _setMode(self, value):
         """
-      Property target used to set the mode parameter.
-      """
+        Property target used to set the mode parameter.
+        """
         if value is None:
             self._mode = None
         else:
@@ -474,15 +474,15 @@ class Options(object):
 
     def _getMode(self):
         """
-      Property target used to get the mode parameter.
-      """
+        Property target used to get the mode parameter.
+        """
         return self._mode
 
     def _setOutput(self, value):
         """
-      Property target used to set the output flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the output flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._output = True
         else:
@@ -490,15 +490,15 @@ class Options(object):
 
     def _getOutput(self):
         """
-      Property target used to get the output flag.
-      """
+        Property target used to get the output flag.
+        """
         return self._output
 
     def _setDebug(self, value):
         """
-      Property target used to set the debug flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the debug flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._debug = True
         else:
@@ -506,15 +506,15 @@ class Options(object):
 
     def _getDebug(self):
         """
-      Property target used to get the debug flag.
-      """
+        Property target used to get the debug flag.
+        """
         return self._debug
 
     def _setStacktrace(self, value):
         """
-      Property target used to set the stacktrace flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the stacktrace flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._stacktrace = True
         else:
@@ -522,15 +522,15 @@ class Options(object):
 
     def _getStacktrace(self):
         """
-      Property target used to get the stacktrace flag.
-      """
+        Property target used to get the stacktrace flag.
+        """
         return self._stacktrace
 
     def _setDiagnostics(self, value):
         """
-      Property target used to set the diagnostics flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the diagnostics flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._diagnostics = True
         else:
@@ -538,15 +538,15 @@ class Options(object):
 
     def _getDiagnostics(self):
         """
-      Property target used to get the diagnostics flag.
-      """
+        Property target used to get the diagnostics flag.
+        """
         return self._diagnostics
 
     def _setVerifyOnly(self, value):
         """
-      Property target used to set the verifyOnly flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the verifyOnly flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._verifyOnly = True
         else:
@@ -554,15 +554,15 @@ class Options(object):
 
     def _getVerifyOnly(self):
         """
-      Property target used to get the verifyOnly flag.
-      """
+        Property target used to get the verifyOnly flag.
+        """
         return self._verifyOnly
 
     def _setUploadOnly(self, value):
         """
-      Property target used to set the uploadOnly flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the uploadOnly flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._uploadOnly = True
         else:
@@ -570,15 +570,15 @@ class Options(object):
 
     def _getUploadOnly(self):
         """
-      Property target used to get the uploadOnly flag.
-      """
+        Property target used to get the uploadOnly flag.
+        """
         return self._uploadOnly
 
     def _setIgnoreWarnings(self, value):
         """
-      Property target used to set the ignoreWarnings flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the ignoreWarnings flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._ignoreWarnings = True
         else:
@@ -586,14 +586,14 @@ class Options(object):
 
     def _getIgnoreWarnings(self):
         """
-      Property target used to get the ignoreWarnings flag.
-      """
+        Property target used to get the ignoreWarnings flag.
+        """
         return self._ignoreWarnings
 
     def _setSourceDir(self, value):
         """
-      Property target used to set the sourceDir parameter.
-      """
+        Property target used to set the sourceDir parameter.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The sourceDir parameter must be a non-empty string.")
@@ -601,14 +601,14 @@ class Options(object):
 
     def _getSourceDir(self):
         """
-      Property target used to get the sourceDir parameter.
-      """
+        Property target used to get the sourceDir parameter.
+        """
         return self._sourceDir
 
     def _setS3BucketUrl(self, value):
         """
-      Property target used to set the s3BucketUrl parameter.
-      """
+        Property target used to set the s3BucketUrl parameter.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The s3BucketUrl parameter must be a non-empty string.")
@@ -616,8 +616,8 @@ class Options(object):
 
     def _getS3BucketUrl(self):
         """
-      Property target used to get the s3BucketUrl parameter.
-      """
+        Property target used to get the s3BucketUrl parameter.
+        """
         return self._s3BucketUrl
 
     help = property(_getHelp, _setHelp, None, "Command-line help (``-h,--help``) flag.")
@@ -645,51 +645,51 @@ class Options(object):
 
     def validate(self):
         """
-      Validates command-line options represented by the object.
+        Validates command-line options represented by the object.
 
-      Unless ``--help`` or ``--version`` are supplied, at least one action must
-      be specified.  Other validations (as for allowed values for particular
-      options) will be taken care of at assignment time by the properties
-      functionality.
+        Unless ``--help`` or ``--version`` are supplied, at least one action must
+        be specified.  Other validations (as for allowed values for particular
+        options) will be taken care of at assignment time by the properties
+        functionality.
 
-      *Note:* The command line format is specified by the ``_usage`` function.
-      Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
+        *Note:* The command line format is specified by the ``_usage`` function.
+        Call ``_usage`` to see a usage statement for the cback3-amazons3-sync script.
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if not self.help and not self.version and not self.diagnostics:
             if self.sourceDir is None or self.s3BucketUrl is None:
                 raise ValueError("Source directory and S3 bucket URL are both required.")
 
     def buildArgumentList(self, validate=True):
         """
-      Extracts options into a list of command line arguments.
+        Extracts options into a list of command line arguments.
 
-      The original order of the various arguments (if, indeed, the object was
-      initialized with a command-line) is not preserved in this generated
-      argument list.   Besides that, the argument list is normalized to use the
-      long option names (i.e. --version rather than -V).  The resulting list
-      will be suitable for passing back to the constructor in the
-      ``argumentList`` parameter.  Unlike :any:`buildArgumentString`, string
-      arguments are not quoted here, because there is no need for it.
+        The original order of the various arguments (if, indeed, the object was
+        initialized with a command-line) is not preserved in this generated
+        argument list.   Besides that, the argument list is normalized to use the
+        long option names (i.e. --version rather than -V).  The resulting list
+        will be suitable for passing back to the constructor in the
+        ``argumentList`` parameter.  Unlike :any:`buildArgumentString`, string
+        arguments are not quoted here, because there is no need for it.
 
-      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) against the
-      options before extracting the command line.  If the options are not valid,
-      then an argument list will not be extracted.
+        Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) against the
+        options before extracting the command line.  If the options are not valid,
+        then an argument list will not be extracted.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to extract an
-      invalid command line.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to extract an
+        invalid command line.
 
-      Args:
-         validate (Boolean true/false): Validate the options before extracting the command line
-      Returns:
-          List representation of command-line arguments
-      Raises:
-         ValueError: If options within the object are invalid
-      """
+        Args:
+           validate (Boolean true/false): Validate the options before extracting the command line
+        Returns:
+            List representation of command-line arguments
+        Raises:
+           ValueError: If options within the object are invalid
+        """
         if validate:
             self.validate()
         argumentList = []
@@ -732,32 +732,32 @@ class Options(object):
 
     def buildArgumentString(self, validate=True):
         """
-      Extracts options into a string of command-line arguments.
+        Extracts options into a string of command-line arguments.
 
-      The original order of the various arguments (if, indeed, the object was
-      initialized with a command-line) is not preserved in this generated
-      argument string.   Besides that, the argument string is normalized to use
-      the long option names (i.e. --version rather than -V) and to quote all
-      string arguments with double quotes (``"``).  The resulting string will be
-      suitable for passing back to the constructor in the ``argumentString``
-      parameter.
+        The original order of the various arguments (if, indeed, the object was
+        initialized with a command-line) is not preserved in this generated
+        argument string.   Besides that, the argument string is normalized to use
+        the long option names (i.e. --version rather than -V) and to quote all
+        string arguments with double quotes (``"``).  The resulting string will be
+        suitable for passing back to the constructor in the ``argumentString``
+        parameter.
 
-      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) against the options
-      before extracting the command line.  If the options are not valid, then
-      an argument string will not be extracted.
+        Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) against the options
+        before extracting the command line.  If the options are not valid, then
+        an argument string will not be extracted.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to extract an
-      invalid command line.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to extract an
+        invalid command line.
 
-      Args:
-         validate (Boolean true/false): Validate the options before extracting the command line
-      Returns:
-          String representation of command-line arguments
-      Raises:
-         ValueError: If options within the object are invalid
-      """
+        Args:
+           validate (Boolean true/false): Validate the options before extracting the command line
+        Returns:
+            String representation of command-line arguments
+        Raises:
+           ValueError: If options within the object are invalid
+        """
         if validate:
             self.validate()
         argumentString = ""
@@ -797,25 +797,25 @@ class Options(object):
 
     def _parseArgumentList(self, argumentList):
         """
-      Internal method to parse a list of command-line arguments.
+        Internal method to parse a list of command-line arguments.
 
-      Most of the validation we do here has to do with whether the arguments
-      can be parsed and whether any values which exist are valid.  We don't do
-      any validation as to whether required elements exist or whether elements
-      exist in the proper combination (instead, that's the job of the
-      :any:`validate` method).
+        Most of the validation we do here has to do with whether the arguments
+        can be parsed and whether any values which exist are valid.  We don't do
+        any validation as to whether required elements exist or whether elements
+        exist in the proper combination (instead, that's the job of the
+        :any:`validate` method).
 
-      For any of the options which supply parameters, if the option is
-      duplicated with long and short switches (i.e. ``-l`` and a ``--logfile``)
-      then the long switch is used.  If the same option is duplicated with the
-      same switch (long or short), then the last entry on the command line is
-      used.
+        For any of the options which supply parameters, if the option is
+        duplicated with long and short switches (i.e. ``-l`` and a ``--logfile``)
+        then the long switch is used.  If the same option is duplicated with the
+        same switch (long or short), then the last entry on the command line is
+        used.
 
-      Args:
-         argumentList (List of arguments to a command, i.e. ``sys.argv[1:]``): List of arguments to a command
-      Raises:
-         ValueError: If the argument list cannot be successfully parsed
-      """
+        Args:
+           argumentList (List of arguments to a command, i.e. ``sys.argv[1:]``): List of arguments to a command
+        Raises:
+           ValueError: If the argument list cannot be successfully parsed
+        """
         switches = {}
         opts, remaining = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
         for o, a in opts:  # push the switches into a hash
@@ -871,31 +871,31 @@ class Options(object):
 
 def cli():
     """
-   Implements the command-line interface for the ``cback3-amazons3-sync`` script.
+    Implements the command-line interface for the ``cback3-amazons3-sync`` script.
 
-   Essentially, this is the "main routine" for the cback3-amazons3-sync script.  It does
-   all of the argument processing for the script, and then also implements the
-   tool functionality.
+    Essentially, this is the "main routine" for the cback3-amazons3-sync script.  It does
+    all of the argument processing for the script, and then also implements the
+    tool functionality.
 
-   This function looks pretty similiar to ``CedarBackup3.cli.cli()``.  It's not
-   easy to refactor this code to make it reusable and also readable, so I've
-   decided to just live with the duplication.
+    This function looks pretty similiar to ``CedarBackup3.cli.cli()``.  It's not
+    easy to refactor this code to make it reusable and also readable, so I've
+    decided to just live with the duplication.
 
-   A different error code is returned for each type of failure:
+    A different error code is returned for each type of failure:
 
-      - ``1``: The Python interpreter version is < 3.7
-      - ``2``: Error processing command-line arguments
-      - ``3``: Error configuring logging
-      - ``5``: Backup was interrupted with a CTRL-C or similar
-      - ``6``: Error executing other parts of the script
+       - ``1``: The Python interpreter version is < 3.7
+       - ``2``: Error processing command-line arguments
+       - ``3``: Error configuring logging
+       - ``5``: Backup was interrupted with a CTRL-C or similar
+       - ``6``: Error executing other parts of the script
 
-   *Note:* This script uses print rather than logging to the INFO level, because
-   it is interactive.  Underlying Cedar Backup functionality uses the logging
-   mechanism exclusively.
+    *Note:* This script uses print rather than logging to the INFO level, because
+    it is interactive.  Underlying Cedar Backup functionality uses the logging
+    mechanism exclusively.
 
-   Returns:
-       Error code as described above
-   """
+    Returns:
+        Error code as described above
+    """
     try:
         if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 7]:
             sys.stderr.write("Python 3 version 3.7 or greater required.\n")
@@ -965,11 +965,11 @@ def cli():
 
 def _usage(fd=sys.stderr):
     """
-   Prints usage information for the cback3-amazons3-sync script.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints usage information for the cback3-amazons3-sync script.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write(" Usage: cback3-amazons3-sync [switches] sourceDir s3bucketUrl\n")
     fd.write("\n")
@@ -1022,11 +1022,11 @@ def _usage(fd=sys.stderr):
 
 def _version(fd=sys.stdout):
     """
-   Prints version information for the cback3-amazons3-sync script.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints version information for the cback3-amazons3-sync script.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write(" Cedar Backup Amazon S3 sync tool.\n")
     fd.write(" Included with Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
@@ -1047,11 +1047,11 @@ def _version(fd=sys.stdout):
 
 def _diagnostics(fd=sys.stdout):
     """
-   Prints runtime diagnostics information.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints runtime diagnostics information.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write("Diagnostics:\n")
     fd.write("\n")
@@ -1066,13 +1066,13 @@ def _diagnostics(fd=sys.stdout):
 
 def _executeAction(options):
     """
-   Implements the guts of the cback3-amazons3-sync tool.
+    Implements the guts of the cback3-amazons3-sync tool.
 
-   Args:
-      options (Options object): Program command-line options
-   Raises:
-      Exception: Under many generic error conditions
-   """
+    Args:
+       options (Options object): Program command-line options
+    Raises:
+       Exception: Under many generic error conditions
+    """
     sourceFiles = _buildSourceFiles(options.sourceDir)
     if not options.ignoreWarnings:
         _checkSourceFiles(options.sourceDir, sourceFiles)
@@ -1088,12 +1088,12 @@ def _executeAction(options):
 
 def _buildSourceFiles(sourceDir):
     """
-   Build a list of files in a source directory
-   Args:
-      sourceDir: Local source directory
-   Returns:
-       FilesystemList with contents of source directory
-   """
+    Build a list of files in a source directory
+    Args:
+       sourceDir: Local source directory
+    Returns:
+        FilesystemList with contents of source directory
+    """
     if not os.path.isdir(sourceDir):
         raise ValueError("Source directory does not exist on disk.")
     sourceFiles = FilesystemList()
@@ -1108,15 +1108,15 @@ def _buildSourceFiles(sourceDir):
 # pylint: disable=W0613
 def _checkSourceFiles(sourceDir, sourceFiles):
     """
-   Check source files, trying to guess which ones will have encoding problems.
-   Args:
-      sourceDir: Local source directory
-      sourceDir: Local source directory
-   @raises ValueError: If a problem file is found
-   @see U{http://opensourcehacker.com/2011/09/16/fix-linux-filename-encodings-with-python/}
-   @see U{http://serverfault.com/questions/82821/how-to-tell-the-language-encoding-of-a-filename-on-linux}
-   @see U{http://randysofia.com/2014/06/06/aws-cli-and-your-locale/}
-   """
+    Check source files, trying to guess which ones will have encoding problems.
+    Args:
+       sourceDir: Local source directory
+       sourceDir: Local source directory
+    @raises ValueError: If a problem file is found
+    @see U{http://opensourcehacker.com/2011/09/16/fix-linux-filename-encodings-with-python/}
+    @see U{http://serverfault.com/questions/82821/how-to-tell-the-language-encoding-of-a-filename-on-linux}
+    @see U{http://randysofia.com/2014/06/06/aws-cli-and-your-locale/}
+    """
     with warnings.catch_warnings():
         encoding = Diagnostics().encoding
 
@@ -1164,11 +1164,11 @@ def _checkSourceFiles(sourceDir, sourceFiles):
 
 def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
     """
-   Synchronize a local directory to an Amazon S3 bucket.
-   Args:
-      sourceDir: Local source directory
-      s3BucketUrl: Target S3 bucket URL
-   """
+    Synchronize a local directory to an Amazon S3 bucket.
+    Args:
+       sourceDir: Local source directory
+       s3BucketUrl: Target S3 bucket URL
+    """
     # Since at least early 2015, 'aws s3 sync' is always recursive and the
     # --recursive option is useless.  They eventually removed it and now using
     # it causes an error.  See: https://github.com/aws/aws-cli/issues/1170
@@ -1191,12 +1191,12 @@ def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
 
 def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
     """
-   Verify that a source directory is equivalent to an Amazon S3 bucket.
-   Args:
-      sourceDir: Local source directory
-      sourceFiles: Filesystem list containing contents of source directory
-      s3BucketUrl: Target S3 bucket URL
-   """
+    Verify that a source directory is equivalent to an Amazon S3 bucket.
+    Args:
+       sourceDir: Local source directory
+       sourceFiles: Filesystem list containing contents of source directory
+       s3BucketUrl: Target S3 bucket URL
+    """
     # As of this writing, the documentation for the S3 API that we're using
     # below says that up to 1000 elements at a time are returned, and that we
     # have to manually handle pagination by looking for the IsTruncated element.

@@ -177,8 +177,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_001(self):
         """
-      Test two empty lists.
-      """
+        Test two empty lists.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         self.assertEqual(list1, list2)
@@ -186,8 +186,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_002(self):
         """
-      Test empty vs. non-empty list.
-      """
+        Test empty vs. non-empty list.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -207,8 +207,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_003(self):
         """
-      Test two non-empty lists, completely different contents.
-      """
+        Test two non-empty lists, completely different contents.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -240,8 +240,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_004(self):
         """
-      Test two non-empty lists, different but overlapping contents.
-      """
+        Test two non-empty lists, different but overlapping contents.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -273,8 +273,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_005(self):
         """
-      Test two non-empty lists, exactly the same contents, same order.
-      """
+        Test two non-empty lists, exactly the same contents, same order.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -306,8 +306,8 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_006(self):
         """
-      Test two non-empty lists, exactly the same contents, different order.
-      """
+        Test two non-empty lists, exactly the same contents, different order.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -339,9 +339,9 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_007(self):
         """
-      Test two non-empty lists, exactly the same contents, some duplicates,
-      same order.
-      """
+        Test two non-empty lists, exactly the same contents, some duplicates,
+        same order.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -377,9 +377,9 @@ class TestUnorderedList(unittest.TestCase):
 
     def testComparison_008(self):
         """
-      Test two non-empty lists, exactly the same contents, some duplicates,
-      different order.
-      """
+        Test two non-empty lists, exactly the same contents, some duplicates,
+        different order.
+        """
         list1 = UnorderedList()
         list2 = UnorderedList()
         list1.append(1)
@@ -443,8 +443,8 @@ class TestAbsolutePathList(unittest.TestCase):
 
     def testListOperations_001(self):
         """
-      Test append() for a valid absolute path.
-      """
+        Test append() for a valid absolute path.
+        """
         list1 = AbsolutePathList()
         list1.append("/path/to/something/absolute")
         self.assertEqual(list1, ["/path/to/something/absolute"])
@@ -456,8 +456,8 @@ class TestAbsolutePathList(unittest.TestCase):
 
     def testListOperations_002(self):
         """
-      Test append() for an invalid, non-absolute path.
-      """
+        Test append() for an invalid, non-absolute path.
+        """
         list1 = AbsolutePathList()
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "path/to/something/relative")
@@ -465,8 +465,8 @@ class TestAbsolutePathList(unittest.TestCase):
 
     def testListOperations_003(self):
         """
-      Test insert() for a valid absolute path.
-      """
+        Test insert() for a valid absolute path.
+        """
         list1 = AbsolutePathList()
         list1.insert(0, "/path/to/something/absolute")
         self.assertEqual(list1, ["/path/to/something/absolute"])
@@ -478,15 +478,15 @@ class TestAbsolutePathList(unittest.TestCase):
 
     def testListOperations_004(self):
         """
-      Test insert() for an invalid, non-absolute path.
-      """
+        Test insert() for an invalid, non-absolute path.
+        """
         list1 = AbsolutePathList()
         self.assertRaises(ValueError, list1.insert, 0, "path/to/something/relative")
 
     def testListOperations_005(self):
         """
-      Test extend() for a valid absolute path.
-      """
+        Test extend() for a valid absolute path.
+        """
         list1 = AbsolutePathList()
         list1.extend(["/path/to/something/absolute"])
         self.assertEqual(list1, ["/path/to/something/absolute"])
@@ -498,8 +498,8 @@ class TestAbsolutePathList(unittest.TestCase):
 
     def testListOperations_006(self):
         """
-      Test extend() for an invalid, non-absolute path.
-      """
+        Test extend() for an invalid, non-absolute path.
+        """
         list1 = AbsolutePathList()
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["path/to/something/relative"])
@@ -535,8 +535,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_001(self):
         """
-      Test append() for a valid object type.
-      """
+        Test append() for a valid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         list1.append("string")
         self.assertEqual(list1, ["string"])
@@ -548,8 +548,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_002(self):
         """
-      Test append() for an invalid object type.
-      """
+        Test append() for an invalid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, 1)
@@ -557,8 +557,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_003(self):
         """
-      Test insert() for a valid object type.
-      """
+        Test insert() for a valid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         list1.insert(0, "string")
         self.assertEqual(list1, ["string"])
@@ -570,8 +570,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_004(self):
         """
-      Test insert() for an invalid object type.
-      """
+        Test insert() for an invalid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.insert, 0, AbsolutePathList())
@@ -579,8 +579,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_005(self):
         """
-      Test extend() for a valid object type.
-      """
+        Test extend() for a valid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         list1.extend(["string"])
         self.assertEqual(list1, ["string"])
@@ -592,8 +592,8 @@ class TestObjectTypeList(unittest.TestCase):
 
     def testListOperations_006(self):
         """
-      Test extend() for an invalid object type.
-      """
+        Test extend() for an invalid object type.
+        """
         list1 = ObjectTypeList(str, "str")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, [12.0])
@@ -625,8 +625,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_001(self):
         """
-      Test append() for a valid value.
-      """
+        Test append() for a valid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.append("a")
         self.assertEqual(list1, ["a"])
@@ -643,8 +643,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_002(self):
         """
-      Test append() for an invalid value.
-      """
+        Test append() for an invalid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "d")
@@ -656,8 +656,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_003(self):
         """
-      Test insert() for a valid value.
-      """
+        Test insert() for a valid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.insert(0, "a")
         self.assertEqual(list1, ["a"])
@@ -674,8 +674,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_004(self):
         """
-      Test insert() for an invalid value.
-      """
+        Test insert() for an invalid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.insert, 0, "d")
@@ -687,8 +687,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_005(self):
         """
-      Test extend() for a valid value.
-      """
+        Test extend() for a valid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         list1.extend(["a"])
         self.assertEqual(list1, ["a"])
@@ -705,8 +705,8 @@ class TestRestrictedContentList(unittest.TestCase):
 
     def testListOperations_006(self):
         """
-      Test extend() for an invalid value.
-      """
+        Test extend() for an invalid value.
+        """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["d"])
@@ -742,8 +742,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_001(self):
         """
-      Test append() for a valid value, emptyAllowed=True.
-      """
+        Test append() for a valid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         list1.append("a")
         self.assertEqual(list1, ["a"])
@@ -766,8 +766,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_002(self):
         """
-      Test append() for an invalid value, emptyAllowed=True.
-      """
+        Test append() for an invalid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "A")
@@ -783,8 +783,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_003(self):
         """
-      Test insert() for a valid value, emptyAllowed=True.
-      """
+        Test insert() for a valid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         list1.insert(0, "a")
         self.assertEqual(list1, ["a"])
@@ -807,8 +807,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_004(self):
         """
-      Test insert() for an invalid value, emptyAllowed=True.
-      """
+        Test insert() for an invalid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.insert, 0, "A")
@@ -824,8 +824,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_005(self):
         """
-      Test extend() for a valid value, emptyAllowed=True.
-      """
+        Test extend() for a valid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         list1.extend(["a"])
         self.assertEqual(list1, ["a"])
@@ -848,8 +848,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_006(self):
         """
-      Test extend() for an invalid value, emptyAllowed=True.
-      """
+        Test extend() for an invalid value, emptyAllowed=True.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["A"])
@@ -865,8 +865,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_007(self):
         """
-      Test append() for a valid value, emptyAllowed=False.
-      """
+        Test append() for a valid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         list1.append("a")
         self.assertEqual(list1, ["a"])
@@ -883,8 +883,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_008(self):
         """
-      Test append() for an invalid value, emptyAllowed=False.
-      """
+        Test append() for an invalid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "A")
@@ -902,8 +902,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_009(self):
         """
-      Test insert() for a valid value, emptyAllowed=False.
-      """
+        Test insert() for a valid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         list1.insert(0, "a")
         self.assertEqual(list1, ["a"])
@@ -920,8 +920,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_010(self):
         """
-      Test insert() for an invalid value, emptyAllowed=False.
-      """
+        Test insert() for an invalid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.insert, 0, "A")
@@ -939,8 +939,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_011(self):
         """
-      Test extend() for a valid value, emptyAllowed=False.
-      """
+        Test extend() for a valid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         list1.extend(["a"])
         self.assertEqual(list1, ["a"])
@@ -957,8 +957,8 @@ class TestRegexMatchList(unittest.TestCase):
 
     def testListOperations_012(self):
         """
-      Test extend() for an invalid value, emptyAllowed=False.
-      """
+        Test extend() for an invalid value, emptyAllowed=False.
+        """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["A"])
@@ -1000,8 +1000,8 @@ class TestRegexList(unittest.TestCase):
 
     def testListOperations_001(self):
         """
-      Test append() for a valid regular expresson.
-      """
+        Test append() for a valid regular expresson.
+        """
         list1 = RegexList()
         list1.append(r".*\.jpg")
         self.assertEqual(list1, [r".*\.jpg"])
@@ -1013,8 +1013,8 @@ class TestRegexList(unittest.TestCase):
 
     def testListOperations_002(self):
         """
-      Test append() for an invalid regular expression.
-      """
+        Test append() for an invalid regular expression.
+        """
         list1 = RegexList()
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.append, "*.jpg")
@@ -1022,8 +1022,8 @@ class TestRegexList(unittest.TestCase):
 
     def testListOperations_003(self):
         """
-      Test insert() for a valid regular expression.
-      """
+        Test insert() for a valid regular expression.
+        """
         list1 = RegexList()
         list1.insert(0, r".*\.jpg")
         self.assertEqual(list1, [r".*\.jpg"])
@@ -1035,15 +1035,15 @@ class TestRegexList(unittest.TestCase):
 
     def testListOperations_004(self):
         """
-      Test insert() for an invalid regular expression.
-      """
+        Test insert() for an invalid regular expression.
+        """
         list1 = RegexList()
         self.assertRaises(ValueError, list1.insert, 0, "*.jpg")
 
     def testListOperations_005(self):
         """
-      Test extend() for a valid regular expression.
-      """
+        Test extend() for a valid regular expression.
+        """
         list1 = RegexList()
         list1.extend([r".*\.jpg"])
         self.assertEqual(list1, [r".*\.jpg"])
@@ -1055,8 +1055,8 @@ class TestRegexList(unittest.TestCase):
 
     def testListOperations_006(self):
         """
-      Test extend() for an invalid regular expression.
-      """
+        Test extend() for an invalid regular expression.
+        """
         list1 = RegexList()
         self.assertEqual(list1, [])
         self.assertRaises(ValueError, list1.extend, ["*.jpg"])
@@ -1078,8 +1078,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testStringFuncs_001(self):
         """
-      Just make sure that the string functions don't have errors (i.e. bad variable names).
-      """
+        Just make sure that the string functions don't have errors (i.e. bad variable names).
+        """
         obj = DirectedGraph("test")
         obj.__repr__()
         obj.__str__()
@@ -1090,15 +1090,15 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testConstructor_001(self):
         """
-      Test constructor with a valid name filled in.
-      """
+        Test constructor with a valid name filled in.
+        """
         graph = DirectedGraph("Ken")
         self.assertEqual("Ken", graph.name)
 
     def testConstructor_002(self):
         """
-      Test constructor with a ``None`` name filled in.
-      """
+        Test constructor with a ``None`` name filled in.
+        """
         self.assertRaises(ValueError, DirectedGraph, None)
 
     ##########################
@@ -1107,16 +1107,16 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_001(self):
         """
-      Empty graph.
-      """
+        Empty graph.
+        """
         graph = DirectedGraph("test")
         path = graph.topologicalSort()
         self.assertEqual([], path)
 
     def testTopologicalSort_002(self):
         """
-      Graph with 1 vertex, no edges.
-      """
+        Graph with 1 vertex, no edges.
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         path = graph.topologicalSort()
@@ -1124,8 +1124,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_003(self):
         """
-      Graph with 2 vertices, no edges.
-      """
+        Graph with 2 vertices, no edges.
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1134,8 +1134,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_004(self):
         """
-      Graph with 3 vertices, no edges.
-      """
+        Graph with 3 vertices, no edges.
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1145,8 +1145,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_005(self):
         """
-      Graph with 4 vertices, no edges.
-      """
+        Graph with 4 vertices, no edges.
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1157,8 +1157,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_006(self):
         """
-      Graph with 4 vertices, no edges.
-      """
+        Graph with 4 vertices, no edges.
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1170,8 +1170,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_007(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (1,2,3)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1183,8 +1183,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_008(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (1,3,2)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1196,8 +1196,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_009(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (2,3,1)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1209,8 +1209,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_010(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (2,1,3)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1222,8 +1222,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_011(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (3,1,2)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1235,8 +1235,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_012(self):
         """
-      Graph with 3 vertices, in a chain (1->2->3), create order (3,2,1)
-      """
+        Graph with 3 vertices, in a chain (1->2->3), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1248,8 +1248,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_013(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (1,2,3)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1261,8 +1261,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_014(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (1,3,2)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1274,8 +1274,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_015(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (2,3,1)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1287,8 +1287,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_016(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (2,1,3)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1300,8 +1300,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_017(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (3,1,2)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1313,8 +1313,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_018(self):
         """
-      Graph with 3 vertices, in a chain (3->2->1), create order (3,2,1)
-      """
+        Graph with 3 vertices, in a chain (3->2->1), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1326,8 +1326,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_019(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1338,8 +1338,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_020(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1350,8 +1350,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_021(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1362,8 +1362,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_022(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1374,8 +1374,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_023(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1386,8 +1386,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_024(self):
         """
-      Graph with 3 vertices, chain and orphan (1->2,3), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (1->2,3), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1398,8 +1398,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_025(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1410,8 +1410,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_026(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1422,8 +1422,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_027(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1434,8 +1434,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_028(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1446,8 +1446,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_029(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1458,8 +1458,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_030(self):
         """
-      Graph with 3 vertices, chain and orphan (1->3,2), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (1->3,2), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1470,8 +1470,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_031(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1482,8 +1482,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_032(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1494,8 +1494,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_033(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1506,8 +1506,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_034(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1518,8 +1518,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_035(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1530,8 +1530,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_036(self):
         """
-      Graph with 3 vertices, chain and orphan (2->3,1), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (2->3,1), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1542,8 +1542,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_037(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1554,8 +1554,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_038(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1566,8 +1566,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_039(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1578,8 +1578,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_040(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1590,8 +1590,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_041(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1602,8 +1602,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_042(self):
         """
-      Graph with 3 vertices, chain and orphan (2->1,3), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (2->1,3), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1614,8 +1614,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_043(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1626,8 +1626,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_044(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1638,8 +1638,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_045(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1650,8 +1650,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_046(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1662,8 +1662,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_047(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1674,8 +1674,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_048(self):
         """
-      Graph with 3 vertices, chain and orphan (3->1,2), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (3->1,2), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1686,8 +1686,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_049(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (1,2,3)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (1,2,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1698,8 +1698,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_050(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (1,3,2)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (1,3,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("3")
@@ -1710,8 +1710,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_051(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (2,3,1)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (2,3,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("3")
@@ -1722,8 +1722,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_052(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (2,1,3)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (2,1,3)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("2")
         graph.createVertex("1")
@@ -1734,8 +1734,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_053(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (3,1,2)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (3,1,2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("1")
@@ -1746,8 +1746,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_054(self):
         """
-      Graph with 3 vertices, chain and orphan (3->2,1), create order (3,2,1)
-      """
+        Graph with 3 vertices, chain and orphan (3->2,1), create order (3,2,1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("3")
         graph.createVertex("2")
@@ -1758,8 +1758,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_055(self):
         """
-      Graph with 1 vertex, with an edge to itself (1->1).
-      """
+        Graph with 1 vertex, with an edge to itself (1->1).
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createEdge("1", "1")
@@ -1767,8 +1767,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_056(self):
         """
-      Graph with 2 vertices, each with an edge to itself (1->1, 2->2).
-      """
+        Graph with 2 vertices, each with an edge to itself (1->1, 2->2).
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1778,8 +1778,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_057(self):
         """
-      Graph with 3 vertices, each with an edge to itself (1->1, 2->2, 3->3).
-      """
+        Graph with 3 vertices, each with an edge to itself (1->1, 2->2, 3->3).
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1791,8 +1791,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_058(self):
         """
-      Graph with 3 vertices, in a loop (1->2->3->1).
-      """
+        Graph with 3 vertices, in a loop (1->2->3->1).
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1804,8 +1804,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_059(self):
         """
-      Graph with 5 vertices, (2, 1->3, 1->4, 1->5)
-      """
+        Graph with 5 vertices, (2, 1->3, 1->4, 1->5)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1820,8 +1820,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_060(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1837,8 +1837,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_061(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1855,8 +1855,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_062(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1874,8 +1874,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_063(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 1->2)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 1->2)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1894,8 +1894,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_064(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 1->2, 3->5)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 1->2, 3->5)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1915,8 +1915,8 @@ class TestDirectedGraph(unittest.TestCase):
 
     def testTopologicalSort_065(self):
         """
-      Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 5->1)
-      """
+        Graph with 5 vertices, (1->3, 1->4, 1->5, 2->5, 3->4, 5->4, 5->1)
+        """
         graph = DirectedGraph("test")
         graph.createVertex("1")
         graph.createVertex("2")
@@ -1958,8 +1958,8 @@ class TestPathResolverSingleton(unittest.TestCase):
 
     def testBehavior_001(self):
         """
-      Check behavior of constructor around filling and clearing instance variable.
-      """
+        Check behavior of constructor around filling and clearing instance variable.
+        """
         PathResolverSingleton._instance = None
         instance = PathResolverSingleton()
         self.assertNotEqual(None, PathResolverSingleton._instance)
@@ -1967,8 +1967,8 @@ class TestPathResolverSingleton(unittest.TestCase):
 
     def testBehavior_002(self):
         """
-      Check behavior of getInstance() around filling and clearing instance variable.
-      """
+        Check behavior of getInstance() around filling and clearing instance variable.
+        """
         PathResolverSingleton._instance = None
         instance1 = PathResolverSingleton.getInstance()
         instance2 = PathResolverSingleton.getInstance()
@@ -2004,8 +2004,8 @@ class TestPathResolverSingleton(unittest.TestCase):
 
     def testLookup_001(self):
         """
-      Test that lookup() always returns default when singleton is empty.
-      """
+        Test that lookup() always returns default when singleton is empty.
+        """
         PathResolverSingleton._instance = None
         instance = PathResolverSingleton.getInstance()
 
@@ -2023,8 +2023,8 @@ class TestPathResolverSingleton(unittest.TestCase):
 
     def testLookup_002(self):
         """
-      Test that lookup() returns proper values when singleton is not empty.
-      """
+        Test that lookup() returns proper values when singleton is not empty.
+        """
         mappings = {"one": "/path/to/one", "two": "/path/to/two"}
         PathResolverSingleton._instance = None
         singleton = PathResolverSingleton()
@@ -2068,32 +2068,32 @@ class TestDiagnostics(unittest.TestCase):
 
     def testMethods_001(self):
         """
-      Test the version attribute.
-      """
+        Test the version attribute.
+        """
         diagnostics = Diagnostics()
         self.assertFalse(diagnostics.version is None)
         self.assertNotEqual("", diagnostics.version)
 
     def testMethods_002(self):
         """
-      Test the interpreter attribute.
-      """
+        Test the interpreter attribute.
+        """
         diagnostics = Diagnostics()
         self.assertFalse(diagnostics.interpreter is None)
         self.assertNotEqual("", diagnostics.interpreter)
 
     def testMethods_003(self):
         """
-      Test the platform attribute.
-      """
+        Test the platform attribute.
+        """
         diagnostics = Diagnostics()
         self.assertFalse(diagnostics.platform is None)
         self.assertNotEqual("", diagnostics.platform)
 
     def testMethods_004(self):
         """
-      Test the encoding attribute.
-      """
+        Test the encoding attribute.
+        """
         diagnostics = Diagnostics()
         self.assertFalse(diagnostics.encoding is None)
         self.assertNotEqual("", diagnostics.encoding)
@@ -2101,16 +2101,16 @@ class TestDiagnostics(unittest.TestCase):
     # noinspection PyStatementEffect
     def testMethods_005(self):
         """
-      Test the locale attribute.
-      """
+        Test the locale attribute.
+        """
         # pylint: disable=W0104
         diagnostics = Diagnostics()
         diagnostics.locale  # might not be set, so just make sure method doesn't fail
 
     def testMethods_006(self):
         """
-      Test the getValues() method.
-      """
+        Test the getValues() method.
+        """
         diagnostics = Diagnostics()
         values = diagnostics.getValues()
         self.assertEqual(diagnostics.version, values["version"])
@@ -2122,29 +2122,29 @@ class TestDiagnostics(unittest.TestCase):
 
     def testMethods_007(self):
         """
-      Test the _buildDiagnosticLines() method.
-      """
+        Test the _buildDiagnosticLines() method.
+        """
         values = Diagnostics().getValues()
         lines = Diagnostics()._buildDiagnosticLines()
         self.assertEqual(len(values), len(lines))
 
     def testMethods_008(self):
         """
-      Test the printDiagnostics() method.
-      """
+        Test the printDiagnostics() method.
+        """
         captureOutput(Diagnostics().printDiagnostics)
 
     def testMethods_009(self):
         """
-      Test the logDiagnostics() method.
-      """
+        Test the logDiagnostics() method.
+        """
         logger = logging.getLogger("CedarBackup3.test")
         Diagnostics().logDiagnostics(logger.info)
 
     def testMethods_010(self):
         """
-      Test the timestamp attribute.
-      """
+        Test the timestamp attribute.
+        """
         diagnostics = Diagnostics()
         self.assertFalse(diagnostics.timestamp is None)
         self.assertNotEqual("", diagnostics.timestamp)
@@ -2202,24 +2202,24 @@ class TestFunctions(unittest.TestCase):
 
     def testSortDict_001(self):
         """
-      Test for empty dictionary.
-      """
+        Test for empty dictionary.
+        """
         d = {}
         result = sortDict(d)
         self.assertEqual([], result)
 
     def testSortDict_002(self):
         """
-      Test for dictionary with one item.
-      """
+        Test for dictionary with one item.
+        """
         d = {"a": 1}
         result = sortDict(d)
         self.assertEqual(["a"], result)
 
     def testSortDict_003(self):
         """
-      Test for dictionary with two items, same value.
-      """
+        Test for dictionary with two items, same value.
+        """
         d = {
             "a": 1,
             "b": 1,
@@ -2229,8 +2229,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSortDict_004(self):
         """
-      Test for dictionary with two items, different values.
-      """
+        Test for dictionary with two items, different values.
+        """
         d = {
             "a": 1,
             "b": 2,
@@ -2240,8 +2240,8 @@ class TestFunctions(unittest.TestCase):
 
     def testSortDict_005(self):
         """
-      Test for dictionary with many items, same and different values.
-      """
+        Test for dictionary with many items, same and different values.
+        """
         d = {"rebuild": 0, "purge": 400, "collect": 100, "validate": 0, "store": 300, "stage": 200}
         result = sortDict(d)
         self.assertEqual(["rebuild", "validate", "collect", "stage", "store", "purge"], result)
@@ -2252,8 +2252,8 @@ class TestFunctions(unittest.TestCase):
 
     def testGetFunctionReference_001(self):
         """
-      Check that the search works within "standard" Python namespace.
-      """
+        Check that the search works within "standard" Python namespace.
+        """
         module = "os.path"
         function = "isdir"
         reference = getFunctionReference(module, function)
@@ -2261,8 +2261,8 @@ class TestFunctions(unittest.TestCase):
 
     def testGetFunctionReference_002(self):
         """
-      Check that the search works for things within CedarBackup3.
-      """
+        Check that the search works for things within CedarBackup3.
+        """
         module = "CedarBackup3.util"
         function = "executeCommand"
         reference = getFunctionReference(module, function)
@@ -2274,8 +2274,8 @@ class TestFunctions(unittest.TestCase):
 
     def testResolveCommand_001(self):
         """
-      Test that the command is echoed back unchanged when singleton is empty.
-      """
+        Test that the command is echoed back unchanged when singleton is empty.
+        """
         PathResolverSingleton._instance = None
 
         command = [
@@ -2306,8 +2306,8 @@ class TestFunctions(unittest.TestCase):
 
     def testResolveCommand_002(self):
         """
-      Test that the command is echoed back unchanged when mapping is not found.
-      """
+        Test that the command is echoed back unchanged when mapping is not found.
+        """
         PathResolverSingleton._instance = None
         mappings = {"one": "/path/to/one", "two": "/path/to/two"}
         singleton = PathResolverSingleton()
@@ -2341,8 +2341,8 @@ class TestFunctions(unittest.TestCase):
 
     def testResolveCommand_003(self):
         """
-      Test that the command is echoed back changed appropriately when mapping is found.
-      """
+        Test that the command is echoed back changed appropriately when mapping is found.
+        """
         PathResolverSingleton._instance = None
         mappings = {"one": "/path/to/one", "two": "/path/to/two"}
         singleton = PathResolverSingleton()
@@ -2391,9 +2391,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_001(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=False
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=False
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False)
@@ -2402,9 +2402,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_002(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=False
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=False
+        Command-line: python -V
+        """
         command = [
             sys.executable,
         ]
@@ -2417,9 +2417,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_003(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=False
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=False
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
+        """
         command = [
             sys.executable,
         ]
@@ -2433,9 +2433,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_004(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=False
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=False
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
+        """
         command = [
             sys.executable,
         ]
@@ -2450,9 +2450,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_005(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=False
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=False
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2468,9 +2468,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_006(self):
         """
-      Execute a command that should fail, returnOutput=False
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=False
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
+        """
         command = [
             sys.executable,
         ]
@@ -2484,9 +2484,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_007(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=False
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=False
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2502,9 +2502,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_008(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=True
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=True
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True)
@@ -2514,9 +2514,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_009(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=True
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=True
+        Command-line: python -V
+        """
         command = [
             sys.executable,
         ]
@@ -2530,9 +2530,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_010(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=True
-      Command-line: python -c "import sys; print(''); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=True
+        Command-line: python -c "import sys; print(''); sys.exit(0)"
+        """
         command = [
             sys.executable,
         ]
@@ -2547,9 +2547,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_011(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=True
-      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=True
+        Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
+        """
         command = [
             sys.executable,
         ]
@@ -2565,9 +2565,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_012(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=True
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=True
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2585,9 +2585,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_013(self):
         """
-      Execute a command that should fail, returnOutput=True
-      Command-line: python -c "import sys; print(''); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=True
+        Command-line: python -c "import sys; print(''); sys.exit(1)"
+        """
         command = [
             sys.executable,
         ]
@@ -2602,9 +2602,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_014(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=True
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=True
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2622,10 +2622,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_015(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False)
@@ -2634,10 +2634,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_016(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -V
+        """
         command = [
             sys.executable,
             "-V",
@@ -2649,10 +2649,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_017(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -2665,10 +2665,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_018(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
+        """
         command = [
             sys.executable,
             "-c",
@@ -2682,10 +2682,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_019(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -2700,10 +2700,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_020(self):
         """
-      Execute a command that should fail, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -2716,10 +2716,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_021(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=False
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=False
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -2734,10 +2734,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_022(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True)
@@ -2747,10 +2747,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_023(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -V
+        """
         command = [sys.executable, "-V"]
         args = []
         (result, output) = executeCommand(command, args, returnOutput=True)
@@ -2760,10 +2760,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_024(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(0)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -2777,10 +2777,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_025(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
+        """
         command = [
             sys.executable,
             "-c",
@@ -2795,10 +2795,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_026(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -2815,10 +2815,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_027(self):
         """
-      Execute a command that should fail, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(1)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -2832,10 +2832,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_028(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=True
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=True
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -2852,9 +2852,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_030(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
@@ -2863,9 +2863,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_031(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=False, ignoring stderr.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=False, ignoring stderr.
+        Command-line: python -V
+        """
         command = [
             sys.executable,
         ]
@@ -2878,9 +2878,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_032(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
+        """
         command = [
             sys.executable,
         ]
@@ -2894,9 +2894,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_033(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
+        """
         command = [
             sys.executable,
         ]
@@ -2911,9 +2911,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_034(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2929,9 +2929,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_035(self):
         """
-      Execute a command that should fail, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=False, ignoring stderr.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
+        """
         command = [
             sys.executable,
         ]
@@ -2945,9 +2945,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_036(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -2963,9 +2963,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_037(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
@@ -2975,9 +2975,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_038(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=True, ignoring stderr.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=True, ignoring stderr.
+        Command-line: python -V
+        """
         command = [
             sys.executable,
         ]
@@ -2995,9 +2995,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_039(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print(''); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
+        Command-line: python -c "import sys; print(''); sys.exit(0)"
+        """
         command = [
             sys.executable,
         ]
@@ -3012,9 +3012,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_040(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
+        Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
+        """
         command = [
             sys.executable,
         ]
@@ -3030,9 +3030,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_041(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -3050,9 +3050,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_042(self):
         """
-      Execute a command that should fail, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print(''); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=True, ignoring stderr.
+        Command-line: python -c "import sys; print(''); sys.exit(1)"
+        """
         command = [
             sys.executable,
         ]
@@ -3067,9 +3067,9 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_043(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
         ]
@@ -3087,10 +3087,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_044(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=False, ignoreStderr=True)
@@ -3099,10 +3099,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_045(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -V
+        """
         command = [
             sys.executable,
             "-V",
@@ -3114,10 +3114,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_046(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3130,10 +3130,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_047(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first
+        """
         command = [
             sys.executable,
             "-c",
@@ -3147,10 +3147,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_048(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3165,10 +3165,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_049(self):
         """
-      Execute a command that should fail, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3181,10 +3181,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_050(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=False, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(sys.argv[1:]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3199,10 +3199,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_051(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
@@ -3212,10 +3212,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_052(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -V
+        """
         command = [
             sys.executable,
             "-c",
@@ -3232,10 +3232,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_053(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(0)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3249,10 +3249,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_054(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
+        """
         command = [
             sys.executable,
             "-c",
@@ -3267,10 +3267,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_055(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3287,10 +3287,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_056(self):
         """
-      Execute a command that should fail, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(1)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3304,10 +3304,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_057(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=True, ignoring stderr.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3324,10 +3324,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_058(self):
         """
-      Execute a command that should succeed, no arguments, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: non-Python platform-specific valid command
-      """
+        Execute a command that should succeed, no arguments, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: non-Python platform-specific valid command
+        """
         command = VALID_COMMAND
         args = VALID_ARGS
 
@@ -3346,10 +3346,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_059(self):
         """
-      Execute a command that should succeed, one argument, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -V
-      """
+        Execute a command that should succeed, one argument, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -V
+        """
         command = [sys.executable, "-V"]
         args = []
 
@@ -3366,10 +3366,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_060(self):
         """
-      Execute a command that should succeed, two arguments, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(0)"
-      """
+        Execute a command that should succeed, two arguments, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(0)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3390,10 +3390,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_061(self):
         """
-      Execute a command that should succeed, three arguments, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
-      """
+        Execute a command that should succeed, three arguments, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % (sys.argv[1])); sys.exit(0)" first
+        """
         command = [
             sys.executable,
             "-c",
@@ -3415,10 +3415,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_062(self):
         """
-      Execute a command that should succeed, four arguments, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
-      """
+        Execute a command that should succeed, four arguments, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(0)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3442,10 +3442,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_063(self):
         """
-      Execute a command that should fail, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print(''); sys.exit(1)"
-      """
+        Execute a command that should fail, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print(''); sys.exit(1)"
+        """
         command = [
             sys.executable,
             "-c",
@@ -3466,10 +3466,10 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_064(self):
         """
-      Execute a command that should fail, more arguments, returnOutput=False, using outputFile.
-      Do this all bundled into the command list, just to check that this works as expected.
-      Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
-      """
+        Execute a command that should fail, more arguments, returnOutput=False, using outputFile.
+        Do this all bundled into the command list, just to check that this works as expected.
+        Command-line: python -c "import sys; print('%s' % sys.argv[1]); print('%s' % sys.argv[2]); sys.exit(1)" first second
+        """
         command = [
             sys.executable,
             "-c",
@@ -3493,11 +3493,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_065(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain only data on stdout, and ignoreStderr should be True.
-      This test helps confirm that the function doesn't hang when there is
-      either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain only data on stdout, and ignoreStderr should be True.
+        This test helps confirm that the function doesn't hang when there is
+        either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3520,11 +3520,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_066(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain only data on stdout, and ignoreStderr should be False.
-      This test helps confirm that the function doesn't hang when there is
-      either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain only data on stdout, and ignoreStderr should be False.
+        This test helps confirm that the function doesn't hang when there is
+        either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3547,11 +3547,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_067(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain only data on stderr, and ignoreStderr should be True.
-      This test helps confirm that the function doesn't hang when there is
-      either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain only data on stderr, and ignoreStderr should be True.
+        This test helps confirm that the function doesn't hang when there is
+        either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3574,11 +3574,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_068(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain only data on stdout, and ignoreStderr should be False.
-      This test helps confirm that the function doesn't hang when there is
-      either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain only data on stdout, and ignoreStderr should be False.
+        This test helps confirm that the function doesn't hang when there is
+        either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3601,11 +3601,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_069(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain data on stdout and stderr, and ignoreStderr should be
-      True.  This test helps confirm that the function doesn't hang when there
-      is either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain data on stdout and stderr, and ignoreStderr should be
+        True.  This test helps confirm that the function doesn't hang when there
+        is either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3628,11 +3628,11 @@ class TestFunctions(unittest.TestCase):
 
     def testExecuteCommand_070(self):
         """
-      Execute a command with a huge amount of output all on stdout.  The output
-      should contain data on stdout and stderr, and ignoreStderr should be
-      False.  This test helps confirm that the function doesn't hang when there
-      is either a lot of data or a lot of data to ignore.
-      """
+        Execute a command with a huge amount of output all on stdout.  The output
+        should contain data on stdout and stderr, and ignoreStderr should be
+        False.  This test helps confirm that the function doesn't hang when there
+        is either a lot of data or a lot of data to ignore.
+        """
         lotsoflines = self.resources["lotsoflines.py"]
         command = [
             sys.executable,
@@ -3659,8 +3659,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_002(self):
         """
-      Test with a simple string, empty.
-      """
+        Test with a simple string, empty.
+        """
         path = ""
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3668,8 +3668,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_003(self):
         """
-      Test with an simple string, an ascii word.
-      """
+        Test with an simple string, an ascii word.
+        """
         path = "whatever"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3677,8 +3677,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_004(self):
         """
-      Test with simple string, a complete path.
-      """
+        Test with simple string, a complete path.
+        """
         path = "/usr/share/doc/xmltv/README.Debian"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3686,8 +3686,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_005(self):
         """
-      Test with simple string, a non-ascii path.
-      """
+        Test with simple string, a non-ascii path.
+        """
         path = "\xe2\x99\xaa\xe2\x99\xac"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3695,8 +3695,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_006(self):
         """
-      Test with a simple string, empty.
-      """
+        Test with a simple string, empty.
+        """
         path = ""
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3704,8 +3704,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_007(self):
         """
-      Test with an simple string, an ascii word.
-      """
+        Test with an simple string, an ascii word.
+        """
         path = "whatever"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3713,8 +3713,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_008(self):
         """
-      Test with simple string, a complete path.
-      """
+        Test with simple string, a complete path.
+        """
         path = "/usr/share/doc/xmltv/README.Debian"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3722,8 +3722,8 @@ class TestFunctions(unittest.TestCase):
 
     def testEncodePath_009(self):
         """
-      Test with simple string, a non-ascii path.
-      """
+        Test with simple string, a non-ascii path.
+        """
         path = "\xe2\x99\xaa\xe2\x99\xac"
         safePath = encodePath(path)
         self.assertTrue(isinstance(safePath, str))
@@ -3735,8 +3735,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_001(self):
         """
-      Test valid conversion from bytes to bytes.
-      """
+        Test valid conversion from bytes to bytes.
+        """
         fromUnit = UNIT_BYTES
         toUnit = UNIT_BYTES
         size = 10.0
@@ -3745,8 +3745,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_002(self):
         """
-      Test valid conversion from sectors to bytes and back.
-      """
+        Test valid conversion from sectors to bytes and back.
+        """
         fromUnit = UNIT_SECTORS
         toUnit = UNIT_BYTES
         size = 10
@@ -3757,8 +3757,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_003(self):
         """
-      Test valid conversion from kbytes to bytes and back.
-      """
+        Test valid conversion from kbytes to bytes and back.
+        """
         fromUnit = UNIT_KBYTES
         toUnit = UNIT_BYTES
         size = 10
@@ -3769,8 +3769,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_004(self):
         """
-      Test valid conversion from mbytes to bytes and back.
-      """
+        Test valid conversion from mbytes to bytes and back.
+        """
         fromUnit = UNIT_MBYTES
         toUnit = UNIT_BYTES
         size = 10
@@ -3781,8 +3781,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_005(self):
         """
-      Test valid conversion from gbytes to bytes and back.
-      """
+        Test valid conversion from gbytes to bytes and back.
+        """
         fromUnit = UNIT_GBYTES
         toUnit = UNIT_BYTES
         size = 10
@@ -3793,8 +3793,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_006(self):
         """
-      Test valid conversion from mbytes to kbytes and back.
-      """
+        Test valid conversion from mbytes to kbytes and back.
+        """
         fromUnit = UNIT_MBYTES
         toUnit = UNIT_KBYTES
         size = 10
@@ -3805,8 +3805,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_007(self):
         """
-      Test with an invalid from unit (None).
-      """
+        Test with an invalid from unit (None).
+        """
         fromUnit = None
         toUnit = UNIT_BYTES
         size = 10
@@ -3814,8 +3814,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_008(self):
         """
-      Test with an invalid from unit.
-      """
+        Test with an invalid from unit.
+        """
         fromUnit = 333
         toUnit = UNIT_BYTES
         size = 10
@@ -3823,8 +3823,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_009(self):
         """
-      Test with an invalid to unit (None)
-      """
+        Test with an invalid to unit (None)
+        """
         fromUnit = UNIT_BYTES
         toUnit = None
         size = 10
@@ -3832,8 +3832,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_010(self):
         """
-      Test with an invalid to unit.
-      """
+        Test with an invalid to unit.
+        """
         fromUnit = UNIT_BYTES
         toUnit = "ken"
         size = 10
@@ -3841,8 +3841,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_011(self):
         """
-      Test with an invalid quantity (None)
-      """
+        Test with an invalid quantity (None)
+        """
         fromUnit = UNIT_BYTES
         toUnit = UNIT_BYTES
         size = None
@@ -3850,8 +3850,8 @@ class TestFunctions(unittest.TestCase):
 
     def testConvertSize_012(self):
         """
-      Test with an invalid quantity (not a floating point).
-      """
+        Test with an invalid quantity (not a floating point).
+        """
         fromUnit = UNIT_BYTES
         toUnit = UNIT_BYTES
         size = "blech"
@@ -3863,8 +3863,8 @@ class TestFunctions(unittest.TestCase):
 
     def testNullDevice_001(self):
         """
-      Test that the function behaves sensibly.
-      """
+        Test that the function behaves sensibly.
+        """
         device = nullDevice()
         if sys.platform == "win32":
             self.assertEqual("nul", device)
@@ -3877,8 +3877,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_001(self):
         """
-      Test display for a positive value < 1 KB
-      """
+        Test display for a positive value < 1 KB
+        """
         bytes = 12  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("12 bytes", result)
@@ -3887,8 +3887,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_002(self):
         """
-      Test display for a negative value < 1 KB
-      """
+        Test display for a negative value < 1 KB
+        """
         bytes = -12  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("-12 bytes", result)
@@ -3897,8 +3897,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_003(self):
         """
-      Test display for a positive value = 1kB
-      """
+        Test display for a positive value = 1kB
+        """
         bytes = 1024  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("1.00 kB", result)
@@ -3907,8 +3907,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_004(self):
         """
-      Test display for a positive value >= 1kB
-      """
+        Test display for a positive value >= 1kB
+        """
         bytes = 5678  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("5.54 kB", result)
@@ -3917,8 +3917,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_005(self):
         """
-      Test display for a negative value >= 1kB
-      """
+        Test display for a negative value >= 1kB
+        """
         bytes = -5678  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("-5.54 kB", result)
@@ -3927,8 +3927,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_006(self):
         """
-      Test display for a positive value = 1MB
-      """
+        Test display for a positive value = 1MB
+        """
         bytes = 1024.0 * 1024.0  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("1.00 MB", result)
@@ -3937,8 +3937,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_007(self):
         """
-      Test display for a positive value >= 1MB
-      """
+        Test display for a positive value >= 1MB
+        """
         bytes = 72372224  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("69.02 MB", result)
@@ -3947,8 +3947,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_008(self):
         """
-      Test display for a negative value >= 1MB
-      """
+        Test display for a negative value >= 1MB
+        """
         bytes = -72372224.0  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("-69.02 MB", result)
@@ -3957,8 +3957,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_009(self):
         """
-      Test display for a positive value = 1GB
-      """
+        Test display for a positive value = 1GB
+        """
         bytes = 1024.0 * 1024.0 * 1024.0  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("1.00 GB", result)
@@ -3967,8 +3967,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_010(self):
         """
-      Test display for a positive value >= 1GB
-      """
+        Test display for a positive value >= 1GB
+        """
         bytes = 4.4 * 1024.0 * 1024.0 * 1024.0  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("4.40 GB", result)
@@ -3977,8 +3977,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_011(self):
         """
-      Test display for a negative value >= 1GB
-      """
+        Test display for a negative value >= 1GB
+        """
         bytes = -1234567891011  # pylint: disable=W0622
         result = displayBytes(bytes)
         self.assertEqual("-1149.78 GB", result)
@@ -3987,15 +3987,15 @@ class TestFunctions(unittest.TestCase):
 
     def testDisplayBytes_012(self):
         """
-      Test display with an invalid quantity (None).
-      """
+        Test display with an invalid quantity (None).
+        """
         bytes = None  # pylint: disable=W0622
         self.assertRaises(ValueError, displayBytes, bytes)
 
     def testDisplayBytes_013(self):
         """
-      Test display with an invalid quantity (not a floating point).
-      """
+        Test display with an invalid quantity (not a floating point).
+        """
         bytes = "ken"  # pylint: disable=W0622
         self.assertRaises(ValueError, displayBytes, bytes)
 
@@ -4005,8 +4005,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDeriveDayOfWeek_001(self):
         """
-      Test for valid day names.
-      """
+        Test for valid day names.
+        """
         self.assertEqual(0, deriveDayOfWeek("monday"))
         self.assertEqual(1, deriveDayOfWeek("tuesday"))
         self.assertEqual(2, deriveDayOfWeek("wednesday"))
@@ -4017,8 +4017,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDeriveDayOfWeek_002(self):
         """
-      Test for invalid day names.
-      """
+        Test for invalid day names.
+        """
         self.assertEqual(-1, deriveDayOfWeek("bogus"))
 
     #######################
@@ -4028,8 +4028,8 @@ class TestFunctions(unittest.TestCase):
     # noinspection PyUnboundLocalVariable
     def testIsStartOfWeek001(self):
         """
-      Test positive case.
-      """
+        Test positive case.
+        """
         day = time.localtime().tm_wday
         if day == 0:
             result = isStartOfWeek("monday")
@@ -4050,8 +4050,8 @@ class TestFunctions(unittest.TestCase):
     # noinspection PyUnboundLocalVariable
     def testIsStartOfWeek002(self):
         """
-      Test negative case.
-      """
+        Test negative case.
+        """
         day = time.localtime().tm_wday
         if day == 0:
             result = isStartOfWeek("friday")
@@ -4075,14 +4075,14 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath001(self):
         """
-      Test for a None path.
-      """
+        Test for a None path.
+        """
         self.assertRaises(ValueError, buildNormalizedPath, None)
 
     def testBuildNormalizedPath002(self):
         """
-      Test for an empty path.
-      """
+        Test for an empty path.
+        """
         path = ""
         expected = ""
         actual = buildNormalizedPath(path)
@@ -4090,8 +4090,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath003(self):
         """
-      Test for "."
-      """
+        Test for "."
+        """
         path = "."
         expected = "_"
         actual = buildNormalizedPath(path)
@@ -4099,8 +4099,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath004(self):
         """
-      Test for ".."
-      """
+        Test for ".."
+        """
         path = ".."
         expected = "_."
         actual = buildNormalizedPath(path)
@@ -4108,8 +4108,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath005(self):
         """
-      Test for "..........."
-      """
+        Test for "..........."
+        """
         path = ".........."
         expected = "_........."
         actual = buildNormalizedPath(path)
@@ -4117,8 +4117,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath006(self):
         """
-      Test for "/"
-      """
+        Test for "/"
+        """
         path = "/"
         expected = "-"
         actual = buildNormalizedPath(path)
@@ -4126,8 +4126,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath007(self):
         """
-      Test for "\\"
-      """
+        Test for "\\"
+        """
         path = "\\"
         expected = "-"
         actual = buildNormalizedPath(path)
@@ -4135,8 +4135,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath008(self):
         """
-      Test for "/."
-      """
+        Test for "/."
+        """
         path = "/."
         expected = "_"
         actual = buildNormalizedPath(path)
@@ -4144,8 +4144,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath009(self):
         """
-      Test for "/.."
-      """
+        Test for "/.."
+        """
         path = "/.."
         expected = "_."
         actual = buildNormalizedPath(path)
@@ -4153,8 +4153,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath010(self):
         """
-      Test for "/..."
-      """
+        Test for "/..."
+        """
         path = "/..."
         expected = "_.."
         actual = buildNormalizedPath(path)
@@ -4162,8 +4162,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath011(self):
         r"""
-      Test for "\."
-      """
+        Test for "\."
+        """
         path = r"\."
         expected = "_"
         actual = buildNormalizedPath(path)
@@ -4171,8 +4171,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath012(self):
         r"""
-      Test for "\.."
-      """
+        Test for "\.."
+        """
         path = r"\.."
         expected = "_."
         actual = buildNormalizedPath(path)
@@ -4180,8 +4180,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath013(self):
         r"""
-      Test for "\..."
-      """
+        Test for "\..."
+        """
         path = r"\..."
         expected = "_.."
         actual = buildNormalizedPath(path)
@@ -4189,8 +4189,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath014(self):
         """
-      Test for "/var/log/apache/httpd.log.1"
-      """
+        Test for "/var/log/apache/httpd.log.1"
+        """
         path = "/var/log/apache/httpd.log.1"
         expected = "var-log-apache-httpd.log.1"
         actual = buildNormalizedPath(path)
@@ -4198,8 +4198,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath015(self):
         """
-      Test for "var/log/apache/httpd.log.1"
-      """
+        Test for "var/log/apache/httpd.log.1"
+        """
         path = "var/log/apache/httpd.log.1"
         expected = "var-log-apache-httpd.log.1"
         actual = buildNormalizedPath(path)
@@ -4207,8 +4207,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath016(self):
         """
-      Test for "\\var/log/apache\\httpd.log.1"
-      """
+        Test for "\\var/log/apache\\httpd.log.1"
+        """
         path = "\\var/log/apache\\httpd.log.1"
         expected = "var-log-apache-httpd.log.1"
         actual = buildNormalizedPath(path)
@@ -4216,8 +4216,8 @@ class TestFunctions(unittest.TestCase):
 
     def testBuildNormalizedPath017(self):
         """
-      Test for "/Big Nasty Base Path With Spaces/something/else/space s/file.  log   .2 ."
-      """
+        Test for "/Big Nasty Base Path With Spaces/something/else/space s/file.  log   .2 ."
+        """
         path = "/Big Nasty Base Path With Spaces/something/else/space s/file.  log   .2 ."
         expected = "Big_Nasty_Base_Path_With_Spaces-something-else-space_s-file.__log___.2_."
         actual = buildNormalizedPath(path)
@@ -4229,39 +4229,39 @@ class TestFunctions(unittest.TestCase):
 
     def testSplitCommandLine_001(self):
         """
-      Test for a None command line.
-      """
+        Test for a None command line.
+        """
         commandLine = None
         self.assertRaises(ValueError, splitCommandLine, commandLine)
 
     def testSplitCommandLine_002(self):
         """
-      Test for an empty command line.
-      """
+        Test for an empty command line.
+        """
         commandLine = ""
         result = splitCommandLine(commandLine)
         self.assertEqual([], result)
 
     def testSplitCommandLine_003(self):
         """
-      Test for a command line with no quoted arguments.
-      """
+        Test for a command line with no quoted arguments.
+        """
         commandLine = "cback --verbose stage store purge"
         result = splitCommandLine(commandLine)
         self.assertEqual(["cback", "--verbose", "stage", "store", "purge"], result)
 
     def testSplitCommandLine_004(self):
         """
-      Test for a command line with double-quoted arguments.
-      """
+        Test for a command line with double-quoted arguments.
+        """
         commandLine = 'cback "this is a really long double-quoted argument"'
         result = splitCommandLine(commandLine)
         self.assertEqual(["cback", "this is a really long double-quoted argument"], result)
 
     def testSplitCommandLine_005(self):
         """
-      Test for a command line with single-quoted arguments.
-      """
+        Test for a command line with single-quoted arguments.
+        """
         commandLine = "cback 'this is a really long single-quoted argument'"
         result = splitCommandLine(commandLine)
         self.assertEqual(["cback", "'this", "is", "a", "really", "long", "single-quoted", "argument'"], result)
@@ -4273,8 +4273,8 @@ class TestFunctions(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testDereferenceLink_001(self):
         """
-      Test for a path that is a link, absolute=false.
-      """
+        Test for a path that is a link, absolute=false.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link002"])
         expected = "file002"
@@ -4284,8 +4284,8 @@ class TestFunctions(unittest.TestCase):
     @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testDereferenceLink_002(self):
         """
-      Test for a path that is a link, absolute=true.
-      """
+        Test for a path that is a link, absolute=true.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "link002"])
         expected = self.buildPath(["tree10", "file002"])
@@ -4296,8 +4296,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_003(self):
         """
-      Test for a path that is a file (not a link), absolute=false.
-      """
+        Test for a path that is a file (not a link), absolute=false.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "file001"])
         expected = path
@@ -4306,8 +4306,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_004(self):
         """
-      Test for a path that is a file (not a link), absolute=true.
-      """
+        Test for a path that is a file (not a link), absolute=true.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "file001"])
         expected = path
@@ -4318,8 +4318,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_005(self):
         """
-      Test for a path that is a directory (not a link), absolute=false.
-      """
+        Test for a path that is a directory (not a link), absolute=false.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "dir001"])
         expected = path
@@ -4328,8 +4328,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_006(self):
         """
-      Test for a path that is a directory (not a link), absolute=true.
-      """
+        Test for a path that is a directory (not a link), absolute=true.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "dir001"])
         expected = path
@@ -4340,8 +4340,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_007(self):
         """
-      Test for a path that does not exist, absolute=false.
-      """
+        Test for a path that does not exist, absolute=false.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "blech"])
         expected = path
@@ -4350,8 +4350,8 @@ class TestFunctions(unittest.TestCase):
 
     def testDereferenceLink_008(self):
         """
-      Test for a path that does not exist, absolute=true.
-      """
+        Test for a path that does not exist, absolute=true.
+        """
         self.extractTar("tree10")
         path = self.buildPath(["tree10", "blech"])
         expected = path
@@ -4366,45 +4366,45 @@ class TestFunctions(unittest.TestCase):
 
     def testParseCommaSeparatedString_001(self):
         """
-      Test parseCommaSeparatedString() for a None string.
-      """
+        Test parseCommaSeparatedString() for a None string.
+        """
         actual = parseCommaSeparatedString(None)
         self.assertEqual(None, actual)
 
     def testParseCommaSeparatedString_002(self):
         """
-      Test parseCommaSeparatedString() for an empty string.
-      """
+        Test parseCommaSeparatedString() for an empty string.
+        """
         actual = parseCommaSeparatedString("")
         self.assertEqual([], actual)
 
     def testParseCommaSeparatedString_003(self):
         """
-      Test parseCommaSeparatedString() for a string with one value.
-      """
+        Test parseCommaSeparatedString() for a string with one value.
+        """
         actual = parseCommaSeparatedString("ken")
         self.assertEqual(["ken"], actual)
 
     def testParseCommaSeparatedString_004(self):
         """
-      Test parseCommaSeparatedString() for a string with multiple values, no
-      spaces.
-      """
+        Test parseCommaSeparatedString() for a string with multiple values, no
+        spaces.
+        """
         actual = parseCommaSeparatedString("a,b,c")
         self.assertEqual(["a", "b", "c"], actual)
 
     def testParseCommaSeparatedString_005(self):
         """
-      Test parseCommaSeparatedString() for a string with multiple values, with
-      spaces.
-      """
+        Test parseCommaSeparatedString() for a string with multiple values, with
+        spaces.
+        """
         actual = parseCommaSeparatedString("a, b, c")
         self.assertEqual(["a", "b", "c"], actual)
 
     def testParseCommaSeparatedString_006(self):
         """
-      Test parseCommaSeparatedString() for a string with multiple values,
-      worst-case kind of value.
-      """
+        Test parseCommaSeparatedString() for a string with multiple values,
+        worst-case kind of value.
+        """
         actual = parseCommaSeparatedString("   one,  two,three,   four , five   , six,   seven,,eight    ,")
         self.assertEqual(["one", "two", "three", "four", "five", "six", "seven", "eight"], actual)

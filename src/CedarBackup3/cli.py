@@ -168,45 +168,45 @@ LONG_SWITCHES = [
 
 def cli():
     """
-   Implements the command-line interface for the ``cback3`` script.
+    Implements the command-line interface for the ``cback3`` script.
 
-   Essentially, this is the "main routine" for the cback3 script.  It does all
-   of the argument processing for the script, and then sets about executing the
-   indicated actions.
+    Essentially, this is the "main routine" for the cback3 script.  It does all
+    of the argument processing for the script, and then sets about executing the
+    indicated actions.
 
-   As a general rule, only the actions indicated on the command line will be
-   executed.   We will accept any of the built-in actions and any of the
-   configured extended actions (which makes action list verification a two-
-   step process).
+    As a general rule, only the actions indicated on the command line will be
+    executed.   We will accept any of the built-in actions and any of the
+    configured extended actions (which makes action list verification a two-
+    step process).
 
-   The ``'all'`` action has a special meaning: it means that the built-in set of
-   actions (collect, stage, store, purge) will all be executed, in that order.
-   Extended actions will be ignored as part of the ``'all'`` action.
+    The ``'all'`` action has a special meaning: it means that the built-in set of
+    actions (collect, stage, store, purge) will all be executed, in that order.
+    Extended actions will be ignored as part of the ``'all'`` action.
 
-   Raised exceptions always result in an immediate return.  Otherwise, we
-   generally return when all specified actions have been completed.  Actions
-   are ignored if the help, version or validate flags are set.
+    Raised exceptions always result in an immediate return.  Otherwise, we
+    generally return when all specified actions have been completed.  Actions
+    are ignored if the help, version or validate flags are set.
 
-   A different error code is returned for each type of failure:
+    A different error code is returned for each type of failure:
 
-      - ``1``: The Python interpreter version is < 3.7
-      - ``2``: Error processing command-line arguments
-      - ``3``: Error configuring logging
-      - ``4``: Error parsing indicated configuration file
-      - ``5``: Backup was interrupted with a CTRL-C or similar
-      - ``6``: Error executing specified backup actions
+       - ``1``: The Python interpreter version is < 3.7
+       - ``2``: Error processing command-line arguments
+       - ``3``: Error configuring logging
+       - ``4``: Error parsing indicated configuration file
+       - ``5``: Backup was interrupted with a CTRL-C or similar
+       - ``6``: Error executing specified backup actions
 
-   *Note:* This function contains a good amount of logging at the INFO level,
-   because this is the right place to document high-level flow of control (i.e.
-   what the command-line options were, what config file was being used, etc.)
+    *Note:* This function contains a good amount of logging at the INFO level,
+    because this is the right place to document high-level flow of control (i.e.
+    what the command-line options were, what config file was being used, etc.)
 
-   *Note:* We assume that anything that *must* be seen on the screen is logged
-   at the ERROR level.  Errors that occur before logging can be configured are
-   written to ``sys.stderr``.
+    *Note:* We assume that anything that *must* be seen on the screen is logged
+    at the ERROR level.  Errors that occur before logging can be configured are
+    written to ``sys.stderr``.
 
-   Returns:
-       Error code as described above
-   """
+    Returns:
+        Error code as described above
+    """
     try:
         if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 7]:
             sys.stderr.write("Python 3 version 3.7 or greater required.\n")
@@ -307,45 +307,45 @@ def cli():
 class _ActionItem(object):
 
     """
-   Class representing a single action to be executed.
+    Class representing a single action to be executed.
 
-   This class represents a single named action to be executed, and understands
-   how to execute that action.
+    This class represents a single named action to be executed, and understands
+    how to execute that action.
 
-   The built-in actions will use only the options and config values.  We also
-   pass in the config path so that extension modules can re-parse configuration
-   if they want to, to add in extra information.
+    The built-in actions will use only the options and config values.  We also
+    pass in the config path so that extension modules can re-parse configuration
+    if they want to, to add in extra information.
 
-   This class is also where pre-action and post-action hooks are executed.  An
-   action item is instantiated in terms of optional pre- and post-action hook
-   objects (config.ActionHook), which are then executed at the appropriate time
-   (if set).
+    This class is also where pre-action and post-action hooks are executed.  An
+    action item is instantiated in terms of optional pre- and post-action hook
+    objects (config.ActionHook), which are then executed at the appropriate time
+    (if set).
 
-   *Note:* The comparison operators for this class have been implemented to only
-   compare based on the index and SORT_ORDER value, and ignore all other
-   values.  This is so that the action set list can be easily sorted first by
-   type (_ActionItem before _ManagedActionItem) and then by index within type.
+    *Note:* The comparison operators for this class have been implemented to only
+    compare based on the index and SORT_ORDER value, and ignore all other
+    values.  This is so that the action set list can be easily sorted first by
+    type (_ActionItem before _ManagedActionItem) and then by index within type.
 
-   Attributes:
-      SORT_ORDER: Defines a sort order to order properly between types
-   """
+    Attributes:
+       SORT_ORDER: Defines a sort order to order properly between types
+    """
 
     SORT_ORDER = 0
 
     def __init__(self, index, name, preHooks, postHooks, function):
         """
-      Default constructor.
+        Default constructor.
 
-      It's OK to pass ``None`` for ``index``, ``preHooks`` or ``postHooks``, but not
-      for ``name``.
+        It's OK to pass ``None`` for ``index``, ``preHooks`` or ``postHooks``, but not
+        for ``name``.
 
-      Args:
-         index: Index of the item (or ``None``)
-         name: Name of the action that is being executed
-         preHooks: List of pre-action hooks in terms of an ``ActionHook`` object, or ``None``
-         postHooks: List of post-action hooks in terms of an ``ActionHook`` object, or ``None``
-         function: Reference to function associated with item
-      """
+        Args:
+           index: Index of the item (or ``None``)
+           name: Name of the action that is being executed
+           preHooks: List of pre-action hooks in terms of an ``ActionHook`` object, or ``None``
+           postHooks: List of post-action hooks in terms of an ``ActionHook`` object, or ``None``
+           function: Reference to function associated with item
+        """
         self.index = index
         self.name = name
         self.preHooks = preHooks
@@ -366,13 +366,13 @@ class _ActionItem(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      The only thing we compare is the item's index.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        The only thing we compare is the item's index.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.index != other.index:
@@ -390,18 +390,18 @@ class _ActionItem(object):
 
     def executeAction(self, configPath, options, config):
         """
-      Executes the action associated with an item, including hooks.
+        Executes the action associated with an item, including hooks.
 
-      See class notes for more details on how the action is executed.
+        See class notes for more details on how the action is executed.
 
-      Args:
-         configPath: Path to configuration file on disk
-         options: Command-line options to be passed to action
-         config: Parsed configuration to be passed to action
+        Args:
+           configPath: Path to configuration file on disk
+           options: Command-line options to be passed to action
+           config: Parsed configuration to be passed to action
 
-      Raises:
-         Exception: If there is a problem executing the action
-      """
+        Raises:
+           Exception: If there is a problem executing the action
+        """
         logger.debug("Executing [%s] action.", self.name)
         if self.preHooks is not None:
             for hook in self.preHooks:
@@ -413,23 +413,23 @@ class _ActionItem(object):
 
     def _executeAction(self, configPath, options, config):
         """
-      Executes the action, specifically the function associated with the action.
-      Args:
-         configPath: Path to configuration file on disk
-         options: Command-line options to be passed to action
-         config: Parsed configuration to be passed to action
-      """
+        Executes the action, specifically the function associated with the action.
+        Args:
+           configPath: Path to configuration file on disk
+           options: Command-line options to be passed to action
+           config: Parsed configuration to be passed to action
+        """
         name = "%s.%s" % (self.function.__module__, self.function.__name__)
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
     def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
         """
-      Executes a hook command via :any:`util.executeCommand`.
-      Args:
-         type: String describing the type of hook, for logging
-         hook: Hook, in terms of a ``ActionHook`` object
-      """
+        Executes a hook command via :any:`util.executeCommand`.
+        Args:
+           type: String describing the type of hook, for logging
+           hook: Hook, in terms of a ``ActionHook`` object
+        """
         fields = splitCommandLine(hook.command)
         logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
         result, output = executeCommand(command=fields[0:1], args=fields[1:], returnOutput=True)
@@ -447,35 +447,35 @@ class _ActionItem(object):
 class _ManagedActionItem(object):
 
     """
-   Class representing a single action to be executed on a managed peer.
+    Class representing a single action to be executed on a managed peer.
 
-   This class represents a single named action to be executed, and understands
-   how to execute that action.
+    This class represents a single named action to be executed, and understands
+    how to execute that action.
 
-   Actions to be executed on a managed peer rely on peer configuration and
-   on the full-backup flag.  All other configuration takes place on the remote
-   peer itself.
+    Actions to be executed on a managed peer rely on peer configuration and
+    on the full-backup flag.  All other configuration takes place on the remote
+    peer itself.
 
-   *Note:* The comparison operators for this class have been implemented to only
-   compare based on the index and SORT_ORDER value, and ignore all other
-   values.  This is so that the action set list can be easily sorted first by
-   type (_ActionItem before _ManagedActionItem) and then by index within type.
+    *Note:* The comparison operators for this class have been implemented to only
+    compare based on the index and SORT_ORDER value, and ignore all other
+    values.  This is so that the action set list can be easily sorted first by
+    type (_ActionItem before _ManagedActionItem) and then by index within type.
 
-   Attributes:
-      SORT_ORDER: Defines a sort order to order properly between types
-   """
+    Attributes:
+       SORT_ORDER: Defines a sort order to order properly between types
+    """
 
     SORT_ORDER = 1
 
     def __init__(self, index, name, remotePeers):
         """
-      Default constructor.
+        Default constructor.
 
-      Args:
-         index: Index of the item (or ``None``)
-         name: Name of the action that is being executed
-         remotePeers: List of remote peers on which to execute the action
-      """
+        Args:
+           index: Index of the item (or ``None``)
+           name: Name of the action that is being executed
+           remotePeers: List of remote peers on which to execute the action
+        """
         self.index = index
         self.name = name
         self.remotePeers = remotePeers
@@ -494,13 +494,13 @@ class _ManagedActionItem(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      The only thing we compare is the item's index.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        The only thing we compare is the item's index.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.index != other.index:
@@ -519,24 +519,24 @@ class _ManagedActionItem(object):
     # pylint: disable=W0613
     def executeAction(self, configPath, options, config):
         """
-      Executes the managed action associated with an item.
+        Executes the managed action associated with an item.
 
-      *Note:* Only options.full is actually used.  The rest of the arguments
-      exist to satisfy the ActionItem iterface.
+        *Note:* Only options.full is actually used.  The rest of the arguments
+        exist to satisfy the ActionItem iterface.
 
-      *Note:* Errors here result in a message logged to ERROR, but no thrown
-      exception.  The analogy is the stage action where a problem with one host
-      should not kill the entire backup.  Since we're logging an error, the
-      administrator will get an email.
+        *Note:* Errors here result in a message logged to ERROR, but no thrown
+        exception.  The analogy is the stage action where a problem with one host
+        should not kill the entire backup.  Since we're logging an error, the
+        administrator will get an email.
 
-      Args:
-         configPath: Path to configuration file on disk
-         options: Command-line options to be passed to action
-         config: Parsed configuration to be passed to action
+        Args:
+           configPath: Path to configuration file on disk
+           options: Command-line options to be passed to action
+           config: Parsed configuration to be passed to action
 
-      Raises:
-         Exception: If there is a problem executing the action
-      """
+        Raises:
+           Exception: If there is a problem executing the action
+        """
         for peer in self.remotePeers:
             logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
             try:
@@ -553,62 +553,62 @@ class _ManagedActionItem(object):
 class _ActionSet(object):
 
     """
-   Class representing a set of local actions to be executed.
+    Class representing a set of local actions to be executed.
 
-   This class does four different things.  First, it ensures that the actions
-   specified on the command-line are sensible.  The command-line can only list
-   either built-in actions or extended actions specified in configuration.
-   Also, certain actions (in :any:`NONCOMBINE_ACTIONS`) cannot be combined with
-   other actions.
+    This class does four different things.  First, it ensures that the actions
+    specified on the command-line are sensible.  The command-line can only list
+    either built-in actions or extended actions specified in configuration.
+    Also, certain actions (in :any:`NONCOMBINE_ACTIONS`) cannot be combined with
+    other actions.
 
-   Second, the class enforces an execution order on the specified actions.  Any
-   time actions are combined on the command line (either built-in actions or
-   extended actions), we must make sure they get executed in a sensible order.
+    Second, the class enforces an execution order on the specified actions.  Any
+    time actions are combined on the command line (either built-in actions or
+    extended actions), we must make sure they get executed in a sensible order.
 
-   Third, the class ensures that any pre-action or post-action hooks are
-   scheduled and executed appropriately.  Hooks are configured by building a
-   dictionary mapping between hook action name and command.  Pre-action hooks
-   are executed immediately before their associated action, and post-action
-   hooks are executed immediately after their associated action.
+    Third, the class ensures that any pre-action or post-action hooks are
+    scheduled and executed appropriately.  Hooks are configured by building a
+    dictionary mapping between hook action name and command.  Pre-action hooks
+    are executed immediately before their associated action, and post-action
+    hooks are executed immediately after their associated action.
 
-   Finally, the class properly interleaves local and managed actions so that
-   the same action gets executed first locally and then on managed peers.
+    Finally, the class properly interleaves local and managed actions so that
+    the same action gets executed first locally and then on managed peers.
 
-   """
+    """
 
     def __init__(self, actions, extensions, options, peers, managed, local):
         """
-      Constructor for the ``_ActionSet`` class.
+        Constructor for the ``_ActionSet`` class.
 
-      This is kind of ugly, because the constructor has to set up a lot of data
-      before being able to do anything useful.  The following data structures
-      are initialized based on the input:
+        This is kind of ugly, because the constructor has to set up a lot of data
+        before being able to do anything useful.  The following data structures
+        are initialized based on the input:
 
-         - ``extensionNames``: List of extensions available in configuration
-         - ``preHookMap``: Mapping from action name to list of ``PreActionHook``
-         - ``postHookMap``: Mapping from action name to list of ``PostActionHook``
-         - ``functionMap``: Mapping from action name to Python function
-         - ``indexMap``: Mapping from action name to execution index
-         - ``peerMap``: Mapping from action name to set of ``RemotePeer``
-         - ``actionMap``: Mapping from action name to ``_ActionItem``
+           - ``extensionNames``: List of extensions available in configuration
+           - ``preHookMap``: Mapping from action name to list of ``PreActionHook``
+           - ``postHookMap``: Mapping from action name to list of ``PostActionHook``
+           - ``functionMap``: Mapping from action name to Python function
+           - ``indexMap``: Mapping from action name to execution index
+           - ``peerMap``: Mapping from action name to set of ``RemotePeer``
+           - ``actionMap``: Mapping from action name to ``_ActionItem``
 
-      Once these data structures are set up, the command line is validated to
-      make sure only valid actions have been requested, and in a sensible
-      combination.  Then, all of the data is used to build ``self.actionSet``,
-      the set action items to be executed by ``executeActions()``.  This list
-      might contain either ``_ActionItem`` or ``_ManagedActionItem``.
+        Once these data structures are set up, the command line is validated to
+        make sure only valid actions have been requested, and in a sensible
+        combination.  Then, all of the data is used to build ``self.actionSet``,
+        the set action items to be executed by ``executeActions()``.  This list
+        might contain either ``_ActionItem`` or ``_ManagedActionItem``.
 
-      Args:
-         actions: Names of actions specified on the command-line
-         extensions: Extended action configuration (i.e. config.extensions)
-         options: Options configuration (i.e. config.options)
-         peers: Peers configuration (i.e. config.peers)
-         managed: Whether to include managed actions in the set
-         local: Whether to include local actions in the set
+        Args:
+           actions: Names of actions specified on the command-line
+           extensions: Extended action configuration (i.e. config.extensions)
+           options: Options configuration (i.e. config.options)
+           peers: Peers configuration (i.e. config.peers)
+           managed: Whether to include managed actions in the set
+           local: Whether to include local actions in the set
 
-      Raises:
-         ValueError: If one of the specified actions is invalid
-      """
+        Raises:
+           ValueError: If one of the specified actions is invalid
+        """
         extensionNames = _ActionSet._deriveExtensionNames(extensions)
         (preHookMap, postHookMap) = _ActionSet._buildHookMaps(options.hooks)
         functionMap = _ActionSet._buildFunctionMap(extensions)
@@ -623,12 +623,12 @@ class _ActionSet(object):
     @staticmethod
     def _deriveExtensionNames(extensions):
         """
-      Builds a list of extended actions that are available in configuration.
-      Args:
-         extensions: Extended action configuration (i.e. config.extensions)
-      Returns:
-          List of extended action names
-      """
+        Builds a list of extended actions that are available in configuration.
+        Args:
+           extensions: Extended action configuration (i.e. config.extensions)
+        Returns:
+            List of extended action names
+        """
         extensionNames = []
         if extensions is not None and extensions.actions is not None:
             for action in extensions.actions:
@@ -638,12 +638,12 @@ class _ActionSet(object):
     @staticmethod
     def _buildHookMaps(hooks):
         """
-      Build two mappings from action name to configured ``ActionHook``.
-      Args:
-         hooks: List of pre- and post-action hooks (i.e. config.options.hooks)
-      Returns:
-          Tuple of (pre hook dictionary, post hook dictionary)
-      """
+        Build two mappings from action name to configured ``ActionHook``.
+        Args:
+           hooks: List of pre- and post-action hooks (i.e. config.options.hooks)
+        Returns:
+            Tuple of (pre hook dictionary, post hook dictionary)
+        """
         preHookMap = {}
         postHookMap = {}
         if hooks is not None:
@@ -661,12 +661,12 @@ class _ActionSet(object):
     @staticmethod
     def _buildFunctionMap(extensions):
         """
-      Builds a mapping from named action to action function.
-      Args:
-         extensions: Extended action configuration (i.e. config.extensions)
-      Returns:
-          Dictionary mapping action to function
-      """
+        Builds a mapping from named action to action function.
+        Args:
+           extensions: Extended action configuration (i.e. config.extensions)
+        Returns:
+            Dictionary mapping action to function
+        """
         functionMap = {}
         functionMap["rebuild"] = executeRebuild
         functionMap["validate"] = executeValidate
@@ -683,22 +683,22 @@ class _ActionSet(object):
     @staticmethod
     def _buildIndexMap(extensions):
         """
-      Builds a mapping from action name to proper execution index.
+        Builds a mapping from action name to proper execution index.
 
-      If extensions configuration is ``None``, or there are no configured
-      extended actions, the ordering dictionary will only include the built-in
-      actions and their standard indices.
+        If extensions configuration is ``None``, or there are no configured
+        extended actions, the ordering dictionary will only include the built-in
+        actions and their standard indices.
 
-      Otherwise, if the extensions order mode is ``None`` or ``"index"``, actions
-      will scheduled by explicit index; and if the extensions order mode is
-      ``"dependency"``, actions will be scheduled using a dependency graph.
+        Otherwise, if the extensions order mode is ``None`` or ``"index"``, actions
+        will scheduled by explicit index; and if the extensions order mode is
+        ``"dependency"``, actions will be scheduled using a dependency graph.
 
-      Args:
-         extensions: Extended action configuration (i.e. config.extensions)
+        Args:
+           extensions: Extended action configuration (i.e. config.extensions)
 
-      Returns:
-          Dictionary mapping action name to integer execution index
-      """
+        Returns:
+            Dictionary mapping action name to integer execution index
+        """
         indexMap = {}
         if extensions is None or extensions.actions is None or extensions.actions == []:
             logger.info("Action ordering will use 'index' order mode.")
@@ -772,33 +772,33 @@ class _ActionSet(object):
     @staticmethod
     def _buildActionMap(managed, local, extensionNames, functionMap, indexMap, preHookMap, postHookMap, peerMap):
         """
-      Builds a mapping from action name to list of action items.
+        Builds a mapping from action name to list of action items.
 
-      We build either ``_ActionItem`` or ``_ManagedActionItem`` objects here.
+        We build either ``_ActionItem`` or ``_ManagedActionItem`` objects here.
 
-      In most cases, the mapping from action name to ``_ActionItem`` is 1:1.
-      The exception is the "all" action, which is a special case.  However, a
-      list is returned in all cases, just for consistency later.  Each
-      ``_ActionItem`` will be created with a proper function reference and index
-      value for execution ordering.
+        In most cases, the mapping from action name to ``_ActionItem`` is 1:1.
+        The exception is the "all" action, which is a special case.  However, a
+        list is returned in all cases, just for consistency later.  Each
+        ``_ActionItem`` will be created with a proper function reference and index
+        value for execution ordering.
 
-      The mapping from action name to ``_ManagedActionItem`` is always 1:1.
-      Each managed action item contains a list of peers which the action should
-      be executed.
+        The mapping from action name to ``_ManagedActionItem`` is always 1:1.
+        Each managed action item contains a list of peers which the action should
+        be executed.
 
-      Args:
-         managed: Whether to include managed actions in the set
-         local: Whether to include local actions in the set
-         extensionNames: List of valid extended action names
-         functionMap: Dictionary mapping action name to Python function
-         indexMap: Dictionary mapping action name to integer execution index
-         preHookMap: Dictionary mapping action name to pre hooks (if any) for the action
-         postHookMap: Dictionary mapping action name to post hooks (if any) for the action
-         peerMap: Dictionary mapping action name to list of remote peers on which to execute the action
+        Args:
+           managed: Whether to include managed actions in the set
+           local: Whether to include local actions in the set
+           extensionNames: List of valid extended action names
+           functionMap: Dictionary mapping action name to Python function
+           indexMap: Dictionary mapping action name to integer execution index
+           preHookMap: Dictionary mapping action name to pre hooks (if any) for the action
+           postHookMap: Dictionary mapping action name to post hooks (if any) for the action
+           peerMap: Dictionary mapping action name to list of remote peers on which to execute the action
 
-      Returns:
-          Dictionary mapping action name to list of ``_ActionItem`` objects
-      """
+        Returns:
+            Dictionary mapping action name to list of ``_ActionItem`` objects
+        """
         actionMap = {}
         for name in extensionNames + VALID_ACTIONS:
             if name != "all":  # do this one later
@@ -817,16 +817,16 @@ class _ActionSet(object):
     @staticmethod
     def _buildPeerMap(options, peers):
         """
-      Build a mapping from action name to list of remote peers.
+        Build a mapping from action name to list of remote peers.
 
-      There will be one entry in the mapping for each managed action.  If there
-      are no managed peers, the mapping will be empty.  Only managed actions
-      will be listed in the mapping.
+        There will be one entry in the mapping for each managed action.  If there
+        are no managed peers, the mapping will be empty.  Only managed actions
+        will be listed in the mapping.
 
-      Args:
-         options: Option configuration (i.e. config.options)
-         peers: Peers configuration (i.e. config.peers)
-      """
+        Args:
+           options: Option configuration (i.e. config.options)
+           peers: Peers configuration (i.e. config.peers)
+        """
         peerMap = {}
         if peers is not None:
             if peers.remotePeers is not None:
@@ -851,13 +851,13 @@ class _ActionSet(object):
     @staticmethod
     def _deriveHooks(action, preHookDict, postHookDict):
         """
-      Derive pre- and post-action hooks, if any, associated with named action.
-      Args:
-         action: Name of action to look up
-         preHookDict: Dictionary mapping pre-action hooks to action name
-         postHookDict: Dictionary mapping post-action hooks to action name
-      @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook
-      """
+        Derive pre- and post-action hooks, if any, associated with named action.
+        Args:
+           action: Name of action to look up
+           preHookDict: Dictionary mapping pre-action hooks to action name
+           postHookDict: Dictionary mapping post-action hooks to action name
+        @return Tuple (preHooks, postHooks) per mapping, with None values if there is no hook
+        """
         preHooks = None
         postHooks = None
         if action in preHookDict:
@@ -869,19 +869,19 @@ class _ActionSet(object):
     @staticmethod
     def _validateActions(actions, extensionNames):
         """
-      Validate that the set of specified actions is sensible.
+        Validate that the set of specified actions is sensible.
 
-      Any specified action must either be a built-in action or must be among
-      the extended actions defined in configuration.  The actions from within
-      :any:`NONCOMBINE_ACTIONS` may not be combined with other actions.
+        Any specified action must either be a built-in action or must be among
+        the extended actions defined in configuration.  The actions from within
+        :any:`NONCOMBINE_ACTIONS` may not be combined with other actions.
 
-      Args:
-         actions: Names of actions specified on the command-line
-         extensionNames: Names of extensions specified in configuration
+        Args:
+           actions: Names of actions specified on the command-line
+           extensionNames: Names of extensions specified in configuration
 
-      Raises:
-         ValueError: If one or more configured actions are not valid
-      """
+        Raises:
+           ValueError: If one or more configured actions are not valid
+        """
         if actions is None or actions == []:
             raise ValueError("No actions specified.")
         for action in actions:
@@ -894,21 +894,21 @@ class _ActionSet(object):
     @staticmethod
     def _buildActionSet(actions, actionMap):
         """
-      Build set of actions to be executed.
+        Build set of actions to be executed.
 
-      The set of actions is built in the proper order, so ``executeActions`` can
-      spin through the set without thinking about it.  Since we've already validated
-      that the set of actions is sensible, we don't take any precautions here to
-      make sure things are combined properly.  If the action is listed, it will
-      be "scheduled" for execution.
+        The set of actions is built in the proper order, so ``executeActions`` can
+        spin through the set without thinking about it.  Since we've already validated
+        that the set of actions is sensible, we don't take any precautions here to
+        make sure things are combined properly.  If the action is listed, it will
+        be "scheduled" for execution.
 
-      Args:
-         actions: Names of actions specified on the command-line
-         actionMap: Dictionary mapping action name to ``_ActionItem`` object
+        Args:
+           actions: Names of actions specified on the command-line
+           actionMap: Dictionary mapping action name to ``_ActionItem`` object
 
-      Returns:
-          Set of action items in proper order
-      """
+        Returns:
+            Set of action items in proper order
+        """
         actionSet = []
         for action in actions:
             actionSet.extend(actionMap[action])
@@ -917,21 +917,21 @@ class _ActionSet(object):
 
     def executeActions(self, configPath, options, config):
         """
-      Executes all actions and extended actions, in the proper order.
+        Executes all actions and extended actions, in the proper order.
 
-      Each action (whether built-in or extension) is executed in an identical
-      manner.  The built-in actions will use only the options and config
-      values.  We also pass in the config path so that extension modules can
-      re-parse configuration if they want to, to add in extra information.
+        Each action (whether built-in or extension) is executed in an identical
+        manner.  The built-in actions will use only the options and config
+        values.  We also pass in the config path so that extension modules can
+        re-parse configuration if they want to, to add in extra information.
 
-      Args:
-         configPath: Path to configuration file on disk
-         options: Command-line options to be passed to action functions
-         config: Parsed configuration to be passed to action functions
+        Args:
+           configPath: Path to configuration file on disk
+           options: Command-line options to be passed to action functions
+           config: Parsed configuration to be passed to action functions
 
-      Raises:
-         Exception: If there is a problem executing the actions
-      """
+        Raises:
+           Exception: If there is a problem executing the actions
+        """
         logger.debug("Executing local actions.")
         for actionItem in self.actionSet:
             actionItem.executeAction(configPath, options, config)
@@ -939,14 +939,14 @@ class _ActionSet(object):
     @staticmethod
     def _getRemoteUser(options, remotePeer):
         """
-      Gets the remote user associated with a remote peer.
-      Use peer's if possible, otherwise take from options section.
-      Args:
-         options: OptionsConfig object, as from config.options
-         remotePeer: Configuration-style remote peer object
-      Returns:
-          Name of remote user associated with remote peer
-      """
+        Gets the remote user associated with a remote peer.
+        Use peer's if possible, otherwise take from options section.
+        Args:
+           options: OptionsConfig object, as from config.options
+           remotePeer: Configuration-style remote peer object
+        Returns:
+            Name of remote user associated with remote peer
+        """
         if remotePeer.remoteUser is None:
             return options.backupUser
         return remotePeer.remoteUser
@@ -954,14 +954,14 @@ class _ActionSet(object):
     @staticmethod
     def _getRshCommand(options, remotePeer):
         """
-      Gets the RSH command associated with a remote peer.
-      Use peer's if possible, otherwise take from options section.
-      Args:
-         options: OptionsConfig object, as from config.options
-         remotePeer: Configuration-style remote peer object
-      Returns:
-          RSH command associated with remote peer
-      """
+        Gets the RSH command associated with a remote peer.
+        Use peer's if possible, otherwise take from options section.
+        Args:
+           options: OptionsConfig object, as from config.options
+           remotePeer: Configuration-style remote peer object
+        Returns:
+            RSH command associated with remote peer
+        """
         if remotePeer.rshCommand is None:
             return options.rshCommand
         return remotePeer.rshCommand
@@ -969,14 +969,14 @@ class _ActionSet(object):
     @staticmethod
     def _getCbackCommand(options, remotePeer):
         """
-      Gets the cback command associated with a remote peer.
-      Use peer's if possible, otherwise take from options section.
-      Args:
-         options: OptionsConfig object, as from config.options
-         remotePeer: Configuration-style remote peer object
-      Returns:
-          cback command associated with remote peer
-      """
+        Gets the cback command associated with a remote peer.
+        Use peer's if possible, otherwise take from options section.
+        Args:
+           options: OptionsConfig object, as from config.options
+           remotePeer: Configuration-style remote peer object
+        Returns:
+            cback command associated with remote peer
+        """
         if remotePeer.cbackCommand is None:
             return options.cbackCommand
         return remotePeer.cbackCommand
@@ -984,14 +984,14 @@ class _ActionSet(object):
     @staticmethod
     def _getManagedActions(options, remotePeer):
         """
-      Gets the managed actions list associated with a remote peer.
-      Use peer's if possible, otherwise take from options section.
-      Args:
-         options: OptionsConfig object, as from config.options
-         remotePeer: Configuration-style remote peer object
-      Returns:
-          Set of managed actions associated with remote peer
-      """
+        Gets the managed actions list associated with a remote peer.
+        Use peer's if possible, otherwise take from options section.
+        Args:
+           options: OptionsConfig object, as from config.options
+           remotePeer: Configuration-style remote peer object
+        Returns:
+            Set of managed actions associated with remote peer
+        """
         if remotePeer.managedActions is None:
             return options.managedActions
         return remotePeer.managedActions
@@ -1008,11 +1008,11 @@ class _ActionSet(object):
 
 def _usage(fd=sys.stderr):
     """
-   Prints usage information for the cback3 script.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints usage information for the cback3 script.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write(" Usage: cback3 [switches] action(s)\n")
     fd.write("\n")
@@ -1068,11 +1068,11 @@ def _usage(fd=sys.stderr):
 
 def _version(fd=sys.stdout):
     """
-   Prints version information for the cback3 script.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints version information for the cback3 script.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write(" Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
     fd.write("\n")
@@ -1092,11 +1092,11 @@ def _version(fd=sys.stdout):
 
 def _diagnostics(fd=sys.stdout):
     """
-   Prints runtime diagnostics information.
-   Args:
-      fd: File descriptor used to print information
-   *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
-   """
+    Prints runtime diagnostics information.
+    Args:
+       fd: File descriptor used to print information
+    *Note:* The ``fd`` is used rather than ``print`` to facilitate unit testing.
+    """
     fd.write("\n")
     fd.write("Diagnostics:\n")
     fd.write("\n")
@@ -1111,35 +1111,35 @@ def _diagnostics(fd=sys.stdout):
 
 def setupLogging(options):
     """
-   Set up logging based on command-line options.
+    Set up logging based on command-line options.
 
-   There are two kinds of logging: flow logging and output logging.  Output
-   logging contains information about system commands executed by Cedar Backup,
-   for instance the calls to ``mkisofs`` or ``mount``, etc.  Flow logging
-   contains error and informational messages used to understand program flow.
-   Flow log messages and output log messages are written to two different
-   loggers target (``CedarBackup3.log`` and ``CedarBackup3.output``).  Flow log
-   messages are written at the ERROR, INFO and DEBUG log levels, while output
-   log messages are generally only written at the INFO log level.
+    There are two kinds of logging: flow logging and output logging.  Output
+    logging contains information about system commands executed by Cedar Backup,
+    for instance the calls to ``mkisofs`` or ``mount``, etc.  Flow logging
+    contains error and informational messages used to understand program flow.
+    Flow log messages and output log messages are written to two different
+    loggers target (``CedarBackup3.log`` and ``CedarBackup3.output``).  Flow log
+    messages are written at the ERROR, INFO and DEBUG log levels, while output
+    log messages are generally only written at the INFO log level.
 
-   By default, output logging is disabled.  When the ``options.output`` or
-   ``options.debug`` flags are set, output logging will be written to the
-   configured logfile.  Output logging is never written to the screen.
+    By default, output logging is disabled.  When the ``options.output`` or
+    ``options.debug`` flags are set, output logging will be written to the
+    configured logfile.  Output logging is never written to the screen.
 
-   By default, flow logging is enabled at the ERROR level to the screen and at
-   the INFO level to the configured logfile.  If the ``options.quiet`` flag is
-   set, flow logging is enabled at the INFO level to the configured logfile
-   only (i.e. no output will be sent to the screen).  If the ``options.verbose``
-   flag is set, flow logging is enabled at the INFO level to both the screen
-   and the configured logfile.  If the ``options.debug`` flag is set, flow
-   logging is enabled at the DEBUG level to both the screen and the configured
-   logfile.
+    By default, flow logging is enabled at the ERROR level to the screen and at
+    the INFO level to the configured logfile.  If the ``options.quiet`` flag is
+    set, flow logging is enabled at the INFO level to the configured logfile
+    only (i.e. no output will be sent to the screen).  If the ``options.verbose``
+    flag is set, flow logging is enabled at the INFO level to both the screen
+    and the configured logfile.  If the ``options.debug`` flag is set, flow
+    logging is enabled at the DEBUG level to both the screen and the configured
+    logfile.
 
-   Args:
-      options (:any:`Options` object): Command-line options
-   Returns:
-       Path to logfile on disk
-   """
+    Args:
+       options (:any:`Options` object): Command-line options
+    Returns:
+        Path to logfile on disk
+    """
     logfile = _setupLogfile(options)
     _setupFlowLogging(logfile, options)
     _setupOutputLogging(logfile, options)
@@ -1148,29 +1148,29 @@ def setupLogging(options):
 
 def _setupLogfile(options):
     """
-   Sets up and creates logfile as needed.
+    Sets up and creates logfile as needed.
 
-   If the logfile already exists on disk, it will be left as-is, under the
-   assumption that it was created with appropriate ownership and permissions.
-   If the logfile does not exist on disk, it will be created as an empty file.
-   Ownership and permissions will remain at their defaults unless user/group
-   and/or mode are set in the options.  We ignore errors setting the indicated
-   user and group.
+    If the logfile already exists on disk, it will be left as-is, under the
+    assumption that it was created with appropriate ownership and permissions.
+    If the logfile does not exist on disk, it will be created as an empty file.
+    Ownership and permissions will remain at their defaults unless user/group
+    and/or mode are set in the options.  We ignore errors setting the indicated
+    user and group.
 
-   *Note:* This function is vulnerable to a race condition.  If the log file
-   does not exist when the function is run, it will attempt to create the file
-   as safely as possible (using ``O_CREAT``).  If two processes attempt to
-   create the file at the same time, then one of them will fail.  In practice,
-   this shouldn't really be a problem, but it might happen occassionally if two
-   instances of cback3 run concurrently or if cback3 collides with logrotate or
-   something.
+    *Note:* This function is vulnerable to a race condition.  If the log file
+    does not exist when the function is run, it will attempt to create the file
+    as safely as possible (using ``O_CREAT``).  If two processes attempt to
+    create the file at the same time, then one of them will fail.  In practice,
+    this shouldn't really be a problem, but it might happen occassionally if two
+    instances of cback3 run concurrently or if cback3 collides with logrotate or
+    something.
 
-   Args:
-      options: Command-line options
+    Args:
+       options: Command-line options
 
-   Returns:
-       Path to logfile on disk
-   """
+    Returns:
+        Path to logfile on disk
+    """
     if options.logfile is None:
         logfile = DEFAULT_LOGFILE
     else:
@@ -1198,11 +1198,11 @@ def _setupLogfile(options):
 
 def _setupFlowLogging(logfile, options):
     """
-   Sets up flow logging.
-   Args:
-      logfile: Path to logfile on disk
-      options: Command-line options
-   """
+    Sets up flow logging.
+    Args:
+       logfile: Path to logfile on disk
+       options: Command-line options
+    """
     flowLogger = logging.getLogger("CedarBackup3.log")
     flowLogger.setLevel(logging.DEBUG)  # let the logger see all messages
     _setupDiskFlowLogging(flowLogger, logfile, options)
@@ -1211,11 +1211,11 @@ def _setupFlowLogging(logfile, options):
 
 def _setupOutputLogging(logfile, options):
     """
-   Sets up command output logging.
-   Args:
-      logfile: Path to logfile on disk
-      options: Command-line options
-   """
+    Sets up command output logging.
+    Args:
+       logfile: Path to logfile on disk
+       options: Command-line options
+    """
     outputLogger = logging.getLogger("CedarBackup3.output")
     outputLogger.setLevel(logging.DEBUG)  # let the logger see all messages
     _setupDiskOutputLogging(outputLogger, logfile, options)
@@ -1223,12 +1223,12 @@ def _setupOutputLogging(logfile, options):
 
 def _setupDiskFlowLogging(flowLogger, logfile, options):
     """
-   Sets up on-disk flow logging.
-   Args:
-      flowLogger: Python flow logger object
-      logfile: Path to logfile on disk
-      options: Command-line options
-   """
+    Sets up on-disk flow logging.
+    Args:
+       flowLogger: Python flow logger object
+       logfile: Path to logfile on disk
+       options: Command-line options
+    """
     formatter = logging.Formatter(fmt=DISK_LOG_FORMAT, datefmt=DATE_FORMAT)
     handler = logging.FileHandler(logfile, mode="a")
     handler.setFormatter(formatter)
@@ -1241,11 +1241,11 @@ def _setupDiskFlowLogging(flowLogger, logfile, options):
 
 def _setupScreenFlowLogging(flowLogger, options):
     """
-   Sets up on-screen flow logging.
-   Args:
-      flowLogger: Python flow logger object
-      options: Command-line options
-   """
+    Sets up on-screen flow logging.
+    Args:
+       flowLogger: Python flow logger object
+       options: Command-line options
+    """
     formatter = logging.Formatter(fmt=SCREEN_LOG_FORMAT)
     handler = logging.StreamHandler(SCREEN_LOG_STREAM)
     handler.setFormatter(formatter)
@@ -1263,12 +1263,12 @@ def _setupScreenFlowLogging(flowLogger, options):
 
 def _setupDiskOutputLogging(outputLogger, logfile, options):
     """
-   Sets up on-disk command output logging.
-   Args:
-      outputLogger: Python command output logger object
-      logfile: Path to logfile on disk
-      options: Command-line options
-   """
+    Sets up on-disk command output logging.
+    Args:
+       outputLogger: Python command output logger object
+       logfile: Path to logfile on disk
+       options: Command-line options
+    """
     formatter = logging.Formatter(fmt=DISK_OUTPUT_FORMAT, datefmt=DATE_FORMAT)
     handler = logging.FileHandler(logfile, mode="a")
     handler.setFormatter(formatter)
@@ -1286,18 +1286,18 @@ def _setupDiskOutputLogging(outputLogger, logfile, options):
 
 def setupPathResolver(config):
     """
-   Set up the path resolver singleton based on configuration.
+    Set up the path resolver singleton based on configuration.
 
-   Cedar Backup's path resolver is implemented in terms of a singleton, the
-   :any:`PathResolverSingleton` class.  This function takes options configuration,
-   converts it into the dictionary form needed by the singleton, and then
-   initializes the singleton.  After that, any function that needs to resolve
-   the path of a command can use the singleton.
+    Cedar Backup's path resolver is implemented in terms of a singleton, the
+    :any:`PathResolverSingleton` class.  This function takes options configuration,
+    converts it into the dictionary form needed by the singleton, and then
+    initializes the singleton.  After that, any function that needs to resolve
+    the path of a command can use the singleton.
 
-   Args:
-      config (:any:`Config` object): Configuration
+    Args:
+       config (:any:`Config` object): Configuration
 
-   """
+    """
     mapping = {}
     if config.options.overrides is not None:
         for override in config.options.overrides:
@@ -1319,43 +1319,43 @@ class Options(object):
     ######################
 
     """
-   Class representing command-line options for the cback3 script.
+    Class representing command-line options for the cback3 script.
 
-   The ``Options`` class is a Python object representation of the command-line
-   options of the cback3 script.
+    The ``Options`` class is a Python object representation of the command-line
+    options of the cback3 script.
 
-   The object representation is two-way: a command line string or a list of
-   command line arguments can be used to create an ``Options`` object, and then
-   changes to the object can be propogated back to a list of command-line
-   arguments or to a command-line string.  An ``Options`` object can even be
-   created from scratch programmatically (if you have a need for that).
+    The object representation is two-way: a command line string or a list of
+    command line arguments can be used to create an ``Options`` object, and then
+    changes to the object can be propogated back to a list of command-line
+    arguments or to a command-line string.  An ``Options`` object can even be
+    created from scratch programmatically (if you have a need for that).
 
-   There are two main levels of validation in the ``Options`` class.  The first
-   is field-level validation.  Field-level validation comes into play when a
-   given field in an object is assigned to or updated.  We use Python's
-   ``property`` functionality to enforce specific validations on field values,
-   and in some places we even use customized list classes to enforce
-   validations on list members.  You should expect to catch a ``ValueError``
-   exception when making assignments to fields if you are programmatically
-   filling an object.
+    There are two main levels of validation in the ``Options`` class.  The first
+    is field-level validation.  Field-level validation comes into play when a
+    given field in an object is assigned to or updated.  We use Python's
+    ``property`` functionality to enforce specific validations on field values,
+    and in some places we even use customized list classes to enforce
+    validations on list members.  You should expect to catch a ``ValueError``
+    exception when making assignments to fields if you are programmatically
+    filling an object.
 
-   The second level of validation is post-completion validation.  Certain
-   validations don't make sense until an object representation of options is
-   fully "complete".  We don't want these validations to apply all of the time,
-   because it would make building up a valid object from scratch a real pain.
-   For instance, we might have to do things in the right order to keep from
-   throwing exceptions, etc.
+    The second level of validation is post-completion validation.  Certain
+    validations don't make sense until an object representation of options is
+    fully "complete".  We don't want these validations to apply all of the time,
+    because it would make building up a valid object from scratch a real pain.
+    For instance, we might have to do things in the right order to keep from
+    throwing exceptions, etc.
 
-   All of these post-completion validations are encapsulated in the
-   :any:`Options.validate` method.  This method can be called at any time by a
-   client, and will always be called immediately after creating a ``Options``
-   object from a command line and before exporting a ``Options`` object back to
-   a command line.  This way, we get acceptable ease-of-use but we also don't
-   accept or emit invalid command lines.
+    All of these post-completion validations are encapsulated in the
+    :any:`Options.validate` method.  This method can be called at any time by a
+    client, and will always be called immediately after creating a ``Options``
+    object from a command line and before exporting a ``Options`` object back to
+    a command line.  This way, we get acceptable ease-of-use but we also don't
+    accept or emit invalid command lines.
 
-   *Note:* Lists within this class are "unordered" for equality comparisons.
+    *Note:* Lists within this class are "unordered" for equality comparisons.
 
-   """
+    """
 
     ##############
     # Constructor
@@ -1363,48 +1363,48 @@ class Options(object):
 
     def __init__(self, argumentList=None, argumentString=None, validate=True):
         """
-      Initializes an options object.
+        Initializes an options object.
 
-      If you initialize the object without passing either ``argumentList`` or
-      ``argumentString``, the object will be empty and will be invalid until it
-      is filled in properly.
+        If you initialize the object without passing either ``argumentList`` or
+        ``argumentString``, the object will be empty and will be invalid until it
+        is filled in properly.
 
-      No reference to the original arguments is saved off by this class.  Once
-      the data has been parsed (successfully or not) this original information
-      is discarded.
+        No reference to the original arguments is saved off by this class.  Once
+        the data has been parsed (successfully or not) this original information
+        is discarded.
 
-      The argument list is assumed to be a list of arguments, not including the
-      name of the command, something like ``sys.argv[1:]``.  If you pass
-      ``sys.argv`` instead, things are not going to work.
+        The argument list is assumed to be a list of arguments, not including the
+        name of the command, something like ``sys.argv[1:]``.  If you pass
+        ``sys.argv`` instead, things are not going to work.
 
-      The argument string will be parsed into an argument list by the
-      :any:`util.splitCommandLine` function (see the documentation for that
-      function for some important notes about its limitations).  There is an
-      assumption that the resulting list will be equivalent to ``sys.argv[1:]``,
-      just like ``argumentList``.
+        The argument string will be parsed into an argument list by the
+        :any:`util.splitCommandLine` function (see the documentation for that
+        function for some important notes about its limitations).  There is an
+        assumption that the resulting list will be equivalent to ``sys.argv[1:]``,
+        just like ``argumentList``.
 
-      Unless the ``validate`` argument is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) after successfully
-      parsing any passed-in command line.  This validation ensures that
-      appropriate actions, etc. have been specified.  Keep in mind that even if
-      ``validate`` is ``False``, it might not be possible to parse the passed-in
-      command line, so an exception might still be raised.
+        Unless the ``validate`` argument is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) after successfully
+        parsing any passed-in command line.  This validation ensures that
+        appropriate actions, etc. have been specified.  Keep in mind that even if
+        ``validate`` is ``False``, it might not be possible to parse the passed-in
+        command line, so an exception might still be raised.
 
-      *Note:* The command line format is specified by the ``_usage`` function.
-      Call ``_usage`` to see a usage statement for the cback3 script.
+        *Note:* The command line format is specified by the ``_usage`` function.
+        Call ``_usage`` to see a usage statement for the cback3 script.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to read in
-      invalid command line arguments.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to read in
+        invalid command line arguments.
 
-      Args:
-         argumentList (List of arguments, i.e. ``sys.argv``): Command line for a program
-         argumentString (String, i.e. "cback3 --verbose stage store"): Command line for a program
-         validate (Boolean true/false): Validate the command line after parsing it
-      Raises:
-         getopt.GetoptError: If the command-line arguments could not be parsed
-         ValueError: If the command-line arguments are invalid
-      """
+        Args:
+           argumentList (List of arguments, i.e. ``sys.argv``): Command line for a program
+           argumentString (String, i.e. "cback3 --verbose stage store"): Command line for a program
+           validate (Boolean true/false): Validate the command line after parsing it
+        Raises:
+           getopt.GetoptError: If the command-line arguments could not be parsed
+           ValueError: If the command-line arguments are invalid
+        """
         self._help = False
         self._version = False
         self._verbose = False
@@ -1437,14 +1437,14 @@ class Options(object):
 
     def __repr__(self):
         """
-      Official string representation for class instance.
-      """
+        Official string representation for class instance.
+        """
         return self.buildArgumentString(validate=False)
 
     def __str__(self):
         """
-      Informal string representation for class instance.
-      """
+        Informal string representation for class instance.
+        """
         return self.__repr__()
 
     #############################
@@ -1465,13 +1465,13 @@ class Options(object):
 
     def __cmp__(self, other):
         """
-      Original Python 2 comparison operator.
-      Lists within this class are "unordered" for equality comparisons.
-      Args:
-         other: Other object to compare to
-      Returns:
-          -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
-      """
+        Original Python 2 comparison operator.
+        Lists within this class are "unordered" for equality comparisons.
+        Args:
+           other: Other object to compare to
+        Returns:
+            -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
+        """
         if other is None:
             return 1
         if self.help != other.help:
@@ -1562,9 +1562,9 @@ class Options(object):
 
     def _setHelp(self, value):
         """
-      Property target used to set the help flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the help flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._help = True
         else:
@@ -1572,15 +1572,15 @@ class Options(object):
 
     def _getHelp(self):
         """
-      Property target used to get the help flag.
-      """
+        Property target used to get the help flag.
+        """
         return self._help
 
     def _setVersion(self, value):
         """
-      Property target used to set the version flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the version flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._version = True
         else:
@@ -1588,15 +1588,15 @@ class Options(object):
 
     def _getVersion(self):
         """
-      Property target used to get the version flag.
-      """
+        Property target used to get the version flag.
+        """
         return self._version
 
     def _setVerbose(self, value):
         """
-      Property target used to set the verbose flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the verbose flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._verbose = True
         else:
@@ -1604,15 +1604,15 @@ class Options(object):
 
     def _getVerbose(self):
         """
-      Property target used to get the verbose flag.
-      """
+        Property target used to get the verbose flag.
+        """
         return self._verbose
 
     def _setQuiet(self, value):
         """
-      Property target used to set the quiet flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the quiet flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._quiet = True
         else:
@@ -1620,14 +1620,14 @@ class Options(object):
 
     def _getQuiet(self):
         """
-      Property target used to get the quiet flag.
-      """
+        Property target used to get the quiet flag.
+        """
         return self._quiet
 
     def _setConfig(self, value):
         """
-      Property target used to set the config parameter.
-      """
+        Property target used to set the config parameter.
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The config parameter must be a non-empty string.")
@@ -1635,15 +1635,15 @@ class Options(object):
 
     def _getConfig(self):
         """
-      Property target used to get the config parameter.
-      """
+        Property target used to get the config parameter.
+        """
         return self._config
 
     def _setFull(self, value):
         """
-      Property target used to set the full flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the full flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._full = True
         else:
@@ -1651,15 +1651,15 @@ class Options(object):
 
     def _getFull(self):
         """
-      Property target used to get the full flag.
-      """
+        Property target used to get the full flag.
+        """
         return self._full
 
     def _setManaged(self, value):
         """
-      Property target used to set the managed flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the managed flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._managed = True
         else:
@@ -1667,15 +1667,15 @@ class Options(object):
 
     def _getManaged(self):
         """
-      Property target used to get the managed flag.
-      """
+        Property target used to get the managed flag.
+        """
         return self._managed
 
     def _setManagedOnly(self, value):
         """
-      Property target used to set the managedOnly flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the managedOnly flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._managedOnly = True
         else:
@@ -1683,16 +1683,16 @@ class Options(object):
 
     def _getManagedOnly(self):
         """
-      Property target used to get the managedOnly flag.
-      """
+        Property target used to get the managedOnly flag.
+        """
         return self._managedOnly
 
     def _setLogfile(self, value):
         """
-      Property target used to set the logfile parameter.
-      Raises:
-         ValueError: If the value cannot be encoded properly
-      """
+        Property target used to set the logfile parameter.
+        Raises:
+           ValueError: If the value cannot be encoded properly
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The logfile parameter must be a non-empty string.")
@@ -1700,19 +1700,19 @@ class Options(object):
 
     def _getLogfile(self):
         """
-      Property target used to get the logfile parameter.
-      """
+        Property target used to get the logfile parameter.
+        """
         return self._logfile
 
     def _setOwner(self, value):
         """
-      Property target used to set the owner parameter.
-      If not ``None``, the owner must be a ``(user,group)`` tuple or list.
-      Strings (and inherited children of strings) are explicitly disallowed.
-      The value will be normalized to a tuple.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the owner parameter.
+        If not ``None``, the owner must be a ``(user,group)`` tuple or list.
+        Strings (and inherited children of strings) are explicitly disallowed.
+        The value will be normalized to a tuple.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is None:
             self._owner = None
         else:
@@ -1726,15 +1726,15 @@ class Options(object):
 
     def _getOwner(self):
         """
-      Property target used to get the owner parameter.
-      The parameter is a tuple of ``(user, group)``.
-      """
+        Property target used to get the owner parameter.
+        The parameter is a tuple of ``(user, group)``.
+        """
         return self._owner
 
     def _setMode(self, value):
         """
-      Property target used to set the mode parameter.
-      """
+        Property target used to set the mode parameter.
+        """
         if value is None:
             self._mode = None
         else:
@@ -1751,15 +1751,15 @@ class Options(object):
 
     def _getMode(self):
         """
-      Property target used to get the mode parameter.
-      """
+        Property target used to get the mode parameter.
+        """
         return self._mode
 
     def _setOutput(self, value):
         """
-      Property target used to set the output flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the output flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._output = True
         else:
@@ -1767,15 +1767,15 @@ class Options(object):
 
     def _getOutput(self):
         """
-      Property target used to get the output flag.
-      """
+        Property target used to get the output flag.
+        """
         return self._output
 
     def _setDebug(self, value):
         """
-      Property target used to set the debug flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the debug flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._debug = True
         else:
@@ -1783,15 +1783,15 @@ class Options(object):
 
     def _getDebug(self):
         """
-      Property target used to get the debug flag.
-      """
+        Property target used to get the debug flag.
+        """
         return self._debug
 
     def _setStacktrace(self, value):
         """
-      Property target used to set the stacktrace flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the stacktrace flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._stacktrace = True
         else:
@@ -1799,15 +1799,15 @@ class Options(object):
 
     def _getStacktrace(self):
         """
-      Property target used to get the stacktrace flag.
-      """
+        Property target used to get the stacktrace flag.
+        """
         return self._stacktrace
 
     def _setDiagnostics(self, value):
         """
-      Property target used to set the diagnostics flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the diagnostics flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._diagnostics = True
         else:
@@ -1815,17 +1815,17 @@ class Options(object):
 
     def _getDiagnostics(self):
         """
-      Property target used to get the diagnostics flag.
-      """
+        Property target used to get the diagnostics flag.
+        """
         return self._diagnostics
 
     def _setActions(self, value):
         """
-      Property target used to set the actions list.
-      We don't restrict the contents of actions.  They're validated somewhere else.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the actions list.
+        We don't restrict the contents of actions.  They're validated somewhere else.
+        Raises:
+           ValueError: If the value is not valid
+        """
         if value is None:
             self._actions = None
         else:
@@ -1839,8 +1839,8 @@ class Options(object):
 
     def _getActions(self):
         """
-      Property target used to get the actions list.
-      """
+        Property target used to get the actions list.
+        """
         return self._actions
 
     help = property(_getHelp, _setHelp, None, "Command-line help (``-h,--help``) flag.")
@@ -1866,19 +1866,19 @@ class Options(object):
 
     def validate(self):
         """
-      Validates command-line options represented by the object.
+        Validates command-line options represented by the object.
 
-      Unless ``--help`` or ``--version`` are supplied, at least one action must
-      be specified.  Other validations (as for allowed values for particular
-      options) will be taken care of at assignment time by the properties
-      functionality.
+        Unless ``--help`` or ``--version`` are supplied, at least one action must
+        be specified.  Other validations (as for allowed values for particular
+        options) will be taken care of at assignment time by the properties
+        functionality.
 
-      *Note:* The command line format is specified by the ``_usage`` function.
-      Call ``_usage`` to see a usage statement for the cback3 script.
+        *Note:* The command line format is specified by the ``_usage`` function.
+        Call ``_usage`` to see a usage statement for the cback3 script.
 
-      Raises:
-         ValueError: If one of the validations fails
-      """
+        Raises:
+           ValueError: If one of the validations fails
+        """
         if not self.help and not self.version and not self.diagnostics:
             if self.actions is None or len(self.actions) == 0:
                 raise ValueError("At least one action must be specified.")
@@ -1887,32 +1887,32 @@ class Options(object):
 
     def buildArgumentList(self, validate=True):
         """
-      Extracts options into a list of command line arguments.
+        Extracts options into a list of command line arguments.
 
-      The original order of the various arguments (if, indeed, the object was
-      initialized with a command-line) is not preserved in this generated
-      argument list.   Besides that, the argument list is normalized to use the
-      long option names (i.e. --version rather than -V).  The resulting list
-      will be suitable for passing back to the constructor in the
-      ``argumentList`` parameter.  Unlike :any:`buildArgumentString`, string
-      arguments are not quoted here, because there is no need for it.
+        The original order of the various arguments (if, indeed, the object was
+        initialized with a command-line) is not preserved in this generated
+        argument list.   Besides that, the argument list is normalized to use the
+        long option names (i.e. --version rather than -V).  The resulting list
+        will be suitable for passing back to the constructor in the
+        ``argumentList`` parameter.  Unlike :any:`buildArgumentString`, string
+        arguments are not quoted here, because there is no need for it.
 
-      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) against the
-      options before extracting the command line.  If the options are not valid,
-      then an argument list will not be extracted.
+        Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) against the
+        options before extracting the command line.  If the options are not valid,
+        then an argument list will not be extracted.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to extract an
-      invalid command line.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to extract an
+        invalid command line.
 
-      Args:
-         validate (Boolean true/false): Validate the options before extracting the command line
-      Returns:
-          List representation of command-line arguments
-      Raises:
-         ValueError: If options within the object are invalid
-      """
+        Args:
+           validate (Boolean true/false): Validate the options before extracting the command line
+        Returns:
+            List representation of command-line arguments
+        Raises:
+           ValueError: If options within the object are invalid
+        """
         if validate:
             self.validate()
         argumentList = []
@@ -1957,32 +1957,32 @@ class Options(object):
 
     def buildArgumentString(self, validate=True):
         """
-      Extracts options into a string of command-line arguments.
+        Extracts options into a string of command-line arguments.
 
-      The original order of the various arguments (if, indeed, the object was
-      initialized with a command-line) is not preserved in this generated
-      argument string.   Besides that, the argument string is normalized to use
-      the long option names (i.e. --version rather than -V) and to quote all
-      string arguments with double quotes (``"``).  The resulting string will be
-      suitable for passing back to the constructor in the ``argumentString``
-      parameter.
+        The original order of the various arguments (if, indeed, the object was
+        initialized with a command-line) is not preserved in this generated
+        argument string.   Besides that, the argument string is normalized to use
+        the long option names (i.e. --version rather than -V) and to quote all
+        string arguments with double quotes (``"``).  The resulting string will be
+        suitable for passing back to the constructor in the ``argumentString``
+        parameter.
 
-      Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
-      method will be called (with its default arguments) against the options
-      before extracting the command line.  If the options are not valid, then
-      an argument string will not be extracted.
+        Unless the ``validate`` parameter is ``False``, the :any:`Options.validate`
+        method will be called (with its default arguments) against the options
+        before extracting the command line.  If the options are not valid, then
+        an argument string will not be extracted.
 
-      *Note:* It is strongly suggested that the ``validate`` option always be set
-      to ``True`` (the default) unless there is a specific need to extract an
-      invalid command line.
+        *Note:* It is strongly suggested that the ``validate`` option always be set
+        to ``True`` (the default) unless there is a specific need to extract an
+        invalid command line.
 
-      Args:
-         validate (Boolean true/false): Validate the options before extracting the command line
-      Returns:
-          String representation of command-line arguments
-      Raises:
-         ValueError: If options within the object are invalid
-      """
+        Args:
+           validate (Boolean true/false): Validate the options before extracting the command line
+        Returns:
+            String representation of command-line arguments
+        Raises:
+           ValueError: If options within the object are invalid
+        """
         if validate:
             self.validate()
         argumentString = ""
@@ -2023,25 +2023,25 @@ class Options(object):
 
     def _parseArgumentList(self, argumentList):
         """
-      Internal method to parse a list of command-line arguments.
+        Internal method to parse a list of command-line arguments.
 
-      Most of the validation we do here has to do with whether the arguments
-      can be parsed and whether any values which exist are valid.  We don't do
-      any validation as to whether required elements exist or whether elements
-      exist in the proper combination (instead, that's the job of the
-      :any:`validate` method).
+        Most of the validation we do here has to do with whether the arguments
+        can be parsed and whether any values which exist are valid.  We don't do
+        any validation as to whether required elements exist or whether elements
+        exist in the proper combination (instead, that's the job of the
+        :any:`validate` method).
 
-      For any of the options which supply parameters, if the option is
-      duplicated with long and short switches (i.e. ``-l`` and a ``--logfile``)
-      then the long switch is used.  If the same option is duplicated with the
-      same switch (long or short), then the last entry on the command line is
-      used.
+        For any of the options which supply parameters, if the option is
+        duplicated with long and short switches (i.e. ``-l`` and a ``--logfile``)
+        then the long switch is used.  If the same option is duplicated with the
+        same switch (long or short), then the last entry on the command line is
+        used.
 
-      Args:
-         argumentList (List of arguments to a command, i.e. ``sys.argv[1:]``): List of arguments to a command
-      Raises:
-         ValueError: If the argument list cannot be successfully parsed
-      """
+        Args:
+           argumentList (List of arguments to a command, i.e. ``sys.argv[1:]``): List of arguments to a command
+        Raises:
+           ValueError: If the argument list cannot be successfully parsed
+        """
         switches = {}
         opts, self.actions = getopt.getopt(argumentList, SHORT_SWITCHES, LONG_SWITCHES)
         for o, a in opts:  # push the switches into a hash

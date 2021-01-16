@@ -72,18 +72,18 @@ VOLNAME_COMMAND = ["volname"]
 
 def validateDevice(device, unittest=False):
     """
-   Validates a configured device.
-   The device must be an absolute path, must exist, and must be writable.
-   The unittest flag turns off validation of the device on disk.
-   Args:
-      device: Filesystem device path
-      unittest: Indicates whether we're unit testing
-   Returns:
-       Device as a string, for instance ``"/dev/cdrw"``
-   Raises:
-      ValueError: If the device value is invalid
-      ValueError: If some path cannot be encoded properly
-   """
+    Validates a configured device.
+    The device must be an absolute path, must exist, and must be writable.
+    The unittest flag turns off validation of the device on disk.
+    Args:
+       device: Filesystem device path
+       unittest: Indicates whether we're unit testing
+    Returns:
+        Device as a string, for instance ``"/dev/cdrw"``
+    Raises:
+       ValueError: If the device value is invalid
+       ValueError: If some path cannot be encoded properly
+    """
     if device is None:
         raise ValueError("Device must be filled in.")
     device = encodePath(device)
@@ -103,17 +103,17 @@ def validateDevice(device, unittest=False):
 
 def validateScsiId(scsiId):
     """
-   Validates a SCSI id string.
-   SCSI id must be a string in the form ``[<method>:]scsibus,target,lun``.
-   For Mac OS X (Darwin), we also accept the form ``IO.*Services[/N]``.
-   *Note:* For consistency, if ``None`` is passed in, ``None`` will be returned.
-   Args:
-      scsiId: SCSI id for the device
-   Returns:
-       SCSI id as a string, for instance ``"ATA:1,0,0"``
-   Raises:
-      ValueError: If the SCSI id string is invalid
-   """
+    Validates a SCSI id string.
+    SCSI id must be a string in the form ``[<method>:]scsibus,target,lun``.
+    For Mac OS X (Darwin), we also accept the form ``IO.*Services[/N]``.
+    *Note:* For consistency, if ``None`` is passed in, ``None`` will be returned.
+    Args:
+       scsiId: SCSI id for the device
+    Returns:
+        SCSI id as a string, for instance ``"ATA:1,0,0"``
+    Raises:
+       ValueError: If the SCSI id string is invalid
+    """
     if scsiId is not None:
         pattern = re.compile(r"^\s*(.*:)?\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*,\s*[0-9][0-9]*\s*$")
         if not pattern.search(scsiId):
@@ -130,16 +130,16 @@ def validateScsiId(scsiId):
 
 def validateDriveSpeed(driveSpeed):
     """
-   Validates a drive speed value.
-   Drive speed must be an integer which is >= 1.
-   *Note:* For consistency, if ``None`` is passed in, ``None`` will be returned.
-   Args:
-      driveSpeed: Speed at which the drive writes
-   Returns:
-       Drive speed as an integer
-   Raises:
-      ValueError: If the drive speed value is invalid
-   """
+    Validates a drive speed value.
+    Drive speed must be an integer which is >= 1.
+    *Note:* For consistency, if ``None`` is passed in, ``None`` will be returned.
+    Args:
+       driveSpeed: Speed at which the drive writes
+    Returns:
+        Drive speed as an integer
+    Raises:
+       ValueError: If the drive speed value is invalid
+    """
     if driveSpeed is None:
         return None
     try:
@@ -162,13 +162,13 @@ def validateDriveSpeed(driveSpeed):
 
 def readMediaLabel(devicePath):
     """
-   Reads the media label (volume name) from the indicated device.
-   The volume name is read using the ``volname`` command.
-   Args:
-      devicePath: Device path to read from
-   Returns:
-       Media label as a string, or None if there is no name or it could not be read
-   """
+    Reads the media label (volume name) from the indicated device.
+    The volume name is read using the ``volname`` command.
+    Args:
+       devicePath: Device path to read from
+    Returns:
+        Media label as a string, or None if there is no name or it could not be read
+    """
     args = [devicePath]
     command = resolveCommand(VOLNAME_COMMAND)
     (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
@@ -191,55 +191,55 @@ class IsoImage(object):
     ######################
 
     """
-   Represents an ISO filesystem image.
+    Represents an ISO filesystem image.
 
-   **Summary**
+    **Summary**
 
-   This object represents an ISO 9660 filesystem image.  It is implemented
-   in terms of the ``mkisofs`` program, which has been ported to many
-   operating systems and platforms.  A "sensible subset" of the ``mkisofs``
-   functionality is made available through the public interface, allowing
-   callers to set a variety of basic options such as publisher id,
-   application id, etc. as well as specify exactly which files and
-   directories they want included in their image.
+    This object represents an ISO 9660 filesystem image.  It is implemented
+    in terms of the ``mkisofs`` program, which has been ported to many
+    operating systems and platforms.  A "sensible subset" of the ``mkisofs``
+    functionality is made available through the public interface, allowing
+    callers to set a variety of basic options such as publisher id,
+    application id, etc. as well as specify exactly which files and
+    directories they want included in their image.
 
-   By default, the image is created using the Rock Ridge protocol (using the
-   ``-r`` option to ``mkisofs``) because Rock Ridge discs are generally more
-   useful on UN*X filesystems than standard ISO 9660 images.  However,
-   callers can fall back to the default ``mkisofs`` functionality by setting
-   the ``useRockRidge`` instance variable to ``False``.  Note, however, that
-   this option is not well-tested.
+    By default, the image is created using the Rock Ridge protocol (using the
+    ``-r`` option to ``mkisofs``) because Rock Ridge discs are generally more
+    useful on UN*X filesystems than standard ISO 9660 images.  However,
+    callers can fall back to the default ``mkisofs`` functionality by setting
+    the ``useRockRidge`` instance variable to ``False``.  Note, however, that
+    this option is not well-tested.
 
-   **Where Files and Directories are Placed in the Image**
+    **Where Files and Directories are Placed in the Image**
 
-   Although this class is implemented in terms of the ``mkisofs`` program,
-   its standard "image contents" semantics are slightly different than the original
-   ``mkisofs`` semantics.  The difference is that files and directories are
-   added to the image with some additional information about their source
-   directory kept intact.
+    Although this class is implemented in terms of the ``mkisofs`` program,
+    its standard "image contents" semantics are slightly different than the original
+    ``mkisofs`` semantics.  The difference is that files and directories are
+    added to the image with some additional information about their source
+    directory kept intact.
 
-   As an example, suppose you add the file ``/etc/profile`` to your image and
-   you do not configure a graft point.  The file ``/profile`` will be created
-   in the image.  The behavior for directories is similar.  For instance,
-   suppose that you add ``/etc/X11`` to the image and do not configure a
-   graft point.  In this case, the directory ``/X11`` will be created in the
-   image, even if the original ``/etc/X11`` directory is empty.  I{This
-   behavior differs from the standard ``mkisofs`` behavior!}
+    As an example, suppose you add the file ``/etc/profile`` to your image and
+    you do not configure a graft point.  The file ``/profile`` will be created
+    in the image.  The behavior for directories is similar.  For instance,
+    suppose that you add ``/etc/X11`` to the image and do not configure a
+    graft point.  In this case, the directory ``/X11`` will be created in the
+    image, even if the original ``/etc/X11`` directory is empty.  I{This
+    behavior differs from the standard ``mkisofs`` behavior!}
 
-   If a graft point is configured, it will be used to modify the point at
-   which a file or directory is added into an image.  Using the examples
-   from above, let's assume you set a graft point of ``base`` when adding
-   ``/etc/profile`` and ``/etc/X11`` to your image.  In this case, the file
-   ``/base/profile`` and the directory ``/base/X11`` would be added to the
-   image.
+    If a graft point is configured, it will be used to modify the point at
+    which a file or directory is added into an image.  Using the examples
+    from above, let's assume you set a graft point of ``base`` when adding
+    ``/etc/profile`` and ``/etc/X11`` to your image.  In this case, the file
+    ``/base/profile`` and the directory ``/base/X11`` would be added to the
+    image.
 
-   I feel that this behavior is more consistent than the original ``mkisofs``
-   behavior.  However, to be fair, it is not quite as flexible, and some
-   users might not like it.  For this reason, the ``contentsOnly`` parameter
-   to the :any:`addEntry` method can be used to revert to the original behavior
-   if desired.
+    I feel that this behavior is more consistent than the original ``mkisofs``
+    behavior.  However, to be fair, it is not quite as flexible, and some
+    users might not like it.  For this reason, the ``contentsOnly`` parameter
+    to the :any:`addEntry` method can be used to revert to the original behavior
+    if desired.
 
-   """
+    """
 
     ##############
     # Constructor
@@ -247,26 +247,26 @@ class IsoImage(object):
 
     def __init__(self, device=None, boundaries=None, graftPoint=None):
         """
-      Initializes an empty ISO image object.
+        Initializes an empty ISO image object.
 
-      Only the most commonly-used configuration items can be set using this
-      constructor.  If you have a need to change the others, do so immediately
-      after creating your object.
+        Only the most commonly-used configuration items can be set using this
+        constructor.  If you have a need to change the others, do so immediately
+        after creating your object.
 
-      The device and boundaries values are both required in order to write
-      multisession discs.  If either is missing or ``None``, a multisession disc
-      will not be written.  The boundaries tuple is in terms of ISO sectors, as
-      built by an image writer class and returned in a ``writer.MediaCapacity``
-      object.
+        The device and boundaries values are both required in order to write
+        multisession discs.  If either is missing or ``None``, a multisession disc
+        will not be written.  The boundaries tuple is in terms of ISO sectors, as
+        built by an image writer class and returned in a ``writer.MediaCapacity``
+        object.
 
-      The boundaries parameter is a tuple of ``(last_sess_start, next_sess_start)``,
-      as returned from ``cdrecord -msinfo``.
+        The boundaries parameter is a tuple of ``(last_sess_start, next_sess_start)``,
+        as returned from ``cdrecord -msinfo``.
 
-      Args:
-         device (Either be a filesystem path or a SCSI address): Name of the device that the image will be written to
-         boundaries: Session boundaries as required by ``mkisofs``, or ``None``
-         graftPoint (String representing a graft point path (see :any:`addEntry`)): Default graft point for this page
-      """
+        Args:
+           device (Either be a filesystem path or a SCSI address): Name of the device that the image will be written to
+           boundaries: Session boundaries as required by ``mkisofs``, or ``None``
+           graftPoint (String representing a graft point path (see :any:`addEntry`)): Default graft point for this page
+        """
         self._device = None
         self._boundaries = None
         self._graftPoint = None
@@ -294,11 +294,11 @@ class IsoImage(object):
 
     def _setDevice(self, value):
         """
-      Property target used to set the device value.
-      If not ``None``, the value can be either an absolute path or a SCSI id.
-      Raises:
-         ValueError: If the value is not valid
-      """
+        Property target used to set the device value.
+        If not ``None``, the value can be either an absolute path or a SCSI id.
+        Raises:
+           ValueError: If the value is not valid
+        """
         try:
             if value is None:
                 self._device = None
@@ -312,18 +312,18 @@ class IsoImage(object):
 
     def _getDevice(self):
         """
-      Property target used to get the device value.
-      """
+        Property target used to get the device value.
+        """
         return self._device
 
     def _setBoundaries(self, value):
         """
-      Property target used to set the boundaries tuple.
-      If not ``None``, the value must be a tuple of two integers.
-      Raises:
-         ValueError: If the tuple values are not integers
-         IndexError: If the tuple does not contain enough elements
-      """
+        Property target used to set the boundaries tuple.
+        If not ``None``, the value must be a tuple of two integers.
+        Raises:
+           ValueError: If the tuple values are not integers
+           IndexError: If the tuple does not contain enough elements
+        """
         if value is None:
             self._boundaries = None
         else:
@@ -331,17 +331,17 @@ class IsoImage(object):
 
     def _getBoundaries(self):
         """
-      Property target used to get the boundaries value.
-      """
+        Property target used to get the boundaries value.
+        """
         return self._boundaries
 
     def _setGraftPoint(self, value):
         """
-      Property target used to set the graft point.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the graft point.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The graft point must be a non-empty string.")
@@ -349,15 +349,15 @@ class IsoImage(object):
 
     def _getGraftPoint(self):
         """
-      Property target used to get the graft point.
-      """
+        Property target used to get the graft point.
+        """
         return self._graftPoint
 
     def _setUseRockRidge(self, value):
         """
-      Property target used to set the use RockRidge flag.
-      No validations, but we normalize the value to ``True`` or ``False``.
-      """
+        Property target used to set the use RockRidge flag.
+        No validations, but we normalize the value to ``True`` or ``False``.
+        """
         if value:
             self._useRockRidge = True
         else:
@@ -365,17 +365,17 @@ class IsoImage(object):
 
     def _getUseRockRidge(self):
         """
-      Property target used to get the use RockRidge flag.
-      """
+        Property target used to get the use RockRidge flag.
+        """
         return self._useRockRidge
 
     def _setApplicationId(self, value):
         """
-      Property target used to set the application id.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the application id.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The application id must be a non-empty string.")
@@ -383,17 +383,17 @@ class IsoImage(object):
 
     def _getApplicationId(self):
         """
-      Property target used to get the application id.
-      """
+        Property target used to get the application id.
+        """
         return self._applicationId
 
     def _setBiblioFile(self, value):
         """
-      Property target used to set the biblio file.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the biblio file.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The biblio file must be a non-empty string.")
@@ -401,17 +401,17 @@ class IsoImage(object):
 
     def _getBiblioFile(self):
         """
-      Property target used to get the biblio file.
-      """
+        Property target used to get the biblio file.
+        """
         return self._biblioFile
 
     def _setPublisherId(self, value):
         """
-      Property target used to set the publisher id.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the publisher id.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The publisher id must be a non-empty string.")
@@ -419,17 +419,17 @@ class IsoImage(object):
 
     def _getPublisherId(self):
         """
-      Property target used to get the publisher id.
-      """
+        Property target used to get the publisher id.
+        """
         return self._publisherId
 
     def _setPreparerId(self, value):
         """
-      Property target used to set the preparer id.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the preparer id.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The preparer id must be a non-empty string.")
@@ -437,17 +437,17 @@ class IsoImage(object):
 
     def _getPreparerId(self):
         """
-      Property target used to get the preparer id.
-      """
+        Property target used to get the preparer id.
+        """
         return self._preparerId
 
     def _setVolumeId(self, value):
         """
-      Property target used to set the volume id.
-      The value must be a non-empty string if it is not ``None``.
-      Raises:
-         ValueError: If the value is an empty string
-      """
+        Property target used to set the volume id.
+        The value must be a non-empty string if it is not ``None``.
+        Raises:
+           ValueError: If the value is an empty string
+        """
         if value is not None:
             if len(value) < 1:
                 raise ValueError("The volume id must be a non-empty string.")
@@ -455,8 +455,8 @@ class IsoImage(object):
 
     def _getVolumeId(self):
         """
-      Property target used to get the volume id.
-      """
+        Property target used to get the volume id.
+        """
         return self._volumeId
 
     device = property(_getDevice, _setDevice, None, "Device that image will be written to (device path or SCSI id).")
@@ -477,48 +477,48 @@ class IsoImage(object):
 
     def addEntry(self, path, graftPoint=None, override=False, contentsOnly=False):
         """
-      Adds an individual file or directory into the ISO image.
+        Adds an individual file or directory into the ISO image.
 
-      The path must exist and must be a file or a directory.  By default, the
-      entry will be placed into the image at the root directory, but this
-      behavior can be overridden using the ``graftPoint`` parameter or instance
-      variable.
+        The path must exist and must be a file or a directory.  By default, the
+        entry will be placed into the image at the root directory, but this
+        behavior can be overridden using the ``graftPoint`` parameter or instance
+        variable.
 
-      You can use the ``contentsOnly`` behavior to revert to the "original"
-      ``mkisofs`` behavior for adding directories, which is to add only the
-      items within the directory, and not the directory itself.
+        You can use the ``contentsOnly`` behavior to revert to the "original"
+        ``mkisofs`` behavior for adding directories, which is to add only the
+        items within the directory, and not the directory itself.
 
-      *Note:* Things get *odd* if you try to add a directory to an image that
-      will be written to a multisession disc, and the same directory already
-      exists in an earlier session on that disc.  Not all of the data gets
-      written.  You really wouldn't want to do this anyway, I guess.
+        *Note:* Things get *odd* if you try to add a directory to an image that
+        will be written to a multisession disc, and the same directory already
+        exists in an earlier session on that disc.  Not all of the data gets
+        written.  You really wouldn't want to do this anyway, I guess.
 
-      *Note:* An exception will be thrown if the path has already been added to
-      the image, unless the ``override`` parameter is set to ``True``.
+        *Note:* An exception will be thrown if the path has already been added to
+        the image, unless the ``override`` parameter is set to ``True``.
 
-      *Note:* The method ``graftPoints`` parameter overrides the object-wide
-      instance variable.  If neither the method parameter or object-wide value
-      is set, the path will be written at the image root.  The graft point
-      behavior is determined by the value which is in effect I{at the time this
-      method is called}, so you *must* set the object-wide value before
-      calling this method for the first time, or your image may not be
-      consistent.
+        *Note:* The method ``graftPoints`` parameter overrides the object-wide
+        instance variable.  If neither the method parameter or object-wide value
+        is set, the path will be written at the image root.  The graft point
+        behavior is determined by the value which is in effect I{at the time this
+        method is called}, so you *must* set the object-wide value before
+        calling this method for the first time, or your image may not be
+        consistent.
 
-      *Note:* You *cannot* use the local ``graftPoint`` parameter to "turn off"
-      an object-wide instance variable by setting it to ``None``.  Python's
-      default argument functionality buys us a lot, but it can't make this
-      method psychic. :)
+        *Note:* You *cannot* use the local ``graftPoint`` parameter to "turn off"
+        an object-wide instance variable by setting it to ``None``.  Python's
+        default argument functionality buys us a lot, but it can't make this
+        method psychic. :)
 
-      Args:
-         path (String representing a path on disk): File or directory to be added to the image
-         graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
-         override (Boolean true/false): Override an existing entry with the same path
-         contentsOnly (Boolean true/false): Add directory contents only (standard ``mkisofs`` behavior)
-      Raises:
-         ValueError: If path is not a file or directory, or does not exist
-         ValueError: If the path has already been added, and override is not set
-         ValueError: If a path cannot be encoded properly
-      """
+        Args:
+           path (String representing a path on disk): File or directory to be added to the image
+           graftPoint (String representing a graft point path, as described above): Graft point to be used when adding this entry
+           override (Boolean true/false): Override an existing entry with the same path
+           contentsOnly (Boolean true/false): Add directory contents only (standard ``mkisofs`` behavior)
+        Raises:
+           ValueError: If path is not a file or directory, or does not exist
+           ValueError: If the path has already been added, and override is not set
+           ValueError: If a path cannot be encoded properly
+        """
         path = encodePath(path)
         if not override:
             if path in list(self.entries.keys()):
@@ -553,32 +553,32 @@ class IsoImage(object):
 
     def getEstimatedSize(self):
         """
-      Returns the estimated size (in bytes) of the ISO image.
+        Returns the estimated size (in bytes) of the ISO image.
 
-      This is implemented via the ``-print-size`` option to ``mkisofs``, so it
-      might take a bit of time to execute.  However, the result is as accurate
-      as we can get, since it takes into account all of the ISO overhead, the
-      true cost of directories in the structure, etc, etc.
+        This is implemented via the ``-print-size`` option to ``mkisofs``, so it
+        might take a bit of time to execute.  However, the result is as accurate
+        as we can get, since it takes into account all of the ISO overhead, the
+        true cost of directories in the structure, etc, etc.
 
-      Returns:
-          Estimated size of the image, in bytes
+        Returns:
+            Estimated size of the image, in bytes
 
-      Raises:
-         IOError: If there is a problem calling ``mkisofs``
-         ValueError: If there are no filesystem entries in the image
-      """
+        Raises:
+           IOError: If there is a problem calling ``mkisofs``
+           ValueError: If there are no filesystem entries in the image
+        """
         if len(list(self.entries.keys())) == 0:
             raise ValueError("Image does not contain any entries.")
         return self._getEstimatedSize(self.entries)
 
     def _getEstimatedSize(self, entries):
         """
-      Returns the estimated size (in bytes) for the passed-in entries dictionary.
-      Returns:
-          Estimated size of the image, in bytes
-      Raises:
-         IOError: If there is a problem calling ``mkisofs``
-      """
+        Returns the estimated size (in bytes) for the passed-in entries dictionary.
+        Returns:
+            Estimated size of the image, in bytes
+        Raises:
+           IOError: If there is a problem calling ``mkisofs``
+        """
         args = self._buildSizeArgs(entries)
         command = resolveCommand(MKISOFS_COMMAND)
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
@@ -595,15 +595,15 @@ class IsoImage(object):
 
     def writeImage(self, imagePath):
         """
-      Writes this image to disk using the image path.
+        Writes this image to disk using the image path.
 
-      Args:
-         imagePath (String representing a path on disk): Path to write image out as
-      Raises:
-         IOError: If there is an error writing the image to disk
-         ValueError: If there are no filesystem entries in the image
-         ValueError: If a path cannot be encoded properly
-      """
+        Args:
+           imagePath (String representing a path on disk): Path to write image out as
+        Raises:
+           IOError: If there is an error writing the image to disk
+           ValueError: If there are no filesystem entries in the image
+           ValueError: If a path cannot be encoded properly
+        """
         imagePath = encodePath(imagePath)
         if len(list(self.entries.keys())) == 0:
             raise ValueError("Image does not contain any entries.")
@@ -620,20 +620,20 @@ class IsoImage(object):
     @staticmethod
     def _buildDirEntries(entries):
         """
-      Uses an entries dictionary to build a list of directory locations for use
-      by ``mkisofs``.
+        Uses an entries dictionary to build a list of directory locations for use
+        by ``mkisofs``.
 
-      We build a list of entries that can be passed to ``mkisofs``.  Each entry is
-      either raw (if no graft point was configured) or in graft-point form as
-      described above (if a graft point was configured).  The dictionary keys
-      are the path names, and the values are the graft points, if any.
+        We build a list of entries that can be passed to ``mkisofs``.  Each entry is
+        either raw (if no graft point was configured) or in graft-point form as
+        described above (if a graft point was configured).  The dictionary keys
+        are the path names, and the values are the graft points, if any.
 
-      Args:
-         entries: Dictionary of image entries (i.e. self.entries)
+        Args:
+           entries: Dictionary of image entries (i.e. self.entries)
 
-      Returns:
-          List of directory locations for use by ``mkisofs``
-      """
+        Returns:
+            List of directory locations for use by ``mkisofs``
+        """
         dirEntries = []
         for key in list(entries.keys()):
             if entries[key] is None:
@@ -644,17 +644,17 @@ class IsoImage(object):
 
     def _buildGeneralArgs(self):
         """
-      Builds a list of general arguments to be passed to a ``mkisofs`` command.
+        Builds a list of general arguments to be passed to a ``mkisofs`` command.
 
-      The various instance variables (``applicationId``, etc.) are filled into
-      the list of arguments if they are set.
-      By default, we will build a RockRidge disc.  If you decide to change
-      this, think hard about whether you know what you're doing.  This option
-      is not well-tested.
+        The various instance variables (``applicationId``, etc.) are filled into
+        the list of arguments if they are set.
+        By default, we will build a RockRidge disc.  If you decide to change
+        this, think hard about whether you know what you're doing.  This option
+        is not well-tested.
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = []
         if self.applicationId is not None:
             args.append("-A")
@@ -675,23 +675,23 @@ class IsoImage(object):
 
     def _buildSizeArgs(self, entries):
         """
-      Builds a list of arguments to be passed to a ``mkisofs`` command.
+        Builds a list of arguments to be passed to a ``mkisofs`` command.
 
-      The various instance variables (``applicationId``, etc.) are filled into
-      the list of arguments if they are set.  The command will be built to just
-      return size output (a simple count of sectors via the ``-print-size`` option),
-      rather than an image file on disk.
+        The various instance variables (``applicationId``, etc.) are filled into
+        the list of arguments if they are set.  The command will be built to just
+        return size output (a simple count of sectors via the ``-print-size`` option),
+        rather than an image file on disk.
 
-      By default, we will build a RockRidge disc.  If you decide to change
-      this, think hard about whether you know what you're doing.  This option
-      is not well-tested.
+        By default, we will build a RockRidge disc.  If you decide to change
+        this, think hard about whether you know what you're doing.  This option
+        is not well-tested.
 
-      Args:
-         entries: Dictionary of image entries (i.e. self.entries)
+        Args:
+           entries: Dictionary of image entries (i.e. self.entries)
 
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = self._buildGeneralArgs()
         args.append("-print-size")
         args.append("-graft-points")
@@ -707,23 +707,23 @@ class IsoImage(object):
 
     def _buildWriteArgs(self, entries, imagePath):
         """
-      Builds a list of arguments to be passed to a ``mkisofs`` command.
+        Builds a list of arguments to be passed to a ``mkisofs`` command.
 
-      The various instance variables (``applicationId``, etc.) are filled into
-      the list of arguments if they are set.  The command will be built to write
-      an image to disk.
+        The various instance variables (``applicationId``, etc.) are filled into
+        the list of arguments if they are set.  The command will be built to write
+        an image to disk.
 
-      By default, we will build a RockRidge disc.  If you decide to change
-      this, think hard about whether you know what you're doing.  This option
-      is not well-tested.
+        By default, we will build a RockRidge disc.  If you decide to change
+        this, think hard about whether you know what you're doing.  This option
+        is not well-tested.
 
-      Args:
-         entries: Dictionary of image entries (i.e. self.entries)
+        Args:
+           entries: Dictionary of image entries (i.e. self.entries)
 
-         imagePath (String representing a path on disk): Path to write image out as
-      Returns:
-          List suitable for passing to :any:`util.executeCommand` as ``args``
-      """
+           imagePath (String representing a path on disk): Path to write image out as
+        Returns:
+            List suitable for passing to :any:`util.executeCommand` as ``args``
+        """
         args = self._buildGeneralArgs()
         args.append("-graft-points")
         if self.useRockRidge:
