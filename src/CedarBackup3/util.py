@@ -86,8 +86,8 @@ from subprocess import PIPE, STDOUT, Popen
 from CedarBackup3.release import DATE, VERSION
 
 try:
-    import pwd
     import grp
+    import pwd
 
     _UID_GID_AVAILABLE = True
 except ImportError:
