@@ -323,9 +323,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(["/ken", "/path/to/something/absolute"], fsList.excludePaths)
         fsList.excludePaths.append("/file")
         self.assertEqual(["/ken", "/path/to/something/absolute", "/file"], fsList.excludePaths)
-        fsList.excludePaths.extend(
-            ["/one", "/two"]
-        )
+        fsList.excludePaths.extend(["/one", "/two"])
         self.assertEqual(["/ken", "/path/to/something/absolute", "/file", "/one", "/two"], fsList.excludePaths)
         fsList.excludePaths = [
             "/path/to/something/absolute",
@@ -361,9 +359,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(["ken", r".*\.jpg"], fsList.excludePatterns)
         fsList.excludePatterns.append("pattern")
         self.assertEqual(["ken", r".*\.jpg", "pattern"], fsList.excludePatterns)
-        fsList.excludePatterns.extend(
-            ["one", "two"]
-        )
+        fsList.excludePatterns.extend(["one", "two"])
         self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two"], fsList.excludePatterns)
         fsList.excludePatterns = [
             r".*\.jpg",
@@ -402,9 +398,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(["ken", r".*\.jpg"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns.append("pattern")
         self.assertEqual(["ken", r".*\.jpg", "pattern"], fsList.excludeBasenamePatterns)
-        fsList.excludeBasenamePatterns.extend(
-            ["one", "two"]
-        )
+        fsList.excludeBasenamePatterns.extend(["one", "two"])
         self.assertEqual(["ken", r".*\.jpg", "pattern", "one", "two"], fsList.excludeBasenamePatterns)
         fsList.excludeBasenamePatterns = [
             r".*\.jpg",

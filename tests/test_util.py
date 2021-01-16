@@ -488,14 +488,10 @@ class TestAbsolutePathList(unittest.TestCase):
       Test extend() for a valid absolute path.
       """
         list1 = AbsolutePathList()
-        list1.extend(
-            ["/path/to/something/absolute"]
-        )
+        list1.extend(["/path/to/something/absolute"])
         self.assertEqual(list1, ["/path/to/something/absolute"])
         self.assertEqual(list1[0], "/path/to/something/absolute")
-        list1.extend(
-            ["/path/to/something/else"]
-        )
+        list1.extend(["/path/to/something/else"])
         self.assertEqual(list1, ["/path/to/something/absolute", "/path/to/something/else"])
         self.assertEqual(list1[0], "/path/to/something/absolute")
         self.assertEqual(list1[1], "/path/to/something/else")
@@ -586,14 +582,10 @@ class TestObjectTypeList(unittest.TestCase):
       Test extend() for a valid object type.
       """
         list1 = ObjectTypeList(str, "str")
-        list1.extend(
-            ["string"]
-        )
+        list1.extend(["string"])
         self.assertEqual(list1, ["string"])
         self.assertEqual(list1[0], "string")
-        list1.extend(
-            ["string2"]
-        )
+        list1.extend(["string2"])
         self.assertEqual(list1, ["string", "string2"])
         self.assertEqual(list1[0], "string")
         self.assertEqual(list1[1], "string2")
@@ -698,20 +690,14 @@ class TestRestrictedContentList(unittest.TestCase):
       Test extend() for a valid value.
       """
         list1 = RestrictedContentList(["a", "b", "c"], "values")
-        list1.extend(
-            ["a"]
-        )
+        list1.extend(["a"])
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
-        list1.extend(
-            ["b"]
-        )
+        list1.extend(["b"])
         self.assertEqual(list1, ["a", "b"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "b")
-        list1.extend(
-            ["c"]
-        )
+        list1.extend(["c"])
         self.assertEqual(list1, ["a", "b", "c"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "b")
@@ -841,27 +827,19 @@ class TestRegexMatchList(unittest.TestCase):
       Test extend() for a valid value, emptyAllowed=True.
       """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=True)
-        list1.extend(
-            ["a"]
-        )
+        list1.extend(["a"])
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
-        list1.extend(
-            ["1"]
-        )
+        list1.extend(["1"])
         self.assertEqual(list1, ["a", "1"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
-        list1.extend(
-            ["abcd12345"]
-        )
+        list1.extend(["abcd12345"])
         self.assertEqual(list1, ["a", "1", "abcd12345"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
         self.assertEqual(list1[2], "abcd12345")
-        list1.extend(
-            [""]
-        )
+        list1.extend([""])
         self.assertEqual(list1, ["a", "1", "abcd12345", ""])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
@@ -964,20 +942,14 @@ class TestRegexMatchList(unittest.TestCase):
       Test extend() for a valid value, emptyAllowed=False.
       """
         list1 = RegexMatchList(r"^[a-z0-9]*$", emptyAllowed=False)
-        list1.extend(
-            ["a"]
-        )
+        list1.extend(["a"])
         self.assertEqual(list1, ["a"])
         self.assertEqual(list1[0], "a")
-        list1.extend(
-            ["1"]
-        )
+        list1.extend(["1"])
         self.assertEqual(list1, ["a", "1"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
-        list1.extend(
-            ["abcd12345"]
-        )
+        list1.extend(["abcd12345"])
         self.assertEqual(list1, ["a", "1", "abcd12345"])
         self.assertEqual(list1[0], "a")
         self.assertEqual(list1[1], "1")
@@ -1073,14 +1045,10 @@ class TestRegexList(unittest.TestCase):
       Test extend() for a valid regular expression.
       """
         list1 = RegexList()
-        list1.extend(
-            [r".*\.jpg"]
-        )
+        list1.extend([r".*\.jpg"])
         self.assertEqual(list1, [r".*\.jpg"])
         self.assertEqual(list1[0], r".*\.jpg")
-        list1.extend(
-            ["[a-zA-Z0-9]*"]
-        )
+        list1.extend(["[a-zA-Z0-9]*"])
         self.assertEqual(list1, [r".*\.jpg", "[a-zA-Z0-9]*"])
         self.assertEqual(list1[0], r".*\.jpg")
         self.assertEqual(list1[1], "[a-zA-Z0-9]*")

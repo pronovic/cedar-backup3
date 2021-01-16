@@ -11893,7 +11893,7 @@ class TestConfig(unittest.TestCase):
       """
         config = Config()
         config.options = OptionsConfig(
-            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"],
+            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"]
         )
         config.peers = PeersConfig()
         config.peers.localPeers = []
@@ -11914,7 +11914,7 @@ class TestConfig(unittest.TestCase):
       """
         config = Config()
         config.options = OptionsConfig(
-            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"],
+            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"]
         )
         config.peers = PeersConfig()
         config.peers.localPeers = []
@@ -11935,7 +11935,7 @@ class TestConfig(unittest.TestCase):
       """
         config = Config()
         config.options = OptionsConfig(
-            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"],
+            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"]
         )
         config.peers = PeersConfig()
         config.peers.localPeers = []
@@ -11959,7 +11959,7 @@ class TestConfig(unittest.TestCase):
       """
         config = Config()
         config.options = OptionsConfig(
-            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"],
+            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"]
         )
         config.peers = PeersConfig()
         config.peers.localPeers = []
@@ -11983,7 +11983,7 @@ class TestConfig(unittest.TestCase):
       """
         config = Config()
         config.options = OptionsConfig(
-            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"],
+            backupUser="ken", rcpCommand="rcp", rshCommand="rsh", cbackCommand="cback", managedActions=["collect"]
         )
         config.peers = PeersConfig()
         config.peers.localPeers = []
