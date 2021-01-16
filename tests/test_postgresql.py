@@ -203,7 +203,7 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values, with one database.
       """
-        postgresql = PostgresqlConfig("user", "gzip", True, ["one",])
+        postgresql = PostgresqlConfig("user", "gzip", True, ["one"])
         self.assertEqual("user", postgresql.user)
         self.assertEqual("gzip", postgresql.compressMode)
         self.assertEqual(True, postgresql.all)
@@ -213,7 +213,7 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values, with multiple databases.
       """
-        postgresql = PostgresqlConfig("user", "bzip2", True, ["one", "two",])
+        postgresql = PostgresqlConfig("user", "bzip2", True, ["one", "two"])
         self.assertEqual("user", postgresql.user)
         self.assertEqual("bzip2", postgresql.compressMode)
         self.assertEqual(True, postgresql.all)
@@ -374,7 +374,7 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
-        self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["",])
+        self.failUnlessAssignRaises(ValueError, postgresql, "databases", [""])
         self.assertEqual(None, postgresql.databases)
 
     def testConstructor_021(self):
@@ -383,7 +383,7 @@ class TestPostgresqlConfig(unittest.TestCase):
       """
         postgresql = PostgresqlConfig()
         self.assertEqual(None, postgresql.databases)
-        self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["good", "", "alsogood",])
+        self.failUnlessAssignRaises(ValueError, postgresql, "databases", ["good", "", "alsogood"])
         self.assertEqual(None, postgresql.databases)
 
     ############################
@@ -436,8 +436,8 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None, list non-empty.
       """
-        postgresql1 = PostgresqlConfig("user", "none", True, ["whatever",])
-        postgresql2 = PostgresqlConfig("user", "none", True, ["whatever",])
+        postgresql1 = PostgresqlConfig("user", "none", True, ["whatever"])
+        postgresql2 = PostgresqlConfig("user", "none", True, ["whatever"])
         self.assertEqual(postgresql1, postgresql2)
         self.assertTrue(postgresql1 == postgresql2)
         self.assertTrue(not postgresql1 < postgresql2)
@@ -464,8 +464,8 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, user differs.
       """
-        postgresql1 = PostgresqlConfig("user1", "gzip", True, ["whatever",])
-        postgresql2 = PostgresqlConfig("user2", "gzip", True, ["whatever",])
+        postgresql1 = PostgresqlConfig("user1", "gzip", True, ["whatever"])
+        postgresql2 = PostgresqlConfig("user2", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(postgresql1 < postgresql2)
@@ -492,8 +492,8 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, compressMode differs.
       """
-        postgresql1 = PostgresqlConfig("user", "bzip2", True, ["whatever",])
-        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever",])
+        postgresql1 = PostgresqlConfig("user", "bzip2", True, ["whatever"])
+        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(postgresql1 < postgresql2)
@@ -520,8 +520,8 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, all differs.
       """
-        postgresql1 = PostgresqlConfig("user", "gzip", False, ["whatever",])
-        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever",])
+        postgresql1 = PostgresqlConfig("user", "gzip", False, ["whatever"])
+        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(postgresql1 < postgresql2)
@@ -549,7 +549,7 @@ class TestPostgresqlConfig(unittest.TestCase):
       Test comparison of two differing objects, databases differs (one None, one not empty).
       """
         postgresql1 = PostgresqlConfig()
-        postgresql2 = PostgresqlConfig(databases=["whatever",])
+        postgresql2 = PostgresqlConfig(databases=["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(postgresql1 < postgresql2)
@@ -563,7 +563,7 @@ class TestPostgresqlConfig(unittest.TestCase):
       Test comparison of two differing objects, databases differs (one empty, one not empty).
       """
         postgresql1 = PostgresqlConfig("user", "gzip", True, [])
-        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever",])
+        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(postgresql1 < postgresql2)
@@ -576,8 +576,8 @@ class TestPostgresqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, databases differs (both not empty).
       """
-        postgresql1 = PostgresqlConfig("user", "gzip", True, ["whatever",])
-        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever", "bogus",])
+        postgresql1 = PostgresqlConfig("user", "gzip", True, ["whatever"])
+        postgresql2 = PostgresqlConfig("user", "gzip", True, ["whatever", "bogus"])
         self.assertNotEqual(postgresql1, postgresql2)
         self.assertTrue(not postgresql1 == postgresql2)
         self.assertTrue(not postgresql1 < postgresql2)  # note: different than standard due to unsorted list
@@ -814,7 +814,7 @@ class TestLocalConfig(unittest.TestCase):
       Test validate on a non-empty postgresql section, all=True, non-empty databases.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["whatever",])
+        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["whatever"])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_006(self):
@@ -838,7 +838,7 @@ class TestLocalConfig(unittest.TestCase):
       Test validate on a non-empty postgresql section, all=False, non-empty databases.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "gzip", False, ["whatever",])
+        config.postgresql = PostgresqlConfig("user", "gzip", False, ["whatever"])
         config.validate()
 
     def testValidate_009(self):
@@ -978,7 +978,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with single database, all other values filled in, all=True.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database",])
+        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_006(self):
@@ -986,7 +986,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with single database, all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "none", False, ["database",])
+        config.postgresql = PostgresqlConfig("user", "none", False, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_007(self):
@@ -994,7 +994,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, all other values filled in, all=True.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database1", "database2",])
+        config.postgresql = PostgresqlConfig("user", "bzip2", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_008(self):
@@ -1002,7 +1002,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig("user", "gzip", True, ["database1", "database2",])
+        config.postgresql = PostgresqlConfig("user", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_009(self):
@@ -1010,5 +1010,5 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, user=None but all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.postgresql = PostgresqlConfig(None, "gzip", True, ["database1", "database2",])
+        config.postgresql = PostgresqlConfig(None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)

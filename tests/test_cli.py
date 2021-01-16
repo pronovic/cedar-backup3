@@ -8643,7 +8643,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies([], ["collect",])
+        dependencies = ActionDependencies([], ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8665,7 +8665,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["collect",])
+        dependencies = ActionDependencies(None, ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8687,7 +8687,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies([], ["collect",])
+        dependencies = ActionDependencies([], ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8709,7 +8709,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["collect",])
+        dependencies = ActionDependencies(None, ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8797,7 +8797,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["collect",])
+        dependencies = ActionDependencies(None, ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -8810,7 +8810,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        dependencies = ActionDependencies([], ["collect",])
+        dependencies = ActionDependencies([], ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -8823,7 +8823,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["collect",])
+        dependencies = ActionDependencies(None, ["collect"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -8836,7 +8836,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies([], ["stage",])
+        dependencies = ActionDependencies([], ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8858,7 +8858,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies([], ["stage",])
+        dependencies = ActionDependencies([], ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8880,7 +8880,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["stage",])
+        dependencies = ActionDependencies(None, ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -8902,7 +8902,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies([], ["stage",])
+        dependencies = ActionDependencies([], ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9012,7 +9012,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["stage",])
+        dependencies = ActionDependencies(None, ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9025,7 +9025,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        dependencies = ActionDependencies([], ["stage",])
+        dependencies = ActionDependencies([], ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9038,7 +9038,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["stage",])
+        dependencies = ActionDependencies(None, ["stage"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9139,7 +9139,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9161,7 +9161,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9183,7 +9183,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9205,7 +9205,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9266,7 +9266,7 @@ class TestActionSet(unittest.TestCase):
             "collect",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9288,7 +9288,7 @@ class TestActionSet(unittest.TestCase):
             "stage",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9310,7 +9310,7 @@ class TestActionSet(unittest.TestCase):
             "store",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9332,7 +9332,7 @@ class TestActionSet(unittest.TestCase):
             "purge",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9354,7 +9354,7 @@ class TestActionSet(unittest.TestCase):
             "all",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9367,7 +9367,7 @@ class TestActionSet(unittest.TestCase):
             "rebuild",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9380,7 +9380,7 @@ class TestActionSet(unittest.TestCase):
             "validate",
             "one",
         ]
-        dependencies = ActionDependencies(None, ["purge",])
+        dependencies = ActionDependencies(None, ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         self.assertRaises(ValueError, _ActionSet, actions, extensions, options, None, False, True)
@@ -9393,7 +9393,7 @@ class TestActionSet(unittest.TestCase):
             "one",
             "one",
         ]
-        dependencies = ActionDependencies([], ["purge",])
+        dependencies = ActionDependencies([], ["purge"])
         extensions = ExtensionsConfig([ExtendedAction("one", "os.path", "isdir", dependencies=dependencies),], "dependency")
         options = OptionsConfig()
         actionSet = _ActionSet(actions, extensions, options, None, False, True)
@@ -9494,10 +9494,10 @@ class TestActionSet(unittest.TestCase):
             "five",
         ]
         dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], None)
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect",])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage",])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store",])
-        dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge",])
+        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
@@ -9561,10 +9561,10 @@ class TestActionSet(unittest.TestCase):
             "two",
         ]
         dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect",])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage",])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store",])
-        dependencies5 = ActionDependencies(None, ["collect", "stage", "store", "purge",])
+        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies5 = ActionDependencies(None, ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
@@ -10106,10 +10106,10 @@ class TestActionSet(unittest.TestCase):
             "two",
         ]
         dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect",])
-        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage",])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store",])
-        dependencies5 = ActionDependencies(["one",], ["collect", "stage", "store", "purge",])
+        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
+        dependencies3 = ActionDependencies(["store", "purge",], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies5 = ActionDependencies(["one",], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
@@ -10136,10 +10136,10 @@ class TestActionSet(unittest.TestCase):
             "two",
         ]
         dependencies1 = ActionDependencies(["collect", "stage", "store", "purge",], [])
-        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect",])
-        dependencies3 = ActionDependencies(["store", "bogus",], ["collect", "stage",])
-        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store",])
-        dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge",])
+        dependencies2 = ActionDependencies(["stage", "store", "purge",], ["collect"])
+        dependencies3 = ActionDependencies(["store", "bogus",], ["collect", "stage"])
+        dependencies4 = ActionDependencies(["purge",], ["collect", "stage", "store"])
+        dependencies5 = ActionDependencies([], ["collect", "stage", "store", "purge"])
         eaction1 = ExtendedAction("one", "os.path", "isdir", dependencies=dependencies1)
         eaction2 = ExtendedAction("two", "os.path", "isfile", dependencies=dependencies2)
         eaction3 = ExtendedAction("three", "os.path", "islink", dependencies=dependencies3)
@@ -15981,7 +15981,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, None, None, None, "cback", managed=True),
-            RemotePeer("remote2", None, "ruser2", None, "rsh2", None, managed=True, managedActions=["stage",]),
+            RemotePeer("remote2", None, "ruser2", None, "rsh2", None, managed=True, managedActions=["stage"]),
         ]
         actionSet = _ActionSet(actions, extensions, options, peers, True, True)
         self.assertTrue(len(actionSet.actionSet) == 10)

@@ -1131,7 +1131,7 @@ class TestRepositoryDir(unittest.TestCase):
         """
       Test constructor with all values filled in.
       """
-        repositoryDir = RepositoryDir("type", "/path/to/it", "daily", "gzip", ["whatever",], [".*software.*",])
+        repositoryDir = RepositoryDir("type", "/path/to/it", "daily", "gzip", ["whatever",], [".*software.*"])
         self.assertEqual("type", repositoryDir.repositoryType)
         self.assertEqual("/path/to/it", repositoryDir.directoryPath)
         self.assertEqual("daily", repositoryDir.collectMode)
@@ -1372,7 +1372,7 @@ class TestRepositoryDir(unittest.TestCase):
       """
         repositoryDir = RepositoryDir()
         self.assertEqual(None, repositoryDir.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, repositoryDir, "excludePatterns", ["*.jpg",])
+        self.failUnlessAssignRaises(ValueError, repositoryDir, "excludePatterns", ["*.jpg"])
         self.assertEqual(None, repositoryDir.excludePatterns)
 
     def testConstructor_026(self):
@@ -1740,7 +1740,7 @@ class TestSubversionConfig(unittest.TestCase):
       """
         subversion = SubversionConfig()
         self.assertEqual(None, subversion.repositories)
-        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [None,])
+        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [None])
         self.assertEqual(None, subversion.repositories)
 
     def testConstructor_017(self):
@@ -1749,7 +1749,7 @@ class TestSubversionConfig(unittest.TestCase):
       """
         subversion = SubversionConfig()
         self.assertEqual(None, subversion.repositories)
-        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [SubversionConfig(),])
+        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [SubversionConfig()])
         self.assertEqual(None, subversion.repositories)
 
     def testConstructor_018(self):
@@ -1758,7 +1758,7 @@ class TestSubversionConfig(unittest.TestCase):
       """
         subversion = SubversionConfig()
         self.assertEqual(None, subversion.repositories)
-        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [Repository(), SubversionConfig(),])
+        self.failUnlessAssignRaises(ValueError, subversion, "repositories", [Repository(), SubversionConfig()])
         self.assertEqual(None, subversion.repositories)
 
     ############################
@@ -1811,8 +1811,8 @@ class TestSubversionConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None, list non-empty.
       """
-        subversion1 = SubversionConfig("daily", "gzip", [Repository(),])
-        subversion2 = SubversionConfig("daily", "gzip", [Repository(),])
+        subversion1 = SubversionConfig("daily", "gzip", [Repository()])
+        subversion2 = SubversionConfig("daily", "gzip", [Repository()])
         self.assertEqual(subversion1, subversion2)
         self.assertTrue(subversion1 == subversion2)
         self.assertTrue(not subversion1 < subversion2)
@@ -1839,8 +1839,8 @@ class TestSubversionConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, collectMode differs.
       """
-        subversion1 = SubversionConfig("daily", "gzip", [Repository(),])
-        subversion2 = SubversionConfig("weekly", "gzip", [Repository(),])
+        subversion1 = SubversionConfig("daily", "gzip", [Repository()])
+        subversion2 = SubversionConfig("weekly", "gzip", [Repository()])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -1867,8 +1867,8 @@ class TestSubversionConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, compressMode differs.
       """
-        subversion1 = SubversionConfig("daily", "bzip2", [Repository(),])
-        subversion2 = SubversionConfig("daily", "gzip", [Repository(),])
+        subversion1 = SubversionConfig("daily", "bzip2", [Repository()])
+        subversion2 = SubversionConfig("daily", "gzip", [Repository()])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -1896,7 +1896,7 @@ class TestSubversionConfig(unittest.TestCase):
       Test comparison of two differing objects, repositories differs (one None, one not empty).
       """
         subversion1 = SubversionConfig()
-        subversion2 = SubversionConfig(repositories=[Repository(),])
+        subversion2 = SubversionConfig(repositories=[Repository()])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -1910,7 +1910,7 @@ class TestSubversionConfig(unittest.TestCase):
       Test comparison of two differing objects, repositories differs (one empty, one not empty).
       """
         subversion1 = SubversionConfig("daily", "gzip", [])
-        subversion2 = SubversionConfig("daily", "gzip", [Repository(),])
+        subversion2 = SubversionConfig("daily", "gzip", [Repository()])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -1923,8 +1923,8 @@ class TestSubversionConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, repositories differs (both not empty).
       """
-        subversion1 = SubversionConfig("daily", "gzip", [Repository(),])
-        subversion2 = SubversionConfig("daily", "gzip", [Repository(), Repository(),])
+        subversion1 = SubversionConfig("daily", "gzip", [Repository()])
+        subversion2 = SubversionConfig("daily", "gzip", [Repository(), Repository()])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -1937,8 +1937,8 @@ class TestSubversionConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, repositories differs (both not empty).
       """
-        subversion1 = SubversionConfig("daily", "gzip", [Repository(repositoryType="other"),])
-        subversion2 = SubversionConfig("daily", "gzip", [Repository(repositoryType="type"),])
+        subversion1 = SubversionConfig("daily", "gzip", [Repository(repositoryType="other")])
+        subversion2 = SubversionConfig("daily", "gzip", [Repository(repositoryType="type")])
         self.assertNotEqual(subversion1, subversion2)
         self.assertTrue(not subversion1 == subversion2)
         self.assertTrue(subversion1 < subversion2)
@@ -2537,7 +2537,7 @@ class TestLocalConfig(unittest.TestCase):
             )
         )
         repositoryDirs.append(
-            RepositoryDir(directoryPath="/opt/public/svn/three", compressMode="bzip2", excludePatterns=[".*software.*",])
+            RepositoryDir(directoryPath="/opt/public/svn/three", compressMode="bzip2", excludePatterns=[".*software.*"])
         )
         repositoryDirs.append(
             RepositoryDir(

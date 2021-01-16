@@ -164,7 +164,7 @@ class TestFunctions(unittest.TestCase):
       Test with an empty staging directory.
       """
         self.extractTar("tree8")
-        stagingDir = self.buildPath(["tree8", "dir001",])
+        stagingDir = self.buildPath(["tree8", "dir001"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual([], dailyDirs)
 
@@ -173,7 +173,7 @@ class TestFunctions(unittest.TestCase):
       Test with a staging directory containing only files.
       """
         self.extractTar("tree1")
-        stagingDir = self.buildPath(["tree1",])
+        stagingDir = self.buildPath(["tree1"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual([], dailyDirs)
 
@@ -182,7 +182,7 @@ class TestFunctions(unittest.TestCase):
       Test with a staging directory containing only links.
       """
         self.extractTar("tree15")
-        stagingDir = self.buildPath(["tree15", "dir001",])
+        stagingDir = self.buildPath(["tree15", "dir001"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual([], dailyDirs)
 
@@ -195,12 +195,12 @@ class TestFunctions(unittest.TestCase):
         stagingDir = self.buildPath(["tree17"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual(6, len(dailyDirs))
-        self.assertTrue(self.buildPath(["tree17", "2006", "12", "29",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree17", "2006", "12", "30",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree17", "2006", "12", "31",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree17", "2007", "01", "01",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree17", "2007", "01", "02",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree17", "2007", "01", "03",]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2006", "12", "29"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2006", "12", "30"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2006", "12", "31"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2007", "01", "01"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2007", "01", "02"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree17", "2007", "01", "03"]) in dailyDirs)
 
     def testFindDailyDirs_006(self):
         """
@@ -221,9 +221,9 @@ class TestFunctions(unittest.TestCase):
         stagingDir = self.buildPath(["tree19"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual(3, len(dailyDirs))
-        self.assertTrue(self.buildPath(["tree19", "2006", "12", "30",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree19", "2007", "01", "01",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree19", "2007", "01", "03",]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree19", "2006", "12", "30"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree19", "2007", "01", "01"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree19", "2007", "01", "03"]) in dailyDirs)
 
     def testFindDailyDirs_008(self):
         """
@@ -231,15 +231,15 @@ class TestFunctions(unittest.TestCase):
       encrypt indicator (the indicator should be ignored).
       """
         self.extractTar("tree20")
-        stagingDir = self.buildPath(["tree20",])
+        stagingDir = self.buildPath(["tree20"])
         dailyDirs = findDailyDirs(stagingDir, ENCRYPT_INDICATOR)
         self.assertEqual(6, len(dailyDirs))
-        self.assertTrue(self.buildPath(["tree20", "2006", "12", "29",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree20", "2006", "12", "30",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree20", "2006", "12", "31",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree20", "2007", "01", "01",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree20", "2007", "01", "02",]) in dailyDirs)
-        self.assertTrue(self.buildPath(["tree20", "2007", "01", "03",]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2006", "12", "29"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2006", "12", "30"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2006", "12", "31"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2007", "01", "01"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2007", "01", "02"]) in dailyDirs)
+        self.assertTrue(self.buildPath(["tree20", "2007", "01", "03"]) in dailyDirs)
 
     ############################
     # Test writeIndicatorFile()
@@ -257,6 +257,6 @@ class TestFunctions(unittest.TestCase):
       Test with a valid staging directory.
       """
         self.extractTar("tree8")
-        stagingDir = self.buildPath(["tree8", "dir001",])
+        stagingDir = self.buildPath(["tree8", "dir001"])
         writeIndicatorFile(stagingDir, ENCRYPT_INDICATOR, None, None)
-        self.assertTrue(os.path.exists(self.buildPath(["tree8", "dir001", ENCRYPT_INDICATOR,])))
+        self.assertTrue(os.path.exists(self.buildPath(["tree8", "dir001", ENCRYPT_INDICATOR])))

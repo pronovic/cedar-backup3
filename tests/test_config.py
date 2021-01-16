@@ -850,7 +850,7 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values.
       """
-        dependencies = ActionDependencies(["b",], ["a",])
+        dependencies = ActionDependencies(["b",], ["a"])
         self.assertEqual(["b",], dependencies.beforeList)
         self.assertEqual(["a",], dependencies.afterList)
 
@@ -890,15 +890,15 @@ class TestActionDependencies(unittest.TestCase):
       """
         dependencies = ActionDependencies()
         self.assertEqual(None, dependencies.beforeList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["KEN",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["KEN"])
         self.assertEqual(None, dependencies.beforeList)
         self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["hello, world"])
         self.assertEqual(None, dependencies.beforeList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["dash-word",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["dash-word"])
         self.assertEqual(None, dependencies.beforeList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", [""])
         self.assertEqual(None, dependencies.beforeList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", [None,])
+        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", [None])
         self.assertEqual(None, dependencies.beforeList)
 
     def testConstructor_007(self):
@@ -907,7 +907,7 @@ class TestActionDependencies(unittest.TestCase):
       """
         dependencies = ActionDependencies()
         self.assertEqual(None, dependencies.beforeList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["ken", "dash-word",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "beforeList", ["ken", "dash-word"])
 
     def testConstructor_008(self):
         """
@@ -943,15 +943,15 @@ class TestActionDependencies(unittest.TestCase):
       """
         dependencies = ActionDependencies()
         self.assertEqual(None, dependencies.afterList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["KEN",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["KEN"])
         self.assertEqual(None, dependencies.afterList)
         self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["hello, world"])
         self.assertEqual(None, dependencies.afterList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["dash-word",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["dash-word"])
         self.assertEqual(None, dependencies.afterList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", ["",])
+        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", [""])
         self.assertEqual(None, dependencies.afterList)
-        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", [None,])
+        self.failUnlessAssignRaises(ValueError, dependencies, "afterList", [None])
         self.assertEqual(None, dependencies.afterList)
 
     ############################
@@ -976,8 +976,8 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None.
       """
-        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b",])
-        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b"])
+        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b"])
         self.assertEqual(dependencies1, dependencies2)
         self.assertTrue(dependencies1 == dependencies2)
         self.assertTrue(not dependencies1 < dependencies2)
@@ -990,8 +990,8 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, beforeList differs (one None).
       """
-        dependencies1 = ActionDependencies(beforeList=None, afterList=["b",])
-        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=None, afterList=["b"])
+        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b"])
         self.assertTrue(not dependencies1 == dependencies2)
         self.assertTrue(dependencies1 < dependencies2)
         self.assertTrue(dependencies1 <= dependencies2)
@@ -1003,8 +1003,8 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, beforeList differs (one empty).
       """
-        dependencies1 = ActionDependencies(beforeList=[], afterList=["b",])
-        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=[], afterList=["b"])
+        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["b"])
         self.assertTrue(not dependencies1 == dependencies2)
         self.assertTrue(dependencies1 < dependencies2)
         self.assertTrue(dependencies1 <= dependencies2)
@@ -1016,8 +1016,8 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, beforeList differs.
       """
-        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b",])
-        dependencies2 = ActionDependencies(beforeList=["b",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b"])
+        dependencies2 = ActionDependencies(beforeList=["b",], afterList=["b"])
         self.assertTrue(not dependencies1 == dependencies2)
         self.assertTrue(dependencies1 < dependencies2)
         self.assertTrue(dependencies1 <= dependencies2)
@@ -1029,7 +1029,7 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, afterList differs (one None).
       """
-        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b"])
         dependencies2 = ActionDependencies(beforeList=["a",], afterList=None)
         self.assertNotEqual(dependencies1, dependencies2)
         self.assertTrue(not dependencies1 == dependencies2)
@@ -1043,7 +1043,7 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, afterList differs (one empty).
       """
-        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b",])
+        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b"])
         dependencies2 = ActionDependencies(beforeList=["a",], afterList=[])
         self.assertNotEqual(dependencies1, dependencies2)
         self.assertTrue(not dependencies1 == dependencies2)
@@ -1057,8 +1057,8 @@ class TestActionDependencies(unittest.TestCase):
         """
       Test comparison of two differing objects, afterList differs.
       """
-        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b",])
-        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["a",])
+        dependencies1 = ActionDependencies(beforeList=["a",], afterList=["b"])
+        dependencies2 = ActionDependencies(beforeList=["a",], afterList=["a"])
         self.assertNotEqual(dependencies1, dependencies2)
         self.assertTrue(not dependencies1 == dependencies2)
         self.assertTrue(not dependencies1 < dependencies2)
@@ -2340,7 +2340,7 @@ class TestExtendedAction(unittest.TestCase):
       Test comparison of two differing objects, dependencies differs.
       """
         action1 = ExtendedAction("one", "two", "three", 99, ActionDependencies(beforeList=[]))
-        action2 = ExtendedAction("one", "two", "three", 99, ActionDependencies(beforeList=["ken",]))
+        action2 = ExtendedAction("one", "two", "three", 99, ActionDependencies(beforeList=["ken"]))
         self.assertNotEqual(action1, action2)
         self.assertTrue(not action1 == action2)
         self.assertTrue(action1 < action2)
@@ -3108,7 +3108,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", ["",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", [""])
         self.assertEqual(None, collectDir.absoluteExcludePaths)
 
     def testConstructor_023(self):
@@ -3118,7 +3118,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", ["notabsolute",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", ["notabsolute"])
         self.assertEqual(None, collectDir.absoluteExcludePaths)
 
     def testConstructor_024(self):
@@ -3128,7 +3128,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", ["/good", "bad", "/alsogood",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "absoluteExcludePaths", ["/good", "bad", "/alsogood"])
         self.assertEqual(None, collectDir.absoluteExcludePaths)
 
     def testConstructor_025(self):
@@ -3228,7 +3228,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg"])
         self.assertEqual(None, collectDir.excludePatterns)
 
     def testConstructor_034(self):
@@ -3237,7 +3237,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg", "*",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg", "*"])
         self.assertEqual(None, collectDir.excludePatterns)
 
     def testConstructor_035(self):
@@ -3247,7 +3247,7 @@ class TestCollectDir(unittest.TestCase):
       """
         collectDir = CollectDir()
         self.assertEqual(None, collectDir.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg", "valid",])
+        self.failUnlessAssignRaises(ValueError, collectDir, "excludePatterns", ["*.jpg", "valid"])
         self.assertEqual(None, collectDir.excludePatterns)
 
     def testConstructor_036(self):
@@ -3520,7 +3520,7 @@ class TestCollectDir(unittest.TestCase):
       (one None, one not empty).
       """
         collectDir1 = CollectDir()
-        collectDir2 = CollectDir(absoluteExcludePaths=["/whatever",])
+        collectDir2 = CollectDir(absoluteExcludePaths=["/whatever"])
         self.assertNotEqual(collectDir1, collectDir2)
         self.assertTrue(not collectDir1 == collectDir2)
         self.assertTrue(collectDir1 < collectDir2)
@@ -3580,7 +3580,7 @@ class TestCollectDir(unittest.TestCase):
       (one None, one not empty).
       """
         collectDir1 = CollectDir()
-        collectDir2 = CollectDir(relativeExcludePaths=["stuff", "other",])
+        collectDir2 = CollectDir(relativeExcludePaths=["stuff", "other"])
         self.assertNotEqual(collectDir1, collectDir2)
         self.assertTrue(not collectDir1 == collectDir2)
         self.assertTrue(collectDir1 < collectDir2)
@@ -3640,7 +3640,7 @@ class TestCollectDir(unittest.TestCase):
       None, one not empty).
       """
         collectDir1 = CollectDir()
-        collectDir2 = CollectDir(excludePatterns=["one", "two", "three",])
+        collectDir2 = CollectDir(excludePatterns=["one", "two", "three"])
         self.assertNotEqual(collectDir1, collectDir2)
         self.assertTrue(not collectDir1 == collectDir2)
         self.assertTrue(collectDir1 < collectDir2)
@@ -4566,15 +4566,15 @@ class TestRemotePeer(unittest.TestCase):
       """
         remotePeer = RemotePeer()
         self.assertEqual(None, remotePeer.managedActions)
-        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["KEN",])
+        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["KEN"])
         self.assertEqual(None, remotePeer.managedActions)
         self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["hello, world"])
         self.assertEqual(None, remotePeer.managedActions)
-        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["dash-word",])
+        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["dash-word"])
         self.assertEqual(None, remotePeer.managedActions)
-        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["",])
+        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", [""])
         self.assertEqual(None, remotePeer.managedActions)
-        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", [None,])
+        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", [None])
         self.assertEqual(None, remotePeer.managedActions)
 
     def testConstructor_028(self):
@@ -4583,7 +4583,7 @@ class TestRemotePeer(unittest.TestCase):
       """
         remotePeer = RemotePeer()
         self.assertEqual(None, remotePeer.managedActions)
-        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["ken", "dash-word",])
+        self.failUnlessAssignRaises(ValueError, remotePeer, "managedActions", ["ken", "dash-word"])
 
     def testConstructor_029(self):
         """
@@ -5369,13 +5369,13 @@ class TestExtensionsConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values (non-empty list), named arguments.
       """
-        extensions = ExtensionsConfig(orderMode=None, actions=[ExtendedAction(),])
+        extensions = ExtensionsConfig(orderMode=None, actions=[ExtendedAction()])
         self.assertEqual(None, extensions.orderMode)
         self.assertEqual([ExtendedAction(),], extensions.actions)
-        extensions = ExtensionsConfig(orderMode="index", actions=[ExtendedAction(),])
+        extensions = ExtensionsConfig(orderMode="index", actions=[ExtendedAction()])
         self.assertEqual("index", extensions.orderMode)
         self.assertEqual([ExtendedAction(),], extensions.actions)
-        extensions = ExtensionsConfig(orderMode="dependency", actions=[ExtendedAction(),])
+        extensions = ExtensionsConfig(orderMode="dependency", actions=[ExtendedAction()])
         self.assertEqual("dependency", extensions.orderMode)
         self.assertEqual([ExtendedAction(),], extensions.actions)
 
@@ -5432,7 +5432,7 @@ class TestExtensionsConfig(unittest.TestCase):
         extensions = ExtensionsConfig()
         self.assertEqual(None, extensions.orderMode)
         self.assertEqual(None, extensions.actions)
-        self.failUnlessAssignRaises(ValueError, extensions, "actions", [RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, extensions, "actions", [RemotePeer()])
         self.assertEqual(None, extensions.actions)
 
     def testConstructor_010(self):
@@ -5442,7 +5442,7 @@ class TestExtensionsConfig(unittest.TestCase):
         extensions = ExtensionsConfig()
         self.assertEqual(None, extensions.orderMode)
         self.assertEqual(None, extensions.actions)
-        self.failUnlessAssignRaises(ValueError, extensions, "actions", [ExtendedAction(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, extensions, "actions", [ExtendedAction(), RemotePeer()])
         self.assertEqual(None, extensions.actions)
 
     def testConstructor_011(self):
@@ -5549,7 +5549,7 @@ class TestExtensionsConfig(unittest.TestCase):
       one not empty).
       """
         extensions1 = ExtensionsConfig(None)
-        extensions2 = ExtensionsConfig([ExtendedAction(),])
+        extensions2 = ExtensionsConfig([ExtendedAction()])
         self.assertNotEqual(extensions1, extensions2)
         self.assertTrue(not extensions1 == extensions2)
         self.assertTrue(extensions1 < extensions2)
@@ -5564,7 +5564,7 @@ class TestExtensionsConfig(unittest.TestCase):
       one not empty).
       """
         extensions1 = ExtensionsConfig([])
-        extensions2 = ExtensionsConfig([ExtendedAction(),])
+        extensions2 = ExtensionsConfig([ExtendedAction()])
         self.assertNotEqual(extensions1, extensions2)
         self.assertTrue(not extensions1 == extensions2)
         self.assertTrue(extensions1 < extensions2)
@@ -5578,8 +5578,8 @@ class TestExtensionsConfig(unittest.TestCase):
       Test comparison of two differing objects, actions differs (both not
       empty).
       """
-        extensions1 = ExtensionsConfig([ExtendedAction(name="one"),])
-        extensions2 = ExtensionsConfig([ExtendedAction(name="two"),])
+        extensions1 = ExtensionsConfig([ExtendedAction(name="one")])
+        extensions2 = ExtensionsConfig([ExtendedAction(name="two")])
         self.assertNotEqual(extensions1, extensions2)
         self.assertTrue(not extensions1 == extensions2)
         self.assertTrue(extensions1 < extensions2)
@@ -5930,7 +5930,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.overrides)
-        self.failUnlessAssignRaises(ValueError, collect, "overrides", [None,])
+        self.failUnlessAssignRaises(ValueError, collect, "overrides", [None])
         self.assertEqual(None, collect.overrides)
 
     def testConstructor_026(self):
@@ -5940,7 +5940,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.overrides)
-        self.failUnlessAssignRaises(ValueError, collect, "overrides", ["hello",])
+        self.failUnlessAssignRaises(ValueError, collect, "overrides", ["hello"])
         self.assertEqual(None, collect.overrides)
 
     def testConstructor_027(self):
@@ -5950,7 +5950,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.overrides)
-        self.failUnlessAssignRaises(ValueError, collect, "overrides", ["hello", CommandOverride("one", "/one"),])
+        self.failUnlessAssignRaises(ValueError, collect, "overrides", ["hello", CommandOverride("one", "/one")])
         self.assertEqual(None, collect.overrides)
 
     def testConstructor_028(self):
@@ -6002,7 +6002,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.hooks)
-        self.failUnlessAssignRaises(ValueError, collect, "hooks", [None,])
+        self.failUnlessAssignRaises(ValueError, collect, "hooks", [None])
         self.assertEqual(None, collect.hooks)
 
     def testConstructor_033(self):
@@ -6012,7 +6012,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.hooks)
-        self.failUnlessAssignRaises(ValueError, collect, "hooks", ["hello",])
+        self.failUnlessAssignRaises(ValueError, collect, "hooks", ["hello"])
         self.assertEqual(None, collect.hooks)
 
     def testConstructor_034(self):
@@ -6022,7 +6022,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         collect = OptionsConfig()
         self.assertEqual(None, collect.hooks)
-        self.failUnlessAssignRaises(ValueError, collect, "hooks", ["hello", PreActionHook("stage", "df -k"),])
+        self.failUnlessAssignRaises(ValueError, collect, "hooks", ["hello", PreActionHook("stage", "df -k")])
         self.assertEqual(None, collect.hooks)
 
     def testConstructor_035(self):
@@ -6115,15 +6115,15 @@ class TestOptionsConfig(unittest.TestCase):
       """
         options = OptionsConfig()
         self.assertEqual(None, options.managedActions)
-        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["KEN",])
+        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["KEN"])
         self.assertEqual(None, options.managedActions)
         self.failUnlessAssignRaises(ValueError, options, "managedActions", ["hello, world"])
         self.assertEqual(None, options.managedActions)
-        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["dash-word",])
+        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["dash-word"])
         self.assertEqual(None, options.managedActions)
-        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["",])
+        self.failUnlessAssignRaises(ValueError, options, "managedActions", [""])
         self.assertEqual(None, options.managedActions)
-        self.failUnlessAssignRaises(ValueError, options, "managedActions", [None,])
+        self.failUnlessAssignRaises(ValueError, options, "managedActions", [None])
         self.assertEqual(None, options.managedActions)
 
     def testConstructor_045(self):
@@ -6132,7 +6132,7 @@ class TestOptionsConfig(unittest.TestCase):
       """
         options = OptionsConfig()
         self.assertEqual(None, options.managedActions)
-        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["ken", "dash-word",])
+        self.failUnlessAssignRaises(ValueError, options, "managedActions", ["ken", "dash-word"])
 
     ############################
     # Test comparison operators
@@ -6838,7 +6838,7 @@ class TestPeersConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values (non-empty lists).
       """
-        peers = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertEqual([LocalPeer(),], peers.localPeers)
         self.assertEqual([RemotePeer(),], peers.remotePeers)
 
@@ -6891,7 +6891,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.localPeers)
-        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [None,])
+        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [None])
         self.assertEqual(None, peers.localPeers)
 
     def testConstructor_009(self):
@@ -6901,7 +6901,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.localPeers)
-        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [RemotePeer()])
         self.assertEqual(None, peers.localPeers)
 
     def testConstructor_010(self):
@@ -6911,7 +6911,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.localPeers)
-        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [LocalPeer(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, peers, "localPeers", [LocalPeer(), RemotePeer()])
         self.assertEqual(None, peers.localPeers)
 
     def testConstructor_011(self):
@@ -6963,7 +6963,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.remotePeers)
-        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [None,])
+        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [None])
         self.assertEqual(None, peers.remotePeers)
 
     def testConstructor_016(self):
@@ -6973,7 +6973,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.remotePeers)
-        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [LocalPeer(),])
+        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [LocalPeer()])
         self.assertEqual(None, peers.remotePeers)
 
     def testConstructor_017(self):
@@ -6983,7 +6983,7 @@ class TestPeersConfig(unittest.TestCase):
       """
         peers = PeersConfig()
         self.assertEqual(None, peers.remotePeers)
-        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [LocalPeer(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, peers, "remotePeers", [LocalPeer(), RemotePeer()])
         self.assertEqual(None, peers.remotePeers)
 
     ############################
@@ -7022,8 +7022,8 @@ class TestPeersConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None (non-empty lists).
       """
-        peers1 = PeersConfig([LocalPeer(),], [RemotePeer(),])
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers1 = PeersConfig([LocalPeer(),], [RemotePeer()])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertEqual(peers1, peers2)
         self.assertTrue(peers1 == peers2)
         self.assertTrue(not peers1 < peers2)
@@ -7037,8 +7037,8 @@ class TestPeersConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one None,
       one empty).
       """
-        peers1 = PeersConfig(None, [RemotePeer(),])
-        peers2 = PeersConfig([], [RemotePeer(),])
+        peers1 = PeersConfig(None, [RemotePeer()])
+        peers2 = PeersConfig([], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7052,8 +7052,8 @@ class TestPeersConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one None,
       one not empty).
       """
-        peers1 = PeersConfig(None, [RemotePeer(),])
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers1 = PeersConfig(None, [RemotePeer()])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7067,8 +7067,8 @@ class TestPeersConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one empty,
       one not empty).
       """
-        peers1 = PeersConfig([], [RemotePeer(),])
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers1 = PeersConfig([], [RemotePeer()])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7082,8 +7082,8 @@ class TestPeersConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (both not
       empty).
       """
-        peers1 = PeersConfig([LocalPeer(name="one"),], [RemotePeer(),])
-        peers2 = PeersConfig([LocalPeer(name="two"),], [RemotePeer(),])
+        peers1 = PeersConfig([LocalPeer(name="one"),], [RemotePeer()])
+        peers2 = PeersConfig([LocalPeer(name="two"),], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7113,7 +7113,7 @@ class TestPeersConfig(unittest.TestCase):
       one not empty).
       """
         peers1 = PeersConfig([LocalPeer(),], None)
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7128,7 +7128,7 @@ class TestPeersConfig(unittest.TestCase):
       one not empty).
       """
         peers1 = PeersConfig([LocalPeer(),], [])
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(),])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(peers1 < peers2)
@@ -7142,8 +7142,8 @@ class TestPeersConfig(unittest.TestCase):
       Test comparison of two differing objects, remotePeers differs (both not
       empty).
       """
-        peers1 = PeersConfig([LocalPeer(),], [RemotePeer(name="two"),])
-        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(name="one"),])
+        peers1 = PeersConfig([LocalPeer(),], [RemotePeer(name="two")])
+        peers2 = PeersConfig([LocalPeer(),], [RemotePeer(name="one")])
         self.assertNotEqual(peers1, peers2)
         self.assertTrue(not peers1 == peers2)
         self.assertTrue(not peers1 < peers2)
@@ -7224,7 +7224,7 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values (lists not empty).
       """
-        collect = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertEqual("/target", collect.targetDir)
         self.assertEqual("incr", collect.collectMode)
         self.assertEqual("tar", collect.archiveMode)
@@ -7427,7 +7427,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", ["",])
+        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", [""])
         self.assertEqual(None, collect.absoluteExcludePaths)
 
     def testConstructor_024(self):
@@ -7437,7 +7437,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", ["one",])
+        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", ["one"])
         self.assertEqual(None, collect.absoluteExcludePaths)
 
     def testConstructor_025(self):
@@ -7447,7 +7447,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.absoluteExcludePaths)
-        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", ["one", "/two",])
+        self.failUnlessAssignRaises(ValueError, collect, "absoluteExcludePaths", ["one", "/two"])
         self.assertEqual(None, collect.absoluteExcludePaths)
 
     def testConstructor_026(self):
@@ -7497,7 +7497,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg",])
+        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg"])
         self.assertEqual(None, collect.excludePatterns)
 
     def testConstructor_029b(self):
@@ -7506,7 +7506,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg", "*",])
+        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg", "*"])
         self.assertEqual(None, collect.excludePatterns)
 
     def testConstructor_029c(self):
@@ -7516,7 +7516,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.excludePatterns)
-        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg", "valid",])
+        self.failUnlessAssignRaises(ValueError, collect, "excludePatterns", ["*.jpg", "valid"])
         self.assertEqual(None, collect.excludePatterns)
 
     def testConstructor_030(self):
@@ -7568,7 +7568,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectDirs)
-        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", [None,])
+        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", [None])
         self.assertEqual(None, collect.collectDirs)
 
     def testConstructor_035(self):
@@ -7578,7 +7578,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectDirs)
-        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", ["hello",])
+        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", ["hello"])
         self.assertEqual(None, collect.collectDirs)
 
     def testConstructor_036(self):
@@ -7588,7 +7588,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectDirs)
-        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", ["hello", CollectDir(),])
+        self.failUnlessAssignRaises(ValueError, collect, "collectDirs", ["hello", CollectDir()])
         self.assertEqual(None, collect.collectDirs)
 
     def testConstructor_037(self):
@@ -7640,7 +7640,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectFiles)
-        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", [None,])
+        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", [None])
         self.assertEqual(None, collect.collectFiles)
 
     def testConstructor_042(self):
@@ -7650,7 +7650,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectFiles)
-        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", ["hello",])
+        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", ["hello"])
         self.assertEqual(None, collect.collectFiles)
 
     def testConstructor_043(self):
@@ -7660,7 +7660,7 @@ class TestCollectConfig(unittest.TestCase):
       """
         collect = CollectConfig()
         self.assertEqual(None, collect.collectFiles)
-        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", ["hello", CollectFile(),])
+        self.failUnlessAssignRaises(ValueError, collect, "collectFiles", ["hello", CollectFile()])
         self.assertEqual(None, collect.collectFiles)
 
     ############################
@@ -7685,8 +7685,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None.
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertEqual(collect1, collect2)
         self.assertTrue(collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7699,8 +7699,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, targetDir differs (one None).
       """
-        collect1 = CollectConfig(None, "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target2", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig(None, "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target2", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7713,8 +7713,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, targetDir differs.
       """
-        collect1 = CollectConfig("/target1", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target2", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target1", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target2", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7727,8 +7727,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, collectMode differs (one None).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", None, "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", None, "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7741,8 +7741,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, collectMode differs.
       """
-        collect1 = CollectConfig("/target", "daily", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "daily", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7755,8 +7755,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, archiveMode differs (one None).
       """
-        collect1 = CollectConfig("/target", "incr", None, "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", None, "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7769,8 +7769,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, archiveMode differs.
       """
-        collect1 = CollectConfig("/target", "incr", "targz", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tarbz2", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "targz", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tarbz2", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7783,8 +7783,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, ignoreFile differs (one None).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", None, ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", None, ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7797,8 +7797,8 @@ class TestCollectConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, ignoreFile differs.
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore1", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore2", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore1", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore2", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7812,8 +7812,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, absoluteExcludePaths differs
       (one None, one empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", None, ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", [], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", None, ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", [], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7827,8 +7827,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, absoluteExcludePaths differs
       (one None, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", None, ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", None, ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7842,8 +7842,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, absoluteExcludePaths differs
       (one empty, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", [], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", [], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7860,7 +7860,7 @@ class TestCollectConfig(unittest.TestCase):
         collect1 = CollectConfig(
             "/target", "incr", "tar", "ignore", ["/path", "/path2",], ["pattern",], [CollectFile(),], [CollectDir(),]
         )
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7874,8 +7874,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, excludePatterns differs (one
       None, one empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], None, [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], [], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], None, [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], [], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7889,8 +7889,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, excludePatterns differs (one
       None, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], None, [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], None, [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7904,8 +7904,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, excludePatterns differs (one
       empty, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], [], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], [], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7919,7 +7919,7 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, excludePatterns differs (both
       not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         collect2 = CollectConfig(
             "/target", "incr", "tar", "ignore", ["/path",], ["pattern", "bogus",], [CollectFile(),], [CollectDir(),]
         )
@@ -7952,7 +7952,7 @@ class TestCollectConfig(unittest.TestCase):
       None, one not empty).
       """
         collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], None)
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -7966,7 +7966,7 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, collectDirs differs (one
       empty, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
@@ -7984,7 +7984,7 @@ class TestCollectConfig(unittest.TestCase):
         collect1 = CollectConfig(
             "/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(), CollectDir(),]
         )
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -7998,8 +7998,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, collectFiles differs (one
       None, one empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], None, [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], None, [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -8013,8 +8013,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, collectFiles differs (one
       None, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], None, [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], None, [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(collect1 < collect2)
@@ -8028,8 +8028,8 @@ class TestCollectConfig(unittest.TestCase):
       Test comparison of two differing objects, collectFiles differs (one
       empty, one not empty).
       """
-        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [], [CollectDir(),])
+        collect1 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -8046,7 +8046,7 @@ class TestCollectConfig(unittest.TestCase):
         collect1 = CollectConfig(
             "/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(), CollectFile(),], [CollectDir()]
         )
-        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir(),])
+        collect2 = CollectConfig("/target", "incr", "tar", "ignore", ["/path",], ["pattern",], [CollectFile(),], [CollectDir()])
         self.assertNotEqual(collect1, collect2)
         self.assertTrue(not collect1 == collect2)
         self.assertTrue(not collect1 < collect2)
@@ -8119,7 +8119,7 @@ class TestStageConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values (non-empty lists).
       """
-        stage = StageConfig("/whatever", [LocalPeer(),], [RemotePeer(),])
+        stage = StageConfig("/whatever", [LocalPeer(),], [RemotePeer()])
         self.assertEqual("/whatever", stage.targetDir)
         self.assertEqual([LocalPeer(),], stage.localPeers)
         self.assertEqual([RemotePeer(),], stage.remotePeers)
@@ -8209,7 +8209,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.localPeers)
-        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [None,])
+        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [None])
         self.assertEqual(None, stage.localPeers)
 
     def testConstructor_013(self):
@@ -8219,7 +8219,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.localPeers)
-        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [RemotePeer()])
         self.assertEqual(None, stage.localPeers)
 
     def testConstructor_014(self):
@@ -8229,7 +8229,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.localPeers)
-        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [LocalPeer(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, stage, "localPeers", [LocalPeer(), RemotePeer()])
         self.assertEqual(None, stage.localPeers)
 
     def testConstructor_015(self):
@@ -8281,7 +8281,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.remotePeers)
-        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [None,])
+        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [None])
         self.assertEqual(None, stage.remotePeers)
 
     def testConstructor_020(self):
@@ -8291,7 +8291,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.remotePeers)
-        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [LocalPeer(),])
+        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [LocalPeer()])
         self.assertEqual(None, stage.remotePeers)
 
     def testConstructor_021(self):
@@ -8301,7 +8301,7 @@ class TestStageConfig(unittest.TestCase):
       """
         stage = StageConfig()
         self.assertEqual(None, stage.remotePeers)
-        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [LocalPeer(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, stage, "remotePeers", [LocalPeer(), RemotePeer()])
         self.assertEqual(None, stage.remotePeers)
 
     ############################
@@ -8340,8 +8340,8 @@ class TestStageConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None (non-empty lists).
       """
-        stage1 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
+        stage1 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
         self.assertEqual(stage1, stage2)
         self.assertTrue(stage1 == stage2)
         self.assertTrue(not stage1 < stage2)
@@ -8368,8 +8368,8 @@ class TestStageConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, targetDir differs.
       """
-        stage1 = StageConfig("/target1", [LocalPeer(),], [RemotePeer(),])
-        stage2 = StageConfig("/target2", [LocalPeer(),], [RemotePeer(),])
+        stage1 = StageConfig("/target1", [LocalPeer(),], [RemotePeer()])
+        stage2 = StageConfig("/target2", [LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8383,8 +8383,8 @@ class TestStageConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one None,
       one empty).
       """
-        stage1 = StageConfig("/target", None, [RemotePeer(),])
-        stage2 = StageConfig("/target", [], [RemotePeer(),])
+        stage1 = StageConfig("/target", None, [RemotePeer()])
+        stage2 = StageConfig("/target", [], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8398,8 +8398,8 @@ class TestStageConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one None,
       one not empty).
       """
-        stage1 = StageConfig("/target", None, [RemotePeer(),])
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
+        stage1 = StageConfig("/target", None, [RemotePeer()])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8413,8 +8413,8 @@ class TestStageConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (one empty,
       one not empty).
       """
-        stage1 = StageConfig("/target", [], [RemotePeer(),])
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
+        stage1 = StageConfig("/target", [], [RemotePeer()])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8428,8 +8428,8 @@ class TestStageConfig(unittest.TestCase):
       Test comparison of two differing objects, localPeers differs (both not
       empty).
       """
-        stage1 = StageConfig("/target", [LocalPeer(name="one"),], [RemotePeer(),])
-        stage2 = StageConfig("/target", [LocalPeer(name="two"),], [RemotePeer(),])
+        stage1 = StageConfig("/target", [LocalPeer(name="one"),], [RemotePeer()])
+        stage2 = StageConfig("/target", [LocalPeer(name="two"),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8459,7 +8459,7 @@ class TestStageConfig(unittest.TestCase):
       one not empty).
       """
         stage1 = StageConfig("/target", [LocalPeer(),], None)
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8474,7 +8474,7 @@ class TestStageConfig(unittest.TestCase):
       one not empty).
       """
         stage1 = StageConfig("/target", [LocalPeer(),], [])
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(),])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer()])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(stage1 < stage2)
@@ -8488,8 +8488,8 @@ class TestStageConfig(unittest.TestCase):
       Test comparison of two differing objects, remotePeers differs (both not
       empty).
       """
-        stage1 = StageConfig("/target", [LocalPeer(),], [RemotePeer(name="two"),])
-        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(name="one"),])
+        stage1 = StageConfig("/target", [LocalPeer(),], [RemotePeer(name="two")])
+        stage2 = StageConfig("/target", [LocalPeer(),], [RemotePeer(name="one")])
         self.assertNotEqual(stage1, stage2)
         self.assertTrue(not stage1 == stage2)
         self.assertTrue(not stage1 < stage2)
@@ -9462,7 +9462,7 @@ class TestPurgeConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values (non-empty list).
       """
-        purge = PurgeConfig([PurgeDir(),])
+        purge = PurgeConfig([PurgeDir()])
         self.assertEqual([PurgeDir(),], purge.purgeDirs)
 
     def testConstructor_004(self):
@@ -9513,7 +9513,7 @@ class TestPurgeConfig(unittest.TestCase):
       """
         purge = PurgeConfig()
         self.assertEqual(None, purge.purgeDirs)
-        self.failUnlessAssignRaises(ValueError, purge, "purgeDirs", [RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, purge, "purgeDirs", [RemotePeer()])
         self.assertEqual(None, purge.purgeDirs)
 
     def testConstructor_010(self):
@@ -9522,7 +9522,7 @@ class TestPurgeConfig(unittest.TestCase):
       """
         purge = PurgeConfig()
         self.assertEqual(None, purge.purgeDirs)
-        self.failUnlessAssignRaises(ValueError, purge, "purgeDirs", [PurgeDir(), RemotePeer(),])
+        self.failUnlessAssignRaises(ValueError, purge, "purgeDirs", [PurgeDir(), RemotePeer()])
         self.assertEqual(None, purge.purgeDirs)
 
     ############################
@@ -9563,8 +9563,8 @@ class TestPurgeConfig(unittest.TestCase):
       Test comparison of two identical objects, all attributes non-None
       (non-empty lists).
       """
-        purge1 = PurgeConfig([PurgeDir(),])
-        purge2 = PurgeConfig([PurgeDir(),])
+        purge1 = PurgeConfig([PurgeDir()])
+        purge2 = PurgeConfig([PurgeDir()])
         self.assertEqual(purge1, purge2)
         self.assertTrue(purge1 == purge2)
         self.assertTrue(not purge1 < purge2)
@@ -9594,7 +9594,7 @@ class TestPurgeConfig(unittest.TestCase):
       one not empty).
       """
         purge1 = PurgeConfig(None)
-        purge2 = PurgeConfig([PurgeDir(),])
+        purge2 = PurgeConfig([PurgeDir()])
         self.assertNotEqual(purge1, purge2)
         self.assertTrue(not purge1 == purge2)
         self.assertTrue(purge1 < purge2)
@@ -9609,7 +9609,7 @@ class TestPurgeConfig(unittest.TestCase):
       one not empty).
       """
         purge1 = PurgeConfig([])
-        purge2 = PurgeConfig([PurgeDir(),])
+        purge2 = PurgeConfig([PurgeDir()])
         self.assertNotEqual(purge1, purge2)
         self.assertTrue(not purge1 == purge2)
         self.assertTrue(purge1 < purge2)
@@ -9623,8 +9623,8 @@ class TestPurgeConfig(unittest.TestCase):
       Test comparison of two differing objects, purgeDirs differs (both not
       empty).
       """
-        purge1 = PurgeConfig([PurgeDir("/two"),])
-        purge2 = PurgeConfig([PurgeDir("/one"),])
+        purge1 = PurgeConfig([PurgeDir("/two")])
+        purge2 = PurgeConfig([PurgeDir("/one")])
         self.assertNotEqual(purge1, purge2)
         self.assertTrue(not purge1 == purge2)
         self.assertTrue(not purge1 < purge2)
@@ -10099,7 +10099,7 @@ class TestConfig(unittest.TestCase):
 
         config2 = Config()
         config2.reference = ReferenceConfig()
-        config2.extensions = ExtensionsConfig([ExtendedAction("one", "two", "three"),])
+        config2.extensions = ExtensionsConfig([ExtendedAction("one", "two", "three")])
         config2.options = OptionsConfig()
         config2.peers = PeersConfig()
         config2.collect = CollectConfig()
@@ -10121,7 +10121,7 @@ class TestConfig(unittest.TestCase):
       """
         config1 = Config()
         config1.reference = ReferenceConfig()
-        config1.extensions = ExtensionsConfig([ExtendedAction("one", "two", "three"),])
+        config1.extensions = ExtensionsConfig([ExtendedAction("one", "two", "three")])
         config1.options = OptionsConfig()
         config1.peers = PeersConfig()
         config1.collect = CollectConfig()
@@ -10131,7 +10131,7 @@ class TestConfig(unittest.TestCase):
 
         config2 = Config()
         config2.reference = ReferenceConfig()
-        config2.extensions = ExtensionsConfig([ExtendedAction("one", "two", "four"),])
+        config2.extensions = ExtensionsConfig([ExtendedAction("one", "two", "four")])
         config2.options = OptionsConfig()
         config2.peers = PeersConfig()
         config2.collect = CollectConfig()
@@ -10405,7 +10405,7 @@ class TestConfig(unittest.TestCase):
         config2.reference = ReferenceConfig()
         config2.extensions = ExtensionsConfig()
         config2.options = OptionsConfig()
-        config2.peers = PeersConfig(localPeers=[LocalPeer(),])
+        config2.peers = PeersConfig(localPeers=[LocalPeer()])
         config2.collect = CollectConfig()
         config2.stage = StageConfig()
         config2.store = StoreConfig()
@@ -12202,7 +12202,7 @@ class TestConfig(unittest.TestCase):
                 "CedarBackup3.extend.postgresql",
                 "executeAction",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["one",]),
+                dependencies=ActionDependencies(beforeList=["one"]),
             )
         )
         expected.extensions.actions.append(
@@ -12211,7 +12211,7 @@ class TestConfig(unittest.TestCase):
                 "CedarBackup3.extend.subversion",
                 "executeAction",
                 index=None,
-                dependencies=ActionDependencies(afterList=["one",]),
+                dependencies=ActionDependencies(afterList=["one"]),
             )
         )
         expected.extensions.actions.append(
@@ -12220,7 +12220,7 @@ class TestConfig(unittest.TestCase):
                 "CedarBackup3.extend.mbox",
                 "executeAction",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["one",], afterList=["one",]),
+                dependencies=ActionDependencies(beforeList=["one",], afterList=["one"]),
             )
         )
         expected.extensions.actions.append(
@@ -12673,7 +12673,7 @@ class TestConfig(unittest.TestCase):
                 "module",
                 "something",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one",]),
+                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one"]),
             )
         )
         expected.options = OptionsConfig(
@@ -12875,7 +12875,7 @@ class TestConfig(unittest.TestCase):
                 "module",
                 "something",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one",]),
+                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one"]),
             )
         )
         expected.options = OptionsConfig(
@@ -13076,7 +13076,7 @@ class TestConfig(unittest.TestCase):
                 "module",
                 "something",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one",]),
+                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one"]),
             )
         )
         expected.options = OptionsConfig(
@@ -13114,7 +13114,7 @@ class TestConfig(unittest.TestCase):
                 managedActions=None,
             )
         )
-        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge",]))
+        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge"]))
         expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
         expected.collect.absoluteExcludePaths = [
             "/etc/cback.conf",
@@ -13197,7 +13197,7 @@ class TestConfig(unittest.TestCase):
                 "module",
                 "something",
                 index=None,
-                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one",]),
+                dependencies=ActionDependencies(beforeList=["a", "b", "c",], afterList=["one"]),
             )
         )
         expected.options = OptionsConfig(
@@ -13235,7 +13235,7 @@ class TestConfig(unittest.TestCase):
                 managedActions=None,
             )
         )
-        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge",]))
+        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge"]))
         expected.collect = CollectConfig("/opt/backup/collect", "daily", "targz", ".cbignore")
         expected.collect.absoluteExcludePaths = [
             "/etc/cback.conf",
@@ -13348,7 +13348,7 @@ class TestConfig(unittest.TestCase):
                 managedActions=None,
             )
         )
-        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge",]))
+        expected.peers.remotePeers.append(RemotePeer("machine5", "/bb", managed=False, managedActions=["collect", "purge"]))
         self.assertEqual(expected, config)
 
     def testParse_040(self):
@@ -13432,7 +13432,7 @@ class TestConfig(unittest.TestCase):
         before.extensions.orderMode = "dependency"
         before.extensions.actions = []
         before.extensions.actions.append(
-            ExtendedAction("name", "module", "function", dependencies=ActionDependencies(beforeList=["b",], afterList=["a",]))
+            ExtendedAction("name", "module", "function", dependencies=ActionDependencies(beforeList=["b",], afterList=["a"]))
         )
         self.assertRaises(ValueError, before.extractXml, validate=True)
 

@@ -414,7 +414,7 @@ class TestIsoImage(unittest.TestCase):
       Raises:
          IOError: If the command cannot be executed
       """
-        mountPath = self.buildPath(["mnt",])
+        mountPath = self.buildPath(["mnt"])
         os.mkdir(mountPath)
         args = [
             "attach",
@@ -445,7 +445,7 @@ class TestIsoImage(unittest.TestCase):
       Raises:
          IOError: If the command cannot be executed
       """
-        mountPath = self.buildPath(["mnt",])
+        mountPath = self.buildPath(["mnt"])
         os.mkdir(mountPath)
         args = [
             "mount",
@@ -493,7 +493,7 @@ class TestIsoImage(unittest.TestCase):
       Raises:
          IOError: If the command cannot be executed
       """
-        mountPath = self.buildPath(["mnt",])
+        mountPath = self.buildPath(["mnt"])
         args = [
             "detach",
             mountPath,
@@ -524,7 +524,7 @@ class TestIsoImage(unittest.TestCase):
       Raises:
          IOError: If the command cannot be executed
       """
-        mountPath = self.buildPath(["mnt",])
+        mountPath = self.buildPath(["mnt"])
         args = [
             "umount",
             "-d",
@@ -894,7 +894,7 @@ class TestIsoImage(unittest.TestCase):
         """
       Attempt to add a non-existent entry.
       """
-        file1 = self.buildPath([INVALID_FILE,])
+        file1 = self.buildPath([INVALID_FILE])
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
@@ -904,7 +904,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a an entry that is a soft link to a file.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "dir002", "link003",])
+        file1 = self.buildPath(["tree9", "dir002", "link003"])
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
@@ -914,7 +914,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a an entry that is a soft link to a directory
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "link001",])
+        file1 = self.buildPath(["tree9", "link001"])
         isoImage = IsoImage()
         self.assertRaises(ValueError, isoImage.addEntry, file1)
 
@@ -923,7 +923,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file, no graft point set.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
@@ -934,7 +934,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file, graft point set on the object level.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
@@ -945,7 +945,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file, graft point set on the method level.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff")
@@ -956,7 +956,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file, graft point set on the object and method levels.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff")
@@ -969,7 +969,7 @@ class TestIsoImage(unittest.TestCase):
       value being unset).
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint=None)
@@ -1013,7 +1013,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file, no graft point set, contentsOnly=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, contentsOnly=True)
@@ -1025,7 +1025,7 @@ class TestIsoImage(unittest.TestCase):
       contentsOnly=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, contentsOnly=True)
@@ -1037,7 +1037,7 @@ class TestIsoImage(unittest.TestCase):
       contentsOnly=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
@@ -1049,7 +1049,7 @@ class TestIsoImage(unittest.TestCase):
       contentsOnly=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="stuff", contentsOnly=True)
@@ -1062,7 +1062,7 @@ class TestIsoImage(unittest.TestCase):
       value being unset), contentsOnly=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint=None, contentsOnly=True)
@@ -1132,7 +1132,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file that has already been added, override=False.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
@@ -1145,7 +1145,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a file that has already been added, override=True.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage()
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1)
@@ -1158,7 +1158,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a directory that has already been added, override=False, changing the graft point.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="one")
@@ -1171,7 +1171,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to add a directory that has already been added, override=True, changing the graft point.
       """
         self.extractTar("tree9")
-        file1 = self.buildPath(["tree9", "file001",])
+        file1 = self.buildPath(["tree9", "file001"])
         isoImage = IsoImage(graftPoint="whatever")
         self.assertEqual({}, isoImage.entries)
         isoImage.addEntry(file1, graftPoint="one")
@@ -1198,7 +1198,7 @@ class TestIsoImage(unittest.TestCase):
       Test with non-empty empty list.
       """
         self.extractTar("tree9")
-        dir1 = self.buildPath(["tree9",])
+        dir1 = self.buildPath(["tree9"])
         isoImage = IsoImage()
         isoImage.addEntry(dir1, graftPoint="base")
         result = isoImage.getEstimatedSize()
@@ -1214,7 +1214,7 @@ class TestIsoImage(unittest.TestCase):
       Attempt to write an image containing no entries.
       """
         isoImage = IsoImage()
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         self.assertRaises(ValueError, isoImage.writeImage, imagePath)
 
     @unittest.skipUnless(runAllTests(), "Limited test suite")
@@ -1224,8 +1224,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1242,8 +1242,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint="base")
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1263,7 +1263,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1290,7 +1290,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint=os.path.join("something", "else"))
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1318,7 +1318,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1336,7 +1336,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint="point")
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1356,8 +1356,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1)
         isoImage.addEntry(dir1)
         isoImage.writeImage(imagePath)
@@ -1378,8 +1378,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint="other")
         isoImage.addEntry(dir1)
         isoImage.writeImage(imagePath)
@@ -1402,8 +1402,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint=None)
         isoImage.addEntry(dir1)
         isoImage.writeImage(imagePath)
@@ -1433,8 +1433,8 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
         file2 = self.buildPath(["tree9", "file002"])
-        dir1 = self.buildPath(["tree9", "dir001",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1)
         isoImage.addEntry(file2, graftPoint="other")
         isoImage.addEntry(dir1, graftPoint="base")
@@ -1464,8 +1464,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint="something")
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1505,8 +1505,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1523,8 +1523,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint="base", contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1543,7 +1543,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1569,7 +1569,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         dir1 = self.buildPath(["tree9", "dir002"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint=os.path.join("something", "else"), contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1597,7 +1597,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1616,7 +1616,7 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        imagePath = self.buildPath(["image.iso",])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint="point", contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)
@@ -1636,8 +1636,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, contentsOnly=True)
         isoImage.addEntry(dir1, contentsOnly=True)
         isoImage.writeImage(imagePath)
@@ -1657,8 +1657,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001", "dir002",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001", "dir002"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint="other", contentsOnly=True)
         isoImage.addEntry(dir1, contentsOnly=True)
         isoImage.writeImage(imagePath)
@@ -1680,8 +1680,8 @@ class TestIsoImage(unittest.TestCase):
         self.extractTar("tree9")
         isoImage = IsoImage(graftPoint="base")
         file1 = self.buildPath(["tree9", "file001"])
-        dir1 = self.buildPath(["tree9", "dir001",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, graftPoint=None, contentsOnly=True)
         isoImage.addEntry(dir1, contentsOnly=True)
         self.assertRaises(IOError, isoImage.writeImage, imagePath)  # ends up with a duplicate name
@@ -1696,8 +1696,8 @@ class TestIsoImage(unittest.TestCase):
         isoImage = IsoImage()
         file1 = self.buildPath(["tree9", "file001"])
         file2 = self.buildPath(["tree9", "file002"])
-        dir1 = self.buildPath(["tree9", "dir001",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9", "dir001"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(file1, contentsOnly=True)
         isoImage.addEntry(file2, graftPoint="other", contentsOnly=True)
         isoImage.addEntry(dir1, graftPoint="base", contentsOnly=True)
@@ -1727,8 +1727,8 @@ class TestIsoImage(unittest.TestCase):
       """
         self.extractTar("tree9")
         isoImage = IsoImage()
-        dir1 = self.buildPath(["tree9",])
-        imagePath = self.buildPath(["image.iso",])
+        dir1 = self.buildPath(["tree9"])
+        imagePath = self.buildPath(["image.iso"])
         isoImage.addEntry(dir1, graftPoint="something", contentsOnly=True)
         isoImage.writeImage(imagePath)
         mountPath = self.mountImage(imagePath)

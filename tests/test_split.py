@@ -831,7 +831,7 @@ class TestFunctions(unittest.TestCase):
       Test with integer split size, removeSource=False.
       """
         self.extractTar("tree21")
-        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b",])
+        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
         splitSize = ByteQuantity("320", UNIT_BYTES)
         _splitFile(sourcePath, splitSize, None, None, removeSource=False)
@@ -843,7 +843,7 @@ class TestFunctions(unittest.TestCase):
       Test with floating point split size, removeSource=False.
       """
         self.extractTar("tree21")
-        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b",])
+        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
         splitSize = ByteQuantity("320.1", UNIT_BYTES)
         _splitFile(sourcePath, splitSize, None, None, removeSource=False)
@@ -855,7 +855,7 @@ class TestFunctions(unittest.TestCase):
       Test with integer split size, removeSource=True.
       """
         self.extractTar("tree21")
-        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b",])
+        sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
         self.assertTrue(os.path.exists(sourcePath))
         splitSize = ByteQuantity("320", UNIT_BYTES)
         _splitFile(sourcePath, splitSize, None, None, removeSource=True)
@@ -883,7 +883,7 @@ class TestFunctions(unittest.TestCase):
             os.environ["LC_TELEPHONE"] = locale
             os.environ["LC_TIME"] = locale
             self.extractTar("tree21")
-            sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b",])
+            sourcePath = self.buildPath(["tree21", "2007", "01", "01", "system1", "file001.a.b"])
             self.assertTrue(os.path.exists(sourcePath))
             splitSize = ByteQuantity("320", UNIT_BYTES)
             _splitFile(sourcePath, splitSize, None, None, removeSource=True)
@@ -899,7 +899,7 @@ class TestFunctions(unittest.TestCase):
       Test with a nonexistent daily staging directory.
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", INVALID_PATH,])
+        dailyDir = self.buildPath(["tree21", "2007", "01", INVALID_PATH])
         self.assertFalse(os.path.exists(dailyDir))
         sizeLimit = ByteQuantity("1.0", UNIT_MBYTES)
         splitSize = ByteQuantity("100000", UNIT_BYTES)
@@ -910,7 +910,7 @@ class TestFunctions(unittest.TestCase):
       Test with 1.0 MB limit.
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
@@ -939,7 +939,7 @@ class TestFunctions(unittest.TestCase):
       Test with 100,000 byte limit, chopped down to 10 KB
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
@@ -970,7 +970,7 @@ class TestFunctions(unittest.TestCase):
       Test with 99,999 byte limit, chopped down to 5,000 bytes
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
@@ -1003,7 +1003,7 @@ class TestFunctions(unittest.TestCase):
       Test with 99,998 byte limit, chopped down to 2500 bytes
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
@@ -1038,7 +1038,7 @@ class TestFunctions(unittest.TestCase):
       Test with 10,000 byte limit, chopped down to 1024 bytes
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))
@@ -1073,7 +1073,7 @@ class TestFunctions(unittest.TestCase):
       Test with 9,999 byte limit, chopped down to 1000 bytes
       """
         self.extractTar("tree21")
-        dailyDir = self.buildPath(["tree21", "2007", "01", "01",])
+        dailyDir = self.buildPath(["tree21", "2007", "01", "01"])
         self.assertTrue(os.path.exists(dailyDir) and os.path.isdir(dailyDir))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file001.a.b")))
         self.assertTrue(os.path.exists(os.path.join(dailyDir, "system1", "file002")))

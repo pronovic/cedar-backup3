@@ -206,7 +206,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values, with one database.
       """
-        mysql = MysqlConfig("user", "password", "gzip", True, ["one",])
+        mysql = MysqlConfig("user", "password", "gzip", True, ["one"])
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
         self.assertEqual("gzip", mysql.compressMode)
@@ -217,7 +217,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test constructor with all values filled in, with valid values, with multiple databases.
       """
-        mysql = MysqlConfig("user", "password", "bzip2", True, ["one", "two",])
+        mysql = MysqlConfig("user", "password", "bzip2", True, ["one", "two"])
         self.assertEqual("user", mysql.user)
         self.assertEqual("password", mysql.password)
         self.assertEqual("bzip2", mysql.compressMode)
@@ -406,7 +406,7 @@ class TestMysqlConfig(unittest.TestCase):
       """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
-        self.failUnlessAssignRaises(ValueError, mysql, "databases", ["",])
+        self.failUnlessAssignRaises(ValueError, mysql, "databases", [""])
         self.assertEqual(None, mysql.databases)
 
     def testConstructor_024(self):
@@ -415,7 +415,7 @@ class TestMysqlConfig(unittest.TestCase):
       """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.databases)
-        self.failUnlessAssignRaises(ValueError, mysql, "databases", ["good", "", "alsogood",])
+        self.failUnlessAssignRaises(ValueError, mysql, "databases", ["good", "", "alsogood"])
         self.assertEqual(None, mysql.databases)
 
     ############################
@@ -468,8 +468,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two identical objects, all attributes non-None, list non-empty.
       """
-        mysql1 = MysqlConfig("user", "password", "none", True, ["whatever",])
-        mysql2 = MysqlConfig("user", "password", "none", True, ["whatever",])
+        mysql1 = MysqlConfig("user", "password", "none", True, ["whatever"])
+        mysql2 = MysqlConfig("user", "password", "none", True, ["whatever"])
         self.assertEqual(mysql1, mysql2)
         self.assertTrue(mysql1 == mysql2)
         self.assertTrue(not mysql1 < mysql2)
@@ -496,8 +496,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, user differs.
       """
-        mysql1 = MysqlConfig("user1", "password", "gzip", True, ["whatever",])
-        mysql2 = MysqlConfig("user2", "password", "gzip", True, ["whatever",])
+        mysql1 = MysqlConfig("user1", "password", "gzip", True, ["whatever"])
+        mysql2 = MysqlConfig("user2", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -524,8 +524,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, password differs.
       """
-        mysql1 = MysqlConfig("user", "password1", "gzip", True, ["whatever",])
-        mysql2 = MysqlConfig("user", "password2", "gzip", True, ["whatever",])
+        mysql1 = MysqlConfig("user", "password1", "gzip", True, ["whatever"])
+        mysql2 = MysqlConfig("user", "password2", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -552,8 +552,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, compressMode differs.
       """
-        mysql1 = MysqlConfig("user", "password", "bzip2", True, ["whatever",])
-        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever",])
+        mysql1 = MysqlConfig("user", "password", "bzip2", True, ["whatever"])
+        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -580,8 +580,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, all differs.
       """
-        mysql1 = MysqlConfig("user", "password", "gzip", False, ["whatever",])
-        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever",])
+        mysql1 = MysqlConfig("user", "password", "gzip", False, ["whatever"])
+        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -609,7 +609,7 @@ class TestMysqlConfig(unittest.TestCase):
       Test comparison of two differing objects, databases differs (one None, one not empty).
       """
         mysql1 = MysqlConfig()
-        mysql2 = MysqlConfig(databases=["whatever",])
+        mysql2 = MysqlConfig(databases=["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -623,7 +623,7 @@ class TestMysqlConfig(unittest.TestCase):
       Test comparison of two differing objects, databases differs (one empty, one not empty).
       """
         mysql1 = MysqlConfig("user", "password", "gzip", True, [])
-        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever",])
+        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)
@@ -636,8 +636,8 @@ class TestMysqlConfig(unittest.TestCase):
         """
       Test comparison of two differing objects, databases differs (both not empty).
       """
-        mysql1 = MysqlConfig("user", "password", "gzip", True, ["whatever",])
-        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever", "bogus",])
+        mysql1 = MysqlConfig("user", "password", "gzip", True, ["whatever"])
+        mysql2 = MysqlConfig("user", "password", "gzip", True, ["whatever", "bogus"])
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(not mysql1 < mysql2)  # note: different than standard due to unsorted list
@@ -874,7 +874,7 @@ class TestLocalConfig(unittest.TestCase):
       Test validate on a non-empty mysql section, all=True, non-empty databases.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["whatever",])
+        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["whatever"])
         self.assertRaises(ValueError, config.validate)
 
     def testValidate_006(self):
@@ -898,7 +898,7 @@ class TestLocalConfig(unittest.TestCase):
       Test validate on a non-empty mysql section, all=False, non-empty databases.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "gzip", False, ["whatever",])
+        config.mysql = MysqlConfig("user", "password", "gzip", False, ["whatever"])
         config.validate()
 
     def testValidate_009(self):
@@ -1063,7 +1063,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with single database, all other values filled in, all=True.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database",])
+        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_006(self):
@@ -1071,7 +1071,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with single database, all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "none", False, ["database",])
+        config.mysql = MysqlConfig("user", "password", "none", False, ["database"])
         self.validateAddConfig(config)
 
     def testAddConfig_007(self):
@@ -1079,7 +1079,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, all other values filled in, all=True.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database1", "database2",])
+        config.mysql = MysqlConfig("user", "password", "bzip2", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_008(self):
@@ -1087,7 +1087,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", "password", "gzip", True, ["database1", "database2",])
+        config.mysql = MysqlConfig("user", "password", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_009(self):
@@ -1095,7 +1095,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, user=None but all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig(None, "password", "gzip", True, ["database1", "database2",])
+        config.mysql = MysqlConfig(None, "password", "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_010(self):
@@ -1103,7 +1103,7 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, password=None but all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig("user", None, "gzip", True, ["database1", "database2",])
+        config.mysql = MysqlConfig("user", None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)
 
     def testAddConfig_011(self):
@@ -1111,5 +1111,5 @@ class TestLocalConfig(unittest.TestCase):
       Test with multiple databases, user=None and password=None but all other values filled in, all=False.
       """
         config = LocalConfig()
-        config.mysql = MysqlConfig(None, None, "gzip", True, ["database1", "database2",])
+        config.mysql = MysqlConfig(None, None, "gzip", True, ["database1", "database2"])
         self.validateAddConfig(config)

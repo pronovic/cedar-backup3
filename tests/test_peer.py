@@ -261,7 +261,7 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator with non-existent collect directory.
       """
         name = "peer1"
-        collectDir = self.buildPath([NONEXISTENT_FILE,])
+        collectDir = self.buildPath([NONEXISTENT_FILE])
         self.assertTrue(not os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
         result = peer.checkCollectIndicator()
@@ -272,7 +272,7 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator with non-readable collect directory.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         os.chmod(collectDir, 0o200)  # user can't read his own directory
@@ -286,8 +286,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does not exist.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR,])
+        collectDir = self.buildPath(["collect"])
+        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(not os.path.exists(collectIndicator))
@@ -300,8 +300,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does not exist, custom name.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        collectIndicator = self.buildPath(["collect", NONEXISTENT_FILE,])
+        collectDir = self.buildPath(["collect"])
+        collectIndicator = self.buildPath(["collect", NONEXISTENT_FILE])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(not os.path.exists(collectIndicator))
@@ -314,8 +314,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does exist.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR,])
+        collectDir = self.buildPath(["collect"])
+        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
         os.mkdir(collectDir)
         with open(collectIndicator, "w") as f:
             f.write("")  # touch the file
@@ -330,8 +330,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does exist, custom name.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        collectIndicator = self.buildPath(["collect", "different",])
+        collectDir = self.buildPath(["collect"])
+        collectIndicator = self.buildPath(["collect", "different"])
         os.mkdir(collectDir)
         with open(collectIndicator, "w") as f:
             f.write("")  # touch the file
@@ -347,8 +347,8 @@ class TestLocalPeer(unittest.TestCase):
       with spaces in the collect directory path.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect directory here",])
-        collectIndicator = self.buildPath(["collect directory here", DEF_COLLECT_INDICATOR,])
+        collectDir = self.buildPath(["collect directory here"])
+        collectIndicator = self.buildPath(["collect directory here", DEF_COLLECT_INDICATOR])
         os.mkdir(collectDir)
         with open(collectIndicator, "w") as f:
             f.write("")  # touch the file
@@ -365,8 +365,8 @@ class TestLocalPeer(unittest.TestCase):
       with spaces in the collect directory path and collect indicator file name.
       """
         name = "peer1"
-        collectDir = self.buildPath([" collect dir ",])
-        collectIndicator = self.buildPath([" collect dir ", "different, file",])
+        collectDir = self.buildPath([" collect dir "])
+        collectIndicator = self.buildPath([" collect dir ", "different, file"])
         os.mkdir(collectDir)
         with open(collectIndicator, "w") as f:
             f.write("")  # touch the file
@@ -385,7 +385,7 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to write stage indicator with non-existent collect directory.
       """
         name = "peer1"
-        collectDir = self.buildPath([NONEXISTENT_FILE,])
+        collectDir = self.buildPath([NONEXISTENT_FILE])
         self.assertTrue(not os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
         self.assertRaises(ValueError, peer.writeStageIndicator)
@@ -397,7 +397,7 @@ class TestLocalPeer(unittest.TestCase):
       """
         if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
-            collectDir = self.buildPath(["collect",])
+            collectDir = self.buildPath(["collect"])
             os.mkdir(collectDir)
             self.assertTrue(os.path.exists(collectDir))
             os.chmod(collectDir, 0o500)  # read-only for user
@@ -412,7 +412,7 @@ class TestLocalPeer(unittest.TestCase):
       """
         if not isRunningAsRoot():  # root doesn't get this error
             name = "peer1"
-            collectDir = self.buildPath(["collect",])
+            collectDir = self.buildPath(["collect"])
             os.mkdir(collectDir)
             self.assertTrue(os.path.exists(collectDir))
             os.chmod(collectDir, 0o500)  # read-only for user
@@ -425,8 +425,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to write stage indicator in a valid directory.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR,])
+        collectDir = self.buildPath(["collect"])
+        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
@@ -438,8 +438,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to write stage indicator in a valid directory, custom name.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        stageIndicator = self.buildPath(["collect", "whatever",])
+        collectDir = self.buildPath(["collect"])
+        stageIndicator = self.buildPath(["collect", "whatever"])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
@@ -452,8 +452,8 @@ class TestLocalPeer(unittest.TestCase):
       in the directory name.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect from this directory",])
-        stageIndicator = self.buildPath(["collect from this directory", DEF_STAGE_INDICATOR,])
+        collectDir = self.buildPath(["collect from this directory"])
+        stageIndicator = self.buildPath(["collect from this directory", DEF_STAGE_INDICATOR])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
@@ -466,8 +466,8 @@ class TestLocalPeer(unittest.TestCase):
       with spaces in the directory name and the file name.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect ME",])
-        stageIndicator = self.buildPath(["collect ME", "   whatever-it-takes you",])
+        collectDir = self.buildPath(["collect ME"])
+        stageIndicator = self.buildPath(["collect ME", "   whatever-it-takes you"])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         peer = LocalPeer(name, collectDir)
@@ -483,8 +483,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to stage files with non-existent collect directory.
       """
         name = "peer1"
-        collectDir = self.buildPath([NONEXISTENT_FILE,])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath([NONEXISTENT_FILE])
+        targetDir = self.buildPath(["target"])
         os.mkdir(targetDir)
         self.assertTrue(not os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -496,8 +496,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to stage files with non-readable collect directory.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["collect"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(collectDir)
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -512,7 +512,7 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to stage files with non-absolute target directory.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         targetDir = "this/is/not/absolute"
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -524,8 +524,8 @@ class TestLocalPeer(unittest.TestCase):
       Attempt to stage files with non-existent target directory.
       """
         name = "peer1"
-        collectDir = self.buildPath(["collect",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["collect"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(not os.path.exists(targetDir))
@@ -541,7 +541,7 @@ class TestLocalPeer(unittest.TestCase):
             self.extractTar("tree1")
             name = "peer1"
             collectDir = self.buildPath(["tree1"])
-            targetDir = self.buildPath(["target",])
+            targetDir = self.buildPath(["target"])
             os.mkdir(targetDir)
             self.assertTrue(os.path.exists(collectDir))
             self.assertTrue(os.path.exists(targetDir))
@@ -558,8 +558,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree2")
         name = "peer1"
-        collectDir = self.buildPath(["tree2", "dir001",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["tree2", "dir001"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -576,8 +576,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree2")
         name = "peer1"
-        collectDir = self.buildPath(["tree2", "dir001",])
-        targetDir = self.buildPath([" target directory ",])  # windows doesn't like paths that start or end with a space
+        collectDir = self.buildPath(["tree2", "dir001"])
+        targetDir = self.buildPath([" target directory "])  # windows doesn't like paths that start or end with a space
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -592,8 +592,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = "peer1"
-        collectDir = self.buildPath(["tree1",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["tree1"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -618,8 +618,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = "peer1"
-        collectDir = self.buildPath(["tree1",])
-        targetDir = self.buildPath(["target directory place",])
+        collectDir = self.buildPath(["tree1"])
+        targetDir = self.buildPath(["target directory place"])
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -643,8 +643,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree9")
         name = "peer1"
-        collectDir = self.buildPath(["tree9",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["tree9"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -659,8 +659,8 @@ class TestLocalPeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = "peer1"
-        collectDir = self.buildPath(["tree1",])
-        targetDir = self.buildPath(["target",])
+        collectDir = self.buildPath(["tree1"])
+        targetDir = self.buildPath(["target"])
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(os.path.exists(targetDir))
@@ -681,13 +681,13 @@ class TestLocalPeer(unittest.TestCase):
         self.assertTrue("file005" in stagedFiles)
         self.assertTrue("file006" in stagedFiles)
         self.assertTrue("file007" in stagedFiles)
-        self.assertEqual(permissions, self.getFileMode(["target", "file001",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file002",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file003",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file004",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file005",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file006",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file007",]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file001"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file002"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file003"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file004"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file005"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file006"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file007"]))
 
 
 ######################
@@ -917,7 +917,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator with invalid hostname.
       """
         name = NONEXISTENT_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -932,7 +932,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator with invalid remote user.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = NONEXISTENT_USER
         os.mkdir(collectDir)
@@ -947,7 +947,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator with invalid rcp command.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = getLogin()
         rcpCommand = NONEXISTENT_CMD
@@ -963,7 +963,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator with non-existent collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = getLogin()
         self.assertTrue(not os.path.exists(collectDir))
@@ -977,7 +977,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator with non-readable collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = getLogin()
         os.mkdir(collectDir)
@@ -994,9 +994,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does not exist.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR,])
+        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1011,9 +1011,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does not exist, custom name.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect", NONEXISTENT_FILE,])
+        collectIndicator = self.buildPath(["collect", NONEXISTENT_FILE])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1029,9 +1029,9 @@ class TestRemotePeer(unittest.TestCase):
       exist, where the collect directory contains spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect directory path",])
+        collectDir = self.buildPath(["collect directory path"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect directory path", DEF_COLLECT_INDICATOR,])
+        collectIndicator = self.buildPath(["collect directory path", DEF_COLLECT_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1047,9 +1047,9 @@ class TestRemotePeer(unittest.TestCase):
       exist, custom name, where the collect directory contains spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["  you collect here   ",])
+        collectDir = self.buildPath(["  you collect here   "])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["  you collect here   ", NONEXISTENT_FILE,])
+        collectIndicator = self.buildPath(["  you collect here   ", NONEXISTENT_FILE])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1064,9 +1064,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does exist.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR,])
+        collectIndicator = self.buildPath(["collect", DEF_COLLECT_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1083,9 +1083,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to check collect indicator collect indicator file that does exist, custom name.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect", "whatever",])
+        collectIndicator = self.buildPath(["collect", "whatever"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1103,9 +1103,9 @@ class TestRemotePeer(unittest.TestCase):
       where the collect directory contains spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect NOT",])
+        collectDir = self.buildPath(["collect NOT"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath(["collect NOT", DEF_COLLECT_INDICATOR,])
+        collectIndicator = self.buildPath(["collect NOT", DEF_COLLECT_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1124,9 +1124,9 @@ class TestRemotePeer(unittest.TestCase):
       contain spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath([" from here collect!",])
+        collectDir = self.buildPath([" from here collect!"])
         workingDir = "/tmp"
-        collectIndicator = self.buildPath([" from here collect!", "whatever, dude",])
+        collectIndicator = self.buildPath([" from here collect!", "whatever, dude"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1147,7 +1147,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator with invalid hostname.
       """
         name = NONEXISTENT_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1161,7 +1161,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator with invalid remote user.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = NONEXISTENT_USER
         os.mkdir(collectDir)
@@ -1175,7 +1175,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator with invalid rcp command.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = getLogin()
         rcpCommand = NONEXISTENT_CMD
@@ -1190,7 +1190,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator with non-existent collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         remoteUser = getLogin()
         self.assertTrue(not os.path.exists(collectDir))
@@ -1203,9 +1203,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator with non-writable collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR,])
+        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1222,9 +1222,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator in a valid directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR,])
+        stageIndicator = self.buildPath(["collect", DEF_STAGE_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1239,9 +1239,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to write stage indicator in a valid directory, custom name.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        stageIndicator = self.buildPath(["collect", "newname",])
+        stageIndicator = self.buildPath(["collect", "newname"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1257,9 +1257,9 @@ class TestRemotePeer(unittest.TestCase):
       spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["with spaces collect",])
+        collectDir = self.buildPath(["with spaces collect"])
         workingDir = "/tmp"
-        stageIndicator = self.buildPath(["with spaces collect", DEF_STAGE_INDICATOR,])
+        stageIndicator = self.buildPath(["with spaces collect", DEF_STAGE_INDICATOR])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1275,9 +1275,9 @@ class TestRemotePeer(unittest.TestCase):
       the collect directory and the custom name contain spaces.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect, soon",])
+        collectDir = self.buildPath(["collect, soon"])
         workingDir = "/tmp"
-        stageIndicator = self.buildPath(["collect, soon", "new name with spaces",])
+        stageIndicator = self.buildPath(["collect, soon", "new name with spaces"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1296,9 +1296,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with invalid hostname.
       """
         name = NONEXISTENT_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1313,9 +1313,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with invalid remote user.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = NONEXISTENT_USER
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1330,9 +1330,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with invalid rcp command.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         rcpCommand = NONEXISTENT_CMD
         os.mkdir(collectDir)
@@ -1348,9 +1348,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with non-existent collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(targetDir)
         self.assertTrue(not os.path.exists(collectDir))
@@ -1364,9 +1364,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with non-readable collect directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1383,7 +1383,7 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with non-absolute target directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
         targetDir = "non/absolute/target"
         remoteUser = getLogin()
@@ -1397,9 +1397,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with non-existent target directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1413,9 +1413,9 @@ class TestRemotePeer(unittest.TestCase):
       Attempt to stage files with non-writable target directory.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1434,9 +1434,9 @@ class TestRemotePeer(unittest.TestCase):
       *Note:* This test assumes that scp returns an error if the directory is empty.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1455,9 +1455,9 @@ class TestRemotePeer(unittest.TestCase):
       *Note:* This test assumes that scp returns an error if the directory is empty.
       """
         name = REMOTE_HOST
-        collectDir = self.buildPath(["collect",])
+        collectDir = self.buildPath(["collect"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target DIR",])
+        targetDir = self.buildPath(["target DIR"])
         remoteUser = getLogin()
         os.mkdir(collectDir)
         os.mkdir(targetDir)
@@ -1475,9 +1475,9 @@ class TestRemotePeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = REMOTE_HOST
-        collectDir = self.buildPath(["tree1",])
+        collectDir = self.buildPath(["tree1"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1504,9 +1504,9 @@ class TestRemotePeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = REMOTE_HOST
-        collectDir = self.buildPath(["tree1",])
+        collectDir = self.buildPath(["tree1"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["write the target here, now!",])
+        targetDir = self.buildPath(["write the target here, now!"])
         remoteUser = getLogin()
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1533,9 +1533,9 @@ class TestRemotePeer(unittest.TestCase):
       """
         self.extractTar("tree9")
         name = REMOTE_HOST
-        collectDir = self.buildPath(["tree9",])
+        collectDir = self.buildPath(["tree9"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1555,9 +1555,9 @@ class TestRemotePeer(unittest.TestCase):
       """
         self.extractTar("tree1")
         name = REMOTE_HOST
-        collectDir = self.buildPath(["tree1",])
+        collectDir = self.buildPath(["tree1"])
         workingDir = "/tmp"
-        targetDir = self.buildPath(["target",])
+        targetDir = self.buildPath(["target"])
         remoteUser = getLogin()
         os.mkdir(targetDir)
         self.assertTrue(os.path.exists(collectDir))
@@ -1579,13 +1579,13 @@ class TestRemotePeer(unittest.TestCase):
         self.assertTrue("file005" in stagedFiles)
         self.assertTrue("file006" in stagedFiles)
         self.assertTrue("file007" in stagedFiles)
-        self.assertEqual(permissions, self.getFileMode(["target", "file001",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file002",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file003",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file004",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file005",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file006",]))
-        self.assertEqual(permissions, self.getFileMode(["target", "file007",]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file001"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file002"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file003"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file004"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file005"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file006"]))
+        self.assertEqual(permissions, self.getFileMode(["target", "file007"]))
 
     ##############################
     # Test executeRemoteCommand()
@@ -1596,7 +1596,7 @@ class TestRemotePeer(unittest.TestCase):
         """
       Test that a simple remote command succeeds.
       """
-        target = self.buildPath(["test.txt",])
+        target = self.buildPath(["test.txt"])
         name = REMOTE_HOST
         remoteUser = getLogin()
         command = "touch %s" % target

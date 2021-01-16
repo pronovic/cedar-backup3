@@ -961,7 +961,7 @@ class TestTool(unittest.TestCase):
         """
         if not platformMacOsX():
             self.extractTar("tree13")
-            sourceDir = self.buildPath(["tree13",])
+            sourceDir = self.buildPath(["tree13"])
             sourceFiles = _buildSourceFiles(sourceDir)
             self.assertRaises(ValueError, _checkSourceFiles, sourceDir=sourceDir, sourceFiles=sourceFiles)
 
@@ -970,6 +970,6 @@ class TestTool(unittest.TestCase):
       Test _checkSourceFiles() where all files have a valid encoding.
       """
         self.extractTar("tree4")
-        sourceDir = self.buildPath(["tree4", "dir006",])
+        sourceDir = self.buildPath(["tree4", "dir006"])
         sourceFiles = _buildSourceFiles(sourceDir)
         _checkSourceFiles(sourceDir=sourceDir, sourceFiles=sourceFiles)

@@ -447,7 +447,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a valid path with no graft point, before calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "dir002",])
+        path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         self.assertRaises(ValueError, dvdwriter.addImageEntry, path, None)
@@ -457,7 +457,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a valid path with a graft point, before calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "dir002",])
+        path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         self.assertRaises(ValueError, dvdwriter.addImageEntry, path, "ken")
@@ -467,7 +467,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a non-existent path with no graft point, before calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "bogus",])
+        path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         self.assertRaises(ValueError, dvdwriter.addImageEntry, path, None)
@@ -477,7 +477,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a non-existent path with a graft point, before calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "bogus",])
+        path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         self.assertRaises(ValueError, dvdwriter.addImageEntry, path, "ken")
@@ -487,7 +487,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a valid path with no graft point, after calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "dir002",])
+        path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
@@ -499,7 +499,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a valid path with a graft point, after calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "dir002",])
+        path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
@@ -511,7 +511,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a non-existent path with no graft point, after calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "bogus",])
+        path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
@@ -522,7 +522,7 @@ class TestDvdWriter(unittest.TestCase):
       Add a non-existent path with a graft point, after calling initializeImage().
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "bogus",])
+        path = self.buildPath(["tree9", "bogus"])
         self.assertFalse(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
@@ -533,7 +533,7 @@ class TestDvdWriter(unittest.TestCase):
       Add the same path several times.
       """
         self.extractTar("tree9")
-        path = self.buildPath(["tree9", "dir002",])
+        path = self.buildPath(["tree9", "dir002"])
         self.assertTrue(os.path.exists(path))
         dvdwriter = DvdWriter("/dev/dvd", unittest=True)
         dvdwriter.initializeImage(False, None)
@@ -551,9 +551,9 @@ class TestDvdWriter(unittest.TestCase):
       Add several paths.
       """
         self.extractTar("tree9")
-        path1 = self.buildPath(["tree9", "dir001",])
-        path2 = self.buildPath(["tree9", "dir002",])
-        path3 = self.buildPath(["tree9", "dir001", "dir001",])
+        path1 = self.buildPath(["tree9", "dir001"])
+        path2 = self.buildPath(["tree9", "dir002"])
+        path3 = self.buildPath(["tree9", "dir001", "dir001"])
         self.assertTrue(os.path.exists(path1))
         self.assertTrue(os.path.exists(path2))
         self.assertTrue(os.path.exists(path3))
