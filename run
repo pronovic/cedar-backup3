@@ -15,6 +15,12 @@ run_activate() {
 # Regenerate the docs/requirements.txt file
 run_requirements() {
    poetry export --format=requirements.txt --without-hashes --dev --output=docs/requirements.txt
+
+   # if possible, convert the file to unix line endings
+   which dos2unix > /dev/null
+   if [ $? == 0 ]; then
+      dos2unix --quiet docs/requirements.txt
+   fi
 }
 
 # Run the Pylint code checker
