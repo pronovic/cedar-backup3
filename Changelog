@@ -1,3 +1,7 @@
+Version 3.5.4     unreleased
+
+	* Fix a couple of links in docs/index.rst (cut-and-paste error).
+
 Version 3.5.3     17 Jan 2021
 
 	* Move to newer build dependencies (Black, isort, etc.).

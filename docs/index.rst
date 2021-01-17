@@ -7,7 +7,7 @@ Release v\ |version|
     :target: https://pypi.org/project/cedar-backup3/
 
 .. image:: https://img.shields.io/pypi/l/cedar-backup3.svg
-    :target: https://github.com/pronovic/apologies/blob/master/LICENSE
+    :target: https://github.com/pronovic/cedar-backup3/blob/master/LICENSE
 
 .. image:: https://img.shields.io/pypi/wheel/cedar-backup3.svg
     :target: https://pypi.org/project/cedar-backup3/
@@ -16,7 +16,7 @@ Release v\ |version|
     :target: https://pypi.org/project/cedar-backup3/
 
 .. image:: https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg
-    :target: https://github.com/pronovic/apologies/actions?query=workflow%3A%22Test+Suite%22
+    :target: https://github.com/pronovic/cedar-backup3/actions?query=workflow%3A%22Test+Suite%22
 
 .. image:: https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat
     :target: https://cedar-backup3.readthedocs.io/en/stable/
