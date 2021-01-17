@@ -266,7 +266,7 @@ ignore-docstrings=yes
 
 # Maximum number of characters on a single line.
 # Technically, we like to use 132 characters, but there's a little leeway
-max-line-length=136
+max-line-length=138
 
 # Maximum number of lines in a module
 max-module-lines=2000
