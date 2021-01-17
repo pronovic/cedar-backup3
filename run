@@ -215,13 +215,13 @@ run_release() {
       sed -i "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
       sed -i "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
       sed -i "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
-      sed -i "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+      sed -i "s/^Version $VERSION\s\s*unreleased/Version $VERSION     $DATE/g" Changelog
    else
       # BSD set requires you to set an empty backup file extension
       sed -i "" "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
       sed -i "" "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
       sed -i "" "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
-      sed -i "" "s/^Version $VERSION     unreleased/Version $VERSION     $DATE/g" Changelog
+      sed -i "" "s/^Version $VERSION\s\s*unreleased/Version $VERSION     $DATE/g" Changelog
    fi
 
    git diff $FILES
