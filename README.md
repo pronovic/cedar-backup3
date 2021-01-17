@@ -5,7 +5,7 @@
 ![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
 ![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
 ![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
-![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
+![](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)
 
 ## What is Cedar Backup?
 
@@ -56,7 +56,7 @@ environment, etc.
 See the [Changelog](https://github.com/pronovic/cedar-backup3/blob/master/Changelog) for
 recent changes.
 
-The [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/index.html) documents 
+The [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/stable/manual/index.html) documents 
 the process of setting up and using Cedar Backup.  In the manual, you can find
 information about how Cedar Backup works, how to install and configure it, how
 to schedule backups, how to restore data, and how to get support.
@@ -70,7 +70,7 @@ instance: the `IsoImage` class represents an ISO CD image;
 the `CdWriter` class represents a CD-R/CD-RW writer device; and the
 `FilesystemList` class represents a list of files and directories on a
 filesystem.  For more information, see 
-the [API Reference](https://cedar-backup3.readthedocs.io/en/latest/autoapi/index.html) documentation.
+the [API Reference](https://cedar-backup3.readthedocs.io/en/stable/autoapi/index.html) documentation.
 
 ## Package Distributions
 
@@ -83,7 +83,7 @@ $ pip install cedar-backup3
 
 In addition to the Python package, Cedar Backup requires a variety of external 
 system dependencies.  For more information, see 
-the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/install.html#installing-the-python-package).
+the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/stable/manual/install.html#installing-the-python-package).
     
 Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'

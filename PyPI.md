@@ -2,7 +2,7 @@
 ![](https://img.shields.io/pypi/wheel/cedar-backup3.svg)
 ![](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)
 ![](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)
-![](https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat)
+![](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)
 
 [Cedar Backup](https://github.com/pronovic/cedar-backup3) is a software package
 designed to manage system backups for a pool of local and remote machines.
@@ -16,12 +16,12 @@ beginning of each week.  If your hardware is new enough, Cedar Backup can
 write multisession discs, allowing you to add incremental data to a disc on
 a daily basis.  Alternately, Cedar Backup can write your backups to the Amazon
 S3 cloud rather than relying on physical media.  See 
-the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/latest/manual/index.html) for details.
+the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/stable/manual/index.html) for details.
 
 Besides offering command-line utilities to manage the backup process, Cedar
 Backup provides a well-organized library of backup-related functionality.
 For more information, see 
-the [API Reference](https://cedar-backup3.readthedocs.io/en/latest/autoapi/index.html).
+the [API Reference](https://cedar-backup3.readthedocs.io/en/stable/autoapi/index.html).
 
 There are many different backup software systems in the open source world.
 Cedar Backup aims to fill a niche: it aims to be a good fit for people who need
