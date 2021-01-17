@@ -26,7 +26,7 @@ Switch ($command)
 
     pylint {
       Write-Output "Running pylint checks..." 
-      poetry run pylint --rcfile=.pylintrc src/CedarBackup3
+      poetry run pylint src/CedarBackup3
     }
 }
 
