@@ -246,7 +246,7 @@ Under **Project Structure**, mark both `src` and `tests` as source folders.  In 
 **Exclude Files** box, enter the following:
 
 ```
-.coverage;.coveragerc;.github;.htmlcov;.idea;.isort.cfg;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run;tools.ps1
+LICENSE;PyPI.md;.coverage;.coveragerc;.github;.gitignore;.gitattributes;.htmlcov;.idea;.isort.cfg;.mypy.ini;.mypy_cache;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run;tools.ps1;dos2unix.py
 ```
 
 Finally, go to the gear icon in the project panel, and uncheck **Show Excluded
@@ -270,7 +270,7 @@ Still on the **Sources** tab, find the **Exclude files** box.  Enter the
 following, and click **Apply**:
 
 ```
-.coverage;.coveragerc;.github;.htmlcov;.idea;.isort.cfg;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run;tools.ps1
+LICENSE;PyPI.md;.coverage;.coveragerc;.github;.gitignore;.gitattributes;.htmlcov;.idea;.isort.cfg;.mypy.ini;.mypy_cache;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;build;dist;docs/_build;out;poetry.lock;run;tools.ps1;dos2unix.py
 ```
 
 On the **Dependencies** tab, select the Python SDK you configured above as the
