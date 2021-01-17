@@ -198,7 +198,7 @@ run_release() {
       exit 1
    fi
 
-   head -1 Changelog | grep -q "^Version $VERSION     unreleased"
+   head -1 Changelog | grep -q "^Version $VERSION\s\s*unreleased"
    if [ $? != 0 ]; then
       echo "*** Unreleased version v$VERSION is not at the head of the Changelog"
       exit 1
