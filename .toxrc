@@ -22,7 +22,7 @@ commands =
    poetry version
    poetry run python -c 'from CedarBackup3.util import Diagnostics; Diagnostics().printDiagnostics(prefix="*** ")'
    poetry run pre-commit run --all-files --show-diff-on-failure
-   poetry run pylint --rcfile=.pylintrc src/CedarBackup3
+   poetry run pylint src/CedarBackup3
 
 [testenv:docs]
 whitelist_externals = poetry
