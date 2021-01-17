@@ -162,13 +162,13 @@ Usage: run <command>
 - run install: Setup the virtualenv via Poetry and install pre-commit hooks
 - run activate: Print command needed to activate the Poetry virtualenv
 - run requirements: Regenerate the docs/requirements.txt file
-- run checks: Run the PyLint code checker
-- run format: Run the code formatters
 - run diagnostics: Print diagnostics about the Cedar Backup runtime environment
+- run format: Run the code formatters
+- run checks: Run the PyLint code checker
 - run test: Run the unit test suite
-- run tox: Run the broader Tox test suite used by the GitHub CI action
 - run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io
 - run docs -o: Build the Sphinx documentation and open in a browser
+- run tox: Run the broader Tox test suite used by the GitHub CI action
 - run release: Release a specific version and tag the code
 - run publish: Publish the current code to PyPI and push to GitHub
 
