@@ -183,9 +183,9 @@ run_release() {
    VERSION=$1
    COPYRIGHT="2004-$(date +'%Y')"
    DATE=$(date +'%d %b %Y')
-   TAG="CEDAR_BACKUPV3_V$VERSION"
+   TAG="v$VERSION" # follow PEP 440 naming convention
    FILES="pyproject.toml Changelog src/CedarBackup3/release.py"
-   MESSAGE="Release $VERSION to PyPI"
+   MESSAGE="Release v$VERSION to PyPI"
 
    if [ "$(git branch -a | grep '^\*' | sed 's/^\* //')" != "master" ]; then
       echo "*** You are not on master; you cannot release from this branch"
@@ -194,13 +194,13 @@ run_release() {
 
    git tag -l "$TAG" | grep -q "$TAG"
    if [ $? = 0 ]; then
-      echo "*** Version $VERSION already tagged as $TAG"
+      echo "*** Version v$VERSION already tagged"
       exit 1
    fi
 
    head -1 Changelog | grep -q "^Version $VERSION     unreleased"
    if [ $? != 0 ]; then
-      echo "*** Unreleased version $VERSION is not at the head of the Changelog"
+      echo "*** Unreleased version v$VERSION is not at the head of the Changelog"
       exit 1
    fi
 
@@ -228,18 +228,18 @@ run_release() {
 
    git commit --no-verify -m "$MESSAGE" $FILES
    if [ $? != 0 ]; then
-      echo "*** Commit step failed."
+      echo "*** Commit step failed"
       exit 1
    fi
 
    git tag -a "$TAG" -m "$MESSAGE"
    if [ $? != 0 ]; then
-      echo "*** Tag step failed."
+      echo "*** Tag step failed"
       exit 1
    fi
 
    echo ""
-   echo "*** Version $VERSION has been released and commited; you may publish now"
+   echo "*** Version v$VERSION has been released and commited; you may publish now"
    echo ""
 }
 
