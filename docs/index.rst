@@ -15,8 +15,8 @@ Release v\ |version|
 .. image:: https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg
     :target: https://github.com/pronovic/cedar-backup3
 
-.. image:: https://readthedocs.org/projects/cedar-backup3/badge/?version=latest&style=flat
-    :target: https://cedar-backup3.readthedocs.io/en/latest/
+.. image:: https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat
+    :target: https://cedar-backup3.readthedocs.io/en/stable/
 
 Cedar Backup is a software package designed to manage system backups for a pool
 of local and remote machines. 

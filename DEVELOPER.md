@@ -384,7 +384,7 @@ even via the Git Bash interpreter.  I have created a Powershell script
 
 ### Documentation
 
-Documentation at [Read the Docs](https://cedar-backup3.readthedocs.io/en/latest/)
+Documentation at [Read the Docs](https://cedar-backup3.readthedocs.io/en/stable/)
 is generated via a GitHub hook each time code is pushed to master.  So, there
 is no formal release process for the documentation.
 
