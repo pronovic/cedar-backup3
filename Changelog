@@ -1,3 +1,12 @@
+Version 3.5.3     unreleased
+
+	* Move to newer build dependencies (Black, isort, etc.).
+	* Make adjustments to code formatting to match new Black version.
+	* Force docs/requirements.txt to have UNIX line endings
+	* Convert to PEP 440 convention for Git tags (i.e. "v3.5.3").
+	* Standardize and improve badges in markdown, so they are all links.
+	* Simplify pylint configuration and use "-j 0" to speed it up.
+
 Version 3.5.2     14 Jan 2021
 
 	* Improve debug output for pre/post action hooks.
