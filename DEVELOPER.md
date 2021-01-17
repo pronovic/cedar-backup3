@@ -417,8 +417,7 @@ $ run release 3.3.0
 This updates `pyproject.toml`, the `Changelog`, and `release.py` to reflect the
 released version, then commits those changes and tags the code.  Nothing has
 been pushed or published yet, so you can always remove the tag (i.e. `git tag
--d CEDAR_BACKUPV3_V3.3.0`) and revert your commit (`git reset HEAD~1`) if you
-made a mistake.
+-d v3.3.0`) and revert your commit (`git reset HEAD~1`) if you made a mistake.
 
 Finally, publish the release:
 
