@@ -6,7 +6,7 @@ keywords = [ 'local', 'remote', 'backup', 'scp' ]
 authors = ["Kenneth J. Pronovici <pronovic@ieee.org>"]
 license = "GPL-2.0-only"
 readme = "PyPI.md"
-homepage = "https://github.com/pronovic/cedar-backup3"
+homepage = "https://pypi.org/project/cedar-backup3/"
 repository = "https://github.com/pronovic/cedar-backup3"
 include = [ "CREDITS", "Changelog", "LICENSE", "README.md", "docs", "manpages", "samples", "tests", ]
 packages = [ { include = "CedarBackup3", from = "src" } ]
