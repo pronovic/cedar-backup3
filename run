@@ -15,7 +15,7 @@ run_activate() {
 # Regenerate the docs/requirements.txt file
 run_requirements() {
    poetry export --format=requirements.txt --without-hashes --dev --output=docs/requirements.txt
-   poetry run python ./dos2unix.py docs/requirements.txt  # see notes in DEVELOPER.md
+   poetry run python ./dos2unix.py docs/requirements.txt
 }
 
 # Run the Pylint code checker
@@ -205,6 +205,7 @@ run_release() {
    fi
 
    poetry version $VERSION
+   poetry run python ./dos2unix.py pyproject.toml
 
    # annoyingly, BSD sed and GNU sed are not compatible on the syntax for -i
    # I failed miserably in all attempts to put the sed command (with empty string) into a variable
