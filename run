@@ -30,6 +30,11 @@ run_pylint() {
    poetry run pylint -j 0 src/CedarBackup3
 }
 
+# Run the MyPy code checker
+run_mypy() {
+   echo "There are no MyPy checks for this project"
+}
+
 # Run the black code formatter
 run_black() {
    echo "Running black formatter..."
@@ -276,6 +281,9 @@ case $1 in
       ;;
    *lint)
       run_pylint
+      ;;
+   mypy)
+      run_mypy
       ;;
    check*)
       run_pylint
