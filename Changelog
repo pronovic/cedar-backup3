@@ -1,4 +1,4 @@
-Version 3.6.0     unreleased
+Version 3.6.0     03 Feb 2021
 
 	* Always use '/' internally for paths, even on the Windows platform.
 	* Change the way archive filenames are generated to eliminate leading '-' characters.
