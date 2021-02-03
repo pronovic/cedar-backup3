@@ -29,11 +29,6 @@ Switch ($command)
       poetry run pylint -j 0 src/CedarBackup3
     }
 
-    bandit {
-      Write-Output "Running bandit checks..." 
-      poetry run bandit -b .bandit_baseline -r src
-    }
-
     safety {
       Write-Output "Running safety checks..." 
       poetry run safety check

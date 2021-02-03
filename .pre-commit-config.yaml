@@ -31,13 +31,6 @@ repos:
   - repo: local
     hooks:
       - id: system
-        name: Bandit
-        entry: poetry run bandit -b .bandit_baseline -r src
-        pass_filenames: false
-        language: system
-  - repo: local
-    hooks:
-      - id: system
         name: Safety
         entry: poetry run safety check
         pass_filenames: false

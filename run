@@ -30,53 +30,6 @@ run_pylint() {
    poetry run pylint -j 0 src/CedarBackup3
 }
 
-# Run the Bandit code checker
-run_bandit() {
-
-   # A bandit "baseline" is basically a set of code warnings that we're
-   # willing to live with.  It's sort of like ignoring specific warnings
-   # in pylint.  I have decided that the remaining warnings constitute
-   # an acceptable risk.  
-   
-   quiet=""
-   baseline="no"
-
-   while getopts ":bq" option; do
-     case $option in
-       b) 
-         baseline="yes"
-         ;;
-       q) 
-         quiet="-q"
-         ;;
-       *) 
-         echo "run bandit [-b] [-q]"
-         echo "  -b       regenerate the bandit baseline file on disk instead of scanning"
-         echo "  -q       run quiet, without lots of extraneous output"
-         exit 1
-         ;;
-     esac
-   done
-
-   shift $((OPTIND -1))  # pop off the options consumed by getopts
-
-   poetry run which bandit > /dev/null
-   if [ $? != 0 ]; then
-      run_install
-   fi
-
-   if [ $baseline == "yes" ]; then
-      echo "Regenerating bandit baseline..."
-      poetry run bandit $quiet -f json -o .bandit_baseline -r src
-   else
-      echo "Running bandit checks..."
-      poetry run bandit $quiet -b .bandit_baseline -r src
-      if [ $? = 0 ]; then
-         echo "No Bandit warnings."
-      fi
-   fi
-}
-
 # Run the Safety code checker
 run_safety() {
    quiet=""
@@ -87,8 +40,7 @@ run_safety() {
          quiet="--bare"
          ;;
        *) 
-         echo "run safety [-b] [-q]"
-         echo "  -q       run quiet, without lots of extraneous output"
+         echo "run safety [-q]"
          exit 1
          ;;
      esac
@@ -363,18 +315,12 @@ case $1 in
    mypy)
       run_mypy
       ;;
-   bandit)
-      shift 1
-      run_bandit $*
-      ;;
    safety)
       shift 1
       run_safety $*
       ;;
    check*)
       run_safety -q
-      echo ""
-      run_bandit -q
       echo ""
       run_pylint
       ;;

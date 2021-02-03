@@ -11,7 +11,7 @@ environment using PyCharm.
 
 This project uses [Poetry](https://python-poetry.org/) to manage Python packaging and dependencies.  Most day-to-day tasks (such as running unit tests from the command line) are orchestrated through Poetry.  
 
-A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).  Additional code security standards are enforced using [Bandit](https://bandit.readthedocs.io/en/latest/) and [Safety](https://github.com/pyupio/safety).
+A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).  Additional code security standards are enforced [Safety](https://github.com/pyupio/safety).
 
 ## Pre-Commit Hooks
 
@@ -360,22 +360,6 @@ source ~/.bash_profile
 |Make console active on message in stderr|_Checked_|
 |Output filters|`$FILE_PATH$:$LINE$:$COLUMN.*`|
 
-##### Run Bandit Checks
-
-|Field|Value|
-|-----|-----|
-|Name|`Run Bandit Checks`|
-|Description|`Run the Bandit code checks`|
-|Group|`Developer Tools`|
-|Program|`$ProjectFileDir$/run`|
-|Arguments|`bandit`|
-|Working directory|`$ProjectFileDir$`|
-|Synchronize files after execution|_Checked_|
-|Open console for tool outout|_Checked_|
-|Make console active on message in stdout|_Unchecked_|
-|Make console active on message in stderr|_Unchecked_|
-|Output filters|_Empty_|
-
 ##### Run Safety Checks
 
 |Field|Value|
@@ -429,22 +413,6 @@ even via the Git Bash interpreter.  I have created a Powershell script
 |Make console active on message in stdout|_Checked_|
 |Make console active on message in stderr|_Checked_|
 |Output filters|`$FILE_PATH$:$LINE$:$COLUMN.*`|
-
-##### Run Bandit Checks
-
-|Field|Value|
-|-----|-----|
-|Name|`Run Bandit Checks`|
-|Description|`Run the Bandit code checks`|
-|Group|`Developer Tools`|
-|Program|`powershell.exe`|
-|Arguments|`-executionpolicy bypass -File tools.ps1 bandit`|
-|Working directory|`$ProjectFileDir$`|
-|Synchronize files after execution|_Unchecked_|
-|Open console for tool outout|_Checked_|
-|Make console active on message in stdout|_Unchecked_|
-|Make console active on message in stderr|_Unchecked_|
-|Output filters|_Empty_|
 
 ##### Run Safety Checks
 
