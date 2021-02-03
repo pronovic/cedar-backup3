@@ -30,6 +30,45 @@ run_pylint() {
    poetry run pylint -j 0 src/CedarBackup3
 }
 
+# Run the Bandit code checker
+run_bandit() {
+
+   # A bandit "baseline" is basically a set of code warnings that we're
+   # willing to live with.  It's sort of like ignoring specific warnings
+   # in pylint.  I have decided that the remaining warnings constitute
+   # an acceptable risk.  
+   
+   baseline="no"
+
+   while getopts ":b" option; do
+     case $option in
+       b) 
+         baseline="yes"
+         ;;
+       *) 
+         echo "run bandit [-b]"
+         echo "  -b       regenerate the bandit baseline file on disk instead of scanning"
+         exit 1
+         ;;
+     esac
+   done
+
+   shift $((OPTIND -1))  # pop off the options consumed by getopts
+
+   poetry run which bandit > /dev/null
+   if [ $? != 0 ]; then
+      run_install
+   fi
+
+   if [ $baseline == "yes" ]; then
+      echo "Regenerating bandit baseline..."
+      poetry run bandit -f json -o .bandit_baseline -r src
+   else
+      echo "Running bandit checks..."
+      poetry run bandit -b .bandit_baseline -r src
+   fi
+}
+
 # Run the MyPy code checker
 run_mypy() {
    echo "There are no MyPy checks for this project"
@@ -285,7 +324,12 @@ case $1 in
    mypy)
       run_mypy
       ;;
+   bandit)
+      shift 1
+      run_bandit $*
+      ;;
    check*)
+      run_bandit
       run_pylint
       ;;
    black)
@@ -333,7 +377,10 @@ case $1 in
       echo "- run requirements: Regenerate the docs/requirements.txt file"
       echo "- run diagnostics: Print diagnostics about the Cedar Backup runtime environment"
       echo "- run format: Run the code formatters"
-      echo "- run checks: Run the PyLint code checker"
+      echo "- run checks: Run the code checkers"
+      echo "- run pylint: Run the Pylint code checker"
+      echo "- run bandit: Run the Bandit code checker"
+      echo "- run bandit -b: Update the bandit baseline"
       echo "- run test: Run the unit test suite"
       echo "- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Sphinx documentation and open in a browser"
