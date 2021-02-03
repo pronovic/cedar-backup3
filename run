@@ -38,16 +38,21 @@ run_bandit() {
    # in pylint.  I have decided that the remaining warnings constitute
    # an acceptable risk.  
    
+   quiet=""
    baseline="no"
 
-   while getopts ":b" option; do
+   while getopts ":bq" option; do
      case $option in
        b) 
          baseline="yes"
          ;;
+       q) 
+         quiet="-q"
+         ;;
        *) 
-         echo "run bandit [-b]"
+         echo "run bandit [-b] [-q]"
          echo "  -b       regenerate the bandit baseline file on disk instead of scanning"
+         echo "  -q       run quiet, without lots of extraneous output"
          exit 1
          ;;
      esac
@@ -62,10 +67,10 @@ run_bandit() {
 
    if [ $baseline == "yes" ]; then
       echo "Regenerating bandit baseline..."
-      poetry run bandit -f json -o .bandit_baseline -r src
+      poetry run bandit $quiet -f json -o .bandit_baseline -r src
    else
       echo "Running bandit checks..."
-      poetry run bandit -q -b .bandit_baseline -r src
+      poetry run bandit $quiet -b .bandit_baseline -r src
       if [ $? = 0 ]; then
          echo "No Bandit warnings."
       fi
@@ -74,14 +79,30 @@ run_bandit() {
 
 # Run the Safety code checker
 run_safety() {
-   echo "Running safety checks..."
+   quiet=""
+
+   while getopts ":q" option; do
+     case $option in
+       q) 
+         quiet="--bare"
+         ;;
+       *) 
+         echo "run safety [-b] [-q]"
+         echo "  -q       run quiet, without lots of extraneous output"
+         exit 1
+         ;;
+     esac
+   done
+
+   shift $((OPTIND -1))  # pop off the options consumed by getopts
 
    poetry run which safety > /dev/null
    if [ $? != 0 ]; then
       run_install
    fi
 
-   poetry run safety check --bare
+   echo "Running safety checks..."
+   poetry run safety check $quiet
    if [ $? = 0 ]; then
       echo "No Safety warnings."
    fi
@@ -347,12 +368,13 @@ case $1 in
       run_bandit $*
       ;;
    safety)
-      run_safety
+      shift 1
+      run_safety $*
       ;;
    check*)
-      run_safety
+      run_safety -q
       echo ""
-      run_bandit
+      run_bandit -q
       echo ""
       run_pylint
       ;;
