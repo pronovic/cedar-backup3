@@ -1230,7 +1230,7 @@ def _setupDiskFlowLogging(flowLogger, logfile, options):
        options: Command-line options
     """
     formatter = logging.Formatter(fmt=DISK_LOG_FORMAT, datefmt=DATE_FORMAT)
-    handler = logging.FileHandler(logfile, mode="a")
+    handler = logging.FileHandler(logfile, mode="a", encoding="utf-8")
     handler.setFormatter(formatter)
     if options.debug:
         handler.setLevel(logging.DEBUG)
@@ -1270,7 +1270,7 @@ def _setupDiskOutputLogging(outputLogger, logfile, options):
        options: Command-line options
     """
     formatter = logging.Formatter(fmt=DISK_OUTPUT_FORMAT, datefmt=DATE_FORMAT)
-    handler = logging.FileHandler(logfile, mode="a")
+    handler = logging.FileHandler(logfile, mode="a", encoding="utf-8")
     handler.setFormatter(formatter)
     if options.debug or options.output:
         handler.setLevel(logging.DEBUG)

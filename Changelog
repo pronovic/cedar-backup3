@@ -1,7 +1,8 @@
 Version 3.6.0     unreleased
 
-    * Change the way archive filenames are generated to eliminate leading '-' characters.
-    * Always use '/' internally for paths, even on the Windows platform.
+	* Always use '/' internally for paths, even on the Windows platform.
+	* Change the way archive filenames are generated to eliminate leading '-' characters.
+	* Use UTF-8 encoding for log files on disk to avoid problems with unusual filenames.
 
 Version 3.5.4     17 Jan 2021
 
