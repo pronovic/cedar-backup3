@@ -12,6 +12,7 @@ colorama==0.4.4; python_version >= "3.6" and python_full_version < "3.0.0" and p
 coverage==5.4; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0" and python_version < "4")
 distlib==0.3.1; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
 docutils==0.16; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
+dparse==0.5.1; python_version >= "3.5"
 filelock==3.0.12; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0"
 gitdb==4.0.5; python_version >= "3.5"
 gitpython==3.1.12; python_version >= "3.5"
@@ -39,6 +40,7 @@ pytz==2021.1; python_version >= "3.5" and python_full_version < "3.0.0" or pytho
 pyyaml==5.4.1; python_full_version >= "3.6.1" and python_version >= "3.6" and (python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.5")
 regex==2020.11.13; python_version >= "3.6"
 requests==2.25.1; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
+safety==1.10.3; python_version >= "3.5"
 six==1.15.0; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.5"
 smmap==3.0.5; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.5"
 snowballstemmer==2.1.0; python_version >= "3.6"

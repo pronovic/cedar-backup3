@@ -11,7 +11,7 @@ environment using PyCharm.
 
 This project uses [Poetry](https://python-poetry.org/) to manage Python packaging and dependencies.  Most day-to-day tasks (such as running unit tests from the command line) are orchestrated through Poetry.  
 
-A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).  Additional code security standards are enforced using [Bandit](https://bandit.readthedocs.io/en/latest/).
+A coding standard is enforced using [Black](https://github.com/psf/black), [isort](https://pypi.org/project/isort/) and [Pylint](https://www.pylint.org/).  Additional code security standards are enforced using [Bandit](https://bandit.readthedocs.io/en/latest/) and [Safety](https://github.com/pyupio/safety).
 
 ## Pre-Commit Hooks
 
@@ -164,7 +164,7 @@ Usage: run <command>
 - run requirements: Regenerate the docs/requirements.txt file
 - run diagnostics: Print diagnostics about the Cedar Backup runtime environment
 - run format: Run the code formatters
-- run checks: Run the PyLint code checker
+- run checks: Run the code checkers
 - run test: Run the unit test suite
 - run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io
 - run docs -o: Build the Sphinx documentation and open in a browser
@@ -364,11 +364,27 @@ source ~/.bash_profile
 
 |Field|Value|
 |-----|-----|
-|Name|`Run Pylint Checks`|
-|Description|`Run the Pylint code checks`|
+|Name|`Run Bandit Checks`|
+|Description|`Run the Bandit code checks`|
 |Group|`Developer Tools`|
 |Program|`$ProjectFileDir$/run`|
-|Arguments|`pylint`|
+|Arguments|`bandit`|
+|Working directory|`$ProjectFileDir$`|
+|Synchronize files after execution|_Checked_|
+|Open console for tool outout|_Checked_|
+|Make console active on message in stdout|_Unchecked_|
+|Make console active on message in stderr|_Unchecked_|
+|Output filters|_Empty_|
+
+##### Run Safety Checks
+
+|Field|Value|
+|-----|-----|
+|Name|`Run Safety Checks`|
+|Description|`Run the Safety code checks`|
+|Group|`Developer Tools`|
+|Program|`$ProjectFileDir$/run`|
+|Arguments|`safety`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Checked_|
 |Open console for tool outout|_Checked_|
@@ -423,6 +439,22 @@ even via the Git Bash interpreter.  I have created a Powershell script
 |Group|`Developer Tools`|
 |Program|`powershell.exe`|
 |Arguments|`-executionpolicy bypass -File tools.ps1 bandit`|
+|Working directory|`$ProjectFileDir$`|
+|Synchronize files after execution|_Unchecked_|
+|Open console for tool outout|_Checked_|
+|Make console active on message in stdout|_Unchecked_|
+|Make console active on message in stderr|_Unchecked_|
+|Output filters|_Empty_|
+
+##### Run Safety Checks
+
+|Field|Value|
+|-----|-----|
+|Name|`Run Safety Checks`|
+|Description|`Run the Safety code checks`|
+|Group|`Developer Tools`|
+|Program|`powershell.exe`|
+|Arguments|`-executionpolicy bypass -File tools.ps1 safety`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Unchecked_|
 |Open console for tool outout|_Checked_|

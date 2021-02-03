@@ -65,7 +65,25 @@ run_bandit() {
       poetry run bandit -f json -o .bandit_baseline -r src
    else
       echo "Running bandit checks..."
-      poetry run bandit -b .bandit_baseline -r src
+      poetry run bandit -q -b .bandit_baseline -r src
+      if [ $? = 0 ]; then
+         echo "No Bandit warnings."
+      fi
+   fi
+}
+
+# Run the Safety code checker
+run_safety() {
+   echo "Running safety checks..."
+
+   poetry run which safety > /dev/null
+   if [ $? != 0 ]; then
+      run_install
+   fi
+
+   poetry run safety check --bare
+   if [ $? = 0 ]; then
+      echo "No Safety warnings."
    fi
 }
 
@@ -328,8 +346,14 @@ case $1 in
       shift 1
       run_bandit $*
       ;;
+   safety)
+      run_safety
+      ;;
    check*)
+      run_safety
+      echo ""
       run_bandit
+      echo ""
       run_pylint
       ;;
    black)
@@ -378,9 +402,6 @@ case $1 in
       echo "- run diagnostics: Print diagnostics about the Cedar Backup runtime environment"
       echo "- run format: Run the code formatters"
       echo "- run checks: Run the code checkers"
-      echo "- run pylint: Run the Pylint code checker"
-      echo "- run bandit: Run the Bandit code checker"
-      echo "- run bandit -b: Update the bandit baseline"
       echo "- run test: Run the unit test suite"
       echo "- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Sphinx documentation and open in a browser"

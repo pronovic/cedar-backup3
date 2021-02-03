@@ -33,5 +33,10 @@ Switch ($command)
       Write-Output "Running bandit checks..." 
       poetry run bandit -b .bandit_baseline -r src
     }
+
+    safety {
+      Write-Output "Running safety checks..." 
+      poetry run safety check
+    }
 }
 
