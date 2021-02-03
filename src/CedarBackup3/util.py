@@ -1904,8 +1904,9 @@ def buildNormalizedPath(path):
     A normalized path is a representation of a path that is also a valid file
     name.  To make a valid file name out of a complete path, we have to convert
     or remove some characters that are significant to the filesystem -- in
-    particular, the path separator and any leading ``'.'`` character (which would
-    cause the file to be hidden in a file listing).
+    particular, the path separator, the Windows drive separator, and any
+    leading ``'.'`` character (which would cause the file to be hidden in
+    a file listing).
 
     Note that this is a one-way transformation -- you can't safely derive the
     original path from the normalized path.
@@ -1914,10 +1915,16 @@ def buildNormalizedPath(path):
     first character is ``'/'`` or ``'\\'``, it gets removed.  If the first
     character is ``'.'``, it gets converted to ``'_'``.  Then, we look through the
     rest of the path and convert all remaining ``'/'`` or ``'\\'`` characters
-    ``'-'``, and all remaining whitespace characters to ``'_'``.
+    ``'-'``, and all remaining whitespace or ``':'`` characters to ``'_'``.
 
     As a special case, a path consisting only of a single ``'/'`` or ``'\\'``
-    character will be converted to ``'-'``.
+    character will be converted to ``'_'``.  That's better than ``'-'``, because
+    a dash tends to get interpreted by shell commands as a switch.
+
+    As a special case, anything that looks like a leading Windows drive letter
+    combination (like ``c:\\`` or ``c:/``) will be converted to something like
+    ``c-``.  This is needed because a colon isn't a valid filename character
+    on Windows.
 
     Args:
        path: Path to normalize
@@ -1933,15 +1940,17 @@ def buildNormalizedPath(path):
     elif len(path) == 0:
         return path
     elif path == "/" or path == "\\":
-        return "-"
+        return "_"
     else:
         normalized = path
+        normalized = re.sub(r"(^[A-Za-z])(:)([\\/])", r"\1-", normalized)  # normalize Windows drive letter
         normalized = re.sub(r"^/", "", normalized)  # remove leading '/'
         normalized = re.sub(r"^\\", "", normalized)  # remove leading '\'
         normalized = re.sub(r"^\.", "_", normalized)  # convert leading '.' to '_' so file won't be hidden
         normalized = re.sub(r"/", "-", normalized)  # convert all '/' characters to '-'
         normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
         normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
+        normalized = re.sub(r":", "_", normalized)  # convert all remaining colons to '_'
         return normalized
 
 

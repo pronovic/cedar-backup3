@@ -4120,7 +4120,7 @@ class TestFunctions(unittest.TestCase):
         Test for "/"
         """
         path = "/"
-        expected = "-"
+        expected = "_"
         actual = buildNormalizedPath(path)
         self.assertEqual(expected, actual)
 
@@ -4129,7 +4129,7 @@ class TestFunctions(unittest.TestCase):
         Test for "\\"
         """
         path = "\\"
-        expected = "-"
+        expected = "_"
         actual = buildNormalizedPath(path)
         self.assertEqual(expected, actual)
 
@@ -4220,6 +4220,33 @@ class TestFunctions(unittest.TestCase):
         """
         path = "/Big Nasty Base Path With Spaces/something/else/space s/file.  log   .2 ."
         expected = "Big_Nasty_Base_Path_With_Spaces-something-else-space_s-file.__log___.2_."
+        actual = buildNormalizedPath(path)
+        self.assertEqual(expected, actual)
+
+    def testBuildNormalizedPath018(self):
+        """
+        Test for Windows path with drive letter and slashes.
+        """
+        path = "c:/Users/pronovic/projects/repos"
+        expected = "c-Users-pronovic-projects-repos"
+        actual = buildNormalizedPath(path)
+        self.assertEqual(expected, actual)
+
+    def testBuildNormalizedPath019(self):
+        """
+        Test for Windows path with drive letter and backslashes.
+        """
+        path = r"c:\Users\pronovic\projects\repos"
+        expected = "c-Users-pronovic-projects-repos"
+        actual = buildNormalizedPath(path)
+        self.assertEqual(expected, actual)
+
+    def testBuildNormalizedPath020(self):
+        """
+        Test for path with embedded colon.
+        """
+        path = "/path/to/whatever/key:value"
+        expected = "path-to-whatever-key_value"
         actual = buildNormalizedPath(path)
         self.assertEqual(expected, actual)
 
