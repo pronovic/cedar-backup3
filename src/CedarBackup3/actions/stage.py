@@ -52,7 +52,7 @@ import time
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
 from CedarBackup3.actions.util import writeIndicatorFile
 from CedarBackup3.peer import LocalPeer, RemotePeer
-from CedarBackup3.util import changeOwnership, getUidGid, isRunningAsRoot, isStartOfWeek
+from CedarBackup3.util import changeOwnership, getUidGid, isRunningAsRoot, isStartOfWeek, pathJoin
 
 ########################################################################
 # Module-wide constants and variables
@@ -163,12 +163,12 @@ def _createStagingDirs(config, dailyDir, peers):
         try:
             logger.debug("Creating staging directory [%s].", dailyDir)
             os.makedirs(dailyDir)
-            for path in [dailyDir, os.path.join(dailyDir, ".."), os.path.join(dailyDir, "..", "..")]:
+            for path in [dailyDir, pathJoin(dailyDir, ".."), pathJoin(dailyDir, "..", "..")]:
                 changeOwnership(path, config.options.backupUser, config.options.backupGroup)
         except Exception as e:
             raise Exception("Unable to create staging directory: %s" % e)
     for peer in peers:
-        peerDir = os.path.join(dailyDir, peer.name)
+        peerDir = pathJoin(dailyDir, peer.name)
         mapping[peer.name] = peerDir
         if os.path.isdir(peerDir):
             logger.warning("Peer staging directory [%s] already existed.", peerDir)
@@ -232,7 +232,7 @@ def _getDailyDir(config):
     Returns:
         Path of daily staging directory
     """
-    dailyDir = os.path.join(config.stage.targetDir, time.strftime(DIR_TIME_FORMAT))
+    dailyDir = pathJoin(config.stage.targetDir, time.strftime(DIR_TIME_FORMAT))
     logger.debug("Daily staging directory is [%s].", dailyDir)
     return dailyDir
 

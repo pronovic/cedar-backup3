@@ -106,7 +106,7 @@ from CedarBackup3.testutil import (
     platformWindows,
     removedir,
 )
-from CedarBackup3.util import isRunningAsRoot
+from CedarBackup3.util import isRunningAsRoot, pathJoin
 
 #######################################################################
 # Module-wide configuration and constants
@@ -715,8 +715,8 @@ class TestRemotePeer(unittest.TestCase):
             from CedarBackup3.util import PathResolverSingleton
 
             mapping = {}
-            mapping["/usr/bin/ssh"] = os.path.join(os.environ["HOME"], "util", "ssh")
-            mapping["/usr/bin/scp"] = os.path.join(os.environ["HOME"], "util", "scp")
+            mapping["/usr/bin/ssh"] = pathJoin(os.environ["HOME"], "util", "ssh")
+            mapping["/usr/bin/scp"] = pathJoin(os.environ["HOME"], "util", "scp")
             singleton = PathResolverSingleton.getInstance()
             singleton.fill(mapping)
 

@@ -53,7 +53,7 @@ import time
 from CedarBackup3.actions.constants import INDICATOR_PATTERN
 from CedarBackup3.config import DEFAULT_DEVICE_TYPE, DEFAULT_MEDIA_TYPE, REWRITABLE_MEDIA_TYPES
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.util import changeOwnership, deviceMounted
+from CedarBackup3.util import changeOwnership, deviceMounted, pathJoin
 from CedarBackup3.writers.cdwriter import MEDIA_CDR_74, MEDIA_CDR_80, MEDIA_CDRW_74, MEDIA_CDRW_80, CdWriter
 from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, DvdWriter
 from CedarBackup3.writers.util import readMediaLabel
@@ -98,7 +98,7 @@ def findDailyDirs(stagingDir, indicatorFile):
             dailyDirs.excludeLinks = True
             dailyDirs.addDirContents(path=monthDir, recursive=False, addSelf=False)
             for dailyDir in dailyDirs:
-                if os.path.exists(os.path.join(dailyDir, indicatorFile)):
+                if os.path.exists(pathJoin(dailyDir, indicatorFile)):
                     logger.debug("Skipping directory [%s]; contains %s.", dailyDir, indicatorFile)
                 else:
                     logger.debug("Adding [%s] to list of daily directories.", dailyDir)
@@ -172,7 +172,7 @@ def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
     Raises:
        IOException: If there is a problem writing the indicator file
     """
-    filename = os.path.join(targetDir, indicatorFile)
+    filename = pathJoin(targetDir, indicatorFile)
     logger.debug("Writing indicator file [%s].", filename)
     try:
         with open(filename, "w") as f:

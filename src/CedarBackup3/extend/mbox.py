@@ -108,6 +108,7 @@ from CedarBackup3.util import (
     encodePath,
     executeCommand,
     isStartOfWeek,
+    pathJoin,
     resolveCommand,
 )
 from CedarBackup3.xmlutil import (
@@ -1247,7 +1248,7 @@ def _getRevisionPath(config, item):
     """
     normalized = buildNormalizedPath(item.absolutePath)
     filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
-    revisionPath = os.path.join(config.options.workingDir, filename)
+    revisionPath = pathJoin(config.options.workingDir, filename)
     logger.debug("Revision file path is [%s]", revisionPath)
     return revisionPath
 
@@ -1343,7 +1344,7 @@ def _getExclusions(mboxDir):
     paths = []
     if mboxDir.relativeExcludePaths is not None:
         for relativePath in mboxDir.relativeExcludePaths:
-            paths.append(os.path.join(mboxDir.absolutePath, relativePath))
+            paths.append(pathJoin(mboxDir.absolutePath, relativePath))
     patterns = []
     if mboxDir.excludePatterns is not None:
         patterns.extend(mboxDir.excludePatterns)
@@ -1385,9 +1386,9 @@ def _getBackupPath(config, mboxPath, compressMode, newRevision, targetDir=None):
     elif compressMode == "bzip2":
         filename = "%s.bz2" % filename
     if targetDir is None:
-        backupPath = os.path.join(config.collect.targetDir, filename)
+        backupPath = pathJoin(config.collect.targetDir, filename)
     else:
-        backupPath = os.path.join(targetDir, filename)
+        backupPath = pathJoin(targetDir, filename)
     logger.debug("Backup file path is [%s]", backupPath)
     return backupPath
 
@@ -1424,7 +1425,7 @@ def _getTarfilePath(config, mboxPath, compressMode, newRevision):
         archiveMode = "tarbz2"
     else:
         archiveMode = "tar"
-    tarfilePath = os.path.join(config.collect.targetDir, filename)
+    tarfilePath = pathJoin(config.collect.targetDir, filename)
     logger.debug("Tarfile path is [%s]", tarfilePath)
     return (tarfilePath, archiveMode)
 

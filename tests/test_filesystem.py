@@ -113,7 +113,7 @@ from CedarBackup3.testutil import (
     randomFilename,
     removedir,
 )
-from CedarBackup3.util import encodePath
+from CedarBackup3.util import encodePath, pathJoin
 
 #######################################################################
 # Module-wide configuration and constants
@@ -20257,7 +20257,7 @@ class TestFunctions(unittest.TestCase):
         if within is None:
             extractTar(self.tmpdir, self.resources["%s.tar.gz" % tarname])
         else:
-            path = os.path.join(self.tmpdir, within)
+            path = pathJoin(self.tmpdir, within)
             os.mkdir(path)
             extractTar(path, self.resources["%s.tar.gz" % tarname])
 

@@ -117,6 +117,7 @@ from CedarBackup3.util import (
     isStartOfWeek,
     nullDevice,
     parseCommaSeparatedString,
+    pathJoin,
     resolveCommand,
     sortDict,
     splitCommandLine,
@@ -135,7 +136,7 @@ RESOURCES = [
 # This is a command that is always valid on the platform, something other than the Python interpreter
 # The command must return a success status (zero) for the tests to pass
 if platformWindows():
-    VALID_COMMAND = [os.path.join(os.environ["SystemRoot"], "system32", "WindowsPowerShell", "v1.0", "powershell.exe")]
+    VALID_COMMAND = [pathJoin(os.environ["SystemRoot"], "system32", "WindowsPowerShell", "v1.0", "powershell.exe")]
     VALID_ARGS = ["Write-Output hello"]
     VALID_OUTPUT = "hello\r\n"
 else:

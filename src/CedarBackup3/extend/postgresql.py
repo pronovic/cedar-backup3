@@ -82,7 +82,7 @@ from functools import total_ordering
 from gzip import GzipFile
 
 from CedarBackup3.config import VALID_COMPRESS_MODES
-from CedarBackup3.util import ObjectTypeList, changeOwnership, executeCommand, resolveCommand
+from CedarBackup3.util import ObjectTypeList, changeOwnership, executeCommand, pathJoin, resolveCommand
 from CedarBackup3.xmlutil import (
     addBooleanNode,
     addContainerNode,
@@ -615,9 +615,9 @@ def _getOutputFile(targetDir, database, compressMode):
         Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
     """
     if database is None:
-        filename = os.path.join(targetDir, "postgresqldump.txt")
+        filename = pathJoin(targetDir, "postgresqldump.txt")
     else:
-        filename = os.path.join(targetDir, "postgresqldump-%s.txt" % database)
+        filename = pathJoin(targetDir, "postgresqldump-%s.txt" % database)
     if compressMode == "gzip":
         filename = "%s.gz" % filename
         outputFile = GzipFile(filename, "wb")

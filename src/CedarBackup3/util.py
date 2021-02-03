@@ -1818,6 +1818,27 @@ def encodePath(path):
         raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e)))
 
 
+######################
+# pathJoin() function
+######################
+
+
+def pathJoin(path, *paths):
+    """
+    Wraps os.path.join(), normalizing slashes in the result.
+
+    On Windows in particular, we often end up with mixed slashes, where parts of a path
+    have forward slash and parts have backward slash.  This makes it difficult to construct
+    exclusions in configuration, because you never know what part of a path will have
+    what kind of slash.  I've decided to standardize on forward slashes.
+
+    Returns:
+        Result as from os.path.join() but always with forward slashes.
+    """
+    result = os.path.join(path, *paths)
+    return result.replace("\\", "/")
+
+
 ########################
 # nullDevice() function
 ########################

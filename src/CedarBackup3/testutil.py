@@ -70,7 +70,7 @@ from io import StringIO
 from CedarBackup3.cli import setupPathResolver
 from CedarBackup3.config import Config, OptionsConfig
 from CedarBackup3.customize import customizeOverrides
-from CedarBackup3.util import encodePath, executeCommand, nullDevice
+from CedarBackup3.util import encodePath, executeCommand, nullDevice, pathJoin
 
 ########################################################################
 # Public functions
@@ -158,7 +158,7 @@ def findResources(resources, dataDirs):
     mapping = {}
     for resource in resources:
         for resourceDir in dataDirs:
-            path = os.path.join(resourceDir, resource)
+            path = pathJoin(resourceDir, resource)
             if os.path.exists(path):
                 mapping[resource] = path
                 break
@@ -183,7 +183,7 @@ def commandAvailable(command):
     """
     if "PATH" in os.environ:
         for path in os.environ["PATH"].split(os.sep):
-            if os.path.exists(os.path.join(path, command)):
+            if os.path.exists(pathJoin(path, command)):
                 return True
     return False
 
@@ -206,7 +206,7 @@ def buildPath(components):
     """
     path = components[0]
     for component in components[1:]:
-        path = os.path.join(path, component)
+        path = pathJoin(path, component)
     return encodePath(path)
 
 
@@ -227,13 +227,13 @@ def removedir(tree):
     tree = encodePath(tree)
     for root, dirs, files in os.walk(tree, topdown=False):
         for name in files:
-            path = os.path.join(root, name)
+            path = pathJoin(root, name)
             if os.path.islink(path):
                 os.remove(path)
             elif os.path.isfile(path):
                 os.remove(path)
         for name in dirs:
-            path = os.path.join(root, name)
+            path = pathJoin(root, name)
             if os.path.islink(path):
                 os.remove(path)
             elif os.path.isdir(path):
