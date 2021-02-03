@@ -61,6 +61,7 @@ from CedarBackup3.util import (
     dereferenceLink,
     displayBytes,
     encodePath,
+    pathJoin,
     removeKeys,
 )
 
@@ -294,6 +295,7 @@ class FilesystemList(list):
            ValueError: If the path could not be encoded properly
         """
         path = encodePath(path)
+        path = normalizeFile(path)
         if not os.path.exists(path) or not os.path.isfile(path):
             logger.debug("Path [%s] is not a file or does not exist on disk.", path)
             raise ValueError("Path is not a file or does not exist on disk.")
@@ -473,13 +475,13 @@ class FilesystemList(list):
             if re.compile(r"^%s$" % pattern).match(os.path.basename(path)):
                 logger.debug("Path [%s] is excluded based on basename pattern [%s].", path, pattern)
                 return added
-        if self.ignoreFile is not None and os.path.exists(os.path.join(path, self.ignoreFile)):
+        if self.ignoreFile is not None and os.path.exists(pathJoin(path, self.ignoreFile)):
             logger.debug("Path [%s] is excluded based on ignore file.", path)
             return added
         if includePath:
             added += self.addDir(path)  # could actually be excluded by addDir, yet
         for entry in os.listdir(path):
-            entrypath = os.path.join(path, entry)
+            entrypath = pathJoin(path, entry)
             if os.path.isfile(entrypath):
                 if linkDepth > 0 and dereference:
                     derefpath = dereferenceLink(entrypath)
@@ -1426,6 +1428,29 @@ class PurgeItemList(FilesystemList):  # pylint: disable=R0904
 # Public functions
 ########################################################################
 
+###########################
+# normalizeFile() function
+###########################
+
+
+def normalizeFile(path):
+    """
+    Normalizes a file name.
+
+    On Windows in particular, we often end up with mixed slashes, where
+    parts of a path have forward slash and parts have backward slash.
+    This makes it difficult to construct exclusions in configuration,
+    because you never know what part of a path will have what kind of
+    slash.  I've decided to standardize on forward slashes.
+
+    Args:
+       path (String representing a path on disk): Path to be normalized
+    Returns:
+        Normalized path, which should be equivalent to the original
+    """
+    return path.replace("\\", "/")
+
+
 ##########################
 # normalizeDir() function
 ##########################
@@ -1440,6 +1465,12 @@ def normalizeDir(path):
     appear within lists in a consistent way, although from the user's
     perspective passing in ``/path/to/dir/`` and ``/path/to/dir`` are equivalent.
 
+    We also convert slashes.  On Windows in particular, we often end up with
+    mixed slashes, where parts of a path have forward slash and parts have
+    backward slash.  This makes it difficult to construct exclusions in
+    configuration, because you never know what part of a path will have
+    what kind of slash.  I've decided to standardize on forward slashes.
+
     Args:
        path (String representing a path on disk): Path to be normalized
     Returns:
@@ -1447,7 +1478,7 @@ def normalizeDir(path):
     """
     if path != os.sep and path[-1:] == os.sep:
         return path[:-1]
-    return path
+    return path.replace("\\", "/")
 
 
 #############################

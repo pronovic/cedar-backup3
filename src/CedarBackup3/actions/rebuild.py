@@ -53,7 +53,7 @@ import sys
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR
 from CedarBackup3.actions.store import consistencyCheck, writeImage, writeStoreIndicator
 from CedarBackup3.actions.util import checkMediaState
-from CedarBackup3.util import deriveDayOfWeek
+from CedarBackup3.util import deriveDayOfWeek, pathJoin
 
 ########################################################################
 # Module-wide constants and variables
@@ -150,8 +150,8 @@ def _findRebuildDirs(config):
     for i in range(0, days):
         currentDay = today - datetime.timedelta(days=i)
         dateSuffix = currentDay.strftime(DIR_TIME_FORMAT)
-        stageDir = os.path.join(config.store.sourceDir, dateSuffix)
-        indicator = os.path.join(stageDir, STAGE_INDICATOR)
+        stageDir = pathJoin(config.store.sourceDir, dateSuffix)
+        indicator = pathJoin(stageDir, STAGE_INDICATOR)
         if os.path.isdir(stageDir) and os.path.exists(indicator):
             logger.info("Rebuild process will include stage directory [%s]", stageDir)
             stagingDirs[stageDir] = dateSuffix

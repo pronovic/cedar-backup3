@@ -49,7 +49,7 @@ import logging
 import os
 import re
 
-from CedarBackup3.util import UNIT_BYTES, UNIT_SECTORS, convertSize, encodePath, executeCommand, resolveCommand
+from CedarBackup3.util import UNIT_BYTES, UNIT_SECTORS, convertSize, encodePath, executeCommand, pathJoin, resolveCommand
 
 ########################################################################
 # Module-wide constants and variables
@@ -530,12 +530,12 @@ class IsoImage(object):
                 if contentsOnly:
                     self.entries[path] = graftPoint
                 else:
-                    self.entries[path] = os.path.join(graftPoint, os.path.basename(path))
+                    self.entries[path] = pathJoin(graftPoint, os.path.basename(path))
             elif self.graftPoint is not None:
                 if contentsOnly:
                     self.entries[path] = self.graftPoint
                 else:
-                    self.entries[path] = os.path.join(self.graftPoint, os.path.basename(path))
+                    self.entries[path] = pathJoin(self.graftPoint, os.path.basename(path))
             else:
                 if contentsOnly:
                     self.entries[path] = None

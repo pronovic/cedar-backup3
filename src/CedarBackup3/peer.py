@@ -60,7 +60,7 @@ import sys
 
 from CedarBackup3.config import VALID_FAILURE_MODES
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.util import encodePath, executeCommand, isRunningAsRoot, resolveCommand, splitCommandLine
+from CedarBackup3.util import encodePath, executeCommand, isRunningAsRoot, pathJoin, resolveCommand, splitCommandLine
 
 ########################################################################
 # Module-wide constants and variables
@@ -261,9 +261,9 @@ class LocalPeer(object):
         """
         collectIndicator = encodePath(collectIndicator)
         if collectIndicator is None:
-            return os.path.exists(os.path.join(self.collectDir, DEF_COLLECT_INDICATOR))
+            return os.path.exists(pathJoin(self.collectDir, DEF_COLLECT_INDICATOR))
         else:
-            return os.path.exists(os.path.join(self.collectDir, collectIndicator))
+            return os.path.exists(pathJoin(self.collectDir, collectIndicator))
 
     def writeStageIndicator(self, stageIndicator=None, ownership=None, permissions=None):
         """
@@ -294,9 +294,9 @@ class LocalPeer(object):
             logger.debug("Collect directory [%s] is not a directory or does not exist on disk.", self.collectDir)
             raise ValueError("Collect directory is not a directory or does not exist on disk.")
         if stageIndicator is None:
-            fileName = os.path.join(self.collectDir, DEF_STAGE_INDICATOR)
+            fileName = pathJoin(self.collectDir, DEF_STAGE_INDICATOR)
         else:
-            fileName = os.path.join(self.collectDir, stageIndicator)
+            fileName = pathJoin(self.collectDir, stageIndicator)
         LocalPeer._copyLocalFile(None, fileName, ownership, permissions)  # None for sourceFile results in an empty target
 
     ##################
@@ -335,8 +335,8 @@ class LocalPeer(object):
         sourceDir = encodePath(sourceDir)
         targetDir = encodePath(targetDir)
         for fileName in os.listdir(sourceDir):
-            sourceFile = os.path.join(sourceDir, fileName)
-            targetFile = os.path.join(targetDir, fileName)
+            sourceFile = pathJoin(sourceDir, fileName)
+            targetFile = pathJoin(targetDir, fileName)
             LocalPeer._copyLocalFile(sourceFile, targetFile, ownership, permissions)
             filesCopied += 1
         return filesCopied
@@ -792,12 +792,12 @@ class RemotePeer(object):
         """
         try:
             if collectIndicator is None:
-                sourceFile = os.path.join(self.collectDir, DEF_COLLECT_INDICATOR)
-                targetFile = os.path.join(self.workingDir, DEF_COLLECT_INDICATOR)
+                sourceFile = pathJoin(self.collectDir, DEF_COLLECT_INDICATOR)
+                targetFile = pathJoin(self.workingDir, DEF_COLLECT_INDICATOR)
             else:
                 collectIndicator = encodePath(collectIndicator)
-                sourceFile = os.path.join(self.collectDir, collectIndicator)
-                targetFile = os.path.join(self.workingDir, collectIndicator)
+                sourceFile = pathJoin(self.collectDir, collectIndicator)
+                targetFile = pathJoin(self.workingDir, collectIndicator)
             logger.debug("Fetch remote [%s] into [%s].", sourceFile, targetFile)
             if os.path.exists(targetFile):
                 try:
@@ -852,11 +852,11 @@ class RemotePeer(object):
         """
         stageIndicator = encodePath(stageIndicator)
         if stageIndicator is None:
-            sourceFile = os.path.join(self.workingDir, DEF_STAGE_INDICATOR)
-            targetFile = os.path.join(self.collectDir, DEF_STAGE_INDICATOR)
+            sourceFile = pathJoin(self.workingDir, DEF_STAGE_INDICATOR)
+            targetFile = pathJoin(self.collectDir, DEF_STAGE_INDICATOR)
         else:
-            sourceFile = os.path.join(self.workingDir, DEF_STAGE_INDICATOR)
-            targetFile = os.path.join(self.collectDir, stageIndicator)
+            sourceFile = pathJoin(self.workingDir, DEF_STAGE_INDICATOR)
+            targetFile = pathJoin(self.collectDir, stageIndicator)
         try:
             if not os.path.exists(sourceFile):
                 with open(sourceFile, "w") as f:

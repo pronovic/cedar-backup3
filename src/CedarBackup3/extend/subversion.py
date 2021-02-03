@@ -87,6 +87,7 @@ from CedarBackup3.util import (
     encodePath,
     executeCommand,
     isStartOfWeek,
+    pathJoin,
     resolveCommand,
 )
 from CedarBackup3.xmlutil import (
@@ -1264,7 +1265,7 @@ def _getRevisionPath(config, repository):
     """
     normalized = buildNormalizedPath(repository.repositoryPath)
     filename = "%s.%s" % (normalized, REVISION_PATH_EXTENSION)
-    revisionPath = os.path.join(config.options.workingDir, filename)
+    revisionPath = pathJoin(config.options.workingDir, filename)
     logger.debug("Revision file path is [%s]", revisionPath)
     return revisionPath
 
@@ -1287,7 +1288,7 @@ def _getBackupPath(config, repositoryPath, compressMode, startRevision, endRevis
         filename = "%s.gz" % filename
     elif compressMode == "bzip2":
         filename = "%s.bz2" % filename
-    backupPath = os.path.join(config.collect.targetDir, filename)
+    backupPath = pathJoin(config.collect.targetDir, filename)
     logger.debug("Backup file path is [%s]", backupPath)
     return backupPath
 
@@ -1329,7 +1330,7 @@ def _getExclusions(repositoryDir):
     paths = []
     if repositoryDir.relativeExcludePaths is not None:
         for relativePath in repositoryDir.relativeExcludePaths:
-            paths.append(os.path.join(repositoryDir.directoryPath, relativePath))
+            paths.append(pathJoin(repositoryDir.directoryPath, relativePath))
     patterns = []
     if repositoryDir.excludePatterns is not None:
         patterns.extend(repositoryDir.excludePatterns)

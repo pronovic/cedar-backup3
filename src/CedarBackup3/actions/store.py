@@ -55,7 +55,7 @@ import tempfile
 from CedarBackup3.actions.constants import DIR_TIME_FORMAT, STAGE_INDICATOR, STORE_INDICATOR
 from CedarBackup3.actions.util import buildMediaLabel, checkMediaState, createWriter, writeIndicatorFile
 from CedarBackup3.filesystem import compareContents
-from CedarBackup3.util import displayBytes, isStartOfWeek, mount, unmount
+from CedarBackup3.util import displayBytes, isStartOfWeek, mount, pathJoin, unmount
 
 ########################################################################
 # Module-wide constants and variables
@@ -313,7 +313,7 @@ def consistencyCheck(config, stagingDirs):
     try:
         mount(config.store.devicePath, mountPoint, "iso9660")
         for stagingDir in list(stagingDirs.keys()):
-            discDir = os.path.join(mountPoint, stagingDirs[stagingDir])
+            discDir = pathJoin(mountPoint, stagingDirs[stagingDir])
             logger.debug("Checking [%s] vs. [%s].", stagingDir, discDir)
             compareContents(stagingDir, discDir, verbose=True)
             logger.info("Consistency check completed for [%s].  No problems found.", stagingDir)
@@ -374,15 +374,15 @@ def _findCorrectDailyDir(options, config):
     todayDate = today.strftime(DIR_TIME_FORMAT)
     yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
     tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
-    todayPath = os.path.join(config.stage.targetDir, todayDate)
-    yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
-    tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
-    todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
-    yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
-    tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
-    todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
-    yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
-    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
+    todayPath = pathJoin(config.stage.targetDir, todayDate)
+    yesterdayPath = pathJoin(config.stage.targetDir, yesterdayDate)
+    tomorrowPath = pathJoin(config.stage.targetDir, tomorrowDate)
+    todayStageInd = pathJoin(todayPath, STAGE_INDICATOR)
+    yesterdayStageInd = pathJoin(yesterdayPath, STAGE_INDICATOR)
+    tomorrowStageInd = pathJoin(tomorrowPath, STAGE_INDICATOR)
+    todayStoreInd = pathJoin(todayPath, STORE_INDICATOR)
+    yesterdayStoreInd = pathJoin(yesterdayPath, STORE_INDICATOR)
+    tomorrowStoreInd = pathJoin(tomorrowPath, STORE_INDICATOR)
     if options.full:
         if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
             logger.info("Store process will use current day's stage directory [%s]", todayPath)

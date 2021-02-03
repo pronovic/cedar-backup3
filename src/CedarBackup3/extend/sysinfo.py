@@ -68,7 +68,7 @@ import logging
 import os
 from bz2 import BZ2File
 
-from CedarBackup3.util import changeOwnership, executeCommand, resolveCommand
+from CedarBackup3.util import changeOwnership, executeCommand, pathJoin, resolveCommand
 
 ########################################################################
 # Module-wide constants and variables
@@ -204,7 +204,7 @@ def _getOutputFile(targetDir, name, compress=True):
     Returns:
         Tuple of (Output file object, filename), file opened in binary mode for use with executeCommand()
     """
-    filename = os.path.join(targetDir, "%s.txt" % name)
+    filename = pathJoin(targetDir, "%s.txt" % name)
     if compress:
         filename = "%s.bz2" % filename
     logger.debug("Dump file will be [%s].", filename)

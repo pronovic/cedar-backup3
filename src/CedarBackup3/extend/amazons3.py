@@ -103,6 +103,7 @@ from CedarBackup3.util import (
     executeCommand,
     isRunningAsRoot,
     isStartOfWeek,
+    pathJoin,
     resolveCommand,
 )
 from CedarBackup3.xmlutil import (
@@ -637,15 +638,15 @@ def _findCorrectDailyDir(options, config, local):
     todayDate = today.strftime(DIR_TIME_FORMAT)
     yesterdayDate = yesterday.strftime(DIR_TIME_FORMAT)
     tomorrowDate = tomorrow.strftime(DIR_TIME_FORMAT)
-    todayPath = os.path.join(config.stage.targetDir, todayDate)
-    yesterdayPath = os.path.join(config.stage.targetDir, yesterdayDate)
-    tomorrowPath = os.path.join(config.stage.targetDir, tomorrowDate)
-    todayStageInd = os.path.join(todayPath, STAGE_INDICATOR)
-    yesterdayStageInd = os.path.join(yesterdayPath, STAGE_INDICATOR)
-    tomorrowStageInd = os.path.join(tomorrowPath, STAGE_INDICATOR)
-    todayStoreInd = os.path.join(todayPath, STORE_INDICATOR)
-    yesterdayStoreInd = os.path.join(yesterdayPath, STORE_INDICATOR)
-    tomorrowStoreInd = os.path.join(tomorrowPath, STORE_INDICATOR)
+    todayPath = pathJoin(config.stage.targetDir, todayDate)
+    yesterdayPath = pathJoin(config.stage.targetDir, yesterdayDate)
+    tomorrowPath = pathJoin(config.stage.targetDir, tomorrowDate)
+    todayStageInd = pathJoin(todayPath, STAGE_INDICATOR)
+    yesterdayStageInd = pathJoin(yesterdayPath, STAGE_INDICATOR)
+    tomorrowStageInd = pathJoin(tomorrowPath, STAGE_INDICATOR)
+    todayStoreInd = pathJoin(todayPath, STORE_INDICATOR)
+    yesterdayStoreInd = pathJoin(yesterdayPath, STORE_INDICATOR)
+    tomorrowStoreInd = pathJoin(tomorrowPath, STORE_INDICATOR)
     if options.full:
         if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
             logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)

@@ -52,7 +52,7 @@ import pickle
 from CedarBackup3.actions.constants import COLLECT_INDICATOR, DIGEST_EXTENSION
 from CedarBackup3.actions.util import writeIndicatorFile
 from CedarBackup3.filesystem import BackupFileList, FilesystemList
-from CedarBackup3.util import buildNormalizedPath, changeOwnership, displayBytes, isStartOfWeek
+from CedarBackup3.util import buildNormalizedPath, changeOwnership, displayBytes, isStartOfWeek, pathJoin
 
 ########################################################################
 # Module-wide constants and variables
@@ -549,7 +549,7 @@ def _getDigestPath(config, absolutePath):
     """
     normalized = buildNormalizedPath(absolutePath)
     filename = "%s.%s" % (normalized, DIGEST_EXTENSION)
-    digestPath = os.path.join(config.options.workingDir, filename)
+    digestPath = pathJoin(config.options.workingDir, filename)
     logger.debug("Digest path is [%s]", digestPath)
     return digestPath
 
@@ -577,7 +577,7 @@ def _getTarfilePath(config, absolutePath, archiveMode):
         extension = "tar.bz2"
     normalized = buildNormalizedPath(absolutePath)
     filename = "%s.%s" % (normalized, extension)
-    tarfilePath = os.path.join(config.collect.targetDir, filename)
+    tarfilePath = pathJoin(config.collect.targetDir, filename)
     logger.debug("Tarfile path is [%s]", tarfilePath)
     return tarfilePath
 
@@ -614,7 +614,7 @@ def _getExclusions(config, collectDir):
         paths.extend(collectDir.absoluteExcludePaths)
     if collectDir.relativeExcludePaths is not None:
         for relativePath in collectDir.relativeExcludePaths:
-            paths.append(os.path.join(collectDir.absolutePath, relativePath))
+            paths.append(pathJoin(collectDir.absolutePath, relativePath))
     patterns = []
     if config.collect.excludePatterns is not None:
         patterns.extend(config.collect.excludePatterns)
