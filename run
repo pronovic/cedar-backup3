@@ -30,6 +30,36 @@ run_pylint() {
    poetry run pylint -j 0 src/CedarBackup3
 }
 
+# Run the Safety code checker
+run_safety() {
+   quiet=""
+
+   while getopts ":q" option; do
+     case $option in
+       q) 
+         quiet="--bare"
+         ;;
+       *) 
+         echo "run safety [-q]"
+         exit 1
+         ;;
+     esac
+   done
+
+   shift $((OPTIND -1))  # pop off the options consumed by getopts
+
+   poetry run which safety > /dev/null
+   if [ $? != 0 ]; then
+      run_install
+   fi
+
+   echo "Running safety checks..."
+   poetry run safety check $quiet
+   if [ $? = 0 ]; then
+      echo "No Safety warnings."
+   fi
+}
+
 # Run the MyPy code checker
 run_mypy() {
    echo "There are no MyPy checks for this project"
@@ -285,7 +315,13 @@ case $1 in
    mypy)
       run_mypy
       ;;
+   safety)
+      shift 1
+      run_safety $*
+      ;;
    check*)
+      run_safety -q
+      echo ""
       run_pylint
       ;;
    black)
@@ -333,7 +369,7 @@ case $1 in
       echo "- run requirements: Regenerate the docs/requirements.txt file"
       echo "- run diagnostics: Print diagnostics about the Cedar Backup runtime environment"
       echo "- run format: Run the code formatters"
-      echo "- run checks: Run the PyLint code checker"
+      echo "- run checks: Run the code checkers"
       echo "- run test: Run the unit test suite"
       echo "- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Sphinx documentation and open in a browser"

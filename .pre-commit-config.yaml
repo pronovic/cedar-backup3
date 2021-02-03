@@ -28,3 +28,17 @@ repos:
         entry: poetry run black .
         pass_filenames: false
         language: system
+  - repo: local
+    hooks:
+      - id: system
+        name: Safety
+        entry: poetry run safety check
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: system
+        name: Pylint
+        entry: poetry run pylint -j 0 src/CedarBackup3
+        pass_filenames: false
+        language: system
