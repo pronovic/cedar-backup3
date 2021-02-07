@@ -1,27 +1,28 @@
 [tox]
 isolated_build = true
 envlist = 
-   precommit,
+   checks,
    docs,
-   {py}-{coverage,nocoverage}
+   coverage
 ignore_basepython_conflict = true
 
-[testenv]
-passenv = USERNAME   # See: https://github.com/tox-dev/tox/issues/1455 and https://github.com/gitpython-developers/GitPython/issues/356
-whitelist_externals = poetry
-commands =
-   nocoverage: poetry run python -m unittest discover -s tests -t tests
-   coverage: poetry run coverage erase
-   coverage: poetry run coverage run -m unittest discover -s tests -t tests
-   coverage: poetry run coverage report
-
-[testenv:precommit]
+[testenv:checks]
 whitelist_externals = poetry
 commands =
    poetry --version
    poetry version
    poetry run python -c 'from CedarBackup3.util import Diagnostics; Diagnostics().printDiagnostics(prefix="*** ")'
    poetry run pre-commit run --all-files --show-diff-on-failure
+
+[testenv:coverage]
+passenv = USERNAME   # See: https://github.com/tox-dev/tox/issues/1455 and https://github.com/gitpython-developers/GitPython/issues/356
+whitelist_externals = poetry
+commands =
+   poetry --version
+   poetry version
+   poetry run coverage erase
+   poetry run coverage run -m unittest discover -s tests -t tests
+   poetry run coverage report
 
 [testenv:docs]
 whitelist_externals = poetry
