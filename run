@@ -4,7 +4,14 @@
 # Setup the virtual environment via Poetry and install pre-commit hooks
 run_install() {
    poetry install -v
+   if [ $? != 0 ]; then
+      exit 1
+   fi
+
    poetry run pre-commit install 
+   if [ $? != 0 ]; then
+      exit 1
+   fi
 }
 
 # Activate the current Poetry virtual environment
@@ -15,7 +22,14 @@ run_activate() {
 # Regenerate the docs/requirements.txt file
 run_requirements() {
    poetry export --format=requirements.txt --without-hashes --dev --output=docs/requirements.txt
-   poetry run python ./dos2unix.py docs/requirements.txt
+   if [ $? != 0 ]; then
+      exit 1
+   fi
+
+   poetry run python utils/dos2unix.py docs/requirements.txt
+   if [ $? != 0 ]; then
+      exit 1
+   fi
 }
 
 # Run the Pylint code checker
@@ -28,41 +42,34 @@ run_pylint() {
    fi
 
    poetry run pylint -j 0 src/CedarBackup3
+   if [ $? != 0 ]; then
+      exit 1
+   fi
+
+   echo "done"
 }
 
 # Run the Safety code checker
 run_safety() {
-   quiet=""
-
-   while getopts ":q" option; do
-     case $option in
-       q) 
-         quiet="--bare"
-         ;;
-       *) 
-         echo "run safety [-q]"
-         exit 1
-         ;;
-     esac
-   done
-
-   shift $((OPTIND -1))  # pop off the options consumed by getopts
+   echo "Running safety checks..."
 
    poetry run which safety > /dev/null
    if [ $? != 0 ]; then
       run_install
    fi
 
-   echo "Running safety checks..."
-   poetry run safety check $quiet
-   if [ $? = 0 ]; then
-      echo "No Safety warnings."
+   poetry run safety check $*
+   if [ $? != 0 ]; then
+      exit 1
    fi
+
+   echo "done"
 }
 
 # Run the MyPy code checker
 run_mypy() {
    echo "There are no MyPy checks for this project"
+   echo "done"
 }
 
 # Run the black code formatter
@@ -74,7 +81,12 @@ run_black() {
       run_install
    fi
 
-   poetry run black .
+   poetry run black $* .
+   if [ $? != 0 ]; then
+      exit 1
+   fi
+
+   echo "done"
 }
 
 # Run the isort import formatter
@@ -86,7 +98,10 @@ run_isort() {
       run_install
    fi
 
-   poetry run isort .
+   poetry run isort $* .
+   if [ $? != 0 ]; then
+      exit 1
+   fi
 
    echo "done"
 }
@@ -156,7 +171,11 @@ run_unittest() {
    run_diagnostics
 
    if [ $coverage == "yes" ]; then
-      poetry run coverage run --rcfile=.coveragerc -m unittest discover -s tests -t tests $verbose $pattern
+      poetry run coverage run -m unittest discover -s tests -t tests $verbose $pattern
+      if [ $? != 0 ]; then
+         exit 1
+      fi
+  
       poetry run coverage report
       if [ $html == "yes" ]; then
          poetry run coverage html -d .htmlcov
@@ -164,6 +183,9 @@ run_unittest() {
       fi
    else
       poetry run python -m unittest discover -s tests -t tests $verbose $pattern
+      if [ $? != 0 ]; then
+         exit 1
+      fi
    fi
 }
 
@@ -175,6 +197,9 @@ run_tox() {
    fi
 
    poetry run tox -c .toxrc -e "precommit,docs,{py}-{coverage,nocoverage}"
+   if [ $? != 0 ]; then
+      exit 1
+   fi
 }
 
 # Build the Sphinx documentation for cedar-backup3.readthedocs.io
@@ -199,9 +224,10 @@ run_docs() {
    fi
 
    cd docs
-   poetry run sphinx-build -b html -d _build/doctrees . _build/html 2>&1 | \
-         grep -v "WARNING: document isn't included in any toctree" | \
-         grep -v "WARNING: more than one target found for cross-reference"
+   poetry run sphinx-build -N -E -a -b html -d _build/doctrees . _build/html 2>&1 | grep -v -F --file=.sphinxignore
+   if [ $? != 0 ]; then
+      exit 1
+   fi
 
    if [ $open == "yes" ]; then
       $(which start || which open) _build/html/index.html 2>/dev/null  # start on Windows, open on MacOS
@@ -240,7 +266,16 @@ run_release() {
    fi
 
    poetry version $VERSION
-   poetry run python ./dos2unix.py pyproject.toml
+   if [ $? != 0 ]; then
+      echo "*** Failed to update version"
+      exit 1
+   fi
+
+   poetry run python utils/dos2unix.py pyproject.toml
+   if [ $? != 0 ]; then
+      echo "*** Failed to update line endings"
+      exit 1
+   fi
 
    # annoyingly, BSD sed and GNU sed are not compatible on the syntax for -i
    # I failed miserably in all attempts to put the sed command (with empty string) into a variable
@@ -309,20 +344,8 @@ case $1 in
    requirements)
       run_requirements
       ;;
-   *lint)
-      run_pylint
-      ;;
-   mypy)
-      run_mypy
-      ;;
-   safety)
-      shift 1
-      run_safety $*
-      ;;
-   check*)
-      run_safety -q
-      echo ""
-      run_pylint
+   diagnostics)
+      run_diagnostics
       ;;
    black)
       run_black
@@ -330,24 +353,39 @@ case $1 in
    isort)
       run_isort
       ;;
+   safety)
+      run_safety
+      ;;
+   mypy)
+      run_mypy
+      ;;
+   *lint)
+      run_pylint
+      ;;
    format)
       run_black
       echo ""
       run_isort
       ;;
-   diagnostics)
-      run_diagnostics
+   check*)
+      run_black --check
+      echo ""
+      run_isort --check-only
+      echo ""
+      run_safety --bare
+      echo ""
+      run_pylint
       ;;
    unittest|test*)
       shift 1
       run_unittest $*
       ;;
-   tox)
-      run_tox
-      ;;
    doc*)
       shift 1
       run_docs $*
+      ;;
+   tox)
+      run_tox
       ;;
    release)
       shift 1
@@ -373,7 +411,7 @@ case $1 in
       echo "- run test: Run the unit test suite"
       echo "- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io"
       echo "- run docs -o: Build the Sphinx documentation and open in a browser"
-      echo "- run tox: Run the broader Tox test suite used by the GitHub CI action"
+      echo "- run tox: Run the Tox test suite used by the GitHub CI action"
       echo "- run release: Release a specific version and tag the code"
       echo "- run publish: Publish the current code to PyPI and push to GitHub"
       echo ""

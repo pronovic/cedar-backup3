@@ -12,7 +12,7 @@ whitelist_externals = poetry
 commands =
    nocoverage: poetry run python -m unittest discover -s tests -t tests
    coverage: poetry run coverage erase
-   coverage: poetry run coverage run --rcfile=.coveragerc -m unittest discover -s tests -t tests
+   coverage: poetry run coverage run -m unittest discover -s tests -t tests
    coverage: poetry run coverage report
 
 [testenv:precommit]
@@ -29,4 +29,4 @@ changedir = docs
 commands =
    poetry --version
    poetry version
-   poetry run sphinx-build -b html -d _build/doctrees . _build/html
+   poetry run sphinx-build -N -E -a -b html -d _build/doctrees . _build/html
