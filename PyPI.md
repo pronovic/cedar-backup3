@@ -4,7 +4,7 @@
 [![python](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
 [![Test Suite](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)](https://github.com/pronovic/cedar-backup3/actions?query=workflow%3A%22Test+Suite%22)
 [![docs](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)](https://cedar-backup3.readthedocs.io/en/stable/)
-[![coverage](https://coveralls.io/repos/github/pronovic/uci-parse/badge.svg?branch=master)](https://coveralls.io/github/pronovic/uci-parse?branch=master)
+[![coverage](https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=master)](https://coveralls.io/github/pronovic/cedar-backup3?branch=master)
 
 [Cedar Backup](https://github.com/pronovic/cedar-backup3) is a software package
 designed to manage system backups for a pool of local and remote machines.
