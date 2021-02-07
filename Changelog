@@ -1,3 +1,7 @@
+Version 3.6.1     unreleased
+
+	* Make minor structural improvements to the build process.
+
 Version 3.6.0     03 Feb 2021
 
 	* Always use '/' internally for paths, even on the Windows platform.
