@@ -1,6 +1,7 @@
-Version 3.6.1     unreleased
+Version 3.6.1     07 Feb 2021
 
 	* Make minor structural improvements to the build process.
+	* Publish coverage data to coveralls.io in GitHub workflow.
 
 Version 3.6.0     03 Feb 2021
 
