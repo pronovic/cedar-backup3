@@ -1,3 +1,7 @@
+Version 3.6.2     unreleased
+
+	* Standardize format of GPL license statement in CREDITS.
+
 Version 3.6.1     07 Feb 2021
 
 	* Make minor structural improvements to the build process.

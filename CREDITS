@@ -17,15 +17,26 @@
 # Credits
 ##########
 
+Unless otherwise indicated, all material in this repository is under the
+following license:
+
+   Copyright (c) 2004-2021 Kenneth J. Pronovici <pronovic@ieee.org>
+
+   This program is free software; you can redistribute it and/or modify it
+   under the terms of version 2 of the GNU General Public License as
+   published by the Free Software Foundation.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+The contents of the GNU General Public License can be found in the LICENSE
+file, or can be downloaded from http://www.gnu.org/ .
+
 Most of the source code in this project was written by Kenneth J.
 Pronovici.  Some portions have been based on other pieces of open-source
 software, as indicated in the source code itself.
-
-Unless otherwise indicated, all Cedar Backup source code is Copyright (c)
-2004-2011,2013-2017,2019 Kenneth J. Pronovici and is released under the GNU
-General Public License, version 2.  The contents of the GNU General Public
-License can be found in the LICENSE file, or can be downloaded from
-http://www.gnu.org/.
 
 Various patches have been contributed to the Cedar Backup codebase by
 Dmitry Rutsky.  Major contributions include the initial implementation for
@@ -56,10 +67,7 @@ util.getFunctionReference().
 Source code annotated as "(c) 2000-2004 CollabNet" was originally released
 under the CollabNet License, which is an Apache/BSD-style license.  Items
 under this license include basic markup and stylesheets used in creating
-the user manual.  The dblite.dtd and readme-dblite.html files are also
-assumed to be under the CollabNet License, since they were found as part of
-the Subversion source tree and did not specify an explicit copyright
-notice. 
+the user manual.
 
 Source code annotated as "(c) 2000 Fourthought Inc, USA" was taken from or
 derived from code within the PyXML distribution and was originally part of
