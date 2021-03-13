@@ -431,11 +431,11 @@ class _ActionItem(object):
            hook: Hook, in terms of a ``ActionHook`` object
         """
         fields = splitCommandLine(hook.command)
-        logger.debug("Executing %s hook for action [%s]: %s", type, hook.action, fields[0:1])
+        logger.debug("Executing %s hook for action %s: %s", type, hook.action, fields)
         result, output = executeCommand(command=fields[0:1], args=fields[1:], returnOutput=True)
         if result != 0:
-            logger.debug("Hook failed, tail is: %s", "\n   %s" % "   ".join(output[-10:]) if output else "<empty>")
-            raise IOError("Error (%d) executing %s hook for action [%s]: %s" % (result, type, hook.action, fields[0:1]))
+            logger.error("Hook failed, tail is: %s", "\n   %s" % "   ".join(output[-10:]) if output else "<empty>")
+            raise IOError("Error (%d) executing %s hook for action %s: %s" % (result, type, hook.action, fields))
 
 
 ###########################
