@@ -1,4 +1,4 @@
-Version 3.6.3     unreleased
+Version 3.6.3     13 Mar 2021
 
 	* Improve logged output for failed pre/post action hooks.
 
