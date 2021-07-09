@@ -47,3 +47,4 @@ __pycache__
 .idea/modules
 .idea/misc.xml
 .idea/*.iml
+.idea/sonarlint
