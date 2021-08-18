@@ -189,7 +189,7 @@ run_unittest() {
       poetry run coverage report
       if [ $html == "yes" ]; then
          poetry run coverage html -d .htmlcov
-         $(which start || which open) .htmlcov/index.html 2>/dev/null  # start on Windows, open on MacOS
+         $(which start || which open) .htmlcov/index.html 2>/dev/null  # start on Windows, open on MacOS and Debian (post-bullseye)
       fi
    else
       poetry run python -m unittest discover -s tests -t tests $verbose $pattern
@@ -240,7 +240,7 @@ run_docs() {
    fi
 
    if [ $open == "yes" ]; then
-      $(which start || which open) _build/html/index.html 2>/dev/null  # start on Windows, open on MacOS
+      $(which start || which open) _build/html/index.html 2>/dev/null  # start on Windows, open on MacOS and Debian (post-bullseye)
    fi
 }
 
