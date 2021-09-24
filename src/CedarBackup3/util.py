@@ -1781,7 +1781,7 @@ def deviceMounted(devicePath):
     """
     if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
         realPath = os.path.realpath(devicePath)
-        with open(MTAB_FILE) as f:
+        with open(MTAB_FILE) as f:  # pylint: disable=unspecified-encoding
             lines = f.readlines()
         for line in lines:
             (mountDevice, mountPoint, remainder) = line.split(None, 2)

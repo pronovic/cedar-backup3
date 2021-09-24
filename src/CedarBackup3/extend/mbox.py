@@ -766,7 +766,7 @@ class LocalConfig(object):
             if validate:
                 self.validate()
         elif xmlPath is not None:
-            with open(xmlPath) as f:
+            with open(xmlPath) as f:  # pylint: disable=unspecified-encoding
                 xmlData = f.read()
             self._parseXmlData(xmlData)
             if validate:
