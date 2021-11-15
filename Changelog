@@ -1,6 +1,6 @@
 Version 3.6.4     unreleased
 
-	* 
+	* Adjust dependencies and build process to support Python 3.10.
 
 Version 3.6.3     13 Mar 2021
 
