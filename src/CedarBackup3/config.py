@@ -5249,7 +5249,7 @@ class Config(object):
                 action.index = readInteger(entry, "index")
                 action.dependencies = Config._parseDependencies(entry)
                 lst.append(action)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5311,7 +5311,7 @@ class Config(object):
                 override.command = readString(entry, "command")
                 override.absolutePath = readString(entry, "abs_path")
                 lst.append(override)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5346,7 +5346,7 @@ class Config(object):
                 hook.action = readString(entry, "action")
                 hook.command = readString(entry, "command")
                 lst.append(hook)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5384,7 +5384,7 @@ class Config(object):
                     cfile.collectMode = readString(entry, "collect_mode")
                 cfile.archiveMode = readString(entry, "archive_mode")
                 lst.append(cfile)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5440,7 +5440,7 @@ class Config(object):
                 cdir.recursionLevel = readInteger(entry, "recursion_level")
                 (cdir.absoluteExcludePaths, cdir.relativeExcludePaths, cdir.excludePatterns) = Config._parseExclusions(entry)
                 lst.append(cdir)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5469,7 +5469,7 @@ class Config(object):
                 cdir.absolutePath = readString(entry, "abs_path")
                 cdir.retainDays = readInteger(entry, "retain_days")
                 lst.append(cdir)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -5533,9 +5533,9 @@ class Config(object):
                     managedActions = readString(entry, "managed_actions")
                     remotePeer.managedActions = parseCommaSeparatedString(managedActions)
                     remotePeers.append(remotePeer)
-        if localPeers == []:
+        if not localPeers:
             localPeers = None
-        if remotePeers == []:
+        if not remotePeers:
             remotePeers = None
         return (localPeers, remotePeers)
 

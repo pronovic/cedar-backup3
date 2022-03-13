@@ -1611,7 +1611,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
             except OSError as e:
                 logger.debug("Command returned OSError: %s", e)
                 if returnOutput:
-                    if output != []:
+                    if output:
                         return (pipe.wait(), output)
                     else:
                         return (pipe.wait(), [e])
