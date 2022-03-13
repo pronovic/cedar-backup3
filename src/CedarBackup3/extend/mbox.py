@@ -989,7 +989,7 @@ class LocalConfig(object):
                 mboxFile.collectMode = readString(entry, "collect_mode")
                 mboxFile.compressMode = readString(entry, "compress_mode")
                 lst.append(mboxFile)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -1029,7 +1029,7 @@ class LocalConfig(object):
                 mboxDir.compressMode = readString(entry, "compress_mode")
                 (mboxDir.relativeExcludePaths, mboxDir.excludePatterns) = LocalConfig._parseExclusions(entry)
                 lst.append(mboxDir)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 

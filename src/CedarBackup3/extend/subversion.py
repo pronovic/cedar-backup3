@@ -1024,7 +1024,7 @@ class LocalConfig(object):
                 repository.collectMode = readString(entry, "collect_mode")
                 repository.compressMode = readString(entry, "compress_mode")
                 lst.append(repository)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 
@@ -1099,7 +1099,7 @@ class LocalConfig(object):
                 repositoryDir.compressMode = readString(entry, "compress_mode")
                 (repositoryDir.relativeExcludePaths, repositoryDir.excludePatterns) = LocalConfig._parseExclusions(entry)
                 lst.append(repositoryDir)
-        if lst == []:
+        if not lst:
             lst = None
         return lst
 

@@ -172,7 +172,7 @@ def readFirstChild(parent, name):
         First properly-named child of parent, or ``None`` if no matching nodes are found
     """
     result = readChildren(parent, name)
-    if result is None or result == []:
+    if not result:
         return None
     return result[0]
 
@@ -207,7 +207,7 @@ def readStringList(parent, name):
                 if child.nodeType == Node.TEXT_NODE:
                     lst.append(child.nodeValue)
                     break
-    if lst == []:
+    if not lst:
         lst = None
     return lst
 
