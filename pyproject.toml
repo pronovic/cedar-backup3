@@ -8,7 +8,16 @@ license = "GPL-2.0-only"
 readme = "PyPI.md"
 homepage = "https://pypi.org/project/cedar-backup3/"
 repository = "https://github.com/pronovic/cedar-backup3"
-include = [ "CREDITS", "Changelog", "LICENSE", "README.md", "docs", "manpages", "samples", "tests", ]
+include = [
+   { path = 'CREDITS', format = 'sdist' },
+   { path = 'Changelog', format = 'sdist' },
+   { path = 'LICENSE', format = 'sdist' },
+   { path = 'README.md', format = 'sdist' },
+   { path = 'docs', format = 'sdist' },
+   { path = 'manpages', format = 'sdist' },
+   { path = 'samples', format = 'sdist' },
+   { path = 'tests', format = 'sdist' },
+]
 packages = [ { include = "CedarBackup3", from = "src" } ]
 classifiers=[
    "Programming Language :: Python :: 3",
