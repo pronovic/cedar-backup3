@@ -333,6 +333,7 @@ def getLogin():
 ############################
 
 
+# noinspection PyTypeChecker
 def randomFilename(length, prefix=None, suffix=None):
     """
     Generates a random filename with the given length.
