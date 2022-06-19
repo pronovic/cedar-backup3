@@ -204,6 +204,9 @@ in the list above.
 
 ### Tool Preferences
 
+In the PyCharm settings, go to **Editor > Inspections** and be sure that the
+**Project Default** profile is selected.
+
 Unit tests are written using [Unittest](https://docs.python.org/3/library/unittest.html),
 and API documentation is written
 using [Google Style Python Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html). 
