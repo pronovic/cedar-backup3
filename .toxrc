@@ -7,7 +7,7 @@ envlist =
 ignore_basepython_conflict = true
 
 [testenv:checks]
-whitelist_externals = poetry
+allowlist_externals = poetry
 commands =
    poetry --version
    poetry version
@@ -16,7 +16,7 @@ commands =
 
 [testenv:coverage]
 passenv = USERNAME   # See: https://github.com/tox-dev/tox/issues/1455 and https://github.com/gitpython-developers/GitPython/issues/356
-whitelist_externals = poetry
+allowlist_externals = poetry
 commands =
    poetry --version
    poetry version
@@ -25,7 +25,7 @@ commands =
    poetry run coverage report
 
 [testenv:docs]
-whitelist_externals = poetry
+allowlist_externals = poetry
 changedir = docs
 commands =
    poetry --version

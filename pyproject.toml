@@ -41,7 +41,7 @@ cback3-span = 'CedarBackup3.scripts:span'
 python = ">=3.7,<4"
 chardet = "^4.0.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 coverage = "^6.3.2"
 tox = "^3.25.0"
 pylint = "~2.12"  # versions after 2.12 get into an infinite loop on Windows
