@@ -13,8 +13,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        python: ["3.7", "3.8", "3.9", "3.10" ]
+        os: [windows-latest]
+        python: ["3.7"]
     runs-on: ${{ matrix.os }}
     env:
       # Run builds using a specific version of Poetry, to avoid surprises
