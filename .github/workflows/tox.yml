@@ -34,6 +34,12 @@ jobs:
         run: |
           # Show platform information
           python -c "import sys;print('Python %s' % sys.version)"
+      - name: Windows Filesystem Information
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          # Show filesystem information on Windows
+          Get-Volume
       - name: Install Poetry
         uses: snok/install-poetry@v1.2.1 # see https://github.com/snok/install-poetry
         with:
