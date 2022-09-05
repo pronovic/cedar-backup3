@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #

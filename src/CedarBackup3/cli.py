@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -423,7 +423,7 @@ class _ActionItem(object):
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
-    def _executeHook(self, type, hook):  # pylint: disable=W0622,R0201
+    def _executeHook(self, type, hook):  # pylint: disable=W0622
         """
         Executes a hook command via :any:`util.executeCommand`.
         Args:

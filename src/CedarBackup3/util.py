@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -893,7 +893,7 @@ class PathResolverSingleton(object):
             pass
 
         def __call__(self, *args, **kw):
-            # pylint: disable=W0212,R0201
+            # pylint: disable=W0212
             if PathResolverSingleton._instance is None:
                 obj = PathResolverSingleton()
                 PathResolverSingleton._instance = obj
@@ -972,8 +972,6 @@ class Diagnostics(object):
     debugging purposes.  I'm consolidating it all here into one object.
 
     """
-
-    # pylint: disable=R0201
 
     def __init__(self):
         """
