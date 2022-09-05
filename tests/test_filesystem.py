@@ -3208,6 +3208,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree10", "file001"]) in fsList)
         self.assertTrue(self.buildPath(["tree10", "dir002"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_069(self):
         """
         Attempt to add a directory containing items with spaces.
@@ -4331,6 +4332,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002"]) in fsList)
         self.assertTrue(self.buildPath(["tree6", "link001"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_093(self):
         """
         Attempt to add a directory with linkDepth=0, dereference=False.
@@ -4446,6 +4448,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link001", "file001"]) in fsList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link002"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_097(self):
         """
         Attempt to add a directory with linkDepth=0, dereference=True.
@@ -5160,6 +5163,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "dir006", "dir004"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "dir006", "dir005"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveFiles_008(self):
         """
         Test with a non-empty list (spaces in path names) and a pattern of None.
@@ -5690,6 +5694,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveFiles_014(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -6204,6 +6209,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveFiles_020(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -6624,6 +6630,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "dir006", "dir004"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "dir006", "dir005"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveFiles_026(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -7062,6 +7069,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveDirs_008(self):
         """
         Test with a non-empty list (spaces in path names) and a pattern of None.
@@ -7587,6 +7595,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveDirs_014(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -8093,6 +8102,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveDirs_020(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -8525,6 +8535,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveDirs_026(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -9585,6 +9596,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveLinks_014(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -11180,6 +11192,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveMatch_008(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -11658,6 +11671,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree4", "file006"]) in fsList)
         self.assertTrue(self.buildPath(["tree4", "file007"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveMatch_014(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -11978,6 +11992,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertEqual(82, count)
         self.assertEqual(0, len(fsList))
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveMatch_021(self):
         """
         Test with a non-empty list (spaces in path names) and a non-empty pattern
@@ -12413,6 +12428,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001"]) in fsList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testRemoveInvalid_008(self):
         """
         Test with a non-empty list containing only valid entries (files,
@@ -13036,6 +13052,7 @@ class TestFilesystemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "link001"]) in fsList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in fsList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testVerify_008(self):
         """
         Test with a non-empty list containing valid and invalid entries (some
@@ -17488,6 +17505,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree10", "file001"]) in purgeList)
         self.assertTrue(self.buildPath(["tree10", "dir002"]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_069(self):
         """
         Attempt to add a directory containing items with spaces.
@@ -18515,6 +18533,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree6", "file002"]) in purgeList)
         self.assertTrue(self.buildPath(["tree6", "link001"]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_092(self):
         """
         Attempt to add a directory with linkDepth=0, dereference=False.
@@ -18626,6 +18645,7 @@ class TestPurgeItemList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link001", "file001"]) in purgeList)
         self.assertTrue(self.buildPath(["tree22", "dir003", "link003", "link002", "link002"]) in purgeList)
 
+    @unittest.skipUnless(platformSupportsLinks(), "Requires soft links")
     def testAddDirContents_096(self):
         """
         Attempt to add a directory with linkDepth=0, dereference=True.
