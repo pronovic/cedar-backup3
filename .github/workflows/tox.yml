@@ -13,8 +13,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest]
-        python: ["3.9"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.7", "3.8", "3.9", "3.10" ]
     runs-on: ${{ matrix.os }}
     env:
       # Run builds using a specific version of Poetry, to avoid surprises
@@ -34,12 +34,6 @@ jobs:
         run: |
           # Show platform information
           python -c "import sys;print('Python %s' % sys.version)"
-      - name: Windows Filesystem Information
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          # Show filesystem information on Windows
-          Get-Volume
       - name: Install Poetry
         uses: snok/install-poetry@v1.2.1 # see https://github.com/snok/install-poetry
         with:

@@ -6,6 +6,7 @@ Version 3.6.6     unreleased
 	* Adjust Black configuration to target Python 3.7, 3.8, 3.9, and 3.10.
 	* Add dependency caching to GitHub Actions workflow.
 	* Fix the GitHub Actions matrix build to properly target Windows and MacOS.
+	* Fix problems with test suite under Windows when running in GitHub Actions.
 	* Update various dependencies for the developer environment.
 
 Version 3.6.5     30 Apr 2022
