@@ -38,13 +38,13 @@ cback3-amazons3-sync = 'CedarBackup3.scripts:amazons3'
 cback3-span = 'CedarBackup3.scripts:span' 
 
 [tool.poetry.dependencies]
-python = ">=3.7,<4"
+python = ">=3.7.2,<4"
 chardet = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^6.3.2"
 tox = "^3.25.0"
-pylint = "~2.12"  # versions after 2.12 get into an infinite loop on Windows
+pylint = "^2.15.0"
 Sphinx = "^4.5.0"
 toml = "^0.10.2"
 pre-commit = "^2.18.1"
