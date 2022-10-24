@@ -1,4 +1,5 @@
 # vim: set ft=bash sw=3 ts=3 expandtab:
+# runscript: customized=true
 
 # The release process for Cedar Backup is a little different than the standard
 # process, because it has a different set of files to update.  As a result, we
