@@ -153,6 +153,7 @@ Basic tasks:
 - run install: Setup the virtualenv via Poetry and install pre-commit hooks
 - run format: Run the code formatters
 - run checks: Run the code checkers
+- run build: Build artifacts in the dist/ directory
 - run test: Run the unit tests (use --help to see other options)
 - run suite: Run the complete test suite, as for the GitHub Actions CI build
 
