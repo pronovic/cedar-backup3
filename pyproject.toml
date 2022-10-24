@@ -43,7 +43,6 @@ chardet = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^6.3.2"
-tox = "^3.25.0"
 pylint = "^2.15.0"
 Sphinx = "^4.5.0"
 toml = "^0.10.2"
@@ -52,6 +51,7 @@ black = "^22.3.0"
 isort = "^5.10.1"
 sphinx-autoapi = "^1.8.4"
 coveralls = "^3.3.1"
+colorama = "^0.4.5"
 
 [tool.black]
 line-length = 132

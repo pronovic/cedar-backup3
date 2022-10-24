@@ -1,0 +1,8 @@
+echo "To run scripts, use poetry directly: "
+echo ""
+echo "- poetry run cback3"
+echo "- poetry run cback3-amazons3-sync"
+echo "- poetry run cback3-span"
+echo ""
+echo "These are the exact scripts published by Poetry as part of the Python package."
+echo ""
