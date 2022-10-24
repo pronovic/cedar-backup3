@@ -7,6 +7,7 @@ help_diagnostics() {
 task_diagnostics() {
    cat << EOF > "$WORKING_DIR/diagnostics.py"
 from CedarBackup3.util import Diagnostics
+print("")
 Diagnostics().printDiagnostics(prefix="*** ")
 EOF
 
