@@ -43,9 +43,8 @@ have native platform line endings, and you can't override that behavior.  Even
 with sane configuration in `.gitattributes`, you sometimes still get spurious
 differences, where Git says that a file has changed but then `git diff` shows
 an empty result.  The `run` script and the pre-commit hooks both normalize the
-line endings for `requirements.txt` using [`utils/dos2unix.py`](utils/dos2unix.py).  I wish
-there were a standard way to do this in Poetry or in Python, but there isn't as
-of this writing.
+line endings for `requirements.txt`.  I wish there were a standard way to do
+this in Poetry or in Python, but there isn't as of this writing.
 
 ## Prerequisites
 
@@ -149,21 +148,22 @@ $ run --help
 Shortcuts for common developer tasks
 ------------------------------------
 
-Usage: run <command>
+Basic tasks:
 
 - run install: Setup the virtualenv via Poetry and install pre-commit hooks
-- run requirements: Regenerate the docs/requirements.txt file
-- run diagnostics: Print diagnostics about the Cedar Backup runtime environment
 - run format: Run the code formatters
 - run checks: Run the code checkers
-- run test: Run the unit test suite
-- run docs: Build the Sphinx documentation for cedar-backup3.readthedocs.io
-- run docs -o: Build the Sphinx documentation and open in a browser
-- run tox: Run the Tox test suite used by the GitHub CI action
-- run release: Release a specific version and tag the code
-- run publish: Publish the current code to PyPI and push to GitHub
+- run test: Run the unit tests (use --help to see other options)
+- run suite: Run the complete test suite, as for the GitHub Actions CI build
 
-Try 'run test --help' to get a list of other arguments accepted by that command.
+Additional tasks:
+
+- run diagnostics: Print CedarBackup runtime diagnostics
+- run docs: Build the Sphinx documentation for readthedocs.io
+- run docs -o: Build the Sphinx documentation and open in a browser
+- run publish: Publish the current code to PyPI and push to GitHub
+- run release: Release a specific version and tag the code
+- run requirements: Regenerate the docs/requirements.txt file
 
 To run scripts, use poetry directly:
 
@@ -195,7 +195,7 @@ order.  In particular, if you do not run the install step, there will be no
 virtualenv for PyCharm to use:
 
 ```
-run install && run checks && run test
+run install && run suite
 ```
 
 ### Open the Project
@@ -221,7 +221,7 @@ Go to the PyCharm settings and find the `cedar-backup3` project.  Under
 the **Exclude Files** box, enter the following: 
 
 ```
-LICENSE;NOTICE;PyPI.md;.coverage;.coveragerc;.github;.gitignore;.gitattributes;.htmlcov;.idea;.isort.cfg;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tox;.toxrc;.tabignore;build;dist;docs/_build;out;poetry.lock;poetry.toml;run;
+LICENSE;NOTICE;PyPI.md;.coverage;.coveragerc;.github;.gitignore;.gitattributes;.htmlcov;.idea;.isort.cfg;.pre-commit-config.yaml;.pylintrc;.pytest_cache;.readthedocs.yml;.tabignore;build;dist;docs/_build;out;poetry.lock;poetry.toml;run;.run;.venv;
 ```
 
 When you're done, click **Ok**.  Then, go to the gear icon in the project panel
@@ -310,25 +310,43 @@ source ~/.bash_profile
 
 #### Windows
 
-On Windows, PyCharm has problems invoking the `run` script, even via the Git
-Bash interpreter.  I have created a Powershell script `utils/tools.ps1` that
-can be used instead.
+On Windows, PyCharm has problems invoking the `run` script.  The trick is to
+invoke the Bash interpreter and tell it to invoke the `run` script.  The
+examples below assume that you have installed Git Bash in its standard location
+under `C:\Program Files\Git`.  If it is somewhere else on your system, just
+change the path for `bash.exe`.
 
 ##### Format Code
 
 |Field|Value|
 |-----|-----|
 |Name|`Format Code`|
-|Description|`Run the Black and isort code formatters`|
+|Description|`Run the code formatters`|
 |Group|`Developer Tools`|
 |Program|`powershell.exe`|
-|Arguments|`-executionpolicy bypass -File utils\tools.ps1 format`|
+|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" format | Out-String`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Checked_|
 |Open console for tool outout|_Checked_|
 |Make console active on message in stdout|_Unchecked_|
 |Make console active on message in stderr|_Unchecked_|
 |Output filters|_Empty_|
+
+##### Run MyPy Checks
+
+|Field|Value|
+|-----|-----|
+|Name|`Run MyPy Checks`|
+|Description|`Run the MyPy code checks`|
+|Group|`Developer Tools`|
+|Program|`powershell.exe`|
+|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" mypy | Out-String`|
+|Working directory|`$ProjectFileDir$`|
+|Synchronize files after execution|_Unchecked_|
+|Open console for tool outout|_Checked_|
+|Make console active on message in stdout|_Checked_|
+|Make console active on message in stderr|_Checked_|
+|Output filters|`$FILE_PATH$:$LINE$:$COLUMN$:.*`|
 
 ##### Run Pylint Checks
 
@@ -338,7 +356,7 @@ can be used instead.
 |Description|`Run the Pylint code checks`|
 |Group|`Developer Tools`|
 |Program|`powershell.exe`|
-|Arguments|`-executionpolicy bypass -File utils\tools.ps1 pylint`|
+|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" pylint | Out-String`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Unchecked_|
 |Open console for tool outout|_Checked_|
