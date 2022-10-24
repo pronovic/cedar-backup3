@@ -1,3 +1,7 @@
+Version 3.6.8     unreleased
+
+	* Remove execute bit from amazons3.py and span.py for Debian policy.
+
 Version 3.6.7     24 Oct 2022
 
 	* Refactor the run script and pre-commit hooks to reduce duplication.
