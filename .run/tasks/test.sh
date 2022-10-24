@@ -11,6 +11,8 @@ help_test() {
 
 task_test() {
 
+   local OPTIND
+
    coverage="no"
    html="no"
    pattern=""
@@ -56,8 +58,6 @@ task_test() {
      esac
      shift
    done
-
-   run_task diagnostics
 
    if [ $coverage == "yes" ]; then
       poetry_run coverage run -m unittest discover -s tests -t tests $verbose $pattern
