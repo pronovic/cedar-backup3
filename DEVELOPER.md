@@ -332,22 +332,6 @@ change the path for `bash.exe`.
 |Make console active on message in stderr|_Unchecked_|
 |Output filters|_Empty_|
 
-##### Run MyPy Checks
-
-|Field|Value|
-|-----|-----|
-|Name|`Run MyPy Checks`|
-|Description|`Run the MyPy code checks`|
-|Group|`Developer Tools`|
-|Program|`powershell.exe`|
-|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" mypy | Out-String`|
-|Working directory|`$ProjectFileDir$`|
-|Synchronize files after execution|_Unchecked_|
-|Open console for tool outout|_Checked_|
-|Make console active on message in stdout|_Checked_|
-|Make console active on message in stderr|_Checked_|
-|Output filters|`$FILE_PATH$:$LINE$:$COLUMN$:.*`|
-
 ##### Run Pylint Checks
 
 |Field|Value|
