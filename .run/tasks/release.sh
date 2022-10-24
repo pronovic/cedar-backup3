@@ -10,6 +10,8 @@ help_release() {
 }
 
 task_release() {
+   local VERSION COPYRIGHT DATE TAG FILES MESSAGE
+
    if [ $# != 1 ]; then
       echo "<version> required"
       exit 1

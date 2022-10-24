@@ -13,6 +13,8 @@ setup_environment
 if task_exists "$1"; then
    run_task $*
 else
+   local task
+
    echo ""
    echo "------------------------------------"
    echo "Shortcuts for common developer tasks"

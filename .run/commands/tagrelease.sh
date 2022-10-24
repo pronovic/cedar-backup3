@@ -2,6 +2,8 @@
 # Update the changelog and tag a specific version of the code
 
 command_tagrelease() {
+   local VERSION EARLIEST_YEAR LATEST_YEAR DEFAULT_BRANCH CURRENT_BRANCH COPYRIGHT DATE TAG FILES MESSAGE
+
    if [ $# != 1 ]; then
       echo "<version> required"
       exit 1

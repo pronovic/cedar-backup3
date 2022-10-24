@@ -11,7 +11,7 @@ help_test() {
 
 task_test() {
 
-   local OPTIND
+   local OPTIND OPTARG option coverage html pattern verbose
 
    coverage="no"
    html="no"

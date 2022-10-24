@@ -4,12 +4,17 @@
 # We generate relative paths in the output to make integration with Pycharm work better
 
 command_pylint() {
-   TESTS="tests"
+   echo "Running pylint checks..."
+
+   local OPTIND OPTARG option tests template
+
+   tests="tests"
+   template="{path}:{line}:{column} - {C} - ({symbol}) - {msg}"
 
    while getopts "t" option; do
      case $option in
        t)
-         TESTS=""  # -t means to ignore the tests
+         tests=""  # -t means to ignore the tests
          ;;
        ?)
          echo "invalid option -$OPTARG"
@@ -20,8 +25,6 @@ command_pylint() {
 
    shift $((OPTIND -1))  # pop off the options consumed by getopts
 
-   echo "Running pylint checks..."
-   TEMPLATE="{path}:{line}:{column} - {C} - ({symbol}) - {msg}"
-   poetry_run pylint --msg-template="$TEMPLATE" -j 0 "$@" $(ls -d src/*) $TESTS
+   poetry_run pylint --msg-template="$template" -j 0 "$@" $(ls -d src/*) $tests
    echo "done"
 }
