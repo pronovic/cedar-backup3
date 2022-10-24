@@ -1,4 +1,5 @@
 # vim: set ft=bash sw=3 ts=3 expandtab:
+# runscript: customized=true
 
 # The logic below mostly replicates what was available in util/test.py prior to
 # converting to the more standard unittest discovery process.  Since Cedar

@@ -1,4 +1,5 @@
 # vim: set ft=bash sw=3 ts=3 expandtab:
+# runscript: customized=true
 
 help_diagnostics() {
    echo "- run diagnostics: Print CedarBackup runtime diagnostics"
