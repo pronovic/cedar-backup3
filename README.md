@@ -89,4 +89,3 @@ the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/st
 Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'
 release.  Debian derivatives (such as Ubuntu) should also contain the packages.
-
