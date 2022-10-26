@@ -36,7 +36,7 @@ task_release() {
       exit 1
    fi
 
-   head -1 Changelog | grep -q "^Version $VERSION\s\s*unreleased"
+   head -1 Changelog | grep -q "^Version $VERSION[[:blank:]][[:blank:]]*unreleased"
    if [ $? != 0 ]; then
       echo "*** Unreleased version v$VERSION is not at the head of the Changelog"
       exit 1
@@ -49,25 +49,11 @@ task_release() {
    fi
 
    run_command dos2unix pyproject.toml
-
-   # annoyingly, BSD sed and GNU sed are not compatible on the syntax for -i
-   # I failed miserably in all attempts to put the sed command (with empty string) into a variable
-   sed --version 2>&1 | grep -iq "GNU sed"
-   if [ $? = 0 ]; then
-      # GNU sed accepts a bare -i and assumes no backup file
-      sed -i "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
-      sed -i "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
-      sed -i "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
-      sed -i "s/^Version $VERSION\s\s*unreleased/Version $VERSION     $DATE/g" Changelog
-      sed -i -E "s/(^ *Copyright \(c\) *)([0-9,-]+)( *Kenneth.*$)/\1$COPYRIGHT\3/" CREDITS
-   else
-      # BSD sed requires you to set an empty backup file extension
-      sed -i "" "s/^COPYRIGHT = .*$/COPYRIGHT = \"$COPYRIGHT\"/g" src/CedarBackup3/release.py
-      sed -i "" "s/^VERSION = .*$/VERSION = \"$VERSION\"/g" src/CedarBackup3/release.py
-      sed -i "" "s/^DATE = .*$/DATE = \"$DATE\"/g" src/CedarBackup3/release.py
-      sed -i "" "s/^Version $VERSION\s\s*unreleased/Version $VERSION     $DATE/g" Changelog
-      sed -i "" -E "s/(^ *Copyright \(c\) *)([0-9,-]+)( *Kenneth.*$)/\1$COPYRIGHT\3/" CREDITS
-   fi
+   run_command sedreplace "s|^COPYRIGHT = .*$|COPYRIGHT = \"$COPYRIGHT\"|g" src/CedarBackup3/release.py
+   run_command sedreplace "s|^VERSION = .*$|VERSION = \"$VERSION\"|g" src/CedarBackup3/release.py
+   run_command sedreplace "s|^DATE = .*$|DATE = \"$DATE\"|g" src/CedarBackup3/release.py
+   run_command sedreplace "s|^Version $VERSION[[:blank:]][[:blank:]]*unreleased|Version $VERSION     $DATE|g" Changelog
+   run_command sedreplace "s|(^ *Copyright \(c\) *)([0-9,-]+)( *Kenneth.*$)|\1$COPYRIGHT\3|" CREDITS
 
    git diff $FILES
 
