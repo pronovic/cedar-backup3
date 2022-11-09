@@ -1,4 +1,4 @@
-Version 3.6.9     unreleased
+Version 3.6.9     09 Nov 2022
 
 	* Support Python 3.11.
 	* Use locale.getlocale() instead of .getdefaultlocale() for Python >= 3.11.
