@@ -1105,7 +1105,10 @@ class Diagnostics(object):
         try:
             import locale  # pylint: disable=import-outside-toplevel
 
-            return locale.getdefaultlocale()[0]
+            try:
+                return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
+            except:
+                return locale.getdefaultlocale()[0]  # pylint: disable=deprecated-method:
         except:
             return "(unknown)"
 

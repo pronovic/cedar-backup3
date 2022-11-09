@@ -1,3 +1,8 @@
+Version 3.6.9     unreleased
+
+	* Support Python 3.11.
+	* Use locale.getlocale() instead of .getdefaultlocale() for >= 3.11.
+
 Version 3.6.8     24 Oct 2022
 
 	* Remove execute bit from amazons3.py and span.py for Debian policy.
