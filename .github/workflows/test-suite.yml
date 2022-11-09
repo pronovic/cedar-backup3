@@ -1,4 +1,5 @@
 # vim: set ft=yaml ts=2 sw=2 expandtab:
+# On GHA, the Linux runners are *much* faster and more reliable, so we only run the full matrix build there
 name: Test Suite
 on:
   push:
