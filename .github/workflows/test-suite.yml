@@ -20,6 +20,7 @@ jobs:
       matrix-os-version: "[ 'ubuntu-latest' ]"
       matrix-python-version: "[ '3.7', '3.8', '3.9', '3.10', '3.11' ]"  # run Linux tests on all supported Python versions
       poetry-version: "1.2.2"
+      enable-coveralls: true 
   macos-build-and-test:
     uses: pronovic/gha-shared-workflows/.github/workflows/poetry-build-and-test.yml@v2
     secrets: inherit
@@ -27,6 +28,7 @@ jobs:
       matrix-os-version: "[ 'macos-latest' ]"
       matrix-python-version: "[ '3.11' ]"  # only run MacOS tests on latest Python
       poetry-version: "1.2.2"
+      enable-coveralls: false 
   windows-build-and-test:
     uses: pronovic/gha-shared-workflows/.github/workflows/poetry-build-and-test.yml@v2
     secrets: inherit
@@ -34,3 +36,4 @@ jobs:
       matrix-os-version: "[ 'windows-latest' ]"
       matrix-python-version: "[ '3.11' ]"  # only run Windows tests on latest Python
       poetry-version: "1.2.2"
+      enable-coveralls: false 
