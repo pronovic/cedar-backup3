@@ -9,8 +9,8 @@ readme = "PyPI.md"
 homepage = "https://pypi.org/project/cedar-backup3/"
 repository = "https://github.com/pronovic/cedar-backup3"
 include = [
-   { path = 'CREDITS', format = 'sdist' },
    { path = 'Changelog', format = 'sdist' },
+   { path = 'NOTICE', format = 'sdist' },
    { path = 'LICENSE', format = 'sdist' },
    { path = 'README.md', format = 'sdist' },
    { path = 'docs', format = 'sdist' },
@@ -40,6 +40,7 @@ cback3-span = 'CedarBackup3.scripts:span'
 [tool.poetry.dependencies]
 python = ">=3.8,<4"
 chardet = "^4.0.0"
+importlib-metadata = "^5.2.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^6.3.2"

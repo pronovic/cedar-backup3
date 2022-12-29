@@ -16,7 +16,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 """
-Provides location to maintain version information.
+Provides a location to maintain version information.
 
 Module Attributes
 =================
@@ -24,17 +24,22 @@ Module Attributes
 Attributes:
    AUTHOR: Author of software
    EMAIL: Email address of author
-   COPYRIGHT: Copyright date
    VERSION: Software version
-   DATE: Software release date
    URL: URL of Cedar Backup webpage
 
 :author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
-AUTHOR = "Kenneth J. Pronovici"
-EMAIL = "pronovic@ieee.org"
-COPYRIGHT = "2004-2022"
-VERSION = "3.6.9"
-DATE = "09 Nov 2022"
-URL = "https://github.com/pronovic/cedar-backup3"
+# Historically, this information was tracked directly within this file as
+# part of the release process.  In modern Python, it's better to rely on
+# the package metadata, which is managed by Poetry on our behalf.  We used
+# to track release date and copyright date range, but that information is
+# not available in the package metadata.
+
+from importlib.metadata import metadata
+
+METADATA = metadata("cedar-backup3")
+AUTHOR = METADATA["Author"]
+EMAIL = METADATA["Author-email"]
+VERSION = METADATA["Version"]
+URL = METADATA["Home-page"]

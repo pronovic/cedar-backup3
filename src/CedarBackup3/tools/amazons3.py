@@ -63,7 +63,7 @@ import chardet
 
 from CedarBackup3.cli import DEFAULT_LOGFILE, DEFAULT_MODE, DEFAULT_OWNERSHIP, setupLogging
 from CedarBackup3.filesystem import FilesystemList
-from CedarBackup3.release import AUTHOR, COPYRIGHT, DATE, EMAIL, VERSION
+from CedarBackup3.release import AUTHOR, EMAIL, VERSION
 from CedarBackup3.util import Diagnostics, encodePath, executeCommand, splitCommandLine
 
 ########################################################################
@@ -1029,10 +1029,10 @@ def _version(fd=sys.stdout):
     """
     fd.write("\n")
     fd.write(" Cedar Backup Amazon S3 sync tool.\n")
-    fd.write(" Included with Cedar Backup version %s, released %s.\n" % (VERSION, DATE))
+    fd.write(" Included with Cedar Backup version %s.\n" % VERSION)
     fd.write("\n")
-    fd.write(" Copyright (c) %s %s <%s>.\n" % (COPYRIGHT, AUTHOR, EMAIL))
-    fd.write(" See CREDITS for a list of included code and other contributors.\n")
+    fd.write(" Copyright (c) %s <%s>.\n" % (AUTHOR, EMAIL))
+    fd.write(" See NOTICE for a list of included code and other contributors.\n")
     fd.write(" This is free software; there is NO warranty.  See the\n")
     fd.write(" GNU General Public License version 2 for copying conditions.\n")
     fd.write("\n")

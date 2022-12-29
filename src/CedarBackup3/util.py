@@ -83,7 +83,7 @@ from functools import total_ordering
 from numbers import Real
 from subprocess import PIPE, STDOUT, Popen
 
-from CedarBackup3.release import DATE, VERSION
+from CedarBackup3.release import VERSION
 
 try:
     import grp
@@ -1064,7 +1064,7 @@ class Diagnostics(object):
         """
         Property target to get the Cedar Backup version.
         """
-        return "Cedar Backup %s (%s)" % (VERSION, DATE)
+        return "Cedar Backup %s" % VERSION
 
     def _getInterpreter(self):
         """
