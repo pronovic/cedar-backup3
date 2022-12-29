@@ -1,5 +1,6 @@
 Version 3.7.0     unreleased
 
+	* Drop support for Python 3.7.
 	* Rename CREDITS -> NOTICE for consistency with my other Python projects.
 	* Migrate release.py and various help output to use importlib.metadata.
 	* Convert to standard version of .run/tasks/release.sh used elsewhere.
