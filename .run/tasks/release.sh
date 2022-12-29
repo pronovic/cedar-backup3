@@ -5,6 +5,6 @@ help_release() {
 }
 
 task_release() {
-   run_command tagrelease "$@"
+   COPYRIGHT_START=2004 run_command tagrelease "$@"
 }
 
