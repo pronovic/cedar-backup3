@@ -46,6 +46,16 @@ just about any UNIX-like operating system. In particular, full Cedar
 Backup functionality is known to work on Debian and SuSE Linux, and client 
 functionality is also known to work on FreeBSD and OS X systems.
 
+## Supported Python Versions
+
+My general policy is to support the latest four versions of the Python
+interpreter.  For example, starting in late 2022, I dropped support for Python
+3.7, leaving support for Python 3.8, 3.9, 3.10, and 3.11.  At my discretion, I
+may choose to support older versions, as long as doing so doesn't cause too
+much pain.  These days Python is released about once per year, so most anyone
+should be able to run one of the supported versions, even on a long-term
+support Linux distribution.
+
 ## Developer Documentation
 
 Developer documentation is found in [DEVELOPER.md](DEVELOPER.md).  See that
