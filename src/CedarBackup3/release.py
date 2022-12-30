@@ -35,9 +35,8 @@ Attributes:
 # is managed by Poetry on our behalf.
 #
 # The metadata will always be set any time the package has been completely and properly
-# installed.  However, there are other cases where it won't be available, such as during
-# the Debian build process, when we are trying to run the test suite from within the
-# source tree.  So, default values are provided.
+# installed.  However, there are other cases where it won't be available, such as when
+# running the smoke test during the Debian build process. So, default values are provided.
 #
 # Note: previously, we also tracked release date and copyright date range, but that
 # information is not available in the package metadata.  These values are maintained to
