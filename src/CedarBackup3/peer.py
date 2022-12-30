@@ -25,7 +25,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python 3 (>= 3.7)
+# Language : Python 3
 # Project  : Cedar Backup, release 3
 # Purpose  : Provides backup peer-related objects.
 #

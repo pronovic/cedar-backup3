@@ -27,7 +27,7 @@
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 #            Antoine Beaupre <anarcat@koumbit.org>
-# Language : Python 3 (>= 3.7)
+# Language : Python 3
 # Project  : Official Cedar Backup Extensions
 # Purpose  : Provides an extension to back up PostgreSQL databases.
 #
