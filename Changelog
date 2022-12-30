@@ -1,3 +1,7 @@
+Version 3.7.3     unreleased
+
+	* Convert to latest readthedocs.io standard.
+
 Version 3.7.2     30 Dec 2022
 
 	* More improvements to metadata for the Debian CI test process.
