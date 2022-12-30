@@ -91,7 +91,7 @@ Cedar Backup requires a number of external packages in order to function
 properly. Before installing Cedar Backup, you must make sure that these
 dependencies are met.
 
-Cedar Backup is written in Python 3 and requires version 3.7 or greater
+Cedar Backup is written in Python 3 and requires version 3.8 or greater
 of the language.
 
 Additionally, remote client peer nodes must be running an RSH-compatible

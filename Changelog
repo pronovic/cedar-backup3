@@ -1,3 +1,7 @@
+Version 3.7.3     unreleased
+
+	* Update remaining docs, comments, and checks to reflect dropping Python 3.7.
+
 Version 3.7.2     30 Dec 2022
 
 	* More improvements to metadata for the Debian CI test process.
