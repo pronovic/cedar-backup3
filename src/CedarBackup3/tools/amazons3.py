@@ -25,7 +25,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-# Language : Python 3 (>= 3.7)
+# Language : Python 3
 # Project  : Cedar Backup, release 3
 # Purpose  : Cedar Backup tool to synchronize an Amazon S3 bucket.
 #
@@ -883,7 +883,7 @@ def cli():
 
     A different error code is returned for each type of failure:
 
-       - ``1``: The Python interpreter version is < 3.7
+       - ``1``: The Python interpreter version is not supported
        - ``2``: Error processing command-line arguments
        - ``3``: Error configuring logging
        - ``5``: Backup was interrupted with a CTRL-C or similar
@@ -897,12 +897,12 @@ def cli():
         Error code as described above
     """
     try:
-        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 7]:
-            sys.stderr.write("Python 3 version 3.7 or greater required.\n")
+        if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 8]:
+            sys.stderr.write("Python 3 version 3.8 or greater required.\n")
             return 1
     except:
         # sys.version_info isn't available before 2.0
-        sys.stderr.write("Python 3 version 3.7 or greater required.\n")
+        sys.stderr.write("Python 3 version 3.8 or greater required.\n")
         return 1
 
     try:
