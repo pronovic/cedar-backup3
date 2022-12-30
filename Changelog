@@ -1,4 +1,4 @@
-Version 3.7.3     unreleased
+Version 3.7.3     30 Dec 2022
 
 	* Convert to latest readthedocs.io standard.
 	* Update remaining docs, comments, and checks to reflect dropping Python 3.7.
