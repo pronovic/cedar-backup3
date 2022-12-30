@@ -25,21 +25,29 @@ Attributes:
    AUTHOR: Author of software
    EMAIL: Email address of author
    VERSION: Software version
-   URL: URL of Cedar Backup webpage
 
 :author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
 
-# Historically, this information was tracked directly within this file as
-# part of the release process.  In modern Python, it's better to rely on
-# the package metadata, which is managed by Poetry on our behalf.  We used
-# to track release date and copyright date range, but that information is
-# not available in the package metadata.
+# Historically, this information was tracked directly within this file as part of the
+# release process.  In modern Python, it's better to rely on the package metadata, which
+# is managed by Poetry on our behalf.
+#
+# The metadata will always be set any time the package has been completely and properly
+# installed.  However, there are other cases where it won't be available, such as during
+# the Debian build process, when we are trying to run the test suite from within the
+# source tree.  So, default values are provided.
+#
+# Note: previously, we also tracked release date and copyright date range, but that
+# information is not available in the package metadata.  These values are maintained to
+# avoid breaking the public interface, but are always "unset".
 
 from importlib.metadata import metadata
 
-METADATA = metadata("cedar-backup3")
-AUTHOR = METADATA["Author"]
-EMAIL = METADATA["Author-email"]
-VERSION = METADATA["Version"]
-URL = METADATA["Home-page"]
+_METADATA = metadata("cedar-backup3")
+AUTHOR = _METADATA["Author"] if "Author" in _METADATA else "unset"
+EMAIL = _METADATA["Author-email"] if "Author-email" in _METADATA else "unset"
+VERSION = _METADATA["Version"] if "Version" in _METADATA else "0.0.0"
+COPYRIGHT = "unset"
+DATE = "unset"
+URL = "unset"

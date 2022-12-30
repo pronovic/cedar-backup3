@@ -1,3 +1,7 @@
+Version 3.7.1     unreleased
+
+	* Improvements to metadata to better support the Debian build process.
+
 Version 3.7.0     29 Dec 2022
 
 	* Drop support for Python 3.7.
