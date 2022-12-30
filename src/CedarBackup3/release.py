@@ -45,9 +45,11 @@ Attributes:
 from importlib.metadata import metadata
 
 _METADATA = metadata("cedar-backup3")
+
 AUTHOR = _METADATA["Author"] if "Author" in _METADATA else "unset"
 EMAIL = _METADATA["Author-email"] if "Author-email" in _METADATA else "unset"
 VERSION = _METADATA["Version"] if "Version" in _METADATA else "0.0.0"
+URL = _METADATA["Home-page"] if "Home-page" in _METADATA else "unset"
+
 COPYRIGHT = "unset"
 DATE = "unset"
-URL = "unset"
