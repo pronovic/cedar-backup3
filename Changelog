@@ -1,4 +1,4 @@
-Version 3.7.1     unreleased
+Version 3.7.1     30 Dec 2022
 
 	* Improvements to metadata to better support the Debian build process.
 
