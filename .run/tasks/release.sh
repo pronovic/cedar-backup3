@@ -2,7 +2,7 @@
 # runscript: customized=true
 
 help_release() {
-   echo "- run release: Release a specific version and tag the code"
+   echo "- run release: Tag and release the code, triggering GHA to publish artifacts"
 }
 
 task_release() {
