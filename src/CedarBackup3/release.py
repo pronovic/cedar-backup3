@@ -25,6 +25,7 @@ Attributes:
    AUTHOR: Author of software
    EMAIL: Email address of author
    VERSION: Software version
+   URL: Homepage URL
 
 :author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
