@@ -36,7 +36,9 @@ Attributes:
 #
 # The metadata will always be set any time the package has been completely and properly
 # installed.  However, there are other cases where it won't be available, such as when
-# running the smoke test during the Debian build process. So, default values are provided.
+# running the smoke tests during the Debian build process, or when running the unit tests
+# from within the source tree as a part of the Debian CI suite. So, default values are
+# provided.
 #
 # Note: previously, we also tracked release date and copyright date range, but that
 # information is not available in the package metadata.  These values are maintained to
@@ -44,7 +46,10 @@ Attributes:
 
 from importlib.metadata import metadata
 
-_METADATA = metadata("cedar-backup3")
+try:
+    _METADATA = metadata("cedar-backup3")
+except ImportError:
+    _METADATA = {}
 
 AUTHOR = _METADATA["Author"] if "Author" in _METADATA else "unset"
 EMAIL = _METADATA["Author-email"] if "Author-email" in _METADATA else "unset"

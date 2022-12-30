@@ -1,3 +1,7 @@
+Version 3.7.2     unreleased
+
+	* More improvements to metadata for the Debian CI test process.
+
 Version 3.7.1     30 Dec 2022
 
 	* Improvements to metadata to better support the Debian build process.
