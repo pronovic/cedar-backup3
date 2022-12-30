@@ -149,7 +149,6 @@ Additional tasks:
 - run docs -o: Build the Sphinx documentation and open in a browser
 - run publish: Publish the current code to PyPI and push to GitHub
 - run release: Release a specific version and tag the code
-- run requirements: Regenerate the docs/requirements.txt file
 
 To run scripts, use poetry directly:
 
