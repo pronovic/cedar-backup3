@@ -309,6 +309,7 @@ def _diagnostics(fd=sys.stdout):
 # _executeAction() function
 ############################
 
+
 # pylint: disable=W0613
 def _executeAction(options, config):
     """

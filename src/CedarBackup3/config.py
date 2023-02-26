@@ -4418,7 +4418,6 @@ class PurgeConfig(object):
 
 @total_ordering
 class Config(object):
-
     ######################
     # Class documentation
     ######################

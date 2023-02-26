@@ -353,6 +353,7 @@ def randomFilename(length, prefix=None, suffix=None):
 # failUnlessAssignRaises() function
 ####################################
 
+
 # pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
     """

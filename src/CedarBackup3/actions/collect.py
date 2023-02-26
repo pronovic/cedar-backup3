@@ -69,6 +69,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.collect")
 # executeCollect() function
 ############################
 
+
 # pylint: disable=W0613
 def executeCollect(configPath, options, config):
     """

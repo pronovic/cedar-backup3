@@ -250,7 +250,6 @@ class _ImageProperties(object):
 
 
 class DvdWriter(object):
-
     ######################
     # Class documentation
     ######################
