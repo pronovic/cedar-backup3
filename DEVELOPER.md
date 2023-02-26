@@ -308,7 +308,7 @@ change the path for `bash.exe`.
 |Description|`Run the code formatters`|
 |Group|`Developer Tools`|
 |Program|`powershell.exe`|
-|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" format | Out-String`|
+|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' -l "./run" format | Out-String`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Checked_|
 |Open console for tool outout|_Checked_|
@@ -324,7 +324,7 @@ change the path for `bash.exe`.
 |Description|`Run the Pylint code checks`|
 |Group|`Developer Tools`|
 |Program|`powershell.exe`|
-|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' "./run" pylint | Out-String`|
+|Arguments|`& 'C:\Program Files\Git\bin\bash.exe' -l "./run" pylint | Out-String`|
 |Working directory|`$ProjectFileDir$`|
 |Synchronize files after execution|_Unchecked_|
 |Open console for tool outout|_Checked_|
