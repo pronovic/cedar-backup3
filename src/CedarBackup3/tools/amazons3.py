@@ -100,7 +100,6 @@ LONG_SWITCHES = [
 
 @total_ordering
 class Options(object):
-
     ######################
     # Class documentation
     ######################
@@ -1104,6 +1103,7 @@ def _buildSourceFiles(sourceDir):
 ###############################
 # _checkSourceFiles() function
 ###############################
+
 
 # pylint: disable=W0613
 def _checkSourceFiles(sourceDir, sourceFiles):

@@ -1,3 +1,7 @@
+Verison 3.7.5     unreleased
+
+	* Upgrade all dependencies to the latest major version.
+
 Version 3.7.4     31 Dec 2022
 
 	* Pull Sphinx fields from metadata rather than parsing pyproject.toml.

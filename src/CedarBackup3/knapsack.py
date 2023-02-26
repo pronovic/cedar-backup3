@@ -71,7 +71,6 @@ possible.
 
 
 def firstFit(items, capacity):
-
     """
     Implements the first-fit knapsack algorithm.
 
@@ -131,7 +130,6 @@ def firstFit(items, capacity):
 
 
 def bestFit(items, capacity):
-
     """
     Implements the best-fit knapsack algorithm.
 
@@ -201,7 +199,6 @@ def bestFit(items, capacity):
 
 
 def worstFit(items, capacity):
-
     """
     Implements the worst-fit knapsack algorithm.
 
@@ -269,7 +266,6 @@ def worstFit(items, capacity):
 
 
 def alternateFit(items, capacity):
-
     """
     Implements the alternate-fit knapsack algorithm.
 

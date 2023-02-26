@@ -295,7 +295,6 @@ class _ImageProperties(object):
 
 
 class CdWriter(object):
-
     ######################
     # Class documentation
     ######################

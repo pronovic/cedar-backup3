@@ -78,7 +78,6 @@ logger = logging.getLogger("CedarBackup3.log.filesystem")
 
 
 class FilesystemList(list):
-
     ######################
     # Class documentation
     ######################
@@ -766,7 +765,6 @@ class SpanItem(object):  # pylint: disable=R0903
 
 
 class BackupFileList(FilesystemList):  # pylint: disable=R0904
-
     ######################
     # Class documentation
     ######################
@@ -1253,7 +1251,6 @@ class BackupFileList(FilesystemList):  # pylint: disable=R0904
 
 
 class PurgeItemList(FilesystemList):  # pylint: disable=R0904
-
     ######################
     # Class documentation
     ######################

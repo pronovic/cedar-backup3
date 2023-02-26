@@ -1313,7 +1313,6 @@ def setupPathResolver(config):
 
 @total_ordering
 class Options(object):
-
     ######################
     # Class documentation
     ######################

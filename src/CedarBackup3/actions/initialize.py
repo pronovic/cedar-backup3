@@ -64,6 +64,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.initialize")
 # executeInitialize() function
 ###############################
 
+
 # pylint: disable=W0613
 def executeInitialize(configPath, options, config):
     """

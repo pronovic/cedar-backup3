@@ -418,6 +418,7 @@ class LocalConfig(object):
 # executeAction() function
 ###########################
 
+
 # pylint: disable=W0613
 def executeAction(configPath, options, config):
     """

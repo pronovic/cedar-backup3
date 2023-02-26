@@ -916,7 +916,6 @@ class TestLocalConfig(unittest.TestCase):
 
 
 class TestTool(unittest.TestCase):
-
     ################
     # Setup methods
     ################

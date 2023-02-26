@@ -72,6 +72,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.store")
 # executeStore() function
 ##########################
 
+
 # pylint: disable=W0613
 def executeStore(configPath, options, config):
     """
