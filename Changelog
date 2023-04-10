@@ -1,5 +1,6 @@
 Verison 3.7.5     unreleased
 
+	* Fix checktabs to be safe for file named '-'
 	* Upgrade all dependencies to the latest major version.
 
 Version 3.7.4     31 Dec 2022
