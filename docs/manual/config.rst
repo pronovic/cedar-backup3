@@ -108,7 +108,7 @@ of the individual configuration sections.
          <working_dir>/opt/backup/tmp</working_dir>
          <backup_user>backup</backup_user>
          <backup_group>group</backup_group>
-         <rcp_command>/usr/bin/scp -B</rcp_command>
+         <rcp_command>/usr/bin/scp -O -B</rcp_command>
       </options>
       <peers>
          <peer>
@@ -218,7 +218,7 @@ This is an example options configuration section:
       <working_dir>/opt/backup/tmp</working_dir>
       <backup_user>backup</backup_user>
       <backup_group>backup</backup_group>
-      <rcp_command>/usr/bin/scp -B</rcp_command>
+      <rcp_command>/usr/bin/scp -O -B</rcp_command>
       <rsh_command>/usr/bin/ssh</rsh_command>
       <cback_command>/usr/bin/cback</cback_command>
       <managed_actions>collect, purge</managed_actions>
@@ -293,7 +293,9 @@ The following elements are part of the options configuration section:
    including any required options. If you are using ``scp``, you should
    pass it the ``-B`` option, so ``scp`` will not ask for any user input
    (which could hang the backup). A common example is something like
-   ``/usr/bin/scp -B``.
+   ``/usr/bin/scp -B``.  If you are following the instructions in the 
+   appendix to restrict SSH access, then use ``/usr/bin/scp -O -B`` 
+   instead.
 
    This value is used as the default value for all remote peers.
    Technically, this value is not needed by clients, but we require it
@@ -635,7 +637,9 @@ The following elements are part of the peers configuration section:
       copies, including any required options. If you are using ``scp``,
       you should pass it the ``-B`` option, so ``scp`` will not ask for
       any user input (which could hang the backup). A common example is
-      something like ``/usr/bin/scp -B``.
+      something like ``/usr/bin/scp -B``. If you are following the 
+      instructions in the appendix to restrict SSH access, then use
+      ``/usr/bin/scp -O -B`` instead.
 
       This field is optional. if it doesn't exist, the backup will use
       the default rcp command from the options section.
@@ -1294,7 +1298,9 @@ The following elements are part of the stage configuration section:
       copies, including any required options. If you are using ``scp``,
       you should pass it the ``-B`` option, so ``scp`` will not ask for
       any user input (which could hang the backup). A common example is
-      something like ``/usr/bin/scp -B``.
+      something like ``/usr/bin/scp -B``.  If you are following the
+      instructions in the appendix to restrict SSH access, then use
+      ``/usr/bin/scp -O -B`` instead.
 
       This field is optional. if it doesn't exist, the backup will use
       the default rcp command from the options section.

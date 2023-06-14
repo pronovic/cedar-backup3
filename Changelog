@@ -1,3 +1,7 @@
+Version 3.7.7     unreleased
+
+	* Document changes to scp configuration for Debian bookworm.
+
 Version 3.7.6     10 Jun 2023
 
 	* Pin chardet and importlib-metadata to match Debian bookworm.

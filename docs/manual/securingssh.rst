@@ -34,10 +34,9 @@ others may not be able to implement the segmentation strategy --- they
 simply may not have a way to create a login which is only used for
 backups.
 
-So, what are these users to do? Fortunately there is a solution. The SSH
-authorized keys file supports a way to put a “filter” in place on an SSH
-connection. This excerpt is from the AUTHORIZED_KEYS FILE FORMAT section
-of man 8 sshd:
+Fortunately, there is a solution. The SSH authorized keys file supports 
+a way to put a “filter” in place on an SSH connection. This excerpt is 
+from the AUTHORIZED_KEYS FILE FORMAT section of man 8 sshd:
 
 ::
 
@@ -90,7 +89,7 @@ Basically, the command option says that whenever this key is used to
 successfully initiate a connection, the ``/opt/backup/validate-backup``
 command will be run *instead of* the real command that came over the SSH
 connection. Fortunately, the interface gives the command access to
-certain shell variables that can be used to invoke the original command
+shell variables that can be used to invoke the original command
 if you want to.
 
 A very basic ``validate-backup`` script might look something like this:
@@ -106,17 +105,20 @@ A very basic ``validate-backup`` script might look something like this:
    fi
          
 
-This script allows exactly ``ls -l`` and nothing else. If the user
-attempts some other command, they get a nice error message telling them
-that their command has been disallowed.
+This script allows exactly ``ls -l`` and nothing else. If the user attempts
+some other command, they get a nice error message telling them that their
+command has been disallowed.  For remote commands executed over ``ssh``, the
+original command is exactly what the caller attempted to invoke. 
 
-For remote commands executed over ``ssh``, the original command is
-exactly what the caller attempted to invoke. For remote copies, the
-commands are either ``scp -f file`` (copy *from* the peer to the master)
-or ``scp -t file`` (copy *to* the peer from the master).
+For remote copies using the legacy SCP protocol, the commands are either ``scp
+-f file`` (copy *from* the peer to the master) or ``scp -t file`` (copy *to*
+the peer from the master).  When using the SFTP protocol, which is the default
+in Debian starting with bookworm, the command is simply ``/usr/lib/openssh/sftp-server``.
+As a result, this mechanism is really only useful if you force the legacy SCP
+protocol using ``scp -O``.
 
 If you want, you can see what command SSH thinks it is executing by
-using ``ssh -v`` or ``scp -v``. The command will be right at the top,
+using ``ssh -v`` or ``scp -O -v``. The command will be right at the top,
 something like this:
 
 ::
@@ -124,7 +126,7 @@ something like this:
    Executing: program /usr/bin/ssh host mickey, user (unspecified), command scp -v -f .profile
    OpenSSH_4.3p2 Debian-9, OpenSSL 0.9.8c 05 Sep 2006
    debug1: Reading configuration data /home/backup/.ssh/config
-   debug1: Applying options for daystrom
+   debug1: Applying options for minnie
    debug1: Reading configuration data /etc/ssh/ssh_config
    debug1: Applying options for *
    debug2: ssh_connect: needpriv 0
@@ -171,6 +173,10 @@ as described above.
 
    # See the AUTHORIZED_KEYS FILE FORMAT section in sshd(8) for more information.
 
+   # As of Debian bookworm, the sshd server implements SCP over SFTP.  That breaks
+   # this filter, because the SSH command is just "/usr/lib/openssh/sftp-server".
+   # The workaround is to use `scp -O` to force the old protocol.
+
    typeset -x COLLECTDIR=/data/backup/collect
 
    typeset -x CMD1="scp -f ${COLLECTDIR}/cback.collect"    # check collect indicator
@@ -187,10 +193,6 @@ as described above.
       echo "Security policy does not allow command [${SSH_ORIGINAL_COMMAND}]."
       exit 1
    fi
-
-
-I hope that there is enough information here for interested users to implement
-something that makes them comfortable. 
 
 ----------
 
