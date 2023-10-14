@@ -7,6 +7,7 @@
 [![Test Suite](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)](https://github.com/pronovic/cedar-backup3/actions?query=workflow%3A%22Test+Suite%22)
 [![docs](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)](https://cedar-backup3.readthedocs.io/en/stable/)
 [![coverage](https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=master)](https://coveralls.io/github/pronovic/cedar-backup3?branch=master)
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 ## What is Cedar Backup?
 
@@ -49,8 +50,8 @@ functionality is also known to work on FreeBSD and OS X systems.
 ## Supported Python Versions
 
 My general policy is to support the latest four versions of the Python
-interpreter.  For example, starting in late 2022, I dropped support for Python
-3.7, leaving support for Python 3.8, 3.9, 3.10, and 3.11.  At my discretion, I
+interpreter.  For example, starting in late 2023, I dropped support for Python
+3.8, leaving support for Python 3.9, 3.10, 3.11, and 3.12.  At my discretion, I
 may choose to support older versions, as long as doing so doesn't cause too
 much pain.  These days Python is released about once per year, so most anyone
 should be able to run one of the supported versions, even on a long-term
