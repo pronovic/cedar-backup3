@@ -1,11 +1,8 @@
-Version 3.7.8     unreleased
+Version 3.7.7     14 Oct 2023
 
 	* Upgrade major dependencies.
 	* Upgrade build process to Poetry v1.6.1.
 	* Add support for Python v3.12 and drop support for v3.8.
-
-Version 3.7.7     unreleased
-
 	* Document changes to scp configuration for Debian bookworm.
 
 Version 3.7.6     10 Jun 2023
