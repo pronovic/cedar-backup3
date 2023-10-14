@@ -56,17 +56,17 @@ sphinx-autoapi = { version="^3.0.0", optional=true }
 docs = [ "sphinx", "sphinx-autoapi" ]
 
 [tool.poetry.group.dev.dependencies]
-coverage = "^6.5.0"
+coverage = "^6.5.0"  # coveralls needs v6
 pylint = "^3.0.1"
-pre-commit = "^3.1.0"
-black = "^23.1.0"
+pre-commit = "^3.4.0"
+black = "^23.9.1"
 isort = "^5.12.0"
 coveralls = "^3.3.1"
 colorama = "~0, >=0.4.6"
 
 [tool.black]
 line-length = 132
-target-version = ['py39', 'py310', 'py311', 'py312' ]
+target-version = [ 'py39', 'py310', 'py311', 'py312' ]
 include = '\.pyi?$'
 exclude = '''
 /(
