@@ -128,7 +128,7 @@ NONEXISTENT_HOST = "hostname.invalid"  # RFC 2606 reserves the ".invalid" TLD fo
 NONEXISTENT_USER = "unittestuser"  # This user name should never exist on localhost
 NONEXISTENT_CMD = "/bogus/~~~ZZZZ/bad/not/there"  # This command should never exist in the filesystem
 
-SAFE_RCP_COMMAND = "/usr/bin/scp -B -q -C -o ConnectTimeout=1"  # set a connection timeout so invalid hosts don't hang
+SAFE_RCP_COMMAND = "/usr/bin/scp -O -B -q -C -o ConnectTimeout=1"  # set a connection timeout so invalid hosts don't hang
 SAFE_RSH_COMMAND = "/usr/bin/ssh -o ConnectTimeout=1"  # set a connection timeout so invalid hosts don't hang
 
 
@@ -1264,7 +1264,7 @@ class TestRemotePeer(unittest.TestCase):
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(not os.path.exists(stageIndicator))
-        peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+        peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         peer.writeStageIndicator()
         self.assertTrue(os.path.exists(stageIndicator))
 
@@ -1282,7 +1282,7 @@ class TestRemotePeer(unittest.TestCase):
         os.mkdir(collectDir)
         self.assertTrue(os.path.exists(collectDir))
         self.assertTrue(not os.path.exists(stageIndicator))
-        peer = RemotePeer(name, collectDir, workingDir, remoteUser)
+        peer = RemotePeer(name, collectDir, workingDir, remoteUser, rcpCommand=SAFE_RCP_COMMAND, rshCommand=SAFE_RSH_COMMAND)
         peer.writeStageIndicator(stageIndicator="new name with spaces")
         self.assertTrue(os.path.exists(stageIndicator))
 

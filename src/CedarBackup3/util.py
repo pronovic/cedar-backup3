@@ -1119,7 +1119,11 @@ class Diagnostics(object):
         try:
             import datetime  # pylint: disable=import-outside-toplevel
 
-            return datetime.datetime.utcnow().ctime() + " UTC"
+            if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 12]:
+                # Starting with Python 3.12, utcnow() is deprecated
+                return datetime.datetime.utcnow().ctime() + " UTC"
+            else:
+                return datetime.datetime.now(datetime.UTC).ctime() + " UTC"  # pylint: disable=no-member:
         except:
             return "(unknown)"
 

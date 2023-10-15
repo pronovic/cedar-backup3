@@ -264,7 +264,13 @@ def extractTar(tmpdir, filepath):
         except AttributeError:
             tar.posix = False
         for tarinfo in tar:
-            tar.extract(tarinfo, tmpdir)
+            # Starting in Python 3.12, we have to explicitly specify filter behavior
+            # See: https://docs.python.org/3/library/tarfile.html#supporting-older-python-versions
+            if hasattr(tarfile, "data_filter"):
+                # noinspection PyArgumentList
+                tar.extract(member=tarinfo, path=tmpdir, filter="data")
+            else:
+                tar.extract(member=tarinfo, path=tmpdir)
 
 
 ###########################
