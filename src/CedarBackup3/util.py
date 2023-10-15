@@ -1119,7 +1119,7 @@ class Diagnostics(object):
         try:
             import datetime  # pylint: disable=import-outside-toplevel
 
-            return datetime.datetime.utcnow().ctime() + " UTC"
+            return datetime.datetime.now(datetime.UTC).ctime() + " UTC"
         except:
             return "(unknown)"
 
