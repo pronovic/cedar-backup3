@@ -1123,7 +1123,7 @@ class Diagnostics(object):
                 # Starting with Python 3.12, utcnow() is deprecated
                 return datetime.datetime.utcnow().ctime() + " UTC"
             else:
-                return datetime.datetime.now(datetime.UTC).ctime() + " UTC"
+                return datetime.datetime.now(datetime.UTC).ctime() + " UTC" # pylint: disable=no-member:
         except:
             return "(unknown)"
 
