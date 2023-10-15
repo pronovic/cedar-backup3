@@ -1,6 +1,7 @@
 Version 3.7.8     unreleased
 
 	* Fix Python 3.12 deprecation for datetime.datetime.utcnow().
+	* Fix Python 3.12 warning for tar.extract() filter behavior.
 
 Version 3.7.7     14 Oct 2023
 
