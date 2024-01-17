@@ -1,4 +1,4 @@
-Version 3.8.0     unreleased
+Version 3.8.0     17 Jan 2024
 
 	* Constrain some dependencies to be compatible with Debian.
 	* Disable intersphinx plugin for docs, which no longer seems to work.
