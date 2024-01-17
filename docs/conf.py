@@ -54,7 +54,6 @@ print("Version....: %s" % VERSION)
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx.ext.napoleon",
     "autoapi.extension",
@@ -404,7 +403,3 @@ epub_exclude_files = ["search.html"]
 
 # If false, no index is generated.
 # epub_use_index = True
-
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
-}
