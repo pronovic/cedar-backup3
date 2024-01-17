@@ -2,6 +2,7 @@ Version 3.8.0     unreleased
 
 	* Constrain some dependencies to be compatible with Debian.
 	* Disable intersphinx plugin for docs, which no longer seems to work.
+	* Update jinja2 to address CVE-2024-22195 from Dependabot.
 
 Version 3.7.9     05 Nov 2023
 
