@@ -90,7 +90,6 @@ EJECT_COMMAND = ["eject"]
 
 
 class MediaDefinition(object):
-
     """
     Class encapsulating information about DVD media definitions.
 
@@ -168,7 +167,6 @@ class MediaDefinition(object):
 
 
 class MediaCapacity(object):
-
     """
     Class encapsulating information about DVD media capacity.
 

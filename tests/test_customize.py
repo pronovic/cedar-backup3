@@ -61,7 +61,6 @@ from CedarBackup3.testutil import configureLogging
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the various public functions."""
 
     ################

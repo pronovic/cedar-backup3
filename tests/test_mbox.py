@@ -122,7 +122,6 @@ RESOURCES = [
 
 
 class TestMboxFile(unittest.TestCase):
-
     """Tests for the MboxFile class."""
 
     ################
@@ -414,7 +413,6 @@ class TestMboxFile(unittest.TestCase):
 
 
 class TestMboxDir(unittest.TestCase):
-
     """Tests for the MboxDir class."""
 
     ################
@@ -949,7 +947,6 @@ class TestMboxDir(unittest.TestCase):
 
 
 class TestMboxConfig(unittest.TestCase):
-
     """Tests for the MboxConfig class."""
 
     ################
@@ -1493,7 +1490,6 @@ class TestMboxConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

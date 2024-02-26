@@ -155,7 +155,6 @@ else:
 
 
 class TestUnorderedList(unittest.TestCase):
-
     """Tests for the UnorderedList class."""
 
     ################
@@ -421,7 +420,6 @@ class TestUnorderedList(unittest.TestCase):
 
 
 class TestAbsolutePathList(unittest.TestCase):
-
     """Tests for the AbsolutePathList class."""
 
     ################
@@ -513,7 +511,6 @@ class TestAbsolutePathList(unittest.TestCase):
 
 
 class TestObjectTypeList(unittest.TestCase):
-
     """Tests for the ObjectTypeList class."""
 
     ################
@@ -607,7 +604,6 @@ class TestObjectTypeList(unittest.TestCase):
 
 
 class TestRestrictedContentList(unittest.TestCase):
-
     """Tests for the RestrictedContentList class."""
 
     ################
@@ -724,7 +720,6 @@ class TestRestrictedContentList(unittest.TestCase):
 
 
 class TestRegexMatchList(unittest.TestCase):
-
     """Tests for the RegexMatchList class."""
 
     ################
@@ -982,7 +977,6 @@ class TestRegexMatchList(unittest.TestCase):
 
 
 class TestRegexList(unittest.TestCase):
-
     """Tests for the RegexList class."""
 
     ################
@@ -1070,7 +1064,6 @@ class TestRegexList(unittest.TestCase):
 
 
 class TestDirectedGraph(unittest.TestCase):
-
     """Tests for the DirectedGraph class."""
 
     ############################
@@ -1940,7 +1933,6 @@ class TestDirectedGraph(unittest.TestCase):
 
 
 class TestPathResolverSingleton(unittest.TestCase):
-
     """Tests for the PathResolverSingleton class."""
 
     ################
@@ -2064,7 +2056,6 @@ class TestPathResolverSingleton(unittest.TestCase):
 
 
 class TestDiagnostics(unittest.TestCase):
-
     """Tests for the Diagnostics class."""
 
     def testMethods_001(self):
@@ -2158,7 +2149,6 @@ class TestDiagnostics(unittest.TestCase):
 
 # noinspection PyUnusedLocal,PyShadowingBuiltins
 class TestFunctions(unittest.TestCase):
-
     """Tests for the various public functions."""
 
     ################

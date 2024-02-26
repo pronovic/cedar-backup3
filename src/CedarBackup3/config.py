@@ -303,7 +303,6 @@ ACTION_NAME_REGEX = r"^[a-z0-9]*$"
 
 @total_ordering
 class ByteQuantity(object):
-
     """
     Class representing a byte quantity.
 
@@ -452,7 +451,6 @@ class ByteQuantity(object):
 
 @total_ordering
 class ActionDependencies(object):
-
     """
     Class representing dependencies associated with an extended action.
 
@@ -588,7 +586,6 @@ class ActionDependencies(object):
 
 @total_ordering
 class ActionHook(object):
-
     """
     Class representing a hook associated with an action.
 
@@ -739,7 +736,6 @@ class ActionHook(object):
 
 @total_ordering
 class PreActionHook(ActionHook):
-
     """
     Class representing a pre-action hook associated with an action.
 
@@ -780,7 +776,6 @@ class PreActionHook(ActionHook):
 
 @total_ordering
 class PostActionHook(ActionHook):
-
     """
     Class representing a pre-action hook associated with an action.
 
@@ -826,7 +821,6 @@ class PostActionHook(ActionHook):
 
 @total_ordering
 class BlankBehavior(object):
-
     """
     Class representing optimized store-action media blanking behavior.
 
@@ -951,7 +945,6 @@ class BlankBehavior(object):
 
 @total_ordering
 class ExtendedAction(object):
-
     """
     Class representing an extended action.
 
@@ -1180,7 +1173,6 @@ class ExtendedAction(object):
 
 @total_ordering
 class CommandOverride(object):
-
     """
     Class representing a piece of Cedar Backup command override configuration.
 
@@ -1303,7 +1295,6 @@ class CommandOverride(object):
 
 @total_ordering
 class CollectFile(object):
-
     """
     Class representing a Cedar Backup collect file.
 
@@ -1453,7 +1444,6 @@ class CollectFile(object):
 
 @total_ordering
 class CollectDir(object):
-
     """
     Class representing a Cedar Backup collect directory.
 
@@ -1846,7 +1836,6 @@ class CollectDir(object):
 
 @total_ordering
 class PurgeDir(object):
-
     """
     Class representing a Cedar Backup purge directory.
 
@@ -1974,7 +1963,6 @@ class PurgeDir(object):
 
 @total_ordering
 class LocalPeer(object):
-
     """
     Class representing a Cedar Backup peer.
 
@@ -2124,7 +2112,6 @@ class LocalPeer(object):
 
 @total_ordering
 class RemotePeer(object):
-
     """
     Class representing a Cedar Backup peer.
 
@@ -2466,7 +2453,6 @@ class RemotePeer(object):
 
 @total_ordering
 class ReferenceConfig(object):
-
     """
     Class representing a Cedar Backup reference configuration.
 
@@ -2616,7 +2602,6 @@ class ReferenceConfig(object):
 
 @total_ordering
 class ExtensionsConfig(object):
-
     """
     Class representing Cedar Backup extensions configuration.
 
@@ -2744,7 +2729,6 @@ class ExtensionsConfig(object):
 
 @total_ordering
 class OptionsConfig(object):
-
     """
     Class representing a Cedar Backup global options configuration.
 
@@ -3173,7 +3157,6 @@ class OptionsConfig(object):
 
 @total_ordering
 class PeersConfig(object):
-
     """
     Class representing Cedar Backup global peer configuration.
 
@@ -3325,7 +3308,6 @@ class PeersConfig(object):
 
 @total_ordering
 class CollectConfig(object):
-
     """
     Class representing a Cedar Backup collect configuration.
 
@@ -3668,7 +3650,6 @@ class CollectConfig(object):
 
 @total_ordering
 class StageConfig(object):
-
     """
     Class representing a Cedar Backup stage configuration.
 
@@ -3843,7 +3824,6 @@ class StageConfig(object):
 
 @total_ordering
 class StoreConfig(object):
-
     """
     Class representing a Cedar Backup store configuration.
 
@@ -4315,7 +4295,6 @@ class StoreConfig(object):
 
 @total_ordering
 class PurgeConfig(object):
-
     """
     Class representing a Cedar Backup purge configuration.
 

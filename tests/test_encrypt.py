@@ -157,7 +157,6 @@ def runAllTests():
 
 
 class TestEncryptConfig(unittest.TestCase):
-
     """Tests for the EncryptConfig class."""
 
     ################
@@ -345,7 +344,6 @@ class TestEncryptConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################
@@ -635,7 +633,6 @@ class TestLocalConfig(unittest.TestCase):
 
 @unittest.skipUnless(runAllTests(), "Limited test suite")
 class TestFunctions(unittest.TestCase):
-
     """Tests for the functions in encrypt.py."""
 
     ################

@@ -89,7 +89,6 @@ logger = logging.getLogger("CedarBackup3.log.tools.span")
 
 
 class SpanOptions(Options):
-
     """
     Tool-specific command-line options.
 

@@ -134,7 +134,6 @@ RESOURCES = [
 
 
 class TestMysqlConfig(unittest.TestCase):
-
     """Tests for the MysqlConfig class."""
 
     ################
@@ -653,7 +652,6 @@ class TestMysqlConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

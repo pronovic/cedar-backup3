@@ -120,7 +120,6 @@ REVISION_PATH_EXTENSION = "svnlast"
 
 @total_ordering
 class RepositoryDir(object):
-
     """
     Class representing Subversion repository directory.
 
@@ -374,7 +373,6 @@ class RepositoryDir(object):
 
 @total_ordering
 class Repository(object):
-
     """
     Class representing generic Subversion repository configuration..
 
@@ -546,7 +544,6 @@ class Repository(object):
 
 @total_ordering
 class SubversionConfig(object):
-
     """
     Class representing Subversion configuration.
 
@@ -743,7 +740,6 @@ class SubversionConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 
@@ -1556,7 +1552,6 @@ def getYoungestRevision(repositoryPath):
 
 
 class BDBRepository(Repository):
-
     """
     Class representing Subversion BDB (Berkeley Database) repository configuration.
     This object is deprecated.  Use a simple :any:`Repository` instead.
@@ -1576,7 +1571,6 @@ class BDBRepository(Repository):
 
 
 class FSFSRepository(Repository):
-
     """
     Class representing Subversion FSFS repository configuration.
     This object is deprecated.  Use a simple :any:`Repository` instead.

@@ -158,7 +158,6 @@ def runAllTests():
 
 
 class TestSplitConfig(unittest.TestCase):
-
     """Tests for the SplitConfig class."""
 
     ################
@@ -376,7 +375,6 @@ class TestSplitConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################
@@ -741,7 +739,6 @@ class TestLocalConfig(unittest.TestCase):
 
 @unittest.skipUnless(runAllTests(), "Limited test suite")
 class TestFunctions(unittest.TestCase):
-
     """Tests for the functions in split.py."""
 
     ################

@@ -311,7 +311,6 @@ def buildItemDict(origDict):
 
 
 class TestKnapsack(unittest.TestCase):
-
     """Tests for the various knapsack functions."""
 
     ################

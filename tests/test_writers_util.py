@@ -145,7 +145,6 @@ def runAllTests():
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the various public functions."""
 
     ################
@@ -340,7 +339,6 @@ class TestFunctions(unittest.TestCase):
 
 
 class TestIsoImage(unittest.TestCase):
-
     """Tests for the IsoImage class."""
 
     ################

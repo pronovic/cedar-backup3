@@ -90,7 +90,6 @@ from CedarBackup3.tools.span import Options, _usage, _version
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the public functions."""
 
     ################
@@ -132,7 +131,6 @@ class TestFunctions(unittest.TestCase):
 
 
 class TestSpanOptions(unittest.TestCase):
-
     """Tests for the SpanOptions class."""
 
     ################

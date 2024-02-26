@@ -104,7 +104,6 @@ from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAss
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the public functions."""
 
     ################
@@ -153,7 +152,6 @@ class TestFunctions(unittest.TestCase):
 
 
 class TestOptions(unittest.TestCase):
-
     """Tests for the Options class."""
 
     ################
@@ -5058,7 +5056,6 @@ class TestOptions(unittest.TestCase):
 
 
 class TestActionSet(unittest.TestCase):
-
     """Tests for the _ActionSet class."""
 
     ################

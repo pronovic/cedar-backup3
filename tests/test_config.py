@@ -172,7 +172,6 @@ RESOURCES = [
 
 # noinspection PyTypeChecker
 class TestByteQuantity(unittest.TestCase):
-
     """Tests for the ByteQuantity class."""
 
     ################
@@ -803,7 +802,6 @@ class TestByteQuantity(unittest.TestCase):
 
 
 class TestActionDependencies(unittest.TestCase):
-
     """Tests for the ActionDependencies class."""
 
     ################
@@ -1074,7 +1072,6 @@ class TestActionDependencies(unittest.TestCase):
 
 
 class TestActionHook(unittest.TestCase):
-
     """Tests for the ActionHook class."""
 
     ################
@@ -1280,7 +1277,6 @@ class TestActionHook(unittest.TestCase):
 
 
 class TestPreActionHook(unittest.TestCase):
-
     """Tests for the PreActionHook class."""
 
     ################
@@ -1486,7 +1482,6 @@ class TestPreActionHook(unittest.TestCase):
 
 
 class TestPostActionHook(unittest.TestCase):
-
     """Tests for the PostActionHook class."""
 
     ################
@@ -1692,7 +1687,6 @@ class TestPostActionHook(unittest.TestCase):
 
 
 class TestBlankBehavior(unittest.TestCase):
-
     """Tests for the BlankBehavior class."""
 
     ################
@@ -1917,7 +1911,6 @@ class TestBlankBehavior(unittest.TestCase):
 
 
 class TestExtendedAction(unittest.TestCase):
-
     """Tests for the ExtendedAction class."""
 
     ################
@@ -2356,7 +2349,6 @@ class TestExtendedAction(unittest.TestCase):
 
 
 class TestCommandOverride(unittest.TestCase):
-
     """Tests for the CommandOverride class."""
 
     ################
@@ -2554,7 +2546,6 @@ class TestCommandOverride(unittest.TestCase):
 
 
 class TestCollectFile(unittest.TestCase):
-
     """Tests for the CollectFile class."""
 
     ################
@@ -2845,7 +2836,6 @@ class TestCollectFile(unittest.TestCase):
 
 
 class TestCollectDir(unittest.TestCase):
-
     """Tests for the CollectDir class."""
 
     ################
@@ -3770,7 +3760,6 @@ class TestCollectDir(unittest.TestCase):
 
 
 class TestPurgeDir(unittest.TestCase):
-
     """Tests for the PurgeDir class."""
 
     ################
@@ -4005,7 +3994,6 @@ class TestPurgeDir(unittest.TestCase):
 
 
 class TestLocalPeer(unittest.TestCase):
-
     """Tests for the LocalPeer class."""
 
     ################
@@ -4275,7 +4263,6 @@ class TestLocalPeer(unittest.TestCase):
 
 
 class TestRemotePeer(unittest.TestCase):
-
     """Tests for the RemotePeer class."""
 
     ################
@@ -4939,7 +4926,6 @@ class TestRemotePeer(unittest.TestCase):
 
 
 class TestReferenceConfig(unittest.TestCase):
-
     """Tests for the ReferenceConfig class."""
 
     ################
@@ -5308,7 +5294,6 @@ class TestReferenceConfig(unittest.TestCase):
 
 
 class TestExtensionsConfig(unittest.TestCase):
-
     """Tests for the ExtensionsConfig class."""
 
     ################
@@ -5623,7 +5608,6 @@ class TestExtensionsConfig(unittest.TestCase):
 
 
 class TestOptionsConfig(unittest.TestCase):
-
     """Tests for the OptionsConfig class."""
 
     ################
@@ -6783,7 +6767,6 @@ class TestOptionsConfig(unittest.TestCase):
 
 
 class TestPeersConfig(unittest.TestCase):
-
     """Tests for the PeersConfig class."""
 
     ################
@@ -7159,7 +7142,6 @@ class TestPeersConfig(unittest.TestCase):
 
 
 class TestCollectConfig(unittest.TestCase):
-
     """Tests for the CollectConfig class."""
 
     ################
@@ -8062,7 +8044,6 @@ class TestCollectConfig(unittest.TestCase):
 
 
 class TestStageConfig(unittest.TestCase):
-
     """Tests for the StageConfig class."""
 
     ################
@@ -8505,7 +8486,6 @@ class TestStageConfig(unittest.TestCase):
 
 
 class TestStoreConfig(unittest.TestCase):
-
     """Tests for the StoreConfig class."""
 
     ################
@@ -9409,7 +9389,6 @@ class TestStoreConfig(unittest.TestCase):
 
 
 class TestPurgeConfig(unittest.TestCase):
-
     """Tests for the PurgeConfig class."""
 
     ################
@@ -9640,7 +9619,6 @@ class TestPurgeConfig(unittest.TestCase):
 
 
 class TestConfig(unittest.TestCase):
-
     """Tests for the Config class."""
 
     ################

@@ -84,7 +84,6 @@ SPLIT_INDICATOR = "cback.split"
 
 @total_ordering
 class SplitConfig(object):
-
     """
     Class representing split configuration.
 
@@ -211,7 +210,6 @@ class SplitConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

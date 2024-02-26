@@ -120,7 +120,6 @@ RESOURCES = [
 
 
 class TestMediaDefinition(unittest.TestCase):
-
     """Tests for the MediaDefinition class."""
 
     @classmethod
@@ -158,7 +157,6 @@ class TestMediaDefinition(unittest.TestCase):
 
 
 class TestMediaCapacity(unittest.TestCase):
-
     """Tests for the MediaCapacity class."""
 
     @classmethod
@@ -200,7 +198,6 @@ class TestMediaCapacity(unittest.TestCase):
 
 
 class TestDvdWriter(unittest.TestCase):
-
     """Tests for the DvdWriter class."""
 
     ################

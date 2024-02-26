@@ -135,7 +135,6 @@ STORE_INDICATOR = "cback.amazons3"
 
 @total_ordering
 class AmazonS3Config(object):
-
     """
     Class representing Amazon S3 configuration.
 
@@ -354,7 +353,6 @@ class AmazonS3Config(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

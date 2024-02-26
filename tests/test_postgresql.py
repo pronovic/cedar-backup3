@@ -134,7 +134,6 @@ RESOURCES = [
 
 
 class TestPostgresqlConfig(unittest.TestCase):
-
     """Tests for the PostgresqlConfig class."""
 
     ################
@@ -593,7 +592,6 @@ class TestPostgresqlConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

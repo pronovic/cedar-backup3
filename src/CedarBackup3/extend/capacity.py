@@ -72,7 +72,6 @@ logger = logging.getLogger("CedarBackup3.log.extend.capacity")
 
 @total_ordering
 class PercentageQuantity(object):
-
     """
     Class representing a percentage quantity.
 
@@ -186,7 +185,6 @@ class PercentageQuantity(object):
 
 @total_ordering
 class CapacityConfig(object):
-
     """
     Class representing capacity configuration.
 
@@ -307,7 +305,6 @@ class CapacityConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

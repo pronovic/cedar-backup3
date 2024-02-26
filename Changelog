@@ -5,6 +5,7 @@ Version 3.8.1     unreleased
 	* Update Poetry install instructions in DEVELOPER.md.
 	* Pull in latest version of run-script-framework.
 	* Upgrade to gha-shared-workflows@v4 with new Poetry setup.
+	* Add support for 'run outdated' and update dependencies.
 
 Version 3.8.0     17 Jan 2024
 

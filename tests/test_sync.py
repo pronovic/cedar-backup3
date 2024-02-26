@@ -91,7 +91,6 @@ from CedarBackup3.tools.amazons3 import Options, _usage, _version
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the public functions."""
 
     ################
@@ -133,7 +132,6 @@ class TestFunctions(unittest.TestCase):
 
 
 class TestOptions(unittest.TestCase):
-
     """Tests for the Options class."""
 
     ################

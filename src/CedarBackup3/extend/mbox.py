@@ -139,7 +139,6 @@ REVISION_PATH_EXTENSION = "mboxlast"
 
 @total_ordering
 class MboxFile(object):
-
     """
     Class representing mbox file configuration..
 
@@ -288,7 +287,6 @@ class MboxFile(object):
 
 @total_ordering
 class MboxDir(object):
-
     """
     Class representing mbox directory configuration..
 
@@ -509,7 +507,6 @@ class MboxDir(object):
 
 @total_ordering
 class MboxConfig(object):
-
     """
     Class representing mbox configuration.
 
@@ -712,7 +709,6 @@ class MboxConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

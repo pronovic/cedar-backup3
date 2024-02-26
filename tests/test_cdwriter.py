@@ -148,7 +148,6 @@ INVALID_FILE = "bogus"  # This file name should never exist
 
 
 class TestMediaDefinition(unittest.TestCase):
-
     """Tests for the MediaDefinition class."""
 
     @classmethod
@@ -212,7 +211,6 @@ class TestMediaDefinition(unittest.TestCase):
 
 
 class TestMediaCapacity(unittest.TestCase):
-
     """Tests for the MediaCapacity class."""
 
     @classmethod
@@ -235,7 +233,6 @@ class TestMediaCapacity(unittest.TestCase):
 
 
 class TestCdWriter(unittest.TestCase):
-
     """Tests for the CdWriter class."""
 
     ################

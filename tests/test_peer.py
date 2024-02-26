@@ -155,7 +155,6 @@ def runAllTests():
 
 
 class TestLocalPeer(unittest.TestCase):
-
     """Tests for the LocalPeer class."""
 
     ################
@@ -696,7 +695,6 @@ class TestLocalPeer(unittest.TestCase):
 
 
 class TestRemotePeer(unittest.TestCase):
-
     """Tests for the RemotePeer class."""
 
     ################

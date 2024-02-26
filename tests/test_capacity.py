@@ -122,7 +122,6 @@ RESOURCES = [
 
 
 class TestPercentageQuantity(unittest.TestCase):
-
     """Tests for the PercentageQuantity class."""
 
     ################
@@ -320,7 +319,6 @@ class TestPercentageQuantity(unittest.TestCase):
 
 
 class TestCapacityConfig(unittest.TestCase):
-
     """Tests for the CapacityConfig class."""
 
     ################
@@ -538,7 +536,6 @@ class TestCapacityConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

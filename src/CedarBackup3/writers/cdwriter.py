@@ -95,7 +95,6 @@ MKISOFS_COMMAND = ["mkisofs"]
 
 
 class MediaDefinition(object):
-
     """
     Class encapsulating information about CD media definitions.
 
@@ -195,7 +194,6 @@ class MediaDefinition(object):
 
 
 class MediaCapacity(object):
-
     """
     Class encapsulating information about CD media capacity.
 

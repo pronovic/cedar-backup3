@@ -86,7 +86,6 @@ ENCRYPT_INDICATOR = "cback.encrypt"
 
 @total_ordering
 class EncryptConfig(object):
-
     """
     Class representing encrypt configuration.
 
@@ -206,7 +205,6 @@ class EncryptConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

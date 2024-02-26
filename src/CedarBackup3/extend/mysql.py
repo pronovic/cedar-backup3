@@ -119,7 +119,6 @@ MYSQLDUMP_COMMAND = ["mysqldump"]
 
 @total_ordering
 class MysqlConfig(object):
-
     """
     Class representing MySQL configuration.
 
@@ -322,7 +321,6 @@ class MysqlConfig(object):
 
 @total_ordering
 class LocalConfig(object):
-
     """
     Class representing this extension's configuration document.
 

@@ -136,7 +136,6 @@ RESOURCES = [
 
 
 class TestBDBRepository(unittest.TestCase):
-
     """
     Tests for the BDBRepository class.
 
@@ -437,7 +436,6 @@ class TestBDBRepository(unittest.TestCase):
 
 
 class TestFSFSRepository(unittest.TestCase):
-
     """
     Tests for the FSFSRepository class.
 
@@ -738,7 +736,6 @@ class TestFSFSRepository(unittest.TestCase):
 
 
 class TestRepository(unittest.TestCase):
-
     """Tests for the Repository class."""
 
     ################
@@ -1080,7 +1077,6 @@ class TestRepository(unittest.TestCase):
 
 
 class TestRepositoryDir(unittest.TestCase):
-
     """Tests for the RepositoryDir class."""
 
     ################
@@ -1545,7 +1541,6 @@ class TestRepositoryDir(unittest.TestCase):
 
 
 class TestSubversionConfig(unittest.TestCase):
-
     """Tests for the SubversionConfig class."""
 
     ################
@@ -1954,7 +1949,6 @@ class TestSubversionConfig(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

@@ -151,7 +151,6 @@ LOCALE_VARS = [
 
 
 class UnorderedList(list):
-
     """
     Class representing an "unordered list".
 
@@ -294,7 +293,6 @@ class UnorderedList(list):
 
 
 class AbsolutePathList(UnorderedList):
-
     """
     Class representing a list of absolute paths.
 
@@ -348,7 +346,6 @@ class AbsolutePathList(UnorderedList):
 
 
 class ObjectTypeList(UnorderedList):
-
     """
     Class representing a list containing only objects with a certain type.
 
@@ -412,7 +409,6 @@ class ObjectTypeList(UnorderedList):
 
 
 class RestrictedContentList(UnorderedList):
-
     """
     Class representing a list containing only object with certain values.
 
@@ -486,7 +482,6 @@ class RestrictedContentList(UnorderedList):
 
 
 class RegexMatchList(UnorderedList):
-
     """
     Class representing a list containing only strings that match a regular expression.
 
@@ -573,7 +568,6 @@ class RegexMatchList(UnorderedList):
 
 
 class RegexList(UnorderedList):
-
     """
     Class representing a list of valid regular expression strings.
 
@@ -628,7 +622,6 @@ class RegexList(UnorderedList):
 
 
 class _Vertex(object):
-
     """
     Represents a vertex (or node) in a directed graph.
     """
@@ -647,7 +640,6 @@ class _Vertex(object):
 
 @total_ordering
 class DirectedGraph(object):
-
     """
     Represents a directed graph.
 
@@ -835,7 +827,6 @@ class DirectedGraph(object):
 
 
 class PathResolverSingleton(object):
-
     """
     Singleton used for resolving executable paths.
 
@@ -964,7 +955,6 @@ class Pipe(Popen):
 
 
 class Diagnostics(object):
-
     """
     Class holding runtime diagnostic information.
 

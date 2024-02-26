@@ -111,7 +111,6 @@ INVALID_PATH = "bogus"  # This path name should never exist
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the various public functions."""
 
     ################

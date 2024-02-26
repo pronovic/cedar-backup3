@@ -136,7 +136,6 @@ RESOURCES = [
 
 
 class TestAmazonS3Config(unittest.TestCase):
-
     """Tests for the AmazonS3Config class."""
 
     ################
@@ -609,7 +608,6 @@ class TestAmazonS3Config(unittest.TestCase):
 
 
 class TestLocalConfig(unittest.TestCase):
-
     """Tests for the LocalConfig class."""
 
     ################

@@ -162,7 +162,6 @@ AGE_49_HOURS = 49 * 60 * 60  # in seconds
 
 
 class TestFilesystemList(unittest.TestCase):
-
     """Tests for the FilesystemList class."""
 
     ################
@@ -13120,7 +13119,6 @@ class TestFilesystemList(unittest.TestCase):
 
 
 class TestBackupFileList(unittest.TestCase):
-
     """Tests for the BackupFileList class."""
 
     ################
@@ -15900,7 +15898,6 @@ class TestBackupFileList(unittest.TestCase):
 
 
 class TestPurgeItemList(unittest.TestCase):
-
     """Tests for the PurgeItemList class."""
 
     ################
@@ -20244,7 +20241,6 @@ class TestPurgeItemList(unittest.TestCase):
 
 
 class TestFunctions(unittest.TestCase):
-
     """Tests for the various public functions."""
 
     ################
