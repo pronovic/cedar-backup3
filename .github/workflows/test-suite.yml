@@ -24,7 +24,7 @@ jobs:
       enable-coveralls: true  # only report to coveralls.io for tests that run on Linux
   macos-build-and-test:
     name: "MacOS"
-    uses: pronovic/gha-shared-workflows/.github/workflows/poetry-build-and-test.yml@v4
+    uses: pronovic/gha-shared-workflows/.github/workflows/poetry-build-and-test.yml@v5
     secrets: inherit
     with:
       matrix-os-version: "[ 'macos-latest' ]"
