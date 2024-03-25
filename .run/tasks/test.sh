@@ -63,6 +63,7 @@ task_test() {
    if [ $coverage == "yes" ]; then
       poetry_run coverage run -m unittest discover -s tests -t tests $verbose $pattern
       poetry_run coverage report
+      poetry_run coverage lcov -o .coverage.lcov
       if [ $html == "yes" ]; then
          poetry_run coverage html -d .htmlcov
          run_command openfile .htmlcov/index.html
