@@ -57,12 +57,11 @@ astroid = "<3"                                           # Newer versions confli
 docs = [ "sphinx", "sphinx-autoapi" ]
 
 [tool.poetry.group.dev.dependencies]
-coverage = "^6.5.0"   # coveralls needs v6
+coverage = "^7.4.4"
 pylint = "^2.17.7,<3" # newer versions need astroid 3
 pre-commit = "^3.4.0"
 black = "^24.2.0"
 isort = "^5.12.0"
-coveralls = "^3.3.1"
 colorama = "~0, >=0.4.6"
 
 [tool.black]
