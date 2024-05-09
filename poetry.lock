@@ -1140,4 +1140,4 @@ docs = ["sphinx", "sphinx-autoapi"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4"
-content-hash = "e0bcc17f3ffb0e8fad1796af8b4ac2e573e8c5a1c22225f262fdd7d7c9a9b76f"
+content-hash = "a88729951a9e3797a20d170d0e227a932baa18494deca484a5186272ccd4fe20"

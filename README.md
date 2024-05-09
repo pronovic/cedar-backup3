@@ -57,6 +57,14 @@ much pain.  These days Python is released about once per year, so most anyone
 should be able to run one of the supported versions, even on a long-term
 support Linux distribution.
 
+## Dependency Versions
+
+For Python dependencies, I target the version that is available in the current
+stable Debian release.  This means that I'm often several major versions behind
+what is available from PyPI.  If I targeted the latest PyPI version instead,
+then the Debian package for Cedar Backup would really only be usable on
+bleeding-edge Linux systems, which is probably not where most usage is found.
+
 ## Developer Documentation
 
 Developer documentation is found in [DEVELOPER.md](DEVELOPER.md).  See that
