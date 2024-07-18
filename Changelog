@@ -3,6 +3,7 @@ Version 3.8.2     unreleased
 	* Pull in latest updates from run-script-framework.
 	* Simplify GHA integration with coveralls.io.
 	* Clarify that Debian stable is the target for dependencies.
+	* Update transitive dependencies to address Dependabot warnings.
 
 Version 3.8.1     26 Feb 2024
 
