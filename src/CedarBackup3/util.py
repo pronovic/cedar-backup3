@@ -313,7 +313,7 @@ class AbsolutePathList(UnorderedList):
         Raises:
            ValueError: If item is not an absolute path
         """
-        if not posixpath.isabs(item):
+        if not (os.path.isabs(item) or posixpath.isabs(item)):  # Python 3.13 does not treat / as absolute on Windows
             raise ValueError("Not an absolute path: [%s]" % item)
         list.append(self, encodePath(item))
 
@@ -323,7 +323,7 @@ class AbsolutePathList(UnorderedList):
         Raises:
            ValueError: If item is not an absolute path
         """
-        if not posixpath.isabs(item):
+        if not (os.path.isabs(item) or posixpath.isabs(item)):  # Python 3.13 does not treat / as absolute on Windows
             raise ValueError("Not an absolute path: [%s]" % item)
         list.insert(self, index, encodePath(item))
 
@@ -334,7 +334,7 @@ class AbsolutePathList(UnorderedList):
            ValueError: If any item is not an absolute path
         """
         for item in seq:
-            if not posixpath.isabs(item):
+            if not (os.path.isabs(item) or posixpath.isabs(item)):  # Python 3.13 does not treat / as absolute on Windows
                 raise ValueError("Not an absolute path: [%s]" % item)
         for item in seq:
             list.append(self, encodePath(item))
@@ -2019,7 +2019,8 @@ def dereferenceLink(path, absolute=True):
     """
     if os.path.islink(path):
         result = os.readlink(path)
-        if absolute and not posixpath.isabs(result):
+        # Python 3.13+ does not treat / as absolute on Windows
+        if absolute and not (os.path.isabs(result) or posixpath.isabs(result)):
             result = os.path.abspath(os.path.join(os.path.dirname(path), result))
         return result
     return path

@@ -88,7 +88,7 @@ def validateDevice(device, unittest=False):
     if device is None:
         raise ValueError("Device must be filled in.")
     device = encodePath(device)
-    if not posixpath.isabs(device):
+    if not (os.path.isabs(device) or posixpath.isabs(device)):  # Python 3.13+ does not treat / as absolute on Windows
         raise ValueError("Backup device must be an absolute path.")
     if not unittest and not os.path.exists(device):
         raise ValueError("Backup device must exist on disk.")
@@ -303,7 +303,7 @@ class IsoImage(object):
             if value is None:
                 self._device = None
             else:
-                if posixpath.isabs(value):
+                if os.path.isabs(value) or posixpath.isabs(value):  # Python 3.13+ does not treat / as absolute on Windows
                     self._device = value
                 else:
                     self._device = validateScsiId(value)

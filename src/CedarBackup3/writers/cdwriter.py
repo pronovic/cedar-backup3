@@ -951,7 +951,7 @@ class CdWriter(object):
                         pass
         else:
             imagePath = encodePath(imagePath)
-            if not posixpath.isabs(imagePath):
+            if not (os.path.isabs(imagePath) or posixpath.isabs(imagePath)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Image path must be absolute.")
             self._writeImage(imagePath, writeMulti, newDisc)
 

@@ -230,7 +230,7 @@ class MboxFile(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not posixpath.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Absolute path must be, er, an absolute path.")
         self._absolutePath = encodePath(value)
 
@@ -405,7 +405,7 @@ class MboxDir(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not posixpath.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Absolute path must be, er, an absolute path.")
         self._absolutePath = encodePath(value)
 
