@@ -70,7 +70,6 @@ Attributes:
 # Imported modules
 ########################################################################
 
-import collections
 import logging
 import math
 import os
@@ -1331,7 +1330,7 @@ def getFunctionReference(module, function):
     obj = module
     for part in parts:
         obj = getattr(obj, part)
-    if not isinstance(obj, collections.abc.Callable):
+    if not callable(obj):
         raise ValueError("Reference to %s.%s is not callable." % (module, function))
     return obj
 
