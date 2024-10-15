@@ -123,17 +123,23 @@ from CedarBackup3.config import (
     StageConfig,
     StoreConfig,
 )
-from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources
+from CedarBackup3.testutil import configureLogging, failUnlessAssignRaises, findResources, platformWindows
 from CedarBackup3.util import UNIT_BYTES, UNIT_GBYTES, UNIT_KBYTES, UNIT_MBYTES
 
 #######################################################################
 # Module-wide configuration and constants
 #######################################################################
 
+# Starting with Python 3.13, absolute paths on Windows must start with \\ and / is no longer valid
+
+ABSOLUTE_PATH = r"\\path\to\something" if platformWindows() else "/path/to/something"
+RELATIVE_PATH = r"path\to\something\relative" if platformWindows() else "path/to/something/relative"
+
 DATA_DIRS = [
     "./data",
     "./tests/data",
 ]
+
 RESOURCES = [
     "cback.conf.1",
     "cback.conf.2",
@@ -2395,9 +2401,9 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test constructor with all values filled in, with valid values.
         """
-        override = CommandOverride(command="command", absolutePath="/path/to/something")
+        override = CommandOverride(command="command", absolutePath=ABSOLUTE_PATH)
         self.assertEqual("command", override.command)
-        self.assertEqual("/path/to/something", override.absolutePath)
+        self.assertEqual(ABSOLUTE_PATH, override.absolutePath)
 
     def testConstructor_003(self):
         """
@@ -2430,8 +2436,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test assignment of absolutePath attribute, None value.
         """
-        override = CommandOverride(absolutePath="/path/to/something")
-        self.assertEqual("/path/to/something", override.absolutePath)
+        override = CommandOverride(absolutePath=ABSOLUTE_PATH)
+        self.assertEqual(ABSOLUTE_PATH, override.absolutePath)
         override.absolutePath = None
         self.assertEqual(None, override.absolutePath)
 
@@ -2441,8 +2447,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         override = CommandOverride()
         self.assertEqual(None, override.absolutePath)
-        override.absolutePath = "/path/to/something"
-        self.assertEqual("/path/to/something", override.absolutePath)
+        override.absolutePath = ABSOLUTE_PATH
+        self.assertEqual(ABSOLUTE_PATH, override.absolutePath)
 
     def testConstructor_008(self):
         """
@@ -2450,7 +2456,7 @@ class TestCommandOverride(unittest.TestCase):
         """
         override = CommandOverride()
         override.command = None
-        self.failUnlessAssignRaises(ValueError, override, "absolutePath", "path/to/something/relative")
+        self.failUnlessAssignRaises(ValueError, override, "absolutePath", RELATIVE_PATH)
         override.command = None
         self.failUnlessAssignRaises(ValueError, override, "absolutePath", "")
         override.command = None
@@ -2477,8 +2483,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test comparison of two identical objects, all attributes non-None.
         """
-        override1 = CommandOverride(command="command", absolutePath="/path/to/something")
-        override2 = CommandOverride(command="command", absolutePath="/path/to/something")
+        override1 = CommandOverride(command="command", absolutePath=ABSOLUTE_PATH)
+        override2 = CommandOverride(command="command", absolutePath=ABSOLUTE_PATH)
         self.assertEqual(override1, override2)
         self.assertTrue(override1 == override2)
         self.assertTrue(not override1 < override2)
@@ -2491,8 +2497,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test comparison of differing objects, command differs (one None).
         """
-        override1 = CommandOverride(command=None, absolutePath="/path/to/something")
-        override2 = CommandOverride(command="command", absolutePath="/path/to/something")
+        override1 = CommandOverride(command=None, absolutePath=ABSOLUTE_PATH)
+        override2 = CommandOverride(command="command", absolutePath=ABSOLUTE_PATH)
         self.assertTrue(not override1 == override2)
         self.assertTrue(override1 < override2)
         self.assertTrue(override1 <= override2)
@@ -2504,8 +2510,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test comparison of differing objects, command differs.
         """
-        override1 = CommandOverride(command="command2", absolutePath="/path/to/something")
-        override2 = CommandOverride(command="command1", absolutePath="/path/to/something")
+        override1 = CommandOverride(command="command2", absolutePath=ABSOLUTE_PATH)
+        override2 = CommandOverride(command="command1", absolutePath=ABSOLUTE_PATH)
         self.assertTrue(not override1 == override2)
         self.assertTrue(not override1 < override2)
         self.assertTrue(not override1 <= override2)
@@ -2517,7 +2523,7 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test comparison of differing objects, absolutePath differs (one None).
         """
-        override1 = CommandOverride(command="command", absolutePath="/path/to/something")
+        override1 = CommandOverride(command="command", absolutePath=ABSOLUTE_PATH)
         override2 = CommandOverride(command="command", absolutePath=None)
         self.assertTrue(not override1 == override2)
         self.assertTrue(not override1 < override2)
@@ -2530,8 +2536,8 @@ class TestCommandOverride(unittest.TestCase):
         """
         Test comparison of differing objects, absolutePath differs.
         """
-        override1 = CommandOverride(command="command", absolutePath="/path/to/something1")
-        override2 = CommandOverride(command="command", absolutePath="/path/to/something2")
+        override1 = CommandOverride(command="command", absolutePath="%s1" % ABSOLUTE_PATH)
+        override2 = CommandOverride(command="command", absolutePath="%s2" % ABSOLUTE_PATH)
         self.assertTrue(not override1 == override2)
         self.assertTrue(override1 < override2)
         self.assertTrue(override1 <= override2)

@@ -95,7 +95,7 @@ from CedarBackup3.config import (
 from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAssignRaises, platformWindows
 
 #######################################################################
-# Constants
+# Module-wide configuration and constants
 #######################################################################
 
 # Starting with Python 3.13, absolute paths on Windows must start with \\ and / is no longer valid
