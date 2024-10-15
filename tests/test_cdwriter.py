@@ -100,7 +100,7 @@ Full vs. Reduced Tests
 
 import unittest
 
-from CedarBackup3.testutil import configureLogging
+from CedarBackup3.testutil import configureLogging, platformWindows
 from CedarBackup3.writers.cdwriter import (
     MEDIA_CDR_74,
     MEDIA_CDR_80,
@@ -231,7 +231,13 @@ class TestMediaCapacity(unittest.TestCase):
 # TestCdWriter class
 #####################
 
+# Starting with Python 3.13, absolute paths on Windows are required to start
+# with two backslashes (\\).  That breaks any of the tests dealing with /dev.
+# Better to just ignore those tests on Windows and assume that the CdWriter
+# class is intended for use on UNIX-like platforms only.
 
+
+@unittest.skipIf(platformWindows(), reason="Not supported on Windows")
 class TestCdWriter(unittest.TestCase):
     """Tests for the CdWriter class."""
 

@@ -91,7 +91,7 @@ import os
 import tempfile
 import unittest
 
-from CedarBackup3.testutil import buildPath, configureLogging, extractTar, findResources, removedir
+from CedarBackup3.testutil import buildPath, configureLogging, extractTar, findResources, platformWindows, removedir
 from CedarBackup3.writers.dvdwriter import MEDIA_DVDPLUSR, MEDIA_DVDPLUSRW, DvdWriter, MediaCapacity, MediaDefinition
 
 #######################################################################
@@ -196,7 +196,13 @@ class TestMediaCapacity(unittest.TestCase):
 # TestDvdWriter class
 ######################
 
+# Starting with Python 3.13, absolute paths on Windows are required to start
+# with two backslashes (\\).  That breaks any of the tests dealing with /dev.
+# Better to just ignore those tests on Windows and assume that the CdWriter
+# class is intended for use on UNIX-like platforms only.
 
+
+@unittest.skipIf(platformWindows(), reason="Not supported on Windows")
 class TestDvdWriter(unittest.TestCase):
     """Tests for the DvdWriter class."""
 

@@ -308,6 +308,7 @@ class CdWriter(object):
 
     This class is implemented in terms of the ``eject`` and ``cdrecord``
     programs, both of which should be available on most UN*X platforms.
+    You can't expect this to work on Windows, and it's not supported there.
 
     **Image Writer Interface**
 
