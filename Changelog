@@ -8,6 +8,7 @@ Version 3.8.2     unreleased
 	* Upgrade to Poetry v1.8.4 for official Python 3.13 support.
 	* Bump readthedocs build to python 3.10 and ubuntu-24.04.
 	* Adjust getFunctionReference() to use Python 3 callable().
+	* Convert to posixpath.isabs() to work around change in Python v3.13.
 
 Version 3.8.1     26 Feb 2024
 
