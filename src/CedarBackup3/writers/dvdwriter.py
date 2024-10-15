@@ -55,6 +55,7 @@ Attributes:
 
 import logging
 import os
+import posixpath
 import re
 import tempfile
 import time
@@ -752,7 +753,7 @@ class DvdWriter(object):
                 raise IOError("Media does not contain enough capacity to store image.")
             self._writeImage(self._image.newDisc, None, self._image.entries, self._image.mediaLabel)
         else:
-            if not os.path.isabs(imagePath):
+            if not (os.path.isabs(imagePath) or posixpath.isabs(imagePath)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Image path must be absolute.")
             imagePath = encodePath(imagePath)
             self._writeImage(newDisc, imagePath, None)

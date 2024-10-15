@@ -55,6 +55,7 @@ Attributes:
 
 import logging
 import os
+import posixpath
 import shutil
 import sys
 
@@ -159,7 +160,9 @@ class LocalPeer(object):
            ValueError: If the value is ``None`` or is not an absolute path
            ValueError: If a path cannot be encoded properly
         """
-        if value is None or not os.path.isabs(value):
+        if value is None or not (
+            os.path.isabs(value) or posixpath.isabs(value)
+        ):  # Python 3.13+ does not treat / as absolute on Windows
             raise ValueError("Collect directory must be an absolute path.")
         self._collectDir = encodePath(value)
 
@@ -225,7 +228,7 @@ class LocalPeer(object):
            OSError: If there is an OS error copying or changing permissions on a file
         """
         targetDir = encodePath(targetDir)
-        if not os.path.isabs(targetDir):
+        if not (os.path.isabs(targetDir) or posixpath.isabs(targetDir)):  # Python 3.13+ does not treat / as absolute on Windows
             logger.debug("Target directory [%s] not an absolute path.", targetDir)
             raise ValueError("Target directory must be an absolute path.")
         if not os.path.exists(self.collectDir) or not os.path.isdir(self.collectDir):
@@ -515,7 +518,7 @@ class RemotePeer(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Collect directory must be an absolute path.")
         self._collectDir = encodePath(value)
 
@@ -534,7 +537,7 @@ class RemotePeer(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Working directory must be an absolute path.")
         self._workingDir = encodePath(value)
 
@@ -742,7 +745,7 @@ class RemotePeer(object):
            OSError: If there is an OS error copying or changing permissions on a file
         """
         targetDir = encodePath(targetDir)
-        if not os.path.isabs(targetDir):
+        if not (os.path.isabs(targetDir) or posixpath.isabs(targetDir)):  # Python 3.13+ does not treat / as absolute on Windows
             logger.debug("Target directory [%s] not an absolute path.", targetDir)
             raise ValueError("Target directory must be an absolute path.")
         if not os.path.exists(targetDir) or not os.path.isdir(targetDir):

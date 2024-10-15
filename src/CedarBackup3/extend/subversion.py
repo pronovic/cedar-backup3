@@ -72,6 +72,7 @@ Check the Subversion documentation for more information.
 import logging
 import os
 import pickle
+import posixpath
 from bz2 import BZ2File
 from functools import total_ordering
 from gzip import GzipFile
@@ -269,7 +270,7 @@ class RepositoryDir(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Repository path must be an absolute path.")
         self._directoryPath = encodePath(value)
 
@@ -485,7 +486,7 @@ class Repository(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not (os.path.isabs(value) or posixpath.isabs(value)):  # Python 3.13+ does not treat / as absolute on Windows
                 raise ValueError("Repository path must be an absolute path.")
         self._repositoryPath = encodePath(value)
 
