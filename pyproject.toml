@@ -46,7 +46,7 @@ cback3-amazons3-sync = 'CedarBackup3.scripts:amazons3'
 cback3-span = 'CedarBackup3.scripts:span' 
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4"
+python = ">=3.10,<4"
 chardet = "~5"                                           # Debian bookworm only has 5.1.0
 importlib-metadata = "~4"                                # Debian bookworm only has 4.12.0
 sphinx = { version="~5", optional=true }                 # Debian bookworm only has 5.3.0
@@ -59,14 +59,14 @@ docs = [ "sphinx", "sphinx-autoapi" ]
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.4.4"
 pylint = "~2"  # newer versions need astroid 3
-pre-commit = "^3.4.0"
+pre-commit = "^4.0.1"
 black = "^24.2.0"
 isort = "^5.12.0"
 colorama = "~0, >=0.4.6"
 
 [tool.black]
 line-length = 132
-target-version = [ 'py39', 'py310', 'py311', 'py312' ]
+target-version = [ 'py310', 'py311', 'py312', 'py313' ]
 include = '\.pyi?$'
 exclude = '''
 /(
