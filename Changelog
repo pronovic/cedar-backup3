@@ -6,6 +6,7 @@ Version 3.8.2     unreleased
 	* Update transitive dependencies to address Dependabot warnings.
 	* Add support for Python v3.13 and drop support for v3.9.
 	* Upgrade to Poetry v1.8.4 for official Python 3.13 support.
+	* Bump readthedocs build to python 3.10 and ubuntu-24.04.
 
 Version 3.8.1     26 Feb 2024
 
