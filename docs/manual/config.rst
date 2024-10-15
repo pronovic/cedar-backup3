@@ -264,9 +264,7 @@ The following elements are part of the options configuration section:
    temporary tar files (on a client) or to build an ISO filesystem image
    (on a master).
 
-   *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-   absolute paths on the Windows platform must start with two backslashes,
-   and a UNIX-style slash is no longer accepted.
+   *Restrictions:* Must be an absolute path
 
 ``backup_user``
    Effective user that backups should run as.
@@ -377,9 +375,7 @@ The following elements are part of the options configuration section:
    ``abs_path``
       The absolute path where the overridden command can be found.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
 ``pre_action_hook``
    Hook configuring a command to be executed before an action.
@@ -536,9 +532,7 @@ The following elements are part of the peers configuration section:
       directory is assumed to be reachable via normal filesystem
       operations (i.e. ``cp``).
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``ignore_failures``
       Ignore failure mode for this peer
@@ -605,9 +599,7 @@ The following elements are part of the peers configuration section:
       directory is assumed to be reachable via rsh-based network
       operations (i.e. ``scp`` or the configured rcp command).
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``ignore_failures``
       Ignore failure mode for this peer
@@ -786,9 +778,7 @@ The following elements are part of the collect configuration section:
    collect all of the backed-up files on the machine in a compressed
    form.
 
-   *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-   absolute paths on the Windows platform must start with two backslashes,
-   and a UNIX-style slash is no longer accepted.
+   *Restrictions:* Must be an absolute path
 
 ``collect_mode``
    Default collect mode.
@@ -898,9 +888,7 @@ The following elements are part of the collect configuration section:
 
       This field can be repeated as many times as is necessary.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``pattern``
       A pattern to be recursively excluded from the backup.
@@ -936,9 +924,7 @@ The following elements are part of the collect configuration section:
    ``abs_path``
       Absolute path of the file to collect.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``collect_mode``
       Collect mode for this file
@@ -996,9 +982,7 @@ The following elements are part of the collect configuration section:
       are copied verbatim (as a link) and their contents are not backed
       up.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``collect_mode``
       Collect mode for this directory
@@ -1104,9 +1088,7 @@ The following elements are part of the collect configuration section:
 
          This field can be repeated as many times as is necessary.
 
-         *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-         absolute paths on the Windows platform must start with two backslashes,
-         and a UNIX-style slash is no longer accepted.
+         *Restrictions:* Must be an absolute path.
 
       ``rel_path``
          A relative path to be recursively excluded from the backup.
@@ -1207,9 +1189,7 @@ The following elements are part of the stage configuration section:
    staging directories around for a week or more, which requires even
    more space.
 
-   *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-   absolute paths on the Windows platform must start with two backslashes,
-   and a UNIX-style slash is no longer accepted.
+   *Restrictions:* Must be an absolute path
 
 ``peer`` (local version)
    Local client peer in a backup pool.
@@ -1255,9 +1235,7 @@ The following elements are part of the stage configuration section:
       directory is assumed to be reachable via normal filesystem
       operations (i.e. ``cp``).
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
 ``peer`` (remote version)
    Remote client peer in a backup pool.
@@ -1300,9 +1278,7 @@ The following elements are part of the stage configuration section:
       directory is assumed to be reachable via rsh-based network
       operations (i.e. ``scp`` or the configured rcp command).
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``backup_user``
       Name of backup user on the remote peer.
@@ -1374,9 +1350,7 @@ The following elements are part of the store configuration section:
    from that directory (typically, data from the current day) will be
    written to disc.
 
-   *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-   absolute paths on the Windows platform must start with two backslashes,
-   and a UNIX-style slash is no longer accepted.
+   *Restrictions:* Must be an absolute path
 
 ``device_type``
    Type of the device used to write the media.
@@ -1425,9 +1399,7 @@ The following elements are part of the store configuration section:
    you experience problems, try using the real device name rather than
    the symlink.
 
-   *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-   absolute paths on the Windows platform must start with two backslashes,
-   and a UNIX-style slash is no longer accepted.
+   *Restrictions:* Must be an absolute path.
 
 ``target_scsi_id``
    SCSI id for the writer device.
@@ -1664,9 +1636,7 @@ The following elements are part of the purge configuration section:
       a hard link to a directory. Soft links *within* the directory (if
       any) are treated as files.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``retain_days``
       Number of days to retain old files.

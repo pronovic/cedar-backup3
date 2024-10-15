@@ -385,9 +385,7 @@ The following elements are part of the Subversion configuration section:
    ``abs_path``
       Absolute path of the Subversion repository to back up.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
 ``repository_dir``
    A Subversion parent repository directory be collected.
@@ -421,9 +419,8 @@ The following elements are part of the Subversion configuration section:
    ``abs_path``
       Absolute path of the Subversion repository to back up.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
+
    ``exclude``
       List of paths or patterns to exclude from the backup.
 
@@ -911,9 +908,7 @@ The following elements are part of the mbox configuration section:
    ``abs_path``
       Absolute path of the mbox file to back up.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
 ``dir``
    An mbox directory to be collected.
@@ -949,9 +944,7 @@ The following elements are part of the mbox configuration section:
    ``abs_path``
       Absolute path of the mbox directory to back up.
 
-      *Restrictions:* Must be an absolute path.  Starting with Python 3.13,
-      absolute paths on the Windows platform must start with two backslashes,
-      and a UNIX-style slash is no longer accepted.
+      *Restrictions:* Must be an absolute path.
 
    ``exclude``
       List of paths or patterns to exclude from the backup.
