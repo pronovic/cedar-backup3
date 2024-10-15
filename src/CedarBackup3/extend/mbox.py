@@ -92,6 +92,7 @@ import datetime
 import logging
 import os
 import pickle
+import posixpath
 import tempfile
 from bz2 import BZ2File
 from functools import total_ordering
@@ -229,7 +230,7 @@ class MboxFile(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Absolute path must be, er, an absolute path.")
         self._absolutePath = encodePath(value)
 
@@ -404,7 +405,7 @@ class MboxDir(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Absolute path must be, er, an absolute path.")
         self._absolutePath = encodePath(value)
 

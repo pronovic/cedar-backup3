@@ -56,6 +56,7 @@ Attributes:
 
 import logging
 import os
+import posixpath
 import re
 import tempfile
 import time
@@ -950,7 +951,7 @@ class CdWriter(object):
                         pass
         else:
             imagePath = encodePath(imagePath)
-            if not os.path.isabs(imagePath):
+            if not posixpath.isabs(imagePath):
                 raise ValueError("Image path must be absolute.")
             self._writeImage(imagePath, writeMulti, newDisc)
 

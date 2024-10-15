@@ -232,7 +232,7 @@ Attributes:
 ########################################################################
 
 import logging
-import os
+import posixpath
 import re
 from functools import total_ordering
 
@@ -1274,7 +1274,7 @@ class CommandOverride(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Not an absolute path: [%s]" % value)
         self._absolutePath = encodePath(value)
 
@@ -1386,7 +1386,7 @@ class CollectFile(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Not an absolute path: [%s]" % value)
         self._absolutePath = encodePath(value)
 
@@ -1621,7 +1621,7 @@ class CollectDir(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Not an absolute path: [%s]" % value)
         self._absolutePath = encodePath(value)
 
@@ -1918,7 +1918,7 @@ class PurgeDir(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Absolute path must, er, be an absolute path.")
         self._absolutePath = encodePath(value)
 
@@ -2072,7 +2072,7 @@ class LocalPeer(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Collect directory must be an absolute path.")
         self._collectDir = encodePath(value)
 
@@ -2295,7 +2295,7 @@ class RemotePeer(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Collect directory must be an absolute path.")
         self._collectDir = encodePath(value)
 
@@ -2964,7 +2964,7 @@ class OptionsConfig(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Working directory must be an absolute path.")
         self._workingDir = encodePath(value)
 
@@ -3474,7 +3474,7 @@ class CollectConfig(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Target directory must be an absolute path.")
         self._targetDir = encodePath(value)
 
@@ -3754,7 +3754,7 @@ class StageConfig(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Target directory must be an absolute path.")
         self._targetDir = encodePath(value)
 
@@ -4034,7 +4034,7 @@ class StoreConfig(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Source directory must be an absolute path.")
         self._sourceDir = encodePath(value)
 
@@ -4090,7 +4090,7 @@ class StoreConfig(object):
            ValueError: If the value cannot be encoded properly
         """
         if value is not None:
-            if not os.path.isabs(value):
+            if not posixpath.isabs(value):
                 raise ValueError("Device path must be an absolute path.")
         self._devicePath = encodePath(value)
 

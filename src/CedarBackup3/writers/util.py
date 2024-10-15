@@ -47,6 +47,7 @@ Provides utilities related to image writers.
 
 import logging
 import os
+import posixpath
 import re
 
 from CedarBackup3.util import UNIT_BYTES, UNIT_SECTORS, convertSize, encodePath, executeCommand, pathJoin, resolveCommand
@@ -87,7 +88,7 @@ def validateDevice(device, unittest=False):
     if device is None:
         raise ValueError("Device must be filled in.")
     device = encodePath(device)
-    if not os.path.isabs(device):
+    if not posixpath.isabs(device):
         raise ValueError("Backup device must be an absolute path.")
     if not unittest and not os.path.exists(device):
         raise ValueError("Backup device must exist on disk.")
@@ -302,7 +303,7 @@ class IsoImage(object):
             if value is None:
                 self._device = None
             else:
-                if os.path.isabs(value):
+                if posixpath.isabs(value):
                     self._device = value
                 else:
                     self._device = validateScsiId(value)
