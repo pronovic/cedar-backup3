@@ -210,6 +210,10 @@ of that staging directory to disc. After the contents of the directory
 have been written to disc, an optional validation step ensures that the
 write was successful.
 
+   |warning|
+
+   The store action is only supported on Linux, not on MacOS or Windows.
+
 If the backup is running on the first day of the week, if the drive does
 not support multisession discs, or if the ``--full`` option is passed to
 the ``cback3`` command, the disc will be rebuilt from scratch.
@@ -219,16 +223,6 @@ backup runs.
 This action is entirely optional. If you would prefer to just stage
 backup data from a set of peers to a master machine, and have the staged
 directories represent your backup rather than a disc, this is fine.
-
-   |warning|
-
-   The store action is not supported on the Mac OS X (darwin) platform.
-   On that platform, the “automount” function of the Finder interferes
-   significantly with Cedar Backup's ability to mount and unmount media
-   and write to the CD or DVD hardware. The Cedar Backup writer and
-   image functionality works on this platform, but the effort required
-   to fight the operating system about who owns the media and the device
-   makes it nearly impossible to execute the store action successfully.
 
 The store action tries to be smart about finding the current staging
 directory. It first checks the current day's staging directory. If that
