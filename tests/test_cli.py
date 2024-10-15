@@ -92,7 +92,15 @@ from CedarBackup3.config import (
     PreActionHook,
     RemotePeer,
 )
-from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAssignRaises
+from CedarBackup3.testutil import captureOutput, configureLogging, failUnlessAssignRaises, platformWindows
+
+#######################################################################
+# Constants
+#######################################################################
+
+# Starting with Python 3.13, absolute paths on Windows must start with \\ and / is no longer valid
+COLLECT_PATH = r"\\collect" if platformWindows() else "/collect"
+
 
 #######################################################################
 # Test Case Classes
@@ -11730,7 +11738,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11756,7 +11764,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11782,7 +11790,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11808,7 +11816,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11834,7 +11842,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11860,7 +11868,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11885,7 +11893,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11911,7 +11919,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11937,7 +11945,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11963,7 +11971,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -11989,7 +11997,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12015,7 +12023,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12041,7 +12049,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12067,7 +12075,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12093,7 +12101,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12119,7 +12127,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12145,7 +12153,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12171,7 +12179,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12199,7 +12207,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12242,7 +12250,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12267,7 +12275,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=False),
@@ -12292,7 +12300,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
@@ -12328,7 +12336,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12354,7 +12362,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12380,7 +12388,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12416,7 +12424,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12462,7 +12470,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12487,7 +12495,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12513,7 +12521,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12549,7 +12557,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12585,7 +12593,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12631,7 +12639,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12667,7 +12675,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12693,7 +12701,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12719,7 +12727,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12755,7 +12763,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12801,7 +12809,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12837,7 +12845,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12883,7 +12891,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12921,7 +12929,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -12984,7 +12992,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13039,7 +13047,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13075,7 +13083,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
@@ -13112,7 +13120,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13139,7 +13147,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13166,7 +13174,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13203,7 +13211,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13250,7 +13258,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13276,7 +13284,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13303,7 +13311,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13340,7 +13348,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13377,7 +13385,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13424,7 +13432,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13461,7 +13469,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13488,7 +13496,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13515,7 +13523,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13552,7 +13560,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13599,7 +13607,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13636,7 +13644,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13683,7 +13691,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13722,7 +13730,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13786,7 +13794,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13842,7 +13850,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13878,7 +13886,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
@@ -13920,7 +13928,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13947,7 +13955,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -13974,7 +13982,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14016,7 +14024,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14072,7 +14080,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14098,7 +14106,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14125,7 +14133,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14167,7 +14175,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14209,7 +14217,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14266,7 +14274,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14308,7 +14316,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14335,7 +14343,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14362,7 +14370,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14404,7 +14412,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14461,7 +14469,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14503,7 +14511,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14560,7 +14568,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14604,7 +14612,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14678,7 +14686,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14749,7 +14757,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14790,7 +14798,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", None, "rsh", "cback", managed=True),
@@ -14838,7 +14846,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14871,7 +14879,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14904,7 +14912,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -14952,7 +14960,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15033,7 +15041,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15065,7 +15073,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15098,7 +15106,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15152,7 +15160,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15206,7 +15214,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15275,7 +15283,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15329,7 +15337,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15368,7 +15376,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15407,7 +15415,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15461,7 +15469,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15530,7 +15538,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15584,7 +15592,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15653,7 +15661,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15709,7 +15717,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15804,7 +15812,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15911,7 +15919,7 @@ class TestActionSet(unittest.TestCase):
         ]
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, "ruser", "rcp", "rsh", "cback", managed=True),
@@ -15974,7 +15982,7 @@ class TestActionSet(unittest.TestCase):
         options.cbackCommand = "cbackZ"
         peers = PeersConfig()
         peers.localPeers = [
-            LocalPeer("local", "/collect"),
+            LocalPeer("local", COLLECT_PATH),
         ]
         peers.remotePeers = [
             RemotePeer("remote", None, None, None, None, "cback", managed=True),
