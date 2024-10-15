@@ -2252,12 +2252,36 @@ class TestFunctions(unittest.TestCase):
 
     def testGetFunctionReference_002(self):
         """
-        Check that the search works for things within CedarBackup3.
+        Check that the search works for things within CedarBackup3, legitimately callable.
         """
         module = "CedarBackup3.util"
         function = "executeCommand"
         reference = getFunctionReference(module, function)
         self.assertTrue(executeCommand is reference)
+
+    def testGetFunctionReference_003(self):
+        """
+        Check that the search works for things within CedarBackup3, not callable.
+        """
+        module = "CedarBackup3.util"
+        function = "SECONDS_PER_MINUTE"
+        try:
+            getFunctionReference(module, function)
+            self.fail("Did not get expected ValueError")
+        except ValueError:
+            pass
+
+    def testGetFunctionReference_004(self):
+        """
+        Check that the search works for things within CedarBackup3, not found.
+        """
+        module = "CedarBackup3.util"
+        function = "BOGUS"
+        try:
+            getFunctionReference(module, function)
+            self.fail("Did not get expected AttributeError")
+        except AttributeError:
+            pass
 
     ########################
     # Test resolveCommand()
