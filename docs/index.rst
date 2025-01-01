@@ -7,7 +7,7 @@ Release v\ |version|
     :target: https://pypi.org/project/cedar-backup3/
 
 .. image:: https://img.shields.io/pypi/l/cedar-backup3.svg
-    :target: https://github.com/pronovic/cedar-backup3/blob/master/LICENSE
+    :target: https://github.com/pronovic/cedar-backup3/blob/main/LICENSE
 
 .. image:: https://img.shields.io/pypi/wheel/cedar-backup3.svg
     :target: https://pypi.org/project/cedar-backup3/
@@ -21,8 +21,8 @@ Release v\ |version|
 .. image:: https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat
     :target: https://cedar-backup3.readthedocs.io/en/stable/
 
-.. image:: https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=master
-    :target: https://coveralls.io/github/pronovic/cedar-backup3?branch=master
+.. image:: https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=main
+    :target: https://coveralls.io/github/pronovic/cedar-backup3?branch=main
 
 Cedar Backup is a software package designed to manage system backups for a pool
 of local and remote machines. 
@@ -127,4 +127,4 @@ executable name, etc.  You can migrate one server at a time in your pool with
 no ill effects, or even incrementally migrate a single server by using v2 and
 v3 on different days of the week or for different parts of the backup.
 
-.. _Changelog: https://github.com/pronovic/cedar-backup3/blob/master/Changelog
+.. _Changelog: https://github.com/pronovic/cedar-backup3/blob/main/Changelog

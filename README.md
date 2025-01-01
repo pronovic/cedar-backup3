@@ -1,12 +1,12 @@
 # Cedar Backup v3
 
 [![pypi](https://img.shields.io/pypi/v/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
-[![license](https://img.shields.io/pypi/l/cedar-backup3.svg)](https://github.com/pronovic/cedar-backup3/blob/master/LICENSE)
+[![license](https://img.shields.io/pypi/l/cedar-backup3.svg)](https://github.com/pronovic/cedar-backup3/blob/main/LICENSE)
 [![wheel](https://img.shields.io/pypi/wheel/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
 [![python](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
 [![Test Suite](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)](https://github.com/pronovic/cedar-backup3/actions?query=workflow%3A%22Test+Suite%22)
 [![docs](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)](https://cedar-backup3.readthedocs.io/en/stable/)
-[![coverage](https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=master)](https://coveralls.io/github/pronovic/cedar-backup3?branch=master)
+[![coverage](https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=main)](https://coveralls.io/github/pronovic/cedar-backup3?branch=main)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 ## What is Cedar Backup?
@@ -73,7 +73,7 @@ environment, etc.
 
 ## End User Documentation
 
-See the [Changelog](https://github.com/pronovic/cedar-backup3/blob/master/Changelog) for
+See the [Changelog](https://github.com/pronovic/cedar-backup3/blob/main/Changelog) for
 recent changes.
 
 The [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/stable/manual/index.html) documents 
