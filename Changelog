@@ -1,6 +1,7 @@
 Version 3.8.3     unreleased
 
 	* Add GitHub security policy in SECURITY.md.
+	* Pull in latest version of run-script-framework.
 	* Update dependencies to address Dependabot warnings.
 	* Upgrade to gha-shared-workflows@v7 with publish improvements.
 
