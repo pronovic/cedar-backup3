@@ -50,7 +50,7 @@ to get that.
 # Imported modules and constants
 ########################################################################
 
-import getopt
+import getopt  # pylint: disable=deprecated-module:
 import json
 import logging
 import os
