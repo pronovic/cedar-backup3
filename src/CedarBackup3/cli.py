@@ -79,6 +79,8 @@ Attributes:
 # Imported modules
 ########################################################################
 
+# Note: getopt is "soft deprecated" only and is safe to use; see: https://github.com/python/cpython/pull/105735
+
 import getopt  # pylint: disable=deprecated-module:
 import logging
 import os
