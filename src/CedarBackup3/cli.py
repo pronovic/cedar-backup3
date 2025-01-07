@@ -79,7 +79,7 @@ Attributes:
 # Imported modules
 ########################################################################
 
-import getopt
+import getopt  # pylint: disable=deprecated-module:
 import logging
 import os
 import sys
