@@ -64,6 +64,9 @@ stable Debian release.  This means that I'm often several major versions behind
 what is available from PyPI.  If I targeted the latest PyPI version instead,
 then the Debian package for Cedar Backup would really only be usable on
 bleeding-edge Linux systems, which is probably not where most usage is found.
+As the next Debian stable release gets closer, I will sometimes migrate to
+newer versions in preparation for that release, especially if there have been
+no major functional changes in Cedar Backup recently.
 
 ## Developer Documentation
 
@@ -104,7 +107,7 @@ $ pip install cedar-backup3
 In addition to the Python package, Cedar Backup requires a variety of external 
 system dependencies.  For more information, see 
 the [Cedar Backup v3 Software Manual](https://cedar-backup3.readthedocs.io/en/stable/manual/install.html#installing-the-python-package).
-    
+
 Debian packages for Cedar Backup v3, called `cedar-backup3` and
 `cedar-backup3-doc`, were first available starting with the Debian 'stretch'
 release.  Debian derivatives (such as Ubuntu) should also contain the packages.

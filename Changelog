@@ -1,6 +1,10 @@
-Version 3.8.4     unreleased
+Version 3.9.0     unreleased
 
 	* Migrate to Poetry v2 and project-managed Poetry plugins.
+
+Version 3.8.4     unreleased
+
+	* Update dependencies to match versions in Debian trixie.
 
 Version 3.8.3     02 Jan 2025
 

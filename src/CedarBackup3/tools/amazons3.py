@@ -50,7 +50,9 @@ to get that.
 # Imported modules and constants
 ########################################################################
 
-import getopt
+# Note: getopt is "soft deprecated" only and is safe to use; see: https://github.com/python/cpython/pull/105735
+
+import getopt  # pylint: disable=deprecated-module:
 import json
 import logging
 import os

@@ -47,18 +47,17 @@ cback3-span = 'CedarBackup3.scripts:span'
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4"
-chardet = "~5"                                           # Debian bookworm only has 5.1.0
-importlib-metadata = "~4"                                # Debian bookworm only has 4.12.0
-sphinx = { version="~5", optional=true }                 # Debian bookworm only has 5.3.0
-sphinx-autoapi = { version="~2", optional=true }         # Debian bookworm only has 2.0.0
-astroid = "~2"                                           # Newer versions conflict with older Sphinx
+chardet = "~=5.2.0"                                       # Debian trixie has 5.2.0
+importlib-metadata = "~=8.5.0"                            # Debian trixie has 8.5.0
+sphinx = { version="~=8.1.3", optional=true }             # Debian trixie has 8.1.3
+sphinx-autoapi = { version="~=3.3.3", optional=true }     # Debian trixie has 3.3.3
 
 [tool.poetry.extras]
 docs = [ "sphinx", "sphinx-autoapi" ]
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.4.4"
-pylint = "~2"  # newer versions need astroid 3
+pylint = "^3.0.1"
 pre-commit = "^4.0.1"
 black = "^24.2.0"
 isort = "^5.12.0"
