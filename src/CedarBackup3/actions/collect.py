@@ -577,7 +577,7 @@ def _getTarfilePath(config, absolutePath, archiveMode):
     elif archiveMode == "tarbz2":
         extension = "tar.bz2"
     normalized = buildNormalizedPath(absolutePath)
-    filename = "%s.%s" % (normalized, extension)
+    filename = "%s.%s" % (normalized, extension)  # pylint: disable=possibly-used-before-assignment:
     tarfilePath = pathJoin(config.collect.targetDir, filename)
     logger.debug("Tarfile path is [%s]", tarfilePath)
     return tarfilePath
