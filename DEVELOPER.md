@@ -7,7 +7,7 @@ but most of it also works equivalently on MacOS and Windows.
 
 ## Packaging and Dependencies
 
-This project uses [Poetry](https://python-poetry.org/) to manage Python
+This project uses [Poetry v2](https://python-poetry.org/) to manage Python
 packaging and dependencies.  Most day-to-day tasks (such as running unit tests
 from the command line) are orchestrated through Poetry.
 
@@ -38,7 +38,7 @@ sure that you have a working Python 3 enviroment and install Poetry itself.
 
 ### Poetry Version
 
-The project is designed to work with Poetry >= 1.8.0.  If you already have an older
+The project is designed to work with Poetry >= 2.0.0.  If you already have an older
 version of Poetry installed on your system, upgrade it first.
 
 ### MacOS
