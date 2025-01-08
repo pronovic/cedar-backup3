@@ -84,7 +84,18 @@ exclude = '''
 [tool.isort]
 profile = "black"
 line_length = 132
-skip_glob = [ "docs", "notes" ]
+skip_glob = [ "docs", "notes", ".poetry" ]
+
+[tool.coverage.paths]
+source = [ "src" ]
+
+[tool.coverage.run]
+branch = true
+source = [ "src/CedarBackup3" ]
+
+[tool.coverage.report]
+show_missing = false
+precision = 1
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
