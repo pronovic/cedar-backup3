@@ -1,6 +1,7 @@
 Version 3.9.1     unreleased
 
 	* Pull in latest version of run-script-framework.
+	* Upgrade to poetry-dynamic-versioning v1.5.2 for minor fixes.
 
 Version 3.9.0     08 Jan 2025
 
