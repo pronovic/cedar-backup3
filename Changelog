@@ -1,4 +1,4 @@
-Version 3.9.2     unreleased
+Version 3.9.2     21 Jan 2025
 
 	* Add Sphinx configuration path to .readthedocs.yml.
 	* Set $SOURCE_DATE_EPOCH on build so sdist contents get sane timestamps.
