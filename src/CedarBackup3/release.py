@@ -44,7 +44,10 @@ Attributes:
 # information is not available in the package metadata.  These values are maintained to
 # avoid breaking the public interface, but are always "unset".
 
-from importlib_metadata import metadata
+try:
+    from importlib_metadata import metadata
+except:
+    from importlib.metadata import metadata
 
 try:
     _METADATA = metadata("cedar-backup3")

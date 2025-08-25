@@ -16,7 +16,10 @@
 import os
 import sys
 from pathlib import Path
-from importlib_metadata import metadata
+try:
+    from importlib_metadata import metadata
+except ImportError:
+    from importlib.metadata import metadata
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
