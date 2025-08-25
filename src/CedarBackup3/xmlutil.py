@@ -776,8 +776,8 @@ def _translateCDATA(characters, encoding="UTF-8", prev_chars="", markupSafe=0):
     """
     CDATA_CHAR_PATTERN = re.compile("[&<]|]]>")
     CHAR_TO_ENTITY = {"&": "&amp;", "<": "&lt;", "]]>": "]]&gt;"}
-    ILLEGAL_LOW_CHARS = "[\x01-\x08\x0B-\x0C\x0E-\x1F]"
-    ILLEGAL_HIGH_CHARS = "\xEF\xBF[\xBE\xBF]"
+    ILLEGAL_LOW_CHARS = "[\x01-\x08\x0b-\x0c\x0e-\x1f]"
+    ILLEGAL_HIGH_CHARS = "\xef\xbf[\xbe\xbf]"
     XML_ILLEGAL_CHAR_PATTERN = re.compile("%s|%s" % (ILLEGAL_LOW_CHARS, ILLEGAL_HIGH_CHARS))
     if not characters:
         return ""
