@@ -24,7 +24,7 @@ import sys
 
 def cback3():
     """Implementation of the cback3 script, the main command-line interface."""
-    from CedarBackup3.cli import cli  # pylint: disable=import-outside-toplevel
+    from CedarBackup3.cli import cli
 
     result = cli()
     sys.exit(result)
@@ -32,7 +32,7 @@ def cback3():
 
 def amazons3():
     """Implementation of the cback3-amazons3-sync script."""
-    from CedarBackup3.tools.amazons3 import cli  # pylint: disable=import-outside-toplevel
+    from CedarBackup3.tools.amazons3 import cli
 
     result = cli()
     sys.exit(result)
@@ -40,7 +40,7 @@ def amazons3():
 
 def span():
     """Implementation of the cback3-span script."""
-    from CedarBackup3.tools.span import cli  # pylint: disable=import-outside-toplevel
+    from CedarBackup3.tools.span import cli
 
     result = cli()
     sys.exit(result)

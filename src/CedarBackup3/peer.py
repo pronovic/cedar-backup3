@@ -380,7 +380,7 @@ class LocalPeer(object):
             if os.path.exists(targetFile):
                 raise IOError("Target file [%s] already exists." % targetFile)
         if sourceFile is None:
-            with open(targetFile, "w") as f:  # pylint: disable=unspecified-encoding
+            with open(targetFile, "w") as f:
                 f.write("")
         else:
             if os.path.isfile(sourceFile) and not os.path.islink(sourceFile):
@@ -390,7 +390,7 @@ class LocalPeer(object):
                 raise ValueError("Source is not a regular file.")
         if ownership is not None:
             if sys.platform != "win32":
-                os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
+                os.chown(targetFile, ownership[0], ownership[1])
         if permissions is not None:
             os.chmod(targetFile, permissions)
 
@@ -860,7 +860,7 @@ class RemotePeer(object):
             targetFile = pathJoin(self.collectDir, stageIndicator)
         try:
             if not os.path.exists(sourceFile):
-                with open(sourceFile, "w") as f:  # pylint: disable=unspecified-encoding
+                with open(sourceFile, "w") as f:
                     f.write("")
             RemotePeer._pushLocalFile(
                 self.remoteUser, self.localUser, self.name, self._rcpCommand, self._rcpCommandList, sourceFile, targetFile
@@ -1009,7 +1009,7 @@ class RemotePeer(object):
         for targetFile in differenceSet:
             if ownership is not None:
                 if sys.platform != "win32":
-                    os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
+                    os.chown(targetFile, ownership[0], ownership[1])
             if permissions is not None:
                 os.chmod(targetFile, permissions)
         return len(differenceSet)
@@ -1089,7 +1089,7 @@ class RemotePeer(object):
             raise IOError("Apparently unable to copy file from remote host.")
         if ownership is not None:
             if sys.platform != "win32":
-                os.chown(targetFile, ownership[0], ownership[1])  # pylint: disable=no-member
+                os.chown(targetFile, ownership[0], ownership[1])
         if permissions is not None:
             os.chmod(targetFile, permissions)
 

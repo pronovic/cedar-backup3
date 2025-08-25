@@ -34,7 +34,7 @@ library interface.
 # Imported modules
 ########################################################################
 
-from CedarBackup3.writers.cdwriter import (  # pylint: disable=W0611
+from CedarBackup3.writers.cdwriter import (
     MEDIA_CDR_74,
     MEDIA_CDR_80,
     MEDIA_CDRW_74,
@@ -43,4 +43,4 @@ from CedarBackup3.writers.cdwriter import (  # pylint: disable=W0611
     MediaCapacity,
     MediaDefinition,
 )
-from CedarBackup3.writers.util import validateDriveSpeed, validateScsiId  # pylint: disable=W0611
+from CedarBackup3.writers.util import validateDriveSpeed, validateScsiId

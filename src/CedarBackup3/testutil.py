@@ -61,7 +61,7 @@ import logging
 import os
 import platform
 import random
-import string  # pylint: disable=W0402
+import string
 import sys
 import tarfile
 import time
@@ -255,7 +255,6 @@ def extractTar(tmpdir, filepath):
     Raises:
        ValueError: If a path cannot be encoded properly
     """
-    # pylint: disable=E1101
     tmpdir = encodePath(tmpdir)
     filepath = encodePath(filepath)
     with tarfile.open(filepath) as tar:
@@ -360,7 +359,6 @@ def randomFilename(length, prefix=None, suffix=None):
 ####################################
 
 
-# pylint: disable=W0613
 def failUnlessAssignRaises(testCase, exception, obj, prop, value):
     """
     Equivalent of ``failUnlessRaises``, but used for property assignments instead.
@@ -403,7 +401,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
     missed = False
     instead = None
     try:
-        exec("obj.%s = value" % prop)  # pylint: disable=W0122
+        exec("obj.%s = value" % prop)
         missed = True
     except exception:
         pass
@@ -530,5 +528,5 @@ def availableLocales():
     locales = []
     output = executeCommand(["locale"], ["-a"], returnOutput=True, ignoreStderr=True)[1]
     for line in output:
-        locales.append(line.rstrip())  # pylint: disable=E1101
+        locales.append(line.rstrip())
     return locales

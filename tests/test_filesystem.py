@@ -15434,7 +15434,7 @@ class TestBackupFileList(unittest.TestCase):
         digestMap = {}
         backupList = BackupFileList()
         self.assertEqual(0, len(backupList))
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
@@ -15454,7 +15454,7 @@ class TestBackupFileList(unittest.TestCase):
         }
         backupList = BackupFileList()
         self.assertEqual(0, len(backupList))
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(0, len(backupList))
@@ -15487,7 +15487,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(15, len(backupList))
@@ -15548,7 +15548,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(15, len(backupList))
@@ -15610,7 +15610,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(15, len(backupList))
@@ -15672,7 +15672,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(6, count)
         self.assertEqual(9, len(backupList))
@@ -15728,7 +15728,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(0, count)
         self.assertEqual(15, len(backupList))
@@ -15790,7 +15790,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(3, count)
         self.assertEqual(12, len(backupList))
@@ -15849,7 +15849,7 @@ class TestBackupFileList(unittest.TestCase):
         self.assertTrue(self.buildPath(["tree9", "file002"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link001"]) in backupList)
         self.assertTrue(self.buildPath(["tree9", "link002"]) in backupList)
-        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)  # pylint: disable=W0633
+        (count, newDigest) = backupList.removeUnchanged(digestMap, captureDigest=True)
         self.assertTrue(isinstance(backupList, BackupFileList))  # make sure we just replaced it
         self.assertEqual(2, count)
         self.assertEqual(13, len(backupList))
@@ -15878,7 +15878,6 @@ class TestBackupFileList(unittest.TestCase):
     # Test _generateDigest()
     #########################
 
-    # pylint: disable=E1101
     def testGenerateDigest_001(self):
         """
         Test that _generateDigest gives back same result as the slower simplistic

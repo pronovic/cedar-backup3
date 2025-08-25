@@ -81,7 +81,7 @@ Attributes:
 
 # Note: getopt is "soft deprecated" only and is safe to use; see: https://github.com/python/cpython/pull/105735
 
-import getopt  # pylint: disable=deprecated-module:
+import getopt
 import logging
 import os
 import sys
@@ -424,7 +424,7 @@ class _ActionItem(object):
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
-    def _executeHook(self, type, hook):  # pylint: disable=W0622
+    def _executeHook(self, type, hook):
         """
         Executes a hook command via :any:`util.executeCommand`.
         Args:
@@ -516,7 +516,6 @@ class _ManagedActionItem(object):
                     return 1
         return 0
 
-    # pylint: disable=W0613
     def executeAction(self, configPath, options, config):
         """
         Executes the managed action associated with an item.
@@ -1189,7 +1188,7 @@ def _setupLogfile(options):
             else:
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
             if sys.platform != "win32":
-                os.chown(logfile, uid, gid)  # pylint: disable=no-member
+                os.chown(logfile, uid, gid)
         except:
             pass
     return logfile

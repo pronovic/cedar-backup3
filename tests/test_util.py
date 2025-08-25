@@ -30,7 +30,6 @@
 # Purpose  : Tests utility functionality.
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# pylint: disable=C0322,C0324
 
 ########################################################################
 # Module documentation
@@ -2095,7 +2094,6 @@ class TestDiagnostics(unittest.TestCase):
         """
         Test the locale attribute.
         """
-        # pylint: disable=W0104
         diagnostics = Diagnostics()
         diagnostics.locale  # might not be set, so just make sure method doesn't fail
 
@@ -3894,7 +3892,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value < 1 KB
         """
-        bytes = 12  # pylint: disable=W0622
+        bytes = 12
         result = displayBytes(bytes)
         self.assertEqual("12 bytes", result)
         result = displayBytes(bytes, 3)
@@ -3904,7 +3902,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a negative value < 1 KB
         """
-        bytes = -12  # pylint: disable=W0622
+        bytes = -12
         result = displayBytes(bytes)
         self.assertEqual("-12 bytes", result)
         result = displayBytes(bytes, 3)
@@ -3914,7 +3912,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value = 1kB
         """
-        bytes = 1024  # pylint: disable=W0622
+        bytes = 1024
         result = displayBytes(bytes)
         self.assertEqual("1.00 kB", result)
         result = displayBytes(bytes, 3)
@@ -3924,7 +3922,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value >= 1kB
         """
-        bytes = 5678  # pylint: disable=W0622
+        bytes = 5678
         result = displayBytes(bytes)
         self.assertEqual("5.54 kB", result)
         result = displayBytes(bytes, 3)
@@ -3934,7 +3932,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a negative value >= 1kB
         """
-        bytes = -5678  # pylint: disable=W0622
+        bytes = -5678
         result = displayBytes(bytes)
         self.assertEqual("-5.54 kB", result)
         result = displayBytes(bytes, 3)
@@ -3944,7 +3942,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value = 1MB
         """
-        bytes = 1024.0 * 1024.0  # pylint: disable=W0622
+        bytes = 1024.0 * 1024.0
         result = displayBytes(bytes)
         self.assertEqual("1.00 MB", result)
         result = displayBytes(bytes, 3)
@@ -3954,7 +3952,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value >= 1MB
         """
-        bytes = 72372224  # pylint: disable=W0622
+        bytes = 72372224
         result = displayBytes(bytes)
         self.assertEqual("69.02 MB", result)
         result = displayBytes(bytes, 3)
@@ -3964,7 +3962,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a negative value >= 1MB
         """
-        bytes = -72372224.0  # pylint: disable=W0622
+        bytes = -72372224.0
         result = displayBytes(bytes)
         self.assertEqual("-69.02 MB", result)
         result = displayBytes(bytes, 3)
@@ -3974,7 +3972,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value = 1GB
         """
-        bytes = 1024.0 * 1024.0 * 1024.0  # pylint: disable=W0622
+        bytes = 1024.0 * 1024.0 * 1024.0
         result = displayBytes(bytes)
         self.assertEqual("1.00 GB", result)
         result = displayBytes(bytes, 3)
@@ -3984,7 +3982,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a positive value >= 1GB
         """
-        bytes = 4.4 * 1024.0 * 1024.0 * 1024.0  # pylint: disable=W0622
+        bytes = 4.4 * 1024.0 * 1024.0 * 1024.0
         result = displayBytes(bytes)
         self.assertEqual("4.40 GB", result)
         result = displayBytes(bytes, 3)
@@ -3994,7 +3992,7 @@ class TestFunctions(unittest.TestCase):
         """
         Test display for a negative value >= 1GB
         """
-        bytes = -1234567891011  # pylint: disable=W0622
+        bytes = -1234567891011
         result = displayBytes(bytes)
         self.assertEqual("-1149.78 GB", result)
         result = displayBytes(bytes, 3)
@@ -4004,14 +4002,14 @@ class TestFunctions(unittest.TestCase):
         """
         Test display with an invalid quantity (None).
         """
-        bytes = None  # pylint: disable=W0622
+        bytes = None
         self.assertRaises(ValueError, displayBytes, bytes)
 
     def testDisplayBytes_013(self):
         """
         Test display with an invalid quantity (not a floating point).
         """
-        bytes = "ken"  # pylint: disable=W0622
+        bytes = "ken"
         self.assertRaises(ValueError, displayBytes, bytes)
 
     #########################

@@ -740,7 +740,7 @@ class FilesystemList(list):
 ########################################################################
 
 
-class SpanItem(object):  # pylint: disable=R0903
+class SpanItem(object):
     """
     Item returned by :any:`BackupFileList.generateSpan`.
     """
@@ -764,7 +764,7 @@ class SpanItem(object):  # pylint: disable=R0903
 ########################################################################
 
 
-class BackupFileList(FilesystemList):  # pylint: disable=R0904
+class BackupFileList(FilesystemList):
     ######################
     # Class documentation
     ######################
@@ -931,7 +931,6 @@ class BackupFileList(FilesystemList):  # pylint: disable=R0904
         Raises:
            OSError: If the file cannot be opened
         """
-        # pylint: disable=C0103,E1101
         s = hashlib.sha1()
         with open(path, mode="rb") as f:
             readBytes = 4096  # see notes above
@@ -1107,7 +1106,6 @@ class BackupFileList(FilesystemList):  # pylint: disable=R0904
            ValueError: If the path could not be encoded properly
            TarError: If there is a problem creating the tar file
         """
-        # pylint: disable=E1101
         path = encodePath(path)
         if len(self) == 0:
             raise ValueError("Empty list cannot be used to generate tarfile.")
@@ -1250,7 +1248,7 @@ class BackupFileList(FilesystemList):  # pylint: disable=R0904
 ########################################################################
 
 
-class PurgeItemList(FilesystemList):  # pylint: disable=R0904
+class PurgeItemList(FilesystemList):
     ######################
     # Class documentation
     ######################

@@ -560,7 +560,7 @@ class TestIsoImage(unittest.TestCase):
             ]
             (result, output) = executeCommand(GCONF_CMD, args, returnOutput=True)
             if result == 0:
-                self.origMediaAutomount = output[0][:-1]  # pylint: disable=W0201
+                self.origMediaAutomount = output[0][:-1]
                 if self.origMediaAutomount == "true":
                     args = [
                         "--type",
@@ -576,7 +576,7 @@ class TestIsoImage(unittest.TestCase):
             ]
             (result, output) = executeCommand(GCONF_CMD, args, returnOutput=True)
             if result == 0:
-                self.origMediaAutomountOpen = output[0][:-1]  # pylint: disable=W0201
+                self.origMediaAutomountOpen = output[0][:-1]
                 if self.origMediaAutomountOpen == "true":
                     args = [
                         "--type",

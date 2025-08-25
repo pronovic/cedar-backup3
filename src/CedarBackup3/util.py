@@ -280,7 +280,6 @@ class UnorderedList(list):
         else:
             typeinfo = type(value)
         try:
-            # pylint: disable=R0124
             x = value < value
         except TypeError:
             value = repr(value)
@@ -710,7 +709,6 @@ class DirectedGraph(object):
         Returns:
             -1/0/1 depending on whether self is ``<``, ``=`` or ``>`` other
         """
-        # pylint: disable=W0212
         if other is None:
             return 1
         if self.name != other.name:
@@ -884,7 +882,6 @@ class PathResolverSingleton(object):
             pass
 
         def __call__(self, *args, **kw):
-            # pylint: disable=W0212
             if PathResolverSingleton._instance is None:
                 obj = PathResolverSingleton()
                 PathResolverSingleton._instance = obj
@@ -1080,7 +1077,7 @@ class Diagnostics(object):
                 machine = platform.machine()
                 return "%s (%s %s)" % (sysname, release, machine)
             else:
-                uname = os.uname()  # pylint: disable=no-member
+                uname = os.uname()
                 sysname = uname[0]  # i.e. Linux
                 release = uname[2]  # i.e. 2.16.18-2
                 machine = uname[4]  # i.e. i686
@@ -1093,12 +1090,12 @@ class Diagnostics(object):
         Property target to get the default locale that is in effect.
         """
         try:
-            import locale  # pylint: disable=import-outside-toplevel
+            import locale
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
             except:
-                return locale.getdefaultlocale()[0]  # pylint: disable=deprecated-method:
+                return locale.getdefaultlocale()[0]
         except:
             return "(unknown)"
 
@@ -1107,13 +1104,13 @@ class Diagnostics(object):
         Property target to get a current date/time stamp.
         """
         try:
-            import datetime  # pylint: disable=import-outside-toplevel
+            import datetime
 
             if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 12]:
                 # Starting with Python 3.12, utcnow() is deprecated
                 return datetime.datetime.utcnow().ctime() + " UTC"
             else:
-                return datetime.datetime.now(datetime.UTC).ctime() + " UTC"  # pylint: disable=no-member:
+                return datetime.datetime.now(datetime.UTC).ctime() + " UTC"
         except:
             return "(unknown)"
 
@@ -1230,7 +1227,7 @@ def convertSize(size, fromUnit, toUnit):
 ##########################
 
 
-def displayBytes(bytes, digits=2):  # pylint: disable=W0622
+def displayBytes(bytes, digits=2):
     """
     Format a byte quantity so it can be sensibly displayed.
 
@@ -1395,7 +1392,7 @@ def changeOwnership(path, user, group):
         else:
             try:
                 (uid, gid) = getUidGid(user, group)
-                os.chown(path, uid, gid)  # pylint: disable=no-member
+                os.chown(path, uid, gid)
             except Exception as e:
                 logger.error("Error changing ownership of [%s]: %s", path, e)
 
@@ -1411,7 +1408,7 @@ def isRunningAsRoot():
     """
     if sys.platform == "win32":
         return False
-    return os.getuid() == 0  # pylint: disable=no-member
+    return os.getuid() == 0
 
 
 ##############################
@@ -1776,7 +1773,7 @@ def deviceMounted(devicePath):
     """
     if os.path.exists(MTAB_FILE) and os.access(MTAB_FILE, os.R_OK):
         realPath = os.path.realpath(devicePath)
-        with open(MTAB_FILE) as f:  # pylint: disable=unspecified-encoding
+        with open(MTAB_FILE) as f:
             lines = f.readlines()
         for line in lines:
             (mountDevice, mountPoint, remainder) = line.split(None, 2)

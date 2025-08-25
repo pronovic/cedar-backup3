@@ -63,7 +63,6 @@ docs = [
 
 [tool.poetry.group.dev.dependencies]
 coverage = ">=7.4.4,<8.0.0"
-pylint = ">=3.0.1,<4.0.0"
 pre-commit = ">=4.0.1,<5.0.0"
 colorama = ">=0.4.6,<1.0.0"
 ruff = "^0.12.10"
@@ -94,3 +93,218 @@ preview = true
 quote-style = "double"
 line-ending = "lf"
 docstring-code-format = false
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+parametrize-names-type = "csv"
+parametrize-values-type = "list"
+parametrize-values-row-type = "list"
+
+# Note: requires TID251 to be selected below
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"conftest".msg = "use 'tests.conftest' instead"
+"unittest.TestCase".msg = "use pytest, not unittest"
+
+[tool.ruff.lint]
+select = [
+  # Start with all Ruff linter rules, and exclude some specific rules and categories (see below)
+  "ALL"
+]
+
+ignore = [
+  # Ruff-recommended exclusions, not needed because we're using the Ruff formatter
+  "COM812",     # missing-trailing-comma
+  "COM819",     # prohibited-trailing-comma
+  "D206",       # docstring-tab-indentation
+  "D300",       # triple-single-quotes
+  "E111",       # indentation-with-invalid-multiple
+  "E114",       # indentation-with-invalid-multiple-comment
+  "E117",       # over-indented
+  "E501",       # line-too-long
+  "Q000",       # bad-quotes-inline-string
+  "Q001",       # bad-quotes-multiline-string
+  "Q002",       # bad-quotes-docstring
+  "Q003",       # avoidable-escaped-quote
+  "W191",       # tab-indentation
+
+  # Exclusions of entire rule categories, which we don't think are worth enforcing
+  "C90",        # mccabe cyclomatic complexity
+  "CPY",        # flake8-copyright
+  "D",          # pydocstyle
+  "DJ",         # flake8-django
+  "DOC",        # pydoclint
+  "ERA",        # eradicate
+  "EXE",        # flake8-executable
+  "FIX",        # flake8-fixme
+  "PTH",        # flake8-use-pathlib
+  "TD",         # flake8-todo
+
+  # Exclusions of specific rules, which we don't think are worth enforcing
+  "ANN401",     # allow dynamically typed expressions using `typing.Any`
+  "EM101",      # allow raw string messages in exceptions; having to pull out a variable makes code harder to read
+  "EM102",      # allow f-string messages in exceptions; having to pull out a variable makes code harder to read
+  "FURB140",    # don't automatically convert generator expressions to use `itertools.starmap()`
+  "PGH004",     # allow `# noqa` with no error code; sometimes this is needed to prevent unwanted magical auto-fixes
+  "PLR2004",    # allow magic numbers; using a constant doesn't necessarily make a magic number any more legible
+  "PT011",      # allow `pytest.raises` for any exception type; this is often a false-positive that has little benefit
+  "PT018",      # allow `assert` with multiple conditions; ruff suggestions often make the code less legible
+  "PT019",      # allow unused PyTest fixtures; this check has a lot of false positives for `@unittest.mock.patch()`
+  "S101",       # allow use of `assert`; we sometimes use assert as a type hint for MyPy, and do not run with -O
+  "S404",       # allow use of `subprocess`; it's a common way to run shell commands, and this check is overly paranoid
+  "SIM102",     # allow nested `if` clauses; ruff suggestions often make the code less legible
+  "SIM117",     # allow nested `with` clauses; ruff suggestions often make the code less legible
+  "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
+
+  # Exclusions of specific rules that we want to work toward being compliant with
+  "A001",
+  "A002",
+  "ANN001",
+  "ANN002",
+  "ANN003",
+  "ANN201",
+  "ANN202",
+  "ANN204",
+  "ANN205",
+  "ANN206",
+  "ARG001",
+  "ARG002",
+  "B007",
+  "B018",
+  "B904",
+  "BLE001",
+  "C404",
+  "C414",
+  "C420",
+  "DTZ002",
+  "DTZ003",
+  "DTZ011",
+  "E303",
+  "E713",
+  "E722",
+  "F401",
+  "F822",
+  "F841",
+  "FBT001",
+  "FBT002",
+  "FBT003",
+  "FLY002",
+  "FURB101",
+  "FURB103",
+  "FURB105",
+  "FURB113",
+  "FURB118",
+  "FURB136",
+  "FURB145",
+  "FURB171",
+  "FURB189",
+  "INP001",
+  "N802",
+  "N803",
+  "N806",
+  "N815",
+  "N816",
+  "N999",
+  "PERF203",
+  "PERF401",
+  "PERF402",
+  "PERF403",
+  "PGH003",
+  "PIE790",
+  "PIE808",
+  "PLC0415",
+  "PLC1901",
+  "PLC2701",
+  "PLC2801",
+  "PLR0124",
+  "PLR0904",
+  "PLR0911",
+  "PLR0912",
+  "PLR0913",
+  "PLR0914",
+  "PLR0915",
+  "PLR0916",
+  "PLR0916", 
+  "PLR0917",
+  "PLR1702",
+  "PLR1711",
+  "PLR1714",
+  "PLR1730",
+  "PLR5501",
+  "PLR6104",
+  "PLR6201",
+  "PLR6301",
+  "PLW1514",
+  "PLW1641",
+  "PLW2901",
+  "PLW3201",
+  "PT009",
+  "PT012",
+  "PT027",
+  "RET504",
+  "RET505",
+  "RET506",
+  "RUF022",
+  "RUF039",
+  "RUF055",
+  "RUF059",
+  "S102",
+  "S103",
+  "S105",
+  "S106",
+  "S108",
+  "S110",
+  "S301",
+  "S311",
+  "S318",
+  "S324",
+  "S403",
+  "S408",
+  "SIM103",
+  "SIM105",
+  "SIM108",
+  "SIM110",
+  "SIM112",
+  "SIM113",
+  "SIM114",
+  "SIM115",
+  "SIM201",
+  "SIM202",
+  "SIM401",
+  "SLF001",
+  "T201",
+  "TC001",
+  "TC003",
+  "TID251",
+  "TID252",
+  "TRY002",
+  "TRY004",
+  "TRY201",
+  "TRY300",
+  "TRY400",
+  "UP004",
+  "UP006",
+  "UP008",
+  "UP009",
+  "UP024",
+  "UP031",
+  "UP035",
+  "UP045",
+  "W291",
+  "W293",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/tests/**/*" = [
+  # Exclusions that apply to unit tests only
+  "ANN",        # don't require type annotations in tests
+  "FBT",        # allow use of boolean positional arguments
+  "PLC1901",    # allow comparison to empty string
+  "PLC2701",    # allow imports of private names
+  "PLR",        # don't warn about too many arguments, methods, etc.
+  "SLF001",     # allow access to private members
+]
+

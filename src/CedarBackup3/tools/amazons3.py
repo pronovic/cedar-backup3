@@ -52,7 +52,7 @@ to get that.
 
 # Note: getopt is "soft deprecated" only and is safe to use; see: https://github.com/python/cpython/pull/105735
 
-import getopt  # pylint: disable=deprecated-module:
+import getopt
 import json
 import logging
 import os
@@ -1107,7 +1107,6 @@ def _buildSourceFiles(sourceDir):
 ###############################
 
 
-# pylint: disable=W0613
 def _checkSourceFiles(sourceDir, sourceFiles):
     """
     Check source files, trying to guess which ones will have encoding problems.

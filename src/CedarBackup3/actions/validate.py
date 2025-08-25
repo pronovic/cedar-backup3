@@ -67,7 +67,6 @@ logger = logging.getLogger("CedarBackup3.log.actions.validate")
 #############################
 
 
-# pylint: disable=W0613
 def executeValidate(configPath, options, config):
     """
     Executes the validate action.

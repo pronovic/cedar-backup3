@@ -175,7 +175,7 @@ def writeIndicatorFile(targetDir, indicatorFile, backupUser, backupGroup):
     filename = pathJoin(targetDir, indicatorFile)
     logger.debug("Writing indicator file [%s].", filename)
     try:
-        with open(filename, "w") as f:  # pylint: disable=unspecified-encoding
+        with open(filename, "w") as f:
             f.write("")
         changeOwnership(filename, backupUser, backupGroup)
     except Exception as e:
