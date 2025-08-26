@@ -47,8 +47,7 @@ license = "GPL-2.0-only"
 readme = "PyPI.md"
 dynamic = [ "classifiers", "version" ]
 dependencies = [
-   "chardet (>=5.2.0,<6.0.0)",            # Debian trixie has 5.2.0
-   "importlib-metadata (>=8.5.0,<9.0.0)", # Debian trixie has 8.5.0
+   "chardet (>=5.2.0,<6.0.0)",  # Debian trixie has 5.2.0
 ]
 
 [project.urls]
