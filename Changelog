@@ -4,9 +4,7 @@ Version 3.9.3     unreleased
 	* Add a new `run clean` target to clean up generated data.
 	* Replace black, isort, and pylint with the Ruff formatter and linter.
 	* Remove importlib-metadata dependency in favor of standard library.
-	* Update the jinja2 transitive dependency to address CVE-2025-27516.
-	* Update the requests transitive dependency to address CVE-2024-47081.
-	* Update the urllib3 transitive dependency to address CVE-2025-50181.
+	* Update all dependencies and outdated constraints.
 
 Version 3.9.2     21 Jan 2025
 
