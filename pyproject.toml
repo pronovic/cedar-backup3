@@ -97,17 +97,9 @@ docstring-code-format = false
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.lint.flake8-pytest-style]
-fixture-parentheses = false
-mark-parentheses = false
-parametrize-names-type = "csv"
-parametrize-values-type = "list"
-parametrize-values-row-type = "list"
-
 # Note: requires TID251 to be selected below
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
-"conftest".msg = "use 'tests.conftest' instead"
-"unittest.TestCase".msg = "use pytest, not unittest"
+"pytest".msg = "use unittest, not pytest"
 
 [tool.ruff.lint]
 select = [
@@ -131,19 +123,17 @@ ignore = [
   "Q003",       # avoidable-escaped-quote
   "W191",       # tab-indentation
 
-  # Exclusions of entire rule categories, which we don't think are worth enforcing
+  # Exclusions of entire rule categories, standardized across all of my repos
   "C90",        # mccabe cyclomatic complexity
   "CPY",        # flake8-copyright
   "D",          # pydocstyle
   "DJ",         # flake8-django
   "DOC",        # pydoclint
-  "ERA",        # eradicate
   "EXE",        # flake8-executable
   "FIX",        # flake8-fixme
-  "PTH",        # flake8-use-pathlib
   "TD",         # flake8-todo
 
-  # Exclusions of specific rules, which we don't think are worth enforcing
+  # Exclusions of specific rules, standardized across all of my repos
   "ANN401",     # allow dynamically typed expressions using `typing.Any`
   "EM101",      # allow raw string messages in exceptions; having to pull out a variable makes code harder to read
   "EM102",      # allow f-string messages in exceptions; having to pull out a variable makes code harder to read
@@ -159,147 +149,47 @@ ignore = [
   "SIM117",     # allow nested `with` clauses; ruff suggestions often make the code less legible
   "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
 
-  # Exclusions of specific rules that we want to work toward being compliant with
-  "A001",
-  "A002",
-  "ANN001",
-  "ANN002",
-  "ANN003",
-  "ANN201",
-  "ANN202",
-  "ANN204",
-  "ANN205",
-  "ANN206",
-  "ARG001",
-  "ARG002",
-  "B007",
-  "B018",
-  "B904",
-  "BLE001",
-  "C404",
-  "C414",
-  "C420",
-  "DTZ002",
-  "DTZ003",
-  "DTZ011",
-  "E303",
-  "E713",
-  "E722",
-  "F401",
-  "F822",
-  "F841",
-  "FBT001",
-  "FBT002",
-  "FBT003",
-  "FLY002",
-  "FURB101",
-  "FURB103",
-  "FURB105",
-  "FURB113",
-  "FURB118",
-  "FURB136",
-  "FURB145",
-  "FURB171",
-  "FURB189",
-  "INP001",
-  "N802",
-  "N803",
-  "N806",
-  "N815",
-  "N816",
-  "N999",
-  "PERF203",
-  "PERF401",
-  "PERF402",
-  "PERF403",
-  "PGH003",
-  "PIE790",
-  "PIE808",
-  "PLC0415",
-  "PLC1901",
-  "PLC2701",
-  "PLC2801",
-  "PLR0124",
-  "PLR0904",
-  "PLR0911",
-  "PLR0912",
-  "PLR0913",
-  "PLR0914",
-  "PLR0915",
-  "PLR0916",
-  "PLR0916", 
-  "PLR0917",
-  "PLR1702",
-  "PLR1711",
-  "PLR1714",
-  "PLR1730",
-  "PLR5501",
-  "PLR6104",
-  "PLR6201",
-  "PLR6301",
-  "PLW1514",
-  "PLW1641",
-  "PLW2901",
-  "PLW3201",
-  "PT009",
-  "PT012",
-  "PT027",
-  "RET504",
-  "RET505",
-  "RET506",
-  "RUF022",
-  "RUF039",
-  "RUF055",
-  "RUF059",
-  "S102",
-  "S103",
-  "S105",
-  "S106",
-  "S108",
-  "S110",
-  "S301",
-  "S311",
-  "S318",
-  "S324",
-  "S403",
-  "S408",
-  "SIM103",
-  "SIM105",
-  "SIM108",
-  "SIM110",
-  "SIM112",
-  "SIM113",
-  "SIM114",
-  "SIM115",
-  "SIM201",
-  "SIM202",
-  "SIM401",
-  "SLF001",
-  "T201",
-  "TC001",
-  "TC003",
-  "TID251",
-  "TID252",
-  "TRY002",
-  "TRY004",
-  "TRY201",
-  "TRY300",
-  "TRY400",
-  "UP004",
-  "UP006",
-  "UP008",
-  "UP009",
-  "UP024",
-  "UP031",
-  "UP035",
-  "UP045",
-  "W291",
-  "W293",
+  # Exclusions of rule categories and specific rules, customized for this repository
+  # Note: I am gradually working toward compliance with some of these rule categories
+  "A",          # flake8-builtins
+  "ANN",        # flake8-annotations
+  "ARG",        # flake8-unused-arguments
+  "B",          # flake8-bugbear
+  "BLE",        # flake8-blind-except
+  "C4",         # flake8-comprehensions
+  "DTZ",        # flake8-datetimez
+  "FBT",        # flake8-boolean-trap
+  "INP",        # flake8-no-pep420
+  "PIE",        # flake8-pie
+  "PT",         # flake8-pytest-style
+  "PTH",        # flake8-use-pathlib
+  "RET",        # flake8-return
+  "S",          # flake8-bandit
+  "SIM",        # flake8-simplify
+  "T20",        # flake8-print
+  "SLF",        # flake8-self
+  "TC",         # flake8-type-checking
+  "TID",        # flake8-tidy-imports
+  "E",          # pycodestyle error
+  "W",          # pycodestyle warning
+  "ERA",        # eradicate
+  "F",          # Pyflakes
+  "FLY",        # flynt
+  "FURB",       # refurb
+  "N",          # pep8-naming
+  "PERF",       # Perflint
+  "PGH",        # pygrep-hooks
+  "PLC",        # Pylint convention
+  "PLR",        # Pylint refactor
+  "PLW",        # Pylint warning
+  "RUF",        # Ruff-specific rules
+  "TRY",        # tryceratops
+  "UP",         # pyupgrade
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "src/tests/**/*" = [
-  # Exclusions that apply to unit tests only
+  # Exclusions that apply to unit tests only, standardized across all of my repos
   "ANN",        # don't require type annotations in tests
   "FBT",        # allow use of boolean positional arguments
   "PLC1901",    # allow comparison to empty string
@@ -307,4 +197,3 @@ ignore = [
   "PLR",        # don't warn about too many arguments, methods, etc.
   "SLF001",     # allow access to private members
 ]
-
