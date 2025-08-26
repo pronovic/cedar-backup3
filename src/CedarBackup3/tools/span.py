@@ -309,7 +309,6 @@ def _diagnostics(fd=sys.stdout):
 ############################
 
 
-# pylint: disable=W0613
 def _executeAction(options, config):
     """
     Implements the guts of the cback3-span tool.

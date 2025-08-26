@@ -11,6 +11,6 @@ task_checks() {
    echo ""
    run_command ruffformat --check
    echo ""
-   run_command pylint -t   # ignore tests
+   run_command rufflint
 }
 

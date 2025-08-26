@@ -4492,7 +4492,7 @@ class Config(object):
             if validate:
                 self.validate()
         elif xmlPath is not None:
-            with open(xmlPath) as f:  # pylint: disable=unspecified-encoding
+            with open(xmlPath) as f:
                 xmlData = f.read()
             self._parseXmlData(xmlData)
             if validate:
@@ -4803,7 +4803,7 @@ class Config(object):
             self.validate()
         xmlData = self._extractXml()
         if xmlPath is not None:
-            with open(xmlPath, "w") as f:  # pylint: disable=unspecified-encoding
+            with open(xmlPath, "w") as f:
                 f.write(xmlData)
             return None
         else:

@@ -34,4 +34,4 @@ library interface.
 # Imported modules
 ########################################################################
 
-from CedarBackup3.writers.util import IsoImage  # pylint: disable=W0611
+from CedarBackup3.writers.util import IsoImage

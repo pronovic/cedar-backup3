@@ -71,7 +71,6 @@ logger = logging.getLogger("CedarBackup3.log.actions.rebuild")
 ############################
 
 
-# pylint: disable=W0613
 def executeRebuild(configPath, options, config):
     """
     Executes the rebuild backup action.

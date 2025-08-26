@@ -133,7 +133,7 @@ class MysqlConfig(object):
 
     """
 
-    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # pylint: disable=W0622
+    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):
         """
         Constructor for the ``MysqlConfig`` class.
 
@@ -374,7 +374,7 @@ class LocalConfig(object):
             if validate:
                 self.validate()
         elif xmlPath is not None:
-            with open(xmlPath) as f:  # pylint: disable=unspecified-encoding
+            with open(xmlPath) as f:
                 xmlData = f.read()
             self._parseXmlData(xmlData)
             if validate:
@@ -560,7 +560,6 @@ class LocalConfig(object):
 ###########################
 
 
-# pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
     Executes the MySQL backup action.

@@ -56,7 +56,6 @@ Attributes:
 
 :author: Kenneth J. Pronovici <pronovic@ieee.org>
 """
-# pylint: disable=C0111,C0103,W0511,W0104,W0106
 
 ########################################################################
 # Imported modules
@@ -728,7 +727,6 @@ class Serializer(object):
         return
 
 
-# pylint: disable=W0613
 def _encodeText(text, encoding):
     """Safely encodes the passed-in text as a Unicode string, converting bytes to UTF-8 if necessary."""
     if text is None:

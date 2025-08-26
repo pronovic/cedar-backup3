@@ -34,7 +34,6 @@ file remains to preserve the Cedar Backup library interface.
 # Imported modules
 ########################################################################
 
-# pylint: disable=W0611
 from CedarBackup3.actions.collect import executeCollect
 from CedarBackup3.actions.purge import executePurge
 from CedarBackup3.actions.rebuild import executeRebuild

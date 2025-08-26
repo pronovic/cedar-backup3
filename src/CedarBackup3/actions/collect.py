@@ -70,7 +70,6 @@ logger = logging.getLogger("CedarBackup3.log.actions.collect")
 ############################
 
 
-# pylint: disable=W0613
 def executeCollect(configPath, options, config):
     """
     Executes the collect backup action.
@@ -577,7 +576,7 @@ def _getTarfilePath(config, absolutePath, archiveMode):
     elif archiveMode == "tarbz2":
         extension = "tar.bz2"
     normalized = buildNormalizedPath(absolutePath)
-    filename = "%s.%s" % (normalized, extension)  # pylint: disable=possibly-used-before-assignment:
+    filename = "%s.%s" % (normalized, extension)
     tarfilePath = pathJoin(config.collect.targetDir, filename)
     logger.debug("Tarfile path is [%s]", tarfilePath)
     return tarfilePath

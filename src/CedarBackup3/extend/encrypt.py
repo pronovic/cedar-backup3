@@ -258,7 +258,7 @@ class LocalConfig(object):
             if validate:
                 self.validate()
         elif xmlPath is not None:
-            with open(xmlPath) as f:  # pylint: disable=unspecified-encoding
+            with open(xmlPath) as f:
                 xmlData = f.read()
             self._parseXmlData(xmlData)
             if validate:
@@ -417,7 +417,6 @@ class LocalConfig(object):
 ###########################
 
 
-# pylint: disable=W0613
 def executeAction(configPath, options, config):
     """
     Executes the encrypt backup action.
