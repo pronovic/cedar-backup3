@@ -188,7 +188,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"src/tests/**/*" = [
+"tests/*" = [
   # Exclusions that apply to unit tests only, standardized across all of my repos
   "ANN",        # don't require type annotations in tests
   "FBT",        # allow use of boolean positional arguments
