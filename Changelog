@@ -1,6 +1,7 @@
 Version 3.9.3     unreleased
 
 	* Adjust GHA build process to allow builds for stacked PRs.
+	* Upgrade to poetry-dynamic-versioning v1.9.1 for minor fixes.
 	* Add a new `run clean` target to clean up generated data.
 	* Replace black, isort, and pylint with the Ruff formatter and linter.
 	* Remove importlib-metadata dependency in favor of standard library.
