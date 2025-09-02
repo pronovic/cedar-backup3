@@ -174,7 +174,6 @@ ignore = [
   "B",          # flake8-bugbear
   "C4",         # flake8-comprehensions
   "DTZ",        # flake8-datetimez
-  "INP",        # flake8-no-pep420
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
   "E",          # pycodestyle error
