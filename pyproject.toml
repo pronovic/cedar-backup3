@@ -176,7 +176,6 @@ ignore = [
   "F",          # Pyflakes
   "PERF",       # Perflint
   "RUF",        # Ruff-specific rules
-  "TRY",        # tryceratops
   ###
   "PLC1901",
   "PLR6201",
@@ -218,6 +217,11 @@ ignore = [
   "UP009",
   "UP004",
   "UP008",
+  "TRY300",
+  "TRY400",
+  "TRY201",
+  "TRY004",
+  "TRY002",
 ]
 
 [tool.ruff.lint.per-file-ignores]
