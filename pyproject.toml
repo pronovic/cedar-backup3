@@ -156,6 +156,7 @@ ignore = [
   "FURB101",    # allow old-style open() and read() operations
   "FURB103",    # allow old-style open() and write() operations
   "N",          # allow non-standard variable, function, & argument names, etc.
+  "PT",         # this codebase uses Unittest, so don't apply Pytest standards
   "PLR0911",    # don't enforce rules about too many return statments
   "PLR0912",    # don't enforce rules about too many branches
   "PLR0913",    # don't enforce rules about too many arguments
@@ -175,7 +176,6 @@ ignore = [
   "C4",         # flake8-comprehensions
   "DTZ",        # flake8-datetimez
   "INP",        # flake8-no-pep420
-  "PT",         # flake8-pytest-style
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
   "E",          # pycodestyle error
