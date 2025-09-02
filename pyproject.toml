@@ -177,7 +177,6 @@ ignore = [
   "PERF",       # Perflint
   "RUF",        # Ruff-specific rules
   "TRY",        # tryceratops
-  "UP",         # pyupgrade
   ###
   "PLC1901",
   "PLR6201",
@@ -215,6 +214,10 @@ ignore = [
   "SIM114",
   "SIM401",
   "SIM115",
+  "UP024",
+  "UP009",
+  "UP004",
+  "UP008",
 ]
 
 [tool.ruff.lint.per-file-ignores]
