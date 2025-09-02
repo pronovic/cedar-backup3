@@ -175,7 +175,6 @@ ignore = [
   "C4",         # flake8-comprehensions
   "DTZ",        # flake8-datetimez
   "INP",        # flake8-no-pep420
-  "PIE",        # flake8-pie
   "PT",         # flake8-pytest-style
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
@@ -200,6 +199,8 @@ ignore = [
   "PLW2901",
   "PLW3201",
   "PLW1641",
+  "PIE808",
+  "PIE790",
 ]
 
 [tool.ruff.lint.per-file-ignores]
