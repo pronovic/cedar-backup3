@@ -174,15 +174,11 @@ ignore = [
   "RET",        # flake8-return
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
-  "TC",         # flake8-type-checking
-  "TID",        # flake8-tidy-imports
   "E",          # pycodestyle error
   "W",          # pycodestyle warning
   "F",          # Pyflakes
-  "FLY",        # flynt
   "FURB",       # refurb
   "PERF",       # Perflint
-  "PGH",        # pygrep-hooks
   "PLC",        # Pylint convention
   "PLR",        # Pylint refactor
   "PLW",        # Pylint warning
@@ -200,6 +196,9 @@ ignore = [
   "PLC2701",    # allow imports of private names
   "PLR",        # don't warn about too many arguments, methods, etc.
   "SLF001",     # allow access to private members
+
+  # Exclusions of rule categories and specific rules, customized for this repository
+  "S108",       # don't warn about insecure temporary files in tests
 ]
 "src/CedarBackup3/tools/**/*" = [
   # Exclusions that apply to Cedar Backup tools only
