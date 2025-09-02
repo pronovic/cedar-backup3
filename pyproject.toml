@@ -149,6 +149,18 @@ ignore = [
   "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
 
   # Exclusions of rule categories and specific rules, customized for this repository
+  # Cedar Backup was first developed starting in 2002, long before these standards existed
+  "ANN",        # don't require type annotations
+  "FBT003",     # allow positional boolean flags
+  "FURB101",    # allow old-style open() and read() operations
+  "FURB103",    # allow old-style open() and write() operations
+  "N802",       # allow non-standard function names
+  "N816",       # allow non-standard variable names
+  "N999",       # allow non-standard module names
+  "PTH",        # allow old-style os operations rather than pathlib.Path
+  "UP031",      # allow old-style format specifiers instead of f-strings
+  "ERA",        # eradicate does not understand the source tree's commenting style
+ 
   # Note: I am gradually working toward compliance with some of these rule categories
   "A",          # flake8-builtins
   "ANN",        # flake8-annotations
@@ -171,7 +183,6 @@ ignore = [
   "TID",        # flake8-tidy-imports
   "E",          # pycodestyle error
   "W",          # pycodestyle warning
-  "ERA",        # eradicate
   "F",          # Pyflakes
   "FLY",        # flynt
   "FURB",       # refurb
