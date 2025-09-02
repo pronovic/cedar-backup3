@@ -173,7 +173,6 @@ ignore = [
   # Note: I am gradually working toward compliance with some of these rule categories
   "B",          # flake8-bugbear
   "S",          # flake8-bandit
-  "SIM",        # flake8-simplify
   "F",          # Pyflakes
   "PERF",       # Perflint
   "RUF",        # Ruff-specific rules
@@ -206,6 +205,16 @@ ignore = [
   "DTZ011",
   "DTZ002",
   "DTZ003",
+  "SIM201",
+  "SIM105",
+  "SIM112",
+  "SIM202",
+  "SIM108",
+  "SIM103",
+  "SIM113",
+  "SIM114",
+  "SIM401",
+  "SIM115",
 ]
 
 [tool.ruff.lint.per-file-ignores]
