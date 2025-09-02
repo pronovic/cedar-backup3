@@ -181,7 +181,6 @@ ignore = [
   "E",          # pycodestyle error
   "W",          # pycodestyle warning
   "F",          # Pyflakes
-  "FURB",       # refurb
   "PERF",       # Perflint
   "RUF",        # Ruff-specific rules
   "TRY",        # tryceratops
@@ -201,6 +200,12 @@ ignore = [
   "PLW1641",
   "PIE808",
   "PIE790",
+  "FURB113",
+  "FURB145",
+  "FURB118",
+  "FURB189",
+  "FURB105",
+  "FURB171",
 ]
 
 [tool.ruff.lint.per-file-ignores]
