@@ -1227,7 +1227,7 @@ def convertSize(size, fromUnit, toUnit):
 ##########################
 
 
-def displayBytes(bytes, digits=2):
+def displayBytes(bytes, digits=2):  # noqa: A002
     """
     Format a byte quantity so it can be sensibly displayed.
 
@@ -1256,7 +1256,7 @@ def displayBytes(bytes, digits=2):
     """
     if bytes is None:
         raise ValueError("Cannot display byte value of None.")
-    bytes = float(bytes)
+    bytes = float(bytes)  # noqa: A001
     if math.fabs(bytes) < BYTES_PER_KBYTE:
         fmt = "%.0f bytes"
         value = bytes

@@ -424,7 +424,7 @@ class _ActionItem(object):
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
-    def _executeHook(self, type, hook):
+    def _executeHook(self, type, hook):  # noqa: A002
         """
         Executes a hook command via :any:`util.executeCommand`.
         Args:

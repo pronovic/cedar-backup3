@@ -152,26 +152,23 @@ ignore = [
   # Cedar Backup was first developed starting in 2002, long before these standards existed
   "ANN",        # don't require type annotations
   "ERA",        # eradicate does not understand the source tree's commenting style
-  "FBT003",     # allow positional boolean flags
+  "FBT",        # allow positional boolean flags
   "FURB101",    # allow old-style open() and read() operations
   "FURB103",    # allow old-style open() and write() operations
   "N",          # allow non-standard variable, function, & argument names, etc.
   "PTH",        # allow old-style os operations rather than pathlib.Path
   "UP031",      # allow old-style format specifiers instead of f-strings
+  "RET",        # allow unnecessary else after return statement
  
   # Note: I am gradually working toward compliance with some of these rule categories
-  "A",          # flake8-builtins
-  "ANN",        # flake8-annotations
   "ARG",        # flake8-unused-arguments
   "B",          # flake8-bugbear
   "BLE",        # flake8-blind-except
   "C4",         # flake8-comprehensions
   "DTZ",        # flake8-datetimez
-  "FBT",        # flake8-boolean-trap
   "INP",        # flake8-no-pep420
   "PIE",        # flake8-pie
   "PT",         # flake8-pytest-style
-  "RET",        # flake8-return
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
   "E",          # pycodestyle error
