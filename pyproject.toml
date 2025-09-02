@@ -176,7 +176,7 @@ ignore = [
   "DTZ",        # flake8-datetimez
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
-  "E",          # pycodestyle error
+#   "E",          # pycodestyle error
   "W",          # pycodestyle warning
   "F",          # Pyflakes
   "PERF",       # Perflint
@@ -205,6 +205,7 @@ ignore = [
   "FURB105",
   "FURB171",
   "BLE001",
+  "E722",
 ]
 
 [tool.ruff.lint.per-file-ignores]
