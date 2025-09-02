@@ -716,8 +716,8 @@ class DirectedGraph(object):
                 return -1
             else:
                 return 1
-        if self._vertices != other._vertices:
-            if self._vertices < other._vertices:
+        if self._vertices != other._vertices:  # noqa: SLF001
+            if self._vertices < other._vertices:  # noqa: SLF001
                 return -1
             else:
                 return 1

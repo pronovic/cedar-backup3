@@ -174,7 +174,6 @@ ignore = [
   "RET",        # flake8-return
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
-  "SLF",        # flake8-self
   "TC",         # flake8-type-checking
   "TID",        # flake8-tidy-imports
   "E",          # pycodestyle error
