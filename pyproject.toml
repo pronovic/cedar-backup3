@@ -156,9 +156,18 @@ ignore = [
   "FURB101",    # allow old-style open() and read() operations
   "FURB103",    # allow old-style open() and write() operations
   "N",          # allow non-standard variable, function, & argument names, etc.
+  "PLR0911",    # don't enforce rules about too many return statments
+  "PLR0912",    # don't enforce rules about too many branches
+  "PLR0913",    # don't enforce rules about too many arguments
+  "PLR0914",    # don't enforce rules about too many variables
+  "PLR0915",    # don't enforce rules about too many statements
+  "PLR0916",    # don't enforce rules about too many boolean expressions
+  "PLR0917",    # don't enforce rules about too many arguments
+  "PLR1702",    # don't enforce rules about too many nested blocks
+  "PLR6301",    # don't make recommendations about static methods
   "PTH",        # allow old-style os operations rather than pathlib.Path
-  "UP031",      # allow old-style format specifiers instead of f-strings
   "RET",        # allow unnecessary else after return statement
+  "UP031",      # allow old-style format specifiers instead of f-strings
  
   # Note: I am gradually working toward compliance with some of these rule categories
   "B",          # flake8-bugbear
@@ -175,13 +184,19 @@ ignore = [
   "F",          # Pyflakes
   "FURB",       # refurb
   "PERF",       # Perflint
-  "PLR",        # Pylint refactor
   "PLW",        # Pylint warning
   "RUF",        # Ruff-specific rules
   "TRY",        # tryceratops
   "UP",         # pyupgrade
   ###
   "PLC1901",
+  "PLR6201",
+  "PLR1711",
+  "PLR6104",
+  "PLR5501", 
+  "PLR0124",
+  "PLR1730",
+  "PLR1714",
 ]
 
 [tool.ruff.lint.per-file-ignores]
