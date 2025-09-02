@@ -171,7 +171,6 @@ ignore = [
   "UP031",      # allow old-style format specifiers instead of f-strings
  
   # Note: I am gradually working toward compliance with some of these rule categories
-  "B",          # flake8-bugbear
   "RUF",        # Ruff-specific rules
   ###
   "PLC1901",
@@ -237,6 +236,9 @@ ignore = [
   "S311",
   "S301",
   "S403", 
+  "B007",
+  "B018",
+  "B904",
 ]
 
 [tool.ruff.lint.per-file-ignores]
