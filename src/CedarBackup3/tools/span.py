@@ -309,7 +309,7 @@ def _diagnostics(fd=sys.stdout):
 ############################
 
 
-def _executeAction(options, config):
+def _executeAction(options, config):  # noqa: ARG001
     """
     Implements the guts of the cback3-span tool.
 
@@ -570,8 +570,7 @@ def _discInitializeImage(config, writer, spanItem):
     print("Completed initializing image.")
 
 
-# pylint: disable=W0613
-def _discWriteImage(config, writer):
+def _discWriteImage(config, writer):  # noqa: ARG001
     """
     Writes a ISO image for a span item.
     Args:

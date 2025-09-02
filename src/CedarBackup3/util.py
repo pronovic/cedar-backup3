@@ -716,8 +716,8 @@ class DirectedGraph(object):
                 return -1
             else:
                 return 1
-        if self._vertices != other._vertices:
-            if self._vertices < other._vertices:
+        if self._vertices != other._vertices:  # noqa: SLF001
+            if self._vertices < other._vertices:  # noqa: SLF001
                 return -1
             else:
                 return 1
@@ -881,7 +881,7 @@ class PathResolverSingleton(object):
         def __init__(self):
             pass
 
-        def __call__(self, *args, **kw):
+        def __call__(self, *args, **kw):  # noqa: ARG002
             if PathResolverSingleton._instance is None:
                 obj = PathResolverSingleton()
                 PathResolverSingleton._instance = obj
@@ -1090,7 +1090,7 @@ class Diagnostics(object):
         Property target to get the default locale that is in effect.
         """
         try:
-            import locale
+            import locale  # noqa: PLC0415
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
@@ -1104,7 +1104,7 @@ class Diagnostics(object):
         Property target to get a current date/time stamp.
         """
         try:
-            import datetime
+            import datetime  # noqa: PLC0415
 
             if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 12]:
                 # Starting with Python 3.12, utcnow() is deprecated
@@ -1227,7 +1227,7 @@ def convertSize(size, fromUnit, toUnit):
 ##########################
 
 
-def displayBytes(bytes, digits=2):
+def displayBytes(bytes, digits=2):  # noqa: A002
     """
     Format a byte quantity so it can be sensibly displayed.
 
@@ -1256,7 +1256,7 @@ def displayBytes(bytes, digits=2):
     """
     if bytes is None:
         raise ValueError("Cannot display byte value of None.")
-    bytes = float(bytes)
+    bytes = float(bytes)  # noqa: A001
     if math.fabs(bytes) < BYTES_PER_KBYTE:
         fmt = "%.0f bytes"
         value = bytes

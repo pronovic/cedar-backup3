@@ -67,7 +67,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.validate")
 #############################
 
 
-def executeValidate(configPath, options, config):
+def executeValidate(configPath, options, config):  # noqa: ARG001
     """
     Executes the validate action.
 

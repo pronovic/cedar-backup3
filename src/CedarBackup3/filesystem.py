@@ -1280,7 +1280,7 @@ class PurgeItemList(FilesystemList):
     # Add methods
     ##############
 
-    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
+    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):  # noqa: ARG002
         """
         Adds the contents of a directory to the list.
 

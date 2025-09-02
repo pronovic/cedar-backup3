@@ -149,41 +149,101 @@ ignore = [
   "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
 
   # Exclusions of rule categories and specific rules, customized for this repository
-  # Note: I am gradually working toward compliance with some of these rule categories
-  "A",          # flake8-builtins
-  "ANN",        # flake8-annotations
-  "ARG",        # flake8-unused-arguments
-  "B",          # flake8-bugbear
-  "BLE",        # flake8-blind-except
-  "C4",         # flake8-comprehensions
-  "DTZ",        # flake8-datetimez
-  "FBT",        # flake8-boolean-trap
-  "INP",        # flake8-no-pep420
-  "PIE",        # flake8-pie
-  "PT",         # flake8-pytest-style
-  "PTH",        # flake8-use-pathlib
-  "RET",        # flake8-return
-  "S",          # flake8-bandit
-  "SIM",        # flake8-simplify
-  "T20",        # flake8-print
-  "SLF",        # flake8-self
-  "TC",         # flake8-type-checking
-  "TID",        # flake8-tidy-imports
-  "E",          # pycodestyle error
-  "W",          # pycodestyle warning
-  "ERA",        # eradicate
-  "F",          # Pyflakes
-  "FLY",        # flynt
-  "FURB",       # refurb
-  "N",          # pep8-naming
-  "PERF",       # Perflint
-  "PGH",        # pygrep-hooks
-  "PLC",        # Pylint convention
-  "PLR",        # Pylint refactor
-  "PLW",        # Pylint warning
-  "RUF",        # Ruff-specific rules
-  "TRY",        # tryceratops
-  "UP",         # pyupgrade
+  # Cedar Backup was first developed starting in 2002, long before these standards existed
+  "ANN",        # don't require type annotations
+  "ERA",        # eradicate does not understand the source tree's commenting style
+  "FBT",        # allow positional boolean flags
+  "FURB101",    # allow old-style open() and read() operations
+  "FURB103",    # allow old-style open() and write() operations
+  "N",          # allow non-standard variable, function, & argument names, etc.
+  "PLR0911",    # don't enforce rules about too many return statments
+  "PLR0912",    # don't enforce rules about too many branches
+  "PLR0913",    # don't enforce rules about too many arguments
+  "PLR0914",    # don't enforce rules about too many variables
+  "PLR0915",    # don't enforce rules about too many statements
+  "PLR0916",    # don't enforce rules about too many boolean expressions
+  "PLR0917",    # don't enforce rules about too many arguments
+  "PLR1702",    # don't enforce rules about too many nested blocks
+  "PLR6301",    # don't make recommendations about static methods
+  "PT",         # this codebase uses Unittest, so don't apply Pytest standards
+  "PTH",        # allow old-style os operations rather than pathlib.Path
+  "RET505",     # allow unnecessary else after return statement
+  "RET506",     # allow unnecessary else after raise statement
+  "UP031",      # allow old-style format specifiers instead of f-strings
+ 
+  # I am gradually working toward compliance with these rules
+  "B007",
+  "B018",
+  "B904",
+  "BLE001",
+  "C404",
+  "DTZ002",
+  "DTZ003",
+  "DTZ011",
+  "E722",
+  "F401",
+  "F822",
+  "F841",
+  "FURB105",
+  "FURB113",
+  "FURB118",
+  "FURB145",
+  "FURB171",
+  "FURB189",
+  "PERF203",
+  "PERF401",
+  "PERF402",
+  "PERF403",
+  "PIE790",
+  "PIE808",
+  "PLC1901",
+  "PLR0124",
+  "PLR1711",
+  "PLR1714",
+  "PLR1730",
+  "PLR5501", 
+  "PLR6104",
+  "PLR6201",
+  "PLW1514",
+  "PLW1641",
+  "PLW2901",
+  "PLW3201",
+  "RET504",
+  "RUF022",
+  "RUF039",
+  "RUF055",
+  "RUF059",
+  "RUF100",
+  "S102",
+  "S103",
+  "S105",
+  "S106",
+  "S110",
+  "S301",
+  "S311",
+  "S318",
+  "S324",
+  "S403", 
+  "S408",
+  "SIM103",
+  "SIM105",
+  "SIM108",
+  "SIM112",
+  "SIM113",
+  "SIM114",
+  "SIM115",
+  "SIM201",
+  "SIM202",
+  "SIM401",
+  "TRY002",
+  "TRY004",
+  "TRY201",
+  "TRY300",
+  "TRY400",
+  "UP004",
+  "UP008",
+  "UP009",
+  "UP024",
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -195,4 +255,13 @@ ignore = [
   "PLC2701",    # allow imports of private names
   "PLR",        # don't warn about too many arguments, methods, etc.
   "SLF001",     # allow access to private members
+
+  # Exclusions of rule categories and specific rules, customized for this repository
+  "S108",       # don't warn about insecure temporary files
+  "PLC2801",    # allow direct use of dunder methods like __str__
+  "PLC0415",    # allow import statements that are not at the top of the file
+]
+"src/CedarBackup3/tools/**/*" = [
+  # Exclusions that apply to Cedar Backup tools only
+  "T201",       # allow the print statement
 ]

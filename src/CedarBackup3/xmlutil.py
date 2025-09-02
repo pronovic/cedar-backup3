@@ -727,7 +727,7 @@ class Serializer(object):
         return
 
 
-def _encodeText(text, encoding):
+def _encodeText(text, encoding):  # noqa: ARG001
     """Safely encodes the passed-in text as a Unicode string, converting bytes to UTF-8 if necessary."""
     if text is None:
         return text

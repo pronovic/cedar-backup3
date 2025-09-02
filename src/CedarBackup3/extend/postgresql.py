@@ -124,7 +124,7 @@ class PostgresqlConfig(object):
 
     """
 
-    def __init__(self, user=None, compressMode=None, all=None, databases=None):
+    def __init__(self, user=None, compressMode=None, all=None, databases=None):  # noqa: A002
         """
         Constructor for the ``PostgresqlConfig`` class.
 
@@ -525,7 +525,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the PostgreSQL backup action.
 
