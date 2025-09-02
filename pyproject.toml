@@ -173,7 +173,7 @@ ignore = [
   # Note: I am gradually working toward compliance with some of these rule categories
   "B",          # flake8-bugbear
   "S",          # flake8-bandit
-  "F",          # Pyflakes
+#   "F",          # Pyflakes
   "RUF",        # Ruff-specific rules
   ###
   "PLC1901",
@@ -225,6 +225,9 @@ ignore = [
   "PERF203",
   "PERF403",
   "PERF402",
+  "F822",
+  "F401",
+  "F841",
 ]
 
 [tool.ruff.lint.per-file-ignores]
