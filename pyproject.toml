@@ -172,7 +172,6 @@ ignore = [
  
   # Note: I am gradually working toward compliance with some of these rule categories
   "B",          # flake8-bugbear
-  "DTZ",        # flake8-datetimez
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
   "F",          # Pyflakes
@@ -204,6 +203,9 @@ ignore = [
   "BLE001",
   "E722",
   "C404",
+  "DTZ011",
+  "DTZ002",
+  "DTZ003",
 ]
 
 [tool.ruff.lint.per-file-ignores]
