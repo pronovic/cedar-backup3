@@ -65,7 +65,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.initialize")
 ###############################
 
 
-def executeInitialize(configPath, options, config):
+def executeInitialize(configPath, options, config):  # noqa: ARG001
     """
     Executes the initialize action.
 

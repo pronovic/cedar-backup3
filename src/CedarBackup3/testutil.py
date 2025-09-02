@@ -359,7 +359,7 @@ def randomFilename(length, prefix=None, suffix=None):
 ####################################
 
 
-def failUnlessAssignRaises(testCase, exception, obj, prop, value):
+def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG001
     """
     Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 

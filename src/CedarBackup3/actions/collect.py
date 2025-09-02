@@ -70,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.collect")
 ############################
 
 
-def executeCollect(configPath, options, config):
+def executeCollect(configPath, options, config):  # noqa: ARG001
     """
     Executes the collect backup action.
 

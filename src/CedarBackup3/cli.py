@@ -516,7 +516,7 @@ class _ManagedActionItem(object):
                     return 1
         return 0
 
-    def executeAction(self, configPath, options, config):
+    def executeAction(self, configPath, options, config):  # noqa: ARG002
         """
         Executes the managed action associated with an item.
 

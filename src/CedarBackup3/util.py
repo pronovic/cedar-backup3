@@ -881,7 +881,7 @@ class PathResolverSingleton(object):
         def __init__(self):
             pass
 
-        def __call__(self, *args, **kw):
+        def __call__(self, *args, **kw):  # noqa: ARG002
             if PathResolverSingleton._instance is None:
                 obj = PathResolverSingleton()
                 PathResolverSingleton._instance = obj
