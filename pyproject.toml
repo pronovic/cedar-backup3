@@ -175,12 +175,13 @@ ignore = [
   "F",          # Pyflakes
   "FURB",       # refurb
   "PERF",       # Perflint
-  "PLC",        # Pylint convention
   "PLR",        # Pylint refactor
   "PLW",        # Pylint warning
   "RUF",        # Ruff-specific rules
   "TRY",        # tryceratops
   "UP",         # pyupgrade
+  ###
+  "PLC1901",
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -194,7 +195,9 @@ ignore = [
   "SLF001",     # allow access to private members
 
   # Exclusions of rule categories and specific rules, customized for this repository
-  "S108",       # don't warn about insecure temporary files in tests
+  "S108",       # don't warn about insecure temporary files
+  "PLC2801",    # allow direct use of dunder methods like __str__
+  "PLC0415",    # allow import statements that are not at the top of the file
 ]
 "src/CedarBackup3/tools/**/*" = [
   # Exclusions that apply to Cedar Backup tools only

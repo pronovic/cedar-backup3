@@ -1090,7 +1090,7 @@ class Diagnostics(object):
         Property target to get the default locale that is in effect.
         """
         try:
-            import locale
+            import locale  # noqa: PLC0415
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
@@ -1104,7 +1104,7 @@ class Diagnostics(object):
         Property target to get a current date/time stamp.
         """
         try:
-            import datetime
+            import datetime  # noqa: PLC0415
 
             if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 12]:
                 # Starting with Python 3.12, utcnow() is deprecated
