@@ -151,15 +151,13 @@ ignore = [
   # Exclusions of rule categories and specific rules, customized for this repository
   # Cedar Backup was first developed starting in 2002, long before these standards existed
   "ANN",        # don't require type annotations
+  "ERA",        # eradicate does not understand the source tree's commenting style
   "FBT003",     # allow positional boolean flags
   "FURB101",    # allow old-style open() and read() operations
   "FURB103",    # allow old-style open() and write() operations
-  "N802",       # allow non-standard function names
-  "N816",       # allow non-standard variable names
-  "N999",       # allow non-standard module names
+  "N",          # allow non-standard variable, function, & argument names, etc.
   "PTH",        # allow old-style os operations rather than pathlib.Path
   "UP031",      # allow old-style format specifiers instead of f-strings
-  "ERA",        # eradicate does not understand the source tree's commenting style
  
   # Note: I am gradually working toward compliance with some of these rule categories
   "A",          # flake8-builtins
@@ -173,11 +171,9 @@ ignore = [
   "INP",        # flake8-no-pep420
   "PIE",        # flake8-pie
   "PT",         # flake8-pytest-style
-  "PTH",        # flake8-use-pathlib
   "RET",        # flake8-return
   "S",          # flake8-bandit
   "SIM",        # flake8-simplify
-  "T20",        # flake8-print
   "SLF",        # flake8-self
   "TC",         # flake8-type-checking
   "TID",        # flake8-tidy-imports
@@ -186,7 +182,6 @@ ignore = [
   "F",          # Pyflakes
   "FLY",        # flynt
   "FURB",       # refurb
-  "N",          # pep8-naming
   "PERF",       # Perflint
   "PGH",        # pygrep-hooks
   "PLC",        # Pylint convention
@@ -206,4 +201,8 @@ ignore = [
   "PLC2701",    # allow imports of private names
   "PLR",        # don't warn about too many arguments, methods, etc.
   "SLF001",     # allow access to private members
+]
+"src/CedarBackup3/tools/**/*" = [
+  # Exclusions that apply to Cedar Backup tools only
+  "T201",       # allow the print statement
 ]
