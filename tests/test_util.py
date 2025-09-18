@@ -3527,7 +3527,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3554,7 +3554,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3581,7 +3581,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(0, length)
@@ -3608,7 +3608,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3635,7 +3635,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3662,7 +3662,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000 * 2, length)
