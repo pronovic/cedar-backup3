@@ -2,6 +2,7 @@ Version 3.9.3     unreleased
 
 	* Version profiles_settings.xml to control PyCharm inspection profile.
 	* Add a new 'suite -f' command to run faster subset of the suite.
+	* Migrate to Read the Docs integration via the new GitHub App.
 	* Adjust GHA build process to allow builds for stacked PRs.
 	* Upgrade to poetry-dynamic-versioning v1.9.1 for minor fixes.
 	* Add a new `run clean` target to clean up generated data.
