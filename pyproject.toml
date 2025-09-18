@@ -61,10 +61,10 @@ docs = [
 ]
 
 [tool.poetry.group.dev.dependencies]
+ruff = ">=0.12.10,<1.0.0"
 coverage = ">=7.4.4,<8.0.0"
 pre-commit = ">=4.0.1,<5.0.0"
 colorama = ">=0.4.6,<1.0.0"
-ruff = "^0.12.10"
 
 [tool.poetry.scripts]
 cback3 = 'CedarBackup3.scripts:cback3' 
