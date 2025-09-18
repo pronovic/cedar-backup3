@@ -177,6 +177,7 @@ ignore = [
   "UP031",      # allow old-style format specifiers instead of f-strings
   "PLR5501",    # don't warn about `elif` instead of `else`/`if`
   "PLR6201",    # don't suggest using a set vs. a list when testing for membership
+  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -211,7 +212,7 @@ ignore = [
 #   "PLR5501", 
 #   "PLR6104",
 #   "PLR6201",
-  "PLW1514",
+#   "PLW1514",
   "PLW1641",
   "PLW2901",
   "PLW3201",
