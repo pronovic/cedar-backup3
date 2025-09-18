@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
-# ruff: noqa: A001,A002
+# ruff: noqa: A001
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R

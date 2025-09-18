@@ -165,7 +165,7 @@ def _createStagingDirs(config, dailyDir, peers):
             os.makedirs(dailyDir)
             for path in [dailyDir, pathJoin(dailyDir, ".."), pathJoin(dailyDir, "..", "..")]:
                 changeOwnership(path, config.options.backupUser, config.options.backupGroup)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             raise Exception("Unable to create staging directory: %s" % e) from e
     for peer in peers:
         peerDir = pathJoin(dailyDir, peer.name)
@@ -177,7 +177,7 @@ def _createStagingDirs(config, dailyDir, peers):
                 logger.debug("Creating peer staging directory [%s].", peerDir)
                 os.makedirs(peerDir)
                 changeOwnership(peerDir, config.options.backupUser, config.options.backupGroup)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 raise Exception("Unable to create staging directory: %s" % e) from e
     return mapping
 

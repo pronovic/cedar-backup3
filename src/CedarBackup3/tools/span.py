@@ -561,7 +561,7 @@ def _discInitializeImage(config, writer, spanItem):
             complete = True
         except KeyboardInterrupt as e:
             raise e
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error("Failed to initialize image: %s", e)
             if not _getYesNoAnswer("Retry initialization step?", default="Y"):
                 raise e
@@ -585,7 +585,7 @@ def _discWriteImage(config, writer):  # noqa: ARG001
             complete = True
         except KeyboardInterrupt as e:
             raise e
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error("Failed to write image: %s", e)
             if not _getYesNoAnswer("Retry this step?", default="Y"):
                 raise e
@@ -612,7 +612,7 @@ def _discConsistencyCheck(config, writer, spanItem):
                 complete = True
             except KeyboardInterrupt as e:
                 raise e
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 logger.error("Consistency check failed: %s", e)
                 if not _getYesNoAnswer("Retry the consistency check?", default="Y"):
                     raise e

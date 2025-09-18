@@ -1357,7 +1357,7 @@ def getUidGid(user, group):
             uid = pwd.getpwnam(user)[2]
             gid = grp.getgrnam(group)[2]
             return (uid, gid)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
             raise ValueError("Unable to lookup up uid and gid for passed in user/group.") from e
     else:

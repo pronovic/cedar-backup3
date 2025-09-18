@@ -589,7 +589,7 @@ class IsoImage(object):
         try:
             sectors = float(output[0])
             return convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             raise IOError("Unable to parse mkisofs output.") from e
 
     def writeImage(self, imagePath):

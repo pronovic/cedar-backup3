@@ -1830,7 +1830,7 @@ class Options(object):
                 saved = self._actions
                 self._actions = []
                 self._actions.extend(value)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 self._actions = saved
                 raise e
 

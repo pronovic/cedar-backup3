@@ -987,7 +987,7 @@ class CdWriter(object):
             image.writeImage(path)
             logger.debug("Completed creating image [%s].", path)
             return path
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             if path is not None and os.path.exists(path):
                 try:
                     os.unlink(path)

@@ -803,7 +803,7 @@ class RemotePeer(object):
             if os.path.exists(targetFile):
                 try:
                     os.remove(targetFile)
-                except Exception as e:  # noqa: BLE001
+                except Exception as e:
                     raise Exception("Error: collect indicator [%s] already exists!" % targetFile) from e
             try:
                 RemotePeer._copyRemoteFile(
