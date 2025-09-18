@@ -752,15 +752,15 @@ def _translateCDATAAttr(characters):
         return "", "'"
     if "'" in characters:
         delimiter = '"'
-        new_chars = re.sub('"', "&quot;", characters)
+        new_chars = re.sub(r'"', "&quot;", characters)
     else:
         delimiter = "'"
-        new_chars = re.sub("'", "&apos;", characters)
+        new_chars = re.sub(r"'", "&apos;", characters)
     # FIXME: There's more to normalization
     # Convert attribute new-lines to character entity
     # characters is possibly shorter than new_chars (no entities)
     if "\n" in characters:
-        new_chars = re.sub("\n", "&#10;", new_chars)
+        new_chars = re.sub("\n", "&#10;", new_chars)  # noqa: RUF039
     return new_chars, delimiter
 
 
@@ -772,7 +772,7 @@ def _translateCDATA(characters, encoding="UTF-8", prev_chars="", markupSafe=0):
     Fourthought, Inc.  It its original form, it was Copyright (c) 2000
     Fourthought Inc, USA; All Rights Reserved.
     """
-    CDATA_CHAR_PATTERN = re.compile("[&<]|]]>")
+    CDATA_CHAR_PATTERN = re.compile(r"[&<]|]]>")
     CHAR_TO_ENTITY = {"&": "&amp;", "<": "&lt;", "]]>": "]]&gt;"}
     ILLEGAL_LOW_CHARS = "[\x01-\x08\x0b-\x0c\x0e-\x1f]"
     ILLEGAL_HIGH_CHARS = "\xef\xbf[\xbe\xbf]"
