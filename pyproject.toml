@@ -173,7 +173,7 @@ ignore = [
  
   # I am gradually working toward compliance with these rules
 #   "B007",
-  "B018",
+#   "B018",
   "B904",
   "BLE001",
   "C404",

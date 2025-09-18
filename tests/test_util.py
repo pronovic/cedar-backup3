@@ -2096,7 +2096,7 @@ class TestDiagnostics(unittest.TestCase):
         Test the locale attribute.
         """
         diagnostics = Diagnostics()
-        diagnostics.locale  # might not be set, so just make sure method doesn't fail
+        diagnostics.locale  # noqa: B018  # might not be set, so just make sure method doesn't fail
 
     def testMethods_006(self):
         """
