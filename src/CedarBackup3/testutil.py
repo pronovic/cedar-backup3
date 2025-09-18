@@ -227,9 +227,7 @@ def removedir(tree):
     for root, dirs, files in os.walk(tree, topdown=False):
         for name in files:
             path = pathJoin(root, name)
-            if os.path.islink(path):
-                os.remove(path)
-            elif os.path.isfile(path):
+            if os.path.islink(path) or os.path.isfile(path):
                 os.remove(path)
         for name in dirs:
             path = pathJoin(root, name)
