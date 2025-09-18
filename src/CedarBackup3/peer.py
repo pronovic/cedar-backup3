@@ -815,10 +815,7 @@ class RemotePeer:
                     targetFile,
                     overwrite=False,
                 )
-                if os.path.exists(targetFile):
-                    return True
-                else:
-                    return False
+                return os.path.exists(targetFile)
             except Exception as e:  # noqa: BLE001
                 logger.info("Failed looking for collect indicator: %s", e)
                 return False

@@ -691,10 +691,7 @@ def _getYesNoAnswer(prompt, default):
     answer = input(prompt)
     if answer in [None, ""]:
         answer = default
-    if answer[0] in ["Y", "y"]:
-        return True
-    else:
-        return False
+    return answer[0] in ["Y", "y"]
 
 
 def _getChoiceAnswer(prompt, default, validChoices):
