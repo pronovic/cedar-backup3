@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -71,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.stage")
 
 
 # noinspection PyTypeChecker
-def executeStage(configPath, options, config):
+def executeStage(configPath, options, config):  # noqa: ARG001
     """
     Executes the stage backup action.
 
@@ -125,7 +124,7 @@ def executeStage(configPath, options, config):
             count = peer.stagePeer(targetDir=targetDir, ownership=ownership)  # note: utilize effective user's default umask
             logger.info("Staged %d files for peer [%s].", count, peer.name)
             peer.writeStageIndicator()
-        except (ValueError, IOError, OSError) as e:
+        except (ValueError, OSError) as e:
             logger.error("Error staging [%s]: %s", peer.name, e)
     writeIndicatorFile(dailyDir, STAGE_INDICATOR, config.options.backupUser, config.options.backupGroup)
     logger.info("Executed the 'stage' action successfully.")

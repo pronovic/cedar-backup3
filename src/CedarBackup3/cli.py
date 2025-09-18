@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -306,7 +305,7 @@ def cli():
 
 
 @total_ordering
-class _ActionItem(object):
+class _ActionItem:
     """
     Class representing a single action to be executed.
 
@@ -424,7 +423,7 @@ class _ActionItem(object):
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
-    def _executeHook(self, type, hook):
+    def _executeHook(self, type, hook):  # noqa: A002
         """
         Executes a hook command via :any:`util.executeCommand`.
         Args:
@@ -436,7 +435,7 @@ class _ActionItem(object):
         result, output = executeCommand(command=fields[0:1], args=fields[1:], returnOutput=True)
         if result != 0:
             logger.error("Hook failed, tail is: %s", "\n   %s" % "   ".join(output[-10:]) if output else "<empty>")
-            raise IOError("Error (%d) executing %s hook for action %s: %s" % (result, type, hook.action, fields))
+            raise OSError("Error (%d) executing %s hook for action %s: %s" % (result, type, hook.action, fields))
 
 
 ###########################
@@ -445,7 +444,7 @@ class _ActionItem(object):
 
 
 @total_ordering
-class _ManagedActionItem(object):
+class _ManagedActionItem:
     """
     Class representing a single action to be executed on a managed peer.
 
@@ -516,7 +515,7 @@ class _ManagedActionItem(object):
                     return 1
         return 0
 
-    def executeAction(self, configPath, options, config):
+    def executeAction(self, configPath, options, config):  # noqa: ARG002
         """
         Executes the managed action associated with an item.
 
@@ -540,7 +539,7 @@ class _ManagedActionItem(object):
             logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
             try:
                 peer.executeManagedAction(self.name, options.full)
-            except IOError as e:
+            except OSError as e:
                 logger.error(e)  # log the message and go on, so we don't kill the backup
 
 
@@ -549,7 +548,7 @@ class _ManagedActionItem(object):
 ###################
 
 
-class _ActionSet(object):
+class _ActionSet:
     """
     Class representing a set of local actions to be executed.
 
@@ -759,7 +758,7 @@ class _ActionSet(object):
                                 raise ValueError("Unable to determine proper action order due to invalid dependency.")
                 try:
                     ordering = graph.topologicalSort()
-                    indexMap = dict([(ordering[i], i + 1) for i in range(0, len(ordering))])
+                    indexMap = {ordering[i]: i + 1 for i in range(len(ordering))}
                     logger.info("Action order will be: %s", ordering)
                 except ValueError:
                     logger.error("Unable to determine proper action order due to dependency recursion.")
@@ -1310,7 +1309,7 @@ def setupPathResolver(config):
 
 
 @total_ordering
-class Options(object):
+class Options:
     ######################
     # Class documentation
     ######################

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -134,7 +133,7 @@ STORE_INDICATOR = "cback.amazons3"
 
 
 @total_ordering
-class AmazonS3Config(object):
+class AmazonS3Config:
     """
     Class representing Amazon S3 configuration.
 
@@ -352,7 +351,7 @@ class AmazonS3Config(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -529,7 +528,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._amazons3 = LocalConfig._parseAmazonS3(parentNode)
 
     @staticmethod
@@ -649,7 +648,7 @@ def _findCorrectDailyDir(options, config, local):
         if os.path.isdir(todayPath) and os.path.exists(todayStageInd):
             logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
             return {todayPath: todayDate}
-        raise IOError("Unable to find staging directory to process (only tried today due to full option).")
+        raise OSError("Unable to find staging directory to process (only tried today due to full option).")
     else:
         if os.path.isdir(todayPath) and os.path.exists(todayStageInd) and not os.path.exists(todayStoreInd):
             logger.info("Amazon S3 process will use current day's staging directory [%s]", todayPath)
@@ -664,7 +663,7 @@ def _findCorrectDailyDir(options, config, local):
             if local.amazons3.warnMidnite:
                 logger.warning("Warning: Amazon S3 process crossed midnite boundary to find data.")
             return {tomorrowPath: tomorrowDate}
-        raise IOError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
+        raise OSError("Unable to find unused staging directory to process (tried today, yesterday, tomorrow).")
 
 
 ##############################
@@ -793,7 +792,7 @@ def _clearExistingBackup(config, s3BucketUrl):
     actualCommand = "%s s3 rm --recursive %s/" % (awsCommand[0], s3BucketUrl)
     result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI to clear existing backup for [%s]." % (result, s3BucketUrl))
+        raise OSError("Error [%d] calling AWS CLI to clear existing backup for [%s]." % (result, s3BucketUrl))
     logger.debug("Completed clearing any existing backup in S3 for [%s]", s3BucketUrl)
 
 
@@ -820,7 +819,7 @@ def _uploadStagingDir(config, stagingDir, s3BucketUrl):
     actualCommand = '%s s3 cp --recursive --exclude "*cback.*" %s/ %s/' % (awsCommand[0], stagingDir, s3BucketUrl)
     result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
+        raise OSError("Error [%d] calling AWS CLI to upload staging directory to [%s]." % (result, s3BucketUrl))
     logger.debug("Completed uploading staging dir [%s] to [%s]", stagingDir, s3BucketUrl)
 
 
@@ -844,7 +843,7 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
     actualCommand = "%s s3api list-objects --bucket %s --prefix %s --query '%s'" % (awsCommand[0], bucket, prefix, query)
     (result, data) = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand], returnOutput=True)
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI verify upload to [%s]." % (result, s3BucketUrl))
+        raise OSError("Error [%d] calling AWS CLI verify upload to [%s]." % (result, s3BucketUrl))
     contents = {}
     for entry in json.loads("".join(data)):
         key = entry["Key"].replace(prefix, "")
@@ -858,10 +857,10 @@ def _verifyUpload(config, stagingDir, s3BucketUrl):
             key = entry.replace(stagingDir, "")
             size = int(os.stat(entry).st_size)
             if key not in contents:
-                raise IOError("File was apparently not uploaded: [%s]" % entry)
+                raise OSError("File was apparently not uploaded: [%s]" % entry)
             else:
                 if size != contents[key]:
-                    raise IOError("File size differs [%s], expected %s bytes but got %s bytes" % (entry, size, contents[key]))
+                    raise OSError("File size differs [%s], expected %s bytes but got %s bytes" % (entry, size, contents[key]))
     logger.debug("Completed verifying upload from [%s] to [%s].", stagingDir, s3BucketUrl)
 
 
@@ -895,5 +894,5 @@ def _encryptStagingDir(config, local, stagingDir, encryptedDir):
                     changeOwnership(subdir, config.options.backupUser, config.options.backupGroup)
                 result = executeCommand(suCommand, [config.options.backupUser, "-c", actualCommand])[0]
                 if result != 0:
-                    raise IOError("Error [%d] encrypting [%s]." % (result, cleartext))
+                    raise OSError("Error [%d] encrypting [%s]." % (result, cleartext))
     logger.debug("Completed encrypting staging directory [%s] into [%s]", stagingDir, encryptedDir)

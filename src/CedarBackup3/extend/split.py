@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -83,7 +82,7 @@ SPLIT_INDICATOR = "cback.split"
 
 
 @total_ordering
-class SplitConfig(object):
+class SplitConfig:
     """
     Class representing split configuration.
 
@@ -209,7 +208,7 @@ class SplitConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -383,7 +382,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._split = LocalConfig._parseSplit(parentNode)
 
     @staticmethod
@@ -422,7 +421,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the split backup action.
 
@@ -510,29 +509,29 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
         dirname = os.path.dirname(sourcePath)
         filename = os.path.basename(sourcePath)
         prefix = "%s_" % filename
-        bytes = int(splitSize.bytes)
+        bytes = int(splitSize.bytes)  # noqa: A001
         os.chdir(dirname)  # need to operate from directory that we want files written to
         command = resolveCommand(SPLIT_COMMAND)
         args = ["--verbose", "--numeric-suffixes", "--suffix-length=5", "--bytes=%d" % bytes, filename, prefix]
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=False)
         if result != 0:
-            raise IOError("Error [%d] calling split for [%s]." % (result, sourcePath))
+            raise OSError("Error [%d] calling split for [%s]." % (result, sourcePath))
         pattern = re.compile(r"(creating file [`'])(%s)(.*)(')" % prefix)
         match = pattern.search(output[-1:][0])
         if match is None:
-            raise IOError("Unable to parse output from split command.")
+            raise OSError("Unable to parse output from split command.")
         value = int(match.group(3).strip())
-        for index in range(0, value):
+        for index in range(value):
             path = "%s%05d" % (prefix, index)
             if not os.path.exists(path):
-                raise IOError("After call to split, expected file [%s] does not exist." % path)
+                raise OSError("After call to split, expected file [%s] does not exist." % path)
             changeOwnership(path, backupUser, backupGroup)
         if removeSource:
             if os.path.exists(sourcePath):
                 try:
                     os.remove(sourcePath)
                     logger.debug("Completed removing old file [%s].", sourcePath)
-                except:
-                    raise IOError("Failed to remove file [%s] after splitting it." % (sourcePath))
+                except Exception:
+                    raise OSError("Failed to remove file [%s] after splitting it." % (sourcePath))
     finally:
         os.chdir(cwd)

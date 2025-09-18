@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
+# ruff: noqa: A001,SIM112
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -2095,7 +2095,7 @@ class TestDiagnostics(unittest.TestCase):
         Test the locale attribute.
         """
         diagnostics = Diagnostics()
-        diagnostics.locale  # might not be set, so just make sure method doesn't fail
+        diagnostics.locale  # noqa: B018  # might not be set, so just make sure method doesn't fail
 
     def testMethods_006(self):
         """
@@ -2294,7 +2294,7 @@ class TestFunctions(unittest.TestCase):
         command = [
             "BAD",
         ]
-        expected = command[:]
+        expected = command[:]  # noqa: FURB145
         result = resolveCommand(command)
         self.assertEqual(expected, result)
 
@@ -2329,7 +2329,7 @@ class TestFunctions(unittest.TestCase):
         command = [
             "BAD",
         ]
-        expected = command[:]
+        expected = command[:]  # noqa: FURB145
         result = resolveCommand(command)
         self.assertEqual(expected, result)
 
@@ -3526,7 +3526,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3553,7 +3553,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3580,7 +3580,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(0, length)
@@ -3607,7 +3607,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3634,7 +3634,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000, length)
@@ -3661,7 +3661,7 @@ class TestFunctions(unittest.TestCase):
 
         length = 0
         with open(filename) as contents:
-            for i in contents:
+            for _i in contents:
                 length += 1
 
         self.assertEqual(100000 * 2, length)

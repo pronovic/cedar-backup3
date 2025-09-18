@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -71,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.rebuild")
 ############################
 
 
-def executeRebuild(configPath, options, config):
+def executeRebuild(configPath, options, config):  # noqa: ARG001
     """
     Executes the rebuild backup action.
 
@@ -147,7 +146,7 @@ def _findRebuildDirs(config):
         days = today.weekday() - start + 1
     else:
         days = 7 - (start - today.weekday()) + 1
-    for i in range(0, days):
+    for i in range(days):
         currentDay = today - datetime.timedelta(days=i)
         dateSuffix = currentDay.strftime(DIR_TIME_FORMAT)
         stageDir = pathJoin(config.store.sourceDir, dateSuffix)
@@ -156,5 +155,5 @@ def _findRebuildDirs(config):
             logger.info("Rebuild process will include stage directory [%s]", stageDir)
             stagingDirs[stageDir] = dateSuffix
     if len(stagingDirs) == 0:
-        raise IOError("Unable to find any staging directories for rebuild process.")
+        raise OSError("Unable to find any staging directories for rebuild process.")
     return stagingDirs

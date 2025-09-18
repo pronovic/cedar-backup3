@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -85,7 +84,7 @@ ENCRYPT_INDICATOR = "cback.encrypt"
 
 
 @total_ordering
-class EncryptConfig(object):
+class EncryptConfig:
     """
     Class representing encrypt configuration.
 
@@ -204,7 +203,7 @@ class EncryptConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -378,7 +377,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._encrypt = LocalConfig._parseEncrypt(parentNode)
 
     @staticmethod
@@ -417,7 +416,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the encrypt backup action.
 
@@ -433,7 +432,7 @@ def executeAction(configPath, options, config):
     if config.options is None or config.stage is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
     local = LocalConfig(xmlPath=configPath)
-    if local.encrypt.encryptMode not in ["gpg"]:
+    if local.encrypt.encryptMode != "gpg":
         raise ValueError("Unknown encrypt mode [%s]" % local.encrypt.encryptMode)
     if local.encrypt.encryptMode == "gpg":
         _confirmGpgRecipient(local.encrypt.encryptTarget)
@@ -518,8 +517,8 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
             try:
                 os.remove(sourcePath)
                 logger.debug("Completed removing old file [%s].", sourcePath)
-            except:
-                raise IOError("Failed to remove file [%s] after encrypting it." % (sourcePath))
+            except Exception:
+                raise OSError("Failed to remove file [%s] after encrypting it." % (sourcePath))
     return encryptedPath
 
 
@@ -551,9 +550,9 @@ def _encryptFileWithGpg(sourcePath, recipient):
     args = ["--batch", "--yes", "-e", "-r", recipient, "-o", encryptedPath, sourcePath]
     result = executeCommand(command, args)[0]
     if result != 0:
-        raise IOError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
+        raise OSError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
     if not os.path.exists(encryptedPath):
-        raise IOError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
+        raise OSError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
     logger.debug("Completed encrypting file [%s] to [%s].", sourcePath, encryptedPath)
     return encryptedPath
 
@@ -576,4 +575,4 @@ def _confirmGpgRecipient(recipient):
     args = ["--batch", "-k", recipient]  # should use --with-colons if the output will be parsed
     result = executeCommand(command, args)[0]
     if result != 0:
-        raise IOError("GPG unable to find public key for [%s]." % recipient)
+        raise OSError("GPG unable to find public key for [%s]." % recipient)

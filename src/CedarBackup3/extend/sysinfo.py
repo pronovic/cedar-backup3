@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -93,7 +92,7 @@ LS_COMMAND = ["ls", "-laR", "/"]
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the sysinfo backup action.
 
@@ -135,9 +134,9 @@ def _dumpDebianPackages(targetDir, backupUser, backupGroup, compress=True):
             command = resolveCommand(DPKG_COMMAND)
             result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
             if result != 0:
-                raise IOError("Error [%d] executing Debian package dump." % result)
+                raise OSError("Error [%d] executing Debian package dump." % result)
         if not os.path.exists(filename):
-            raise IOError("File [%s] does not seem to exist after Debian package dump finished." % filename)
+            raise OSError("File [%s] does not seem to exist after Debian package dump finished." % filename)
         changeOwnership(filename, backupUser, backupGroup)
 
 
@@ -162,9 +161,9 @@ def _dumpPartitionTable(targetDir, backupUser, backupGroup, compress=True):
             command = resolveCommand(FDISK_COMMAND)
             result = executeCommand(command, [], returnOutput=False, ignoreStderr=True, outputFile=outputFile)[0]
             if result != 0:
-                raise IOError("Error [%d] executing partition table dump." % result)
+                raise OSError("Error [%d] executing partition table dump." % result)
         if not os.path.exists(filename):
-            raise IOError("File [%s] does not seem to exist after partition table dump finished." % filename)
+            raise OSError("File [%s] does not seem to exist after partition table dump finished." % filename)
         changeOwnership(filename, backupUser, backupGroup)
 
 
@@ -185,7 +184,7 @@ def _dumpFilesystemContents(targetDir, backupUser, backupGroup, compress=True):
         command = resolveCommand(LS_COMMAND)
         executeCommand(command, [], returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)
     if not os.path.exists(filename):
-        raise IOError("File [%s] does not seem to exist after filesystem contents dump finished." % filename)
+        raise OSError("File [%s] does not seem to exist after filesystem contents dump finished." % filename)
     changeOwnership(filename, backupUser, backupGroup)
 
 

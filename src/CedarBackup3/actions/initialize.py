@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -65,7 +64,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.initialize")
 ###############################
 
 
-def executeInitialize(configPath, options, config):
+def executeInitialize(configPath, options, config):  # noqa: ARG001
     """
     Executes the initialize action.
 

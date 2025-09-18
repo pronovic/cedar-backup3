@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -71,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.extend.capacity")
 
 
 @total_ordering
-class PercentageQuantity(object):
+class PercentageQuantity:
     """
     Class representing a percentage quantity.
 
@@ -184,7 +183,7 @@ class PercentageQuantity(object):
 
 
 @total_ordering
-class CapacityConfig(object):
+class CapacityConfig:
     """
     Class representing capacity configuration.
 
@@ -304,7 +303,7 @@ class CapacityConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -476,7 +475,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._capacity = LocalConfig._parseCapacity(parentNode)
 
     @staticmethod
@@ -549,7 +548,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the capacity action.
 

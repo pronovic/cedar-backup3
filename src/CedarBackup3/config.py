@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -303,7 +302,7 @@ ACTION_NAME_REGEX = r"^[a-z0-9]*$"
 
 
 @total_ordering
-class ByteQuantity(object):
+class ByteQuantity:
     """
     Class representing a byte quantity.
 
@@ -451,7 +450,7 @@ class ByteQuantity(object):
 
 
 @total_ordering
-class ActionDependencies(object):
+class ActionDependencies:
     """
     Class representing dependencies associated with an extended action.
 
@@ -586,7 +585,7 @@ class ActionDependencies(object):
 
 
 @total_ordering
-class ActionHook(object):
+class ActionHook:
     """
     Class representing a hook associated with an action.
 
@@ -821,7 +820,7 @@ class PostActionHook(ActionHook):
 
 
 @total_ordering
-class BlankBehavior(object):
+class BlankBehavior:
     """
     Class representing optimized store-action media blanking behavior.
 
@@ -945,7 +944,7 @@ class BlankBehavior(object):
 
 
 @total_ordering
-class ExtendedAction(object):
+class ExtendedAction:
     """
     Class representing an extended action.
 
@@ -1173,7 +1172,7 @@ class ExtendedAction(object):
 
 
 @total_ordering
-class CommandOverride(object):
+class CommandOverride:
     """
     Class representing a piece of Cedar Backup command override configuration.
 
@@ -1295,7 +1294,7 @@ class CommandOverride(object):
 
 
 @total_ordering
-class CollectFile(object):
+class CollectFile:
     """
     Class representing a Cedar Backup collect file.
 
@@ -1444,7 +1443,7 @@ class CollectFile(object):
 
 
 @total_ordering
-class CollectDir(object):
+class CollectDir:
     """
     Class representing a Cedar Backup collect directory.
 
@@ -1836,7 +1835,7 @@ class CollectDir(object):
 
 
 @total_ordering
-class PurgeDir(object):
+class PurgeDir:
     """
     Class representing a Cedar Backup purge directory.
 
@@ -1963,7 +1962,7 @@ class PurgeDir(object):
 
 
 @total_ordering
-class LocalPeer(object):
+class LocalPeer:
     """
     Class representing a Cedar Backup peer.
 
@@ -2112,7 +2111,7 @@ class LocalPeer(object):
 
 
 @total_ordering
-class RemotePeer(object):
+class RemotePeer:
     """
     Class representing a Cedar Backup peer.
 
@@ -2453,7 +2452,7 @@ class RemotePeer(object):
 
 
 @total_ordering
-class ReferenceConfig(object):
+class ReferenceConfig:
     """
     Class representing a Cedar Backup reference configuration.
 
@@ -2602,7 +2601,7 @@ class ReferenceConfig(object):
 
 
 @total_ordering
-class ExtensionsConfig(object):
+class ExtensionsConfig:
     """
     Class representing Cedar Backup extensions configuration.
 
@@ -2729,7 +2728,7 @@ class ExtensionsConfig(object):
 
 
 @total_ordering
-class OptionsConfig(object):
+class OptionsConfig:
     """
     Class representing a Cedar Backup global options configuration.
 
@@ -3157,7 +3156,7 @@ class OptionsConfig(object):
 
 
 @total_ordering
-class PeersConfig(object):
+class PeersConfig:
     """
     Class representing Cedar Backup global peer configuration.
 
@@ -3308,7 +3307,7 @@ class PeersConfig(object):
 
 
 @total_ordering
-class CollectConfig(object):
+class CollectConfig:
     """
     Class representing a Cedar Backup collect configuration.
 
@@ -3650,7 +3649,7 @@ class CollectConfig(object):
 
 
 @total_ordering
-class StageConfig(object):
+class StageConfig:
     """
     Class representing a Cedar Backup stage configuration.
 
@@ -3824,7 +3823,7 @@ class StageConfig(object):
 
 
 @total_ordering
-class StoreConfig(object):
+class StoreConfig:
     """
     Class representing a Cedar Backup store configuration.
 
@@ -4295,7 +4294,7 @@ class StoreConfig(object):
 
 
 @total_ordering
-class PurgeConfig(object):
+class PurgeConfig:
     """
     Class representing a Cedar Backup purge configuration.
 
@@ -4397,7 +4396,7 @@ class PurgeConfig(object):
 
 
 @total_ordering
-class Config(object):
+class Config:
     ######################
     # Class documentation
     ######################
@@ -4887,7 +4886,7 @@ class Config(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._reference = Config._parseReference(parentNode)
         self._extensions = Config._parseExtensions(parentNode)
         self._options = Config._parseOptions(parentNode)
@@ -5082,7 +5081,7 @@ class Config(object):
             collect.collectMode = readString(sectionNode, "collect_mode")
             collect.archiveMode = readString(sectionNode, "archive_mode")
             collect.ignoreFile = readString(sectionNode, "ignore_file")
-            (collect.absoluteExcludePaths, unused, collect.excludePatterns) = Config._parseExclusions(sectionNode)
+            (collect.absoluteExcludePaths, _, collect.excludePatterns) = Config._parseExclusions(sectionNode)
             collect.collectFiles = Config._parseCollectFiles(sectionNode)
             collect.collectDirs = Config._parseCollectDirs(sectionNode)
         return collect
@@ -6297,7 +6296,6 @@ class Config(object):
         Raises:
            ValueError: If reference configuration is invalid
         """
-        pass
 
     def _validateExtensions(self):
         """

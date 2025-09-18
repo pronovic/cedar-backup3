@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
+# ruff: noqa: PLW2901 # the code appars to work and changing it is risky
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -715,7 +715,7 @@ class FilesystemList(list):
         """Normalizes the list, ensuring that each entry is unique."""
         orig = len(self)
         self.sort()
-        dups = list(filter(lambda x, self=self: self[x] == self[x + 1], list(range(0, len(self) - 1))))
+        dups = list(filter(lambda x, self=self: self[x] == self[x + 1], list(range(len(self) - 1))))
         items = list(map(lambda x, self=self: self[x], dups))
         list(map(self.remove, items))
         new = len(self)
@@ -740,7 +740,7 @@ class FilesystemList(list):
 ########################################################################
 
 
-class SpanItem(object):
+class SpanItem:
     """
     Item returned by :any:`BackupFileList.generateSpan`.
     """
@@ -931,7 +931,7 @@ class BackupFileList(FilesystemList):
         Raises:
            OSError: If the file cannot be opened
         """
-        s = hashlib.sha1()
+        s = hashlib.sha1()  # noqa: S324 # we're not using SHA-1 for cryptographic purposes, only to identify file changes
         with open(path, mode="rb") as f:
             readBytes = 4096  # see notes above
             while readBytes > 0:
@@ -1138,7 +1138,7 @@ class BackupFileList(FilesystemList):
                         raise tarfile.TarError(e)
                     logger.info("Unable to add file [%s]; going on anyway.", entry)
             tar.close()
-        except tarfile.ReadError as e:
+        except tarfile.ReadError:
             try:
                 tar.close()
             except:
@@ -1280,7 +1280,7 @@ class PurgeItemList(FilesystemList):
     # Add methods
     ##############
 
-    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):
+    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):  # noqa: ARG002
         """
         Adds the contents of a directory to the list.
 
@@ -1333,7 +1333,7 @@ class PurgeItemList(FilesystemList):
         """
         path = encodePath(path)
         path = normalizeDir(path)
-        return super(PurgeItemList, self)._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
+        return super()._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
 
     ##################
     # Utility methods
@@ -1374,8 +1374,7 @@ class PurgeItemList(FilesystemList):
                 try:
                     ageInDays = calculateFileAge(entry)
                     ageInWholeDays = math.floor(ageInDays)
-                    if ageInWholeDays < 0:
-                        ageInWholeDays = 0
+                    ageInWholeDays = max(ageInWholeDays, 0)
                     if ageInWholeDays < daysOld:
                         removed += 1
                         self.remove(entry)
@@ -1522,7 +1521,7 @@ def compareContents(path1, path2, verbose=False):
         path2List.addDirContents(path2)
         path2Digest = path2List.generateDigestMap(stripPrefix=normalizeDir(path2))
         compareDigestMaps(path1Digest, path2Digest, verbose)
-    except IOError as e:
+    except OSError as e:
         logger.error("I/O error encountered during consistency check.")
         raise e
 

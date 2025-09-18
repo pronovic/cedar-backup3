@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -254,7 +253,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
         Test assignment of password attribute, None value.
         """
-        mysql = MysqlConfig(password="password")
+        mysql = MysqlConfig(password="password")  # noqa: S106
         self.assertEqual("password", mysql.password)
         mysql.password = None
         self.assertEqual(None, mysql.password)
@@ -265,7 +264,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.password)
-        mysql.password = "password"
+        mysql.password = "password"  # noqa: S105
         self.assertEqual("password", mysql.password)
 
     def testConstructor_011(self):
@@ -510,7 +509,7 @@ class TestMysqlConfig(unittest.TestCase):
         Test comparison of two differing objects, password differs (one None).
         """
         mysql1 = MysqlConfig()
-        mysql2 = MysqlConfig(password="password")
+        mysql2 = MysqlConfig(password="password")  # noqa: S106
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)

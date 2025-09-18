@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -71,7 +70,7 @@ Check the Subversion documentation for more information.
 
 import logging
 import os
-import pickle
+import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
 import posixpath
 from bz2 import BZ2File
 from functools import total_ordering
@@ -120,7 +119,7 @@ REVISION_PATH_EXTENSION = "svnlast"
 
 
 @total_ordering
-class RepositoryDir(object):
+class RepositoryDir:
     """
     Class representing Subversion repository directory.
 
@@ -373,7 +372,7 @@ class RepositoryDir(object):
 
 
 @total_ordering
-class Repository(object):
+class Repository:
     """
     Class representing generic Subversion repository configuration..
 
@@ -544,7 +543,7 @@ class Repository(object):
 
 
 @total_ordering
-class SubversionConfig(object):
+class SubversionConfig:
     """
     Class representing Subversion configuration.
 
@@ -740,7 +739,7 @@ class SubversionConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -949,7 +948,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._subversion = LocalConfig._parseSubversion(parentNode)
 
     @staticmethod
@@ -1382,7 +1381,7 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
     with _getOutputFile(backupPath, compressMode) as outputFile:
         backupRepository(repository.repositoryPath, outputFile, startRevision, endRevision)
     if not os.path.exists(backupPath):
-        raise IOError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
+        raise OSError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
     changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
     if collectMode == "incr":
         _writeLastRevision(config, revisionPath, endRevision)
@@ -1434,7 +1433,7 @@ def _loadLastRevision(revisionPath):
     else:
         try:
             with open(revisionPath, "rb") as f:
-                startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+                startRevision = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
             logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
         except Exception as e:
             startRevision = -1
@@ -1512,7 +1511,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
     command = resolveCommand(SVNADMIN_COMMAND)
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
     if result != 0:
-        raise IOError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
+        raise OSError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
     logger.debug("Completed dumping subversion repository [%s].", repositoryPath)
 
 
@@ -1541,7 +1540,7 @@ def getYoungestRevision(repositoryPath):
     command = resolveCommand(SVNLOOK_COMMAND)
     (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
     if result != 0:
-        raise IOError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
+        raise OSError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
     if len(output) != 1:
         raise ValueError("Unable to parse 'svnlook youngest' output.")
     return int(output[0])
@@ -1562,7 +1561,7 @@ class BDBRepository(Repository):
         """
         Constructor for the ``BDBRepository`` class.
         """
-        super(BDBRepository, self).__init__("BDB", repositoryPath, collectMode, compressMode)
+        super().__init__("BDB", repositoryPath, collectMode, compressMode)
 
     def __repr__(self):
         """
@@ -1581,7 +1580,7 @@ class FSFSRepository(Repository):
         """
         Constructor for the ``FSFSRepository`` class.
         """
-        super(FSFSRepository, self).__init__("FSFS", repositoryPath, collectMode, compressMode)
+        super().__init__("FSFS", repositoryPath, collectMode, compressMode)
 
     def __repr__(self):
         """

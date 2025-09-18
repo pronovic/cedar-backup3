@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -109,7 +108,7 @@ POSTGRESQLDUMPALL_COMMAND = ["pg_dumpall"]
 
 
 @total_ordering
-class PostgresqlConfig(object):
+class PostgresqlConfig:
     """
     Class representing PostgreSQL configuration.
 
@@ -124,7 +123,7 @@ class PostgresqlConfig(object):
 
     """
 
-    def __init__(self, user=None, compressMode=None, all=None, databases=None):
+    def __init__(self, user=None, compressMode=None, all=None, databases=None):  # noqa: A002
         """
         Constructor for the ``PostgresqlConfig`` class.
 
@@ -287,7 +286,7 @@ class PostgresqlConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -478,7 +477,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._postgresql = LocalConfig._parsePostgresql(parentNode)
 
     @staticmethod
@@ -525,7 +524,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the PostgreSQL backup action.
 
@@ -592,7 +591,7 @@ def _backupDatabase(targetDir, compressMode, user, backupUser, backupGroup, data
     with outputFile:
         backupDatabase(user, outputFile, database)
     if not os.path.exists(filename):
-        raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
+        raise OSError("Dump file [%s] does not seem to exist after backup completed." % filename)
     changeOwnership(filename, backupUser, backupGroup)
 
 
@@ -671,6 +670,6 @@ def backupDatabase(user, backupFile, database=None):
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
     if result != 0:
         if database is None:
-            raise IOError("Error [%d] executing PostgreSQL database dump for all databases." % result)
+            raise OSError("Error [%d] executing PostgreSQL database dump for all databases." % result)
         else:
-            raise IOError("Error [%d] executing PostgreSQL database dump for database [%s]." % (result, database))
+            raise OSError("Error [%d] executing PostgreSQL database dump for database [%s]." % (result, database))

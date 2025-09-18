@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -118,7 +117,7 @@ MYSQLDUMP_COMMAND = ["mysqldump"]
 
 
 @total_ordering
-class MysqlConfig(object):
+class MysqlConfig:
     """
     Class representing MySQL configuration.
 
@@ -133,7 +132,7 @@ class MysqlConfig(object):
 
     """
 
-    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):
+    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # noqa: A002
         """
         Constructor for the ``MysqlConfig`` class.
 
@@ -320,7 +319,7 @@ class MysqlConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -511,7 +510,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._mysql = LocalConfig._parseMysql(parentNode)
 
     @staticmethod
@@ -560,7 +559,7 @@ class LocalConfig(object):
 ###########################
 
 
-def executeAction(configPath, options, config):
+def executeAction(configPath, options, config):  # noqa: ARG001
     """
     Executes the MySQL backup action.
 
@@ -630,7 +629,7 @@ def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupG
     with outputFile:
         backupDatabase(user, password, outputFile, database)
     if not os.path.exists(filename):
-        raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
+        raise OSError("Dump file [%s] does not seem to exist after backup completed." % filename)
     changeOwnership(filename, backupUser, backupGroup)
 
 
@@ -733,6 +732,6 @@ def backupDatabase(user, password, backupFile, database=None):
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
     if result != 0:
         if database is None:
-            raise IOError("Error [%d] executing MySQL database dump for all databases." % result)
+            raise OSError("Error [%d] executing MySQL database dump for all databases." % result)
         else:
-            raise IOError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))
+            raise OSError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))

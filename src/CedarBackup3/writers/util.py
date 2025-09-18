@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -185,7 +184,7 @@ def readMediaLabel(devicePath):
 ########################################################################
 
 
-class IsoImage(object):
+class IsoImage:
     ######################
     # Class documentation
     ######################
@@ -583,15 +582,14 @@ class IsoImage(object):
         command = resolveCommand(MKISOFS_COMMAND)
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
         if result != 0:
-            raise IOError("Error (%d) executing mkisofs command to estimate size." % result)
+            raise OSError("Error (%d) executing mkisofs command to estimate size." % result)
         if len(output) != 1:
-            raise IOError("Unable to parse mkisofs output.")
+            raise OSError("Unable to parse mkisofs output.")
         try:
             sectors = float(output[0])
-            size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
-            return size
-        except:
-            raise IOError("Unable to parse mkisofs output.")
+            return convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
+        except Exception:
+            raise OSError("Unable to parse mkisofs output.")
 
     def writeImage(self, imagePath):
         """
@@ -609,9 +607,9 @@ class IsoImage(object):
             raise ValueError("Image does not contain any entries.")
         args = self._buildWriteArgs(self.entries, imagePath)
         command = resolveCommand(MKISOFS_COMMAND)
-        (result, output) = executeCommand(command, args, returnOutput=False)
+        (result, _) = executeCommand(command, args, returnOutput=False)
         if result != 0:
-            raise IOError("Error (%d) executing mkisofs command to build image." % result)
+            raise OSError("Error (%d) executing mkisofs command to build image." % result)
 
     #########################################
     # Methods used to build mkisofs commands

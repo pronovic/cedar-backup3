@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -91,7 +90,7 @@ What is this extension?
 import datetime
 import logging
 import os
-import pickle
+import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
 import posixpath
 import tempfile
 from bz2 import BZ2File
@@ -139,7 +138,7 @@ REVISION_PATH_EXTENSION = "mboxlast"
 
 
 @total_ordering
-class MboxFile(object):
+class MboxFile:
     """
     Class representing mbox file configuration..
 
@@ -287,7 +286,7 @@ class MboxFile(object):
 
 
 @total_ordering
-class MboxDir(object):
+class MboxDir:
     """
     Class representing mbox directory configuration..
 
@@ -507,7 +506,7 @@ class MboxDir(object):
 
 
 @total_ordering
-class MboxConfig(object):
+class MboxConfig:
     """
     Class representing mbox configuration.
 
@@ -709,7 +708,7 @@ class MboxConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
@@ -919,7 +918,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._mbox = LocalConfig._parseMbox(parentNode)
 
     @staticmethod
@@ -1286,7 +1285,7 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
         else:
             try:
                 with open(revisionPath, "rb") as f:
-                    revisionDate = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+                    revisionDate = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
                 logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
             except Exception as e:
                 revisionDate = None
@@ -1478,7 +1477,7 @@ def _backupMboxFile(config, absolutePath, fullBackup, collectMode, compressMode,
     with _getOutputFile(backupPath, compressMode) as outputFile:
         result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
         if result != 0:
-            raise IOError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
+            raise OSError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
     logger.debug("Completed backing up mailbox [%s].", absolutePath)
     return backupPath
 

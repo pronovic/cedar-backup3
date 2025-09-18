@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -67,7 +66,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.validate")
 #############################
 
 
-def executeValidate(configPath, options, config):
+def executeValidate(configPath, options, config):  # noqa: ARG001
     """
     Executes the validate action.
 

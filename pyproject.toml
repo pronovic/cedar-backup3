@@ -149,41 +149,46 @@ ignore = [
   "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
 
   # Exclusions of rule categories and specific rules, customized for this repository
-  # Note: I am gradually working toward compliance with some of these rule categories
-  "A",          # flake8-builtins
-  "ANN",        # flake8-annotations
-  "ARG",        # flake8-unused-arguments
-  "B",          # flake8-bugbear
-  "BLE",        # flake8-blind-except
-  "C4",         # flake8-comprehensions
-  "DTZ",        # flake8-datetimez
-  "FBT",        # flake8-boolean-trap
-  "INP",        # flake8-no-pep420
-  "PIE",        # flake8-pie
-  "PT",         # flake8-pytest-style
-  "PTH",        # flake8-use-pathlib
-  "RET",        # flake8-return
-  "S",          # flake8-bandit
-  "SIM",        # flake8-simplify
-  "T20",        # flake8-print
-  "SLF",        # flake8-self
-  "TC",         # flake8-type-checking
-  "TID",        # flake8-tidy-imports
-  "E",          # pycodestyle error
-  "W",          # pycodestyle warning
-  "ERA",        # eradicate
-  "F",          # Pyflakes
-  "FLY",        # flynt
-  "FURB",       # refurb
-  "N",          # pep8-naming
-  "PERF",       # Perflint
-  "PGH",        # pygrep-hooks
-  "PLC",        # Pylint convention
-  "PLR",        # Pylint refactor
-  "PLW",        # Pylint warning
-  "RUF",        # Ruff-specific rules
-  "TRY",        # tryceratops
-  "UP",         # pyupgrade
+  # Cedar Backup was first developed starting in 2002, long before many of these standards existed
+  "ANN",        # don't require type annotations
+  "B904",       # don't warn about raising from parent exception
+  "BLE001",     # don't warn about catching blind exceptions
+  "DTZ",        # ignore old-style datetime usage, such as of "naive" datetime objects
+  "E722",       # don't warn about using bare except
+  "ERA",        # eradicate does not understand the source tree's commenting style
+  "FBT",        # allow positional boolean flags
+  "FURB101",    # allow old-style open() and read() operations
+  "FURB103",    # allow old-style open() and write() operations
+  "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
+  "FURB189",    # don't suggest subclassing collections.UserList instead of list
+  "N",          # allow non-standard variable, function, & argument names, etc.
+  "PERF",       # performance micro-optimizations are not worth much in this code
+  "PLR0911",    # don't enforce rules about too many return statments
+  "PLR0912",    # don't enforce rules about too many branches
+  "PLR0913",    # don't enforce rules about too many arguments
+  "PLR0914",    # don't enforce rules about too many variables
+  "PLR0915",    # don't enforce rules about too many statements
+  "PLR0916",    # don't enforce rules about too many boolean expressions
+  "PLR0917",    # don't enforce rules about too many arguments
+  "PLR1702",    # don't enforce rules about too many nested blocks
+  "PLR5501",    # don't warn about elif instead of else/if
+  "PLR6201",    # don't suggest using a set vs. a list when testing for membership
+  "PLR6301",    # don't make recommendations about static methods
+  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior works but is fragile 
+  "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
+  "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
+  "PT",         # this codebase uses Unittest, so don't apply Pytest standards
+  "PTH",        # allow old-style os operations rather than pathlib.Path
+  "RET505",     # allow unnecessary else after return statement
+  "RET506",     # allow unnecessary else after raise statement
+  "RUF022",     # don't apply sorting standards for __all__
+  "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
+  "S110",       # don't warn about logging for try/except/pass blocks
+  "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
+  "SIM108",     # don't suggest ternary operator instead of if/else block
+  "SIM115",     # don't warn about using a context manager, since the code isn't designed for it
+  "TRY",        # ignore all tryceratops warnings about exception anti-patterns
+  "UP031",      # allow old-style format specifiers instead of f-strings
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -195,4 +200,15 @@ ignore = [
   "PLC2701",    # allow imports of private names
   "PLR",        # don't warn about too many arguments, methods, etc.
   "SLF001",     # allow access to private members
+
+  # Exclusions of rule categories and specific rules, customized for this repository
+  "PLC0415",    # allow import statements that are not at the top of the file
+  "PLC2801",    # allow direct use of dunder methods like __str__
+  "S108",       # don't warn about insecure temporary files
+  "SIM201",     # don't suggest x != y instead of not x == y
+  "SIM202",     # don't suggest x == y instead of not x != y
+]
+"src/CedarBackup3/tools/**/*" = [
+  # Exclusions that apply to Cedar Backup tools only
+  "T201",       # allow the print statement
 ]

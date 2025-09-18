@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -228,9 +227,7 @@ def removedir(tree):
     for root, dirs, files in os.walk(tree, topdown=False):
         for name in files:
             path = pathJoin(root, name)
-            if os.path.islink(path):
-                os.remove(path)
-            elif os.path.isfile(path):
+            if os.path.islink(path) or os.path.isfile(path):
                 os.remove(path)
         for name in dirs:
             path = pathJoin(root, name)
@@ -346,7 +343,7 @@ def randomFilename(length, prefix=None, suffix=None):
     """
     characters = [None] * length
     for i in range(length):
-        characters[i] = random.choice(string.ascii_uppercase)
+        characters[i] = random.choice(string.ascii_uppercase)  # noqa: S311
     if prefix is None:
         prefix = ""
     if suffix is None:
@@ -359,7 +356,7 @@ def randomFilename(length, prefix=None, suffix=None):
 ####################################
 
 
-def failUnlessAssignRaises(testCase, exception, obj, prop, value):
+def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG001
     """
     Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 
@@ -401,7 +398,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):
     missed = False
     instead = None
     try:
-        exec("obj.%s = value" % prop)
+        exec("obj.%s = value" % prop)  # noqa: S102
         missed = True
     except exception:
         pass

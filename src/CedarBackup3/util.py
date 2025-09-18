@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
+# ruff: noqa: PLC1901
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -280,7 +280,7 @@ class UnorderedList(list):
         else:
             typeinfo = type(value)
         try:
-            x = value < value
+            _ = value < value  # noqa: PLR0124
         except TypeError:
             value = repr(value)
         return repr(typeinfo), value
@@ -366,7 +366,7 @@ class ObjectTypeList(UnorderedList):
            objectType: Type that the list elements must match
            objectName: Short string containing the "name" of the type
         """
-        super(ObjectTypeList, self).__init__()
+        super().__init__()
         self.objectType = objectType
         self.objectName = objectName
 
@@ -436,7 +436,7 @@ class RestrictedContentList(UnorderedList):
            valuesDescr: Short string describing list of values
            prefix: Prefix to use in error messages (None results in prefix "Item")
         """
-        super(RestrictedContentList, self).__init__()
+        super().__init__()
         self.prefix = "Item"
         if prefix is not None:
             self.prefix = prefix
@@ -506,7 +506,7 @@ class RegexMatchList(UnorderedList):
            emptyAllowed: Indicates whether empty or None values are allowed
            prefix: Prefix to use in error messages (None results in prefix "Item")
         """
-        super(RegexMatchList, self).__init__()
+        super().__init__()
         self.prefix = "Item"
         if prefix is not None:
             self.prefix = prefix
@@ -620,7 +620,7 @@ class RegexList(UnorderedList):
 ########################################################################
 
 
-class _Vertex(object):
+class _Vertex:
     """
     Represents a vertex (or node) in a directed graph.
     """
@@ -638,7 +638,7 @@ class _Vertex(object):
 
 
 @total_ordering
-class DirectedGraph(object):
+class DirectedGraph:
     """
     Represents a directed graph.
 
@@ -716,8 +716,8 @@ class DirectedGraph(object):
                 return -1
             else:
                 return 1
-        if self._vertices != other._vertices:
-            if self._vertices < other._vertices:
+        if self._vertices != other._vertices:  # noqa: SLF001
+            if self._vertices < other._vertices:  # noqa: SLF001
                 return -1
             else:
                 return 1
@@ -824,7 +824,7 @@ class DirectedGraph(object):
 ########################################################################
 
 
-class PathResolverSingleton(object):
+class PathResolverSingleton:
     """
     Singleton used for resolving executable paths.
 
@@ -881,7 +881,7 @@ class PathResolverSingleton(object):
         def __init__(self):
             pass
 
-        def __call__(self, *args, **kw):
+        def __call__(self, *args, **kw):  # noqa: ARG002
             if PathResolverSingleton._instance is None:
                 obj = PathResolverSingleton()
                 PathResolverSingleton._instance = obj
@@ -951,7 +951,7 @@ class Pipe(Popen):
 ########################################################################
 
 
-class Diagnostics(object):
+class Diagnostics:
     """
     Class holding runtime diagnostic information.
 
@@ -1043,8 +1043,7 @@ class Diagnostics(object):
         """
         tmax = 0
         for value in values:
-            if len(value) > tmax:
-                tmax = len(value)
+            tmax = max(tmax, len(value))
         return tmax
 
     def _getVersion(self):
@@ -1090,7 +1089,7 @@ class Diagnostics(object):
         Property target to get the default locale that is in effect.
         """
         try:
-            import locale
+            import locale  # noqa: PLC0415
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
@@ -1104,7 +1103,7 @@ class Diagnostics(object):
         Property target to get a current date/time stamp.
         """
         try:
-            import datetime
+            import datetime  # noqa: PLC0415
 
             if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 12]:
                 # Starting with Python 3.12, utcnow() is deprecated
@@ -1140,7 +1139,7 @@ def sortDict(d):
         List of dictionary keys sorted in order by dictionary value
     """
     items = list(d.items())
-    items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
+    items.sort(key=lambda x: (x[1], x[0]))  # noqa: FURB118 # sort by value and then by key
     return [key for key, value in items]
 
 
@@ -1227,7 +1226,7 @@ def convertSize(size, fromUnit, toUnit):
 ##########################
 
 
-def displayBytes(bytes, digits=2):
+def displayBytes(bytes, digits=2):  # noqa: A002
     """
     Format a byte quantity so it can be sensibly displayed.
 
@@ -1256,7 +1255,7 @@ def displayBytes(bytes, digits=2):
     """
     if bytes is None:
         raise ValueError("Cannot display byte value of None.")
-    bytes = float(bytes)
+    bytes = float(bytes)  # noqa: A001
     if math.fabs(bytes) < BYTES_PER_KBYTE:
         fmt = "%.0f bytes"
         value = bytes
@@ -1440,9 +1439,8 @@ def splitCommandLine(commandLine):
     """
     if commandLine is None:
         raise ValueError("Cannot split command line of None.")
-    fields = re.findall('[^ "]+|"[^"]+"', commandLine)
-    fields = [field.replace('"', "") for field in fields]
-    return fields
+    fields = re.findall(r'[^ "]+|"[^"]+"', commandLine)
+    return [field.replace('"', "") for field in fields]
 
 
 ############################
@@ -1644,8 +1642,7 @@ def calculateFileAge(path):
     fileStats = os.stat(path)
     lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest"
     ageInSeconds = currentTime - lastUse
-    ageInDays = ageInSeconds / SECONDS_PER_DAY
-    return ageInDays
+    return ageInSeconds / SECONDS_PER_DAY
 
 
 ###################
@@ -1682,7 +1679,7 @@ def mount(devicePath, mountPoint, fsType):
     command = resolveCommand(MOUNT_COMMAND)
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True)[0]
     if result != 0:
-        raise IOError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
+        raise OSError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
 
 
 #####################
@@ -1724,7 +1721,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
        IOError: If the mount point is still mounted after attempts are exhausted
     """
     if os.path.ismount(mountPoint):
-        for attempt in range(0, attempts):
+        for attempt in range(attempts):
             logger.debug("Making attempt %d to unmount [%s].", attempt, mountPoint)
             command = resolveCommand(UMOUNT_COMMAND)
             result = executeCommand(command, [mountPoint], returnOutput=False, ignoreStderr=True)[0]
@@ -1741,7 +1738,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
                     time.sleep(waitSeconds)
         else:
             if os.path.ismount(mountPoint):
-                raise IOError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
+                raise OSError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
             logger.info("Mount point [%s] seems to have finally gone away.", mountPoint)
         if os.path.isdir(mountPoint) and removeAfter:
             logger.debug("Removing mount point [%s].", mountPoint)
@@ -1776,7 +1773,7 @@ def deviceMounted(devicePath):
         with open(MTAB_FILE) as f:
             lines = f.readlines()
         for line in lines:
-            (mountDevice, mountPoint, remainder) = line.split(None, 2)
+            (mountDevice, mountPoint, _) = line.split(None, 2)
             if mountDevice in [devicePath, realPath]:
                 logger.debug("Device [%s] is mounted at [%s].", devicePath, mountPoint)
                 return True
@@ -1952,7 +1949,7 @@ def buildNormalizedPath(path):
         raise ValueError("Cannot normalize path None.")
     elif len(path) == 0:
         return path
-    elif path == "/" or path == "\\":
+    elif path in {"/", "\\"}:
         return "_"
     else:
         normalized = path
@@ -1963,8 +1960,7 @@ def buildNormalizedPath(path):
         normalized = re.sub(r"/", "-", normalized)  # convert all '/' characters to '-'
         normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
         normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
-        normalized = re.sub(r":", "_", normalized)  # convert all remaining colons to '_'
-        return normalized
+        return re.sub(r":", "_", normalized)  # convert all remaining colons to '_'
 
 
 #################################
@@ -2076,7 +2072,7 @@ def parseCommaSeparatedString(commaString):
         pass1 = commaString.split(",")
         pass2 = []
         for item in pass1:
-            item = item.strip()
-            if len(item) > 0:
-                pass2.append(item)
+            stripped = item.strip()
+            if len(stripped) > 0:
+                pass2.append(stripped)
         return pass2

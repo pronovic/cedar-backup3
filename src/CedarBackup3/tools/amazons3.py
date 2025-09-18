@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -101,7 +100,7 @@ LONG_SWITCHES = [
 
 
 @total_ordering
-class Options(object):
+class Options:
     ######################
     # Class documentation
     ######################
@@ -1107,7 +1106,7 @@ def _buildSourceFiles(sourceDir):
 ###############################
 
 
-def _checkSourceFiles(sourceDir, sourceFiles):
+def _checkSourceFiles(sourceDir, sourceFiles):  # noqa: ARG001
     """
     Check source files, trying to guess which ones will have encoding problems.
     Args:
@@ -1182,7 +1181,7 @@ def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
         args += ["--delete"]
     result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI synchronize bucket." % result)
+        raise OSError("Error [%d] calling AWS CLI synchronize bucket." % result)
 
 
 ###################################
@@ -1226,7 +1225,7 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
     args = ["s3api", "list-objects", "--bucket", bucket, "--prefix", prefix, "--query", query]
     (result, data) = executeCommand(AWS_COMMAND, args, returnOutput=True)
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI verify bucket contents." % result)
+        raise OSError("Error [%d] calling AWS CLI verify bucket contents." % result)
 
     contents = {}
     for entry in json.loads("".join(data)):
