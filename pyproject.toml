@@ -151,14 +151,15 @@ ignore = [
   # Exclusions of rule categories and specific rules, customized for this repository
   # Cedar Backup was first developed starting in 2002, long before many of these standards existed
   "ANN",        # don't require type annotations
-  "DTZ002",     # allow usage of "naive" datetime objects
-  "DTZ003",     # allow usage of "naive" datetime objects
-  "DTZ011",     # allow usage of "naive" datetime objects
+  "DTZ",        # ignore old-style datetime usage, such as of "naive" datetime objects
   "ERA",        # eradicate does not understand the source tree's commenting style
   "FBT",        # allow positional boolean flags
   "FURB101",    # allow old-style open() and read() operations
   "FURB103",    # allow old-style open() and write() operations
+  "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
+  "FURB189",    # don't suggest subclassing collections.UserList instead of list
   "N",          # allow non-standard variable, function, & argument names, etc.
+  "PERF",       # performance micro-optimizations are not worth much in this code
   "PLR0911",    # don't enforce rules about too many return statments
   "PLR0912",    # don't enforce rules about too many branches
   "PLR0913",    # don't enforce rules about too many arguments
@@ -167,7 +168,12 @@ ignore = [
   "PLR0916",    # don't enforce rules about too many boolean expressions
   "PLR0917",    # don't enforce rules about too many arguments
   "PLR1702",    # don't enforce rules about too many nested blocks
+  "PLR5501",    # don't warn about `elif` instead of `else`/`if`
+  "PLR6201",    # don't suggest using a set vs. a list when testing for membership
   "PLR6301",    # don't make recommendations about static methods
+  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
+  "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
+  "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
   "PT",         # this codebase uses Unittest, so don't apply Pytest standards
   "PTH",        # allow old-style os operations rather than pathlib.Path
   "RET505",     # allow unnecessary else after return statement
@@ -175,16 +181,6 @@ ignore = [
   "RUF022",     # don't apply sorting standards for __all__
   "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
   "UP031",      # allow old-style format specifiers instead of f-strings
-  "PLR5501",    # don't warn about `elif` instead of `else`/`if`
-  "PLR6201",    # don't suggest using a set vs. a list when testing for membership
-  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
-  "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
-  "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
-  "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
-  "PERF401",    # don't suggest use of list.extend() rather than repeated list.append()
-  "PERF402",    # don't suggest use of list.copy() rather than repeated list.append()
-  "FURB189",    # don't suggest subclassing collections.UserList instead of list
-  "PERF203",    # don't warn about try/except within a loop
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -208,7 +204,7 @@ ignore = [
 #   "PERF203",
 #   "PERF401",
 #   "PERF402",
-  "PERF403",
+#   "PERF403",
 #   "PIE790",
 #   "PIE808",
 #   "PLC1901",
