@@ -181,7 +181,7 @@ class TestFilesystemList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################
@@ -13138,7 +13138,7 @@ class TestBackupFileList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################
@@ -15916,7 +15916,7 @@ class TestPurgeItemList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################
@@ -20259,7 +20259,7 @@ class TestFunctions(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################

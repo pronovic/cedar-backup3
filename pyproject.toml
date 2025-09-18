@@ -183,6 +183,7 @@ ignore = [
   "RET506",     # allow unnecessary else after raise statement
   "RUF022",     # don't apply sorting standards for __all__
   "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
+  "S110",       # don't warn about logging for try/except/pass blocks
   "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
   "SIM108",     # don't suggest ternary operator instead of if/else block
   "TRY",        # ignore all tryceratops warnings about exception anti-patterns

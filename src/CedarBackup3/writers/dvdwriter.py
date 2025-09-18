@@ -847,7 +847,7 @@ class DvdWriter:
             if os.path.exists(tempdir):
                 try:
                     os.rmdir(tempdir)
-                except:  # noqa: S110
+                except:
                     pass
 
     @staticmethod

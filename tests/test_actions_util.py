@@ -130,7 +130,7 @@ class TestFunctions(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################

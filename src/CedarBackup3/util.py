@@ -1592,7 +1592,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
                 if outputFile is not None:
                     try:  # note, not every file-like object can be flushed
                         outputFile.flush()
-                    except:  # noqa: S110
+                    except:
                         pass
                 if returnOutput:
                     return (pipe.wait(), output)

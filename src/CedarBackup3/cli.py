@@ -1188,7 +1188,7 @@ def _setupLogfile(options):
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
             if sys.platform != "win32":
                 os.chown(logfile, uid, gid)
-        except:  # noqa: S110
+        except:
             pass
     return logfile
 

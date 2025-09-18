@@ -2172,7 +2172,7 @@ class TestFunctions(unittest.TestCase):
         (fd, name) = tempfile.mkstemp(dir=self.tmpdir)
         try:
             os.close(fd)
-        except:  # noqa: S110
+        except:
             pass
         return name
 

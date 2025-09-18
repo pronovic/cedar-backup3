@@ -175,7 +175,7 @@ class TestLocalPeer(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################
@@ -728,7 +728,7 @@ class TestRemotePeer(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: S110
+        except:
             pass
 
     ##################

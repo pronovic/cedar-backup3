@@ -1141,23 +1141,23 @@ class BackupFileList(FilesystemList):
         except tarfile.ReadError:
             try:
                 tar.close()
-            except:  # noqa: S110
+            except:
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: S110
+                except:
                     pass
             raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
         except tarfile.TarError as e:
             try:
                 tar.close()
-            except:  # noqa: S110
+            except:
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: S110
+                except:
                     pass
             raise e
 
