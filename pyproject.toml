@@ -181,7 +181,9 @@ ignore = [
   "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
   "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
   "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
+  "PERF401",    # don't suggest use of list.extend() rather than repeated list.append()
   "FURB189",    # don't suggest subclassing collections.UserList instead of list
+  "PERF203",    # don't warn about try/except within a loop
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -203,7 +205,7 @@ ignore = [
 #   "FURB171",
 #   "FURB189",
 #   "PERF203",
-  "PERF401",
+#   "PERF401",
   "PERF402",
   "PERF403",
 #   "PIE790",
