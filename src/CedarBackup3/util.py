@@ -2073,7 +2073,7 @@ def parseCommaSeparatedString(commaString):
         pass1 = commaString.split(",")
         pass2 = []
         for item in pass1:
-            item = item.strip()
-            if len(item) > 0:
-                pass2.append(item)
+            stripped = item.strip()
+            if len(stripped) > 0:
+                pass2.append(stripped)
         return pass2
