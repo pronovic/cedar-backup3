@@ -184,6 +184,7 @@ ignore = [
   "UP031",      # allow old-style format specifiers instead of f-strings
   "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
   "SIM108",     # don't suggest ternary operator instead of if/else block
+#   "SIM115",
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -243,7 +244,6 @@ ignore = [
 #   "SIM112",
 #   "SIM113",
 #   "SIM114",
-  "SIM115",
   "SIM201",
   "SIM202",
   "SIM401",

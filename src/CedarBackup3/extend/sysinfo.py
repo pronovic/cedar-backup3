@@ -210,5 +210,5 @@ def _getOutputFile(targetDir, name, compress=True):
     if compress:
         outputFile = BZ2File(filename, "wb")
     else:
-        outputFile = open(filename, "wb")
+        outputFile = open(filename, "wb")  # noqa: SIM115
     return (outputFile, filename)
