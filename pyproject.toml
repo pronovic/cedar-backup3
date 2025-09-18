@@ -199,7 +199,7 @@ ignore = [
   "PERF401",
   "PERF402",
   "PERF403",
-  "PIE790",
+#   "PIE790",
   "PIE808",
   "PLC1901",
   "PLR0124",

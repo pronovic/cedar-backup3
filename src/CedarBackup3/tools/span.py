@@ -107,7 +107,6 @@ class SpanOptions(Options):
         Raises:
            ValueError: If one of the validations fails
         """
-        pass
 
 
 #######################################################################

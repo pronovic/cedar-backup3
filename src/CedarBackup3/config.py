@@ -6297,7 +6297,6 @@ class Config(object):
         Raises:
            ValueError: If reference configuration is invalid
         """
-        pass
 
     def _validateExtensions(self):
         """
