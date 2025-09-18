@@ -149,7 +149,7 @@ ignore = [
   "TRY003",     # allow long messages in exceptions; this is often a false-positive that has little benefit
 
   # Exclusions of rule categories and specific rules, customized for this repository
-  # Cedar Backup was first developed starting in 2002, long before these standards existed
+  # Cedar Backup was first developed starting in 2002, long before many of these standards existed
   "ANN",        # don't require type annotations
   "DTZ002",     # allow usage of "naive" datetime objects
   "DTZ003",     # allow usage of "naive" datetime objects
@@ -175,6 +175,7 @@ ignore = [
   "RUF022",     # don't apply sorting standards for __all__
   "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
   "UP031",      # allow old-style format specifiers instead of f-strings
+  "PLR5501",    # don't warn about `elif` instead of `else`/`if`
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -206,7 +207,7 @@ ignore = [
 #   "PLR1711",
 #   "PLR1714",
 #   "PLR1730",
-  "PLR5501", 
+#   "PLR5501", 
   "PLR6104",
   "PLR6201",
   "PLW1514",
