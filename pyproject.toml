@@ -170,6 +170,9 @@ ignore = [
   "RET505",     # allow unnecessary else after return statement
   "RET506",     # allow unnecessary else after raise statement
   "UP031",      # allow old-style format specifiers instead of f-strings
+  "DTZ002",     # allow usage of "naive" datetime objects
+  "DTZ003",     # allow usage of "naive" datetime objects
+  "DTZ011",     # allow usage of "naive" datetime objects
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -177,9 +180,9 @@ ignore = [
 #   "B904",
 #   "BLE001",
 #   "C404",
-  "DTZ002",
-  "DTZ003",
-  "DTZ011",
+#   "DTZ002",
+#   "DTZ003",
+#   "DTZ011",
   "E722",
   "F401",
   "F822",

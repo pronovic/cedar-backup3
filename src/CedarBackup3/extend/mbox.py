@@ -1151,7 +1151,7 @@ def executeAction(configPath, options, config):
        IOError: If a backup could not be written for some reason
     """
     logger.debug("Executing mbox extended action.")
-    newRevision = datetime.datetime.today()  # mark here so all actions are after this date/time
+    newRevision = datetime.datetime.now(tz=datetime.timezone.utc)  # mark here so all actions are after this date/time
     if config.options is None or config.collect is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
     local = LocalConfig(xmlPath=configPath)
