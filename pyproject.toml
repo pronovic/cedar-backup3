@@ -182,6 +182,7 @@ ignore = [
   "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
   "TRY",        # ignore all tryceratops warnings about exception anti-patterns
   "UP031",      # allow old-style format specifiers instead of f-strings
+  "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -237,7 +238,6 @@ ignore = [
 #   "S403", 
 #   "S408",
 #   "SIM103",
-  "SIM105",
   "SIM108",
   "SIM112",
   "SIM113",
