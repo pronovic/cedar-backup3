@@ -7,6 +7,7 @@ Version 3.9.3     unreleased
 	* Upgrade to poetry-dynamic-versioning v1.9.1 for minor fixes.
 	* Add a new `run clean` target to clean up generated data.
 	* Replace black, isort, and pylint with the Ruff formatter and linter.
+	* Address all Ruff linter errors, either with code changes or exclusions.
 	* Remove importlib-metadata dependency in favor of standard library.
 	* Update all dependencies and outdated constraints.
 
