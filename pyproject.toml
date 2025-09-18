@@ -173,6 +173,7 @@ ignore = [
   "RET505",     # allow unnecessary else after return statement
   "RET506",     # allow unnecessary else after raise statement
   "RUF022",     # don't apply sorting standards for __all__
+  "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
   "UP031",      # allow old-style format specifiers instead of f-strings
  
   # I am gradually working toward compliance with these rules
@@ -215,7 +216,6 @@ ignore = [
 #   "RET504",
 #   "RUF022",
 #   "RUF039",
-  "RUF055",
   "RUF059",
   "RUF100",
 #   "S102",
