@@ -422,7 +422,7 @@ def _executeAction(options, config):  # noqa: ARG001
         print()
         counter = 0
         for item in spanSet:
-            counter += 1
+            counter += 1  # noqa: SIM113
             print(
                 "Disc %d: %d files, %s, %.2f%% utilization"
                 % (counter, len(item.fileList), displayBytes(item.size), item.utilization)
