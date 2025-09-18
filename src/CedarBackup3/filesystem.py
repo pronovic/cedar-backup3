@@ -1118,7 +1118,7 @@ class BackupFileList(FilesystemList):
         else:
             raise ValueError("Mode [%s] is not valid." % mode)
         try:
-            tar = tarfile.open(path, tarmode)  # noqa: SIM115
+            tar = tarfile.open(path, tarmode)
             try:
                 tar.format = tarfile.GNU_FORMAT
             except AttributeError:

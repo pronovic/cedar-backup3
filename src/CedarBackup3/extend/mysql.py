@@ -659,7 +659,7 @@ def _getOutputFile(targetDir, database, compressMode):
         filename = "%s.bz2" % filename
         outputFile = BZ2File(filename, "wb")
     else:
-        outputFile = open(filename, "wb")  # noqa: SIM115
+        outputFile = open(filename, "wb")
     logger.debug("MySQL dump file will be [%s].", filename)
     return (outputFile, filename)
 

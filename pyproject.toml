@@ -186,6 +186,7 @@ ignore = [
   "S110",       # don't warn about logging for try/except/pass blocks
   "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
   "SIM108",     # don't suggest ternary operator instead of if/else block
+  "SIM115",     # don't warn about using a context manager, since the code isn't designed for it
   "TRY",        # ignore all tryceratops warnings about exception anti-patterns
   "UP031",      # allow old-style format specifiers instead of f-strings
 ]
