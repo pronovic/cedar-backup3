@@ -172,6 +172,7 @@ ignore = [
   "PTH",        # allow old-style os operations rather than pathlib.Path
   "RET505",     # allow unnecessary else after return statement
   "RET506",     # allow unnecessary else after raise statement
+  "RUF022",     # don't apply sorting standards for __all__
   "UP031",      # allow old-style format specifiers instead of f-strings
  
   # I am gradually working toward compliance with these rules
@@ -212,7 +213,7 @@ ignore = [
   "PLW2901",
   "PLW3201",
 #   "RET504",
-  "RUF022",
+#   "RUF022",
   "RUF039",
   "RUF055",
   "RUF059",
