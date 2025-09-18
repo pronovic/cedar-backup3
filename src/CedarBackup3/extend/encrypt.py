@@ -433,7 +433,7 @@ def executeAction(configPath, options, config):  # noqa: ARG001
     if config.options is None or config.stage is None:
         raise ValueError("Cedar Backup configuration is not properly filled in.")
     local = LocalConfig(xmlPath=configPath)
-    if local.encrypt.encryptMode not in ["gpg"]:
+    if local.encrypt.encryptMode != "gpg":
         raise ValueError("Unknown encrypt mode [%s]" % local.encrypt.encryptMode)
     if local.encrypt.encryptMode == "gpg":
         _confirmGpgRecipient(local.encrypt.encryptTarget)

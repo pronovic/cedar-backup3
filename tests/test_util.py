@@ -2295,7 +2295,7 @@ class TestFunctions(unittest.TestCase):
         command = [
             "BAD",
         ]
-        expected = command[:]
+        expected = command[:]  # noqa: FURB145
         result = resolveCommand(command)
         self.assertEqual(expected, result)
 
@@ -2330,7 +2330,7 @@ class TestFunctions(unittest.TestCase):
         command = [
             "BAD",
         ]
-        expected = command[:]
+        expected = command[:]  # noqa: FURB145
         result = resolveCommand(command)
         self.assertEqual(expected, result)
 

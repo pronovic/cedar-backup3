@@ -1140,7 +1140,7 @@ def sortDict(d):
         List of dictionary keys sorted in order by dictionary value
     """
     items = list(d.items())
-    items.sort(key=lambda x: (x[1], x[0]))  # sort by value and then by key
+    items.sort(key=lambda x: (x[1], x[0]))  # noqa: FURB118 # sort by value and then by key
     return [key for key, value in items]
 
 
