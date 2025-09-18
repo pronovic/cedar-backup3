@@ -180,6 +180,7 @@ ignore = [
   "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
   "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
   "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
+  "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -195,7 +196,7 @@ ignore = [
 #   "F822",
 #   "F841",
 #   "FURB105",
-  "FURB113",
+#   "FURB113",
   "FURB118",
   "FURB145",
   "FURB171",
