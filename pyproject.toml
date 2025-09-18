@@ -180,6 +180,7 @@ ignore = [
   "RET506",     # allow unnecessary else after raise statement
   "RUF022",     # don't apply sorting standards for __all__
   "RUF055",     # ignore uses of the re module that can be replaced with builtin str methods
+  "TRY",        # ignore all tryceratops warnings about exception anti-patterns
   "UP031",      # allow old-style format specifiers instead of f-strings
  
   # I am gradually working toward compliance with these rules
@@ -245,11 +246,11 @@ ignore = [
   "SIM201",
   "SIM202",
   "SIM401",
-  "TRY002",
-  "TRY004",
-  "TRY201",
-  "TRY300",
-  "TRY400",
+#   "TRY002",
+#   "TRY004",
+#   "TRY201",
+#   "TRY300",
+#   "TRY400",
 #   "UP004",
 #   "UP008",
 #   "UP009",
