@@ -280,7 +280,7 @@ class UnorderedList(list):
         else:
             typeinfo = type(value)
         try:
-            x = value < value
+            _ = value < value
         except TypeError:
             value = repr(value)
         return repr(typeinfo), value
