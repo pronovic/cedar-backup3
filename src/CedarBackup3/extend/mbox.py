@@ -91,7 +91,7 @@ What is this extension?
 import datetime
 import logging
 import os
-import pickle
+import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
 import posixpath
 import tempfile
 from bz2 import BZ2File
@@ -1286,7 +1286,7 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
         else:
             try:
                 with open(revisionPath, "rb") as f:
-                    revisionDate = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+                    revisionDate = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
                 logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
             except Exception as e:  # noqa: BLE001
                 revisionDate = None
@@ -1534,11 +1534,11 @@ def _backupMboxDir(
                 if os.path.exists(cleanitem):
                     try:
                         os.remove(cleanitem)
-                    except:  # noqa: E722
+                    except:  # noqa: E722,S110
                         pass
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
         try:
             os.rmdir(tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass

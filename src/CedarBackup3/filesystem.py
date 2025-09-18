@@ -931,7 +931,7 @@ class BackupFileList(FilesystemList):
         Raises:
            OSError: If the file cannot be opened
         """
-        s = hashlib.sha1()
+        s = hashlib.sha1()  # noqa: S324 # we're not using SHA-1 for cryptographic purposes, only to identify file changes
         with open(path, mode="rb") as f:
             readBytes = 4096  # see notes above
             while readBytes > 0:
@@ -1141,23 +1141,23 @@ class BackupFileList(FilesystemList):
         except tarfile.ReadError as e:
             try:
                 tar.close()
-            except:  # noqa: E722
+            except:  # noqa: E722,S110
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: E722
+                except:  # noqa: E722,S110
                     pass
             raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path) from e
         except tarfile.TarError as e:
             try:
                 tar.close()
-            except:  # noqa: E722
+            except:  # noqa: E722,S110
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: E722
+                except:  # noqa: E722,S110
                     pass
             raise e
 

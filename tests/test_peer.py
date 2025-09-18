@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
+# ruff: noqa: S103
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -175,7 +176,7 @@ class TestLocalPeer(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################
@@ -728,7 +729,7 @@ class TestRemotePeer(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################

@@ -182,7 +182,7 @@ class TestFilesystemList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################
@@ -13139,7 +13139,7 @@ class TestBackupFileList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################
@@ -15886,7 +15886,7 @@ class TestBackupFileList(unittest.TestCase):
         for key in list(self.resources.keys()):
             path = self.resources[key]
             with open(path, mode="rb") as f:  # because generateDigest also uses "rb"
-                digest1 = hashlib.sha1(f.read()).hexdigest()
+                digest1 = hashlib.sha1(f.read()).hexdigest()  # noqa: S324
             digest2 = BackupFileList._generateDigest(path)
             self.assertEqual(digest1, digest2, "Digest for %s varies: [%s] vs [%s]." % (path, digest1, digest2))
 
@@ -15917,7 +15917,7 @@ class TestPurgeItemList(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################
@@ -20260,7 +20260,7 @@ class TestFunctions(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################

@@ -65,7 +65,7 @@ import logging
 import re
 import sys
 from io import StringIO
-from xml.dom.minidom import Node, getDOMImplementation, parseString
+from xml.dom.minidom import Node, getDOMImplementation, parseString  # noqa: S408 # we assume trusted data, so xml.dom is ok
 from xml.parsers.expat import ExpatError
 
 ########################################################################
@@ -93,7 +93,7 @@ def createInputDom(xmlData, name="cb_config"):
        ValueError: If the document can't be parsed
     """
     try:
-        xmlDom = parseString(xmlData)
+        xmlDom = parseString(xmlData)  # noqa: S318 # we assume trusted data, so xml.dom is ok
         parentNode = readFirstChild(xmlDom, name)
         return (xmlDom, parentNode)
     except (IOError, ExpatError) as e:

@@ -71,7 +71,7 @@ Check the Subversion documentation for more information.
 
 import logging
 import os
-import pickle
+import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
 import posixpath
 from bz2 import BZ2File
 from functools import total_ordering
@@ -1434,7 +1434,7 @@ def _loadLastRevision(revisionPath):
     else:
         try:
             with open(revisionPath, "rb") as f:
-                startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+                startRevision = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
             logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
         except Exception as e:  # noqa: BLE001
             startRevision = -1

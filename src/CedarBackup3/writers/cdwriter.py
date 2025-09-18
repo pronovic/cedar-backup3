@@ -947,7 +947,7 @@ class CdWriter(object):
                 if imagePath is not None and os.path.exists(imagePath):
                     try:
                         os.unlink(imagePath)
-                    except:  # noqa: E722  # noqa: E722
+                    except:  # noqa: E722,S110
                         pass
         else:
             imagePath = encodePath(imagePath)
@@ -982,7 +982,7 @@ class CdWriter(object):
             (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
             try:
                 os.close(handle)
-            except:  # noqa: E722  # noqa: E722
+            except:  # noqa: E722,S110
                 pass
             image.writeImage(path)
             logger.debug("Completed creating image [%s].", path)
@@ -991,7 +991,7 @@ class CdWriter(object):
             if path is not None and os.path.exists(path):
                 try:
                     os.unlink(path)
-                except:  # noqa: E722  # noqa: E722
+                except:  # noqa: E722,S110
                     pass
             raise e
 

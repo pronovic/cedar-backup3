@@ -47,7 +47,7 @@ Implements the standard 'collect' action.
 
 import logging
 import os
-import pickle
+import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
 
 from CedarBackup3.actions.constants import COLLECT_INDICATOR, DIGEST_EXTENSION
 from CedarBackup3.actions.util import writeIndicatorFile
@@ -360,7 +360,7 @@ def _loadDigest(digestPath):
     else:
         try:
             with open(digestPath, "rb") as f:
-                digest = pickle.load(f, fix_imports=True)  # be compatible with Python 2
+                digest = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
             logger.debug("Loaded digest [%s] from disk: %d entries.", digestPath, len(digest))
         except Exception as e:  # noqa: BLE001
             digest = {}

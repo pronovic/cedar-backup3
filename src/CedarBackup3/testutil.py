@@ -346,7 +346,7 @@ def randomFilename(length, prefix=None, suffix=None):
     """
     characters = [None] * length
     for i in range(length):
-        characters[i] = random.choice(string.ascii_uppercase)
+        characters[i] = random.choice(string.ascii_uppercase)  # noqa: S311
     if prefix is None:
         prefix = ""
     if suffix is None:
@@ -401,7 +401,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG0
     missed = False
     instead = None
     try:
-        exec("obj.%s = value" % prop)
+        exec("obj.%s = value" % prop)  # noqa: S102
         missed = True
     except exception:
         pass

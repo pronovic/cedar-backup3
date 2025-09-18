@@ -932,7 +932,7 @@ class TestTool(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722
+        except:  # noqa: E722,S110
             pass
 
     ##################
