@@ -641,7 +641,7 @@ class DvdWriter:
                 self.unlockTray()
                 result = executeCommand(command, args)[0]
                 if result != 0:
-                    raise IOError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
+                    raise OSError("Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result)
                 logger.debug("Kludge was apparently successful.")
             if self.ejectDelay is not None:
                 logger.debug("Per configuration, sleeping %d seconds after opening tray.", self.ejectDelay)
@@ -657,7 +657,7 @@ class DvdWriter:
         args = ["-i", "off", self.device]
         result = executeCommand(command, args)[0]
         if result != 0:
-            raise IOError("Error (%d) executing eject command to unlock tray." % result)
+            raise OSError("Error (%d) executing eject command to unlock tray." % result)
 
     def closeTray(self):
         """
@@ -677,7 +677,7 @@ class DvdWriter:
             args = ["-t", self.device]
             result = executeCommand(command, args)[0]
             if result != 0:
-                raise IOError("Error (%d) executing eject command to close tray." % result)
+                raise OSError("Error (%d) executing eject command to close tray." % result)
 
     def refreshMedia(self):
         """
@@ -749,7 +749,7 @@ class DvdWriter:
             available = self.retrieveCapacity(entireDisc=self._image.newDisc).bytesAvailable
             if size > available:
                 logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
-                raise IOError("Media does not contain enough capacity to store image.")
+                raise OSError("Media does not contain enough capacity to store image.")
             self._writeImage(self._image.newDisc, None, self._image.entries, self._image.mediaLabel)
         else:
             if not (os.path.isabs(imagePath) or posixpath.isabs(imagePath)):  # Python 3.13+ does not treat / as absolute on Windows
@@ -782,7 +782,7 @@ class DvdWriter:
         (result, output) = executeCommand(command, args, returnOutput=True)
         if result != 0:
             DvdWriter._searchForOverburn(output)  # throws own exception if overburn condition is found
-            raise IOError("Error (%d) executing command to write disc." % result)
+            raise OSError("Error (%d) executing command to write disc." % result)
         self.refreshMedia()
 
     @staticmethod
@@ -920,7 +920,7 @@ class DvdWriter:
                     logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
                 except ValueError:
                     logger.error("Image does not fit in available capacity (no useful capacity info available).")
-                raise IOError("Media does not contain enough capacity to store image.")
+                raise OSError("Media does not contain enough capacity to store image.")
 
     @staticmethod
     def _buildWriteArgs(newDisc, hardwareId, driveSpeed, imagePath, entries, mediaLabel=None, dryRun=False):

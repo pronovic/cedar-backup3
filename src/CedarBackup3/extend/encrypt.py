@@ -518,7 +518,7 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
                 os.remove(sourcePath)
                 logger.debug("Completed removing old file [%s].", sourcePath)
             except Exception as e:
-                raise IOError("Failed to remove file [%s] after encrypting it." % (sourcePath)) from e
+                raise OSError("Failed to remove file [%s] after encrypting it." % (sourcePath)) from e
     return encryptedPath
 
 
@@ -550,9 +550,9 @@ def _encryptFileWithGpg(sourcePath, recipient):
     args = ["--batch", "--yes", "-e", "-r", recipient, "-o", encryptedPath, sourcePath]
     result = executeCommand(command, args)[0]
     if result != 0:
-        raise IOError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
+        raise OSError("Error [%d] calling gpg to encrypt [%s]." % (result, sourcePath))
     if not os.path.exists(encryptedPath):
-        raise IOError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
+        raise OSError("After call to [%s], encrypted file [%s] does not exist." % (command, encryptedPath))
     logger.debug("Completed encrypting file [%s] to [%s].", sourcePath, encryptedPath)
     return encryptedPath
 
@@ -575,4 +575,4 @@ def _confirmGpgRecipient(recipient):
     args = ["--batch", "-k", recipient]  # should use --with-colons if the output will be parsed
     result = executeCommand(command, args)[0]
     if result != 0:
-        raise IOError("GPG unable to find public key for [%s]." % recipient)
+        raise OSError("GPG unable to find public key for [%s]." % recipient)

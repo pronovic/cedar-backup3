@@ -435,7 +435,7 @@ class _ActionItem:
         result, output = executeCommand(command=fields[0:1], args=fields[1:], returnOutput=True)
         if result != 0:
             logger.error("Hook failed, tail is: %s", "\n   %s" % "   ".join(output[-10:]) if output else "<empty>")
-            raise IOError("Error (%d) executing %s hook for action %s: %s" % (result, type, hook.action, fields))
+            raise OSError("Error (%d) executing %s hook for action %s: %s" % (result, type, hook.action, fields))
 
 
 ###########################
@@ -539,7 +539,7 @@ class _ManagedActionItem:
             logger.debug("Executing managed action [%s] on peer [%s].", self.name, peer.name)
             try:
                 peer.executeManagedAction(self.name, options.full)
-            except IOError as e:
+            except OSError as e:
                 logger.error(e)  # log the message and go on, so we don't kill the backup
 
 

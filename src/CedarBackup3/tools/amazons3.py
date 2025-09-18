@@ -1181,7 +1181,7 @@ def _synchronizeBucket(sourceDir, s3BucketUrl, uploadOnly):
         args += ["--delete"]
     result = executeCommand(AWS_COMMAND, args, returnOutput=False)[0]
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI synchronize bucket." % result)
+        raise OSError("Error [%d] calling AWS CLI synchronize bucket." % result)
 
 
 ###################################
@@ -1225,7 +1225,7 @@ def _verifyBucketContents(sourceDir, sourceFiles, s3BucketUrl):
     args = ["s3api", "list-objects", "--bucket", bucket, "--prefix", prefix, "--query", query]
     (result, data) = executeCommand(AWS_COMMAND, args, returnOutput=True)
     if result != 0:
-        raise IOError("Error [%d] calling AWS CLI verify bucket contents." % result)
+        raise OSError("Error [%d] calling AWS CLI verify bucket contents." % result)
 
     contents = {}
     for entry in json.loads("".join(data)):

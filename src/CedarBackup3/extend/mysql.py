@@ -629,7 +629,7 @@ def _backupDatabase(targetDir, compressMode, user, password, backupUser, backupG
     with outputFile:
         backupDatabase(user, password, outputFile, database)
     if not os.path.exists(filename):
-        raise IOError("Dump file [%s] does not seem to exist after backup completed." % filename)
+        raise OSError("Dump file [%s] does not seem to exist after backup completed." % filename)
     changeOwnership(filename, backupUser, backupGroup)
 
 
@@ -732,6 +732,6 @@ def backupDatabase(user, password, backupFile, database=None):
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
     if result != 0:
         if database is None:
-            raise IOError("Error [%d] executing MySQL database dump for all databases." % result)
+            raise OSError("Error [%d] executing MySQL database dump for all databases." % result)
         else:
-            raise IOError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))
+            raise OSError("Error [%d] executing MySQL database dump for database [%s]." % (result, database))

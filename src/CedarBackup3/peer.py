@@ -238,7 +238,7 @@ class LocalPeer:
             raise ValueError("Target directory is not a directory or does not exist on disk.")
         count = LocalPeer._copyLocalDir(self.collectDir, targetDir, ownership, permissions)
         if count == 0:
-            raise IOError("Did not copy any files from local peer.")
+            raise OSError("Did not copy any files from local peer.")
         return count
 
     def checkCollectIndicator(self, collectIndicator=None):
@@ -377,7 +377,7 @@ class LocalPeer:
             return
         if not overwrite:
             if os.path.exists(targetFile):
-                raise IOError("Target file [%s] already exists." % targetFile)
+                raise OSError("Target file [%s] already exists." % targetFile)
         if sourceFile is None:
             with open(targetFile, "w") as f:
                 f.write("")
@@ -762,7 +762,7 @@ class RemotePeer:
             permissions,
         )
         if count == 0:
-            raise IOError("Did not copy any files from local peer.")
+            raise OSError("Did not copy any files from local peer.")
         return count
 
     def checkCollectIndicator(self, collectIndicator=None):
@@ -898,9 +898,9 @@ class RemotePeer:
         try:
             command = RemotePeer._buildCbackCommand(self.cbackCommand, action, fullBackup)
             self.executeRemoteCommand(command)
-        except IOError as e:
+        except OSError as e:
             logger.info(e)
-            raise IOError("Failed to execute action [%s] on managed client [%s]." % (action, self.name)) from e
+            raise OSError("Failed to execute action [%s] on managed client [%s]." % (action, self.name)) from e
 
     ##################
     # Private methods
@@ -985,26 +985,26 @@ class RemotePeer:
         if localUser is not None:
             try:
                 if not isRunningAsRoot():
-                    raise IOError("Only root can remote copy as another user.")
+                    raise OSError("Only root can remote copy as another user.")
             except AttributeError:
                 pass
             actualCommand = "%s %s@%s:%s/* %s" % (rcpCommand, remoteUser, remoteHost, sourceDir, targetDir)
             command = resolveCommand(SU_COMMAND)
             result = executeCommand(command, [localUser, "-c", actualCommand])[0]
             if result != 0:
-                raise IOError("Error (%d) copying files from remote host as local user [%s]." % (result, localUser))
+                raise OSError("Error (%d) copying files from remote host as local user [%s]." % (result, localUser))
         else:
             copySource = "%s@%s:%s/*" % (remoteUser, remoteHost, sourceDir)
             command = resolveCommand(rcpCommandList)
             result = executeCommand(command, [copySource, targetDir])[0]
             if result != 0:
-                raise IOError("Error (%d) copying files from remote host." % result)
+                raise OSError("Error (%d) copying files from remote host." % result)
         afterSet = RemotePeer._getDirContents(targetDir)
         if len(afterSet) == 0:
-            raise IOError("Did not copy any files from remote peer.")
+            raise OSError("Did not copy any files from remote peer.")
         differenceSet = afterSet.difference(beforeSet)  # files we added as part of copy
         if len(differenceSet) == 0:
-            raise IOError("Apparently did not copy any new files from remote peer.")
+            raise OSError("Apparently did not copy any new files from remote peer.")
         for targetFile in differenceSet:
             if ownership is not None:
                 if sys.platform != "win32":
@@ -1066,26 +1066,26 @@ class RemotePeer:
         """
         if not overwrite:
             if os.path.exists(targetFile):
-                raise IOError("Target file [%s] already exists." % targetFile)
+                raise OSError("Target file [%s] already exists." % targetFile)
         if localUser is not None:
             try:
                 if not isRunningAsRoot():
-                    raise IOError("Only root can remote copy as another user.")
+                    raise OSError("Only root can remote copy as another user.")
             except AttributeError:
                 pass
             actualCommand = "%s %s@%s:%s %s" % (rcpCommand, remoteUser, remoteHost, sourceFile.replace(" ", "\\ "), targetFile)
             command = resolveCommand(SU_COMMAND)
             result = executeCommand(command, [localUser, "-c", actualCommand])[0]
             if result != 0:
-                raise IOError("Error (%d) copying [%s] from remote host as local user [%s]." % (result, sourceFile, localUser))
+                raise OSError("Error (%d) copying [%s] from remote host as local user [%s]." % (result, sourceFile, localUser))
         else:
             copySource = "%s@%s:%s" % (remoteUser, remoteHost, sourceFile.replace(" ", "\\ "))
             command = resolveCommand(rcpCommandList)
             result = executeCommand(command, [copySource, targetFile])[0]
             if result != 0:
-                raise IOError("Error (%d) copying [%s] from remote host." % (result, sourceFile))
+                raise OSError("Error (%d) copying [%s] from remote host." % (result, sourceFile))
         if not os.path.exists(targetFile):
-            raise IOError("Apparently unable to copy file from remote host.")
+            raise OSError("Apparently unable to copy file from remote host.")
         if ownership is not None:
             if sys.platform != "win32":
                 os.chown(targetFile, ownership[0], ownership[1])
@@ -1123,24 +1123,24 @@ class RemotePeer:
         """
         if not overwrite:
             if os.path.exists(targetFile):
-                raise IOError("Target file [%s] already exists." % targetFile)
+                raise OSError("Target file [%s] already exists." % targetFile)
         if localUser is not None:
             try:
                 if not isRunningAsRoot():
-                    raise IOError("Only root can remote copy as another user.")
+                    raise OSError("Only root can remote copy as another user.")
             except AttributeError:
                 pass
             actualCommand = '%s "%s" "%s@%s:%s"' % (rcpCommand, sourceFile, remoteUser, remoteHost, targetFile)
             command = resolveCommand(SU_COMMAND)
             result = executeCommand(command, [localUser, "-c", actualCommand])[0]
             if result != 0:
-                raise IOError("Error (%d) copying [%s] to remote host as local user [%s]." % (result, sourceFile, localUser))
+                raise OSError("Error (%d) copying [%s] to remote host as local user [%s]." % (result, sourceFile, localUser))
         else:
             copyTarget = "%s@%s:%s" % (remoteUser, remoteHost, targetFile.replace(" ", "\\ "))
             command = resolveCommand(rcpCommandList)
             result = executeCommand(command, [sourceFile.replace(" ", "\\ "), copyTarget])[0]
             if result != 0:
-                raise IOError("Error (%d) copying [%s] to remote host." % (result, sourceFile))
+                raise OSError("Error (%d) copying [%s] to remote host." % (result, sourceFile))
 
     @staticmethod
     def _executeRemoteCommand(remoteUser, localUser, remoteHost, rshCommand, rshCommandList, remoteCommand):
@@ -1161,18 +1161,18 @@ class RemotePeer:
         if localUser is not None:
             try:
                 if not isRunningAsRoot():
-                    raise IOError("Only root can remote shell as another user.")
+                    raise OSError("Only root can remote shell as another user.")
             except AttributeError:
                 pass
             command = resolveCommand(SU_COMMAND)
             result = executeCommand(command, [localUser, "-c", actualCommand])[0]
             if result != 0:
-                raise IOError('Command failed [su -c %s "%s"]' % (localUser, actualCommand))
+                raise OSError('Command failed [su -c %s "%s"]' % (localUser, actualCommand))
         else:
             command = resolveCommand(rshCommandList)
             result = executeCommand(command, ["%s@%s" % (remoteUser, remoteHost), "%s" % remoteCommand])[0]
             if result != 0:
-                raise IOError("Command failed [%s]" % (actualCommand))
+                raise OSError("Command failed [%s]" % (actualCommand))
 
     @staticmethod
     def _buildCbackCommand(cbackCommand, action, fullBackup):

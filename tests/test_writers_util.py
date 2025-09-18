@@ -421,7 +421,7 @@ class TestIsoImage(unittest.TestCase):
         ]
         (result, _) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
         if result != 0:
-            raise IOError("Error (%d) executing command to mount image." % result)
+            raise OSError("Error (%d) executing command to mount image." % result)
         self.mounted = True
         return mountPath
 
@@ -455,7 +455,7 @@ class TestIsoImage(unittest.TestCase):
         ]
         (result, _) = executeCommand(SUDO_CMD, args, returnOutput=True)
         if result != 0:
-            raise IOError("Error (%d) executing command to mount image." % result)
+            raise OSError("Error (%d) executing command to mount image." % result)
         self.mounted = True
         return mountPath
 
@@ -497,7 +497,7 @@ class TestIsoImage(unittest.TestCase):
         ]
         (result, _) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
         if result != 0:
-            raise IOError("Error (%d) executing command to unmount image." % result)
+            raise OSError("Error (%d) executing command to unmount image." % result)
         self.mounted = False
 
     def unmountImageGeneric(self):
@@ -534,7 +534,7 @@ class TestIsoImage(unittest.TestCase):
             time.sleep(1)
             (result, _) = executeCommand(SUDO_CMD, args, returnOutput=True)
             if result != 0:
-                raise IOError("Error (%d) executing command to unmount image." % result)
+                raise OSError("Error (%d) executing command to unmount image." % result)
         self.mounted = False
 
     def disableGnomeAutomount(self):

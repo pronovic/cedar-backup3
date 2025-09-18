@@ -1477,7 +1477,7 @@ def _backupMboxFile(config, absolutePath, fullBackup, collectMode, compressMode,
     with _getOutputFile(backupPath, compressMode) as outputFile:
         result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=outputFile)[0]
         if result != 0:
-            raise IOError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
+            raise OSError("Error [%d] executing grepmail on [%s]." % (result, absolutePath))
     logger.debug("Completed backing up mailbox [%s].", absolutePath)
     return backupPath
 

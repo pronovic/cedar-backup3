@@ -1521,7 +1521,7 @@ def compareContents(path1, path2, verbose=False):
         path2List.addDirContents(path2)
         path2Digest = path2List.generateDigestMap(stripPrefix=normalizeDir(path2))
         compareDigestMaps(path1Digest, path2Digest, verbose)
-    except IOError as e:
+    except OSError as e:
         logger.error("I/O error encountered during consistency check.")
         raise e
 

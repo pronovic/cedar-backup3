@@ -582,14 +582,14 @@ class IsoImage:
         command = resolveCommand(MKISOFS_COMMAND)
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
         if result != 0:
-            raise IOError("Error (%d) executing mkisofs command to estimate size." % result)
+            raise OSError("Error (%d) executing mkisofs command to estimate size." % result)
         if len(output) != 1:
-            raise IOError("Unable to parse mkisofs output.")
+            raise OSError("Unable to parse mkisofs output.")
         try:
             sectors = float(output[0])
             return convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
         except Exception as e:
-            raise IOError("Unable to parse mkisofs output.") from e
+            raise OSError("Unable to parse mkisofs output.") from e
 
     def writeImage(self, imagePath):
         """
@@ -609,7 +609,7 @@ class IsoImage:
         command = resolveCommand(MKISOFS_COMMAND)
         (result, _) = executeCommand(command, args, returnOutput=False)
         if result != 0:
-            raise IOError("Error (%d) executing mkisofs command to build image." % result)
+            raise OSError("Error (%d) executing mkisofs command to build image." % result)
 
     #########################################
     # Methods used to build mkisofs commands

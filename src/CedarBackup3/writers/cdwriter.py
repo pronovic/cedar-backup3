@@ -607,7 +607,7 @@ class CdWriter:
         command = resolveCommand(CDRECORD_COMMAND)
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
         if result != 0:
-            raise IOError("Error (%d) executing cdrecord command to get properties." % result)
+            raise OSError("Error (%d) executing cdrecord command to get properties." % result)
         return CdWriter._parsePropertiesOutput(output)
 
     def retrieveCapacity(self, entireDisc=False, useMulti=True):
@@ -834,7 +834,7 @@ class CdWriter:
                     self.unlockTray()
                     result = executeCommand(EJECT_COMMAND, args)[0]
                     if result != 0:
-                        raise IOError(
+                        raise OSError(
                             "Error (%d) executing eject command to open tray (failed even after unlocking tray)." % result
                         )
                     logger.debug("Kludge was apparently successful.")
@@ -852,7 +852,7 @@ class CdWriter:
         command = resolveCommand(EJECT_COMMAND)
         result = executeCommand(command, args)[0]
         if result != 0:
-            raise IOError("Error (%d) executing eject command to unlock tray." % result)
+            raise OSError("Error (%d) executing eject command to unlock tray." % result)
 
     def closeTray(self):
         """
@@ -875,7 +875,7 @@ class CdWriter:
                 command = resolveCommand(EJECT_COMMAND)
                 result = executeCommand(command, args)[0]
                 if result != 0:
-                    raise IOError("Error (%d) executing eject command to close tray." % result)
+                    raise OSError("Error (%d) executing eject command to close tray." % result)
 
     def refreshMedia(self):
         """
@@ -976,7 +976,7 @@ class CdWriter:
         logger.debug("Media capacity: %s", displayBytes(available))
         if size > available:
             logger.error("Image [%s] does not fit in available capacity [%s].", displayBytes(size), displayBytes(available))
-            raise IOError("Media does not contain enough capacity to store image.")
+            raise OSError("Media does not contain enough capacity to store image.")
         try:
             (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
             try:
@@ -1009,7 +1009,7 @@ class CdWriter:
         command = resolveCommand(CDRECORD_COMMAND)
         result = executeCommand(command, args)[0]
         if result != 0:
-            raise IOError("Error (%d) executing command to write disc." % result)
+            raise OSError("Error (%d) executing command to write disc." % result)
         self.refreshMedia()
 
     def _blankMedia(self):
@@ -1023,7 +1023,7 @@ class CdWriter:
             command = resolveCommand(CDRECORD_COMMAND)
             result = executeCommand(command, args)[0]
             if result != 0:
-                raise IOError("Error (%d) executing command to blank disc." % result)
+                raise OSError("Error (%d) executing command to blank disc." % result)
             self.refreshMedia()
 
     #######################################
@@ -1148,11 +1148,11 @@ class CdWriter:
         boundaryPattern = re.compile(r"(^\s*)([0-9]*)(\s*,\s*)([0-9]*)(\s*$)")
         parsed = boundaryPattern.search(output[0])
         if not parsed:
-            raise IOError("Unable to parse output of boundaries command.")
+            raise OSError("Unable to parse output of boundaries command.")
         try:
             boundaries = (int(parsed.group(2)), int(parsed.group(4)))
         except TypeError as e:
-            raise IOError("Unable to parse output of boundaries command.") from e
+            raise OSError("Unable to parse output of boundaries command.") from e
         return boundaries
 
     #################################

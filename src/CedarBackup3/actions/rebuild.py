@@ -155,5 +155,5 @@ def _findRebuildDirs(config):
             logger.info("Rebuild process will include stage directory [%s]", stageDir)
             stagingDirs[stageDir] = dateSuffix
     if len(stagingDirs) == 0:
-        raise IOError("Unable to find any staging directories for rebuild process.")
+        raise OSError("Unable to find any staging directories for rebuild process.")
     return stagingDirs

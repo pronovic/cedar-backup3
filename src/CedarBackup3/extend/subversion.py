@@ -1381,7 +1381,7 @@ def _backupRepository(config, local, todayIsStart, fullBackup, repository):
     with _getOutputFile(backupPath, compressMode) as outputFile:
         backupRepository(repository.repositoryPath, outputFile, startRevision, endRevision)
     if not os.path.exists(backupPath):
-        raise IOError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
+        raise OSError("Dump file [%s] does not seem to exist after backup completed." % backupPath)
     changeOwnership(backupPath, config.options.backupUser, config.options.backupGroup)
     if collectMode == "incr":
         _writeLastRevision(config, revisionPath, endRevision)
@@ -1511,7 +1511,7 @@ def backupRepository(repositoryPath, backupFile, startRevision=None, endRevision
     command = resolveCommand(SVNADMIN_COMMAND)
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True, doNotLog=True, outputFile=backupFile)[0]
     if result != 0:
-        raise IOError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
+        raise OSError("Error [%d] executing Subversion dump for repository [%s]." % (result, repositoryPath))
     logger.debug("Completed dumping subversion repository [%s].", repositoryPath)
 
 
@@ -1540,7 +1540,7 @@ def getYoungestRevision(repositoryPath):
     command = resolveCommand(SVNLOOK_COMMAND)
     (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=True)
     if result != 0:
-        raise IOError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
+        raise OSError("Error [%d] executing 'svnlook youngest' for repository [%s]." % (result, repositoryPath))
     if len(output) != 1:
         raise ValueError("Unable to parse 'svnlook youngest' output.")
     return int(output[0])

@@ -515,16 +515,16 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
         args = ["--verbose", "--numeric-suffixes", "--suffix-length=5", "--bytes=%d" % bytes, filename, prefix]
         (result, output) = executeCommand(command, args, returnOutput=True, ignoreStderr=False)
         if result != 0:
-            raise IOError("Error [%d] calling split for [%s]." % (result, sourcePath))
+            raise OSError("Error [%d] calling split for [%s]." % (result, sourcePath))
         pattern = re.compile(r"(creating file [`'])(%s)(.*)(')" % prefix)
         match = pattern.search(output[-1:][0])
         if match is None:
-            raise IOError("Unable to parse output from split command.")
+            raise OSError("Unable to parse output from split command.")
         value = int(match.group(3).strip())
         for index in range(value):
             path = "%s%05d" % (prefix, index)
             if not os.path.exists(path):
-                raise IOError("After call to split, expected file [%s] does not exist." % path)
+                raise OSError("After call to split, expected file [%s] does not exist." % path)
             changeOwnership(path, backupUser, backupGroup)
         if removeSource:
             if os.path.exists(sourcePath):
@@ -532,6 +532,6 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
                     os.remove(sourcePath)
                     logger.debug("Completed removing old file [%s].", sourcePath)
                 except Exception as e:
-                    raise IOError("Failed to remove file [%s] after splitting it." % (sourcePath)) from e
+                    raise OSError("Failed to remove file [%s] after splitting it." % (sourcePath)) from e
     finally:
         os.chdir(cwd)

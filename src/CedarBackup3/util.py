@@ -1679,7 +1679,7 @@ def mount(devicePath, mountPoint, fsType):
     command = resolveCommand(MOUNT_COMMAND)
     result = executeCommand(command, args, returnOutput=False, ignoreStderr=True)[0]
     if result != 0:
-        raise IOError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
+        raise OSError("Error [%d] mounting [%s] at [%s] as [%s]." % (result, devicePath, mountPoint, fsType))
 
 
 #####################
@@ -1738,7 +1738,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
                     time.sleep(waitSeconds)
         else:
             if os.path.ismount(mountPoint):
-                raise IOError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
+                raise OSError("Unable to unmount [%s] after %d attempts." % (mountPoint, attempts))
             logger.info("Mount point [%s] seems to have finally gone away.", mountPoint)
         if os.path.isdir(mountPoint) and removeAfter:
             logger.debug("Removing mount point [%s].", mountPoint)

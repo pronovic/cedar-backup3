@@ -146,7 +146,7 @@ def createWriter(config):
     deviceType = _getDeviceType(config)
     mediaType = _getMediaType(config)
     if deviceMounted(devicePath):
-        raise IOError("Device [%s] is currently mounted." % (devicePath))
+        raise OSError("Device [%s] is currently mounted." % (devicePath))
     if deviceType == "cdwriter":
         return CdWriter(devicePath, deviceScsiId, driveSpeed, mediaType, noEject, refreshMediaDelay, ejectDelay)
     elif deviceType == "dvdwriter":

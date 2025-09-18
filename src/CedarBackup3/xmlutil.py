@@ -96,7 +96,7 @@ def createInputDom(xmlData, name="cb_config"):
         xmlDom = parseString(xmlData)  # noqa: S318 # we assume trusted data, so xml.dom is ok
         parentNode = readFirstChild(xmlDom, name)
         return (xmlDom, parentNode)
-    except (IOError, ExpatError) as e:
+    except (OSError, ExpatError) as e:
         raise ValueError("Unable to parse XML document: %s" % e) from e
 
 
