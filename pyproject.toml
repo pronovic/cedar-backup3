@@ -184,7 +184,6 @@ ignore = [
   "UP031",      # allow old-style format specifiers instead of f-strings
   "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
   "SIM108",     # don't suggest ternary operator instead of if/else block
-  "SIM201",     # don't suggest x != y instead of not x == y
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -244,8 +243,8 @@ ignore = [
 #   "SIM112",
 #   "SIM113",
 #   "SIM114",
-  "SIM202",
-  "SIM401",
+#   "SIM202",
+#   "SIM401",
 #   "TRY002",
 #   "TRY004",
 #   "TRY201",
@@ -271,6 +270,8 @@ ignore = [
   "PLC0415",    # allow import statements that are not at the top of the file
   "PLC2801",    # allow direct use of dunder methods like __str__
   "S108",       # don't warn about insecure temporary files
+  "SIM201",     # don't suggest x != y instead of not x == y
+  "SIM202",     # don't suggest x == y instead of not x != y
 ]
 "src/CedarBackup3/tools/**/*" = [
   # Exclusions that apply to Cedar Backup tools only
