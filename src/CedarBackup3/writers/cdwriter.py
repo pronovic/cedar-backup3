@@ -95,7 +95,7 @@ MKISOFS_COMMAND = ["mkisofs"]
 ########################################################################
 
 
-class MediaDefinition(object):
+class MediaDefinition:
     """
     Class encapsulating information about CD media definitions.
 
@@ -194,7 +194,7 @@ class MediaDefinition(object):
 ########################################################################
 
 
-class MediaCapacity(object):
+class MediaCapacity:
     """
     Class encapsulating information about CD media capacity.
 
@@ -276,7 +276,7 @@ class MediaCapacity(object):
 ########################################################################
 
 
-class _ImageProperties(object):
+class _ImageProperties:
     """
     Simple value object to hold image properties for ``DvdWriter``.
     """
@@ -293,7 +293,7 @@ class _ImageProperties(object):
 ########################################################################
 
 
-class CdWriter(object):
+class CdWriter:
     ######################
     # Class documentation
     ######################

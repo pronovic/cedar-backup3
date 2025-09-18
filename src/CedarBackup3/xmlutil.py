@@ -485,7 +485,7 @@ def serializeDom(xmlDom, indent=3):
     return xmlData
 
 
-class Serializer(object):
+class Serializer:
     """
     XML serializer class.
 

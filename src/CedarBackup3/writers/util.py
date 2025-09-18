@@ -185,7 +185,7 @@ def readMediaLabel(devicePath):
 ########################################################################
 
 
-class IsoImage(object):
+class IsoImage:
     ######################
     # Class documentation
     ######################

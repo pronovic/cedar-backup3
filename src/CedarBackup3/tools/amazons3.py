@@ -101,7 +101,7 @@ LONG_SWITCHES = [
 
 
 @total_ordering
-class Options(object):
+class Options:
     ######################
     # Class documentation
     ######################

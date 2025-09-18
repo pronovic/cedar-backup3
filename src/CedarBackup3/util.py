@@ -621,7 +621,7 @@ class RegexList(UnorderedList):
 ########################################################################
 
 
-class _Vertex(object):
+class _Vertex:
     """
     Represents a vertex (or node) in a directed graph.
     """
@@ -639,7 +639,7 @@ class _Vertex(object):
 
 
 @total_ordering
-class DirectedGraph(object):
+class DirectedGraph:
     """
     Represents a directed graph.
 
@@ -825,7 +825,7 @@ class DirectedGraph(object):
 ########################################################################
 
 
-class PathResolverSingleton(object):
+class PathResolverSingleton:
     """
     Singleton used for resolving executable paths.
 
@@ -952,7 +952,7 @@ class Pipe(Popen):
 ########################################################################
 
 
-class Diagnostics(object):
+class Diagnostics:
     """
     Class holding runtime diagnostic information.
 

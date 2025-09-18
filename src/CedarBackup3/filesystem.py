@@ -741,7 +741,7 @@ class FilesystemList(list):
 ########################################################################
 
 
-class SpanItem(object):
+class SpanItem:
     """
     Item returned by :any:`BackupFileList.generateSpan`.
     """

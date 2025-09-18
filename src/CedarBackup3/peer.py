@@ -84,7 +84,7 @@ SU_COMMAND = ["su"]
 ########################################################################
 
 
-class LocalPeer(object):
+class LocalPeer:
     ######################
     # Class documentation
     ######################
@@ -400,7 +400,7 @@ class LocalPeer(object):
 ########################################################################
 
 
-class RemotePeer(object):
+class RemotePeer:
     ######################
     # Class documentation
     ######################

@@ -109,7 +109,7 @@ POSTGRESQLDUMPALL_COMMAND = ["pg_dumpall"]
 
 
 @total_ordering
-class PostgresqlConfig(object):
+class PostgresqlConfig:
     """
     Class representing PostgreSQL configuration.
 
@@ -287,7 +287,7 @@ class PostgresqlConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 

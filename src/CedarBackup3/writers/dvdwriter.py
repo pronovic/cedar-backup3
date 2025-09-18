@@ -90,7 +90,7 @@ EJECT_COMMAND = ["eject"]
 ########################################################################
 
 
-class MediaDefinition(object):
+class MediaDefinition:
     """
     Class encapsulating information about DVD media definitions.
 
@@ -167,7 +167,7 @@ class MediaDefinition(object):
 ########################################################################
 
 
-class MediaCapacity(object):
+class MediaCapacity:
     """
     Class encapsulating information about DVD media capacity.
 
@@ -231,7 +231,7 @@ class MediaCapacity(object):
 ########################################################################
 
 
-class _ImageProperties(object):
+class _ImageProperties:
     """
     Simple value object to hold image properties for ``DvdWriter``.
     """
@@ -248,7 +248,7 @@ class _ImageProperties(object):
 ########################################################################
 
 
-class DvdWriter(object):
+class DvdWriter:
     ######################
     # Class documentation
     ######################

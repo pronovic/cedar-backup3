@@ -306,7 +306,7 @@ def cli():
 
 
 @total_ordering
-class _ActionItem(object):
+class _ActionItem:
     """
     Class representing a single action to be executed.
 
@@ -445,7 +445,7 @@ class _ActionItem(object):
 
 
 @total_ordering
-class _ManagedActionItem(object):
+class _ManagedActionItem:
     """
     Class representing a single action to be executed on a managed peer.
 
@@ -549,7 +549,7 @@ class _ManagedActionItem(object):
 ###################
 
 
-class _ActionSet(object):
+class _ActionSet:
     """
     Class representing a set of local actions to be executed.
 
@@ -1310,7 +1310,7 @@ def setupPathResolver(config):
 
 
 @total_ordering
-class Options(object):
+class Options:
     ######################
     # Class documentation
     ######################

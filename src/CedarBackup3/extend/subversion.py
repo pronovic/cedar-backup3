@@ -120,7 +120,7 @@ REVISION_PATH_EXTENSION = "svnlast"
 
 
 @total_ordering
-class RepositoryDir(object):
+class RepositoryDir:
     """
     Class representing Subversion repository directory.
 
@@ -373,7 +373,7 @@ class RepositoryDir(object):
 
 
 @total_ordering
-class Repository(object):
+class Repository:
     """
     Class representing generic Subversion repository configuration..
 
@@ -544,7 +544,7 @@ class Repository(object):
 
 
 @total_ordering
-class SubversionConfig(object):
+class SubversionConfig:
     """
     Class representing Subversion configuration.
 
@@ -740,7 +740,7 @@ class SubversionConfig(object):
 
 
 @total_ordering
-class LocalConfig(object):
+class LocalConfig:
     """
     Class representing this extension's configuration document.
 
