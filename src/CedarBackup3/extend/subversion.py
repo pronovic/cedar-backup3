@@ -949,7 +949,7 @@ class LocalConfig(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._subversion = LocalConfig._parseSubversion(parentNode)
 
     @staticmethod

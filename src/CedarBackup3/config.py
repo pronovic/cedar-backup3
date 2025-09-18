@@ -4887,7 +4887,7 @@ class Config(object):
         Raises:
            ValueError: If the XML cannot be successfully parsed
         """
-        (xmlDom, parentNode) = createInputDom(xmlData)
+        (_, parentNode) = createInputDom(xmlData)
         self._reference = Config._parseReference(parentNode)
         self._extensions = Config._parseExtensions(parentNode)
         self._options = Config._parseOptions(parentNode)
@@ -5082,7 +5082,7 @@ class Config(object):
             collect.collectMode = readString(sectionNode, "collect_mode")
             collect.archiveMode = readString(sectionNode, "archive_mode")
             collect.ignoreFile = readString(sectionNode, "ignore_file")
-            (collect.absoluteExcludePaths, unused, collect.excludePatterns) = Config._parseExclusions(sectionNode)
+            (collect.absoluteExcludePaths, _, collect.excludePatterns) = Config._parseExclusions(sectionNode)
             collect.collectFiles = Config._parseCollectFiles(sectionNode)
             collect.collectDirs = Config._parseCollectDirs(sectionNode)
         return collect

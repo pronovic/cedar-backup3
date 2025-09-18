@@ -608,7 +608,7 @@ class IsoImage(object):
             raise ValueError("Image does not contain any entries.")
         args = self._buildWriteArgs(self.entries, imagePath)
         command = resolveCommand(MKISOFS_COMMAND)
-        (result, output) = executeCommand(command, args, returnOutput=False)
+        (result, _) = executeCommand(command, args, returnOutput=False)
         if result != 0:
             raise IOError("Error (%d) executing mkisofs command to build image." % result)
 

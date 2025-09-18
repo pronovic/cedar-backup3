@@ -1774,7 +1774,7 @@ def deviceMounted(devicePath):
         with open(MTAB_FILE) as f:
             lines = f.readlines()
         for line in lines:
-            (mountDevice, mountPoint, remainder) = line.split(None, 2)
+            (mountDevice, mountPoint, _) = line.split(None, 2)
             if mountDevice in [devicePath, realPath]:
                 logger.debug("Device [%s] is mounted at [%s].", devicePath, mountPoint)
                 return True

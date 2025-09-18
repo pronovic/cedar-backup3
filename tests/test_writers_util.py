@@ -420,7 +420,7 @@ class TestIsoImage(unittest.TestCase):
             mountPath,
             imagePath,
         ]
-        (result, output) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
+        (result, _) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
         if result != 0:
             raise IOError("Error (%d) executing command to mount image." % result)
         self.mounted = True
@@ -454,7 +454,7 @@ class TestIsoImage(unittest.TestCase):
             imagePath,
             mountPath,
         ]
-        (result, output) = executeCommand(SUDO_CMD, args, returnOutput=True)
+        (result, _) = executeCommand(SUDO_CMD, args, returnOutput=True)
         if result != 0:
             raise IOError("Error (%d) executing command to mount image." % result)
         self.mounted = True
@@ -496,7 +496,7 @@ class TestIsoImage(unittest.TestCase):
             "detach",
             mountPath,
         ]
-        (result, output) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
+        (result, _) = executeCommand(HDIUTIL_CMD, args, returnOutput=True)
         if result != 0:
             raise IOError("Error (%d) executing command to unmount image." % result)
         self.mounted = False
@@ -530,10 +530,10 @@ class TestIsoImage(unittest.TestCase):
             "iso9660",
             mountPath,
         ]
-        (result, output) = executeCommand(SUDO_CMD, args, returnOutput=True)
+        (result, _) = executeCommand(SUDO_CMD, args, returnOutput=True)
         if result != 0:
             time.sleep(1)
-            (result, output) = executeCommand(SUDO_CMD, args, returnOutput=True)
+            (result, _) = executeCommand(SUDO_CMD, args, returnOutput=True)
             if result != 0:
                 raise IOError("Error (%d) executing command to unmount image." % result)
         self.mounted = False
