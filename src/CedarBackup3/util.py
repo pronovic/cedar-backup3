@@ -1044,8 +1044,7 @@ class Diagnostics(object):
         """
         tmax = 0
         for value in values:
-            if len(value) > tmax:
-                tmax = len(value)
+            tmax = max(tmax, len(value))
         return tmax
 
     def _getVersion(self):

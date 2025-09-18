@@ -1374,8 +1374,7 @@ class PurgeItemList(FilesystemList):
                 try:
                     ageInDays = calculateFileAge(entry)
                     ageInWholeDays = math.floor(ageInDays)
-                    if ageInWholeDays < 0:
-                        ageInWholeDays = 0
+                    ageInWholeDays = max(ageInWholeDays, 0)
                     if ageInWholeDays < daysOld:
                         removed += 1
                         self.remove(entry)
