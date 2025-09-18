@@ -747,24 +747,24 @@ class _ActionSet(object):
                         for vertex in action.dependencies.beforeList:
                             try:
                                 graph.createEdge(action.name, vertex)  # actions that this action must be run before
-                            except ValueError:
+                            except ValueError as e:
                                 logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.") from e
                     if action.dependencies.afterList is not None:
                         for vertex in action.dependencies.afterList:
                             try:
                                 graph.createEdge(vertex, action.name)  # actions that this action must be run after
-                            except ValueError:
+                            except ValueError as e:
                                 logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.") from e
                 try:
                     ordering = graph.topologicalSort()
                     indexMap = dict([(ordering[i], i + 1) for i in range(0, len(ordering))])
                     logger.info("Action order will be: %s", ordering)
-                except ValueError:
+                except ValueError as e:
                     logger.error("Unable to determine proper action order due to dependency recursion.")
                     logger.error("Extensions configuration is invalid (check for loops).")
-                    raise ValueError("Unable to determine proper action order due to dependency recursion.")
+                    raise ValueError("Unable to determine proper action order due to dependency recursion.") from e
         return indexMap
 
     @staticmethod
@@ -1740,8 +1740,8 @@ class Options(object):
                     value = int(value, 8)
                 else:
                     value = int(value)
-            except TypeError:
-                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.")
+            except TypeError as e:
+                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.") from e
             if value < 0:
                 raise ValueError("Mode must be an octal integer >= 0. i.e. 644.")
             self._mode = value

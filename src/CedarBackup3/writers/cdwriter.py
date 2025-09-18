@@ -1152,8 +1152,8 @@ class CdWriter(object):
             raise IOError("Unable to parse output of boundaries command.")
         try:
             boundaries = (int(parsed.group(2)), int(parsed.group(4)))
-        except TypeError:
-            raise IOError("Unable to parse output of boundaries command.")
+        except TypeError as e:
+            raise IOError("Unable to parse output of boundaries command.") from e
         return boundaries
 
     #################################

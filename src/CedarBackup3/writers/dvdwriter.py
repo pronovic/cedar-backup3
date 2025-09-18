@@ -881,8 +881,8 @@ class DvdWriter(object):
                 if match is not None:
                     try:
                         return float(match.group(4).strip()) * 16.0
-                    except ValueError:
-                        raise ValueError("Unable to parse sectors used out of growisofs output.")
+                    except ValueError as e:
+                        raise ValueError("Unable to parse sectors used out of growisofs output.") from e
         logger.warning("Unable to read disc (might not be initialized); returning zero sectors used.")
         return 0.0
 

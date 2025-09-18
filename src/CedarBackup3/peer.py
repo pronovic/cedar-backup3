@@ -803,8 +803,8 @@ class RemotePeer(object):
             if os.path.exists(targetFile):
                 try:
                     os.remove(targetFile)
-                except:
-                    raise Exception("Error: collect indicator [%s] already exists!" % targetFile)
+                except Exception as e:
+                    raise Exception("Error: collect indicator [%s] already exists!" % targetFile) from e
             try:
                 RemotePeer._copyRemoteFile(
                     self.remoteUser,
@@ -901,7 +901,7 @@ class RemotePeer(object):
             self.executeRemoteCommand(command)
         except IOError as e:
             logger.info(e)
-            raise IOError("Failed to execute action [%s] on managed client [%s]." % (action, self.name))
+            raise IOError("Failed to execute action [%s] on managed client [%s]." % (action, self.name)) from e
 
     ##################
     # Private methods

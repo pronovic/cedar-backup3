@@ -145,8 +145,8 @@ def validateDriveSpeed(driveSpeed):
         return None
     try:
         intSpeed = int(driveSpeed)
-    except TypeError:
-        raise ValueError("Drive speed must be an integer >= 1.")
+    except TypeError as e:
+        raise ValueError("Drive speed must be an integer >= 1.") from e
     if intSpeed < 1:
         raise ValueError("Drive speed must an integer >= 1.")
     return intSpeed
@@ -307,8 +307,8 @@ class IsoImage(object):
                     self._device = value
                 else:
                     self._device = validateScsiId(value)
-        except ValueError:
-            raise ValueError("Device must either be an absolute path or a valid SCSI id.")
+        except ValueError as e:
+            raise ValueError("Device must either be an absolute path or a valid SCSI id.") from e
 
     def _getDevice(self):
         """
@@ -590,8 +590,8 @@ class IsoImage(object):
             sectors = float(output[0])
             size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
             return size
-        except:
-            raise IOError("Unable to parse mkisofs output.")
+        except Exception as e:
+            raise IOError("Unable to parse mkisofs output.") from e
 
     def writeImage(self, imagePath):
         """

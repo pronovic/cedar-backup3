@@ -97,7 +97,7 @@ def createInputDom(xmlData, name="cb_config"):
         parentNode = readFirstChild(xmlDom, name)
         return (xmlDom, parentNode)
     except (IOError, ExpatError) as e:
-        raise ValueError("Unable to parse XML document: %s" % e)
+        raise ValueError("Unable to parse XML document: %s" % e) from e
 
 
 def createOutputDom(name="cb_config"):
@@ -735,8 +735,8 @@ def _encodeText(text, encoding):  # noqa: ARG001
         if isinstance(text, bytes):
             text = str(text, "utf-8")
         return text
-    except UnicodeError:
-        raise ValueError("Path could not be safely encoded as utf-8.")
+    except UnicodeError as e:
+        raise ValueError("Path could not be safely encoded as utf-8.") from e
 
 
 def _translateCDATAAttr(characters):

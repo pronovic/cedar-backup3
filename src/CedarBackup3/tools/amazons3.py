@@ -467,8 +467,8 @@ class Options(object):
                     value = int(value, 8)
                 else:
                     value = int(value)
-            except TypeError:
-                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.")
+            except TypeError as e:
+                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.") from e
             if value < 0:
                 raise ValueError("Mode must be an octal integer >= 0. i.e. 644.")
             self._mode = value

@@ -584,8 +584,8 @@ class RegexList(UnorderedList):
         """
         try:
             re.compile(item)
-        except re.error:
-            raise ValueError("Not a valid regular expression: [%s]" % item)
+        except re.error as e:
+            raise ValueError("Not a valid regular expression: [%s]" % item) from e
         list.append(self, item)
 
     def insert(self, index, item):
@@ -596,8 +596,8 @@ class RegexList(UnorderedList):
         """
         try:
             re.compile(item)
-        except re.error:
-            raise ValueError("Not a valid regular expression: [%s]" % item)
+        except re.error as e:
+            raise ValueError("Not a valid regular expression: [%s]" % item) from e
         list.insert(self, index, item)
 
     def extend(self, seq):
@@ -609,8 +609,8 @@ class RegexList(UnorderedList):
         for item in seq:
             try:
                 re.compile(item)
-            except re.error:
-                raise ValueError("Not a valid regular expression: [%s]" % item)
+            except re.error as e:
+                raise ValueError("Not a valid regular expression: [%s]" % item) from e
         for item in seq:
             list.append(self, item)
 
@@ -759,7 +759,7 @@ class DirectedGraph(object):
             finishVertex = self._vertices[finish]
             startVertex.endpoints.append(finishVertex)
         except KeyError as e:
-            raise ValueError("Vertex [%s] could not be found." % e)
+            raise ValueError("Vertex [%s] could not be found." % e) from e
 
     def topologicalSort(self):
         """
@@ -1359,7 +1359,7 @@ def getUidGid(user, group):
             return (uid, gid)
         except Exception as e:
             logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
-            raise ValueError("Unable to lookup up uid and gid for passed in user/group.")
+            raise ValueError("Unable to lookup up uid and gid for passed in user/group.") from e
     else:
         return (0, 0)
 
@@ -1807,7 +1807,7 @@ def encodePath(path):
             path = path.decode(encoding, "surrogateescape")  # to match what os.listdir() does
         return path
     except UnicodeError as e:
-        raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e)))
+        raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e))) from e
 
 
 ######################
