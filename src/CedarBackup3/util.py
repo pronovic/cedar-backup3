@@ -367,7 +367,7 @@ class ObjectTypeList(UnorderedList):
            objectType: Type that the list elements must match
            objectName: Short string containing the "name" of the type
         """
-        super(ObjectTypeList, self).__init__()
+        super().__init__()
         self.objectType = objectType
         self.objectName = objectName
 
@@ -437,7 +437,7 @@ class RestrictedContentList(UnorderedList):
            valuesDescr: Short string describing list of values
            prefix: Prefix to use in error messages (None results in prefix "Item")
         """
-        super(RestrictedContentList, self).__init__()
+        super().__init__()
         self.prefix = "Item"
         if prefix is not None:
             self.prefix = prefix
@@ -507,7 +507,7 @@ class RegexMatchList(UnorderedList):
            emptyAllowed: Indicates whether empty or None values are allowed
            prefix: Prefix to use in error messages (None results in prefix "Item")
         """
-        super(RegexMatchList, self).__init__()
+        super().__init__()
         self.prefix = "Item"
         if prefix is not None:
             self.prefix = prefix

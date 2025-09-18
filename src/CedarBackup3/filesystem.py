@@ -1334,7 +1334,7 @@ class PurgeItemList(FilesystemList):
         """
         path = encodePath(path)
         path = normalizeDir(path)
-        return super(PurgeItemList, self)._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
+        return super()._addDirContentsInternal(path, False, recursive, linkDepth, dereference)
 
     ##################
     # Utility methods

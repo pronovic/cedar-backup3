@@ -1562,7 +1562,7 @@ class BDBRepository(Repository):
         """
         Constructor for the ``BDBRepository`` class.
         """
-        super(BDBRepository, self).__init__("BDB", repositoryPath, collectMode, compressMode)
+        super().__init__("BDB", repositoryPath, collectMode, compressMode)
 
     def __repr__(self):
         """
@@ -1581,7 +1581,7 @@ class FSFSRepository(Repository):
         """
         Constructor for the ``FSFSRepository`` class.
         """
-        super(FSFSRepository, self).__init__("FSFS", repositoryPath, collectMode, compressMode)
+        super().__init__("FSFS", repositoryPath, collectMode, compressMode)
 
     def __repr__(self):
         """
