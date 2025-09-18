@@ -665,7 +665,7 @@ class TestLocalConfig(unittest.TestCase):
     def setUp(self):
         try:
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             self.fail(e)
 
     def tearDown(self):

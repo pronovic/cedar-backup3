@@ -1357,7 +1357,7 @@ def getUidGid(user, group):
             uid = pwd.getpwnam(user)[2]
             gid = grp.getgrnam(group)[2]
             return (uid, gid)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
             raise ValueError("Unable to lookup up uid and gid for passed in user/group.") from e
     else:
@@ -1393,7 +1393,7 @@ def changeOwnership(path, user, group):
             try:
                 (uid, gid) = getUidGid(user, group)
                 os.chown(path, uid, gid)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 logger.error("Error changing ownership of [%s]: %s", path, e)
 
 

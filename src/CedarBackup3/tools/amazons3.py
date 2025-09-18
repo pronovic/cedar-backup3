@@ -908,7 +908,7 @@ def cli():
 
     try:
         options = Options(argumentList=sys.argv[1:])
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         _usage()
         sys.stderr.write(" *** Error: %s\n" % e)
         return 2
@@ -928,7 +928,7 @@ def cli():
     else:
         try:
             logfile = setupLogging(options)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             sys.stderr.write("Error setting up logging: %s\n" % e)
             return 3
 
@@ -946,7 +946,7 @@ def cli():
             logger.error("Backup interrupted.")
             logger.info("Cedar Backup Amazon S3 sync run completed with status 5.")
             return 5
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             logger.error("Error executing backup: %s", e)
             logger.info("Cedar Backup Amazon S3 sync run completed with status 6.")
             return 6
@@ -1144,7 +1144,7 @@ def _checkSourceFiles(sourceDir, sourceFiles):  # noqa: ARG001
                 if source != target:
                     logger.error("Inconsistent encoding for [%s]: got %s, but need %s", path, result["encoding"], encoding)
                     failed = True
-            except Exception:
+            except Exception:  # noqa: BLE001
                 logger.error("Inconsistent encoding for [%s]: got %s, but need %s", path, result["encoding"], encoding)
                 failed = True
 

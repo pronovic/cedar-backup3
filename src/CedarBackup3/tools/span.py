@@ -158,7 +158,7 @@ def cli():
 
     try:
         options = SpanOptions(argumentList=sys.argv[1:])
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         _usage()
         sys.stderr.write(" *** Error: %s\n" % e)
         return 2
@@ -178,7 +178,7 @@ def cli():
     else:
         try:
             logfile = setupLogging(options)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             sys.stderr.write("Error setting up logging: %s\n" % e)
             return 3
 
@@ -197,7 +197,7 @@ def cli():
         logger.info("Configuration path is [%s]", configPath)
         config = Config(xmlPath=configPath)
         setupPathResolver(config)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         logger.error("Error reading or handling configuration: %s", e)
         logger.info("Cedar Backup 'span' utility run completed with status 4.")
         return 4
@@ -211,7 +211,7 @@ def cli():
             logger.error("Backup interrupted.")
             logger.info("Cedar Backup 'span' utility run completed with status 5.")
             return 5
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             logger.error("Error executing backup: %s", e)
             logger.info("Cedar Backup 'span' utility run completed with status 6.")
             return 6
@@ -561,7 +561,7 @@ def _discInitializeImage(config, writer, spanItem):
             complete = True
         except KeyboardInterrupt as e:
             raise e
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             logger.error("Failed to initialize image: %s", e)
             if not _getYesNoAnswer("Retry initialization step?", default="Y"):
                 raise e
@@ -585,7 +585,7 @@ def _discWriteImage(config, writer):  # noqa: ARG001
             complete = True
         except KeyboardInterrupt as e:
             raise e
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             logger.error("Failed to write image: %s", e)
             if not _getYesNoAnswer("Retry this step?", default="Y"):
                 raise e
@@ -612,7 +612,7 @@ def _discConsistencyCheck(config, writer, spanItem):
                 complete = True
             except KeyboardInterrupt as e:
                 raise e
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 logger.error("Consistency check failed: %s", e)
                 if not _getYesNoAnswer("Retry the consistency check?", default="Y"):
                     raise e

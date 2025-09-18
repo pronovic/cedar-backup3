@@ -297,7 +297,7 @@ class MysqlConfig(object):
                 saved = self._databases
                 self._databases = ObjectTypeList(str, "string")
                 self._databases.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._databases = saved
                 raise e
 

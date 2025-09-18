@@ -302,7 +302,7 @@ def main():
     # Parse configuration
     try:
         config = parseconfig(configfile)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(("Unable to parse configuration file: %s" % e))
         sys.exit(2)
 
@@ -315,7 +315,7 @@ def main():
     try:
         os.mkdir(basedir)
         filldir(config, basedir, 1)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(("Error filling directory: %s" % e))
 
     # Print a closing message

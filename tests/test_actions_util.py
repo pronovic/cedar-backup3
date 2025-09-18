@@ -125,7 +125,7 @@ class TestFunctions(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             self.fail(e)
 
     def tearDown(self):

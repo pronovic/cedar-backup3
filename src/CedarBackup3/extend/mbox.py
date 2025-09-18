@@ -463,7 +463,7 @@ class MboxDir(object):
                 saved = self._relativeExcludePaths
                 self._relativeExcludePaths = UnorderedList()
                 self._relativeExcludePaths.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._relativeExcludePaths = saved
                 raise e
 
@@ -484,7 +484,7 @@ class MboxDir(object):
                 saved = self._excludePatterns
                 self._excludePatterns = RegexList()
                 self._excludePatterns.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._excludePatterns = saved
                 raise e
 
@@ -663,7 +663,7 @@ class MboxConfig(object):
                 saved = self._mboxFiles
                 self._mboxFiles = ObjectTypeList(MboxFile, "MboxFile")
                 self._mboxFiles.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._mboxFiles = saved
                 raise e
 
@@ -687,7 +687,7 @@ class MboxConfig(object):
                 saved = self._mboxDirs
                 self._mboxDirs = ObjectTypeList(MboxDir, "MboxDir")
                 self._mboxDirs.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._mboxDirs = saved
                 raise e
 
@@ -1288,7 +1288,7 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
                 with open(revisionPath, "rb") as f:
                     revisionDate = pickle.load(f, fix_imports=True)  # be compatible with Python 2
                 logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 revisionDate = None
                 logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
     return revisionDate
@@ -1316,7 +1316,7 @@ def _writeNewRevision(config, item, newRevision):
             pickle.dump(newRevision, f, 0, fix_imports=True)  # be compatible with Python 2
         changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
         logger.debug("Wrote new revision file [%s] to disk: [%s]", revisionPath, newRevision)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 

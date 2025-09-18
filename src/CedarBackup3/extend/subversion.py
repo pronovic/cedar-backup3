@@ -328,7 +328,7 @@ class RepositoryDir(object):
                 saved = self._relativeExcludePaths
                 self._relativeExcludePaths = UnorderedList()
                 self._relativeExcludePaths.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._relativeExcludePaths = saved
                 raise e
 
@@ -349,7 +349,7 @@ class RepositoryDir(object):
                 saved = self._excludePatterns
                 self._excludePatterns = RegexList()
                 self._excludePatterns.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._excludePatterns = saved
                 raise e
 
@@ -694,7 +694,7 @@ class SubversionConfig(object):
                 saved = self._repositories
                 self._repositories = ObjectTypeList(Repository, "Repository")
                 self._repositories.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._repositories = saved
                 raise e
 
@@ -718,7 +718,7 @@ class SubversionConfig(object):
                 saved = self._repositoryDirs
                 self._repositoryDirs = ObjectTypeList(RepositoryDir, "RepositoryDir")
                 self._repositoryDirs.extend(value)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 self._repositoryDirs = saved
                 raise e
 
@@ -1436,7 +1436,7 @@ def _loadLastRevision(revisionPath):
             with open(revisionPath, "rb") as f:
                 startRevision = pickle.load(f, fix_imports=True)  # be compatible with Python 2
             logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             startRevision = -1
             logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
     return startRevision
@@ -1459,7 +1459,7 @@ def _writeLastRevision(config, revisionPath, endRevision):
             pickle.dump(endRevision, f, 0, fix_imports=True)
         changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
         logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 

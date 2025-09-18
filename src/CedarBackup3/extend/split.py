@@ -532,7 +532,7 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
                 try:
                     os.remove(sourcePath)
                     logger.debug("Completed removing old file [%s].", sourcePath)
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     raise IOError("Failed to remove file [%s] after splitting it." % (sourcePath)) from e
     finally:
         os.chdir(cwd)
