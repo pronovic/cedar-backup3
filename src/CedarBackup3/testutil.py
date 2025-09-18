@@ -402,7 +402,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG0
         missed = True
     except exception:
         pass
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         instead = e
     if missed:
         testCase.fail("Expected assignment to raise %s, but got no exception." % (exception.__name__))

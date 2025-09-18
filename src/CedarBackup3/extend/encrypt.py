@@ -517,8 +517,8 @@ def _encryptFile(sourcePath, encryptMode, encryptTarget, backupUser, backupGroup
             try:
                 os.remove(sourcePath)
                 logger.debug("Completed removing old file [%s].", sourcePath)
-            except Exception as e:
-                raise OSError("Failed to remove file [%s] after encrypting it." % (sourcePath)) from e
+            except Exception:
+                raise OSError("Failed to remove file [%s] after encrypting it." % (sourcePath))
     return encryptedPath
 
 

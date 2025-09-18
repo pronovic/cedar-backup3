@@ -946,7 +946,7 @@ class CdWriter:
                 if imagePath is not None and os.path.exists(imagePath):
                     try:
                         os.unlink(imagePath)
-                    except:  # noqa: E722,S110
+                    except:  # noqa: S110
                         pass
         else:
             imagePath = encodePath(imagePath)
@@ -981,7 +981,7 @@ class CdWriter:
             (handle, path) = tempfile.mkstemp(dir=self._image.tmpdir)
             try:
                 os.close(handle)
-            except:  # noqa: E722,S110
+            except:  # noqa: S110
                 pass
             image.writeImage(path)
             logger.debug("Completed creating image [%s].", path)
@@ -990,7 +990,7 @@ class CdWriter:
             if path is not None and os.path.exists(path):
                 try:
                     os.unlink(path)
-                except:  # noqa: E722,S110
+                except:  # noqa: S110
                     pass
             raise e
 
@@ -1151,8 +1151,8 @@ class CdWriter:
             raise OSError("Unable to parse output of boundaries command.")
         try:
             boundaries = (int(parsed.group(2)), int(parsed.group(4)))
-        except TypeError as e:
-            raise OSError("Unable to parse output of boundaries command.") from e
+        except TypeError:
+            raise OSError("Unable to parse output of boundaries command.")
         return boundaries
 
     #################################

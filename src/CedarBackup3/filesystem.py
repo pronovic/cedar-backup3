@@ -548,8 +548,8 @@ class FilesystemList(list):
             try:
                 pattern = encodePath(pattern)  # use same encoding as filenames
                 compiled = re.compile(pattern)
-            except re.error as e:
-                raise ValueError("Pattern is not a valid regular expression.") from e
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
             for entry in self[:]:
                 if os.path.exists(entry) and os.path.isfile(entry):
                     if compiled.match(entry):
@@ -594,8 +594,8 @@ class FilesystemList(list):
             try:
                 pattern = encodePath(pattern)  # use same encoding as filenames
                 compiled = re.compile(pattern)
-            except re.error as e:
-                raise ValueError("Pattern is not a valid regular expression.") from e
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
             for entry in self[:]:
                 if os.path.exists(entry) and os.path.isdir(entry):
                     if compiled.match(entry):
@@ -638,8 +638,8 @@ class FilesystemList(list):
             try:
                 pattern = encodePath(pattern)  # use same encoding as filenames
                 compiled = re.compile(pattern)
-            except re.error as e:
-                raise ValueError("Pattern is not a valid regular expression.") from e
+            except re.error:
+                raise ValueError("Pattern is not a valid regular expression.")
             for entry in self[:]:
                 if os.path.exists(entry) and os.path.islink(entry):
                     if compiled.match(entry):
@@ -676,8 +676,8 @@ class FilesystemList(list):
         try:
             pattern = encodePath(pattern)  # use same encoding as filenames
             compiled = re.compile(pattern)
-        except re.error as e:
-            raise ValueError("Pattern is not a valid regular expression.") from e
+        except re.error:
+            raise ValueError("Pattern is not a valid regular expression.")
         removed = 0
         for entry in self[:]:
             if compiled.match(entry):
@@ -1135,29 +1135,29 @@ class BackupFileList(FilesystemList):
                     logger.info("Unable to add file [%s]; going on anyway.", entry)
                 except OSError as e:
                     if not ignore:
-                        raise tarfile.TarError(e) from e
+                        raise tarfile.TarError(e)
                     logger.info("Unable to add file [%s]; going on anyway.", entry)
             tar.close()
-        except tarfile.ReadError as e:
+        except tarfile.ReadError:
             try:
                 tar.close()
-            except:  # noqa: E722,S110
+            except:  # noqa: S110
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: E722,S110
+                except:  # noqa: S110
                     pass
-            raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path) from e
+            raise tarfile.ReadError("Unable to open [%s]; maybe directory doesn't exist?" % path)
         except tarfile.TarError as e:
             try:
                 tar.close()
-            except:  # noqa: E722,S110
+            except:  # noqa: S110
                 pass
             if os.path.exists(path):
                 try:
                     os.remove(path)
-                except:  # noqa: E722,S110
+                except:  # noqa: S110
                     pass
             raise e
 

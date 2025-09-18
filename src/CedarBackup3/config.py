@@ -398,8 +398,8 @@ class ByteQuantity:
         else:
             try:
                 floatValue = float(value)  # allow integer, float, string, etc.
-            except Exception as e:
-                raise ValueError("Quantity must be interpretable as a float") from e
+            except Exception:
+                raise ValueError("Quantity must be interpretable as a float")
             if floatValue < 0.0:
                 raise ValueError("Quantity cannot be negative.")
             self._quantity = str(value)  # keep around string
@@ -1127,8 +1127,8 @@ class ExtendedAction:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Action index value must be an integer >= 0.") from e
+            except TypeError:
+                raise ValueError("Action index value must be an integer >= 0.")
             if value < 0:
                 raise ValueError("Action index value must be an integer >= 0.")
             self._index = value
@@ -1697,8 +1697,8 @@ class CollectDir:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Link depth value must be an integer >= 0.") from e
+            except TypeError:
+                raise ValueError("Link depth value must be an integer >= 0.")
             if value < 0:
                 raise ValueError("Link depth value must be an integer >= 0.")
             self._linkDepth = value
@@ -1737,8 +1737,8 @@ class CollectDir:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Recusion level value must be an integer.") from e
+            except TypeError:
+                raise ValueError("Recusion level value must be an integer.")
             self._recursionLevel = value
 
     def _getRecursionLevel(self):
@@ -1940,8 +1940,8 @@ class PurgeDir:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Retain days value must be an integer >= 0.") from e
+            except TypeError:
+                raise ValueError("Retain days value must be an integer >= 0.")
             if value < 0:
                 raise ValueError("Retain days value must be an integer >= 0.")
             self._retainDays = value
@@ -4229,8 +4229,8 @@ class StoreConfig:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Action refreshMediaDelay value must be an integer >= 0.") from e
+            except TypeError:
+                raise ValueError("Action refreshMediaDelay value must be an integer >= 0.")
             if value < 0:
                 raise ValueError("Action refreshMediaDelay value must be an integer >= 0.")
             if value == 0:
@@ -4255,8 +4255,8 @@ class StoreConfig:
         else:
             try:
                 value = int(value)
-            except TypeError as e:
-                raise ValueError("Action ejectDelay value must be an integer >= 0.") from e
+            except TypeError:
+                raise ValueError("Action ejectDelay value must be an integer >= 0.")
             if value < 0:
                 raise ValueError("Action ejectDelay value must be an integer >= 0.")
             if value == 0:

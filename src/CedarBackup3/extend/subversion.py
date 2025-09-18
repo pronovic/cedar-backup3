@@ -1435,7 +1435,7 @@ def _loadLastRevision(revisionPath):
             with open(revisionPath, "rb") as f:
                 startRevision = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
             logger.debug("Loaded revision file [%s] from disk: %d.", revisionPath, startRevision)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             startRevision = -1
             logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
     return startRevision
@@ -1458,7 +1458,7 @@ def _writeLastRevision(config, revisionPath, endRevision):
             pickle.dump(endRevision, f, 0, fix_imports=True)
         changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
         logger.debug("Wrote new revision file [%s] to disk: %d.", revisionPath, endRevision)
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 

@@ -2157,7 +2157,7 @@ class TestFunctions(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
@@ -2172,7 +2172,7 @@ class TestFunctions(unittest.TestCase):
         (fd, name) = tempfile.mkstemp(dir=self.tmpdir)
         try:
             os.close(fd)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
         return name
 

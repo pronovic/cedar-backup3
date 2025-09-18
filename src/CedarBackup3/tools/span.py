@@ -149,14 +149,14 @@ def cli():
         if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 8]:
             sys.stderr.write("Python 3 version 3.8 or greater required.\n")
             return 1
-    except:  # noqa: E722
+    except:
         # sys.version_info isn't available before 2.0
         sys.stderr.write("Python 3 version 3.8 or greater required.\n")
         return 1
 
     try:
         options = SpanOptions(argumentList=sys.argv[1:])
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         _usage()
         sys.stderr.write(" *** Error: %s\n" % e)
         return 2
@@ -176,7 +176,7 @@ def cli():
     else:
         try:
             logfile = setupLogging(options)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             sys.stderr.write("Error setting up logging: %s\n" % e)
             return 3
 
@@ -195,7 +195,7 @@ def cli():
         logger.info("Configuration path is [%s]", configPath)
         config = Config(xmlPath=configPath)
         setupPathResolver(config)
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         logger.error("Error reading or handling configuration: %s", e)
         logger.info("Cedar Backup 'span' utility run completed with status 4.")
         return 4
@@ -209,7 +209,7 @@ def cli():
             logger.error("Backup interrupted.")
             logger.info("Cedar Backup 'span' utility run completed with status 5.")
             return 5
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error("Error executing backup: %s", e)
             logger.info("Cedar Backup 'span' utility run completed with status 6.")
             return 6

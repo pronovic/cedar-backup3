@@ -175,13 +175,13 @@ class TestFilesystemList(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
 
     ##################
@@ -13132,13 +13132,13 @@ class TestBackupFileList(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
 
     ##################
@@ -15910,13 +15910,13 @@ class TestPurgeItemList(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
 
     ##################
@@ -20253,13 +20253,13 @@ class TestFunctions(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
 
     ##################

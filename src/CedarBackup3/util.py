@@ -584,8 +584,8 @@ class RegexList(UnorderedList):
         """
         try:
             re.compile(item)
-        except re.error as e:
-            raise ValueError("Not a valid regular expression: [%s]" % item) from e
+        except re.error:
+            raise ValueError("Not a valid regular expression: [%s]" % item)
         list.append(self, item)
 
     def insert(self, index, item):
@@ -596,8 +596,8 @@ class RegexList(UnorderedList):
         """
         try:
             re.compile(item)
-        except re.error as e:
-            raise ValueError("Not a valid regular expression: [%s]" % item) from e
+        except re.error:
+            raise ValueError("Not a valid regular expression: [%s]" % item)
         list.insert(self, index, item)
 
     def extend(self, seq):
@@ -609,8 +609,8 @@ class RegexList(UnorderedList):
         for item in seq:
             try:
                 re.compile(item)
-            except re.error as e:
-                raise ValueError("Not a valid regular expression: [%s]" % item) from e
+            except re.error:
+                raise ValueError("Not a valid regular expression: [%s]" % item)
         for item in seq:
             list.append(self, item)
 
@@ -759,7 +759,7 @@ class DirectedGraph:
             finishVertex = self._vertices[finish]
             startVertex.endpoints.append(finishVertex)
         except KeyError as e:
-            raise ValueError("Vertex [%s] could not be found." % e) from e
+            raise ValueError("Vertex [%s] could not be found." % e)
 
     def topologicalSort(self):
         """
@@ -1081,7 +1081,7 @@ class Diagnostics:
                 release = uname[2]  # i.e. 2.16.18-2
                 machine = uname[4]  # i.e. i686
                 return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
-        except:  # noqa: E722
+        except:
             return sys.platform
 
     def _getLocale(self):
@@ -1093,9 +1093,9 @@ class Diagnostics:
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
-            except:  # noqa: E722
+            except:
                 return locale.getdefaultlocale()[0]
-        except:  # noqa: E722
+        except:
             return "(unknown)"
 
     def _getTimestamp(self):
@@ -1110,7 +1110,7 @@ class Diagnostics:
                 return datetime.datetime.utcnow().ctime() + " UTC"
             else:
                 return datetime.datetime.now(datetime.UTC).ctime() + " UTC"
-        except:  # noqa: E722
+        except:
             return "(unknown)"
 
     version = property(_getVersion, None, None, "Cedar Backup version.")
@@ -1358,7 +1358,7 @@ def getUidGid(user, group):
             return (uid, gid)
         except Exception as e:
             logger.debug("Error looking up uid and gid for [%s:%s]: %s", user, group, e)
-            raise ValueError("Unable to lookup up uid and gid for passed in user/group.") from e
+            raise ValueError("Unable to lookup up uid and gid for passed in user/group.")
     else:
         return (0, 0)
 
@@ -1392,7 +1392,7 @@ def changeOwnership(path, user, group):
             try:
                 (uid, gid) = getUidGid(user, group)
                 os.chown(path, uid, gid)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 logger.error("Error changing ownership of [%s]: %s", path, e)
 
 
@@ -1592,7 +1592,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
                 if outputFile is not None:
                     try:  # note, not every file-like object can be flushed
                         outputFile.flush()
-                    except:  # noqa: E722,S110
+                    except:  # noqa: S110
                         pass
                 if returnOutput:
                     return (pipe.wait(), output)
@@ -1804,7 +1804,7 @@ def encodePath(path):
             path = path.decode(encoding, "surrogateescape")  # to match what os.listdir() does
         return path
     except UnicodeError as e:
-        raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e))) from e
+        raise ValueError("Path could not be safely encoded as %s: %s" % (encoding, str(e)))
 
 
 ######################

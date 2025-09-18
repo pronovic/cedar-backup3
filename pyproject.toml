@@ -151,7 +151,10 @@ ignore = [
   # Exclusions of rule categories and specific rules, customized for this repository
   # Cedar Backup was first developed starting in 2002, long before many of these standards existed
   "ANN",        # don't require type annotations
+  "B904",       # don't warn about raising from parent exception
+  "BLE001",     # don't warn about catching blind exceptions
   "DTZ",        # ignore old-style datetime usage, such as of "naive" datetime objects
+  "E722",       # don't warn about using bare except
   "ERA",        # eradicate does not understand the source tree's commenting style
   "FBT",        # allow positional boolean flags
   "FURB101",    # allow old-style open() and read() operations

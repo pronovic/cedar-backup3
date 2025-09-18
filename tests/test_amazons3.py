@@ -620,7 +620,7 @@ class TestLocalConfig(unittest.TestCase):
     def setUp(self):
         try:
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
@@ -925,13 +925,13 @@ class TestTool(unittest.TestCase):
         try:
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
 
     ##################

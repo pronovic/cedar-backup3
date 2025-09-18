@@ -802,8 +802,8 @@ class RemotePeer:
             if os.path.exists(targetFile):
                 try:
                     os.remove(targetFile)
-                except Exception as e:
-                    raise Exception("Error: collect indicator [%s] already exists!" % targetFile) from e
+                except Exception:
+                    raise Exception("Error: collect indicator [%s] already exists!" % targetFile)
             try:
                 RemotePeer._copyRemoteFile(
                     self.remoteUser,
@@ -816,14 +816,14 @@ class RemotePeer:
                     overwrite=False,
                 )
                 return os.path.exists(targetFile)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 logger.info("Failed looking for collect indicator: %s", e)
                 return False
         finally:
             if os.path.exists(targetFile):
                 try:
                     os.remove(targetFile)
-                except:  # noqa: E722,S110
+                except:  # noqa: S110
                     pass
 
     def writeStageIndicator(self, stageIndicator=None):
@@ -865,7 +865,7 @@ class RemotePeer:
             if os.path.exists(sourceFile):
                 try:
                     os.remove(sourceFile)
-                except:  # noqa: E722,S110
+                except:  # noqa: S110
                     pass
 
     def executeRemoteCommand(self, command):
@@ -897,7 +897,7 @@ class RemotePeer:
             self.executeRemoteCommand(command)
         except OSError as e:
             logger.info(e)
-            raise OSError("Failed to execute action [%s] on managed client [%s]." % (action, self.name)) from e
+            raise OSError("Failed to execute action [%s] on managed client [%s]." % (action, self.name))
 
     ##################
     # Private methods

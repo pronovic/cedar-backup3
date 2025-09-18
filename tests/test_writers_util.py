@@ -354,7 +354,7 @@ class TestIsoImage(unittest.TestCase):
             self.mounted = False
             self.tmpdir = tempfile.mkdtemp()
             self.resources = findResources(RESOURCES, DATA_DIRS)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             self.fail(e)
 
     def tearDown(self):

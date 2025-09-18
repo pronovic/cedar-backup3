@@ -1287,7 +1287,7 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
                 with open(revisionPath, "rb") as f:
                     revisionDate = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
                 logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 revisionDate = None
                 logger.error("Failed loading revision file [%s] from disk: %s", revisionPath, e)
     return revisionDate
@@ -1315,7 +1315,7 @@ def _writeNewRevision(config, item, newRevision):
             pickle.dump(newRevision, f, 0, fix_imports=True)  # be compatible with Python 2
         changeOwnership(revisionPath, config.options.backupUser, config.options.backupGroup)
         logger.debug("Wrote new revision file [%s] to disk: [%s]", revisionPath, newRevision)
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         logger.error("Failed to write revision file [%s] to disk: %s", revisionPath, e)
 
 
@@ -1533,11 +1533,11 @@ def _backupMboxDir(
                 if os.path.exists(cleanitem):
                     try:
                         os.remove(cleanitem)
-                    except:  # noqa: E722,S110
+                    except:  # noqa: S110
                         pass
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
         try:
             os.rmdir(tmpdir)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass

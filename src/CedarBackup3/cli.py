@@ -212,7 +212,7 @@ def cli():
         if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 8]:
             sys.stderr.write("Python 3 version 3.8 or greater required.\n")
             return 1
-    except:  # noqa: E722
+    except:
         # sys.version_info isn't available before 2.0
         sys.stderr.write("Python 3 version 3.8 or greater required.\n")
         return 1
@@ -220,7 +220,7 @@ def cli():
     try:
         options = Options(argumentList=sys.argv[1:])
         logger.info("Specified command-line actions: %s", options.actions)
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         _usage()
         sys.stderr.write(" *** Error: %s\n" % e)
         return 2
@@ -240,7 +240,7 @@ def cli():
     else:
         try:
             logfile = setupLogging(options)
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             sys.stderr.write("Error setting up logging: %s\n" % e)
             return 3
 
@@ -272,7 +272,7 @@ def cli():
         customizeOverrides(config)
         setupPathResolver(config)
         actionSet = _ActionSet(options.actions, config.extensions, config.options, config.peers, executeManaged, executeLocal)
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         logger.error("Error reading or handling configuration: %s", e)
         logger.info("Cedar Backup run completed with status 4.")
         return 4
@@ -286,7 +286,7 @@ def cli():
             logger.error("Backup interrupted.")
             logger.info("Cedar Backup run completed with status 5.")
             return 5
-        except Exception as e:  # noqa: BLE001
+        except Exception as e:
             logger.error("Error executing backup: %s", e)
             logger.info("Cedar Backup run completed with status 6.")
             return 6
@@ -746,24 +746,24 @@ class _ActionSet:
                         for vertex in action.dependencies.beforeList:
                             try:
                                 graph.createEdge(action.name, vertex)  # actions that this action must be run before
-                            except ValueError as e:
+                            except ValueError:
                                 logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                                raise ValueError("Unable to determine proper action order due to invalid dependency.") from e
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
                     if action.dependencies.afterList is not None:
                         for vertex in action.dependencies.afterList:
                             try:
                                 graph.createEdge(vertex, action.name)  # actions that this action must be run after
-                            except ValueError as e:
+                            except ValueError:
                                 logger.error("Dependency [%s] on extension [%s] is unknown.", vertex, action.name)
-                                raise ValueError("Unable to determine proper action order due to invalid dependency.") from e
+                                raise ValueError("Unable to determine proper action order due to invalid dependency.")
                 try:
                     ordering = graph.topologicalSort()
                     indexMap = {ordering[i]: i + 1 for i in range(len(ordering))}
                     logger.info("Action order will be: %s", ordering)
-                except ValueError as e:
+                except ValueError:
                     logger.error("Unable to determine proper action order due to dependency recursion.")
                     logger.error("Extensions configuration is invalid (check for loops).")
-                    raise ValueError("Unable to determine proper action order due to dependency recursion.") from e
+                    raise ValueError("Unable to determine proper action order due to dependency recursion.")
         return indexMap
 
     @staticmethod
@@ -1188,7 +1188,7 @@ def _setupLogfile(options):
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
             if sys.platform != "win32":
                 os.chown(logfile, uid, gid)
-        except:  # noqa: E722,S110
+        except:  # noqa: S110
             pass
     return logfile
 
@@ -1739,8 +1739,8 @@ class Options:
                     value = int(value, 8)
                 else:
                     value = int(value)
-            except TypeError as e:
-                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.") from e
+            except TypeError:
+                raise ValueError("Mode must be an octal integer >= 0, i.e. 644.")
             if value < 0:
                 raise ValueError("Mode must be an octal integer >= 0. i.e. 644.")
             self._mode = value
