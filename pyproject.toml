@@ -182,6 +182,7 @@ ignore = [
   "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
   "FURB113",    # don't suggest use of list.extend() rather than repeated list.append()
   "PERF401",    # don't suggest use of list.extend() rather than repeated list.append()
+  "PERF402",    # don't suggest use of list.copy() rather than repeated list.append()
   "FURB189",    # don't suggest subclassing collections.UserList instead of list
   "PERF203",    # don't warn about try/except within a loop
  
@@ -206,7 +207,7 @@ ignore = [
 #   "FURB189",
 #   "PERF203",
 #   "PERF401",
-  "PERF402",
+#   "PERF402",
   "PERF403",
 #   "PIE790",
 #   "PIE808",
