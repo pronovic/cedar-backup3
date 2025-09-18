@@ -759,7 +759,7 @@ class _ActionSet(object):
                                 raise ValueError("Unable to determine proper action order due to invalid dependency.") from e
                 try:
                     ordering = graph.topologicalSort()
-                    indexMap = dict([(ordering[i], i + 1) for i in range(0, len(ordering))])
+                    indexMap = {ordering[i]: i + 1 for i in range(0, len(ordering))}
                     logger.info("Action order will be: %s", ordering)
                 except ValueError as e:
                     logger.error("Unable to determine proper action order due to dependency recursion.")
