@@ -183,6 +183,7 @@ ignore = [
   "TRY",        # ignore all tryceratops warnings about exception anti-patterns
   "UP031",      # allow old-style format specifiers instead of f-strings
   "SIM105",     # don't suggest use of contextlib.suppress(BaseException)
+  "SIM108",     # don't suggest ternary operator instead of if/else block
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -238,7 +239,7 @@ ignore = [
 #   "S403", 
 #   "S408",
 #   "SIM103",
-  "SIM108",
+#   "SIM108",
   "SIM112",
   "SIM113",
   "SIM114",
