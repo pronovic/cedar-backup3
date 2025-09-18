@@ -398,7 +398,7 @@ class ByteQuantity:
         else:
             try:
                 floatValue = float(value)  # allow integer, float, string, etc.
-            except Exception:
+            except:
                 raise ValueError("Quantity must be interpretable as a float")
             if floatValue < 0.0:
                 raise ValueError("Quantity cannot be negative.")
