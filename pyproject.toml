@@ -178,6 +178,7 @@ ignore = [
   "PLR5501",    # don't warn about `elif` instead of `else`/`if`
   "PLR6201",    # don't suggest using a set vs. a list when testing for membership
   "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
+  "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
  
   # I am gradually working toward compliance with these rules
 #   "B007",
@@ -213,7 +214,7 @@ ignore = [
 #   "PLR6104",
 #   "PLR6201",
 #   "PLW1514",
-  "PLW1641",
+#   "PLW1641",
   "PLW2901",
   "PLW3201",
 #   "RET504",
