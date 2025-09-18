@@ -131,7 +131,7 @@ class TestFunctions(unittest.TestCase):
     def tearDown(self):
         try:
             removedir(self.tmpdir)
-        except:
+        except:  # noqa: E722
             pass
 
     ##################

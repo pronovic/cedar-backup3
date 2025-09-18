@@ -1534,11 +1534,11 @@ def _backupMboxDir(
                 if os.path.exists(cleanitem):
                     try:
                         os.remove(cleanitem)
-                    except:
+                    except:  # noqa: E722
                         pass
-        except:
+        except:  # noqa: E722
             pass
         try:
             os.rmdir(tmpdir)
-        except:
+        except:  # noqa: E722
             pass

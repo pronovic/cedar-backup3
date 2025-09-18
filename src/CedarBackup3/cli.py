@@ -213,7 +213,7 @@ def cli():
         if list(map(int, [sys.version_info[0], sys.version_info[1]])) < [3, 8]:
             sys.stderr.write("Python 3 version 3.8 or greater required.\n")
             return 1
-    except:
+    except:  # noqa: E722
         # sys.version_info isn't available before 2.0
         sys.stderr.write("Python 3 version 3.8 or greater required.\n")
         return 1
@@ -1189,7 +1189,7 @@ def _setupLogfile(options):
                 (uid, gid) = getUidGid(options.owner[0], options.owner[1])
             if sys.platform != "win32":
                 os.chown(logfile, uid, gid)
-        except:
+        except:  # noqa: E722
             pass
     return logfile
 

@@ -290,7 +290,7 @@ def initializeMediaState(config):
         if os.path.exists(tempdir):
             try:
                 os.rmdir(tempdir)
-            except:
+            except:  # noqa: E722
                 pass
 
 

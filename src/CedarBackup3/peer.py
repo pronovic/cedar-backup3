@@ -827,7 +827,7 @@ class RemotePeer(object):
             if os.path.exists(targetFile):
                 try:
                     os.remove(targetFile)
-                except:
+                except:  # noqa: E722
                     pass
 
     def writeStageIndicator(self, stageIndicator=None):
@@ -869,7 +869,7 @@ class RemotePeer(object):
             if os.path.exists(sourceFile):
                 try:
                     os.remove(sourceFile)
-                except:
+                except:  # noqa: E722
                     pass
 
     def executeRemoteCommand(self, command):

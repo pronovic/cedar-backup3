@@ -1082,7 +1082,7 @@ class Diagnostics(object):
                 release = uname[2]  # i.e. 2.16.18-2
                 machine = uname[4]  # i.e. i686
                 return "%s (%s %s %s)" % (sys.platform, sysname, release, machine)
-        except:
+        except:  # noqa: E722
             return sys.platform
 
     def _getLocale(self):
@@ -1094,9 +1094,9 @@ class Diagnostics(object):
 
             try:
                 return locale.getlocale()[0]  # python >= 3.11 deprecates getdefaultlocale() in favor of getlocale()
-            except:
+            except:  # noqa: E722
                 return locale.getdefaultlocale()[0]
-        except:
+        except:  # noqa: E722
             return "(unknown)"
 
     def _getTimestamp(self):
@@ -1111,7 +1111,7 @@ class Diagnostics(object):
                 return datetime.datetime.utcnow().ctime() + " UTC"
             else:
                 return datetime.datetime.now(datetime.UTC).ctime() + " UTC"
-        except:
+        except:  # noqa: E722
             return "(unknown)"
 
     version = property(_getVersion, None, None, "Cedar Backup version.")
@@ -1594,7 +1594,7 @@ def executeCommand(command, args, returnOutput=False, ignoreStderr=False, doNotL
                 if outputFile is not None:
                     try:  # note, not every file-like object can be flushed
                         outputFile.flush()
-                    except:
+                    except:  # noqa: E722
                         pass
                 if returnOutput:
                     return (pipe.wait(), output)

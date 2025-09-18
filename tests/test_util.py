@@ -2173,7 +2173,7 @@ class TestFunctions(unittest.TestCase):
         (fd, name) = tempfile.mkstemp(dir=self.tmpdir)
         try:
             os.close(fd)
-        except:
+        except:  # noqa: E722
             pass
         return name
 
