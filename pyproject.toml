@@ -168,10 +168,10 @@ ignore = [
   "PLR0916",    # don't enforce rules about too many boolean expressions
   "PLR0917",    # don't enforce rules about too many arguments
   "PLR1702",    # don't enforce rules about too many nested blocks
-  "PLR5501",    # don't warn about `elif` instead of `else`/`if`
+  "PLR5501",    # don't warn about elif instead of else/if
   "PLR6201",    # don't suggest using a set vs. a list when testing for membership
   "PLR6301",    # don't make recommendations about static methods
-  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior is fragile 
+  "PLW1514",    # ignore open() without encoding; existing cross-platform behavior works but is fragile 
   "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
   "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
   "PT",         # this codebase uses Unittest, so don't apply Pytest standards
