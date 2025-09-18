@@ -1951,7 +1951,7 @@ def buildNormalizedPath(path):
         raise ValueError("Cannot normalize path None.")
     elif len(path) == 0:
         return path
-    elif path == "/" or path == "\\":
+    elif path in {"/", "\\"}:
         return "_"
     else:
         normalized = path
