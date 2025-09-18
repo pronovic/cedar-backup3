@@ -793,5 +793,4 @@ def _translateCDATA(characters, encoding="UTF-8", prev_chars="", markupSafe=0):
     # The UTF-8 for 0xFFFE and put out &#xFFFE;
     if XML_ILLEGAL_CHAR_PATTERN.search(new_string):
         new_string = XML_ILLEGAL_CHAR_PATTERN.subn(lambda m: "&#%i;" % ord(m.group()), new_string)[0]
-    new_string = _encodeText(new_string, encoding)
-    return new_string
+    return _encodeText(new_string, encoding)

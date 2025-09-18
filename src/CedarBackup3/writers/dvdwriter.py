@@ -814,8 +814,7 @@ class DvdWriter(object):
         image = IsoImage()
         for path in list(entries.keys()):
             image.addEntry(path, entries[path], override=False, contentsOnly=True)
-        estimatedSize = image.getEstimatedSize() + fudgeFactor
-        return estimatedSize
+        return image.getEstimatedSize() + fudgeFactor
 
     def _retrieveSectorsUsed(self):
         """

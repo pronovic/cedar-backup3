@@ -588,8 +588,7 @@ class IsoImage(object):
             raise IOError("Unable to parse mkisofs output.")
         try:
             sectors = float(output[0])
-            size = convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
-            return size
+            return convertSize(sectors, UNIT_SECTORS, UNIT_BYTES)
         except Exception as e:  # noqa: BLE001
             raise IOError("Unable to parse mkisofs output.") from e
 

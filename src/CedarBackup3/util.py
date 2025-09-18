@@ -1441,8 +1441,7 @@ def splitCommandLine(commandLine):
     if commandLine is None:
         raise ValueError("Cannot split command line of None.")
     fields = re.findall('[^ "]+|"[^"]+"', commandLine)
-    fields = [field.replace('"', "") for field in fields]
-    return fields
+    return [field.replace('"', "") for field in fields]
 
 
 ############################
@@ -1644,8 +1643,7 @@ def calculateFileAge(path):
     fileStats = os.stat(path)
     lastUse = max(fileStats.st_atime, fileStats.st_mtime)  # "most recent" is "largest"
     ageInSeconds = currentTime - lastUse
-    ageInDays = ageInSeconds / SECONDS_PER_DAY
-    return ageInDays
+    return ageInSeconds / SECONDS_PER_DAY
 
 
 ###################
@@ -1963,8 +1961,7 @@ def buildNormalizedPath(path):
         normalized = re.sub(r"/", "-", normalized)  # convert all '/' characters to '-'
         normalized = re.sub(r"\\", "-", normalized)  # convert all '\' characters to '-'
         normalized = re.sub(r"\s", "_", normalized)  # convert all whitespace to '_'
-        normalized = re.sub(r":", "_", normalized)  # convert all remaining colons to '_'
-        return normalized
+        return re.sub(r":", "_", normalized)  # convert all remaining colons to '_'
 
 
 #################################
