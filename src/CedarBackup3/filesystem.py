@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: set ft=python ts=4 sw=4 expandtab:
 # ruff: noqa: PLW2901 # the code appars to work and changing it is risky
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
