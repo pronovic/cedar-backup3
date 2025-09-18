@@ -784,7 +784,7 @@ class TestFunctions(unittest.TestCase):
         """Checks that a file was split properly."""
         wholeFiles = int(float(origSize) / float(splitSize))
         leftoverBytes = int(float(origSize) % float(splitSize))
-        for i in range(0, wholeFiles):
+        for i in range(wholeFiles):
             splitPath = "%s_%05d" % (sourcePath, i)
             self.assertTrue(os.path.exists(splitPath))
             self.assertEqual(splitSize, os.stat(splitPath).st_size)

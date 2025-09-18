@@ -1722,7 +1722,7 @@ def unmount(mountPoint, removeAfter=False, attempts=1, waitSeconds=0):
        IOError: If the mount point is still mounted after attempts are exhausted
     """
     if os.path.ismount(mountPoint):
-        for attempt in range(0, attempts):
+        for attempt in range(attempts):
             logger.debug("Making attempt %d to unmount [%s].", attempt, mountPoint)
             command = resolveCommand(UMOUNT_COMMAND)
             result = executeCommand(command, [mountPoint], returnOutput=False, ignoreStderr=True)[0]

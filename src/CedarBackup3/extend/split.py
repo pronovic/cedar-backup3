@@ -522,7 +522,7 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
         if match is None:
             raise IOError("Unable to parse output from split command.")
         value = int(match.group(3).strip())
-        for index in range(0, value):
+        for index in range(value):
             path = "%s%05d" % (prefix, index)
             if not os.path.exists(path):
                 raise IOError("After call to split, expected file [%s] does not exist." % path)

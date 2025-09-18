@@ -715,7 +715,7 @@ class FilesystemList(list):
         """Normalizes the list, ensuring that each entry is unique."""
         orig = len(self)
         self.sort()
-        dups = list(filter(lambda x, self=self: self[x] == self[x + 1], list(range(0, len(self) - 1))))
+        dups = list(filter(lambda x, self=self: self[x] == self[x + 1], list(range(len(self) - 1))))
         items = list(map(lambda x, self=self: self[x], dups))
         list(map(self.remove, items))
         new = len(self)

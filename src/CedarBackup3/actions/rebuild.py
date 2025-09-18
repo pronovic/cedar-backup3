@@ -147,7 +147,7 @@ def _findRebuildDirs(config):
         days = today.weekday() - start + 1
     else:
         days = 7 - (start - today.weekday()) + 1
-    for i in range(0, days):
+    for i in range(days):
         currentDay = today - datetime.timedelta(days=i)
         dateSuffix = currentDay.strftime(DIR_TIME_FORMAT)
         stageDir = pathJoin(config.store.sourceDir, dateSuffix)
