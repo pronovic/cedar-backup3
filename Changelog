@@ -1,3 +1,7 @@
+Version 3.10.1     unreleased
+
+	* Exclude generated files in docs/_build from the Python sdist.
+
 Version 3.10.0     18 Sep 2025
 
 	* Version `profiles_settings.xml` to control PyCharm inspection profile.
