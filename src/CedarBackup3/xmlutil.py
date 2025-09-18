@@ -540,12 +540,10 @@ class Serializer(object):
     def _write(self, text):
         obj = _encodeText(text, self.encoding)
         self.stream.write(obj)
-        return
 
     def _tryIndent(self):
         if not self._inText and self._indent:
             self._write("\n" + self._indent * self._depth)
-        return
 
     def _visit(self, node):
         """
@@ -594,12 +592,10 @@ class Serializer(object):
     def _visitNodeList(self, node, exclude=None):
         for curr in node:
             curr is not exclude and self._visit(curr)
-        return
 
     def _visitNamedNodeMap(self, node):
         for item in list(node.values()):
             self._visit(item)
-        return
 
     def _visitAttr(self, node):
         self._write(" " + node.name)
@@ -607,22 +603,18 @@ class Serializer(object):
         text = _translateCDATA(value, self.encoding)
         text, delimiter = _translateCDATAAttr(text)
         self.stream.write("=%s%s%s" % (delimiter, text, delimiter))
-        return
 
     def _visitProlog(self):
         self._write("<?xml version='1.0' encoding='%s'?>" % (self.encoding or "utf-8"))
         self._inText = 0
-        return
 
     def _visitDocument(self, node):
         self._visitProlog()
         node.doctype and self._visitDocumentType(node.doctype)
         self._visitNodeList(node.childNodes, exclude=node.doctype)
-        return
 
     def _visitDocumentFragment(self, node):
         self._visitNodeList(node.childNodes)
-        return
 
     def _visitElement(self, node):
         self._tryIndent()
@@ -639,7 +631,6 @@ class Serializer(object):
         else:
             self._write("/>")
         self._inText = 0
-        return
 
     def _visitText(self, node):
         text = node.data
@@ -649,7 +640,6 @@ class Serializer(object):
             text = _translateCDATA(text, self.encoding)
             self.stream.write(text)
             self._inText = 1
-        return
 
     def _visitDocumentType(self, doctype):
         if not doctype.systemId and not doctype.publicId:
@@ -692,7 +682,6 @@ class Serializer(object):
         node.systemId and self._write(" SYSTEM %s" % node.systemId)
         node.notationName and self._write(" NDATA %s" % node.notationName)
         self._write(">")
-        return
 
     def _visitNotation(self, node):
         """Visited from a NamedNodeMap in DocumentType"""
@@ -701,30 +690,25 @@ class Serializer(object):
         node.publicId and self._write(" PUBLIC %s" % node.publicId)
         node.systemId and self._write(" SYSTEM %s" % node.systemId)
         self._write(">")
-        return
 
     def _visitCDATASection(self, node):
         self._tryIndent()
         self._write("<![CDATA[%s]]>" % (node.data))
         self._inText = 0
-        return
 
     def _visitComment(self, node):
         self._tryIndent()
         self._write("<!--%s-->" % (node.data))
         self._inText = 0
-        return
 
     def _visitEntityReference(self, node):
         self._write("&%s;" % node.nodeName)
         self._inText = 1
-        return
 
     def _visitProcessingInstruction(self, node):
         self._tryIndent()
         self._write("<?%s %s?>" % (node.target, node.data))
         self._inText = 0
-        return
 
 
 def _encodeText(text, encoding):  # noqa: ARG001
