@@ -12,5 +12,6 @@ task_checks() {
    run_command ruffformat --check
    echo ""
    run_command rufflint
+   echo ""
 }
 
