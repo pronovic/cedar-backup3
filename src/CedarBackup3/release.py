@@ -32,7 +32,7 @@ Attributes:
 
 # Historically, this information was tracked directly within this file as part of the
 # release process.  In modern Python, it's better to rely on the package metadata, which
-# is managed by Poetry on our behalf.
+# is managed by UV on our behalf.
 #
 # The metadata will always be set any time the package has been completely and properly
 # installed.  However, there are other cases where it won't be available, such as when
