@@ -1,6 +1,7 @@
 Version 3.10.2     unreleased
 
 	* Pull in latest version of run-script-framework.
+	* Migrate from Poetry to UV for the Python build system.
 
 Version 3.10.1     18 Sep 2025
 
