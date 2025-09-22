@@ -121,7 +121,7 @@ environment.
 
 ### Project Structure
 
-Go to the PyCharm settings and find the `cedar-backup3` project.  Under 
+Go to the PyCharm settings and find the `cedar-backup3` project.  Under
 **Project Structure**, mark both `src` and `tests` as source folders.  In 
 the **Exclude Files** box, enter the following: 
 
@@ -141,8 +141,8 @@ In the PyCharm settings, go to **Editor > Inspections** and be sure that the
 Unit tests are written using [Unittest](https://docs.python.org/3/library/unittest.html),
 and API documentation is written
 using [Google Style Python Docstring](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html). 
-In the PyCharm settings, go to **Tools > Python Integrated Tools**.  Under 
-**Testing > Default test runner**, select _Unittest_.  Under 
+In the PyCharm settings, go to **Python > Integrated Tools**.  Under
+**Testing > Default test runner**, select _Unittest_.  Under
 **Docstrings > Docstring format**, select _Google_.
 
 ### Running Unit Tests
