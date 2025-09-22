@@ -12,7 +12,6 @@ print("")
 Diagnostics().printDiagnostics(prefix="*** ")
 EOF
 
-   run_command latestcode
-   poetry_run python "$WORKING_DIR/diagnostics.py" "$@"
+   run_command uvrun "$WORKING_DIR/diagnostics.py" "$@"
 }
 
