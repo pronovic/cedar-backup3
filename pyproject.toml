@@ -55,7 +55,7 @@ dev = [
    "colorama (>=0.4.6,<1.0.0)",
 ]
 
-[tool.poetry.scripts]
+[project.scripts]
 cback3 = 'CedarBackup3.scripts:cback3' 
 cback3-amazons3-sync = 'CedarBackup3.scripts:amazons3' 
 cback3-span = 'CedarBackup3.scripts:span' 
