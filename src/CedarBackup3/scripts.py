@@ -11,12 +11,12 @@
 # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 # Language : Python 3
 # Project  : Cedar Backup, release 3
-# Purpose  : Scripts published by Poetry as part of the Python package
+# Purpose  : Scripts published by UV as part of the Python package
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 """
-Scripts published by Poetry as part of the Python package.
+Scripts published by UV as part of the Python package.
 """
 
 import sys

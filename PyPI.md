@@ -1,11 +1,10 @@
 [![pypi](https://img.shields.io/pypi/v/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
-[![license](https://img.shields.io/pypi/l/cedar-backup3.svg)](https://github.com/pronovic/cedar-backup3/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/pronovic/cedar-backup3)](https://github.com/pronovic/cedar-backup3/blob/main/LICENSE)
 [![wheel](https://img.shields.io/pypi/wheel/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
 [![python](https://img.shields.io/pypi/pyversions/cedar-backup3.svg)](https://pypi.org/project/cedar-backup3/)
 [![Test Suite](https://github.com/pronovic/cedar-backup3/workflows/Test%20Suite/badge.svg)](https://github.com/pronovic/cedar-backup3/actions?query=workflow%3A%22Test+Suite%22)
 [![docs](https://readthedocs.org/projects/cedar-backup3/badge/?version=stable&style=flat)](https://cedar-backup3.readthedocs.io/en/stable/)
 [![coverage](https://coveralls.io/repos/github/pronovic/cedar-backup3/badge.svg?branch=main)](https://coveralls.io/github/pronovic/cedar-backup3?branch=main)
-[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 [Cedar Backup](https://github.com/pronovic/cedar-backup3) is a software package
 designed to manage system backups for a pool of local and remote machines.

@@ -6,7 +6,7 @@ Release v\ |version|
 .. image:: https://img.shields.io/pypi/v/cedar-backup3.svg
     :target: https://pypi.org/project/cedar-backup3/
 
-.. image:: https://img.shields.io/pypi/l/cedar-backup3.svg
+.. image:: https://img.shields.io/github/license/pronovic/cedar-backup3
     :target: https://github.com/pronovic/cedar-backup3/blob/main/LICENSE
 
 .. image:: https://img.shields.io/pypi/wheel/cedar-backup3.svg
