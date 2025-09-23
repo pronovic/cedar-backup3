@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 packages = [ "src/CedarBackup3" ]
 
 [tool.hatch.build.targets.sdist]
-only-include = [ "Changelog", "README.md", "docs", "manpages", "samples", "src" ]
+only-include = [ "Changelog", "README.md", "docs", "manpages", "samples", "src", "tests" ]
 exclude = [ "docs/_build" ]
 
 [project]
