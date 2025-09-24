@@ -1,4 +1,4 @@
-Version 3.11.1     unreleased
+Version 3.12.0     24 Sep 2025
 
 	* Add support for Python v3.14 and drop support for v3.10.
 	* Document how to change the interpreter version with `$UV_PYTHON`.
