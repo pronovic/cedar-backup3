@@ -11,7 +11,7 @@ exclude = [ "docs/_build" ]
 
 [project]
 name = "cedar-backup3"
-requires-python = ">=3.10,<4"
+requires-python = ">=3.11,<4"
 description = "Implements local and remote backups to CD/DVD and Amazon S3"
 keywords = [ 'local', 'remote', 'backup', 'scp' ]
 authors = [ { name="Kenneth J. Pronovici", email="pronovic@ieee.org" } ]
@@ -21,10 +21,10 @@ readme = "PyPI.md"
 dynamic = [ "version" ]
 classifiers = [
    "Programming Language :: Python :: 3",
-   "Programming Language :: Python :: 3.10",
    "Programming Language :: Python :: 3.11",
    "Programming Language :: Python :: 3.12",
    "Programming Language :: Python :: 3.13",
+   "Programming Language :: Python :: 3.14",
    "Development Status :: 5 - Production/Stable",
    "Operating System :: OS Independent",
    "Environment :: Console",
