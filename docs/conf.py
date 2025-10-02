@@ -72,7 +72,7 @@ autodoc_member_order = "bysource"
 
 # Auto-api settings
 autoapi_type = "python"
-autoapi_dirs = ["../src"]
+autoapi_dirs = ["../src/CedarBackup3"]
 autoapi_add_toctree_entry = True
 autoapi_options = ['members', 'undoc-members', 'show-inheritance', 'special-members']
 
