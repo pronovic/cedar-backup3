@@ -36,7 +36,7 @@
         ".idea": true,
         ".mypy_cache": true,
         ".pre-commit-config.yaml": true,
-        ".pytest_cache": true,
+        "**/.pytest_cache": true,
         ".python-version": true,
         ".readthedocs.yaml": true,
         ".ruff_cache": true,
