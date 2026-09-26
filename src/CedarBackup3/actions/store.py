@@ -72,7 +72,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.store")
 ##########################
 
 
-def executeStore(configPath, options, config):  # noqa: ARG001
+def executeStore(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the store backup action.
 

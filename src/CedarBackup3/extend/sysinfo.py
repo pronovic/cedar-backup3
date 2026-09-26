@@ -92,7 +92,7 @@ LS_COMMAND = ["ls", "-laR", "/"]
 ###########################
 
 
-def executeAction(configPath, options, config):  # noqa: ARG001
+def executeAction(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the sysinfo backup action.
 

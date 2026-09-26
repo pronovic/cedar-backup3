@@ -1,5 +1,5 @@
 # vim: set ft=python ts=4 sw=4 expandtab:
-# ruff: noqa: S103
+# ruff: file-ignore[bad-file-permissions]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R

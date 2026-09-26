@@ -70,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.rebuild")
 ############################
 
 
-def executeRebuild(configPath, options, config):  # noqa: ARG001
+def executeRebuild(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the rebuild backup action.
 

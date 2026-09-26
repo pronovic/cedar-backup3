@@ -188,7 +188,6 @@ ignore = [
   "PT",         # this codebase uses Unittest, so don't apply Pytest standards
   "PTH",        # allow old-style os operations rather than pathlib.Path
   "RUF201",     # don't rewrite rule codes in pyproject.toml; codes are more legible when config mixes codes and categories
-  "RUF105",     # don't rewrite `noqa` to `ruff: ignore` in code
   "RET505",     # allow unnecessary else after return statement
   "RET506",     # allow unnecessary else after raise statement
   "RUF022",     # don't apply sorting standards for __all__

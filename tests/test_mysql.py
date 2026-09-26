@@ -253,7 +253,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
         Test assignment of password attribute, None value.
         """
-        mysql = MysqlConfig(password="password")  # noqa: S106
+        mysql = MysqlConfig(password="password")  # ruff: ignore[hardcoded-password-func-arg]
         self.assertEqual("password", mysql.password)
         mysql.password = None
         self.assertEqual(None, mysql.password)
@@ -264,7 +264,7 @@ class TestMysqlConfig(unittest.TestCase):
         """
         mysql = MysqlConfig()
         self.assertEqual(None, mysql.password)
-        mysql.password = "password"  # noqa: S105
+        mysql.password = "password"  # ruff: ignore[hardcoded-password-string]
         self.assertEqual("password", mysql.password)
 
     def testConstructor_011(self):
@@ -509,7 +509,7 @@ class TestMysqlConfig(unittest.TestCase):
         Test comparison of two differing objects, password differs (one None).
         """
         mysql1 = MysqlConfig()
-        mysql2 = MysqlConfig(password="password")  # noqa: S106
+        mysql2 = MysqlConfig(password="password")  # ruff: ignore[hardcoded-password-func-arg]
         self.assertNotEqual(mysql1, mysql2)
         self.assertTrue(not mysql1 == mysql2)
         self.assertTrue(mysql1 < mysql2)

@@ -1106,7 +1106,7 @@ def _buildSourceFiles(sourceDir):
 ###############################
 
 
-def _checkSourceFiles(sourceDir, sourceFiles):  # noqa: ARG001
+def _checkSourceFiles(sourceDir, sourceFiles):  # ruff: ignore[unused-function-argument]
     """
     Check source files, trying to guess which ones will have encoding problems.
     Args:

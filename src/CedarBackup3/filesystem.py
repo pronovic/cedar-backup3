@@ -1,5 +1,5 @@
 # vim: set ft=python ts=4 sw=4 expandtab:
-# ruff: noqa: PLW2901 # the code appars to work and changing it is risky
+# ruff: file-ignore[redefined-loop-name] # the code appars to work and changing it is risky
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -931,7 +931,7 @@ class BackupFileList(FilesystemList):
         Raises:
            OSError: If the file cannot be opened
         """
-        s = hashlib.sha1()  # noqa: S324 # we're not using SHA-1 for cryptographic purposes, only to identify file changes
+        s = hashlib.sha1()  # ruff: ignore[hashlib-insecure-hash-function] # we're not using SHA-1 for cryptographic purposes, only to identify file changes
         with open(path, mode="rb") as f:
             readBytes = 4096  # see notes above
             while readBytes > 0:
@@ -1280,7 +1280,7 @@ class PurgeItemList(FilesystemList):
     # Add methods
     ##############
 
-    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):  # noqa: ARG002
+    def addDirContents(self, path, recursive=True, addSelf=True, linkDepth=0, dereference=False):  # ruff: ignore[unused-method-argument]
         """
         Adds the contents of a directory to the list.
 

@@ -1,5 +1,5 @@
 # vim: set ft=python ts=4 sw=4 expandtab:
-# ruff: noqa: PLC0415
+# ruff: file-ignore[import-outside-top-level]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R

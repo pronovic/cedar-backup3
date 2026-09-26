@@ -1,5 +1,5 @@
 # vim: set ft=python ts=4 sw=4 expandtab:
-# ruff: noqa: PLR6104
+# ruff: file-ignore[non-augmented-assignment]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #              C E D A R
@@ -65,7 +65,7 @@ import logging
 import re
 import sys
 from io import StringIO
-from xml.dom.minidom import Node, getDOMImplementation, parseString  # noqa: S408 # we assume trusted data, so xml.dom is ok
+from xml.dom.minidom import Node, getDOMImplementation, parseString  # ruff: ignore[suspicious-xml-minidom-import] # we assume trusted data, so xml.dom is ok
 from xml.parsers.expat import ExpatError
 
 ########################################################################
@@ -93,7 +93,7 @@ def createInputDom(xmlData, name="cb_config"):
        ValueError: If the document can't be parsed
     """
     try:
-        xmlDom = parseString(xmlData)  # noqa: S318 # we assume trusted data, so xml.dom is ok
+        xmlDom = parseString(xmlData)  # ruff: ignore[suspicious-xml-mini-dom-usage] # we assume trusted data, so xml.dom is ok
         parentNode = readFirstChild(xmlDom, name)
         return (xmlDom, parentNode)
     except (OSError, ExpatError) as e:
@@ -711,7 +711,7 @@ class Serializer:
         self._inText = 0
 
 
-def _encodeText(text, encoding):  # noqa: ARG001
+def _encodeText(text, encoding):  # ruff: ignore[unused-function-argument]
     """Safely encodes the passed-in text as a Unicode string, converting bytes to UTF-8 if necessary."""
     if text is None:
         return text
@@ -744,7 +744,7 @@ def _translateCDATAAttr(characters):
     # Convert attribute new-lines to character entity
     # characters is possibly shorter than new_chars (no entities)
     if "\n" in characters:
-        new_chars = re.sub("\n", "&#10;", new_chars)  # noqa: RUF039
+        new_chars = re.sub("\n", "&#10;", new_chars)  # ruff: ignore[unraw-re-pattern]
     return new_chars, delimiter
 
 
