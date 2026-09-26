@@ -434,7 +434,7 @@ def _executeAction(options, config):  # noqa: ARG001
 
     counter = 0
     for spanItem in spanSet:
-        counter += 1
+        counter += 1  # ruff: ignore[enumerate-for-loop]
         if counter == 1:
             print()
             _getReturn("Please place the first disc in your backup device.\nPress return when ready.")

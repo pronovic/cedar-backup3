@@ -53,9 +53,9 @@ docs = [
 
 [dependency-groups]
 dev = [
-   "ruff (>=0.12.10,<1.0.0)",
-   "coverage (>=7.4.4,<8.0.0)",
-   "prek (>=0.2.1,<1.0.0)",
+   "ruff (>=0.16.9,<1.0.0)",
+   "coverage (>=7.16.1,<8.0.0)",
+   "prek (>=0.5.3,<1.0.0)",
    "colorama (>=0.4.6,<1.0.0)",
 ]
 
@@ -181,11 +181,14 @@ ignore = [
   "PLR5501",    # don't warn about elif instead of else/if
   "PLR6201",    # don't suggest using a set vs. a list when testing for membership
   "PLR6301",    # don't make recommendations about static methods
+  "PLW0717",    # don't warn about try blocks with too many statements
   "PLW1514",    # ignore open() without encoding; existing cross-platform behavior works but is fragile 
   "PLW1641",    # ignore __eq__ without __hash__; these objects work ok as-is and changing them is risky
   "PLW3201",    # ignore leftover __cmp__ methods from the original Python 2 implementation
   "PT",         # this codebase uses Unittest, so don't apply Pytest standards
   "PTH",        # allow old-style os operations rather than pathlib.Path
+  "RUF201",     # don't rewrite rule codes in pyproject.toml; codes are more legible when config mixes codes and categories
+  "RUF105",     # don't rewrite `noqa` to `ruff: ignore` in code
   "RET505",     # allow unnecessary else after return statement
   "RET506",     # allow unnecessary else after raise statement
   "RUF022",     # don't apply sorting standards for __all__
