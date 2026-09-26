@@ -1,6 +1,7 @@
 Version 3.12.1     unreleased
 
-	* Address Dependabot warnings for idna, pygments, requests, and urllib3.
+	* Add support for Python v3.15 and drop support for v3.11.
+	* Update dependencies and dependency pins across the board.
 	* Fix windows commands for external tools with PyCharm.
 	* Fix Sphinx autoapi to generate docs for source, not tests.
 	* Add support for Visual Studio Code as an IDE.
