@@ -34,3 +34,8 @@ small set of machines and you want to run daily incremental backups for things
 like system configuration, current email, small web sites, source code
 repositories, or small databases, then Cedar Backup is probably worth your
 time.
+
+**Statement on free-threading:** This code is single-threaded by design.
+Starting with Python 3.14, the matrix build CI workflow in GitHub Actions
+ensures that the test suite passes for both standard and free-threaded
+interpreters.

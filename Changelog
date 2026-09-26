@@ -6,6 +6,7 @@ Version 3.12.1     unreleased
 	* Fix Sphinx autoapi to generate docs for source, not tests.
 	* Add support for Visual Studio Code as an IDE.
 	* Update Read the Docs config to use generic latest Ubuntu runner.
+	* Run the GHA matrix build on free-threaded 3.14t and 3.15t.
 
 Version 3.12.0     24 Sep 2025
 
