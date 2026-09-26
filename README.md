@@ -56,6 +56,11 @@ much pain.  These days Python is released about once per year, so most anyone
 should be able to run one of the supported versions, even on a long-term
 support Linux distribution.
 
+**Statement on free-threading:** This code is single-threaded by design.
+Starting with Python 3.14, the matrix build CI workflow in GitHub Actions
+ensures that the test suite passes for both standard and free-threaded
+interpreters.
+
 ## Dependency Versions
 
 For Python dependencies, I target the version that is available in the current
