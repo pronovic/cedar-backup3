@@ -49,8 +49,8 @@ functionality is also known to work on FreeBSD and OS X systems.
 ## Supported Python Versions
 
 My general policy is to support the latest four versions of the Python
-interpreter.  For example, starting in late 2024, I dropped support for Python
-3.9, leaving support for Python 3.10, 3.11, 3.12, and 3.13.  At my discretion, I
+interpreter.  For example, starting in late 2026, I dropped support for Python
+3.11, leaving support for Python 3.12, 3.13, 3.14, and 3.15.  At my discretion, I
 may choose to support older versions, as long as doing so doesn't cause too
 much pain.  These days Python is released about once per year, so most anyone
 should be able to run one of the supported versions, even on a long-term
