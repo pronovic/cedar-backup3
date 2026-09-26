@@ -123,7 +123,7 @@ class PostgresqlConfig:
 
     """
 
-    def __init__(self, user=None, compressMode=None, all=None, databases=None):  # noqa: A002
+    def __init__(self, user=None, compressMode=None, all=None, databases=None):  # ruff: ignore[builtin-argument-shadowing]
         """
         Constructor for the ``PostgresqlConfig`` class.
 
@@ -524,7 +524,7 @@ class LocalConfig:
 ###########################
 
 
-def executeAction(configPath, options, config):  # noqa: ARG001
+def executeAction(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the PostgreSQL backup action.
 

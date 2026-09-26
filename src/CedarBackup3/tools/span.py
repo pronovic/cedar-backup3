@@ -307,7 +307,7 @@ def _diagnostics(fd=sys.stdout):
 ############################
 
 
-def _executeAction(options, config):  # noqa: ARG001
+def _executeAction(options, config):  # ruff: ignore[unused-function-argument]
     """
     Implements the guts of the cback3-span tool.
 
@@ -422,7 +422,7 @@ def _executeAction(options, config):  # noqa: ARG001
         print()
         counter = 0
         for item in spanSet:
-            counter += 1  # noqa: SIM113
+            counter += 1  # ruff: ignore[enumerate-for-loop]
             print(
                 "Disc %d: %d files, %s, %.2f%% utilization"
                 % (counter, len(item.fileList), displayBytes(item.size), item.utilization)
@@ -568,7 +568,7 @@ def _discInitializeImage(config, writer, spanItem):
     print("Completed initializing image.")
 
 
-def _discWriteImage(config, writer):  # noqa: ARG001
+def _discWriteImage(config, writer):  # ruff: ignore[unused-function-argument]
     """
     Writes a ISO image for a span item.
     Args:

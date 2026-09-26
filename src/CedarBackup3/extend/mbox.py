@@ -90,7 +90,7 @@ What is this extension?
 import datetime
 import logging
 import os
-import pickle  # noqa: S403 # we operate on trusted data, so pickle is ok
+import pickle  # ruff: ignore[suspicious-pickle-import] # we operate on trusted data, so pickle is ok
 import posixpath
 import tempfile
 from bz2 import BZ2File
@@ -1285,7 +1285,7 @@ def _loadLastRevision(config, item, fullBackup, collectMode):
         else:
             try:
                 with open(revisionPath, "rb") as f:
-                    revisionDate = pickle.load(f, fix_imports=True)  # noqa: S301 # this is trusted data, so pickle is ok
+                    revisionDate = pickle.load(f, fix_imports=True)  # ruff: ignore[suspicious-pickle-usage] # this is trusted data, so pickle is ok
                 logger.debug("Loaded revision file [%s] from disk: [%s]", revisionPath, revisionDate)
             except Exception as e:
                 revisionDate = None

@@ -343,7 +343,7 @@ def randomFilename(length, prefix=None, suffix=None):
     """
     characters = [None] * length
     for i in range(length):
-        characters[i] = random.choice(string.ascii_uppercase)  # noqa: S311
+        characters[i] = random.choice(string.ascii_uppercase)  # ruff: ignore[suspicious-non-cryptographic-random-usage]
     if prefix is None:
         prefix = ""
     if suffix is None:
@@ -356,7 +356,7 @@ def randomFilename(length, prefix=None, suffix=None):
 ####################################
 
 
-def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG001
+def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # ruff: ignore[unused-function-argument]
     """
     Equivalent of ``failUnlessRaises``, but used for property assignments instead.
 
@@ -398,7 +398,7 @@ def failUnlessAssignRaises(testCase, exception, obj, prop, value):  # noqa: ARG0
     missed = False
     instead = None
     try:
-        exec("obj.%s = value" % prop)  # noqa: S102
+        exec("obj.%s = value" % prop)  # ruff: ignore[exec-builtin]
         missed = True
     except exception:
         pass

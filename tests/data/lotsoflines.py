@@ -1,4 +1,4 @@
-# ruff: noqa: INP001
+# ruff: file-ignore[implicit-namespace-package]
 # Generates 100,000 lines of output (about 4 MB of data).
 # The first argument says where to put the lines.
 # "stdout" goes to stdout

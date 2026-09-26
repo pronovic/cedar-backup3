@@ -421,7 +421,7 @@ class LocalConfig:
 ###########################
 
 
-def executeAction(configPath, options, config):  # noqa: ARG001
+def executeAction(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the split backup action.
 
@@ -509,7 +509,7 @@ def _splitFile(sourcePath, splitSize, backupUser, backupGroup, removeSource=Fals
         dirname = os.path.dirname(sourcePath)
         filename = os.path.basename(sourcePath)
         prefix = "%s_" % filename
-        bytes = int(splitSize.bytes)  # noqa: A001
+        bytes = int(splitSize.bytes)  # ruff: ignore[builtin-variable-shadowing]
         os.chdir(dirname)  # need to operate from directory that we want files written to
         command = resolveCommand(SPLIT_COMMAND)
         args = ["--verbose", "--numeric-suffixes", "--suffix-length=5", "--bytes=%d" % bytes, filename, prefix]

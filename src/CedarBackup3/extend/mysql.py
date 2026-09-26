@@ -132,7 +132,7 @@ class MysqlConfig:
 
     """
 
-    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # noqa: A002
+    def __init__(self, user=None, password=None, compressMode=None, all=None, databases=None):  # ruff: ignore[builtin-argument-shadowing]
         """
         Constructor for the ``MysqlConfig`` class.
 
@@ -559,7 +559,7 @@ class LocalConfig:
 ###########################
 
 
-def executeAction(configPath, options, config):  # noqa: ARG001
+def executeAction(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the MySQL backup action.
 

@@ -64,7 +64,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.purge")
 ##########################
 
 
-def executePurge(configPath, options, config):  # noqa: ARG001
+def executePurge(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the purge backup action.
 

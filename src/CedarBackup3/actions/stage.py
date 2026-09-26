@@ -70,7 +70,7 @@ logger = logging.getLogger("CedarBackup3.log.actions.stage")
 
 
 # noinspection PyTypeChecker
-def executeStage(configPath, options, config):  # noqa: ARG001
+def executeStage(configPath, options, config):  # ruff: ignore[unused-function-argument]
     """
     Executes the stage backup action.
 

@@ -423,7 +423,7 @@ class _ActionItem:
         logger.debug("Calling action function [%s], execution index [%d]", name, self.index)
         self.function(configPath, options, config)
 
-    def _executeHook(self, type, hook):  # noqa: A002
+    def _executeHook(self, type, hook):  # ruff: ignore[builtin-argument-shadowing]
         """
         Executes a hook command via :any:`util.executeCommand`.
         Args:
@@ -515,7 +515,7 @@ class _ManagedActionItem:
                     return 1
         return 0
 
-    def executeAction(self, configPath, options, config):  # noqa: ARG002
+    def executeAction(self, configPath, options, config):  # ruff: ignore[unused-method-argument]
         """
         Executes the managed action associated with an item.
 
